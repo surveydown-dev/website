@@ -1,2 +1,0 @@
-library(htmltools)
-library(fontawesome)

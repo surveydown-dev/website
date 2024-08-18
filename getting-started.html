@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>surveydown.org</title>
+<title>Introduction to surveydown – surveydown.org</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -34,6 +68,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
@@ -75,13 +110,15 @@ ul.task-list li input[type="checkbox"] {
 <script src="https://kit.fontawesome.com/1392a7030f.js" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="– surveydown.org">
+<meta property="og:title" content="Introduction to surveydown – surveydown.org">
+<meta property="og:description" content="">
 <meta property="og:image" content="https://www.surveydown.org/images/logo.png">
 <meta property="og:site_name" content="https://surveydown.org">
 <meta property="og:locale" content="es_ES">
 <meta property="og:image:height" content="1679">
 <meta property="og:image:width" content="1679">
-<meta name="twitter:title" content="– surveydown.org">
+<meta name="twitter:title" content="Introduction to surveydown – surveydown.org">
+<meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://www.surveydown.org/images/logo.png">
 <meta name="twitter:creator" content="@johnhelveston">
 <meta name="twitter:site" content="@johnhelveston">
@@ -90,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
 <meta name="twitter:image-width" content="1679">
 </head>
 
-<body class="nav-sidebar docked fullcontent">
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -99,9 +136,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      surveydown.org
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Getting Started</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -134,7 +169,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
+  <a href="./getting-started.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Getting Started</span></a>
   </div>
 </li>
@@ -160,17 +195,110 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#install" id="toc-install" class="nav-link active" data-scroll-target="#install">1. Install</a></li>
+  <li><a href="#start-with-a-template" id="toc-start-with-a-template" class="nav-link" data-scroll-target="#start-with-a-template">2. Start with a template</a></li>
+  <li><a href="#add-content" id="toc-add-content" class="nav-link" data-scroll-target="#add-content">3. Add content</a></li>
+  <li><a href="#add-configuration-options" id="toc-add-configuration-options" class="nav-link" data-scroll-target="#add-configuration-options">4. Add configuration options</a></li>
+  <li><a href="#setup-your-database" id="toc-setup-your-database" class="nav-link" data-scroll-target="#setup-your-database">5. Setup your database</a></li>
+  <li><a href="#locally-preview" id="toc-locally-preview" class="nav-link" data-scroll-target="#locally-preview">6. Locally preview</a></li>
+  <li><a href="#deploy" id="toc-deploy" class="nav-link" data-scroll-target="#deploy">7. Deploy</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<div class="quarto-about-jolla">
-  <img src="images/logo.png" class="about-image
-  round " style="height: 15em; width: 15em;">
- <main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
-
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main>  
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Introduction to surveydown</h1>
 </div>
- <!-- /main -->
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In surveydown, your entire survey is designed using markdown and R code in a single Quarto document (a <code>.qmd</code> file). The {surveydown} R package provides a set of functions for defining the survey content and configuration options. Each function starts with <code>sd_</code> to make them easy to identify.</p>
+<p>You can add content to your survey using markdown formatting, or in RStudio you can edit with the visual editor. Survey questions are defined in R code chunks with the <code>sd_question()</code> function. Pages are defined using fences (<code>:::</code>), and navigation buttons handled with the <code>sd_next()</code> function. You can modify the configuration options in the server code chunk (the last code chunk at the bottom of the .qmd file) with the <code>sd_config()</code> function, and you can configure the database with the <code>sd_database()</code>. Details on each of these steps are provided in separate guides in the documentation.</p>
+<p>This introduction covers the basic steps to get started with surveydown.</p>
+<section id="install" class="level1">
+<h1>1. Install</h1>
+<p>See <code>vignette("install")</code></p>
+</section>
+<section id="start-with-a-template" class="level1">
+<h1>2. Start with a template</h1>
+<p>In the R console, run the following to to setup a template survey:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>surveydown<span class="sc">::</span><span class="fu">sd_create_survey</span>(<span class="st">"path/to/folder"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This will create a folder located at <code>"path/to/folder"</code> with the following files:</p>
+<ul>
+<li><code>example.qmd</code>: a template survey you should edit.</li>
+<li><code>example.Rproj</code>: An RStudio project file (helpful if you’re working in RStudio)</li>
+<li><code>_extensions</code>: A folder with the <a href="https://github.com/jhelvy/surveydown-ext">surveydown Quarto extension</a> needed to make everything work (don’t modify this).</li>
+</ul>
+</section>
+<section id="add-content" class="level1">
+<h1>3. Add content</h1>
+<p>See <code>vignette("content")</code> for details on adding content to your survey, like text, images, etc. with markdown and / or code chunks. As a quick overview:</p>
+<ul>
+<li>Add pages using fences, like this:</li>
+</ul>
+<pre><code>::: {#page1 .sd-page}
+
+Page 1 content here
+
+:::</code></pre>
+<ul>
+<li>Add questions with the <code>sd_question()</code> function in code chunks (see <code>vignette("questions")</code> for supported question types). For example:</li>
+</ul>
+<pre><code>```{r}
+sd_question(
+  type  = 'mc',
+  id    = 'penguins',
+  label = "Which is your favorite type of penguin?",
+  option = c(
+    'Adélie'    = 'adelie',
+    'Chinstrap' = 'chinstrap',
+    'Gentoo'    = 'gentoo'
+  )
+)
+```</code></pre>
+</section>
+<section id="add-configuration-options" class="level1">
+<h1>4. Add configuration options</h1>
+<p>In the server chunk (bottom of qmd file), add control logic to your survey with the <code>sd_config()</code> function. See <code>vignette("config")</code>.</p>
+</section>
+<section id="setup-your-database" class="level1">
+<h1>5. Setup your database</h1>
+<p>Also in the server chunk, setup your database with the <code>sd_database()</code> function, or leave it blank to preview / edit your survey without database connected. See <code>vignette("database")</code>.</p>
+</section>
+<section id="locally-preview" class="level1">
+<h1>6. Locally preview</h1>
+<p>Preview your survey by clicking the “Run Document” button in RStudio or in your terminal running the command <code>quarto serve survey_file_name.qmd</code>.</p>
+</section>
+<section id="deploy" class="level1">
+<h1>7. Deploy</h1>
+<p>Deploy your survey by hosting it on your favorite server, like shinyapps.io, huggingface, etc. See <code>vignette("deploy")</code>.</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -191,6 +319,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
   const isCodeAnnotation = (el) => {
     for (const clz of el.classList) {
       if (clz.startsWith('code-annotation-')) {                     

@@ -24,6 +24,10 @@ jobs:
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
         shell: Rscript {0}
 
+      - name: Check repository accessibility
+        run: |
+          curl -I https://api.github.com/repos/surveydown-dev/surveydown/contents/DESCRIPTION
+
       - name: Cache R packages
         uses: actions/cache@v3
         with:

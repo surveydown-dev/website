@@ -418,12 +418,12 @@ Sorry, but you are not qualified to take our survey.
 <section id="required-responses" class="level1">
 <h1>Required responses</h1>
 <blockquote class="blockquote">
-<p>Use the <code>required</code> argument to control required responses.</p>
+<p>Use the <code>required_questions</code> argument to control required responses.</p>
 </blockquote>
-<p>By default, no questions are required. However, you can make questions required by adding the question <code>id</code> to the <code>required</code> argument in <code>sd_config()</code>, like this:</p>
+<p>By default, no questions are required. However, you can make questions required by adding the question <code>id</code> to the <code>required_questions</code> argument in <code>sd_config()</code>, like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">required =</span> <span class="fu">c</span>(<span class="st">"vehicle_ownership"</span>, <span class="st">"penguins_other"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">required_questions =</span> <span class="fu">c</span>(<span class="st">"vehicle_ownership"</span>, <span class="st">"penguins_other"</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This will make the respondent unable to proceed until they have answered the required questions. It will also place a red asterisk (*) next to the question label to indicate that the question is required.</p>

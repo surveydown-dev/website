@@ -274,7 +274,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#yaml-header" id="toc-yaml-header" class="nav-link" data-scroll-target="#yaml-header">1. YAML Header</a>
   <ul class="collapse">
   <li><a href="#required-yaml-content" id="toc-required-yaml-content" class="nav-link" data-scroll-target="#required-yaml-content">Required YAML content</a></li>
-  <li><a href="#setitng-the-theme" id="toc-setitng-the-theme" class="nav-link" data-scroll-target="#setitng-the-theme">Setitng the theme</a></li>
+  <li><a href="#setting-the-theme" id="toc-setting-the-theme" class="nav-link" data-scroll-target="#setting-the-theme">Setting the theme</a></li>
   <li><a href="#progress-bar" id="toc-progress-bar" class="nav-link" data-scroll-target="#progress-bar">Progress bar</a></li>
   </ul></li>
   <li><a href="#setup-code-chunk" id="toc-setup-code-chunk" class="nav-link" data-scroll-target="#setup-code-chunk">2. Setup code chunk</a></li>
@@ -358,8 +358,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The <code>server: shiny</code> part ensures that the document will render as a shiny app. The <code>filters: [surveydown]</code> part applies the surveydown Quarto extension to the project, which is required.</p>
 </section>
-<section id="setitng-the-theme" class="level2">
-<h2 class="anchored" data-anchor-id="setitng-the-theme">Setitng the theme</h2>
+<section id="setting-the-theme" class="level2">
+<h2 class="anchored" data-anchor-id="setting-the-theme">Setting the theme</h2>
 <p>The YAML can also be used to set several <strong>optional</strong> global settings, such as the overall survey <code>theme</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span><span class="kw">:</span><span class="at"> united</span><span class="co"> # Any bootswatch theme </span></span>
@@ -383,17 +383,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup-code-chunk" class="level1">
 <h1>2. Setup code chunk</h1>
 <p>After the YAML header, you’ll need to load the <code>surveydown</code> package and run the <code>sd_setup()</code> function. This should be placed inside a code chunk that looks like this:</p>
-<pre><code>```{r}
-#| context: setup
-#| warning: false
-#| message: false
-
-# Load the package
-library(surveydown)
-
-# Run initial setup function (essential - do not delete)
-sd_setup()
-```</code></pre>
+<div class="cell" data-context="setup">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| context: setup</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| warning: false</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| message: false</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="in"># Load the package</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="in">library(surveydown)</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="in"># Run initial setup function (essential - do not delete)</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="in">sd_setup()</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Anything loaded in the setup chunk is accessible in both your survey body and your server, so we recommend also loading other packages and / or data in this chunk as well.</p>
 </section>
 <section id="survey-body" class="level1">
@@ -403,26 +405,30 @@ sd_setup()
 <section id="adding-pages" class="level2">
 <h2 class="anchored" data-anchor-id="adding-pages">Adding pages</h2>
 <p>In surveydown, pages are defined using fences (<code>:::</code>), like this:</p>
-<pre><code>::: {#welcome .sd-page}
-
-Page 1 content here
-
-:::
-
-::: {#page2 .sd-page}
-
-Page 2 content here
-
-:::</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span> {<span class="co">#welcome .sd-page}</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>Page <span class="dv">1</span> content here</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="er">:::</span> {<span class="co">#page2 .sd-page}</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>Page <span class="dv">2</span> content here</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>As you can see, we use three colon symbols <code>:::</code>, called a “fence”, to mark the start and end of pages. This notation is commonly used in Quarto for a variety of use cases, like defining <a href="https://quarto.org/docs/authoring/figures.html#subfigures">subfigures</a> in images.</p>
 <p>In the starting fence, you need to define a page name (e.g.&nbsp;<code>welcome</code> and <code>page2</code> in the example above) and you need to define the class as <code>.sd-page</code>. Then anything you put between the page fences will appear on that page.</p>
 </section>
 <section id="adding-navigation-buttons" class="level2">
 <h2 class="anchored" data-anchor-id="adding-navigation-buttons">Adding navigation buttons</h2>
 <p>To navigate to the next page, you need to insert a <code>sd_next()</code> function call inside a code chunk, like this:</p>
-<pre><code>```{r}
-sd_next(next_page = 'page2')
-```</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_next(next_page = 'page2')</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>The above code chunk will create a “Next” button that goes on to page 2 that looks like this:</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -431,9 +437,11 @@ sd_next(next_page = 'page2')
 </div>
 <p>In this example, the next button has to be inserted in a code chunk in between the <code>:::</code> fences of the <code>welcome</code> page in order to have a “Next” button that goes on to page 2. You can also send the user to other pages by just changing the value assigned to the <code>next_page</code> argument.</p>
 <p>Finally, you can also change the label of the button by changing the <code>label</code> argument, like this:</p>
-<pre><code>```{r}
-sd_next(next_page = 'page2', label = 'Next page')
-```</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_next(next_page = 'page2', label = 'Next page')</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="cell">
 <div class="cell-output-display">
 <button id="next-page2" type="button" class="btn btn-default action-button" style="display: block; margin: auto;" onclick="Shiny.setInputValue('next_page', 'page2');">Next page</button>
@@ -443,18 +451,20 @@ sd_next(next_page = 'page2', label = 'Next page')
 <section id="adding-questions" class="level2">
 <h2 class="anchored" data-anchor-id="adding-questions">Adding questions</h2>
 <p>Every survey question is created using the <code>sd_question()</code> function inside a code chunk. The question type is defined by the <code>type</code> argument. For example, to add a multiple choice question, you could insert the following code chunk:</p>
-<pre><code>```{r}
-sd_question(
-  type  = 'mc',
-  id    = 'penguins',
-  label = "Which is your favorite type of penguin?",
-  option = c(
-    'Adélie'    = 'adelie',
-    'Chinstrap' = 'chinstrap',
-    'Gentoo'    = 'gentoo'
-  )
-)
-```</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = 'mc',</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = 'penguins',</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "Which is your favorite type of penguin?",</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="in">  option = c(</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="in">    'Adélie'    = 'adelie',</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="in">    'Chinstrap' = 'chinstrap',</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="in">    'Gentoo'    = 'gentoo'</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>The above code chunk will create a multiple choice question that looks like this:</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -487,33 +497,35 @@ sd_question(
 </div>
 </div>
 <p><br></p>
-<p>The <code>sd_question()</code> function can be used to create a variety of question types, like text input, select drop down choices, and more by changing the <code>type</code> argument (see <code>vignette("questions")</code>).</p>
-<p>The function has many other arguments for customizing the look and feel of the question, such as the <code>height</code> and <code>width</code> (see <code>vignette("formatting")</code>).</p>
-<p>Finally, <code>sd_question()</code> has a <code>required</code> argument that can be used to make a question required or optional (e.g., <code>required = TRUE</code>). The default is <code>FALSE</code>, meaning the question is optional.</p>
+<p>The <code>sd_question()</code> function can be used to create a variety of question types, like text input, select drop down choices, and more by changing the <code>type</code> argument (see the <a href="./questions.html">Questions Types</a> page).</p>
+<p>The function has many other arguments for customizing the look and feel of the question, such as the <code>height</code> and <code>width</code> (see the <a href="./formatting.html">Formatting Questions</a> page).</p>
+<p>By default all questions are optional, but you can make questions required in the configuration options (see the <a href="./config.html#required-responses">Configuration Options</a> page for details).</p>
 </section>
 </section>
 <section id="server-code-chunk" class="level1">
 <h1>4. Server code chunk</h1>
 <p>At the very bottom of the .qmd file is a special “server” code chunk (that’s the <code>#| context: server</code> bit) that defines the app server. This is where you can customize and control the survey flow logic as well as where you define the database that will store the survey response data. It looks like this:</p>
-<pre><code>```{r}
-#| context: server
-
-# Define the configuration settings
-config &lt;- sd_config()
-
-# Define the database settings
-db &lt;- sd_database()
-
-# The sd_server() function initiates your survey - don't change this
-sd_server(
-  input   = input,
-  session = session,
-  config  = config,
-  db      = db
-)
-```</code></pre>
-<p>The <code>sd_config()</code> function is where you can define configuration options for the survey, such as <em>conditional display</em> (conditionally displaying a question based on responses to questions), or <em>conditional skip</em> (conditionally sending the respondent to a page based on responses to questions). See <code>vignette("config")</code> for details.</p>
-<p>The <code>sd_database()</code> function is where you set up your database. See <code>vignette("database")</code> for details.</p>
+<div class="cell" data-context="server">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| context: server</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="in"># Define the configuration settings</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="in">config &lt;- sd_config()</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="in"># Define the database settings</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="in">db &lt;- sd_database()</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="in"># The sd_server() function initiates your survey - don't change this</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="in">sd_server(</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="in">  input   = input,</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="in">  session = session,</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="in">  config  = config,</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="in">  db      = db</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>sd_config()</code> function is where you can define configuration options for the survey, such as <a href="./config.html#conditional-display">conditional display</a> (conditionally displaying a question based on responses to questions), or <a href="./config.html#conditional-skip">conditional skip</a> (conditionally sending the respondent to a page based on responses to questions). See the <a href="./config.html">Configuration Options</a> page for details.</p>
+<p>The <code>sd_database()</code> function is where you set up your database. See the <a href="./database.html">Database Settings</a> page for details.</p>
 <p>The <code>sd_server()</code> function at the bottom makes everything run, which you can safely ignore - just don’t change it and all will be good!</p>
 
 

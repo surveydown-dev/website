@@ -149,6 +149,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#background-motivation" id="toc-background-motivation" class="nav-link" data-scroll-target="#background-motivation">Background &amp; Motivation</a></li>
   <li><a href="#editing-a-surveydown-survey" id="toc-editing-a-surveydown-survey" class="nav-link" data-scroll-target="#editing-a-surveydown-survey">Editing a surveydown survey</a></li>
   </ul>
 </nav>
@@ -178,10 +179,16 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="./getting-started.html"><button type="button" class="btn btn-primary btn-lg">Get Started!</button></a></p>
 </div>
 </section>
+<section id="background-motivation" class="level1">
+<h1>Background &amp; Motivation</h1>
+<p>Most survey platforms (e.g., Google forms, Qualtrics, etc.) use drag-and-drop interfaces to design surveys, making version control and collaboration with others difficult. They’re also not reproducible.</p>
+<p>As an open-source, markdown-based platform, surveydown was designed to address these problems. In surveydown, all survey content is created with plain text (markdown and R code) in a single <code>.qmd</code> file that renders into a shiny app. This makes your survey easy to reproduce, share, and version control with common tools like Git. The survey data collected is also owned by the survey designer in a supabase account, not some other company. Best of all, everything is open source and free :)</p>
+<p>If you’re curious where this whole idea came from, check out this <a href="https://www.jhelvy.com/blog/2023-04-06-markdown-surveys/">blog post</a>, which outlines more on the general idea and the motivation for it. The post is now outdated in terms of the overall package design, but it provides something of an origin story and some of the motivation for developing this project.</p>
+</section>
 <section id="editing-a-surveydown-survey" class="level1">
 <h1>Editing a surveydown survey</h1>
 <p>We recommend working with an IDE to edit your surveydown surveys. <a href="https://www.rstudio.com/categories/rstudio-ide/">RStudio</a> is great, and we also like <a href="https://code.visualstudio.com">VS Code</a> and <a href="https://github.com/posit-dev/positron">Positron</a>.</p>
-<p>Once you have a survey ready to edit in your favorite IDE, you can render it locally to see how it will look as you change features. For example, this gif shows what it looks like to <a href="./config.html#required-responses">make a question required</a>:</p>
+<p>Once you have a survey ready to edit in your favorite IDE, you can render it locally to see how it will look as you change features. For example, the gif below shows what it looks like to <a href="./config.html#required-responses">make a question required</a>. This gives you an idea for what the development process is like. And because surveydown leverages shiny and quarto, you can customize your survey however you want!</p>
 <center>
 <img src="images/screenshots/required.gif" width="100%">
 </center>

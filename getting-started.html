@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction to surveydown – surveydown.org</title>
+<title>Getting Started with surveydown – surveydown.org</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,14 +113,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="https://kit.fontawesome.com/1392a7030f.js" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Introduction to surveydown – surveydown.org">
+<meta property="og:title" content="Getting Started with surveydown – surveydown.org">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://www.surveydown.org/images/logo.png">
 <meta property="og:site_name" content="https://surveydown.org">
 <meta property="og:locale" content="es_ES">
 <meta property="og:image:height" content="1679">
 <meta property="og:image:width" content="1679">
-<meta name="twitter:title" content="Introduction to surveydown – surveydown.org">
+<meta name="twitter:title" content="Getting Started with surveydown – surveydown.org">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://www.surveydown.org/images/logo.png">
 <meta name="twitter:creator" content="@johnhelveston">
@@ -158,6 +158,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li class="nav-item">
     <a class="nav-link active" href="./documentation.html" aria-current="page"> 
 <span class="menu-text">Documentation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./faq.html"> 
+<span class="menu-text">FAQ</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/surveydown-dev"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -258,7 +269,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#install" id="toc-install" class="nav-link active" data-scroll-target="#install">1. Install</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#install" id="toc-install" class="nav-link" data-scroll-target="#install">1. Install</a></li>
   <li><a href="#start-with-a-template" id="toc-start-with-a-template" class="nav-link" data-scroll-target="#start-with-a-template">2. Start with a template</a></li>
   <li><a href="#add-content" id="toc-add-content" class="nav-link" data-scroll-target="#add-content">3. Add content</a></li>
   <li><a href="#add-configuration-options" id="toc-add-configuration-options" class="nav-link" data-scroll-target="#add-configuration-options">4. Add configuration options</a></li>
@@ -273,7 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Introduction to surveydown</h1>
+<h1 class="title">Getting Started with surveydown</h1>
 </div>
 
 
@@ -290,12 +302,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In surveydown, your entire survey is designed using markdown and R code in a single Quarto document (a <code>.qmd</code> file). The {surveydown} R package provides a set of functions for defining the survey content and configuration options. Each function starts with <code>sd_</code> to make them easy to identify.</p>
-<p>You can add content to your survey using markdown formatting, or in RStudio you can edit with the visual editor. Survey questions are defined in R code chunks with the <code>sd_question()</code> function. Pages are defined using fences (<code>:::</code>), and navigation buttons handled with the <code>sd_next()</code> function. You can modify the configuration options in the server code chunk (the last code chunk at the bottom of the .qmd file) with the <code>sd_config()</code> function, and you can configure the database with the <code>sd_database()</code>. Details on each of these steps are provided in separate guides in the documentation.</p>
-<p>This introduction covers the basic steps to get started with surveydown.</p>
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<p>In surveydown, surveys are designed using markdown and R code in a single <a href="https://quarto.org/">Quarto</a> document (a <code>.qmd</code> file). There is no GUI or drag-and-drop interface - simply write plain text (markdown &amp; R code) and boom - you have a survey! 🎉</p>
+<p>The <a href="https://pkg.surveydown.org">{surveydown}</a> R package provides a set of functions for defining the survey content and configuration options. Each function starts with <code>sd_</code> to make them easy to identify.</p>
+<p>The platform is based on some basic principles:</p>
+<ul>
+<li>Add content to your survey using markdown text (or in RStudio use the visual editor).</li>
+<li>Define survey questions in R code chunks with the <code>sd_question()</code> function.</li>
+<li>Define pages using fences (<code>:::</code>), with navigation buttons handled using the <code>sd_next()</code> function.</li>
+<li>Add rich functionality to your survey in the server code chunk (the last code chunk at the bottom of the .qmd file), including complex <a href="./config.html">configuration options</a> with the <code>sd_config()</code> function, and the <a href="./database.html">database settings</a> with the <code>sd_database()</code> function.</li>
+</ul>
+<p>This approach ensures a flexible survey platform that is fully reproducible and easy to customize.</p>
+<p>The remaining steps on this page will guide you through the process of creating a surveydown survey.</p>
+</section>
 <section id="install" class="level1">
 <h1>1. Install</h1>
-<p>See <code>vignette("install")</code></p>
+<p>See <a href="./installation.html">installation</a>.</p>
 </section>
 <section id="start-with-a-template" class="level1">
 <h1>2. Start with a template</h1>
@@ -312,46 +335,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="add-content" class="level1">
 <h1>3. Add content</h1>
-<p>See <code>vignette("content")</code> for details on adding content to your survey, like text, images, etc. with markdown and / or code chunks. As a quick overview:</p>
+<p>See the <a href="./components.html">components</a> page for details on the main components in a surveydown survey, like. For a quick overview, here’s how you add pages and questions:</p>
 <ul>
-<li>Add pages using fences, like this:</li>
+<li>Add pages with fences, like this:</li>
 </ul>
-<pre><code>::: {#page1 .sd-page}
-
-Page 1 content here
-
-:::</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span> {<span class="co">#page1 .sd-page}</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Page <span class="dv">1</span> content here</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ul>
-<li>Add questions with the <code>sd_question()</code> function in code chunks (see <code>vignette("questions")</code> for supported question types). For example:</li>
+<li>Add questions with the <code>sd_question()</code> function in code chunks (see the <a href="./questions.html">Question Types</a> page for more on the types of questions supported). For example, here’s a multiple choice question:</li>
 </ul>
-<pre><code>```{r}
-sd_question(
-  type  = 'mc',
-  id    = 'penguins',
-  label = "Which is your favorite type of penguin?",
-  option = c(
-    'Adélie'    = 'adelie',
-    'Chinstrap' = 'chinstrap',
-    'Gentoo'    = 'gentoo'
-  )
-)
-```</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = 'mc',</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = 'penguins',</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "Which is your favorite type of penguin?",</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="in">  option = c(</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="in">    'Adélie'    = 'adelie',</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="in">    'Chinstrap' = 'chinstrap',</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="in">    'Gentoo'    = 'gentoo'</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="add-configuration-options" class="level1">
 <h1>4. Add configuration options</h1>
-<p>In the server chunk (bottom of qmd file), add control logic to your survey with the <code>sd_config()</code> function. See <code>vignette("config")</code>.</p>
+<p>In the server chunk (bottom of the <code>.qmd</code> file), add control logic and other configuration options to your survey with the <code>sd_config()</code> function. See the <a href="./config.html">Configuration Options</a> page for more details.</p>
 </section>
 <section id="setup-your-database" class="level1">
 <h1>5. Setup your database</h1>
-<p>Also in the server chunk, setup your database with the <code>sd_database()</code> function, or leave it blank to preview / edit your survey without database connected. See <code>vignette("database")</code>.</p>
+<p>Also in the server chunk, setup your database with the <code>sd_database()</code> function. You can also leave it blank to preview / edit your survey without database connected, or set <code>pause = TRUE</code> to disconnect the survey. See the <a href="./database.html">Database Settings</a> page for more details.</p>
 </section>
 <section id="locally-preview" class="level1">
 <h1>6. Locally preview</h1>
-<p>Preview your survey by clicking the “Run Document” button in RStudio or in your terminal running the command <code>quarto serve survey_file_name.qmd</code>.</p>
+<p>Preview your survey by clicking the “Run Document” button in RStudio or in your terminal running the command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>quarto serve survey_file_name.qmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Replacing <code>survey_file_name.qmd</code> with the name of your survey <code>.qmd</code> file.</p>
 </section>
 <section id="deploy" class="level1">
 <h1>7. Deploy</h1>
-<p>Deploy your survey by hosting it on your favorite server, like shinyapps.io, huggingface, etc. See <code>vignette("deploy")</code>.</p>
+<p>Deploy your survey by hosting it on your favorite server, like <a href="https://shinyapps.io/">shinyapps.io</a>, <a href="https://huggingface.co/">huggingface</a>, etc. See the <a href="./deployment.html">Deployment</a> page for more details.</p>
 
 
 </section>

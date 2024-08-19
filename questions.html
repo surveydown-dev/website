@@ -111,6 +111,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- fontawesome icons -->
 
 <script src="https://kit.fontawesome.com/1392a7030f.js" crossorigin="anonymous"></script>
+<script src="site_libs/sw-buttons-group-0.8.6/buttons-group.js"></script>
+<link href="site_libs/selectize-0.15.2/css/selectize.bootstrap3.css" rel="stylesheet">
+<script src="site_libs/selectize-0.15.2/js/selectize.min.js"></script>
+<script src="site_libs/selectize-0.15.2/accessibility/js/selectize-plugin-a11y.min.js"></script>
+<script src="site_libs/bootstrap-datepicker-js-1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script>(function() {
+        var datepicker = $.fn.datepicker.noConflict();
+        $.fn.bsDatepicker = datepicker;
+      })();
+     </script>
+<link href="site_libs/bootstrap-datepicker-css-1.9.0/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 
 
 <meta property="og:title" content="Question Types – surveydown.org">
@@ -309,6 +320,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<div class="cell">
+<div class="cell-output-display">
+<!--SHINY.SINGLETON[223eed69850a44625b94f39193177e317dbc7f92]-->
+<script>Shiny.addCustomMessageHandler('shinyjs-show', function(params) { shinyjs.debugMessage('shinyjs: calling function "show" with parameters:'); shinyjs.debugMessage(params); shinyjs.show(params);});
+Shiny.addCustomMessageHandler('shinyjs-hide', function(params) { shinyjs.debugMessage('shinyjs: calling function "hide" with parameters:'); shinyjs.debugMessage(params); shinyjs.hide(params);});
+Shiny.addCustomMessageHandler('shinyjs-toggle', function(params) { shinyjs.debugMessage('shinyjs: calling function "toggle" with parameters:'); shinyjs.debugMessage(params); shinyjs.toggle(params);});
+Shiny.addCustomMessageHandler('shinyjs-enable', function(params) { shinyjs.debugMessage('shinyjs: calling function "enable" with parameters:'); shinyjs.debugMessage(params); shinyjs.enable(params);});
+Shiny.addCustomMessageHandler('shinyjs-disable', function(params) { shinyjs.debugMessage('shinyjs: calling function "disable" with parameters:'); shinyjs.debugMessage(params); shinyjs.disable(params);});
+Shiny.addCustomMessageHandler('shinyjs-toggleState', function(params) { shinyjs.debugMessage('shinyjs: calling function "toggleState" with parameters:'); shinyjs.debugMessage(params); shinyjs.toggleState(params);});
+Shiny.addCustomMessageHandler('shinyjs-addClass', function(params) { shinyjs.debugMessage('shinyjs: calling function "addClass" with parameters:'); shinyjs.debugMessage(params); shinyjs.addClass(params);});
+Shiny.addCustomMessageHandler('shinyjs-removeClass', function(params) { shinyjs.debugMessage('shinyjs: calling function "removeClass" with parameters:'); shinyjs.debugMessage(params); shinyjs.removeClass(params);});
+Shiny.addCustomMessageHandler('shinyjs-toggleClass', function(params) { shinyjs.debugMessage('shinyjs: calling function "toggleClass" with parameters:'); shinyjs.debugMessage(params); shinyjs.toggleClass(params);});
+Shiny.addCustomMessageHandler('shinyjs-html', function(params) { shinyjs.debugMessage('shinyjs: calling function "html" with parameters:'); shinyjs.debugMessage(params); shinyjs.html(params);});
+Shiny.addCustomMessageHandler('shinyjs-onevent', function(params) { shinyjs.debugMessage('shinyjs: calling function "onevent" with parameters:'); shinyjs.debugMessage(params); shinyjs.onevent(params);});
+Shiny.addCustomMessageHandler('shinyjs-removeEvent', function(params) { shinyjs.debugMessage('shinyjs: calling function "removeEvent" with parameters:'); shinyjs.debugMessage(params); shinyjs.removeEvent(params);});
+Shiny.addCustomMessageHandler('shinyjs-alert', function(params) { shinyjs.debugMessage('shinyjs: calling function "alert" with parameters:'); shinyjs.debugMessage(params); shinyjs.alert(params);});
+Shiny.addCustomMessageHandler('shinyjs-logjs', function(params) { shinyjs.debugMessage('shinyjs: calling function "logjs" with parameters:'); shinyjs.debugMessage(params); shinyjs.logjs(params);});
+Shiny.addCustomMessageHandler('shinyjs-runjs', function(params) { shinyjs.debugMessage('shinyjs: calling function "runjs" with parameters:'); shinyjs.debugMessage(params); shinyjs.runjs(params);});
+Shiny.addCustomMessageHandler('shinyjs-reset', function(params) { shinyjs.debugMessage('shinyjs: calling function "reset" with parameters:'); shinyjs.debugMessage(params); shinyjs.reset(params);});
+Shiny.addCustomMessageHandler('shinyjs-delay', function(params) { shinyjs.debugMessage('shinyjs: calling function "delay" with parameters:'); shinyjs.debugMessage(params); shinyjs.delay(params);});
+Shiny.addCustomMessageHandler('shinyjs-click', function(params) { shinyjs.debugMessage('shinyjs: calling function "click" with parameters:'); shinyjs.debugMessage(params); shinyjs.click(params);});
+Shiny.addCustomMessageHandler('shinyjs-refresh', function(params) { shinyjs.debugMessage('shinyjs: calling function "refresh" with parameters:'); shinyjs.debugMessage(params); shinyjs.refresh(params);});</script>
+<script src="shinyjs/shinyjs-default-funcs.js"></script>
+<script>shinyjs.debug = false;</script>
+<style>.shinyjs-hide { display: none !important; }</style>
+<!--/SHINY.SINGLETON[223eed69850a44625b94f39193177e317dbc7f92]-->
+</div>
+</div>
 <blockquote class="blockquote">
 <p>Use the <code>sd_question()</code> function to specify the question types.</p>
 </blockquote>
@@ -341,19 +380,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Use <code>type = 'text'</code> to specify a text input type question.</p>
 <p>Scripts:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">"text"</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">"silly_word"</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Write a silly word:"</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = "text",</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = "silly_word",</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "Write a silly word:"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Output:</p>
-<div style="text-align: left; max-width: 600px;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/screenshots/2_1_text.jpg" class="img-fluid figure-img" width="600"></p>
-<figcaption><strong>Figure 1</strong>: <em><code>text</code> Question Type</em></figcaption>
-</figure>
+<div class="cell">
+<div class="cell-output-display">
+<div id="container- silly_word" data-question-id="silly_word" class="question-container">
+<div class="form-group shiny-input-container" style="width:100%;">
+<label class="control-label" id="silly_word-label" for="silly_word"><p>Write a silly word: <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
+</label>
+<input id="silly_word" type="text" class="shiny-input-text form-control" value="">
+</div>
+</div>
 </div>
 </div>
 </section>
@@ -362,19 +406,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Use <code>type = 'textarea'</code> to specify a text area input type question.</p>
 <p>Scripts:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">"textarea"</span>,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">"silly_paragraph"</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Write a silly paragraph:"</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = "textarea",</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = "silly_paragraph",</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "Write a silly paragraph:"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Output:</p>
-<div style="text-align: left; max-width: 600px;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/screenshots/2_2_textarea.jpg" class="img-fluid figure-img" width="600"></p>
-<figcaption><strong>Figure 2</strong>: <em><code>textarea</code> Question Type</em></figcaption>
-</figure>
+<div class="cell">
+<div class="cell-output-display">
+<div id="container- silly_paragraph" data-question-id="silly_paragraph" class="question-container">
+<div class="form-group shiny-input-container" style="width: 100%;">
+<label class="control-label" id="silly_paragraph-label" for="silly_paragraph"><p>Write a silly paragraph: <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
+</label>
+<textarea id="silly_paragraph" class="shiny-input-textarea form-control" style="width:100%;height:100px;" rows="6" cols="80"></textarea>
+</div>
+</div>
 </div>
 </div>
 </section>
@@ -383,19 +432,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Use <code>type = 'numeric'</code> to specify a numeric input type.</p>
 <p>Scripts:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'numeric'</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">'age'</span>,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"What's your age?"</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = 'numeric',</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = 'age',</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "What's your age?"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Output:</p>
-<div style="text-align: left; max-width: 600px;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/screenshots/2_3_numeric.jpg" class="img-fluid figure-img" width="600"></p>
-<figcaption><strong>Figure 3</strong>: <em><code>numeric</code> Question Type (Note there is a set of arrows on the right)</em></figcaption>
-</figure>
+<div class="cell">
+<div class="cell-output-display">
+<div id="container- age" data-question-id="age" class="question-container">
+<div class="form-group shiny-input-container" style="width:100%;">
+<label class="control-label" id="age-label" for="age"><p>What’s your age? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
+</label>
+<input id="age" type="number" class="shiny-input-number form-control">
+</div>
+</div>
 </div>
 </div>
 </section>
@@ -404,28 +458,76 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Use <code>type = 'mc'</code> to specify a multiple choice type question with a single choice option.</p>
 <p>Scripts:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type   =</span> <span class="st">'mc'</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id     =</span> <span class="st">'artist'</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label  =</span> <span class="st">"Which artist do you prefer most from this list?"</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Taylor Swift"</span> <span class="ot">=</span> <span class="st">"taylor_swift"</span>,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Beyoncé"</span>      <span class="ot">=</span> <span class="st">"beyonce"</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Adele"</span>        <span class="ot">=</span> <span class="st">"adele"</span>,</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Rihanna"</span>      <span class="ot">=</span> <span class="st">"rihanna"</span>,</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Lady Gaga"</span>    <span class="ot">=</span> <span class="st">"ladygaga"</span>,</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Ed Sheeran"</span>   <span class="ot">=</span> <span class="st">"ed_sheeran"</span>,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Drake"</span>        <span class="ot">=</span> <span class="st">"drake"</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type   = 'mc',</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id     = 'artist',</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label  = "Which artist do you prefer most from this list?",</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="in">  option = c(</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="in">    "Taylor Swift" = "taylor_swift",</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="in">    "Beyoncé"      = "beyonce",</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="in">    "Adele"        = "adele",</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="in">    "Rihanna"      = "rihanna",</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="in">    "Lady Gaga"    = "ladygaga",</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="in">    "Ed Sheeran"   = "ed_sheeran",</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="in">    "Drake"        = "drake"</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Output:</p>
-<div style="text-align: left; max-width: 600px;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/screenshots/2_4_mc.jpg" class="img-fluid figure-img" width="600"></p>
-<figcaption><strong>Figure 4</strong>: <em><code>mc</code> Question Type</em></figcaption>
-</figure>
+<div class="cell">
+<div class="cell-output-display">
+<div id="container- artist" data-question-id="artist" class="question-container">
+<div id="artist" style="width:100%;" class="form-group shiny-input-radiogroup shiny-input-container" role="radiogroup" aria-labelledby="artist-label">
+<label class="control-label" id="artist-label" for="artist"><p>Which artist do you prefer most from this list? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
+</label>
+<div class="shiny-options-group">
+<div class="radio">
+<label>
+<input type="radio" name="artist" value="taylor_swift">
+<span>Taylor Swift</span>
+</label>
+</div>
+<div class="radio">
+<label>
+<input type="radio" name="artist" value="beyonce">
+<span>Beyoncé</span>
+</label>
+</div>
+<div class="radio">
+<label>
+<input type="radio" name="artist" value="adele">
+<span>Adele</span>
+</label>
+</div>
+<div class="radio">
+<label>
+<input type="radio" name="artist" value="rihanna">
+<span>Rihanna</span>
+</label>
+</div>
+<div class="radio">
+<label>
+<input type="radio" name="artist" value="ladygaga">
+<span>Lady Gaga</span>
+</label>
+</div>
+<div class="radio">
+<label>
+<input type="radio" name="artist" value="ed_sheeran">
+<span>Ed Sheeran</span>
+</label>
+</div>
+<div class="radio">
+<label>
+<input type="radio" name="artist" value="drake">
+<span>Drake</span>
+</label>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
@@ -434,28 +536,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Use <code>type = 'mc_buttons'</code> to generate the button version of <code>mc</code>.</p>
 <p>Scripts:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type   =</span> <span class="st">'mc_buttons'</span>,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id     =</span> <span class="st">'fruit'</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label  =</span> <span class="st">"Which fruit do you prefer most from this list?"</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Apple"</span>      <span class="ot">=</span> <span class="st">"apple"</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Banana"</span>     <span class="ot">=</span> <span class="st">"banana"</span>,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Pear"</span>       <span class="ot">=</span> <span class="st">"pear"</span>,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Strawberry"</span> <span class="ot">=</span> <span class="st">"strawberry"</span>,</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Grape"</span>      <span class="ot">=</span> <span class="st">"grape"</span>,</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mango"</span>      <span class="ot">=</span> <span class="st">"mango"</span>,</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Watermelon"</span> <span class="ot">=</span> <span class="st">"watermelon"</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type   = 'mc_buttons',</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id     = 'fruit',</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label  = "Which fruit do you prefer most from this list?",</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="in">  option = c(</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="in">    "Apple"      = "apple",</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="in">    "Banana"     = "banana",</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="in">    "Pear"       = "pear",</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="in">    "Strawberry" = "strawberry",</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="in">    "Grape"      = "grape",</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="in">    "Mango"      = "mango",</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="in">    "Watermelon" = "watermelon"</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Output:</p>
-<div style="text-align: left; max-width: 500px;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/screenshots/2_5_mc_buttons.jpg" class="img-fluid figure-img" width="500"></p>
-<figcaption><strong>Figure 5</strong>: <em><code>mc_buttons</code> Question Type</em></figcaption>
-</figure>
+<div class="cell">
+<div class="cell-output-display">
+<div id="container- fruit" data-question-id="fruit" class="question-container">
+<div class="form-group shiny-input-container shiny-input-radiogroup shiny-input-container-inline" style="width:100%;">
+<label class="control-label" id="fruit-label" for="fruit"><p>Which fruit do you prefer most from this list? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
+</label>
+<br>
+<div id="fruit" class="radio-group-buttons">
+<div aria-labelledby="fruit-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+<input type="radio" autocomplete="off" id="fruit1" name="fruit" value="apple" class="btn-check">
+<label class="btn radiobtn btn-outline-primary" for="fruit1">Apple</label>
+<input type="radio" autocomplete="off" id="fruit2" name="fruit" value="banana" class="btn-check">
+<label class="btn radiobtn btn-outline-primary" for="fruit2">Banana</label>
+<input type="radio" autocomplete="off" id="fruit3" name="fruit" value="pear" class="btn-check">
+<label class="btn radiobtn btn-outline-primary" for="fruit3">Pear</label>
+<input type="radio" autocomplete="off" id="fruit4" name="fruit" value="strawberry" class="btn-check">
+<label class="btn radiobtn btn-outline-primary" for="fruit4">Strawberry</label>
+<input type="radio" autocomplete="off" id="fruit5" name="fruit" value="grape" class="btn-check">
+<label class="btn radiobtn btn-outline-primary" for="fruit5">Grape</label>
+<input type="radio" autocomplete="off" id="fruit6" name="fruit" value="mango" class="btn-check">
+<label class="btn radiobtn btn-outline-primary" for="fruit6">Mango</label>
+<input type="radio" autocomplete="off" id="fruit7" name="fruit" value="watermelon" class="btn-check">
+<label class="btn radiobtn btn-outline-primary" for="fruit7">Watermelon</label>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
@@ -464,31 +589,97 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Use <code>type = 'mc_multiple'</code> to specify a multiple choice type question with multiple selection enabled.</p>
 <p>Scripts:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'mc_multiple'</span>,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">'swift'</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"What are your favorite Taylor Swift albums (select all that apply)?"</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Taylor Swift (2006)"</span> <span class="ot">=</span> <span class="st">"taylor_swift"</span>,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Fearless (2008)"</span>     <span class="ot">=</span> <span class="st">"fearless"</span>,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Speak Now (2010)"</span>    <span class="ot">=</span> <span class="st">"speak_now"</span>,</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Red (2012)"</span>          <span class="ot">=</span> <span class="st">"red"</span>,</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"1989 (2014)"</span>         <span class="ot">=</span> <span class="st">"1989"</span>,</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Reputation (2017)"</span>   <span class="ot">=</span> <span class="st">"reputation"</span>,</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Lover (2019)"</span>        <span class="ot">=</span> <span class="st">"lover"</span>,</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Folklore (2020)"</span>     <span class="ot">=</span> <span class="st">"folklore"</span>,</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Evermore (2020)"</span>     <span class="ot">=</span> <span class="st">"evermore"</span>,</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Midnights (2022)"</span>    <span class="ot">=</span> <span class="st">"midnights"</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = 'mc_multiple',</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = 'swift',</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "What are your favorite Taylor Swift albums (select all that apply)?",</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="in">  option = c(</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="in">    "Taylor Swift (2006)" = "taylor_swift",</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="in">    "Fearless (2008)"     = "fearless",</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="in">    "Speak Now (2010)"    = "speak_now",</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="in">    "Red (2012)"          = "red",</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="in">    "1989 (2014)"         = "1989",</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="in">    "Reputation (2017)"   = "reputation",</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="in">    "Lover (2019)"        = "lover",</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="in">    "Folklore (2020)"     = "folklore",</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="in">    "Evermore (2020)"     = "evermore",</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="in">    "Midnights (2022)"    = "midnights"</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Output:</p>
-<div style="text-align: left; max-width: 500px;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/screenshots/2_6_mc_multiple.jpg" class="img-fluid figure-img" width="500"></p>
-<figcaption><strong>Figure 6</strong>: <em><code>mc_multiple</code> Question Type</em></figcaption>
-</figure>
+<div class="cell">
+<div class="cell-output-display">
+<div id="container- swift" data-question-id="swift" class="question-container">
+<div id="swift" style="width:100%;" class="form-group shiny-input-checkboxgroup shiny-input-container" role="group" aria-labelledby="swift-label">
+<label class="control-label" id="swift-label" for="swift"><p>What are your favorite Taylor Swift albums (select all that apply)? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
+</label>
+<div class="shiny-options-group">
+<div class="checkbox">
+<label>
+<input type="checkbox" name="swift" value="taylor_swift">
+<span>Taylor Swift (2006)</span>
+</label>
+</div>
+<div class="checkbox">
+<label>
+<input type="checkbox" name="swift" value="fearless">
+<span>Fearless (2008)</span>
+</label>
+</div>
+<div class="checkbox">
+<label>
+<input type="checkbox" name="swift" value="speak_now">
+<span>Speak Now (2010)</span>
+</label>
+</div>
+<div class="checkbox">
+<label>
+<input type="checkbox" name="swift" value="red">
+<span>Red (2012)</span>
+</label>
+</div>
+<div class="checkbox">
+<label>
+<input type="checkbox" name="swift" value="1989">
+<span>1989 (2014)</span>
+</label>
+</div>
+<div class="checkbox">
+<label>
+<input type="checkbox" name="swift" value="reputation">
+<span>Reputation (2017)</span>
+</label>
+</div>
+<div class="checkbox">
+<label>
+<input type="checkbox" name="swift" value="lover">
+<span>Lover (2019)</span>
+</label>
+</div>
+<div class="checkbox">
+<label>
+<input type="checkbox" name="swift" value="folklore">
+<span>Folklore (2020)</span>
+</label>
+</div>
+<div class="checkbox">
+<label>
+<input type="checkbox" name="swift" value="evermore">
+<span>Evermore (2020)</span>
+</label>
+</div>
+<div class="checkbox">
+<label>
+<input type="checkbox" name="swift" value="midnights">
+<span>Midnights (2022)</span>
+</label>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
@@ -497,29 +688,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Use <code>type = 'mc_multiple_buttons'</code> to generate the button version of <code>mc_multiple</code>.</p>
 <p>Scripts:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'mc_multiple_buttons'</span>,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">'michael_jackson'</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Which are your favorite Michael Jackson songs (select all that apply)?"</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Thriller (1982)"</span>          <span class="ot">=</span> <span class="st">"thriller"</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Billie Jean (1982)"</span>       <span class="ot">=</span> <span class="st">"billie_jean"</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Beat It (1982)"</span>           <span class="ot">=</span> <span class="st">"beat_it"</span>,</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Man in the Mirror (1987)"</span> <span class="ot">=</span> <span class="st">"man_in_the_mirror"</span>,</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Smooth Criminal (1987)"</span>   <span class="ot">=</span> <span class="st">"smooth_criminal"</span>,</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Black or White (1991)"</span>    <span class="ot">=</span> <span class="st">"black_or_white"</span>,</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Bad (1987)"</span>               <span class="ot">=</span> <span class="st">"bad"</span>,</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Human Nature (1982)"</span>      <span class="ot">=</span> <span class="st">"human_nature"</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = 'mc_multiple_buttons',</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = 'michael_jackson',</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "Which are your favorite Michael Jackson songs (select all that apply)?",</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="in">  option = c(</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="in">    "Thriller (1982)"          = "thriller",</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="in">    "Billie Jean (1982)"       = "billie_jean",</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="in">    "Beat It (1982)"           = "beat_it",</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="in">    "Man in the Mirror (1987)" = "man_in_the_mirror",</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="in">    "Smooth Criminal (1987)"   = "smooth_criminal",</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="in">    "Black or White (1991)"    = "black_or_white",</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="in">    "Bad (1987)"               = "bad",</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="in">    "Human Nature (1982)"      = "human_nature"</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Output:</p>
-<div style="text-align: left; max-width: 500px;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/screenshots/2_7_mc_multiple_buttons.jpg" class="img-fluid figure-img" width="500"></p>
-<figcaption><strong>Figure 7</strong>: <em><code>mc_multiple_buttons</code> Question Type</em></figcaption>
-</figure>
+<div class="cell">
+<div class="cell-output-display">
+<div id="container- michael_jackson" data-question-id="michael_jackson" class="question-container">
+<div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline" style="width:100%;">
+<label class="control-label" id="michael_jackson-label" for="michael_jackson"><p>Which are your favorite Michael Jackson songs (select all that apply)? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
+</label>
+<br>
+<div id="michael_jackson" class="checkbox-group-buttons">
+<div aria-labelledby="michael_jackson-label" class=" btn-group-container-sw" data-toggle="buttons" role="group">
+<input type="checkbox" autocomplete="off" id="michael_jackson1" name="michael_jackson" value="thriller" class="btn-check">
+<label class="btn checkbtn btn-outline-primary" for="michael_jackson1">Thriller (1982)</label>
+<input type="checkbox" autocomplete="off" id="michael_jackson2" name="michael_jackson" value="billie_jean" class="btn-check">
+<label class="btn checkbtn btn-outline-primary" for="michael_jackson2">Billie Jean (1982)</label>
+<input type="checkbox" autocomplete="off" id="michael_jackson3" name="michael_jackson" value="beat_it" class="btn-check">
+<label class="btn checkbtn btn-outline-primary" for="michael_jackson3">Beat It (1982)</label>
+<input type="checkbox" autocomplete="off" id="michael_jackson4" name="michael_jackson" value="man_in_the_mirror" class="btn-check">
+<label class="btn checkbtn btn-outline-primary" for="michael_jackson4">Man in the Mirror (1987)</label>
+<input type="checkbox" autocomplete="off" id="michael_jackson5" name="michael_jackson" value="smooth_criminal" class="btn-check">
+<label class="btn checkbtn btn-outline-primary" for="michael_jackson5">Smooth Criminal (1987)</label>
+<input type="checkbox" autocomplete="off" id="michael_jackson6" name="michael_jackson" value="black_or_white" class="btn-check">
+<label class="btn checkbtn btn-outline-primary" for="michael_jackson6">Black or White (1991)</label>
+<input type="checkbox" autocomplete="off" id="michael_jackson7" name="michael_jackson" value="bad" class="btn-check">
+<label class="btn checkbtn btn-outline-primary" for="michael_jackson7">Bad (1987)</label>
+<input type="checkbox" autocomplete="off" id="michael_jackson8" name="michael_jackson" value="human_nature" class="btn-check">
+<label class="btn checkbtn btn-outline-primary" for="michael_jackson8">Human Nature (1982)</label>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
@@ -528,100 +744,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Use <code>type = 'select'</code> to specify a drop down select type question.</p>
 <p>Scripts:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'select'</span>,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">'education'</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"What is the highest level of education you have attained?"</span>,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Did not attend high school"</span> <span class="ot">=</span> <span class="st">"hs_no"</span>,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Some high school"</span>           <span class="ot">=</span> <span class="st">"hs_some"</span>,</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"High school graduate"</span>       <span class="ot">=</span> <span class="st">"hs_grad"</span>,</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Some college"</span>               <span class="ot">=</span> <span class="st">"college_some"</span>,</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"College"</span>                    <span class="ot">=</span> <span class="st">"college_grad"</span>,</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Graduate Work"</span>              <span class="ot">=</span> <span class="st">"grad"</span>,</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Prefer not to say"</span>          <span class="ot">=</span> <span class="st">"no_response"</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = 'select',</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = 'education',</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "What is the highest level of education you have attained?",</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="in">  option = c(</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="in">    "Did not attend high school" = "hs_no",</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="in">    "Some high school"           = "hs_some",</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="in">    "High school graduate"       = "hs_grad",</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="in">    "Some college"               = "college_some",</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="in">    "College"                    = "college_grad",</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="in">    "Graduate Work"              = "grad",</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="in">    "Prefer not to say"          = "no_response"</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Output:</p>
-<div style="text-align: left; max-width: 600px;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/screenshots/2_8_select.jpg" class="img-fluid figure-img" width="600"></p>
-<figcaption><strong>Figure 8</strong>: <em><code>select</code> Question Type</em></figcaption>
-</figure>
+<div class="cell">
+<div class="cell-output-display no-overflow-x">
+<div id="container- education" data-question-id="education" class="question-container">
+<div class="form-group shiny-input-container" style="width:100%;">
+<label class="control-label" id="education-label" for="education"><p>What is the highest level of education you have attained? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
+</label>
+<div>
+<select id="education" class="shiny-input-select"><option value="">Choose an option...</option>
+<option value="hs_no">Did not attend high school</option>
+<option value="hs_some">Some high school</option>
+<option value="hs_grad">High school graduate</option>
+<option value="college_some">Some college</option>
+<option value="college_grad">College</option>
+<option value="grad">Graduate Work</option>
+<option value="no_response">Prefer not to say</option></select>
+<script type="application/json" data-for="education">{"plugins":["selectize-plugin-a11y"]}</script>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
 <section id="slider-under-construction" class="level3">
 <h3 class="anchored" data-anchor-id="slider-under-construction">9. <code>slider</code> (Under Construction)</h3>
-<blockquote class="blockquote">
-<p>Due to compatibility issues, the <code>slider</code> type is still under construction. Now the slider axis will only show numeric values ranging from 10 to 100. We will solve this problem in our future releases.</p>
-</blockquote>
-<p>Use <code>type = 'slider'</code> to specify a slider input type.</p>
-<p>Scripts:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'slider'</span>,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">'climate_care'</span>,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"To what extent do you believe human-caused climate change is real?"</span>,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Don't Believe"</span>    <span class="ot">=</span> <span class="st">"dont_believe"</span>,</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Somewhat Believe"</span> <span class="ot">=</span> <span class="st">"somewhat"</span>,</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Neutral"</span>          <span class="ot">=</span> <span class="st">"neutral"</span>,</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Believe"</span>          <span class="ot">=</span> <span class="st">"believe"</span>,</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Strongly Believe"</span> <span class="ot">=</span> <span class="st">"strongly_believe"</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Output:</p>
-<div style="text-align: left; max-width: 600px;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/screenshots/2_9_slider_1.jpg" class="img-fluid figure-img" width="600"></p>
-<figcaption><strong>Figure 9</strong>: <em><code>slider</code> Question Type for Single Slider</em></figcaption>
-</figure>
-</div>
-</div>
-<p><code>type = 'slider'</code> can also be used to select a range.</p>
-<p>Scripts:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type     =</span> <span class="st">'slider'</span>,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id       =</span> <span class="st">'coldest_months'</span>,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label    =</span> <span class="st">"What months do you think are the coldest throughout a year?"</span>,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">option   =</span> month.abb,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">selected =</span> month.abb[<span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>)]</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Output:</p>
-<div style="text-align: left; max-width: 600px;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/screenshots/2_9_slider_2.jpg" class="img-fluid figure-img" width="600"></p>
-<figcaption><strong>Figure 10</strong>: <em><code>slider</code> Question Type for Two Sliders</em></figcaption>
-</figure>
-</div>
-</div>
+<p>Due to compatibility issues, the <code>slider</code> type is still under construction.</p>
 </section>
 <section id="date" class="level3">
 <h3 class="anchored" data-anchor-id="date">10. <code>date</code></h3>
 <p>Use <code>type = 'date'</code> to specify a date input type.</p>
 <p>Scripts:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'date'</span>,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">'dob'</span>,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"What is your date of birth?"</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = 'date',</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = 'dob',</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "What is your date of birth?"</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Output:</p>
-<div style="text-align: left; max-width: 600px;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/screenshots/2_10_date.jpg" class="img-fluid figure-img" width="600"></p>
-<figcaption><strong>Figure 11</strong>: <em><code>date</code> Question Type</em></figcaption>
-</figure>
+<div class="cell">
+<div class="cell-output-display">
+<div id="container- dob" data-question-id="dob" class="question-container">
+<div id="dob" class="shiny-date-input form-group shiny-input-container" style="width:100%;">
+<label class="control-label" id="dob-label" for="dob"><p>What is your date of birth? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
+</label>
+<input type="text" class="form-control" aria-labelledby="dob-label" title="Date format: mm/dd/yyyy" data-date-language="en" data-date-week-start="0" data-date-format="mm/dd/yyyy" data-date-start-view="month" data-date-autoclose="true" data-date-dates-disabled="null" data-date-days-of-week-disabled="null">
+</div>
+</div>
 </div>
 </div>
 <p>The date value will be today’s date by default. Upon clicking on the text box, you are provided with a date dialog box to choose date from.</p>
@@ -631,19 +820,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Use <code>type = 'daterange'</code> to specify a date range input type.</p>
 <p>Scripts:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'daterange'</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">'hs_date'</span>,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"When did you start and finish high school?"</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = 'daterange',</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = 'hs_date',</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "When did you start and finish high school?"</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Output:</p>
-<div style="text-align: left; max-width: 600px;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/screenshots/2_11_daterange.jpg" class="img-fluid figure-img" width="600"></p>
-<figcaption><strong>Figure 12</strong>: <em><code>daterange</code> Question Type</em></figcaption>
-</figure>
+<div class="cell">
+<div class="cell-output-display">
+<div id="container- hs_date" data-question-id="hs_date" class="question-container">
+<div id="hs_date" class="shiny-date-range-input form-group shiny-input-container" style="width:100%;">
+<label class="control-label" id="hs_date-label" for="hs_date"><p>When did you start and finish high school? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
+</label>
+<div class="input-daterange input-group input-group-sm">
+<input class="form-control" type="text" aria-labelledby="hs_date-label" title="Date format: mm/dd/yyyy" data-date-language="en" data-date-week-start="0" data-date-format="mm/dd/yyyy" data-date-start-view="month" data-date-autoclose="true">
+<span class="input-group-addon input-group-prepend input-group-append">
+<span class="input-group-text">-</span>
+</span>
+<input class="form-control" type="text" aria-labelledby="hs_date-label" title="Date format: mm/dd/yyyy" data-date-language="en" data-date-week-start="0" data-date-format="mm/dd/yyyy" data-date-start-view="month" data-date-autoclose="true">
+</div>
+</div>
+</div>
 </div>
 </div>
 

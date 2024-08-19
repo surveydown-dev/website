@@ -1,86 +1,26 @@
 [
   {
-    "objectID": "components.html",
-    "href": "components.html",
-    "title": "Survey Components",
-    "section": "",
-    "text": "This guide covers the main elements in your .qmd survey file as well as how to add content to your survey, like pages, questions, etc.",
+    "objectID": "questions.html#introduction-of-arguments",
+    "href": "questions.html#introduction-of-arguments",
+    "title": "Question Types",
+    "section": "Introduction of Arguments",
+    "text": "Introduction of Arguments\nThis article showcases the different types of question supported by {surveydown}. Each question requires the user to define the following arguments to the sd_question() function:\n\nid: A unique identifier for the question, which will be used as the variable name in the resulting survey data.\nlabel: The label that will be displayed on the question in the survey.\ntype: The type of question, options include:\n\ntext: Single line open text input.\ntextarea: Multiple line open text input.\nnumeric: Single line numeric text input.\nmc: Multiple choice with a single select option (radio buttons).\nmc_buttons: Same as mc but as a “button” style instead of radio buttons.\nmc_multiple: Multiple choice with mutliple select options (check boxes).\nmc_multiple_buttons: Same as mc_multiple but as a “button” style instead of check boxes.\nselect: Select a choice from a drop down menu.\nslider: (Under construction) Slider to select discrete categories or continuous numbers.\ndate: Select a date from a calendar widget.\ndaterange: Select two dates from calendar widgets (e.g. begin and end dates).",
     "crumbs": [
       "Documentation",
       "Survey Content",
-      "Survey Components"
+      "Question Types"
     ]
   },
   {
-    "objectID": "components.html#required-yaml-content",
-    "href": "components.html#required-yaml-content",
-    "title": "Survey Components",
-    "section": "Required YAML content",
-    "text": "Required YAML content\nFor a surveydown survey, your YAML must contain at least the following:\n---\nserver: shiny\nfilters: [surveydown]\n---\nThe server: shiny part ensures that the document will render as a shiny app. The filters: [surveydown] part applies the surveydown Quarto extension to the project, which is required.",
+    "objectID": "questions.html#question-types",
+    "href": "questions.html#question-types",
+    "title": "Question Types",
+    "section": "Question Types",
+    "text": "Question Types\n\n1. text\nUse type = 'text' to specify a text input type question.\nScripts:\n\n```{r}\nsd_question(\n  type  = \"text\",\n  id    = \"silly_word\",\n  label = \"Write a silly word:\"\n)\n```\n\nOutput:\n\n\n\n\nWrite a silly word: *\n\n\n\n\n\n\n\n\n2. textarea\nUse type = 'textarea' to specify a text area input type question.\nScripts:\n\n```{r}\nsd_question(\n  type  = \"textarea\",\n  id    = \"silly_paragraph\",\n  label = \"Write a silly paragraph:\"\n)\n```\n\nOutput:\n\n\n\n\nWrite a silly paragraph: *\n\n\n\n\n\n\n\n\n3. numeric\nUse type = 'numeric' to specify a numeric input type.\nScripts:\n\n```{r}\nsd_question(\n  type  = 'numeric',\n  id    = 'age',\n  label = \"What's your age?\"\n)\n```\n\nOutput:\n\n\n\n\nWhat’s your age? *\n\n\n\n\n\n\n\n\n4. mc\nUse type = 'mc' to specify a multiple choice type question with a single choice option.\nScripts:\n\n```{r}\nsd_question(\n  type   = 'mc',\n  id     = 'artist',\n  label  = \"Which artist do you prefer most from this list?\",\n  option = c(\n    \"Taylor Swift\" = \"taylor_swift\",\n    \"Beyoncé\"      = \"beyonce\",\n    \"Adele\"        = \"adele\",\n    \"Rihanna\"      = \"rihanna\",\n    \"Lady Gaga\"    = \"ladygaga\",\n    \"Ed Sheeran\"   = \"ed_sheeran\",\n    \"Drake\"        = \"drake\"\n  )\n)\n```\n\nOutput:\n\n\n\n\nWhich artist do you prefer most from this list? *\n\n\n\n\n\nTaylor Swift\n\n\n\n\n\nBeyoncé\n\n\n\n\n\nAdele\n\n\n\n\n\nRihanna\n\n\n\n\n\nLady Gaga\n\n\n\n\n\nEd Sheeran\n\n\n\n\n\nDrake\n\n\n\n\n\n\n\n\n\n5. mc_buttons\nUse type = 'mc_buttons' to generate the button version of mc.\nScripts:\n\n```{r}\nsd_question(\n  type   = 'mc_buttons',\n  id     = 'fruit',\n  label  = \"Which fruit do you prefer most from this list?\",\n  option = c(\n    \"Apple\"      = \"apple\",\n    \"Banana\"     = \"banana\",\n    \"Pear\"       = \"pear\",\n    \"Strawberry\" = \"strawberry\",\n    \"Grape\"      = \"grape\",\n    \"Mango\"      = \"mango\",\n    \"Watermelon\" = \"watermelon\"\n  )\n)\n```\n\nOutput:\n\n\n\n\nWhich fruit do you prefer most from this list? *\n\n\n\n\n\nApple\n\nBanana\n\nPear\n\nStrawberry\n\nGrape\n\nMango\n\nWatermelon\n\n\n\n\n\n\n\n\n6. mc_multiple\nUse type = 'mc_multiple' to specify a multiple choice type question with multiple selection enabled.\nScripts:\n\n```{r}\nsd_question(\n  type  = 'mc_multiple',\n  id    = 'swift',\n  label = \"What are your favorite Taylor Swift albums (select all that apply)?\",\n  option = c(\n    \"Taylor Swift (2006)\" = \"taylor_swift\",\n    \"Fearless (2008)\"     = \"fearless\",\n    \"Speak Now (2010)\"    = \"speak_now\",\n    \"Red (2012)\"          = \"red\",\n    \"1989 (2014)\"         = \"1989\",\n    \"Reputation (2017)\"   = \"reputation\",\n    \"Lover (2019)\"        = \"lover\",\n    \"Folklore (2020)\"     = \"folklore\",\n    \"Evermore (2020)\"     = \"evermore\",\n    \"Midnights (2022)\"    = \"midnights\"\n  )\n)\n```\n\nOutput:\n\n\n\n\nWhat are your favorite Taylor Swift albums (select all that apply)? *\n\n\n\n\n\nTaylor Swift (2006)\n\n\n\n\n\nFearless (2008)\n\n\n\n\n\nSpeak Now (2010)\n\n\n\n\n\nRed (2012)\n\n\n\n\n\n1989 (2014)\n\n\n\n\n\nReputation (2017)\n\n\n\n\n\nLover (2019)\n\n\n\n\n\nFolklore (2020)\n\n\n\n\n\nEvermore (2020)\n\n\n\n\n\nMidnights (2022)\n\n\n\n\n\n\n\n\n\n7. mc_multiple_buttons\nUse type = 'mc_multiple_buttons' to generate the button version of mc_multiple.\nScripts:\n\n```{r}\nsd_question(\n  type  = 'mc_multiple_buttons',\n  id    = 'michael_jackson',\n  label = \"Which are your favorite Michael Jackson songs (select all that apply)?\",\n  option = c(\n    \"Thriller (1982)\"          = \"thriller\",\n    \"Billie Jean (1982)\"       = \"billie_jean\",\n    \"Beat It (1982)\"           = \"beat_it\",\n    \"Man in the Mirror (1987)\" = \"man_in_the_mirror\",\n    \"Smooth Criminal (1987)\"   = \"smooth_criminal\",\n    \"Black or White (1991)\"    = \"black_or_white\",\n    \"Bad (1987)\"               = \"bad\",\n    \"Human Nature (1982)\"      = \"human_nature\"\n  )\n)\n```\n\nOutput:\n\n\n\n\nWhich are your favorite Michael Jackson songs (select all that apply)? *\n\n\n\n\n\nThriller (1982)\n\nBillie Jean (1982)\n\nBeat It (1982)\n\nMan in the Mirror (1987)\n\nSmooth Criminal (1987)\n\nBlack or White (1991)\n\nBad (1987)\n\nHuman Nature (1982)\n\n\n\n\n\n\n\n\n8. select\nUse type = 'select' to specify a drop down select type question.\nScripts:\n\n```{r}\nsd_question(\n  type  = 'select',\n  id    = 'education',\n  label = \"What is the highest level of education you have attained?\",\n  option = c(\n    \"Did not attend high school\" = \"hs_no\",\n    \"Some high school\"           = \"hs_some\",\n    \"High school graduate\"       = \"hs_grad\",\n    \"Some college\"               = \"college_some\",\n    \"College\"                    = \"college_grad\",\n    \"Graduate Work\"              = \"grad\",\n    \"Prefer not to say\"          = \"no_response\"\n  )\n)\n```\n\nOutput:\n\n\n\n\nWhat is the highest level of education you have attained? *\n\n\nChoose an option...\nDid not attend high school\nSome high school\nHigh school graduate\nSome college\nCollege\nGraduate Work\nPrefer not to say\n\n\n\n\n\n\n\n\n9. slider (Under Construction)\nDue to compatibility issues, the slider type is still under construction.\n\n\n10. date\nUse type = 'date' to specify a date input type.\nScripts:\n\n```{r}\nsd_question(\n  type  = 'date',\n  id    = 'dob',\n  label = \"What is your date of birth?\"\n)\n```\n\nOutput:\n\n\n\n\nWhat is your date of birth? *\n\n\n\n\n\n\nThe date value will be today’s date by default. Upon clicking on the text box, you are provided with a date dialog box to choose date from.\n\n\n11. daterange\nUse type = 'daterange' to specify a date range input type.\nScripts:\n\n```{r}\nsd_question(\n  type  = 'daterange',\n  id    = 'hs_date',\n  label = \"When did you start and finish high school?\"\n)\n```\n\nOutput:\n\n\n\n\nWhen did you start and finish high school? *\n\n\n\n\n-",
     "crumbs": [
       "Documentation",
       "Survey Content",
-      "Survey Components"
-    ]
-  },
-  {
-    "objectID": "components.html#setting-the-theme",
-    "href": "components.html#setting-the-theme",
-    "title": "Survey Components",
-    "section": "Setting the theme",
-    "text": "Setting the theme\nThe YAML can also be used to set several optional global settings, such as the overall survey theme:\n---\ntheme: united # Any bootswatch theme \n---\nThere are 25 bootswatch themes to choose from. You can also provide a custom.scss file to further modify the theme, or even combine the two, e.g.:\n---\ntheme: [united, custom.scss]\n---",
-    "crumbs": [
-      "Documentation",
-      "Survey Content",
-      "Survey Components"
-    ]
-  },
-  {
-    "objectID": "components.html#progress-bar",
-    "href": "components.html#progress-bar",
-    "title": "Survey Components",
-    "section": "Progress bar",
-    "text": "Progress bar\nYou can modify the survey progress bar with the barcolor and barposition keys, e.g.:\n---\nbarcolor: theme \nbarposition: top \n---\nThe barcolor key defines the color of the progress bar. It defaults to theme, meaning it will take the primary theme color. You may also use any hex code to overwrite this color as you wish, e.g.: #768692.\nThe barposition key defines the position of the progress bar. It defaults to top, but can also be changed to bottom or none (to remove the bar). The progress bar updates on every question the user clicks on, not pages.",
-    "crumbs": [
-      "Documentation",
-      "Survey Content",
-      "Survey Components"
-    ]
-  },
-  {
-    "objectID": "components.html#adding-pages",
-    "href": "components.html#adding-pages",
-    "title": "Survey Components",
-    "section": "Adding pages",
-    "text": "Adding pages\nIn surveydown, pages are defined using fences (:::), like this:\n\n::: {#welcome .sd-page}\n\nPage 1 content here\n\n:::\n\n::: {#page2 .sd-page}\n\nPage 2 content here\n\n:::\n\nAs you can see, we use three colon symbols :::, called a “fence”, to mark the start and end of pages. This notation is commonly used in Quarto for a variety of use cases, like defining subfigures in images.\nIn the starting fence, you need to define a page name (e.g. welcome and page2 in the example above) and you need to define the class as .sd-page. Then anything you put between the page fences will appear on that page.",
-    "crumbs": [
-      "Documentation",
-      "Survey Content",
-      "Survey Components"
-    ]
-  },
-  {
-    "objectID": "components.html#adding-navigation-buttons",
-    "href": "components.html#adding-navigation-buttons",
-    "title": "Survey Components",
-    "section": "Adding navigation buttons",
-    "text": "Adding navigation buttons\nTo navigate to the next page, you need to insert a sd_next() function call inside a code chunk, like this:\n\n```{r}\nsd_next(next_page = 'page2')\n```\n\nThe above code chunk will create a “Next” button that goes on to page 2 that looks like this:\n\n\nNext\n\n\nIn this example, the next button has to be inserted in a code chunk in between the ::: fences of the welcome page in order to have a “Next” button that goes on to page 2. You can also send the user to other pages by just changing the value assigned to the next_page argument.\nFinally, you can also change the label of the button by changing the label argument, like this:\n\n```{r}\nsd_next(next_page = 'page2', label = 'Next page')\n```\n\n\n\nNext page",
-    "crumbs": [
-      "Documentation",
-      "Survey Content",
-      "Survey Components"
-    ]
-  },
-  {
-    "objectID": "components.html#adding-questions",
-    "href": "components.html#adding-questions",
-    "title": "Survey Components",
-    "section": "Adding questions",
-    "text": "Adding questions\nEvery survey question is created using the sd_question() function inside a code chunk. The question type is defined by the type argument. For example, to add a multiple choice question, you could insert the following code chunk:\n\n```{r}\nsd_question(\n  type  = 'mc',\n  id    = 'penguins',\n  label = \"Which is your favorite type of penguin?\",\n  option = c(\n    'Adélie'    = 'adelie',\n    'Chinstrap' = 'chinstrap',\n    'Gentoo'    = 'gentoo'\n  )\n)\n```\n\nThe above code chunk will create a multiple choice question that looks like this:\n\n\n\n\nWhich is your favorite type of penguin? *\n\n\n\n\n\nAdélie\n\n\n\n\n\nChinstrap\n\n\n\n\n\nGentoo\n\n\n\n\n\n\n\n\nThe sd_question() function can be used to create a variety of question types, like text input, select drop down choices, and more by changing the type argument (see the Questions Types page).\nThe function has many other arguments for customizing the look and feel of the question, such as the height and width (see the Formatting Questions page).\nBy default all questions are optional, but you can make questions required in the configuration options (see the Configuration Options page for details).",
-    "crumbs": [
-      "Documentation",
-      "Survey Content",
-      "Survey Components"
+      "Question Types"
     ]
   },
   {
@@ -309,39 +249,87 @@
     ]
   },
   {
-    "objectID": "questions.html",
-    "href": "questions.html",
-    "title": "Question Types",
+    "objectID": "components.html",
+    "href": "components.html",
+    "title": "Survey Components",
     "section": "",
-    "text": "Use the sd_question() function to specify the question types.",
+    "text": "This guide covers the main elements in your .qmd survey file as well as how to add content to your survey, like pages, questions, etc.",
     "crumbs": [
       "Documentation",
       "Survey Content",
-      "Question Types"
+      "Survey Components"
     ]
   },
   {
-    "objectID": "questions.html#introduction-of-arguments",
-    "href": "questions.html#introduction-of-arguments",
-    "title": "Question Types",
-    "section": "Introduction of Arguments",
-    "text": "Introduction of Arguments\nThis article showcases the different types of question supported by {surveydown}. Each question requires the user to define the following arguments to the sd_question() function:\n\nid: A unique identifier for the question, which will be used as the variable name in the resulting survey data.\nlabel: The label that will be displayed on the question in the survey.\ntype: The type of question, options include:\n\ntext: Single line open text input.\ntextarea: Multiple line open text input.\nnumeric: Single line numeric text input.\nmc: Multiple choice with a single select option (radio buttons).\nmc_buttons: Same as mc but as a “button” style instead of radio buttons.\nmc_multiple: Multiple choice with mutliple select options (check boxes).\nmc_multiple_buttons: Same as mc_multiple but as a “button” style instead of check boxes.\nselect: Select a choice from a drop down menu.\nslider: (Under construction) Slider to select discrete categories or continuous numbers.\ndate: Select a date from a calendar widget.\ndaterange: Select two dates from calendar widgets (e.g. begin and end dates).",
+    "objectID": "components.html#required-yaml-content",
+    "href": "components.html#required-yaml-content",
+    "title": "Survey Components",
+    "section": "Required YAML content",
+    "text": "Required YAML content\nFor a surveydown survey, your YAML must contain at least the following:\n---\nserver: shiny\nfilters: [surveydown]\n---\nThe server: shiny part ensures that the document will render as a shiny app. The filters: [surveydown] part applies the surveydown Quarto extension to the project, which is required.",
     "crumbs": [
       "Documentation",
       "Survey Content",
-      "Question Types"
+      "Survey Components"
     ]
   },
   {
-    "objectID": "questions.html#question-types",
-    "href": "questions.html#question-types",
-    "title": "Question Types",
-    "section": "Question Types",
-    "text": "Question Types\n\n1. text\nUse type = 'text' to specify a text input type question.\nScripts:\n\nsd_question(\n  type  = \"text\",\n  id    = \"silly_word\",\n  label = \"Write a silly word:\"\n)\n\nOutput:\n\n\n\n\nFigure 1: text Question Type\n\n\n\n\n\n2. textarea\nUse type = 'textarea' to specify a text area input type question.\nScripts:\n\nsd_question(\n  type  = \"textarea\",\n  id    = \"silly_paragraph\",\n  label = \"Write a silly paragraph:\"\n)\n\nOutput:\n\n\n\n\nFigure 2: textarea Question Type\n\n\n\n\n\n3. numeric\nUse type = 'numeric' to specify a numeric input type.\nScripts:\n\nsd_question(\n  type  = 'numeric',\n  id    = 'age',\n  label = \"What's your age?\"\n)\n\nOutput:\n\n\n\n\nFigure 3: numeric Question Type (Note there is a set of arrows on the right)\n\n\n\n\n\n4. mc\nUse type = 'mc' to specify a multiple choice type question with a single choice option.\nScripts:\n\nsd_question(\n  type   = 'mc',\n  id     = 'artist',\n  label  = \"Which artist do you prefer most from this list?\",\n  option = c(\n    \"Taylor Swift\" = \"taylor_swift\",\n    \"Beyoncé\"      = \"beyonce\",\n    \"Adele\"        = \"adele\",\n    \"Rihanna\"      = \"rihanna\",\n    \"Lady Gaga\"    = \"ladygaga\",\n    \"Ed Sheeran\"   = \"ed_sheeran\",\n    \"Drake\"        = \"drake\"\n  )\n)\n\nOutput:\n\n\n\n\nFigure 4: mc Question Type\n\n\n\n\n\n5. mc_buttons\nUse type = 'mc_buttons' to generate the button version of mc.\nScripts:\n\nsd_question(\n  type   = 'mc_buttons',\n  id     = 'fruit',\n  label  = \"Which fruit do you prefer most from this list?\",\n  option = c(\n    \"Apple\"      = \"apple\",\n    \"Banana\"     = \"banana\",\n    \"Pear\"       = \"pear\",\n    \"Strawberry\" = \"strawberry\",\n    \"Grape\"      = \"grape\",\n    \"Mango\"      = \"mango\",\n    \"Watermelon\" = \"watermelon\"\n  )\n)\n\nOutput:\n\n\n\n\nFigure 5: mc_buttons Question Type\n\n\n\n\n\n6. mc_multiple\nUse type = 'mc_multiple' to specify a multiple choice type question with multiple selection enabled.\nScripts:\n\nsd_question(\n  type  = 'mc_multiple',\n  id    = 'swift',\n  label = \"What are your favorite Taylor Swift albums (select all that apply)?\",\n  option = c(\n    \"Taylor Swift (2006)\" = \"taylor_swift\",\n    \"Fearless (2008)\"     = \"fearless\",\n    \"Speak Now (2010)\"    = \"speak_now\",\n    \"Red (2012)\"          = \"red\",\n    \"1989 (2014)\"         = \"1989\",\n    \"Reputation (2017)\"   = \"reputation\",\n    \"Lover (2019)\"        = \"lover\",\n    \"Folklore (2020)\"     = \"folklore\",\n    \"Evermore (2020)\"     = \"evermore\",\n    \"Midnights (2022)\"    = \"midnights\"\n  )\n)\n\nOutput:\n\n\n\n\nFigure 6: mc_multiple Question Type\n\n\n\n\n\n7. mc_multiple_buttons\nUse type = 'mc_multiple_buttons' to generate the button version of mc_multiple.\nScripts:\n\nsd_question(\n  type  = 'mc_multiple_buttons',\n  id    = 'michael_jackson',\n  label = \"Which are your favorite Michael Jackson songs (select all that apply)?\",\n  option = c(\n    \"Thriller (1982)\"          = \"thriller\",\n    \"Billie Jean (1982)\"       = \"billie_jean\",\n    \"Beat It (1982)\"           = \"beat_it\",\n    \"Man in the Mirror (1987)\" = \"man_in_the_mirror\",\n    \"Smooth Criminal (1987)\"   = \"smooth_criminal\",\n    \"Black or White (1991)\"    = \"black_or_white\",\n    \"Bad (1987)\"               = \"bad\",\n    \"Human Nature (1982)\"      = \"human_nature\"\n  )\n)\n\nOutput:\n\n\n\n\nFigure 7: mc_multiple_buttons Question Type\n\n\n\n\n\n8. select\nUse type = 'select' to specify a drop down select type question.\nScripts:\n\nsd_question(\n  type  = 'select',\n  id    = 'education',\n  label = \"What is the highest level of education you have attained?\",\n  option = c(\n    \"Did not attend high school\" = \"hs_no\",\n    \"Some high school\"           = \"hs_some\",\n    \"High school graduate\"       = \"hs_grad\",\n    \"Some college\"               = \"college_some\",\n    \"College\"                    = \"college_grad\",\n    \"Graduate Work\"              = \"grad\",\n    \"Prefer not to say\"          = \"no_response\"\n  )\n)\n\nOutput:\n\n\n\n\nFigure 8: select Question Type\n\n\n\n\n\n9. slider (Under Construction)\n\nDue to compatibility issues, the slider type is still under construction. Now the slider axis will only show numeric values ranging from 10 to 100. We will solve this problem in our future releases.\n\nUse type = 'slider' to specify a slider input type.\nScripts:\n\nsd_question(\n  type  = 'slider',\n  id    = 'climate_care',\n  label = \"To what extent do you believe human-caused climate change is real?\",\n  option = c(\n    \"Don't Believe\"    = \"dont_believe\",\n    \"Somewhat Believe\" = \"somewhat\",\n    \"Neutral\"          = \"neutral\",\n    \"Believe\"          = \"believe\",\n    \"Strongly Believe\" = \"strongly_believe\"\n  )\n)\n\nOutput:\n\n\n\n\nFigure 9: slider Question Type for Single Slider\n\n\n\ntype = 'slider' can also be used to select a range.\nScripts:\n\nsd_question(\n  type     = 'slider',\n  id       = 'coldest_months',\n  label    = \"What months do you think are the coldest throughout a year?\",\n  option   = month.abb,\n  selected = month.abb[c(4, 8)]\n)\n\nOutput:\n\n\n\n\nFigure 10: slider Question Type for Two Sliders\n\n\n\n\n\n10. date\nUse type = 'date' to specify a date input type.\nScripts:\n\nsd_question(\n  type  = 'date',\n  id    = 'dob',\n  label = \"What is your date of birth?\"\n)\n\nOutput:\n\n\n\n\nFigure 11: date Question Type\n\n\n\nThe date value will be today’s date by default. Upon clicking on the text box, you are provided with a date dialog box to choose date from.\n\n\n11. daterange\nUse type = 'daterange' to specify a date range input type.\nScripts:\n\nsd_question(\n  type  = 'daterange',\n  id    = 'hs_date',\n  label = \"When did you start and finish high school?\"\n)\n\nOutput:\n\n\n\n\nFigure 12: daterange Question Type",
+    "objectID": "components.html#setting-the-theme",
+    "href": "components.html#setting-the-theme",
+    "title": "Survey Components",
+    "section": "Setting the theme",
+    "text": "Setting the theme\nThe YAML can also be used to set several optional global settings, such as the overall survey theme:\n---\ntheme: united # Any bootswatch theme \n---\nThere are 25 bootswatch themes to choose from. You can also provide a custom.scss file to further modify the theme, or even combine the two, e.g.:\n---\ntheme: [united, custom.scss]\n---",
     "crumbs": [
       "Documentation",
       "Survey Content",
-      "Question Types"
+      "Survey Components"
+    ]
+  },
+  {
+    "objectID": "components.html#progress-bar",
+    "href": "components.html#progress-bar",
+    "title": "Survey Components",
+    "section": "Progress bar",
+    "text": "Progress bar\nYou can modify the survey progress bar with the barcolor and barposition keys, e.g.:\n---\nbarcolor: theme \nbarposition: top \n---\nThe barcolor key defines the color of the progress bar. It defaults to theme, meaning it will take the primary theme color. You may also use any hex code to overwrite this color as you wish, e.g.: #768692.\nThe barposition key defines the position of the progress bar. It defaults to top, but can also be changed to bottom or none (to remove the bar). The progress bar updates on every question the user clicks on, not pages.",
+    "crumbs": [
+      "Documentation",
+      "Survey Content",
+      "Survey Components"
+    ]
+  },
+  {
+    "objectID": "components.html#adding-pages",
+    "href": "components.html#adding-pages",
+    "title": "Survey Components",
+    "section": "Adding pages",
+    "text": "Adding pages\nIn surveydown, pages are defined using fences (:::), like this:\n\n::: {#welcome .sd-page}\n\nPage 1 content here\n\n:::\n\n::: {#page2 .sd-page}\n\nPage 2 content here\n\n:::\n\nAs you can see, we use three colon symbols :::, called a “fence”, to mark the start and end of pages. This notation is commonly used in Quarto for a variety of use cases, like defining subfigures in images.\nIn the starting fence, you need to define a page name (e.g. welcome and page2 in the example above) and you need to define the class as .sd-page. Then anything you put between the page fences will appear on that page.",
+    "crumbs": [
+      "Documentation",
+      "Survey Content",
+      "Survey Components"
+    ]
+  },
+  {
+    "objectID": "components.html#adding-navigation-buttons",
+    "href": "components.html#adding-navigation-buttons",
+    "title": "Survey Components",
+    "section": "Adding navigation buttons",
+    "text": "Adding navigation buttons\nTo navigate to the next page, you need to insert a sd_next() function call inside a code chunk, like this:\n\n```{r}\nsd_next(next_page = 'page2')\n```\n\nThe above code chunk will create a “Next” button that goes on to page 2 that looks like this:\n\n\nNext\n\n\nIn this example, the next button has to be inserted in a code chunk in between the ::: fences of the welcome page in order to have a “Next” button that goes on to page 2. You can also send the user to other pages by just changing the value assigned to the next_page argument.\nFinally, you can also change the label of the button by changing the label argument, like this:\n\n```{r}\nsd_next(next_page = 'page2', label = 'Next page')\n```\n\n\n\nNext page",
+    "crumbs": [
+      "Documentation",
+      "Survey Content",
+      "Survey Components"
+    ]
+  },
+  {
+    "objectID": "components.html#adding-questions",
+    "href": "components.html#adding-questions",
+    "title": "Survey Components",
+    "section": "Adding questions",
+    "text": "Adding questions\nEvery survey question is created using the sd_question() function inside a code chunk. The question type is defined by the type argument. For example, to add a multiple choice question, you could insert the following code chunk:\n\n```{r}\nsd_question(\n  type  = 'mc',\n  id    = 'penguins',\n  label = \"Which is your favorite type of penguin?\",\n  option = c(\n    'Adélie'    = 'adelie',\n    'Chinstrap' = 'chinstrap',\n    'Gentoo'    = 'gentoo'\n  )\n)\n```\n\nThe above code chunk will create a multiple choice question that looks like this:\n\n\n\n\nWhich is your favorite type of penguin? *\n\n\n\n\n\nAdélie\n\n\n\n\n\nChinstrap\n\n\n\n\n\nGentoo\n\n\n\n\n\n\n\n\nThe sd_question() function can be used to create a variety of question types, like text input, select drop down choices, and more by changing the type argument (see the Questions Types page).\nThe function has many other arguments for customizing the look and feel of the question, such as the height and width (see the Formatting Questions page).\nBy default all questions are optional, but you can make questions required in the configuration options (see the Configuration Options page for details).",
+    "crumbs": [
+      "Documentation",
+      "Survey Content",
+      "Survey Components"
     ]
   }
 ]

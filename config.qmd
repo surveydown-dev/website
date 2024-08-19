@@ -119,13 +119,13 @@ Insert example here
 
 # Required responses
 
-> Use the `required` argument to control required responses.
+> Use the `required_questions` argument to control required responses.
 
-By default, no questions are required. However, you can make questions required by adding the question `id` to the `required` argument in `sd_config()`, like this:
+By default, no questions are required. However, you can make questions required by adding the question `id` to the `required_questions` argument in `sd_config()`, like this:
 
 ```{r}
 config <- sd_config(
-  required = c("vehicle_ownership", "penguins_other")
+  required_questions = c("vehicle_ownership", "penguins_other")
 )
 ```
 

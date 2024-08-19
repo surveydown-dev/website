@@ -13,19 +13,7 @@ This guide covers the main elements in your `.qmd` survey file as well as how to
 
 # Start with a template
 
-In the R console, run the following to to setup a template survey:
-
-```{r}
-surveydown::sd_create_survey("path/to/folder")
-```
-
-This will create a folder located at `"path/to/folder"` with the following files:
-
-- `example.qmd`: a template survey you should edit.
-- `example.Rproj`: An RStudio project file (helpful if you're working in RStudio)
-- `_extensions`: A folder with the [surveydown Quarto extension](https://github.com/jhelvy/surveydown-ext) needed to make everything work (don't modify this).
-
-> Every survey created with {surveydown} should be in its own separate project folder.
+{{< include chunks/template.qmd >}}
 
 # Survey components
 
@@ -57,7 +45,7 @@ filters: [surveydown]
 
 The `server: shiny` part ensures that the document will render as a shiny app. The `filters: [surveydown]` part applies the surveydown Quarto extension to the project, which is required.
 
-## Setitng the theme 
+## Setting the theme 
 
 The YAML can also be used to set several **optional** global settings, such as the overall survey `theme`:
 
@@ -94,8 +82,8 @@ The `barposition` key defines the position of the progress bar. It defaults to `
 
 After the YAML header, you'll need to load the `surveydown` package and run the `sd_setup()` function. This should be placed inside a code chunk that looks like this:
 
-````
-`r ''````{r}
+```{r}
+#| echo: fenced
 #| context: setup
 #| warning: false
 #| message: false
@@ -106,7 +94,6 @@ library(surveydown)
 # Run initial setup function (essential - do not delete)
 sd_setup()
 ```
-````
 
 Anything loaded in the setup chunk is accessible in both your survey body and your server, so we recommend also loading other packages and / or data in this chunk as well. 
 
@@ -120,7 +107,7 @@ The unique elements to a surveydown survey are **pages**, **navigation buttons**
 
 In surveydown, pages are defined using fences (`:::`), like this:
 
-```
+```{r}
 ::: {#welcome .sd-page}
 
 Page 1 content here
@@ -142,11 +129,11 @@ In the starting fence, you need to define a page name (e.g. `welcome` and `page2
 
 To navigate to the next page, you need to insert a `sd_next()` function call inside a code chunk, like this: 
 
-````
-`r ''````{r}
+```{r}
+#| echo: fenced
+
 sd_next(next_page = 'page2')
 ```
-````
 
 The above code chunk will create a "Next" button that goes on to page 2 that looks like this:
 
@@ -161,11 +148,11 @@ In this example, the next button has to be inserted in a code chunk in between t
 
 Finally, you can also change the label of the button by changing the `label` argument, like this:
 
-````
-`r ''````{r}
+```{r}
+#| echo: fenced
+
 sd_next(next_page = 'page2', label = 'Next page')
 ```
-````
 
 ```{r}
 #| eval: true
@@ -178,8 +165,9 @@ sd_next(next_page = 'page2', label = 'Next page')
 
 Every survey question is created using the `sd_question()` function inside a code chunk. The question type is defined by the `type` argument. For example, to add a multiple choice question, you could insert the following code chunk:
 
-````
-`r ''````{r}
+```{r}
+#| echo: fenced
+
 sd_question(
   type  = 'mc',
   id    = 'penguins',
@@ -191,7 +179,6 @@ sd_question(
   )
 )
 ```
-````
 
 The above code chunk will create a multiple choice question that looks like this:
 
@@ -213,18 +200,18 @@ sd_question(
 
 <br>
 
-The `sd_question()` function can be used to create a variety of question types, like text input, select drop down choices, and more by changing the `type` argument (see `vignette("questions")`).
+The `sd_question()` function can be used to create a variety of question types, like text input, select drop down choices, and more by changing the `type` argument (see the [Questions Types](questions.qmd) page).
 
-The function has many other arguments for customizing the look and feel of the question, such as the `height` and `width` (see `vignette("formatting")`).
+The function has many other arguments for customizing the look and feel of the question, such as the `height` and `width` (see the [Formatting Questions](formatting.qmd) page).
 
-Finally, `sd_question()` has a `required` argument that can be used to make a question required or optional (e.g., `required = TRUE`). The default is `FALSE`, meaning the question is optional.
+By default all questions are optional, but you can make questions required in the configuration options (see the [Configuration Options](config.qmd#required-responses) page for details).
 
 # 4. Server code chunk
 
 At the very bottom of the .qmd file is a special "server" code chunk (that's the `#| context: server` bit) that defines the app server. This is where you can customize and control the survey flow logic as well as where you define the database that will store the survey response data. It looks like this:
 
-````
-`r ''````{r}
+```{r}
+#| echo: fenced
 #| context: server
 
 # Define the configuration settings
@@ -241,11 +228,9 @@ sd_server(
   db      = db
 )
 ```
-````
 
-The `sd_config()` function is where you can define configuration options for the survey, such as *conditional display* (conditionally displaying a question based on responses to questions), or *conditional skip* (conditionally sending the respondent to a page based on responses to questions). See `vignette("config")` for details.
+The `sd_config()` function is where you can define configuration options for the survey, such as [conditional display](config.qmd#conditional-display) (conditionally displaying a question based on responses to questions), or [conditional skip](config.qmd#conditional-skip) (conditionally sending the respondent to a page based on responses to questions). See the [Configuration Options](config.qmd) page for details.
 
-The `sd_database()` function is where you set up your database. See `vignette("database")` for details.
+The `sd_database()` function is where you set up your database. See the [Database Settings](database.qmd) page for details.
 
 The `sd_server()` function at the bottom makes everything run, which you can safely ignore - just don't change it and all will be good!
-

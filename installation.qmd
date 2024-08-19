@@ -7,7 +7,7 @@ title: "Installation"
 You need both: 
 
 - [Install R](https://CRAN.R-project.org/)
-- [Install Quarto](https://quarto.org/docs/get-started/)
+- [Install Quarto]({{< var url_quarto >}})
 
 Also, we recommend working with an IDE. [RStudio](https://www.rstudio.com/categories/rstudio-ide/) is great, and we also like [VS Code](https://code.visualstudio.com) and [Positron](https://github.com/posit-dev/positron).
 
@@ -17,7 +17,7 @@ The {surveydown} R package is not yet on CRAN, but you can install the developme
 
 ```{r}
 # install.packages("remotes")
-remotes::install_github("jhelvy/surveydown")
+remotes::install_github("surveydown-dev/surveydown")
 ```
 
 # Install the surveydown Quarto Extension
@@ -32,9 +32,9 @@ We recommend starting with a template survey, which will automatically add the l
 surveydown::sd_create_survey("path/to/folder")
 ```
 
-Otherwise, you can install the extension using the *terminal* or with the {surveydown} package:
+Otherwise, you can install the extension using the terminal or with the {surveydown} package:
 
-- Using the *Terminal*:
+- Using the Terminal:
 
 ```{r}
 quarto install extension jhelvy/surveydown-ext
@@ -48,13 +48,15 @@ surveydown::sd_update_extension()
 
 # Version Control
 
-To check if you have the latest R package and Quarto extension versions installed, run:
+We made some R functions to make it easier to keep your R package and Quarto extension up to date. 
+
+To _check_ if you have the latest R package and Quarto extension installed, run:
 
 ```{r}
 surveydown::sd_check_versions()
 ```
 
-To update the R package and Quarto extension to the latest version:
+To _update_ the R package and Quarto extension to the latest version, run:
 
 ```{r}
 surveydown::sd_update_surveydown()

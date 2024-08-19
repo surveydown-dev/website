@@ -1,10 +1,9 @@
 ---
-title: "Introduction to surveydown"
+title: "Getting Started with surveydown"
 ---
 
-In surveydown, your entire survey is designed using markdown and R code in a single Quarto document (a `.qmd` file). The {surveydown} R package provides a set of functions for defining the survey content and configuration options. Each function starts with `sd_` to make them easy to identify.
-
-You can add content to your survey using markdown formatting, or in RStudio you can edit with the visual editor. Survey questions are defined in R code chunks with the `sd_question()` function. Pages are defined using fences (`:::`), and navigation buttons handled with the `sd_next()` function. You can modify the configuration options in the server code chunk (the last code chunk at the bottom of the .qmd file) with the `sd_config()` function, and you can configure the database with the `sd_database()`. Details on each of these steps are provided in separate guides in the documentation.
+```{r child = here::here("chunks", "intro.qmd")}
+```
 
 This introduction covers the basic steps to get started with surveydown.
 

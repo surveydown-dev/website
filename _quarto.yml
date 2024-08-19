@@ -5,18 +5,19 @@ project:
     port: 5678
     browser: true
   render:
-    - "getting-started.qmd"
     - "index.qmd"
     - "about.qmd"
-    - "password.qmd"
     - "installation.qmd"
     - "documentation.qmd"
+    - "getting-started.qmd"
+    - "password.qmd"   
     - "components.qmd"
     - "questions.qmd"
-    - "database.qmd"
-    - "deployment.qmd"
     - "formatting.qmd"
     - "config.qmd"
+    - "database.qmd"
+    - "deployment.qmd"   
+    - "faq.qmd"
     - "404.qmd"
 
 website:
@@ -48,6 +49,11 @@ website:
         href: installation.qmd      
       - text: "Documentation"
         href: documentation.qmd   
+      - text: "FAQ"
+        href: faq.qmd
+    right:
+      - icon: github
+        href: https://github.com/surveydown-dev
 
   sidebar:
     - title: "Documentation"

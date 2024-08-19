@@ -5,8 +5,28 @@ execute:
   warning: false
 ---
 
-```{r setup}
-source("_common.R")
+```{r}
+#| label: setup
+#| eval: true
+
+library(fontawesome)
 ```
 
-# About page
+**surveydown** is a flexible platform for making surveys with three open source technologies: [Quarto](https://quarto.org/), [shiny](https://shiny.posit.co/), and
+[supabase](https://supabase.com/). The package is still in development, but you can already use it to create surveys!
+
+<br>
+<center>
+<img src="images/technologies.png" width=600>
+</center>
+<br>
+
+The basic concept is this:
+
+1.  Design your survey as a [Quarto shiny
+    document](https://quarto.org/docs/dashboards/interactivity/shiny-r.html)
+    using markdown and R code.
+2.  Render your doc into a [shiny](https://shiny.posit.co/) app that can
+    be hosted online and sent to respondents.
+3.  Store your survey responses in a [supabase](https://supabase.com/)
+    database.

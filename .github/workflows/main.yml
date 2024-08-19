@@ -24,12 +24,6 @@ jobs:
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
         shell: Rscript {0}
 
-      - name: Install surveydown
-        run: |
-          install.packages("remotes")
-          remotes::install_github("surveydown-dev/surveydown")
-        shell: Rscript {0}
-
       - name: Cache R packages
         uses: actions/cache@v3
         with:
@@ -42,9 +36,12 @@ jobs:
           brew install libgit2
 
       - name: Install dependencies
+        env:
+          GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
           install.packages("remotes")
           remotes::install_deps(dependencies = TRUE)
+          remotes::install_github("surveydown-dev/surveydown")
         shell: Rscript {0}
 
       - name: Publish to GitHub Pages (and render)

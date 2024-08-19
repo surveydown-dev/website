@@ -5,18 +5,13 @@ execute:
   warning: false
 ---
 
-```{r}
-#| label: setup
-#| eval: true
-
-library(fontawesome)
-```
+# Overview
 
 {{< include chunks/description.qmd >}}
 
 <br>
 <center>
-<img src="images/technologies.png" width=600>
+<img src="images/technologies.png" width=500>
 </center>
 <br>
 
@@ -31,3 +26,13 @@ The basic concept is this:
     database.
 
 {{< include chunks/start.qmd >}}
+
+# Editing a surveydown survey
+
+We recommend working with an IDE to edit your surveydown surveys. [RStudio](https://www.rstudio.com/categories/rstudio-ide/) is great, and we also like [VS Code](https://code.visualstudio.com) and [Positron](https://github.com/posit-dev/positron).
+
+Once you have a survey ready to edit in your favorite IDE, you can render it locally to see how it will look as you change features. For example, this gif shows what it looks like to [make a question required](config.qmd#required-responses):
+
+<center>
+<img src="images/screenshots/required.gif" width=100%>
+</center>

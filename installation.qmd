@@ -13,7 +13,7 @@ Also, we recommend working with an IDE. [RStudio](https://www.rstudio.com/catego
 
 # Install the {surveydown} R package
 
-{surveydown} is not yet on CRAN, but you can install the development version from GitHub with the following command in R:
+The {surveydown} R package is not yet on CRAN, but you can install the development version from GitHub with the following command in your R console:
 
 ```{r}
 # install.packages("remotes")
@@ -22,7 +22,11 @@ remotes::install_github("jhelvy/surveydown")
 
 # Install the surveydown Quarto Extension
 
-Once you start working on an actual survey, you'll need the [surveydown Quarto extension](https://github.com/jhelvy/surveydown-ext). We recommend starting with a template survey, which will automatically add the latest extension for you:
+Once you start working on an actual survey, you'll need the [surveydown Quarto extension]({{< var url_extension >}}). 
+
+> **Note**: The extension must be locally installed in a `_extensions` folder in your root survey project folder.
+
+We recommend starting with a template survey, which will automatically add the latest extension for you:
 
 ```{r}
 surveydown::sd_create_survey("path/to/folder")
@@ -32,7 +36,7 @@ Otherwise, you can install the extension using the *terminal* or with the {surve
 
 - Using the *Terminal*:
 
-```{terminal}
+```{r}
 quarto install extension jhelvy/surveydown-ext
 ```
 

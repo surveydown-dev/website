@@ -45,7 +45,7 @@ jobs:
         run: |
           install.packages("remotes")
           remotes::install_deps(dependencies = TRUE)
-          remotes::install_github("https://github.com/surveydown-dev/surveydown")
+          remotes::install_github("https://github.com/surveydown-dev/surveydown@main")
         shell: Rscript {0}
 
       - name: Publish to GitHub Pages (and render)

@@ -27,11 +27,19 @@ The basic concept is this:
 
 {{< include chunks/start.qmd >}}
 
+# Background & Motivation
+
+Most survey platforms (e.g., Google forms, Qualtrics, etc.) use drag-and-drop interfaces to design surveys, making version control and collaboration with others difficult. They're also not reproducible. 
+
+As an open-source, markdown-based platform, surveydown was designed to address these problems. In surveydown, all survey content is created with plain text (markdown and R code) in a single `.qmd` file that renders into a shiny app. This makes your survey easy to reproduce, share, and version control with common tools like Git. The survey data collected is also owned by the survey designer in a supabase account, not some other company. Best of all, everything is open source and free :)
+
+If you're curious where this whole idea came from, check out this [blog post](https://www.jhelvy.com/blog/2023-04-06-markdown-surveys/), which outlines more on the general idea and the motivation for it. The post is now outdated in terms of the overall package design, but it provides something of an origin story and some of the motivation for developing this project.
+
 # Editing a surveydown survey
 
 We recommend working with an IDE to edit your surveydown surveys. [RStudio](https://www.rstudio.com/categories/rstudio-ide/) is great, and we also like [VS Code](https://code.visualstudio.com) and [Positron](https://github.com/posit-dev/positron).
 
-Once you have a survey ready to edit in your favorite IDE, you can render it locally to see how it will look as you change features. For example, this gif shows what it looks like to [make a question required](config.qmd#required-responses):
+Once you have a survey ready to edit in your favorite IDE, you can render it locally to see how it will look as you change features. For example, the gif below shows what it looks like to [make a question required](config.qmd#required-responses). This gives you an idea for what the development process is like. And because surveydown leverages shiny and quarto, you can customize your survey however you want!
 
 <center>
 <img src="images/screenshots/required.gif" width=100%>

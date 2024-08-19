@@ -148,10 +148,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
-<span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
@@ -220,7 +216,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="install-the-surveydown-r-package" class="level1">
 <h1>Install the {surveydown} R package</h1>
-<p>{surveydown} is not yet on CRAN, but you can install the development version from GitHub with the following command in R:</p>
+<p>The {surveydown} R package is not yet on CRAN, but you can install the development version from GitHub with the following command in your R console:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("remotes")</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"jhelvy/surveydown"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -228,7 +224,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="install-the-surveydown-quarto-extension" class="level1">
 <h1>Install the surveydown Quarto Extension</h1>
-<p>Once you start working on an actual survey, you’ll need the <a href="https://github.com/jhelvy/surveydown-ext">surveydown Quarto extension</a>. We recommend starting with a template survey, which will automatically add the latest extension for you:</p>
+<p>Once you start working on an actual survey, you’ll need the <a href="https://github.com/surveydown-dev/surveydown-ext">surveydown Quarto extension</a>.</p>
+<blockquote class="blockquote">
+<p><strong>Note</strong>: The extension must be locally installed in a <code>_extensions</code> folder in your root survey project folder.</p>
+</blockquote>
+<p>We recommend starting with a template survey, which will automatically add the latest extension for you:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>surveydown<span class="sc">::</span><span class="fu">sd_create_survey</span>(<span class="st">"path/to/folder"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -237,7 +237,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Using the <em>Terminal</em>:</li>
 </ul>
 <div class="cell">
-<pre class="terminal cell-code"><code>quarto install extension jhelvy/surveydown-ext</code></pre>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>quarto install extension jhelvy<span class="sc">/</span>surveydown<span class="sc">-</span>ext</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Using the {surveydown} R package:</li>

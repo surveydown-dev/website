@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction to surveydown – surveydown.org</title>
+<title>Formatting Questions – surveydown.org</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -112,14 +112,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="https://kit.fontawesome.com/1392a7030f.js" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Introduction to surveydown – surveydown.org">
+<meta property="og:title" content="Formatting Questions – surveydown.org">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://www.surveydown.org/images/logo.png">
 <meta property="og:site_name" content="https://surveydown.org">
 <meta property="og:locale" content="es_ES">
 <meta property="og:image:height" content="1679">
 <meta property="og:image:width" content="1679">
-<meta name="twitter:title" content="Introduction to surveydown – surveydown.org">
+<meta name="twitter:title" content="Formatting Questions – surveydown.org">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://www.surveydown.org/images/logo.png">
 <meta name="twitter:creator" content="@johnhelveston">
@@ -163,7 +163,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Getting Started</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./installation.html">Documentation</a></li><li class="breadcrumb-item"><a href="./components.html">Survey Content</a></li><li class="breadcrumb-item"><a href="./formatting.html">Formatting Questions</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -191,7 +191,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./getting-started.html" class="sidebar-item-text sidebar-link active">
+  <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Getting Started</span></a>
   </div>
 </li>
@@ -218,13 +218,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Survey Content</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./components.html" class="sidebar-item-text sidebar-link">
@@ -239,7 +239,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./formatting.html" class="sidebar-item-text sidebar-link">
+  <a href="./formatting.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Formatting Questions</span></a>
   </div>
 </li>
@@ -275,22 +275,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#install" id="toc-install" class="nav-link active" data-scroll-target="#install">1. Install</a></li>
-  <li><a href="#start-with-a-template" id="toc-start-with-a-template" class="nav-link" data-scroll-target="#start-with-a-template">2. Start with a template</a></li>
-  <li><a href="#add-content" id="toc-add-content" class="nav-link" data-scroll-target="#add-content">3. Add content</a></li>
-  <li><a href="#add-configuration-options" id="toc-add-configuration-options" class="nav-link" data-scroll-target="#add-configuration-options">4. Add configuration options</a></li>
-  <li><a href="#setup-your-database" id="toc-setup-your-database" class="nav-link" data-scroll-target="#setup-your-database">5. Setup your database</a></li>
-  <li><a href="#locally-preview" id="toc-locally-preview" class="nav-link" data-scroll-target="#locally-preview">6. Locally preview</a></li>
-  <li><a href="#deploy" id="toc-deploy" class="nav-link" data-scroll-target="#deploy">7. Deploy</a></li>
+  <li><a href="#markdown" id="toc-markdown" class="nav-link active" data-scroll-target="#markdown">Markdown</a></li>
+  <li><a href="#html" id="toc-html" class="nav-link" data-scroll-target="#html">HTML</a></li>
+  <li><a href="#width" id="toc-width" class="nav-link" data-scroll-target="#width">Width</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./installation.html">Documentation</a></li><li class="breadcrumb-item"><a href="./components.html">Survey Content</a></li><li class="breadcrumb-item"><a href="./formatting.html">Formatting Questions</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Introduction to surveydown</h1>
+<h1 class="title">Formatting Questions</h1>
 </div>
 
 
@@ -307,68 +303,122 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In surveydown, your entire survey is designed using markdown and R code in a single Quarto document (a <code>.qmd</code> file). The {surveydown} R package provides a set of functions for defining the survey content and configuration options. Each function starts with <code>sd_</code> to make them easy to identify.</p>
-<p>You can add content to your survey using markdown formatting, or in RStudio you can edit with the visual editor. Survey questions are defined in R code chunks with the <code>sd_question()</code> function. Pages are defined using fences (<code>:::</code>), and navigation buttons handled with the <code>sd_next()</code> function. You can modify the configuration options in the server code chunk (the last code chunk at the bottom of the .qmd file) with the <code>sd_config()</code> function, and you can configure the database with the <code>sd_database()</code>. Details on each of these steps are provided in separate guides in the documentation.</p>
-<p>This introduction covers the basic steps to get started with surveydown.</p>
-<section id="install" class="level1">
-<h1>1. Install</h1>
-<p>See <code>vignette("install")</code></p>
-</section>
-<section id="start-with-a-template" class="level1">
-<h1>2. Start with a template</h1>
-<p>In the R console, run the following to to setup a template survey:</p>
+<blockquote class="blockquote">
+<p>On this page, we’ll demonstrate some of the formatting options for displaying questions.</p>
+</blockquote>
+<section id="markdown" class="level2">
+<h2 class="anchored" data-anchor-id="markdown">Markdown</h2>
+<p><strong>Markdown</strong> is supported for the <strong>question label</strong>.</p>
+<p>The <code>label</code> argument for any question type can accept markdown formatting. For example, the question below uses the <code>**</code> symbols to make some works bold.</p>
+<p>Scripts:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>surveydown<span class="sc">::</span><span class="fu">sd_create_survey</span>(<span class="st">"path/to/folder"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type   =</span> <span class="st">'mc'</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id     =</span> <span class="st">'markdown_label'</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label  =</span> <span class="st">"**This** is a question *label* supporting ***markdown***:"</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Option A"</span> <span class="ot">=</span> <span class="st">"option_a"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Option B"</span> <span class="ot">=</span> <span class="st">"option_b"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Option C"</span> <span class="ot">=</span> <span class="st">"option_c"</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This will create a folder located at <code>"path/to/folder"</code> with the following files:</p>
-<ul>
-<li><code>example.qmd</code>: a template survey you should edit.</li>
-<li><code>example.Rproj</code>: An RStudio project file (helpful if you’re working in RStudio)</li>
-<li><code>_extensions</code>: A folder with the <a href="https://github.com/jhelvy/surveydown-ext">surveydown Quarto extension</a> needed to make everything work (don’t modify this).</li>
-</ul>
+<p>Output:</p>
+<div style="text-align: left; max-width: 300px;">
+<p><img src="images/3_1_markdown_label.jpg" class="img-fluid" width="300"></p>
+</div>
+<p><strong>Markdown</strong> is also supported for options in <code>mc_buttons</code> questions.</p>
+<p>For <code>mc_button</code> type questions, you can also use markdown to format the <code>option</code> labels.</p>
+<p>Scripts:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type   =</span> <span class="st">'mc_buttons'</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id     =</span> <span class="st">'markdown_buttons'</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label  =</span> <span class="st">"The 3 options below support markdown:"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"*Option A*"</span>     <span class="ot">=</span> <span class="st">"option_a"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"**Option B**"</span>   <span class="ot">=</span> <span class="st">"option_b"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"***Option C***"</span> <span class="ot">=</span> <span class="st">"option_c"</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Output:</p>
+<div style="text-align: left; max-width: 300px;">
+<p><img src="images/3_2_markdown_mc_buttons.jpg" class="img-fluid" width="300"></p>
+</div>
+<p>The same is true for <code>mc_multiple_buttons</code>.</p>
+<p>Scripts:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type   =</span> <span class="st">'mc_multiple_buttons'</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id     =</span> <span class="st">'markdown_multiple_buttons'</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label  =</span> <span class="st">"The 3 options below support markdown:"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"*Option A*"</span>     <span class="ot">=</span> <span class="st">"option_a"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"**Option B**"</span>   <span class="ot">=</span> <span class="st">"option_b"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"***Option C***"</span> <span class="ot">=</span> <span class="st">"option_c"</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Output:</p>
+<div style="text-align: left; max-width: 300px;">
+<p><img src="images/3_3_markdown_mc_multiple_buttons.jpg" class="img-fluid" width="300"></p>
+</div>
 </section>
-<section id="add-content" class="level1">
-<h1>3. Add content</h1>
-<p>See <code>vignette("content")</code> for details on adding content to your survey, like text, images, etc. with markdown and / or code chunks. As a quick overview:</p>
-<ul>
-<li>Add pages using fences, like this:</li>
-</ul>
-<pre><code>::: {#page1 .sd-page}
-
-Page 1 content here
-
-:::</code></pre>
-<ul>
-<li>Add questions with the <code>sd_question()</code> function in code chunks (see <code>vignette("questions")</code> for supported question types). For example:</li>
-</ul>
-<pre><code>```{r}
-sd_question(
-  type  = 'mc',
-  id    = 'penguins',
-  label = "Which is your favorite type of penguin?",
-  option = c(
-    'Adélie'    = 'adelie',
-    'Chinstrap' = 'chinstrap',
-    'Gentoo'    = 'gentoo'
-  )
-)
-```</code></pre>
+<section id="html" class="level2">
+<h2 class="anchored" data-anchor-id="html">HTML</h2>
+<p><strong>HTML</strong> is supported for options of <code>mc_buttons</code> and <code>mc_multiple_buttons</code>, so that you can insert mixed content including plain text, markdown, and HTML images. For example, here is a question with some complex labels for a choice question.</p>
+<p>Scripts:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the option vector</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>html_buttons_option <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"option_1"</span>, <span class="st">"option_2"</span>, <span class="st">"option_3"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the names of each element to display markdown-formatted text </span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># and an embedded image using html</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(html_buttons_option)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">"**Option 1**&lt;br&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="st">    &lt;img src='https://raw.githubusercontent.com/jhelvy/formr4conjoint/master/survey/images/fuji.jpg' width=100&gt;&lt;br&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="st">    **Type**: Fuji&lt;br&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="st">    **Price**: $ 2 / lb&lt;br&gt;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="st">    **Freshness**: Average"</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(html_buttons_option)[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="st">"**Option 2**&lt;br&gt;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="st">    &lt;img src='https://raw.githubusercontent.com/jhelvy/formr4conjoint/master/survey/images/pinkLady.jpg' width=100&gt;&lt;br&gt;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="st">    **Type**: Pink Lady&lt;br&gt;</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="st">    **Price**: $ 1.5 / lb&lt;br&gt;</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="st">    **Freshness**: Excellent"</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(html_buttons_option)[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">"**Option 3**&lt;br&gt;</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="st">    &lt;img src='https://raw.githubusercontent.com/jhelvy/formr4conjoint/master/survey/images/honeycrisp.jpg' width=100&gt;&lt;br&gt;</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="st">    **Type**: Honeycrisp&lt;br&gt;</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="st">    **Price**: $ 2 / lb&lt;br&gt;</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="st">    **Freshness**: Poor"</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">type   =</span> <span class="st">'mc_buttons'</span>,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">id     =</span> <span class="st">'html_buttons'</span>,</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">label  =</span> <span class="st">"A sample survey question using `mc_buttons`"</span>,</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> html_buttons_option</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Output:</p>
+<div style="text-align: left; max-width: 400px;">
+<p><img src="images/3_4_html_mc_buttons.jpg" class="img-fluid" width="400"></p>
+</div>
 </section>
-<section id="add-configuration-options" class="level1">
-<h1>4. Add configuration options</h1>
-<p>In the server chunk (bottom of qmd file), add control logic to your survey with the <code>sd_config()</code> function. See <code>vignette("config")</code>.</p>
-</section>
-<section id="setup-your-database" class="level1">
-<h1>5. Setup your database</h1>
-<p>Also in the server chunk, setup your database with the <code>sd_database()</code> function, or leave it blank to preview / edit your survey without database connected. See <code>vignette("database")</code>.</p>
-</section>
-<section id="locally-preview" class="level1">
-<h1>6. Locally preview</h1>
-<p>Preview your survey by clicking the “Run Document” button in RStudio or in your terminal running the command <code>quarto serve survey_file_name.qmd</code>.</p>
-</section>
-<section id="deploy" class="level1">
-<h1>7. Deploy</h1>
-<p>Deploy your survey by hosting it on your favorite server, like shinyapps.io, huggingface, etc. See <code>vignette("deploy")</code>.</p>
+<section id="width" class="level2">
+<h2 class="anchored" data-anchor-id="width">Width</h2>
+<p>Use the <code>width</code> argument to change the width for the question.</p>
+<p>Scripts:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">"textarea"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">"change_width"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"This text area has width set as 40%:"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="st">"40%"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Output:</p>
+<div style="text-align: left; max-width: 600px;">
+<p><img src="images/3_5_width.jpg" class="img-fluid" width="600"></p>
+</div>
 
 
 </section>

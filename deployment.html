@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction to surveydown – surveydown.org</title>
+<title>Deploying Your Survey – surveydown.org</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -112,14 +112,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="https://kit.fontawesome.com/1392a7030f.js" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Introduction to surveydown – surveydown.org">
+<meta property="og:title" content="Deploying Your Survey – surveydown.org">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://www.surveydown.org/images/logo.png">
 <meta property="og:site_name" content="https://surveydown.org">
 <meta property="og:locale" content="es_ES">
 <meta property="og:image:height" content="1679">
 <meta property="og:image:width" content="1679">
-<meta name="twitter:title" content="Introduction to surveydown – surveydown.org">
+<meta name="twitter:title" content="Deploying Your Survey – surveydown.org">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://www.surveydown.org/images/logo.png">
 <meta name="twitter:creator" content="@johnhelveston">
@@ -163,7 +163,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Getting Started</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./installation.html">Documentation</a></li><li class="breadcrumb-item"><a href="./deployment.html">Deploying Your Survey</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -191,7 +191,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./getting-started.html" class="sidebar-item-text sidebar-link active">
+  <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Getting Started</span></a>
   </div>
 </li>
@@ -259,7 +259,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deployment.html" class="sidebar-item-text sidebar-link">
+  <a href="./deployment.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Deploying Your Survey</span></a>
   </div>
 </li>
@@ -275,22 +275,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#install" id="toc-install" class="nav-link active" data-scroll-target="#install">1. Install</a></li>
-  <li><a href="#start-with-a-template" id="toc-start-with-a-template" class="nav-link" data-scroll-target="#start-with-a-template">2. Start with a template</a></li>
-  <li><a href="#add-content" id="toc-add-content" class="nav-link" data-scroll-target="#add-content">3. Add content</a></li>
-  <li><a href="#add-configuration-options" id="toc-add-configuration-options" class="nav-link" data-scroll-target="#add-configuration-options">4. Add configuration options</a></li>
-  <li><a href="#setup-your-database" id="toc-setup-your-database" class="nav-link" data-scroll-target="#setup-your-database">5. Setup your database</a></li>
-  <li><a href="#locally-preview" id="toc-locally-preview" class="nav-link" data-scroll-target="#locally-preview">6. Locally preview</a></li>
-  <li><a href="#deploy" id="toc-deploy" class="nav-link" data-scroll-target="#deploy">7. Deploy</a></li>
+  <li><a href="#demo-survey" id="toc-demo-survey" class="nav-link active" data-scroll-target="#demo-survey">Demo Survey</a></li>
+  <li><a href="#step-1-survey-project" id="toc-step-1-survey-project" class="nav-link" data-scroll-target="#step-1-survey-project">Step 1: Survey Project</a>
+  <ul class="collapse">
+  <li><a href="#step-1-1-construct-your-survey" id="toc-step-1-1-construct-your-survey" class="nav-link" data-scroll-target="#step-1-1-construct-your-survey">Step 1-1: Construct your survey</a></li>
+  <li><a href="#step-1-2-set-your-password" id="toc-step-1-2-set-your-password" class="nav-link" data-scroll-target="#step-1-2-set-your-password">Step 1-2: Set your password</a></li>
+  <li><a href="#step-1-3-render-your-.qmd-file" id="toc-step-1-3-render-your-.qmd-file" class="nav-link" data-scroll-target="#step-1-3-render-your-.qmd-file">Step 1-3: Render your <code>.qmd</code> file</a></li>
+  </ul></li>
+  <li><a href="#step-2-supabase-project" id="toc-step-2-supabase-project" class="nav-link" data-scroll-target="#step-2-supabase-project">Step 2: Supabase Project</a></li>
+  <li><a href="#step-3-online-deployment" id="toc-step-3-online-deployment" class="nav-link" data-scroll-target="#step-3-online-deployment">Step 3: Online Deployment</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./installation.html">Documentation</a></li><li class="breadcrumb-item"><a href="./deployment.html">Deploying Your Survey</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Introduction to surveydown</h1>
+<h1 class="title">Deploying Your Survey</h1>
 </div>
 
 
@@ -307,68 +309,113 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In surveydown, your entire survey is designed using markdown and R code in a single Quarto document (a <code>.qmd</code> file). The {surveydown} R package provides a set of functions for defining the survey content and configuration options. Each function starts with <code>sd_</code> to make them easy to identify.</p>
-<p>You can add content to your survey using markdown formatting, or in RStudio you can edit with the visual editor. Survey questions are defined in R code chunks with the <code>sd_question()</code> function. Pages are defined using fences (<code>:::</code>), and navigation buttons handled with the <code>sd_next()</code> function. You can modify the configuration options in the server code chunk (the last code chunk at the bottom of the .qmd file) with the <code>sd_config()</code> function, and you can configure the database with the <code>sd_database()</code>. Details on each of these steps are provided in separate guides in the documentation.</p>
-<p>This introduction covers the basic steps to get started with surveydown.</p>
-<section id="install" class="level1">
-<h1>1. Install</h1>
-<p>See <code>vignette("install")</code></p>
+<p>Once you have previewed and tested your survey and are ready to field it, it is time to make it live for respondents to fill out.</p>
+<p>To deploy your survey, you’ll need to have the following recipes ready:</p>
+<ol type="1">
+<li>Your survey project made by Quarto that is properly rendered locally.</li>
+<li>Your supabase project with its credentials defined in your survey <code>.qmd</code> file. See <code>vignette("database")</code> for details.</li>
+<li>An account on <a href="https://www.shinyapps.io">shinyapps</a>, which will be used for survey online deployment.</li>
+</ol>
+<p>These steps are easy to follow. We will go through one by one.</p>
+<section id="demo-survey" class="level1">
+<h1>Demo Survey</h1>
+<p>If you have trouble constructing your own survey, we have prepared a demo survey:</p>
+<ol type="1">
+<li><a href="https://pingfan.shinyapps.io/demo/">Online demo survey</a></li>
+<li><a href="https://github.com/jhelvy/surveydown_demo">GitHub repository</a></li>
+</ol>
+<p>This survey was made on <a href="https://posit.co/products/open-source/rstudio/">RStudio</a> using the {surveydown} R package and the surveydown Quarto extension, with survey data stored on <a href="https://supabase.com">supabase</a>, and its online website deployed on <a href="https://www.shinyapps.io">shinyapps</a>.</p>
 </section>
-<section id="start-with-a-template" class="level1">
-<h1>2. Start with a template</h1>
-<p>In the R console, run the following to to setup a template survey:</p>
+<section id="step-1-survey-project" class="level1">
+<h1>Step 1: Survey Project</h1>
+<section id="step-1-1-construct-your-survey" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-1-construct-your-survey">Step 1-1: Construct your survey</h2>
+<p>Construct your survey using the {surveydown} R package and the surveydown Quarto extension.</p>
+<p>The previous articles in <strong>Usage Guide</strong> are sufficient to guide you through the survey construction process.</p>
+</section>
+<section id="step-1-2-set-your-password" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-2-set-your-password">Step 1-2: Set your password</h2>
+<p>One important setting is the <strong>password</strong> of your supabase project. Here’s how.</p>
+<p>While you set up your supabase project, you will create a password for it. This password will then be defined in your survey project. In the very end of your survey <code>.qmd</code> file, you’ll need to define the <code>db</code> variable, which should be the settings of your supabase project. There is an argument called <code>password</code>. You can directly paste your password here as <code>password = "my_password"</code>, but it’s not recommended since this will make your supabase project unsafe.</p>
+<p>We recommend you to write <code>password = Sys.getenv("SUPABASE_PASSWORD")</code>, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>surveydown<span class="sc">::</span><span class="fu">sd_create_survey</span>(<span class="st">"path/to/folder"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">sd_database</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Other settings...</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">password =</span> <span class="fu">Sys.getenv</span>(<span class="st">"SUPABASE_PASSWORD"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This will create a folder located at <code>"path/to/folder"</code> with the following files:</p>
-<ul>
-<li><code>example.qmd</code>: a template survey you should edit.</li>
-<li><code>example.Rproj</code>: An RStudio project file (helpful if you’re working in RStudio)</li>
-<li><code>_extensions</code>: A folder with the <a href="https://github.com/jhelvy/surveydown-ext">surveydown Quarto extension</a> needed to make everything work (don’t modify this).</li>
-</ul>
+<p>Then, define the password using the <code>sd_set_password()</code> function. For example, if your password is <code>my_password</code>, you should run <code>sd_set_password("my_password")</code> in the R Console.</p>
+<p>Great! Now you have your supabase password successfully defined in your survey project!</p>
+<p>If you are interested, below are the details of what <code>sd_set_password()</code> does:</p>
+<ol type="1">
+<li>It creates an <code>.Renviron</code> file or writes into an existing one.</li>
+<li>In this <code>.Renviron</code> file, it writes in <code>SUPABASE_PASSWORD=my_password</code>, where <code>"my_password"</code> is whatever your argument of the <code>sd_set_password()</code> function.</li>
+<li>If there is a previously defined <code>SUPABASE_PASSWORD</code> in <code>.Renviron</code>, it will be overwritten, so you are safe to run this function multiple times.</li>
+<li>It adds <code>.Renviron</code> into <code>.gitignore</code> to avoid it being pushed to GitHub thus keeps your password safe. If you run multiple times, <code>.Renviron</code> will appear only once in <code>.gitignore</code>.</li>
+</ol>
 </section>
-<section id="add-content" class="level1">
-<h1>3. Add content</h1>
-<p>See <code>vignette("content")</code> for details on adding content to your survey, like text, images, etc. with markdown and / or code chunks. As a quick overview:</p>
-<ul>
-<li>Add pages using fences, like this:</li>
-</ul>
-<pre><code>::: {#page1 .sd-page}
-
-Page 1 content here
-
-:::</code></pre>
-<ul>
-<li>Add questions with the <code>sd_question()</code> function in code chunks (see <code>vignette("questions")</code> for supported question types). For example:</li>
-</ul>
-<pre><code>```{r}
-sd_question(
-  type  = 'mc',
-  id    = 'penguins',
-  label = "Which is your favorite type of penguin?",
-  option = c(
-    'Adélie'    = 'adelie',
-    'Chinstrap' = 'chinstrap',
-    'Gentoo'    = 'gentoo'
-  )
-)
-```</code></pre>
+<section id="step-1-3-render-your-.qmd-file" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-3-render-your-.qmd-file">Step 1-3: Render your <code>.qmd</code> file</h2>
+<p>This is simple: just hit <strong>Render</strong> or <code>cmd</code>/<code>ctrl</code> + <code>shift</code> + <code>K</code> (Mac/Win). But the reason why I make this a stand-alone step is that, WITHOUT rendering your <code>.qmd</code> file, your survey CANNOT be deployed online.</p>
+<p>One more thing… If you fail to deploy locally while you have set every argument correctly in your <code>db</code> variable, try to define <code>gssencmode = "disable"</code> in your <code>db</code> variable:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">sd_database</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Other settings...</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">gssencmode =</span> <span class="st">"disable"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This can help solve your connection problem. The value of <code>gssencmode</code> is set to <code>"prefer"</code> by default.</p>
 </section>
-<section id="add-configuration-options" class="level1">
-<h1>4. Add configuration options</h1>
-<p>In the server chunk (bottom of qmd file), add control logic to your survey with the <code>sd_config()</code> function. See <code>vignette("config")</code>.</p>
 </section>
-<section id="setup-your-database" class="level1">
-<h1>5. Setup your database</h1>
-<p>Also in the server chunk, setup your database with the <code>sd_database()</code> function, or leave it blank to preview / edit your survey without database connected. See <code>vignette("database")</code>.</p>
+<section id="step-2-supabase-project" class="level1">
+<h1>Step 2: Supabase Project</h1>
+<p>This is covered in <a href="../doc/database_setup.html">5. Database Setup</a>. I want to further mention that you don’t need to actively create any table on your supabase project. In your <code>db</code> variable of your <code>.qmd</code> file, there is a <code>table_name</code> argument. Whatever name you define here will become the table name of your supabase:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">sd_database</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Other settings...</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">table_name =</span> <span class="st">"demo"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the above example, the table name in my supabase project will be <code>"demo"</code>. If your survey project runs successfully locally and can have survey data collected in supabase, you are ready for your online deployment.</p>
 </section>
-<section id="locally-preview" class="level1">
-<h1>6. Locally preview</h1>
-<p>Preview your survey by clicking the “Run Document” button in RStudio or in your terminal running the command <code>quarto serve survey_file_name.qmd</code>.</p>
-</section>
-<section id="deploy" class="level1">
-<h1>7. Deploy</h1>
-<p>Deploy your survey by hosting it on your favorite server, like shinyapps.io, huggingface, etc. See <code>vignette("deploy")</code>.</p>
+<section id="step-3-online-deployment" class="level1">
+<h1>Step 3: Online Deployment</h1>
+<p>So this is our final step: to deploy your survey online. I’m glad you’ve made this far! You are almost there!</p>
+<p>We’ll use <a href="https://www.shinyapps.io">shinyapps.io</a>. Now before we start, here are two explanations to clear out your possible questions:</p>
+<ol type="1">
+<li><a href="https://www.shinyapps.io">shinyapps.io</a> can support both <a href="https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/index.html">Shiny Apps</a> and <a href="https://quarto.org/docs/dashboards/interactivity/shiny-r.html">Quarto Shiny Documents</a>. In our case, our survey is considered as a Quarto Shiny Document.</li>
+<li><a href="https://quartopub.com">Quarto Pub</a> is also a website publishing platform. In fact, both Quarto Pub and shinyapps.io are provided by <a href="https://posit.co">Posit</a>. However, we DON’T use Quarto Pub for our survey deployment. The core reason is that, shinyapps.io can make interactive websites, but Quarto Pub only makes static websites. A survey is apparently an interactive website, so it’s compatible with shinyapps.io, not Quarto Pub.</li>
+</ol>
+<p>To start using shinyapps.io, you’ll need to create an account and follow the basic instructions to set up your sub-domain and authorize your IDE. See more information <a href="https://docs.posit.co/shinyapps.io/guide/getting_started/">here</a>.</p>
+<p>Once you have your account and your sub-domain ready, it’s time to deploy your survey website.</p>
+<p>Make sure you have the <a href="https://rstudio.github.io/rsconnect/">rsconnect</a> R package installed (You should have done this while you authorize your IDE):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'rsconnect'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The simplest way is to run this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">deployDoc</span>(<span class="st">"your_survey.qmd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The URL of this page will be your domain followed by <code>/your_survey</code>, which means the name of your <code>.qmd</code> file will be in the URL. The tab name of the HTML page is also <code>your_survey</code>. Better give a good name to your <code>.qmd</code> file.</p>
+<p><strong>Again, you’ll need to firstly render locally and make sure it works properly. Otherwise, this deployment will fail.</strong></p>
+<p>If you want to define a different tab name for your survey page, run:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">deployDoc</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">doc =</span> <span class="st">"your_survey.qmd"</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">appName =</span> <span class="st">"Survey Name"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now you should have your survey site deployed. The survey is now served on <strong>shinyapps.io</strong>, with its data stored on <strong>supabase</strong>. Congratulations!</p>
+<p>Further explanation (with my personal interpretation) of the deployment functions:</p>
+<p>In rsconnect, there are two functions that can be used for deployment: <code>deployApp()</code> and <code>deployDoc()</code>. They serve different purposes and should NOT be mix-used.</p>
+<ol type="1">
+<li><code>deployApp()</code> is used to deploy a Shiny App. It doesn’t work for <code>.qmd</code>, but works for Shiny App and <code>.rmd</code>, and it accepts multiple files.</li>
+<li><code>deployDoc()</code> is used to deploy a Quarto Shiny Document. It works for a single file and tries to “automatically discover dependencies” (direct paste from <a href="https://rstudio.github.io/rsconnect/reference/deployDoc.html">official instructions</a>).</li>
+<li>Since our survey is a Quarto Shiny Document, we use <code>deployDoc()</code>.</li>
+</ol>
+<blockquote class="blockquote">
+<p>I guess <code>deployDoc()</code> is a newer function that specifically works for <code>.qmd</code>. I have a feeling that this function is specifically made for <code>.qmd</code> to match the fact of “single document” and “dependencies”. In our case, <code>deployDoc()</code> is a perfect match.</p>
+</blockquote>
 
 
 </section>

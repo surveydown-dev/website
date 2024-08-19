@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction to surveydown – surveydown.org</title>
+<title>Database Setup – surveydown.org</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -112,14 +112,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="https://kit.fontawesome.com/1392a7030f.js" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Introduction to surveydown – surveydown.org">
+<meta property="og:title" content="Database Setup – surveydown.org">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://www.surveydown.org/images/logo.png">
 <meta property="og:site_name" content="https://surveydown.org">
 <meta property="og:locale" content="es_ES">
 <meta property="og:image:height" content="1679">
 <meta property="og:image:width" content="1679">
-<meta name="twitter:title" content="Introduction to surveydown – surveydown.org">
+<meta name="twitter:title" content="Database Setup – surveydown.org">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://www.surveydown.org/images/logo.png">
 <meta name="twitter:creator" content="@johnhelveston">
@@ -163,7 +163,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Getting Started</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./installation.html">Documentation</a></li><li class="breadcrumb-item"><a href="./database.html">Database Setup</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -191,7 +191,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./getting-started.html" class="sidebar-item-text sidebar-link active">
+  <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Getting Started</span></a>
   </div>
 </li>
@@ -253,7 +253,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./database.html" class="sidebar-item-text sidebar-link">
+  <a href="./database.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Database Setup</span></a>
   </div>
 </li>
@@ -275,22 +275,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#install" id="toc-install" class="nav-link active" data-scroll-target="#install">1. Install</a></li>
-  <li><a href="#start-with-a-template" id="toc-start-with-a-template" class="nav-link" data-scroll-target="#start-with-a-template">2. Start with a template</a></li>
-  <li><a href="#add-content" id="toc-add-content" class="nav-link" data-scroll-target="#add-content">3. Add content</a></li>
-  <li><a href="#add-configuration-options" id="toc-add-configuration-options" class="nav-link" data-scroll-target="#add-configuration-options">4. Add configuration options</a></li>
-  <li><a href="#setup-your-database" id="toc-setup-your-database" class="nav-link" data-scroll-target="#setup-your-database">5. Setup your database</a></li>
-  <li><a href="#locally-preview" id="toc-locally-preview" class="nav-link" data-scroll-target="#locally-preview">6. Locally preview</a></li>
-  <li><a href="#deploy" id="toc-deploy" class="nav-link" data-scroll-target="#deploy">7. Deploy</a></li>
+  <li><a href="#step-1-create-your-account" id="toc-step-1-create-your-account" class="nav-link active" data-scroll-target="#step-1-create-your-account">Step 1: Create your account</a></li>
+  <li><a href="#step-2-start-a-project" id="toc-step-2-start-a-project" class="nav-link" data-scroll-target="#step-2-start-a-project">Step 2: Start a project</a></li>
+  <li><a href="#step-3-create-a-project" id="toc-step-3-create-a-project" class="nav-link" data-scroll-target="#step-3-create-a-project">Step 3: Create a project</a></li>
+  <li><a href="#step-4-create-a-database" id="toc-step-4-create-a-database" class="nav-link" data-scroll-target="#step-4-create-a-database">Step 4: Create a database</a></li>
+  <li><a href="#step-5-find-the-db-parameters" id="toc-step-5-find-the-db-parameters" class="nav-link" data-scroll-target="#step-5-find-the-db-parameters">Step 5: Find the DB parameters</a></li>
+  <li><a href="#step-6-copy-the-db-parameters" id="toc-step-6-copy-the-db-parameters" class="nav-link" data-scroll-target="#step-6-copy-the-db-parameters">Step 6: Copy the DB parameters</a></li>
+  <li><a href="#step-7-update-the-arguments-in-sd_database" id="toc-step-7-update-the-arguments-in-sd_database" class="nav-link" data-scroll-target="#step-7-update-the-arguments-in-sd_database">Step 7: Update the arguments in <code>sd_database()</code></a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  <li><a href="#tada" id="toc-tada" class="nav-link" data-scroll-target="#tada">Tada!!!</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./installation.html">Documentation</a></li><li class="breadcrumb-item"><a href="./database.html">Database Setup</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Introduction to surveydown</h1>
+<h1 class="title">Database Setup</h1>
 </div>
 
 
@@ -307,68 +309,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In surveydown, your entire survey is designed using markdown and R code in a single Quarto document (a <code>.qmd</code> file). The {surveydown} R package provides a set of functions for defining the survey content and configuration options. Each function starts with <code>sd_</code> to make them easy to identify.</p>
-<p>You can add content to your survey using markdown formatting, or in RStudio you can edit with the visual editor. Survey questions are defined in R code chunks with the <code>sd_question()</code> function. Pages are defined using fences (<code>:::</code>), and navigation buttons handled with the <code>sd_next()</code> function. You can modify the configuration options in the server code chunk (the last code chunk at the bottom of the .qmd file) with the <code>sd_config()</code> function, and you can configure the database with the <code>sd_database()</code>. Details on each of these steps are provided in separate guides in the documentation.</p>
-<p>This introduction covers the basic steps to get started with surveydown.</p>
-<section id="install" class="level1">
-<h1>1. Install</h1>
-<p>See <code>vignette("install")</code></p>
+<blockquote class="blockquote">
+<p>This guide will help users set up a supabase account to work inside of SurveyDown for quick &amp; live server updates</p>
+</blockquote>
+<section id="step-1-create-your-account" class="level1">
+<h1>Step 1: Create your account</h1>
+<p>Navigate to <a href="https://supabase.com/">supabase</a> website and create an account.</p>
 </section>
-<section id="start-with-a-template" class="level1">
-<h1>2. Start with a template</h1>
-<p>In the R console, run the following to to setup a template survey:</p>
+<section id="step-2-start-a-project" class="level1">
+<h1>Step 2: Start a project</h1>
+<p>From the Main page, select “Start your Project” underlined in red.</p>
+<p><img src="images/main_pageS2.png" alt="drawing" width="700"></p>
+</section>
+<section id="step-3-create-a-project" class="level1">
+<h1>Step 3: Create a project</h1>
+<p>After creating your new account proceeding to your dashboard, select “New Project”.</p>
+<p><img src="images/main_pageS3.png" alt="drawing" width="700"></p>
+</section>
+<section id="step-4-create-a-database" class="level1">
+<h1>Step 4: Create a database</h1>
+<p>The next step is to create your respective database. Here you <strong>must</strong> use the password you created for your survey project (see <code>vignette("password")</code>).</p>
+<p><img src="images/main_pageS4.png" alt="drawing" width="700"></p>
+</section>
+<section id="step-5-find-the-db-parameters" class="level1">
+<h1>Step 5: Find the DB parameters</h1>
+<p>While on your project dashboard select the settings gear in the bottom left, then select “Database”.</p>
+<p><img src="images/main_pageS5.png" alt="drawing" width="700"></p>
+<p><img src="images/main_pageS6.png" alt="drawing" width="500"></p>
+</section>
+<section id="step-6-copy-the-db-parameters" class="level1">
+<h1>Step 6: Copy the DB parameters</h1>
+<p>Copy the all of the connection parameters to your database.</p>
+<p><img src="images/main_pageS7.png" alt="drawing" width="700"></p>
+</section>
+<section id="step-7-update-the-arguments-in-sd_database" class="level1">
+<h1>Step 7: Update the arguments in <code>sd_database()</code></h1>
+<p>Now that we’ve created our database and have gotten all the needed parameters we can now connect the database to our survey.</p>
+<p>Taking a look at our code inside of our <strong>survey.qmd</strong> file you will notice five arguments in <code>sd_database()</code>. This is where you will replace the <code>NULL</code> values with the ones you copied from your database. The last argument, <code>table_name</code>, can be any name of your choosing.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>surveydown<span class="sc">::</span><span class="fu">sd_create_survey</span>(<span class="st">"path/to/folder"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">sd_database</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">host       =</span> <span class="cn">NULL</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">db_name    =</span> <span class="cn">NULL</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">port       =</span> <span class="cn">NULL</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">user       =</span> <span class="cn">NULL</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">table_name =</span> <span class="cn">NULL</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This will create a folder located at <code>"path/to/folder"</code> with the following files:</p>
-<ul>
-<li><code>example.qmd</code>: a template survey you should edit.</li>
-<li><code>example.Rproj</code>: An RStudio project file (helpful if you’re working in RStudio)</li>
-<li><code>_extensions</code>: A folder with the <a href="https://github.com/jhelvy/surveydown-ext">surveydown Quarto extension</a> needed to make everything work (don’t modify this).</li>
-</ul>
+<p>If you don’t have a database setup yet, you can just leave the function blank and your survey will still run, just without any response data being stored:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">sd_database</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="add-content" class="level1">
-<h1>3. Add content</h1>
-<p>See <code>vignette("content")</code> for details on adding content to your survey, like text, images, etc. with markdown and / or code chunks. As a quick overview:</p>
-<ul>
-<li>Add pages using fences, like this:</li>
-</ul>
-<pre><code>::: {#page1 .sd-page}
-
-Page 1 content here
-
-:::</code></pre>
-<ul>
-<li>Add questions with the <code>sd_question()</code> function in code chunks (see <code>vignette("questions")</code> for supported question types). For example:</li>
-</ul>
-<pre><code>```{r}
-sd_question(
-  type  = 'mc',
-  id    = 'penguins',
-  label = "Which is your favorite type of penguin?",
-  option = c(
-    'Adélie'    = 'adelie',
-    'Chinstrap' = 'chinstrap',
-    'Gentoo'    = 'gentoo'
-  )
-)
-```</code></pre>
+<section id="example" class="level1">
+<h1>Example</h1>
+<p>An example of what the function should look like after you have updated all the parameters is below:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">sd_database</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">host       =</span> <span class="st">"aws-0-us-west-1.pooler.supabase.com"</span>, </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">db_name    =</span> <span class="st">"postgres"</span>, <span class="co"># For the purpose of supabase, this will always be "postgres".</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">port       =</span> <span class="st">"1234"</span>, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">user       =</span> <span class="st">"postgres.UserValue"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">table_name =</span> <span class="st">"my_table_name"</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="add-configuration-options" class="level1">
-<h1>4. Add configuration options</h1>
-<p>In the server chunk (bottom of qmd file), add control logic to your survey with the <code>sd_config()</code> function. See <code>vignette("config")</code>.</p>
-</section>
-<section id="setup-your-database" class="level1">
-<h1>5. Setup your database</h1>
-<p>Also in the server chunk, setup your database with the <code>sd_database()</code> function, or leave it blank to preview / edit your survey without database connected. See <code>vignette("database")</code>.</p>
-</section>
-<section id="locally-preview" class="level1">
-<h1>6. Locally preview</h1>
-<p>Preview your survey by clicking the “Run Document” button in RStudio or in your terminal running the command <code>quarto serve survey_file_name.qmd</code>.</p>
-</section>
-<section id="deploy" class="level1">
-<h1>7. Deploy</h1>
-<p>Deploy your survey by hosting it on your favorite server, like shinyapps.io, huggingface, etc. See <code>vignette("deploy")</code>.</p>
+<section id="tada" class="level1">
+<h1>Tada!!!</h1>
+<p>Going back to your Project dashboard and selecting <em>“Table Editor”</em> on the left hand bar tab you should see your table appear once your survey is run and interacted with atleast once.</p>
 
 
 </section>

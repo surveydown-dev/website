@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction to surveydown – surveydown.org</title>
+<title>Survey Components – surveydown.org</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -112,14 +112,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="https://kit.fontawesome.com/1392a7030f.js" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Introduction to surveydown – surveydown.org">
+<meta property="og:title" content="Survey Components – surveydown.org">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://www.surveydown.org/images/logo.png">
 <meta property="og:site_name" content="https://surveydown.org">
 <meta property="og:locale" content="es_ES">
 <meta property="og:image:height" content="1679">
 <meta property="og:image:width" content="1679">
-<meta name="twitter:title" content="Introduction to surveydown – surveydown.org">
+<meta name="twitter:title" content="Survey Components – surveydown.org">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://www.surveydown.org/images/logo.png">
 <meta name="twitter:creator" content="@johnhelveston">
@@ -163,7 +163,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Getting Started</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./installation.html">Documentation</a></li><li class="breadcrumb-item"><a href="./components.html">Survey Content</a></li><li class="breadcrumb-item"><a href="./components.html">Survey Components</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -191,7 +191,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./getting-started.html" class="sidebar-item-text sidebar-link active">
+  <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Getting Started</span></a>
   </div>
 </li>
@@ -218,16 +218,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Survey Content</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./components.html" class="sidebar-item-text sidebar-link">
+  <a href="./components.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Survey Components</span></a>
   </div>
 </li>
@@ -275,22 +275,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#install" id="toc-install" class="nav-link active" data-scroll-target="#install">1. Install</a></li>
-  <li><a href="#start-with-a-template" id="toc-start-with-a-template" class="nav-link" data-scroll-target="#start-with-a-template">2. Start with a template</a></li>
-  <li><a href="#add-content" id="toc-add-content" class="nav-link" data-scroll-target="#add-content">3. Add content</a></li>
-  <li><a href="#add-configuration-options" id="toc-add-configuration-options" class="nav-link" data-scroll-target="#add-configuration-options">4. Add configuration options</a></li>
-  <li><a href="#setup-your-database" id="toc-setup-your-database" class="nav-link" data-scroll-target="#setup-your-database">5. Setup your database</a></li>
-  <li><a href="#locally-preview" id="toc-locally-preview" class="nav-link" data-scroll-target="#locally-preview">6. Locally preview</a></li>
-  <li><a href="#deploy" id="toc-deploy" class="nav-link" data-scroll-target="#deploy">7. Deploy</a></li>
+  <li><a href="#start-with-a-template" id="toc-start-with-a-template" class="nav-link active" data-scroll-target="#start-with-a-template">Start with a template</a></li>
+  <li><a href="#survey-components" id="toc-survey-components" class="nav-link" data-scroll-target="#survey-components">Survey components</a></li>
+  <li><a href="#yaml-header" id="toc-yaml-header" class="nav-link" data-scroll-target="#yaml-header">1. YAML Header</a>
+  <ul class="collapse">
+  <li><a href="#required-yaml-content" id="toc-required-yaml-content" class="nav-link" data-scroll-target="#required-yaml-content">Required YAML content</a></li>
+  <li><a href="#setitng-the-theme" id="toc-setitng-the-theme" class="nav-link" data-scroll-target="#setitng-the-theme">Setitng the theme</a></li>
+  <li><a href="#progress-bar" id="toc-progress-bar" class="nav-link" data-scroll-target="#progress-bar">Progress bar</a></li>
+  </ul></li>
+  <li><a href="#setup-code-chunk" id="toc-setup-code-chunk" class="nav-link" data-scroll-target="#setup-code-chunk">2. Setup code chunk</a></li>
+  <li><a href="#survey-body" id="toc-survey-body" class="nav-link" data-scroll-target="#survey-body">3. Survey body</a>
+  <ul class="collapse">
+  <li><a href="#adding-pages" id="toc-adding-pages" class="nav-link" data-scroll-target="#adding-pages">Adding pages</a></li>
+  <li><a href="#adding-navigation-buttons" id="toc-adding-navigation-buttons" class="nav-link" data-scroll-target="#adding-navigation-buttons">Adding navigation buttons</a></li>
+  <li><a href="#adding-questions" id="toc-adding-questions" class="nav-link" data-scroll-target="#adding-questions">Adding questions</a></li>
+  </ul></li>
+  <li><a href="#server-code-chunk" id="toc-server-code-chunk" class="nav-link" data-scroll-target="#server-code-chunk">4. Server code chunk</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./installation.html">Documentation</a></li><li class="breadcrumb-item"><a href="./components.html">Survey Content</a></li><li class="breadcrumb-item"><a href="./components.html">Survey Components</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Introduction to surveydown</h1>
+<h1 class="title">Survey Components</h1>
 </div>
 
 
@@ -307,15 +316,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In surveydown, your entire survey is designed using markdown and R code in a single Quarto document (a <code>.qmd</code> file). The {surveydown} R package provides a set of functions for defining the survey content and configuration options. Each function starts with <code>sd_</code> to make them easy to identify.</p>
-<p>You can add content to your survey using markdown formatting, or in RStudio you can edit with the visual editor. Survey questions are defined in R code chunks with the <code>sd_question()</code> function. Pages are defined using fences (<code>:::</code>), and navigation buttons handled with the <code>sd_next()</code> function. You can modify the configuration options in the server code chunk (the last code chunk at the bottom of the .qmd file) with the <code>sd_config()</code> function, and you can configure the database with the <code>sd_database()</code>. Details on each of these steps are provided in separate guides in the documentation.</p>
-<p>This introduction covers the basic steps to get started with surveydown.</p>
-<section id="install" class="level1">
-<h1>1. Install</h1>
-<p>See <code>vignette("install")</code></p>
-</section>
+<p>This guide covers the main elements in your <code>.qmd</code> survey file as well as how to add content to your survey, like pages, questions, etc.</p>
 <section id="start-with-a-template" class="level1">
-<h1>2. Start with a template</h1>
+<h1>Start with a template</h1>
 <p>In the R console, run the following to to setup a template survey:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>surveydown<span class="sc">::</span><span class="fu">sd_create_survey</span>(<span class="st">"path/to/folder"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -326,21 +329,126 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>example.Rproj</code>: An RStudio project file (helpful if you’re working in RStudio)</li>
 <li><code>_extensions</code>: A folder with the <a href="https://github.com/jhelvy/surveydown-ext">surveydown Quarto extension</a> needed to make everything work (don’t modify this).</li>
 </ul>
+<blockquote class="blockquote">
+<p>Every survey created with {surveydown} should be in its own separate project folder.</p>
+</blockquote>
 </section>
-<section id="add-content" class="level1">
-<h1>3. Add content</h1>
-<p>See <code>vignette("content")</code> for details on adding content to your survey, like text, images, etc. with markdown and / or code chunks. As a quick overview:</p>
-<ul>
-<li>Add pages using fences, like this:</li>
-</ul>
-<pre><code>::: {#page1 .sd-page}
+<section id="survey-components" class="level1">
+<h1>Survey components</h1>
+<p>Every {surveydown} survey is configured in a single <code>.qmd</code> file that consists of <strong>4 parts</strong>:</p>
+<ol type="1">
+<li>The YAML header.</li>
+<li>The setup code chunk.</li>
+<li>The survey body.</li>
+<li>The server code chunk.</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="images/screenshots/survey-screenshot.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="yaml-header" class="level1">
+<h1>1. YAML Header</h1>
+<p>The YAML header is at the top of the <code>.qmd</code> file. In addition to two required elements, the YAML can be used to set the survey theme as well as modify the survey progress bar.</p>
+<section id="required-yaml-content" class="level2">
+<h2 class="anchored" data-anchor-id="required-yaml-content">Required YAML content</h2>
+<p>For a surveydown survey, your YAML must contain at least the following:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">server</span><span class="kw">:</span><span class="at"> shiny</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">filters</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">surveydown</span><span class="kw">]</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>server: shiny</code> part ensures that the document will render as a shiny app. The <code>filters: [surveydown]</code> part applies the surveydown Quarto extension to the project, which is required.</p>
+</section>
+<section id="setitng-the-theme" class="level2">
+<h2 class="anchored" data-anchor-id="setitng-the-theme">Setitng the theme</h2>
+<p>The YAML can also be used to set several <strong>optional</strong> global settings, such as the overall survey <code>theme</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span><span class="kw">:</span><span class="at"> united</span><span class="co"> # Any bootswatch theme </span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There are <a href="https://bootswatch.com">25 bootswatch themes</a> to choose from. You can also provide a <code>custom.scss</code> file to further modify the theme, or even combine the two, e.g.:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">united</span><span class="kw">,</span><span class="at"> custom.scss</span><span class="kw">]</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="progress-bar" class="level2">
+<h2 class="anchored" data-anchor-id="progress-bar">Progress bar</h2>
+<p>You can modify the survey progress bar with the <code>barcolor</code> and <code>barposition</code> keys, e.g.:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barcolor</span><span class="kw">:</span><span class="at"> theme </span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">barposition</span><span class="kw">:</span><span class="at"> top </span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>barcolor</code> key defines the color of the progress bar. It defaults to <code>theme</code>, meaning it will take the primary theme color. You may also use any hex code to overwrite this color as you wish, e.g.: <code>#768692</code>.</p>
+<p>The <code>barposition</code> key defines the position of the progress bar. It defaults to <code>top</code>, but can also be changed to <code>bottom</code> or <code>none</code> (to remove the bar). The progress bar updates on every <strong>question</strong> the user clicks on, not pages.</p>
+</section>
+</section>
+<section id="setup-code-chunk" class="level1">
+<h1>2. Setup code chunk</h1>
+<p>After the YAML header, you’ll need to load the <code>surveydown</code> package and run the <code>sd_setup()</code> function. This should be placed inside a code chunk that looks like this:</p>
+<pre><code>```{r}
+#| context: setup
+#| warning: false
+#| message: false
+
+# Load the package
+library(surveydown)
+
+# Run initial setup function (essential - do not delete)
+sd_setup()
+```</code></pre>
+<p>Anything loaded in the setup chunk is accessible in both your survey body and your server, so we recommend also loading other packages and / or data in this chunk as well.</p>
+</section>
+<section id="survey-body" class="level1">
+<h1>3. Survey body</h1>
+<p>The survey body is all the content in between your setup code chunk and your server code chunk. You can use markdown (or the RStudio visual editor) to insert text, images, etc. just like you would in any Quarto document.</p>
+<p>The unique elements to a surveydown survey are <strong>pages</strong>, <strong>navigation buttons</strong>, and <strong>questions</strong>.</p>
+<section id="adding-pages" class="level2">
+<h2 class="anchored" data-anchor-id="adding-pages">Adding pages</h2>
+<p>In surveydown, pages are defined using fences (<code>:::</code>), like this:</p>
+<pre><code>::: {#welcome .sd-page}
 
 Page 1 content here
 
+:::
+
+::: {#page2 .sd-page}
+
+Page 2 content here
+
 :::</code></pre>
-<ul>
-<li>Add questions with the <code>sd_question()</code> function in code chunks (see <code>vignette("questions")</code> for supported question types). For example:</li>
-</ul>
+<p>As you can see, we use three colon symbols <code>:::</code>, called a “fence”, to mark the start and end of pages. This notation is commonly used in Quarto for a variety of use cases, like defining <a href="https://quarto.org/docs/authoring/figures.html#subfigures">subfigures</a> in images.</p>
+<p>In the starting fence, you need to define a page name (e.g.&nbsp;<code>welcome</code> and <code>page2</code> in the example above) and you need to define the class as <code>.sd-page</code>. Then anything you put between the page fences will appear on that page.</p>
+</section>
+<section id="adding-navigation-buttons" class="level2">
+<h2 class="anchored" data-anchor-id="adding-navigation-buttons">Adding navigation buttons</h2>
+<p>To navigate to the next page, you need to insert a <code>sd_next()</code> function call inside a code chunk, like this:</p>
+<pre><code>```{r}
+sd_next(next_page = 'page2')
+```</code></pre>
+<p>The above code chunk will create a “Next” button that goes on to page 2 that looks like this:</p>
+<div class="cell">
+<div class="cell-output-display">
+<button id="next-page2" type="button" class="btn btn-default action-button" style="display: block; margin: auto;" onclick="Shiny.setInputValue('next_page', 'page2');">Next</button>
+</div>
+</div>
+<p>In this example, the next button has to be inserted in a code chunk in between the <code>:::</code> fences of the <code>welcome</code> page in order to have a “Next” button that goes on to page 2. You can also send the user to other pages by just changing the value assigned to the <code>next_page</code> argument.</p>
+<p>Finally, you can also change the label of the button by changing the <code>label</code> argument, like this:</p>
+<pre><code>```{r}
+sd_next(next_page = 'page2', label = 'Next page')
+```</code></pre>
+<div class="cell">
+<div class="cell-output-display">
+<button id="next-page2" type="button" class="btn btn-default action-button" style="display: block; margin: auto;" onclick="Shiny.setInputValue('next_page', 'page2');">Next page</button>
+</div>
+</div>
+</section>
+<section id="adding-questions" class="level2">
+<h2 class="anchored" data-anchor-id="adding-questions">Adding questions</h2>
+<p>Every survey question is created using the <code>sd_question()</code> function inside a code chunk. The question type is defined by the <code>type</code> argument. For example, to add a multiple choice question, you could insert the following code chunk:</p>
 <pre><code>```{r}
 sd_question(
   type  = 'mc',
@@ -353,22 +461,66 @@ sd_question(
   )
 )
 ```</code></pre>
+<p>The above code chunk will create a multiple choice question that looks like this:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="container- penguins" data-question-id="penguins" class="question-container">
+<div id="penguins" style="width:100%;" class="form-group shiny-input-radiogroup shiny-input-container" role="radiogroup" aria-labelledby="penguins-label">
+<label class="control-label" id="penguins-label" for="penguins"><p>Which is your favorite type of penguin? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
+</label>
+<div class="shiny-options-group">
+<div class="radio">
+<label>
+<input type="radio" name="penguins" value="adelie">
+<span>Adélie</span>
+</label>
+</div>
+<div class="radio">
+<label>
+<input type="radio" name="penguins" value="chinstrap">
+<span>Chinstrap</span>
+</label>
+</div>
+<div class="radio">
+<label>
+<input type="radio" name="penguins" value="gentoo">
+<span>Gentoo</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<p>The <code>sd_question()</code> function can be used to create a variety of question types, like text input, select drop down choices, and more by changing the <code>type</code> argument (see <code>vignette("questions")</code>).</p>
+<p>The function has many other arguments for customizing the look and feel of the question, such as the <code>height</code> and <code>width</code> (see <code>vignette("formatting")</code>).</p>
+<p>Finally, <code>sd_question()</code> has a <code>required</code> argument that can be used to make a question required or optional (e.g., <code>required = TRUE</code>). The default is <code>FALSE</code>, meaning the question is optional.</p>
 </section>
-<section id="add-configuration-options" class="level1">
-<h1>4. Add configuration options</h1>
-<p>In the server chunk (bottom of qmd file), add control logic to your survey with the <code>sd_config()</code> function. See <code>vignette("config")</code>.</p>
 </section>
-<section id="setup-your-database" class="level1">
-<h1>5. Setup your database</h1>
-<p>Also in the server chunk, setup your database with the <code>sd_database()</code> function, or leave it blank to preview / edit your survey without database connected. See <code>vignette("database")</code>.</p>
-</section>
-<section id="locally-preview" class="level1">
-<h1>6. Locally preview</h1>
-<p>Preview your survey by clicking the “Run Document” button in RStudio or in your terminal running the command <code>quarto serve survey_file_name.qmd</code>.</p>
-</section>
-<section id="deploy" class="level1">
-<h1>7. Deploy</h1>
-<p>Deploy your survey by hosting it on your favorite server, like shinyapps.io, huggingface, etc. See <code>vignette("deploy")</code>.</p>
+<section id="server-code-chunk" class="level1">
+<h1>4. Server code chunk</h1>
+<p>At the very bottom of the .qmd file is a special “server” code chunk (that’s the <code>#| context: server</code> bit) that defines the app server. This is where you can customize and control the survey flow logic as well as where you define the database that will store the survey response data. It looks like this:</p>
+<pre><code>```{r}
+#| context: server
+
+# Define the configuration settings
+config &lt;- sd_config()
+
+# Define the database settings
+db &lt;- sd_database()
+
+# The sd_server() function initiates your survey - don't change this
+sd_server(
+  input   = input,
+  session = session,
+  config  = config,
+  db      = db
+)
+```</code></pre>
+<p>The <code>sd_config()</code> function is where you can define configuration options for the survey, such as <em>conditional display</em> (conditionally displaying a question based on responses to questions), or <em>conditional skip</em> (conditionally sending the respondent to a page based on responses to questions). See <code>vignette("config")</code> for details.</p>
+<p>The <code>sd_database()</code> function is where you set up your database. See <code>vignette("database")</code> for details.</p>
+<p>The <code>sd_server()</code> function at the bottom makes everything run, which you can safely ignore - just don’t change it and all will be good!</p>
 
 
 </section>

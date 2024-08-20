@@ -412,6 +412,16 @@ Tip
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here we provided the <code>show_if_custom</code> argument a list of lists, where each sublist contains a <code>condition</code> and a <code>target</code>. In this example, we just have one condition (the <code>show_other</code> function, which if true will display the <code>penguins_other</code> question), but you can add as many conditions as you want.</p>
+<p>If lists of lists are a little confusing, you can also use a <code>tibble::tribble()</code> to define the conditions, like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_if_custom =</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span>condition, <span class="sc">~</span>target,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    show_other, <span class="st">"penguins_other"</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In this case, each row in the <code>tibble()</code> is a condition with each condition in the <code>condition</code> column and the target question to display in the <code>target</code> column. This layout is sometimes a little easier to read, especially if you have a lot of conditions.</p>
 </section>
 </section>
 <section id="conditional-skipping" class="level1">
@@ -433,33 +443,33 @@ Tip
 </div>
 <p>Often times you’ll want to send people to different parts of the survey based on responses to questions. For example, let’s say you want to screen out people who do not own a vehicle. To do this, you would first define a question about their vehicle ownership, e.g.:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'mc'</span>,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">'vehicle_ownership'</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Do you own your vehicle?"</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Yes'</span> <span class="ot">=</span> <span class="st">'yes'</span>,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'No'</span>  <span class="ot">=</span> <span class="st">'no'</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'mc'</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">'vehicle_ownership'</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Do you own your vehicle?"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Yes'</span> <span class="ot">=</span> <span class="st">'yes'</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'No'</span>  <span class="ot">=</span> <span class="st">'no'</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then in the server code chunk, you can use the <code>skip_if</code> argument in <code>sd_config()</code> to define the behavior of the next button on the page where you ask this question, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip_if =</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span>question_id,        <span class="sc">~</span>question_value, <span class="sc">~</span>target,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"vehicle_ownership"</span>, <span class="st">"no"</span>,            <span class="st">"screenout"</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip_if =</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span>question_id,        <span class="sc">~</span>question_value, <span class="sc">~</span>target,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"vehicle_ownership"</span>, <span class="st">"no"</span>,            <span class="st">"screenout"</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This sets up a condition where the respondent will be sent to a page named <code>screenout</code> if they choose <code>no</code> on the <code>vehicle_ownership</code> question. Notice that again we used <code>tibble::tribble()</code> to define the conditions, just as we did for the <code>show_if</code> argument in <a href="#basic-conditional-display">basic conditional display</a>, but again you could use a csv file if you have a lot of conditions.</p>
 <p>In this example, you could make a <code>screenout</code> page and put it anywhere in your survey after the <code>vehicle_ownership</code> question, something like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span> {<span class="co">#screenout .sd-page}</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Sorry, but you are not qualified to take our survey.</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span> {<span class="co">#screenout .sd-page}</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>Sorry, but you are not qualified to take our survey.</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Notice that we don’t have a <code>sd_next()</code> on this screenout page - that is how you define an end point for the survey taker. If there’s no “Next” button, then they cannot navigate anywhere else, so the survey is over. This is why this <code>screenout</code> page doesn’t necessarily have to be at the end of the survey as the respondent will not be able to navigate anywhere else once reaching this page.</p>
 </section>
@@ -481,29 +491,39 @@ Tip
 <p>Similar to the <code>show_if_custom</code> argument, the <code>skip_if_custom</code> argument allows you to define custom skipping logic. This is useful if you need to skip a question based on the values of two or more different questions (or other conditions).</p>
 <p>For example, let’s say you want to screen out respondents only if they choose <code>no</code> on the <code>vehicle_ownership</code> question and <code>no</code> on a second question, <code>vehicle_buyer</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'mc'</span>,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">'vehicle_buyer'</span>,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Are you looking to buy a vehicle soon?"</span>,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Yes'</span> <span class="ot">=</span> <span class="st">'yes'</span>,</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'No'</span>  <span class="ot">=</span> <span class="st">'no'</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>To implement this, we can define a custom function that will check the values of the <code>vehicle_ownership</code> and <code>vehicle_buyer</code> questions and return a logical value indicating whether both conditions are met. Then we can use this function in the <code>skip_if_custom</code> argument:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>screenout <span class="ot">&lt;-</span> <span class="cf">function</span>(input) {</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(input<span class="sc">$</span>vehicle_ownership <span class="sc">==</span> <span class="st">"no"</span> <span class="sc">&amp;</span> input<span class="sc">$</span>vehicle_buyer <span class="sc">==</span> <span class="st">"no"</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip_if_custom =</span> <span class="fu">list</span>(</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">condition =</span> screenout, <span class="at">target =</span> <span class="st">"screenout"</span>)</span>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'mc'</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">'vehicle_buyer'</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Are you looking to buy a vehicle soon?"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Yes'</span> <span class="ot">=</span> <span class="st">'yes'</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'No'</span>  <span class="ot">=</span> <span class="st">'no'</span></span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>To implement this, we can define a custom function that will check the values of the <code>vehicle_ownership</code> and <code>vehicle_buyer</code> questions and return a logical value indicating whether both conditions are met. Then we can use this function in the <code>skip_if_custom</code> argument:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>screenout <span class="ot">&lt;-</span> <span class="cf">function</span>(input) {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(input<span class="sc">$</span>vehicle_ownership <span class="sc">==</span> <span class="st">"no"</span> <span class="sc">&amp;</span> input<span class="sc">$</span>vehicle_buyer <span class="sc">==</span> <span class="st">"no"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip_if_custom =</span> <span class="fu">list</span>(</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">condition =</span> screenout, <span class="at">target =</span> <span class="st">"screenout"</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Just as with the <a href="config.html#custom-conditional-display"><code>show_if_custom</code> argument</a>, we provide the <code>skip_if_custom</code> argument a list of lists, where each sublist contains a <code>condition</code> and a <code>target</code>.</p>
+<p>If lists of lists are a little confusing, you can also use a <code>tibble::tribble()</code> to define the conditions, like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip_if_custom =</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span>condition, <span class="sc">~</span>target,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    screenout, <span class="st">"screenout"</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In this case, each row in the <code>tibble()</code> is a condition with each condition in the <code>condition</code> column and the target question to display in the <code>target</code> column. This layout is sometimes a little easier to read, especially if you have a lot of conditions.</p>
 </section>
 </section>
 <section id="required-responses" class="level1">
@@ -523,16 +543,16 @@ Tip
 </div>
 <p>By default, no questions are required. However, you can make questions required by adding the question <code>id</code> to the <code>required_questions</code> argument in <code>sd_config()</code>, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">required_questions =</span> <span class="fu">c</span>(<span class="st">"vehicle_ownership"</span>, <span class="st">"penguins_other"</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">required_questions =</span> <span class="fu">c</span>(<span class="st">"vehicle_ownership"</span>, <span class="st">"penguins_other"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This will make the respondent unable to proceed until they have answered the required questions. It will also place a red asterisk (*) next to the question label to indicate that the question is required.</p>
 <p>You can also make all questions required by setting <code>all_questions_required = TRUE</code> like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">all_questions_required =</span> <span class="cn">TRUE</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">all_questions_required =</span> <span class="cn">TRUE</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="starting-page" class="level1">
@@ -552,9 +572,9 @@ Tip
 </div>
 <p>When editing your survey, it can be helpful to start the survey at a specific page. You can define the starting page by setting the <code>start_page</code> argument to a page <code>id</code> in the <code>sd_config()</code> function, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">start_page =</span> <span class="st">"page_id"</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">start_page =</span> <span class="st">"page_id"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="show-all-pages" class="level1">
@@ -591,9 +611,9 @@ Tip
 </div>
 <p>By default, the admin page is not created. But if you want one, set <code>admin_page</code> to <code>TRUE</code> inside the <code>sd_config()</code> function, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">admin_page =</span> <span class="cn">TRUE</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">admin_page =</span> <span class="cn">TRUE</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>When the admin page is enabled, you will be able to access the page by adding <code>?admin</code> to the end of the survey URL, e.g.&nbsp;<code>https://myname.shinyapps.io/?admin</code>. This will display a login page with a single “Password” parameter, which is the password set using <code>sd_set_password()</code>. See the <a href="./password.html">Setting a Password</a> page for details.</p>
 <p>The admin page has the following features:</p>

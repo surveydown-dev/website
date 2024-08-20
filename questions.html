@@ -277,24 +277,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction-of-arguments" id="toc-introduction-of-arguments" class="nav-link active" data-scroll-target="#introduction-of-arguments">Introduction of Arguments</a></li>
+  <li><a href="#introduction-to-sd_question" id="toc-introduction-to-sd_question" class="nav-link active" data-scroll-target="#introduction-to-sd_question">Introduction to <code>sd_question()</code></a></li>
   <li><a href="#question-types" id="toc-question-types" class="nav-link" data-scroll-target="#question-types">Question Types</a>
   <ul class="collapse">
-  <li><a href="#text" id="toc-text" class="nav-link" data-scroll-target="#text">1. <code>text</code></a></li>
-  <li><a href="#textarea" id="toc-textarea" class="nav-link" data-scroll-target="#textarea">2. <code>textarea</code></a></li>
-  <li><a href="#numeric" id="toc-numeric" class="nav-link" data-scroll-target="#numeric">3. <code>numeric</code></a></li>
-  <li><a href="#mc" id="toc-mc" class="nav-link" data-scroll-target="#mc">4. <code>mc</code></a></li>
-  <li><a href="#mc_buttons" id="toc-mc_buttons" class="nav-link" data-scroll-target="#mc_buttons">5. <code>mc_buttons</code></a></li>
-  <li><a href="#mc_multiple" id="toc-mc_multiple" class="nav-link" data-scroll-target="#mc_multiple">6. <code>mc_multiple</code></a></li>
-  <li><a href="#mc_multiple_buttons" id="toc-mc_multiple_buttons" class="nav-link" data-scroll-target="#mc_multiple_buttons">7. <code>mc_multiple_buttons</code></a></li>
-  <li><a href="#select" id="toc-select" class="nav-link" data-scroll-target="#select">8. <code>select</code></a></li>
-  <li><a href="#slider-under-construction" id="toc-slider-under-construction" class="nav-link" data-scroll-target="#slider-under-construction">9. <code>slider</code> (Under Construction)</a></li>
-  <li><a href="#date" id="toc-date" class="nav-link" data-scroll-target="#date">10. <code>date</code></a></li>
-  <li><a href="#daterange" id="toc-daterange" class="nav-link" data-scroll-target="#daterange">11. <code>daterange</code></a></li>
+  <li><a href="#text" id="toc-text" class="nav-link" data-scroll-target="#text"><code>text</code></a></li>
+  <li><a href="#textarea" id="toc-textarea" class="nav-link" data-scroll-target="#textarea"><code>textarea</code></a></li>
+  <li><a href="#numeric" id="toc-numeric" class="nav-link" data-scroll-target="#numeric"><code>numeric</code></a></li>
+  <li><a href="#mc" id="toc-mc" class="nav-link" data-scroll-target="#mc"><code>mc</code></a></li>
+  <li><a href="#mc_buttons" id="toc-mc_buttons" class="nav-link" data-scroll-target="#mc_buttons"><code>mc_buttons</code></a></li>
+  <li><a href="#mc_multiple" id="toc-mc_multiple" class="nav-link" data-scroll-target="#mc_multiple"><code>mc_multiple</code></a></li>
+  <li><a href="#mc_multiple_buttons" id="toc-mc_multiple_buttons" class="nav-link" data-scroll-target="#mc_multiple_buttons"><code>mc_multiple_buttons</code></a></li>
+  <li><a href="#select" id="toc-select" class="nav-link" data-scroll-target="#select"><code>select</code></a></li>
+  <li><a href="#slider-under-construction" id="toc-slider-under-construction" class="nav-link" data-scroll-target="#slider-under-construction"><code>slider</code> (Under Construction)</a></li>
+  <li><a href="#date" id="toc-date" class="nav-link" data-scroll-target="#date"><code>date</code></a></li>
+  <li><a href="#daterange" id="toc-daterange" class="nav-link" data-scroll-target="#daterange"><code>daterange</code></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -321,44 +321,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="cell">
-<div class="cell-output-display">
-<!--SHINY.SINGLETON[223eed69850a44625b94f39193177e317dbc7f92]-->
-<script>Shiny.addCustomMessageHandler('shinyjs-show', function(params) { shinyjs.debugMessage('shinyjs: calling function "show" with parameters:'); shinyjs.debugMessage(params); shinyjs.show(params);});
-Shiny.addCustomMessageHandler('shinyjs-hide', function(params) { shinyjs.debugMessage('shinyjs: calling function "hide" with parameters:'); shinyjs.debugMessage(params); shinyjs.hide(params);});
-Shiny.addCustomMessageHandler('shinyjs-toggle', function(params) { shinyjs.debugMessage('shinyjs: calling function "toggle" with parameters:'); shinyjs.debugMessage(params); shinyjs.toggle(params);});
-Shiny.addCustomMessageHandler('shinyjs-enable', function(params) { shinyjs.debugMessage('shinyjs: calling function "enable" with parameters:'); shinyjs.debugMessage(params); shinyjs.enable(params);});
-Shiny.addCustomMessageHandler('shinyjs-disable', function(params) { shinyjs.debugMessage('shinyjs: calling function "disable" with parameters:'); shinyjs.debugMessage(params); shinyjs.disable(params);});
-Shiny.addCustomMessageHandler('shinyjs-toggleState', function(params) { shinyjs.debugMessage('shinyjs: calling function "toggleState" with parameters:'); shinyjs.debugMessage(params); shinyjs.toggleState(params);});
-Shiny.addCustomMessageHandler('shinyjs-addClass', function(params) { shinyjs.debugMessage('shinyjs: calling function "addClass" with parameters:'); shinyjs.debugMessage(params); shinyjs.addClass(params);});
-Shiny.addCustomMessageHandler('shinyjs-removeClass', function(params) { shinyjs.debugMessage('shinyjs: calling function "removeClass" with parameters:'); shinyjs.debugMessage(params); shinyjs.removeClass(params);});
-Shiny.addCustomMessageHandler('shinyjs-toggleClass', function(params) { shinyjs.debugMessage('shinyjs: calling function "toggleClass" with parameters:'); shinyjs.debugMessage(params); shinyjs.toggleClass(params);});
-Shiny.addCustomMessageHandler('shinyjs-html', function(params) { shinyjs.debugMessage('shinyjs: calling function "html" with parameters:'); shinyjs.debugMessage(params); shinyjs.html(params);});
-Shiny.addCustomMessageHandler('shinyjs-onevent', function(params) { shinyjs.debugMessage('shinyjs: calling function "onevent" with parameters:'); shinyjs.debugMessage(params); shinyjs.onevent(params);});
-Shiny.addCustomMessageHandler('shinyjs-removeEvent', function(params) { shinyjs.debugMessage('shinyjs: calling function "removeEvent" with parameters:'); shinyjs.debugMessage(params); shinyjs.removeEvent(params);});
-Shiny.addCustomMessageHandler('shinyjs-alert', function(params) { shinyjs.debugMessage('shinyjs: calling function "alert" with parameters:'); shinyjs.debugMessage(params); shinyjs.alert(params);});
-Shiny.addCustomMessageHandler('shinyjs-logjs', function(params) { shinyjs.debugMessage('shinyjs: calling function "logjs" with parameters:'); shinyjs.debugMessage(params); shinyjs.logjs(params);});
-Shiny.addCustomMessageHandler('shinyjs-runjs', function(params) { shinyjs.debugMessage('shinyjs: calling function "runjs" with parameters:'); shinyjs.debugMessage(params); shinyjs.runjs(params);});
-Shiny.addCustomMessageHandler('shinyjs-reset', function(params) { shinyjs.debugMessage('shinyjs: calling function "reset" with parameters:'); shinyjs.debugMessage(params); shinyjs.reset(params);});
-Shiny.addCustomMessageHandler('shinyjs-delay', function(params) { shinyjs.debugMessage('shinyjs: calling function "delay" with parameters:'); shinyjs.debugMessage(params); shinyjs.delay(params);});
-Shiny.addCustomMessageHandler('shinyjs-click', function(params) { shinyjs.debugMessage('shinyjs: calling function "click" with parameters:'); shinyjs.debugMessage(params); shinyjs.click(params);});
-Shiny.addCustomMessageHandler('shinyjs-refresh', function(params) { shinyjs.debugMessage('shinyjs: calling function "refresh" with parameters:'); shinyjs.debugMessage(params); shinyjs.refresh(params);});</script>
-<script src="shinyjs/shinyjs-default-funcs.js"></script>
-<script>shinyjs.debug = false;</script>
-<style>.shinyjs-hide { display: none !important; }</style>
-<!--/SHINY.SINGLETON[223eed69850a44625b94f39193177e317dbc7f92]-->
-</div>
-</div>
-<blockquote class="blockquote">
-<p>Use the <code>sd_question()</code> function to specify the question types.</p>
-</blockquote>
-<section id="introduction-of-arguments" class="level2">
-<h2 class="anchored" data-anchor-id="introduction-of-arguments">Introduction of Arguments</h2>
-<p>This article showcases the different types of question supported by <code>{surveydown}</code>. Each question requires the user to define the following arguments to the <code>sd_question()</code> function:</p>
+<section id="introduction-to-sd_question" class="level1">
+<h1>Introduction to <code>sd_question()</code></h1>
+<p>All questions in a surveydown survey are created using the <code>sd_question()</code> function.</p>
+<p>The function requires the following three arguments:</p>
 <ul>
 <li><code>id</code>: A unique identifier for the question, which will be used as the variable name in the resulting survey data.</li>
 <li><code>label</code>: The label that will be displayed on the question in the survey.</li>
-<li><code>type</code>: The type of question, options include:
+<li><code>type</code>: The type of question.</li>
+</ul>
+<p>Many question types also require an <code>option</code> argument, which is a named vector of options for the question (e.g.&nbsp;for multiple choice questions).</p>
+<p>The function also includes many other optional arguments that can be used to customize the question appearance and behavior. See the <a href="https://pkg.surveydown.org/reference/sd_question">package documentation</a> for more details.</p>
+</section>
+<section id="question-types" class="level1">
+<h1>Question Types</h1>
+<p>The following question types are supported by <code>{surveydown}</code>:</p>
 <ul>
 <li><code>text</code>: Single line open text input.</li>
 <li><code>textarea</code>: Multiple line open text input.</li>
@@ -371,67 +348,64 @@ Shiny.addCustomMessageHandler('shinyjs-refresh', function(params) { shinyjs.debu
 <li><code>slider</code>: (Under construction) Slider to select discrete categories or continuous numbers.</li>
 <li><code>date</code>: Select a date from a calendar widget.</li>
 <li><code>daterange</code>: Select two dates from calendar widgets (e.g.&nbsp;begin and end dates).</li>
-</ul></li>
 </ul>
-</section>
-<section id="question-types" class="level2">
-<h2 class="anchored" data-anchor-id="question-types">Question Types</h2>
-<section id="text" class="level3">
-<h3 class="anchored" data-anchor-id="text">1. <code>text</code></h3>
+<p>Below are examples of each question type.</p>
+<section id="text" class="level2">
+<h2 class="anchored" data-anchor-id="text"><code>text</code></h2>
 <p>Use <code>type = 'text'</code> to specify a text input type question.</p>
-<p>Scripts:</p>
+<p>Code chunk:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = "text",</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = "silly_word",</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "Write a silly word:"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = "word",</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "Write a word:"</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Output:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="container- silly_word" data-question-id="silly_word" class="question-container">
+<div id="container- word" data-question-id="word" class="question-container">
 <div class="form-group shiny-input-container" style="width:100%;">
-<label class="control-label" id="silly_word-label" for="silly_word"><p>Write a silly word: <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
+<label class="control-label" id="word-label" for="word"><p>Write a word: <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
 </label>
-<input id="silly_word" type="text" class="shiny-input-text form-control" value="">
+<input id="word" type="text" class="shiny-input-text form-control" value="">
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="textarea" class="level3">
-<h3 class="anchored" data-anchor-id="textarea">2. <code>textarea</code></h3>
+<section id="textarea" class="level2">
+<h2 class="anchored" data-anchor-id="textarea"><code>textarea</code></h2>
 <p>Use <code>type = 'textarea'</code> to specify a text area input type question.</p>
-<p>Scripts:</p>
+<p>Code chunk:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = "textarea",</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = "silly_paragraph",</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "Write a silly paragraph:"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = "paragraph",</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "Write a paragraph:"</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Output:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="container- silly_paragraph" data-question-id="silly_paragraph" class="question-container">
+<div id="container- paragraph" data-question-id="paragraph" class="question-container">
 <div class="form-group shiny-input-container" style="width: 100%;">
-<label class="control-label" id="silly_paragraph-label" for="silly_paragraph"><p>Write a silly paragraph: <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
+<label class="control-label" id="paragraph-label" for="paragraph"><p>Write a paragraph: <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
 </label>
-<textarea id="silly_paragraph" class="shiny-input-textarea form-control" style="width:100%;height:100px;" rows="6" cols="80"></textarea>
+<textarea id="paragraph" class="shiny-input-textarea form-control" style="width:100%;height:100px;" rows="6" cols="80"></textarea>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="numeric" class="level3">
-<h3 class="anchored" data-anchor-id="numeric">3. <code>numeric</code></h3>
+<section id="numeric" class="level2">
+<h2 class="anchored" data-anchor-id="numeric"><code>numeric</code></h2>
 <p>Use <code>type = 'numeric'</code> to specify a numeric input type.</p>
-<p>Scripts:</p>
+<p>Code chunk:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
@@ -454,10 +428,10 @@ Shiny.addCustomMessageHandler('shinyjs-refresh', function(params) { shinyjs.debu
 </div>
 </div>
 </section>
-<section id="mc" class="level3">
-<h3 class="anchored" data-anchor-id="mc">4. <code>mc</code></h3>
+<section id="mc" class="level2">
+<h2 class="anchored" data-anchor-id="mc"><code>mc</code></h2>
 <p>Use <code>type = 'mc'</code> to specify a multiple choice type question with a single choice option.</p>
-<p>Scripts:</p>
+<p>Code chunk:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
@@ -532,10 +506,10 @@ Shiny.addCustomMessageHandler('shinyjs-refresh', function(params) { shinyjs.debu
 </div>
 </div>
 </section>
-<section id="mc_buttons" class="level3">
-<h3 class="anchored" data-anchor-id="mc_buttons">5. <code>mc_buttons</code></h3>
+<section id="mc_buttons" class="level2">
+<h2 class="anchored" data-anchor-id="mc_buttons"><code>mc_buttons</code></h2>
 <p>Use <code>type = 'mc_buttons'</code> to generate the button version of <code>mc</code>.</p>
-<p>Scripts:</p>
+<p>Code chunk:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
@@ -564,20 +538,48 @@ Shiny.addCustomMessageHandler('shinyjs-refresh', function(params) { shinyjs.debu
 <br>
 <div id="fruit" class="radio-group-buttons">
 <div aria-labelledby="fruit-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
-<input type="radio" autocomplete="off" id="fruit1" name="fruit" value="apple" class="btn-check">
-<label class="btn radiobtn btn-outline-primary" for="fruit1">Apple</label>
-<input type="radio" autocomplete="off" id="fruit2" name="fruit" value="banana" class="btn-check">
-<label class="btn radiobtn btn-outline-primary" for="fruit2">Banana</label>
-<input type="radio" autocomplete="off" id="fruit3" name="fruit" value="pear" class="btn-check">
-<label class="btn radiobtn btn-outline-primary" for="fruit3">Pear</label>
-<input type="radio" autocomplete="off" id="fruit4" name="fruit" value="strawberry" class="btn-check">
-<label class="btn radiobtn btn-outline-primary" for="fruit4">Strawberry</label>
-<input type="radio" autocomplete="off" id="fruit5" name="fruit" value="grape" class="btn-check">
-<label class="btn radiobtn btn-outline-primary" for="fruit5">Grape</label>
-<input type="radio" autocomplete="off" id="fruit6" name="fruit" value="mango" class="btn-check">
-<label class="btn radiobtn btn-outline-primary" for="fruit6">Mango</label>
-<input type="radio" autocomplete="off" id="fruit7" name="fruit" value="watermelon" class="btn-check">
-<label class="btn radiobtn btn-outline-primary" for="fruit7">Watermelon</label>
+<div class="btn-group btn-group-toggle" role="group">
+<button class="btn radiobtn btn-default">
+<input type="radio" autocomplete="off" name="fruit" value="apple">
+Apple
+</button>
+</div>
+<div class="btn-group btn-group-toggle" role="group">
+<button class="btn radiobtn btn-default">
+<input type="radio" autocomplete="off" name="fruit" value="banana">
+Banana
+</button>
+</div>
+<div class="btn-group btn-group-toggle" role="group">
+<button class="btn radiobtn btn-default">
+<input type="radio" autocomplete="off" name="fruit" value="pear">
+Pear
+</button>
+</div>
+<div class="btn-group btn-group-toggle" role="group">
+<button class="btn radiobtn btn-default">
+<input type="radio" autocomplete="off" name="fruit" value="strawberry">
+Strawberry
+</button>
+</div>
+<div class="btn-group btn-group-toggle" role="group">
+<button class="btn radiobtn btn-default">
+<input type="radio" autocomplete="off" name="fruit" value="grape">
+Grape
+</button>
+</div>
+<div class="btn-group btn-group-toggle" role="group">
+<button class="btn radiobtn btn-default">
+<input type="radio" autocomplete="off" name="fruit" value="mango">
+Mango
+</button>
+</div>
+<div class="btn-group btn-group-toggle" role="group">
+<button class="btn radiobtn btn-default">
+<input type="radio" autocomplete="off" name="fruit" value="watermelon">
+Watermelon
+</button>
+</div>
 </div>
 </div>
 </div>
@@ -585,10 +587,10 @@ Shiny.addCustomMessageHandler('shinyjs-refresh', function(params) { shinyjs.debu
 </div>
 </div>
 </section>
-<section id="mc_multiple" class="level3">
-<h3 class="anchored" data-anchor-id="mc_multiple">6. <code>mc_multiple</code></h3>
+<section id="mc_multiple" class="level2">
+<h2 class="anchored" data-anchor-id="mc_multiple"><code>mc_multiple</code></h2>
 <p>Use <code>type = 'mc_multiple'</code> to specify a multiple choice type question with multiple selection enabled.</p>
-<p>Scripts:</p>
+<p>Code chunk:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
@@ -684,10 +686,10 @@ Shiny.addCustomMessageHandler('shinyjs-refresh', function(params) { shinyjs.debu
 </div>
 </div>
 </section>
-<section id="mc_multiple_buttons" class="level3">
-<h3 class="anchored" data-anchor-id="mc_multiple_buttons">7. <code>mc_multiple_buttons</code></h3>
+<section id="mc_multiple_buttons" class="level2">
+<h2 class="anchored" data-anchor-id="mc_multiple_buttons"><code>mc_multiple_buttons</code></h2>
 <p>Use <code>type = 'mc_multiple_buttons'</code> to generate the button version of <code>mc_multiple</code>.</p>
-<p>Scripts:</p>
+<p>Code chunk:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
@@ -717,22 +719,54 @@ Shiny.addCustomMessageHandler('shinyjs-refresh', function(params) { shinyjs.debu
 <br>
 <div id="michael_jackson" class="checkbox-group-buttons">
 <div aria-labelledby="michael_jackson-label" class=" btn-group-container-sw" data-toggle="buttons" role="group">
-<input type="checkbox" autocomplete="off" id="michael_jackson1" name="michael_jackson" value="thriller" class="btn-check">
-<label class="btn checkbtn btn-outline-primary" for="michael_jackson1">Thriller (1982)</label>
-<input type="checkbox" autocomplete="off" id="michael_jackson2" name="michael_jackson" value="billie_jean" class="btn-check">
-<label class="btn checkbtn btn-outline-primary" for="michael_jackson2">Billie Jean (1982)</label>
-<input type="checkbox" autocomplete="off" id="michael_jackson3" name="michael_jackson" value="beat_it" class="btn-check">
-<label class="btn checkbtn btn-outline-primary" for="michael_jackson3">Beat It (1982)</label>
-<input type="checkbox" autocomplete="off" id="michael_jackson4" name="michael_jackson" value="man_in_the_mirror" class="btn-check">
-<label class="btn checkbtn btn-outline-primary" for="michael_jackson4">Man in the Mirror (1987)</label>
-<input type="checkbox" autocomplete="off" id="michael_jackson5" name="michael_jackson" value="smooth_criminal" class="btn-check">
-<label class="btn checkbtn btn-outline-primary" for="michael_jackson5">Smooth Criminal (1987)</label>
-<input type="checkbox" autocomplete="off" id="michael_jackson6" name="michael_jackson" value="black_or_white" class="btn-check">
-<label class="btn checkbtn btn-outline-primary" for="michael_jackson6">Black or White (1991)</label>
-<input type="checkbox" autocomplete="off" id="michael_jackson7" name="michael_jackson" value="bad" class="btn-check">
-<label class="btn checkbtn btn-outline-primary" for="michael_jackson7">Bad (1987)</label>
-<input type="checkbox" autocomplete="off" id="michael_jackson8" name="michael_jackson" value="human_nature" class="btn-check">
-<label class="btn checkbtn btn-outline-primary" for="michael_jackson8">Human Nature (1982)</label>
+<div class="btn-group btn-group-toggle" role="group">
+<button class="btn checkbtn btn-default">
+<input type="checkbox" autocomplete="off" name="michael_jackson" value="thriller">
+Thriller (1982)
+</button>
+</div>
+<div class="btn-group btn-group-toggle" role="group">
+<button class="btn checkbtn btn-default">
+<input type="checkbox" autocomplete="off" name="michael_jackson" value="billie_jean">
+Billie Jean (1982)
+</button>
+</div>
+<div class="btn-group btn-group-toggle" role="group">
+<button class="btn checkbtn btn-default">
+<input type="checkbox" autocomplete="off" name="michael_jackson" value="beat_it">
+Beat It (1982)
+</button>
+</div>
+<div class="btn-group btn-group-toggle" role="group">
+<button class="btn checkbtn btn-default">
+<input type="checkbox" autocomplete="off" name="michael_jackson" value="man_in_the_mirror">
+Man in the Mirror (1987)
+</button>
+</div>
+<div class="btn-group btn-group-toggle" role="group">
+<button class="btn checkbtn btn-default">
+<input type="checkbox" autocomplete="off" name="michael_jackson" value="smooth_criminal">
+Smooth Criminal (1987)
+</button>
+</div>
+<div class="btn-group btn-group-toggle" role="group">
+<button class="btn checkbtn btn-default">
+<input type="checkbox" autocomplete="off" name="michael_jackson" value="black_or_white">
+Black or White (1991)
+</button>
+</div>
+<div class="btn-group btn-group-toggle" role="group">
+<button class="btn checkbtn btn-default">
+<input type="checkbox" autocomplete="off" name="michael_jackson" value="bad">
+Bad (1987)
+</button>
+</div>
+<div class="btn-group btn-group-toggle" role="group">
+<button class="btn checkbtn btn-default">
+<input type="checkbox" autocomplete="off" name="michael_jackson" value="human_nature">
+Human Nature (1982)
+</button>
+</div>
 </div>
 </div>
 </div>
@@ -740,10 +774,10 @@ Shiny.addCustomMessageHandler('shinyjs-refresh', function(params) { shinyjs.debu
 </div>
 </div>
 </section>
-<section id="select" class="level3">
-<h3 class="anchored" data-anchor-id="select">8. <code>select</code></h3>
+<section id="select" class="level2">
+<h2 class="anchored" data-anchor-id="select"><code>select</code></h2>
 <p>Use <code>type = 'select'</code> to specify a drop down select type question.</p>
-<p>Scripts:</p>
+<p>Code chunk:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
@@ -785,14 +819,14 @@ Shiny.addCustomMessageHandler('shinyjs-refresh', function(params) { shinyjs.debu
 </div>
 </div>
 </section>
-<section id="slider-under-construction" class="level3">
-<h3 class="anchored" data-anchor-id="slider-under-construction">9. <code>slider</code> (Under Construction)</h3>
+<section id="slider-under-construction" class="level2">
+<h2 class="anchored" data-anchor-id="slider-under-construction"><code>slider</code> (Under Construction)</h2>
 <p>Due to compatibility issues, the <code>slider</code> type is still under construction.</p>
 </section>
-<section id="date" class="level3">
-<h3 class="anchored" data-anchor-id="date">10. <code>date</code></h3>
+<section id="date" class="level2">
+<h2 class="anchored" data-anchor-id="date"><code>date</code></h2>
 <p>Use <code>type = 'date'</code> to specify a date input type.</p>
-<p>Scripts:</p>
+<p>Code chunk:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
@@ -815,11 +849,24 @@ Shiny.addCustomMessageHandler('shinyjs-refresh', function(params) { shinyjs.debu
 </div>
 </div>
 <p>The date value will be today’s date by default. Upon clicking on the text box, you are provided with a date dialog box to choose date from.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The dialog box will only appear in a Shiny environment, hence why it is not appearing when clicked here.</p>
+</div>
+</div>
 </section>
-<section id="daterange" class="level3">
-<h3 class="anchored" data-anchor-id="daterange">11. <code>daterange</code></h3>
+<section id="daterange" class="level2">
+<h2 class="anchored" data-anchor-id="daterange"><code>daterange</code></h2>
 <p>Use <code>type = 'daterange'</code> to specify a date range input type.</p>
-<p>Scripts:</p>
+<p>Code chunk:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
@@ -845,6 +892,19 @@ Shiny.addCustomMessageHandler('shinyjs-refresh', function(params) { shinyjs.debu
 </div>
 </div>
 </div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The dialog box will only appear in a Shiny environment, hence why it is not appearing when clicked here.</p>
 </div>
 </div>
 

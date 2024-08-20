@@ -104,6 +104,19 @@ config <- sd_config(
 
 Here we provided the `show_if_custom` argument a list of lists, where each sublist contains a `condition` and a `target`. In this example, we just have one condition (the `show_other` function, which if true will display the `penguins_other` question), but you can add as many conditions as you want.
 
+If lists of lists are a little confusing, you can also use a `tibble::tribble()` to define the conditions, like this:
+
+```{r}
+config <- sd_config(
+  show_if_custom = tibble::tribble(
+    ~condition, ~target,
+    show_other, "penguins_other"
+  )
+)
+```
+
+In this case, each row in the `tibble()` is a condition with each condition in the `condition` column and the target question to display in the `target` column. This layout is sometimes a little easier to read, especially if you have a lot of conditions.
+
 # Conditional skipping
 
 ## Basic skipping
@@ -192,6 +205,19 @@ config <- sd_config(
 ```
 
 Just as with the [`show_if_custom` argument](config.html#custom-conditional-display), we provide the `skip_if_custom` argument a list of lists, where each sublist contains a `condition` and a `target`.
+
+If lists of lists are a little confusing, you can also use a `tibble::tribble()` to define the conditions, like this:
+
+```{r}
+config <- sd_config(
+  skip_if_custom = tibble::tribble(
+    ~condition, ~target,
+    screenout, "screenout"
+  )
+)
+```
+
+In this case, each row in the `tibble()` is a condition with each condition in the `condition` column and the target question to display in the `target` column. This layout is sometimes a little easier to read, especially if you have a lot of conditions.
 
 # Required responses
 

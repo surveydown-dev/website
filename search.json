@@ -64,7 +64,7 @@
     "href": "questions.html#mc_buttons",
     "title": "Question Types",
     "section": "mc_buttons",
-    "text": "mc_buttons\nUse type = 'mc_buttons' to generate the button version of mc.\nCode chunk:\n\n```{r}\nsd_question(\n  type   = 'mc_buttons',\n  id     = 'fruit',\n  label  = \"Which fruit do you prefer most from this list?\",\n  option = c(\n    \"Apple\"      = \"apple\",\n    \"Banana\"     = \"banana\",\n    \"Pear\"       = \"pear\",\n    \"Strawberry\" = \"strawberry\",\n    \"Grape\"      = \"grape\",\n    \"Mango\"      = \"mango\",\n    \"Watermelon\" = \"watermelon\"\n  )\n)\n```\n\nOutput:\n\n\n\n\nWhich fruit do you prefer most from this list? *\n\n\n\n\n\n\n\nApple\n\n\n\n\n\nBanana\n\n\n\n\n\nPear\n\n\n\n\n\nStrawberry\n\n\n\n\n\nGrape\n\n\n\n\n\nMango\n\n\n\n\n\nWatermelon",
+    "text": "mc_buttons\nUse type = 'mc_buttons' to generate the button version of mc.\nCode chunk:\n\n```{r}\nsd_question(\n  type   = 'mc_buttons',\n  id     = 'fruit',\n  label  = \"Which fruit do you prefer most from this list?\",\n  option = c(\n    \"Apple\"      = \"apple\",\n    \"Banana\"     = \"banana\",\n    \"Pear\"       = \"pear\",\n    \"Strawberry\" = \"strawberry\",\n    \"Grape\"      = \"grape\",\n    \"Mango\"      = \"mango\",\n    \"Watermelon\" = \"watermelon\"\n  )\n)\n```\n\nOutput:\n\n\n\n\nWhich fruit do you prefer most from this list? *\n\n\n\n\n\nApple\n\nBanana\n\nPear\n\nStrawberry\n\nGrape\n\nMango\n\nWatermelon",
     "crumbs": [
       "Documentation",
       "Survey Content",
@@ -88,7 +88,7 @@
     "href": "questions.html#mc_multiple_buttons",
     "title": "Question Types",
     "section": "mc_multiple_buttons",
-    "text": "mc_multiple_buttons\nUse type = 'mc_multiple_buttons' to generate the button version of mc_multiple.\nCode chunk:\n\n```{r}\nsd_question(\n  type  = 'mc_multiple_buttons',\n  id    = 'michael_jackson',\n  label = \"Which are your favorite Michael Jackson songs (select all that apply)?\",\n  option = c(\n    \"Thriller (1982)\"          = \"thriller\",\n    \"Billie Jean (1982)\"       = \"billie_jean\",\n    \"Beat It (1982)\"           = \"beat_it\",\n    \"Man in the Mirror (1987)\" = \"man_in_the_mirror\",\n    \"Smooth Criminal (1987)\"   = \"smooth_criminal\",\n    \"Black or White (1991)\"    = \"black_or_white\",\n    \"Bad (1987)\"               = \"bad\",\n    \"Human Nature (1982)\"      = \"human_nature\"\n  )\n)\n```\n\nOutput:\n\n\n\n\nWhich are your favorite Michael Jackson songs (select all that apply)? *\n\n\n\n\n\n\n\nThriller (1982)\n\n\n\n\n\nBillie Jean (1982)\n\n\n\n\n\nBeat It (1982)\n\n\n\n\n\nMan in the Mirror (1987)\n\n\n\n\n\nSmooth Criminal (1987)\n\n\n\n\n\nBlack or White (1991)\n\n\n\n\n\nBad (1987)\n\n\n\n\n\nHuman Nature (1982)",
+    "text": "mc_multiple_buttons\nUse type = 'mc_multiple_buttons' to generate the button version of mc_multiple.\nCode chunk:\n\n```{r}\nsd_question(\n  type  = 'mc_multiple_buttons',\n  id    = 'michael_jackson',\n  label = \"Which are your favorite Michael Jackson songs (select all that apply)?\",\n  option = c(\n    \"Thriller (1982)\"          = \"thriller\",\n    \"Billie Jean (1982)\"       = \"billie_jean\",\n    \"Beat It (1982)\"           = \"beat_it\",\n    \"Man in the Mirror (1987)\" = \"man_in_the_mirror\",\n    \"Smooth Criminal (1987)\"   = \"smooth_criminal\",\n    \"Black or White (1991)\"    = \"black_or_white\",\n    \"Bad (1987)\"               = \"bad\",\n    \"Human Nature (1982)\"      = \"human_nature\"\n  )\n)\n```\n\nOutput:\n\n\n\n\nWhich are your favorite Michael Jackson songs (select all that apply)? *\n\n\n\n\n\nThriller (1982)\n\nBillie Jean (1982)\n\nBeat It (1982)\n\nMan in the Mirror (1987)\n\nSmooth Criminal (1987)\n\nBlack or White (1991)\n\nBad (1987)\n\nHuman Nature (1982)",
     "crumbs": [
       "Documentation",
       "Survey Content",
@@ -172,7 +172,7 @@
     "href": "formatting.html#option-labels",
     "title": "Formatting Questions",
     "section": "Option labels",
-    "text": "Option labels\nMarkdown formatting is also supported for the option labels in question types that have options, such as mc, mc_multiple, mc_buttons, and mc_multiple_buttons. For example:\nCode chunk:\n\n```{r}\nsd_question(\n  type   = 'mc_buttons',\n  id     = 'markdown_buttons',\n  label  = \"The 3 options below support markdown:\",\n  option = c(\n    \"*Option A*\"     = \"option_a\",\n    \"**Option B**\"   = \"option_b\",\n    \"***Option C***\" = \"option_c\"\n  )\n)\n```\n\nOutput:\n\n\n\n\nThe 3 options below support markdown: *\n\n\n\n\n\n\n\nOption A\n\n\n\n\n\nOption B\n\n\n\n\n\nOption C",
+    "text": "Option labels\nMarkdown formatting is also supported for the option labels in question types that have options, such as mc, mc_multiple, mc_buttons, and mc_multiple_buttons. For example:\nCode chunk:\n\n```{r}\nsd_question(\n  type   = 'mc_buttons',\n  id     = 'markdown_buttons',\n  label  = \"The 3 options below support markdown:\",\n  option = c(\n    \"*Option A*\"     = \"option_a\",\n    \"**Option B**\"   = \"option_b\",\n    \"***Option C***\" = \"option_c\"\n  )\n)\n```\n\nOutput:\n\n\n\n\nThe 3 options below support markdown: *\n\n\n\n\n\nOption A\n\nOption B\n\nOption C",
     "crumbs": [
       "Documentation",
       "Survey Content",

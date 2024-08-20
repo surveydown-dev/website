@@ -72,14 +72,14 @@ Use the `show_if_custom` argument to control custom conditional display logic.
 
 :::
 
-The standard `show_if` argument is great for simple conditional display logic, but sometimes you need more flexibility. For example, you may want to display a question based on the value of another question, but only if a third question is also a certain value. In this case, you can use the `show_if_custom` argument to define a custom function that determines the conditions for displaying a target value. 
+The standard `show_if` argument is great for simple conditional display logic, but sometimes you need more flexibility. For example, you may want to display a question based on the values of two different questions. In this case, you can use the `show_if_custom` argument to define a custom function that determines the conditions for displaying a target question. 
 
-Using the same example as above, let's say we only want to display the `penguins_other` question if the respondent chose the `other` option in the `penguins` question and also if they chose `show` in a second question, `show_penguins_other`:
+Using the same example as above, let's say we only want to display the `penguins_other` question if the respondent chose the `other` option in the `penguins` question and also if they chose `show` in a second question, `show_other`:
 
 ```{r}
 sd_question(
   type  = 'mc',
-  id    = 'show_penguins_other',
+  id    = 'show_other',
   label = "Should we show the 'other' option question?",
   option = c(
     'Show' = 'show',
@@ -88,21 +88,21 @@ sd_question(
 )
 ```
 
-Now we can define a custom function that will check the values of the `penguins` and `show_penguins_other` questions and return a logical value indicating whether the `penguins_other` question should be displayed:
+Now we can define a custom function that will check the values of the `penguins` and `show_other` questions and return a logical value indicating whether both conditions are met. Then we can use this function in the `show_if_custom` argument:
 
 ```{r}
 show_other <- function(input) {
-  return(input[['penguins']] == "other" && input[['show_penguins_other']] == "show")
+  return(input$penguins == "other" & input$show_penguins_other == "show")
 }
-```
 
-Finally, we can use this function in the `show_if_custom` argument:
-
-```{r}
 config <- sd_config(
-  show_if_custom = show_other
+  show_if_custom = list(
+    list(condition = show_other, target = "penguins_other")
+  )
 )
 ```
+
+Here we provided the `show_if_custom` argument a list of lists, where each sublist contains a `condition` and a `target`. In this example, we just have one condition (the `show_other` function, which if true will display the `penguins_other` question), but you can add as many conditions as you want.
 
 # Conditional skipping
 
@@ -139,9 +139,11 @@ config <- sd_config(
 )
 ```
 
-This sets up a condition where the respondent will be sent to a page named `screenout` if they choose `no` on the `vehicle_ownership` question. You could put such a page at the end of the survey, something like this:
+This sets up a condition where the respondent will be sent to a page named `screenout` if they choose `no` on the `vehicle_ownership` question. Notice that again we used `tibble::tribble()` to define the conditions, just as we did for the `show_if` argument in [basic conditional display](#basic-conditional-display), but again you could use a csv file if you have a lot of conditions.
 
-```
+In this example, you could make a `screenout` page and put it anywhere in your survey after the `vehicle_ownership` question, something like this:
+
+```{r}
 ::: {#screenout .sd-page}
 
 Sorry, but you are not qualified to take our survey.
@@ -149,7 +151,7 @@ Sorry, but you are not qualified to take our survey.
 :::
 ```
 
-Notice that we don't have a `sd_next()` on this screenout page. That is how you define an end point for the survey taker. If there's no "Next" button, then they cannot navigate anywhere else, so the survey is over.
+Notice that we don't have a `sd_next()` on this screenout page - that is how you define an end point for the survey taker. If there's no "Next" button, then they cannot navigate anywhere else, so the survey is over. This is why this `screenout` page doesn't necessarily have to be at the end of the survey as the respondent will not be able to navigate anywhere else once reaching this page.
 
 ## Custom skipping
 
@@ -159,7 +161,37 @@ Use the `skip_if_custom` argument to control custom skipping logic.
 
 :::
 
-Insert example here
+Similar to the `show_if_custom` argument, the `skip_if_custom` argument allows you to define custom skipping logic. This is useful if you need to skip a question based on the values of two or more different questions (or other conditions).
+
+For example, let's say you want to screen out respondents only if they choose `no` on the `vehicle_ownership` question and `no` on a second question, `vehicle_buyer`:
+
+```{r}
+sd_question(
+  type  = 'mc',
+  id    = 'vehicle_buyer',
+  label = "Are you looking to buy a vehicle soon?",
+  option = c(
+    'Yes' = 'yes',
+    'No'  = 'no'
+  )
+)
+```
+
+To implement this, we can define a custom function that will check the values of the `vehicle_ownership` and `vehicle_buyer` questions and return a logical value indicating whether both conditions are met. Then we can use this function in the `skip_if_custom` argument:
+
+```{r}
+screenout <- function(input) {
+  return(input$vehicle_ownership == "no" & input$vehicle_buyer == "no")
+}
+
+config <- sd_config(
+  skip_if_custom = list(
+    list(condition = screenout, target = "screenout")
+  )
+)
+```
+
+Just as with the [`show_if_custom` argument](config.html#custom-conditional-display), we provide the `skip_if_custom` argument a list of lists, where each sublist contains a `condition` and a `target`.
 
 # Required responses
 

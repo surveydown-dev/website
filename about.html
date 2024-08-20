@@ -170,9 +170,9 @@ ul.task-list li input[type="checkbox"] {
 <p><br></p>
 <p>The basic concept is this:</p>
 <ol type="1">
-<li>Design your survey as a <a href="https://quarto.org/docs/dashboards/interactivity/shiny-r.html">Quarto shiny document</a> using markdown and R code.</li>
-<li>Render your doc into a <a href="https://shiny.posit.co/">shiny</a> app that can be hosted online and sent to respondents.</li>
-<li>Store your survey responses in a <a href="https://supabase.com/">supabase</a> database.</li>
+<li>Design your survey as a <a href="{{< url_quarto_shiny  >}}">Quarto shiny document</a> using markdown and R code.</li>
+<li>Render your doc into a <a href="{{< url_shiny  >}}">shiny</a> app that can be hosted online and sent to respondents.</li>
+<li>Store your survey responses in a <a href="{{< url_supabase  >}}">supabase</a> database.</li>
 </ol>
 <p>We recommend reading the <a href="./getting-started.html">Getting Started</a> page to get a sense of how to use surveydown. The rest of the documentation covers more details on how to use surveydown.</p>
 <div class="text-center">
@@ -181,14 +181,14 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="background-motivation" class="level1">
 <h1>Background &amp; Motivation</h1>
-<p>Most survey platforms (e.g., Google forms, Qualtrics, etc.) use drag-and-drop interfaces to design surveys, making version control and collaboration with others difficult. They’re also not reproducible.</p>
-<p>As an open-source, markdown-based platform, surveydown was designed to address these problems. In surveydown, all survey content is created with plain text (markdown and R code) in a single <code>.qmd</code> file that renders into a shiny app. This makes your survey easy to reproduce, share, and version control with common tools like Git. The survey data collected is also owned by the survey designer in a supabase account, not some other company. Best of all, everything is open source and free :)</p>
+<p>Most survey platforms (e.g., Google forms, Qualtrics, etc.) use drag-and-drop interfaces to design surveys, making version control and collaboration with others difficult. They’re also not reproducible (others cannot easily reproduce a survey made on these platforms), and many require a paid subscription or license to use.</p>
+<p>As an open-source, markdown-based platform, surveydown was designed to address these problems. In surveydown, all survey content is created with plain text (markdown and R code) in a single <code>.qmd</code> file that renders into a shiny app. This makes your survey easy to reproduce, share, and version control with common tools like Git. The survey data collected is also owned by the survey designer in a supabase account. Best of all, everything is open source and free :)</p>
 <p>If you’re curious where this whole idea came from, check out this <a href="https://www.jhelvy.com/blog/2023-04-06-markdown-surveys/">blog post</a>, which outlines more on the general idea and the motivation for it. The post is now outdated in terms of the overall package design, but it provides something of an origin story and some of the motivation for developing this project.</p>
 </section>
 <section id="editing-a-surveydown-survey" class="level1">
 <h1>Editing a surveydown survey</h1>
-<p>We recommend working with an IDE to edit your surveydown surveys. <a href="https://www.rstudio.com/categories/rstudio-ide/">RStudio</a> is great, and we also like <a href="https://code.visualstudio.com">VS Code</a> and <a href="https://github.com/posit-dev/positron">Positron</a>.</p>
-<p>Once you have a survey ready to edit in your favorite IDE, you can render it locally to see how it will look as you change features. For example, the gif below shows what it looks like to <a href="./config.html#required-responses">make a question required</a>. This gives you an idea for what the development process is like. And because surveydown leverages shiny and quarto, you can customize your survey however you want!</p>
+<p>Editing a surveydown survey feels like editing a <a href="{{< url_quarto  >}}">Quarto</a> document. As a result, we recommend working with an IDE to edit your surveys as they offer a better experience. <a href="{{< url_rstudio_ide  >}}">RStudio</a> is great, and we also like <a href="{{< url_vscode  >}}">VS Code</a> and <a href="{{< url_positron  >}}">Positron</a>.</p>
+<p>Once you have a survey ready to edit in your favorite IDE, you can render it locally to see how it will look as you change features. For example, the gif below shows what it looks like to <a href="./config.html#required-responses">make a question required</a>. This gives you an idea for what the development process is like. And because surveydown leverages <a href="{{< url_shiny  >}}">shiny</a> and <a href="{{< url_quarto  >}}">Quarto</a>, you can add all sorts of custom features and styles to your survey!</p>
 <center>
 <img src="images/screenshots/required.gif" width="100%">
 </center>

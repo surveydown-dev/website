@@ -2,17 +2,19 @@
 title: "Configuration Options"
 ---
 
-> This page explains the various configuration options currently supported by surveydown
-
 All survey configuration options are defined with the `sd_config()` function in the server code chunk.
 
 # Conditional display
 
 ## Basic conditional display
 
-> Use the `show_if` argument to control basic conditional display logic.
+::: {.callout-tip}
 
-To have a question display conditionally upon the value of another question, you need to define both the triggering question and the target question. For example, let's say we have a multiple choice question about people's favorite penguin type, and the last option is "other". If the respondent chose it, you may want a second question to popup that allows them to specify the other penguin type. To implement this, you would need to first define both questions, e.g.:
+Use the `show_if` argument to control basic conditional display logic.
+
+:::
+
+To have a question display conditionally upon the value of another question, you need to define both the **triggering question** and the **target question**. For example, let's say we have a multiple choice question about people's favorite penguin type, and the last option is "other". If the respondent chose it, you may want a second question to popup that allows them to specify the other penguin type. To implement this, you would need to first define both questions, e.g.:
 
 ```{r}
 sd_question(
@@ -64,15 +66,53 @@ config <- sd_config(
 
 ## Custom conditional display
 
-> Use the `show_if_custom` argument to control custom conditional display logic.
+::: {.callout-tip}
 
-Insert example here
+Use the `show_if_custom` argument to control custom conditional display logic.
+
+:::
+
+The standard `show_if` argument is great for simple conditional display logic, but sometimes you need more flexibility. For example, you may want to display a question based on the value of another question, but only if a third question is also a certain value. In this case, you can use the `show_if_custom` argument to define a custom function that determines the conditions for displaying a target value. 
+
+Using the same example as above, let's say we only want to display the `penguins_other` question if the respondent chose the `other` option in the `penguins` question and also if they chose `show` in a second question, `show_penguins_other`:
+
+```{r}
+sd_question(
+  type  = 'mc',
+  id    = 'show_penguins_other',
+  label = "Should we show the 'other' option question?",
+  option = c(
+    'Show' = 'show',
+    'Hide' = 'hide'
+  )
+)
+```
+
+Now we can define a custom function that will check the values of the `penguins` and `show_penguins_other` questions and return a logical value indicating whether the `penguins_other` question should be displayed:
+
+```{r}
+show_other <- function(input) {
+  return(input[['penguins']] == "other" && input[['show_penguins_other']] == "show")
+}
+```
+
+Finally, we can use this function in the `show_if_custom` argument:
+
+```{r}
+config <- sd_config(
+  show_if_custom = show_other
+)
+```
 
 # Conditional skipping
 
 ## Basic skipping
 
-> Use the `skip_if` argument to control basic skipping logic.
+::: {.callout-tip}
+
+Use the `skip_if` argument to control basic skipping logic.
+
+:::
 
 Often times you'll want to send people to different parts of the survey based on responses to questions. For example, let's say you want to screen out people who do not own a vehicle. To do this, you would first define a question about their vehicle ownership, e.g.:
 
@@ -113,13 +153,21 @@ Notice that we don't have a `sd_next()` on this screenout page. That is how you 
 
 ## Custom skipping
 
-> Use the `skip_if_custom` argument to control custom skipping logic.
+::: {.callout-tip}
+
+Use the `skip_if_custom` argument to control custom skipping logic.
+
+:::
 
 Insert example here
 
 # Required responses
 
-> Use the `required_questions` argument to control required responses.
+::: {.callout-tip}
+
+Use the `required_questions` argument to control required responses.
+
+:::
 
 By default, no questions are required. However, you can make questions required by adding the question `id` to the `required_questions` argument in `sd_config()`, like this:
 
@@ -141,7 +189,11 @@ config <- sd_config(
 
 # Starting page 
 
-> Use the `start_page` argument to control the starting page.
+::: {.callout-tip}
+
+Use the `start_page` argument to control the starting page.
+
+:::
 
 When editing your survey, it can be helpful to start the survey at a specific page. You can define the starting page by setting the `start_page` argument to a page `id` in the `sd_config()` function, like this:
 
@@ -153,13 +205,21 @@ config <- sd_config(
 
 # Show all pages
 
-> Use the `show_all_pages` argument to show al pages at once.
+::: {.callout-tip}
+
+Use the `show_all_pages` argument to show al pages at once.
+
+:::
 
 By setting `show_all_pages = TRUE` in the `sd_config()` function, all pages will be shown when the survey loads. This can be helpful for quickly previewing the survey content and / or printing out the entire survey as a PDF.
 
 # Admin page
 
-> Use the `admin_page` argument to control whether the admin page is created.
+::: {.callout-tip}
+
+Use the `admin_page` argument to control whether the admin page is created.
+
+:::
 
 By default, the admin page is not created. But if you want one, set `admin_page` to `TRUE` inside the `sd_config()` function, like this:
 

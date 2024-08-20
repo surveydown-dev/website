@@ -309,18 +309,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<blockquote class="blockquote">
-<p>This page explains the various configuration options currently supported by surveydown</p>
-</blockquote>
 <p>All survey configuration options are defined with the <code>sd_config()</code> function in the server code chunk.</p>
 <section id="conditional-display" class="level1">
 <h1>Conditional display</h1>
 <section id="basic-conditional-display" class="level2">
 <h2 class="anchored" data-anchor-id="basic-conditional-display">Basic conditional display</h2>
-<blockquote class="blockquote">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Use the <code>show_if</code> argument to control basic conditional display logic.</p>
-</blockquote>
-<p>To have a question display conditionally upon the value of another question, you need to define both the triggering question and the target question. For example, let’s say we have a multiple choice question about people’s favorite penguin type, and the last option is “other”. If the respondent chose it, you may want a second question to popup that allows them to specify the other penguin type. To implement this, you would need to first define both questions, e.g.:</p>
+</div>
+</div>
+<p>To have a question display conditionally upon the value of another question, you need to define both the <strong>triggering question</strong> and the <strong>target question</strong>. For example, let’s say we have a multiple choice question about people’s favorite penguin type, and the last option is “other”. If the respondent chose it, you may want a second question to popup that allows them to specify the other penguin type. To implement this, you would need to first define both questions, e.g.:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'mc'</span>,</span>
@@ -366,39 +373,83 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="custom-conditional-display" class="level2">
 <h2 class="anchored" data-anchor-id="custom-conditional-display">Custom conditional display</h2>
-<blockquote class="blockquote">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Use the <code>show_if_custom</code> argument to control custom conditional display logic.</p>
-</blockquote>
-<p>Insert example here</p>
+</div>
+</div>
+<p>The standard <code>show_if</code> argument is great for simple conditional display logic, but sometimes you need more flexibility. For example, you may want to display a question based on the value of another question, but only if a third question is also a certain value. In this case, you can use the <code>show_if_custom</code> argument to define a custom function that determines the conditions for displaying a target value.</p>
+<p>Using the same example as above, let’s say we only want to display the <code>penguins_other</code> question if the respondent chose the <code>other</code> option in the <code>penguins</code> question and also if they chose <code>show</code> in a second question, <code>show_penguins_other</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'mc'</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">'show_penguins_other'</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Should we show the 'other' option question?"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Show'</span> <span class="ot">=</span> <span class="st">'show'</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Hide'</span> <span class="ot">=</span> <span class="st">'hide'</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we can define a custom function that will check the values of the <code>penguins</code> and <code>show_penguins_other</code> questions and return a logical value indicating whether the <code>penguins_other</code> question should be displayed:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>show_other <span class="ot">&lt;-</span> <span class="cf">function</span>(input) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(input[[<span class="st">'penguins'</span>]] <span class="sc">==</span> <span class="st">"other"</span> <span class="sc">&amp;&amp;</span> input[[<span class="st">'show_penguins_other'</span>]] <span class="sc">==</span> <span class="st">"show"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Finally, we can use this function in the <code>show_if_custom</code> argument:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_if_custom =</span> show_other</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
 <section id="conditional-skipping" class="level1">
 <h1>Conditional skipping</h1>
 <section id="basic-skipping" class="level2">
 <h2 class="anchored" data-anchor-id="basic-skipping">Basic skipping</h2>
-<blockquote class="blockquote">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Use the <code>skip_if</code> argument to control basic skipping logic.</p>
-</blockquote>
+</div>
+</div>
 <p>Often times you’ll want to send people to different parts of the survey based on responses to questions. For example, let’s say you want to screen out people who do not own a vehicle. To do this, you would first define a question about their vehicle ownership, e.g.:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'mc'</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">'vehicle_ownership'</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Do you own your vehicle?"</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Yes'</span> <span class="ot">=</span> <span class="st">'yes'</span>,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'No'</span>  <span class="ot">=</span> <span class="st">'no'</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'mc'</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">'vehicle_ownership'</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Do you own your vehicle?"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Yes'</span> <span class="ot">=</span> <span class="st">'yes'</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'No'</span>  <span class="ot">=</span> <span class="st">'no'</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then in the server code chunk, you can use the <code>skip_if</code> argument in <code>sd_config()</code> to define the behavior of the next button on the page where you ask this question, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip_if =</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span>question_id,        <span class="sc">~</span>question_value, <span class="sc">~</span>target,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"vehicle_ownership"</span>, <span class="st">"no"</span>,            <span class="st">"screenout"</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip_if =</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span>question_id,        <span class="sc">~</span>question_value, <span class="sc">~</span>target,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"vehicle_ownership"</span>, <span class="st">"no"</span>,            <span class="st">"screenout"</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This sets up a condition where the respondent will be sent to a page named <code>screenout</code> if they choose <code>no</code> on the <code>vehicle_ownership</code> question. You could put such a page at the end of the survey, something like this:</p>
 <pre><code>::: {#screenout .sd-page}
@@ -410,60 +461,110 @@ Sorry, but you are not qualified to take our survey.
 </section>
 <section id="custom-skipping" class="level2">
 <h2 class="anchored" data-anchor-id="custom-skipping">Custom skipping</h2>
-<blockquote class="blockquote">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Use the <code>skip_if_custom</code> argument to control custom skipping logic.</p>
-</blockquote>
+</div>
+</div>
 <p>Insert example here</p>
 </section>
 </section>
 <section id="required-responses" class="level1">
 <h1>Required responses</h1>
-<blockquote class="blockquote">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Use the <code>required_questions</code> argument to control required responses.</p>
-</blockquote>
+</div>
+</div>
 <p>By default, no questions are required. However, you can make questions required by adding the question <code>id</code> to the <code>required_questions</code> argument in <code>sd_config()</code>, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">required_questions =</span> <span class="fu">c</span>(<span class="st">"vehicle_ownership"</span>, <span class="st">"penguins_other"</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">required_questions =</span> <span class="fu">c</span>(<span class="st">"vehicle_ownership"</span>, <span class="st">"penguins_other"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This will make the respondent unable to proceed until they have answered the required questions. It will also place a red asterisk (*) next to the question label to indicate that the question is required.</p>
 <p>You can also make all questions required by setting <code>all_questions_required = TRUE</code> like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">all_questions_required =</span> <span class="cn">TRUE</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">all_questions_required =</span> <span class="cn">TRUE</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="starting-page" class="level1">
 <h1>Starting page</h1>
-<blockquote class="blockquote">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Use the <code>start_page</code> argument to control the starting page.</p>
-</blockquote>
+</div>
+</div>
 <p>When editing your survey, it can be helpful to start the survey at a specific page. You can define the starting page by setting the <code>start_page</code> argument to a page <code>id</code> in the <code>sd_config()</code> function, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">start_page =</span> <span class="st">"page_id"</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">start_page =</span> <span class="st">"page_id"</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="show-all-pages" class="level1">
 <h1>Show all pages</h1>
-<blockquote class="blockquote">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Use the <code>show_all_pages</code> argument to show al pages at once.</p>
-</blockquote>
+</div>
+</div>
 <p>By setting <code>show_all_pages = TRUE</code> in the <code>sd_config()</code> function, all pages will be shown when the survey loads. This can be helpful for quickly previewing the survey content and / or printing out the entire survey as a PDF.</p>
 </section>
 <section id="admin-page" class="level1">
 <h1>Admin page</h1>
-<blockquote class="blockquote">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Use the <code>admin_page</code> argument to control whether the admin page is created.</p>
-</blockquote>
+</div>
+</div>
 <p>By default, the admin page is not created. But if you want one, set <code>admin_page</code> to <code>TRUE</code> inside the <code>sd_config()</code> function, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">admin_page =</span> <span class="cn">TRUE</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">admin_page =</span> <span class="cn">TRUE</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>When the admin page is enabled, you will be able to access the page by adding <code>?admin</code> to the end of the survey URL, e.g.&nbsp;<code>https://myname.shinyapps.io/?admin</code>. This will display a login page with a single “Password” parameter, which is the password set using <code>sd_set_password()</code>. See the <a href="./password.html">Setting a Password</a> page for details.</p>
 <p>The admin page has the following features:</p>

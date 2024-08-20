@@ -2,17 +2,28 @@
 title: "Formatting Questions"
 ---
 
-> On this page, we'll demonstrate some of the formatting options for displaying questions.
+```{r}
+#| eval: true
+#| include: false
 
-## Markdown
+library(surveydown)
+```
 
-**Markdown** is supported for the **question label**.
+The `sd_question()` function has many optional arguments for modifying the appearance and behavior of questions. This page demonstrates some of the formatting options.
 
-The `label` argument for any question type can accept markdown formatting. For example, the question below uses the `**` symbols to make some works bold.
+# Markdown formatting
 
-Scripts:
+**Markdown** is supported for **question labels** and **option labels**.
+
+## Question labels
+
+The `label` argument for any question type can accept markdown formatting. For example, the question below uses the `*` symbol to make some words bold, italic, and bold italic.
+
+Code chunk:
 
 ```{r}
+#| echo: fenced
+
 sd_question(
   type   = 'mc',
   id     = 'markdown_label',
@@ -27,17 +38,31 @@ sd_question(
 
 Output:
 
-::: {style="text-align: left; max-width: 300px;"}
-![](images/3_1_markdown_label.jpg){width="300"}
-:::
+```{r}
+#| eval: true
+#| echo: false
 
-**Markdown** is also supported for options in `mc_buttons` questions.
+sd_question(
+  type   = 'mc',
+  id     = 'markdown_label',
+  label  = "**This** is a question *label* supporting ***markdown***:",
+  option = c(
+    "Option A" = "option_a",
+    "Option B" = "option_b",
+    "Option C" = "option_c"
+  )
+)
+```
 
-For `mc_button` type questions, you can also use markdown to format the `option` labels.
+## Option labels
 
-Scripts:
+Markdown formatting is also supported for the `option` labels in question types that have options, such as `mc`, `mc_multiple`, `mc_buttons`, and `mc_multiple_buttons`. For example:
+
+Code chunk:
 
 ```{r}
+#| echo: fenced
+
 sd_question(
   type   = 'mc_buttons',
   id     = 'markdown_buttons',
@@ -52,18 +77,13 @@ sd_question(
 
 Output:
 
-::: {style="text-align: left; max-width: 300px;"}
-![](images/3_2_markdown_mc_buttons.jpg){width="300"}
-:::
-
-The same is true for `mc_multiple_buttons`.
-
-Scripts:
-
 ```{r}
+#| eval: true
+#| echo: false
+
 sd_question(
-  type   = 'mc_multiple_buttons',
-  id     = 'markdown_multiple_buttons',
+  type   = 'mc_buttons',
+  id     = 'markdown_buttons',
   label  = "The 3 options below support markdown:",
   option = c(
     "*Option A*"     = "option_a",
@@ -73,71 +93,120 @@ sd_question(
 )
 ```
 
-Output:
+# HTML formatting
 
-::: {style="text-align: left; max-width: 300px;"}
-![](images/3_3_markdown_mc_multiple_buttons.jpg){width="300"}
-:::
+HTML formatting is supported for the `option` labels in question types that have options, such as `mc_buttons` and `mc_multiple_buttons`. This allows you to insert mixed content to achieve more complex labels, including plain text, markdown, and HTML code.
 
-## HTML
+For example, here is a question with some complex labels for a choice question that include markdown and HTML code to embed images.
 
-**HTML** is supported for options of `mc_buttons` and `mc_multiple_buttons`, so that you can insert mixed content including plain text, markdown, and HTML images. For example, here is a question with some complex labels for a choice question.
-
-Scripts:
+Code chunk:
 
 ```{r}
-# Define the option vector
-html_buttons_option <- c("option_1", "option_2", "option_3")
+#| echo: fenced
 
-# Change the names of each element to display markdown-formatted text 
-# and an embedded image using html
-names(html_buttons_option)[1] <- "**Option 1**<br>
-    <img src='https://raw.githubusercontent.com/jhelvy/formr4conjoint/master/survey/images/fuji.jpg' width=100><br>
-    **Type**: Fuji<br>
-    **Price**: $ 2 / lb<br>
-    **Freshness**: Average"
-names(html_buttons_option)[2] <- "**Option 2**<br>
-    <img src='https://raw.githubusercontent.com/jhelvy/formr4conjoint/master/survey/images/pinkLady.jpg' width=100><br>
+# Define the option vector
+html_button_options <- c("option_1", "option_2", "option_3")
+
+# Define option labels that include markdown and HTML code to embed images
+names(html_button_options) <- c(
+
+  "**Option 1**<br>
+   <img src='https://raw.githubusercontent.com/surveydown-dev/demo-conjoint-survey/main/images/fuji.jpg' width=100><br>
+   **Type**: Fuji<br>
+   **Price**: $ 2 / lb<br>
+   **Freshness**: Average",
+
+  "**Option 2**<br>
+   <img src='https://raw.githubusercontent.com/surveydown-dev/demo-conjoint-survey/main/images/pinkLady.jpg' width=100><br>
     **Type**: Pink Lady<br>
     **Price**: $ 1.5 / lb<br>
-    **Freshness**: Excellent"
-names(html_buttons_option)[3] <- "**Option 3**<br>
-    <img src='https://raw.githubusercontent.com/jhelvy/formr4conjoint/master/survey/images/honeycrisp.jpg' width=100><br>
+    **Freshness**: Excellent",
+
+  "**Option 3**<br>
+    <img src='https://raw.githubusercontent.com/surveydown-dev/demo-conjoint-survey/main/images/honeycrisp.jpg' width=100><br>
     **Type**: Honeycrisp<br>
     **Price**: $ 2 / lb<br>
     **Freshness**: Poor"
+)
 
 sd_question(
   type   = 'mc_buttons',
   id     = 'html_buttons',
   label  = "A sample survey question using `mc_buttons`",
-  option = html_buttons_option
+  option = html_button_options
 )
 ```
 
 Output:
 
-::: {style="text-align: left; max-width: 400px;"}
-![](images/3_4_html_mc_buttons.jpg){width="400"}
-:::
+```{r}
+#| eval: true
+#| echo: false
 
-## Width
+# Define the option vector
+html_button_options <- c("option_1", "option_2", "option_3")
 
-Use the `width` argument to change the width for the question.
+# Complex labels that include markdown and HTML code to embed images
+names(html_button_options) <- c(
 
-Scripts:
+  "**Option 1**<br>
+   <img src='https://raw.githubusercontent.com/surveydown-dev/demo-conjoint-survey/main/images/fuji.jpg' width=100><br>
+   **Type**: Fuji<br>
+   **Price**: $ 2 / lb<br>
+   **Freshness**: Average",
+
+  "**Option 2**<br>
+   <img src='https://raw.githubusercontent.com/surveydown-dev/demo-conjoint-survey/main/images/pinkLady.jpg' width=100><br>
+    **Type**: Pink Lady<br>
+    **Price**: $ 1.5 / lb<br>
+    **Freshness**: Excellent",
+    
+  "**Option 3**<br>
+    <img src='https://raw.githubusercontent.com/surveydown-dev/demo-conjoint-survey/main/images/honeycrisp.jpg' width=100><br>
+    **Type**: Honeycrisp<br>
+    **Price**: $ 2 / lb<br>
+    **Freshness**: Poor"
+)
+
+sd_question(
+  type   = 'mc_buttons',
+  id     = 'html_buttons',
+  label  = "A sample survey question using `mc_buttons`",
+  option = html_button_options
+)
+```
+
+# Size formatting
+
+Use the `width`, `height` arguments to change the size of the question.
+
+For example, the question below uses the `width` and `height` arguments to change the size of a text area question.
+
+Code chunk:
 
 ```{r}
+#| echo: fenced
+
 sd_question(
   type  = "textarea",
   id    = "change_width",
-  label = "This text area has width set as 40%:",
-  width = "40%"
+  label = "This text area has width set as 40% and height set as 100px:",
+  width = "40%", 
+  height = "100px"
 )
 ```
 
 Output:
 
-::: {style="text-align: left; max-width: 600px;"}
-![](images/3_5_width.jpg){width="600"}
-:::
+```{r}
+#| eval: true
+#| echo: false
+
+sd_question(
+  type  = "textarea",
+  id    = "change_width",
+  label = "This text area has width set as 40% and height set as 100px:",
+  width = "40%", 
+  height = "100px"
+)
+```

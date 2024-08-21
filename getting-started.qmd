@@ -2,6 +2,13 @@
 title: "Getting Started with surveydown"
 ---
 
+```{r}
+#| echo: false
+#| eval: true
+
+library(surveydown)
+```
+
 # Overview
 
 In surveydown, surveys are designed using markdown and R code in a single [Quarto]({{< var url_quarto >}}) document (a `.qmd` file). There is no GUI or drag-and-drop interface - simply write plain text (markdown & R code) and boom - you have a survey! 🎉
@@ -13,7 +20,8 @@ The platform is based on some basic principles:
 - Add content to your survey using markdown text (or in RStudio use the visual editor).
 - Define survey questions in R code chunks with the `sd_question()` function.
 - Define pages using fences (`:::`), with navigation buttons handled using the `sd_next()` function.
-- Add rich functionality to your survey in the server code chunk (the last code chunk at the bottom of the .qmd file), including complex [configuration options](config.qmd) with the `sd_config()` function, and the [database settings](database.qmd) with the `sd_database()` function.
+- Add rich functionality to your survey using [configuration options](config.qmd) in the server code chunk.
+- Store your respondent data on supabase by setting the [database settings](database.qmd) in the server code chunk.
 
 This approach ensures a flexible survey platform that is fully reproducible and easy to customize.
 
@@ -29,7 +37,7 @@ See [installation](installation.qmd).
 
 # 3. Add content
 
-See the [components](components.qmd) page for details on the main components in a surveydown survey, like. For a quick overview, here's how you add pages and questions:
+See the [components](components.qmd) page for details on the main components in a surveydown survey. For a quick overview, here's how you add pages and questions:
 
 - Add pages with fences, like this:
 
@@ -45,6 +53,24 @@ Page 1 content here
 
 ```{r}
 #| echo: fenced
+
+sd_question(
+  type  = 'mc',
+  id    = 'penguins',
+  label = "Which is your favorite type of penguin?",
+  option = c(
+    'Adélie'    = 'adelie',
+    'Chinstrap' = 'chinstrap',
+    'Gentoo'    = 'gentoo'
+  )
+)
+```
+
+Output:
+
+```{r}
+#| echo: false
+#| eval: true
 
 sd_question(
   type  = 'mc',

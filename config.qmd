@@ -14,7 +14,14 @@ Use the `show_if` argument to control basic conditional display logic.
 
 :::
 
-To have a question display conditionally upon the value of another question, you need to define both the **triggering question** and the **target question**. For example, let's say we have a multiple choice question about people's favorite penguin type, and the last option is "other". If the respondent chose it, you may want a second question to popup that allows them to specify the other penguin type. To implement this, you would need to first define both questions, e.g.:
+It is often useful to have a question display conditionally based on the value of another question. For example, let's say we have a multiple choice question about people's favorite penguin type, and the last option is "other". If the respondent chose it, you may want a second question to popup that allows them to specify the other penguin type, like this:
+
+<center>
+<img src="images/screenshots/show_if.gif" width=600>
+</center>
+<br>
+
+To implement this, you first need to define both the **triggering question** and the **target question**, like this:
 
 ```{r}
 sd_question(
@@ -47,13 +54,13 @@ config <- sd_config(
 )
 ```
 
-This will make the `penguins_other` question only appear if the respondent chose the `other` option in the `penguins` question.
-
-Here we're using the `tibble::tribble()` function to define a data frame with three columns:
+Here we're using the `tibble::tribble()` function (which is like `data.frame()` but easier to read), to define a data frame with three columns:
 
 - `question_id`: The `id` of the triggering question.
 - `question_value`: The triggering value.
 - `target`: The `id` of the target question to display.
+
+Each row in the data frame defines a condition. 
 
 You don't have to use `tibble::tribble()`, and in fact if you have a lot of `show_if` conditions, then you could create a csv file with all of your conditions in it and read it in to set the `show_if` conditions (just make sure the header has the same three column names), e.g.:
 

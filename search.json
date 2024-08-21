@@ -7,7 +7,7 @@
     "text": "All questions in a surveydown survey are created using the sd_question() function.\nThe function requires the following three arguments:\n\nid: A unique identifier for the question, which will be used as the variable name in the resulting survey data.\nlabel: The label that will be displayed on the question in the survey.\ntype: The type of question.\n\nMany question types also require an option argument, which is a named vector of options for the question (e.g. for multiple choice questions).\nThe function also includes many other optional arguments that can be used to customize the question appearance and behavior. See the package documentation for more details.",
     "crumbs": [
       "Documentation",
-      "Survey Content",
+      "**Survey Contents**",
       "Question Types"
     ]
   },
@@ -19,7 +19,7 @@
     "text": "text\nUse type = 'text' to specify a text input type question.\nCode chunk:\n\n```{r}\nsd_question(\n  type  = \"text\",\n  id    = \"word\",\n  label = \"Write a word:\"\n)\n```\n\nOutput:\n\n\n\n\nWrite a word: *",
     "crumbs": [
       "Documentation",
-      "Survey Content",
+      "**Survey Contents**",
       "Question Types"
     ]
   },
@@ -31,7 +31,7 @@
     "text": "textarea\nUse type = 'textarea' to specify a text area input type question.\nCode chunk:\n\n```{r}\nsd_question(\n  type  = \"textarea\",\n  id    = \"paragraph\",\n  label = \"Write a paragraph:\"\n)\n```\n\nOutput:\n\n\n\n\nWrite a paragraph: *",
     "crumbs": [
       "Documentation",
-      "Survey Content",
+      "**Survey Contents**",
       "Question Types"
     ]
   },
@@ -43,7 +43,7 @@
     "text": "numeric\nUse type = 'numeric' to specify a numeric input type.\nCode chunk:\n\n```{r}\nsd_question(\n  type  = 'numeric',\n  id    = 'age',\n  label = \"What's your age?\"\n)\n```\n\nOutput:\n\n\n\n\nWhat’s your age? *",
     "crumbs": [
       "Documentation",
-      "Survey Content",
+      "**Survey Contents**",
       "Question Types"
     ]
   },
@@ -55,7 +55,7 @@
     "text": "mc\nUse type = 'mc' to specify a multiple choice type question with a single choice option.\nCode chunk:\n\n```{r}\nsd_question(\n  type   = 'mc',\n  id     = 'artist',\n  label  = \"Which artist do you prefer most from this list?\",\n  option = c(\n    \"Taylor Swift\" = \"taylor_swift\",\n    \"Beyoncé\"      = \"beyonce\",\n    \"Adele\"        = \"adele\",\n    \"Rihanna\"      = \"rihanna\",\n    \"Lady Gaga\"    = \"ladygaga\",\n    \"Ed Sheeran\"   = \"ed_sheeran\",\n    \"Drake\"        = \"drake\"\n  )\n)\n```\n\nOutput:\n\n\n\n\nWhich artist do you prefer most from this list? *\n\n\n\n\n\nTaylor Swift\n\n\n\n\n\nBeyoncé\n\n\n\n\n\nAdele\n\n\n\n\n\nRihanna\n\n\n\n\n\nLady Gaga\n\n\n\n\n\nEd Sheeran\n\n\n\n\n\nDrake",
     "crumbs": [
       "Documentation",
-      "Survey Content",
+      "**Survey Contents**",
       "Question Types"
     ]
   },
@@ -67,7 +67,7 @@
     "text": "mc_buttons\nUse type = 'mc_buttons' to generate the button version of mc.\nCode chunk:\n\n```{r}\nsd_question(\n  type   = 'mc_buttons',\n  id     = 'fruit',\n  label  = \"Which fruit do you prefer most from this list?\",\n  option = c(\n    \"Apple\"      = \"apple\",\n    \"Banana\"     = \"banana\",\n    \"Pear\"       = \"pear\",\n    \"Strawberry\" = \"strawberry\",\n    \"Grape\"      = \"grape\",\n    \"Mango\"      = \"mango\",\n    \"Watermelon\" = \"watermelon\"\n  )\n)\n```\n\nOutput:\n\n\n\n\nWhich fruit do you prefer most from this list? *\n\n\n\n\n\nApple\n\nBanana\n\nPear\n\nStrawberry\n\nGrape\n\nMango\n\nWatermelon",
     "crumbs": [
       "Documentation",
-      "Survey Content",
+      "**Survey Contents**",
       "Question Types"
     ]
   },
@@ -79,7 +79,7 @@
     "text": "mc_multiple\nUse type = 'mc_multiple' to specify a multiple choice type question with multiple selection enabled.\nCode chunk:\n\n```{r}\nsd_question(\n  type  = 'mc_multiple',\n  id    = 'swift',\n  label = \"What are your favorite Taylor Swift albums (select all that apply)?\",\n  option = c(\n    \"Taylor Swift (2006)\" = \"taylor_swift\",\n    \"Fearless (2008)\"     = \"fearless\",\n    \"Speak Now (2010)\"    = \"speak_now\",\n    \"Red (2012)\"          = \"red\",\n    \"1989 (2014)\"         = \"1989\",\n    \"Reputation (2017)\"   = \"reputation\",\n    \"Lover (2019)\"        = \"lover\",\n    \"Folklore (2020)\"     = \"folklore\",\n    \"Evermore (2020)\"     = \"evermore\",\n    \"Midnights (2022)\"    = \"midnights\"\n  )\n)\n```\n\nOutput:\n\n\n\n\nWhat are your favorite Taylor Swift albums (select all that apply)? *\n\n\n\n\n\nTaylor Swift (2006)\n\n\n\n\n\nFearless (2008)\n\n\n\n\n\nSpeak Now (2010)\n\n\n\n\n\nRed (2012)\n\n\n\n\n\n1989 (2014)\n\n\n\n\n\nReputation (2017)\n\n\n\n\n\nLover (2019)\n\n\n\n\n\nFolklore (2020)\n\n\n\n\n\nEvermore (2020)\n\n\n\n\n\nMidnights (2022)",
     "crumbs": [
       "Documentation",
-      "Survey Content",
+      "**Survey Contents**",
       "Question Types"
     ]
   },
@@ -91,7 +91,7 @@
     "text": "mc_multiple_buttons\nUse type = 'mc_multiple_buttons' to generate the button version of mc_multiple.\nCode chunk:\n\n```{r}\nsd_question(\n  type  = 'mc_multiple_buttons',\n  id    = 'michael_jackson',\n  label = \"Which are your favorite Michael Jackson songs (select all that apply)?\",\n  option = c(\n    \"Thriller (1982)\"          = \"thriller\",\n    \"Billie Jean (1982)\"       = \"billie_jean\",\n    \"Beat It (1982)\"           = \"beat_it\",\n    \"Man in the Mirror (1987)\" = \"man_in_the_mirror\",\n    \"Smooth Criminal (1987)\"   = \"smooth_criminal\",\n    \"Black or White (1991)\"    = \"black_or_white\",\n    \"Bad (1987)\"               = \"bad\",\n    \"Human Nature (1982)\"      = \"human_nature\"\n  )\n)\n```\n\nOutput:\n\n\n\n\nWhich are your favorite Michael Jackson songs (select all that apply)? *\n\n\n\n\n\nThriller (1982)\n\nBillie Jean (1982)\n\nBeat It (1982)\n\nMan in the Mirror (1987)\n\nSmooth Criminal (1987)\n\nBlack or White (1991)\n\nBad (1987)\n\nHuman Nature (1982)",
     "crumbs": [
       "Documentation",
-      "Survey Content",
+      "**Survey Contents**",
       "Question Types"
     ]
   },
@@ -103,7 +103,7 @@
     "text": "select\nUse type = 'select' to specify a drop down select type question.\nCode chunk:\n\n```{r}\nsd_question(\n  type  = 'select',\n  id    = 'education',\n  label = \"What is the highest level of education you have attained?\",\n  option = c(\n    \"Did not attend high school\" = \"hs_no\",\n    \"Some high school\"           = \"hs_some\",\n    \"High school graduate\"       = \"hs_grad\",\n    \"Some college\"               = \"college_some\",\n    \"College\"                    = \"college_grad\",\n    \"Graduate Work\"              = \"grad\",\n    \"Prefer not to say\"          = \"no_response\"\n  )\n)\n```\n\nOutput:\n\n\n\n\nWhat is the highest level of education you have attained? *\n\n\nChoose an option...\nDid not attend high school\nSome high school\nHigh school graduate\nSome college\nCollege\nGraduate Work\nPrefer not to say",
     "crumbs": [
       "Documentation",
-      "Survey Content",
+      "**Survey Contents**",
       "Question Types"
     ]
   },
@@ -115,7 +115,7 @@
     "text": "slider (Under Construction)\nDue to compatibility issues, the slider type is still under construction.",
     "crumbs": [
       "Documentation",
-      "Survey Content",
+      "**Survey Contents**",
       "Question Types"
     ]
   },
@@ -127,7 +127,7 @@
     "text": "date\nUse type = 'date' to specify a date input type.\nCode chunk:\n\n```{r}\nsd_question(\n  type  = 'date',\n  id    = 'dob',\n  label = \"What is your date of birth?\"\n)\n```\n\nOutput:\n\n\n\n\nWhat is your date of birth? *\n\n\n\n\n\n\nThe date value will be today’s date by default. Upon clicking on the text box, you are provided with a date dialog box to choose date from.\n\n\n\n\n\n\nNote\n\n\n\nThe dialog box will only appear in a Shiny environment, hence why it is not appearing when clicked here.",
     "crumbs": [
       "Documentation",
-      "Survey Content",
+      "**Survey Contents**",
       "Question Types"
     ]
   },
@@ -139,7 +139,7 @@
     "text": "daterange\nUse type = 'daterange' to specify a date range input type.\nCode chunk:\n\n```{r}\nsd_question(\n  type  = 'daterange',\n  id    = 'hs_date',\n  label = \"When did you start and finish high school?\"\n)\n```\n\nOutput:\n\n\n\n\nWhen did you start and finish high school? *\n\n\n\n\n-\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nThe dialog box will only appear in a Shiny environment, hence why it is not appearing when clicked here.",
     "crumbs": [
       "Documentation",
-      "Survey Content",
+      "**Survey Contents**",
       "Question Types"
     ]
   },
@@ -151,8 +151,8 @@
     "text": "This guide covers the main elements in your .qmd survey file as well as how to add content to your survey, like pages, questions, etc.",
     "crumbs": [
       "Documentation",
-      "Survey Content",
-      "Survey Components"
+      "**Survey Contents**",
+      "Components"
     ]
   },
   {
@@ -163,8 +163,8 @@
     "text": "Required YAML content\nFor a surveydown survey, your YAML must contain at least the following:\n---\nserver: shiny\nfilters: [surveydown]\n---\nThe server: shiny part ensures that the document will render as a shiny app. The filters: [surveydown] part applies the surveydown Quarto extension to the project, which is required.",
     "crumbs": [
       "Documentation",
-      "Survey Content",
-      "Survey Components"
+      "**Survey Contents**",
+      "Components"
     ]
   },
   {
@@ -175,8 +175,8 @@
     "text": "Setting the theme\nThe YAML can also be used to set several optional global settings, such as the overall survey theme:\n---\ntheme: united # Any bootswatch theme \n---\nThere are 25 bootswatch themes to choose from. You can also provide a custom.scss file to further modify the theme, or even combine the two, e.g.:\n---\ntheme: [united, custom.scss]\n---",
     "crumbs": [
       "Documentation",
-      "Survey Content",
-      "Survey Components"
+      "**Survey Contents**",
+      "Components"
     ]
   },
   {
@@ -187,8 +187,8 @@
     "text": "Progress bar\nYou can modify the survey progress bar with the barcolor and barposition keys, e.g.:\n---\nbarcolor: theme \nbarposition: top \n---\nThe barcolor key defines the color of the progress bar. It defaults to theme, meaning it will take the primary theme color. You may also use any hex code to overwrite this color as you wish, e.g.: #768692.\nThe barposition key defines the position of the progress bar. It defaults to top, but can also be changed to bottom or none (to remove the bar). The progress bar updates on every question the user clicks on, not pages.",
     "crumbs": [
       "Documentation",
-      "Survey Content",
-      "Survey Components"
+      "**Survey Contents**",
+      "Components"
     ]
   },
   {
@@ -199,8 +199,8 @@
     "text": "Adding pages\nIn surveydown, pages are defined using fences (:::), like this:\n\n::: {#welcome .sd-page}\n\nPage 1 content here\n\n:::\n\n::: {#page2 .sd-page}\n\nPage 2 content here\n\n:::\n\nAs you can see, we use three colon symbols :::, called a “fence”, to mark the start and end of pages. This notation is commonly used in Quarto for a variety of use cases, like defining subfigures in images.\nIn the starting fence, you need to define a page name (e.g. welcome and page2 in the example above) and you need to define the class as .sd-page. Then anything you put between the page fences will appear on that page.",
     "crumbs": [
       "Documentation",
-      "Survey Content",
-      "Survey Components"
+      "**Survey Contents**",
+      "Components"
     ]
   },
   {
@@ -211,8 +211,8 @@
     "text": "Adding navigation buttons\nTo navigate to the next page, you need to insert a sd_next() function call inside a code chunk, like this:\n\n```{r}\nsd_next(next_page = 'page2')\n```\n\nThe above code chunk will create a “Next” button that goes on to page 2 that looks like this:\n\n\nNext\n\n\nIn this example, the next button has to be inserted in a code chunk in between the ::: fences of the welcome page in order to have a “Next” button that goes on to page 2. You can also send the user to other pages by just changing the value assigned to the next_page argument.\nFinally, you can also change the label of the button by changing the label argument, like this:\n\n```{r}\nsd_next(next_page = 'page2', label = 'Next page')\n```\n\n\n\nNext page",
     "crumbs": [
       "Documentation",
-      "Survey Content",
-      "Survey Components"
+      "**Survey Contents**",
+      "Components"
     ]
   },
   {
@@ -223,8 +223,8 @@
     "text": "Ending the survey\nTo end a survey, all you have to do is create a page with no sd_next() button on it. This will effectively serve as a ending page, because the respondent will not be able to navigate anywhere else once reaching a page with no sd_next() button.\nFor example, you may want to have a screenout page that respondents are sent to if they answer a certain way on a question (see the basic skipping page for an example). You can do this by creating a page with no sd_next() button on it, like this:\n\n::: {#screenout .sd-page}\n\nScreenout page content here\n\n:::\n\nWhen a respondent reaches this page, they will not be able to navigate anywhere else, so the survey is over.",
     "crumbs": [
       "Documentation",
-      "Survey Content",
-      "Survey Components"
+      "**Survey Contents**",
+      "Components"
     ]
   },
   {
@@ -235,8 +235,8 @@
     "text": "Adding questions\nEvery survey question is created using the sd_question() function inside a code chunk. The question type is defined by the type argument. For example, to add a multiple choice question, you could insert the following code chunk:\n\n```{r}\nsd_question(\n  type  = 'mc',\n  id    = 'penguins',\n  label = \"Which is your favorite type of penguin?\",\n  option = c(\n    'Adélie'    = 'adelie',\n    'Chinstrap' = 'chinstrap',\n    'Gentoo'    = 'gentoo'\n  )\n)\n```\n\nThe above code chunk will create a multiple choice question that looks like this:\n\n\n\n\nWhich is your favorite type of penguin? *\n\n\n\n\n\nAdélie\n\n\n\n\n\nChinstrap\n\n\n\n\n\nGentoo\n\n\n\n\n\n\n\n\nThe sd_question() function can be used to create a variety of question types, like text input, select drop down choices, and more by changing the type argument (see the Questions Types page).\nThe function has many other arguments for customizing the look and feel of the question, such as the height and width (see the Formatting Questions page).\nBy default all questions are optional, but you can make questions required in the configuration options (see the Configuration Options page for details).",
     "crumbs": [
       "Documentation",
-      "Survey Content",
-      "Survey Components"
+      "**Survey Contents**",
+      "Components"
     ]
   },
   {
@@ -302,7 +302,7 @@
     "text": "Once you have previewed and tested your survey and are ready to field it, it is time to make it live for respondents to fill out.\nTo deploy your survey, you’ll need to have the following recipes ready:\nThese steps are easy to follow. We will go through one by one.",
     "crumbs": [
       "Documentation",
-      "Deploying Your Survey"
+      "Deploy"
     ]
   },
   {
@@ -313,7 +313,7 @@
     "text": "Step 1-1: Construct your survey\nConstruct your survey using the {surveydown} R package and the surveydown Quarto extension.\nThe previous articles in Usage Guide are sufficient to guide you through the survey construction process.",
     "crumbs": [
       "Documentation",
-      "Deploying Your Survey"
+      "Deploy"
     ]
   },
   {
@@ -324,7 +324,7 @@
     "text": "Step 1-2: Set your password\nOne important setting is the password of your supabase project. Here’s how.\nWhile you set up your supabase project, you will create a password for it. This password will then be defined in your survey project. In the very end of your survey .qmd file, you’ll need to define the db variable, which should be the settings of your supabase project. There is an argument called password. You can directly paste your password here as password = \"my_password\", but it’s not recommended since this will make your supabase project unsafe.\nWe recommend you to write password = Sys.getenv(\"SUPABASE_PASSWORD\"), like this:\n\ndb &lt;- sd_database(\n  # Other settings...\n  password = Sys.getenv(\"SUPABASE_PASSWORD\")\n)\n\nThen, define the password using the sd_set_password() function. For example, if your password is my_password, you should run sd_set_password(\"my_password\") in the R Console.\nGreat! Now you have your supabase password successfully defined in your survey project!\nIf you are interested, below are the details of what sd_set_password() does:\n\nIt creates an .Renviron file or writes into an existing one.\nIn this .Renviron file, it writes in SUPABASE_PASSWORD=my_password, where \"my_password\" is whatever your argument of the sd_set_password() function.\nIf there is a previously defined SUPABASE_PASSWORD in .Renviron, it will be overwritten, so you are safe to run this function multiple times.\nIt adds .Renviron into .gitignore to avoid it being pushed to GitHub thus keeps your password safe. If you run multiple times, .Renviron will appear only once in .gitignore.",
     "crumbs": [
       "Documentation",
-      "Deploying Your Survey"
+      "Deploy"
     ]
   },
   {
@@ -335,7 +335,7 @@
     "text": "Step 1-3: Render your .qmd file\nThis is simple: just hit Render or cmd/ctrl + shift + K (Mac/Win). But the reason why I make this a stand-alone step is that, WITHOUT rendering your .qmd file, your survey CANNOT be deployed online.\nOne more thing… If you fail to deploy locally while you have set every argument correctly in your db variable, try to define gssencmode = \"disable\" in your db variable:\n\ndb &lt;- sd_database(\n  # Other settings...\n  gssencmode = \"disable\"\n)\n\nThis can help solve your connection problem. The value of gssencmode is set to \"prefer\" by default.",
     "crumbs": [
       "Documentation",
-      "Deploying Your Survey"
+      "Deploy"
     ]
   },
   {
@@ -346,7 +346,7 @@
     "text": "Static Fetching\nOnce you have your database properly set up and your survey is live, you can fetch the data using the sd_get_data() function. All you have to do is pass in the db object you created with sd_database() to the sd_get_data() function.\nFor example, if you have a table called my_table in your Supabase database, you can fetch the data like this:\n\nlibrary(surveydown)\n\ndb &lt;- sd_database(\n  user   = 'postgres.axzkymswaxcasjdflkurrj',\n  host   = 'aws-0-us-east-1.pooler.supabase.com',\n  port   = 5678,\n  db_name = 'postgres',\n  table_name = 'my_table'\n)\n\ndata &lt;- sd_get_data(db)\n\nHere the data object will be a data.frame with the data from your database.\n\n\nReactive Fetching\nThe above example is intended for an analysis context, where all you want to do is fetch the latest data from your database. However, you may also want to fetch the data in a reactive context (i.e. in your survey). For example, perhaps you want to show respondents a bar chart of the most common responses to a question. To enable this, all you have to do is set reactive = TRUE in the sd_get_data() function:\n\ndata &lt;- sd_get_data(db, reactive = TRUE)\n\nNow the data object will be a reactive expression, not a data.frame.\n\n\n\n\n\n\nImportant\n\n\n\nThe reactive = TRUE feature must be used in the server code chunk of your survey. Placing this anywhere else (e.g. a code chunk in the main part of your survey) will result in an error.\n\n\nTo use it, you have to call it with () to get the latest data as a data.frame. For example:\n\ndata &lt;- sd_get_data(db, reactive = TRUE)\n\noutput$my_plot &lt;- renderPlot({  \n  my_data &lt;- data()\n  # insert code here to make a plot with my_data\n})\n\nHere the my_data object will be a data.frame with the latest data from your database, which you could then use to make a plot. In this example, the output$my_plot object will be a plot, which you can then display in your survey by placing plotOutput(\"my_plot\") in a code chunk (or inline code) somewhere in your survey.\nSee the Reactivity page for more information on how to use reactivity in your survey.\n\n\n\n\n Back to top",
     "crumbs": [
       "Documentation",
-      "Fetching Data"
+      "Fetch Data"
     ]
   },
   {
@@ -371,7 +371,7 @@
     "text": "Note\n\n\n\nEvery surveydown survey needs a password to secure access to the survey data. You should set one password for each project.\n\n\n\nSetting your project password\nTo set your surveydown password in a given project, run:\n\nsd_set_password(\"your_password\")\n\n\n\n\n\n\n\nImportant\n\n\n\nDo NOT put the sd_set_password() function in your .qmd file!\n\n\nThis is designed to be run once in your R console and not again (unless you want to change the password).\n\n\nWhat does this do?\nBy running sd_set_password(), a .Renviron file is created in your project directory that contains your password. This file is used to access your database and write data to it, as well as provide access to the admin page. This file must remain in the root project directory - do not modify it.\nThe call to sd_set_password() also adds a .gitignore file in your project with .Renviron in it, so it won’t be accidentally pushed to GitHub. If a .gitignore file already exists, it will be updated to include .Renviron.\n\n\nWhat is the password used for?\nYour password is used for two purposes:\n\nObtaining access to the admin page of your survey.\nObtaining access to the Supabase database storing your survey data (see Database Settings).\n\n\n\n\n\n\n\nImportant\n\n\n\nBe sure to use the same password when setting up your supabase database.\n\n\n\n\n\n\n Back to top",
     "crumbs": [
       "Documentation",
-      "Setting a Password"
+      "Password"
     ]
   },
   {
@@ -396,7 +396,7 @@
     "text": "Back to top",
     "crumbs": [
       "Documentation",
-      "Survey Content",
+      "**Survey Contents**",
       "Reactivity"
     ]
   },
@@ -432,7 +432,7 @@
     "text": "This guide will help users set up a supabase account to work inside of SurveyDown for quick & live server updates\n\n\nStep 1: Create your account\nNavigate to supabase website and create an account.\n\n\nStep 2: Start a project\nFrom the Main page, select “Start your Project” underlined in red.\n\n\n\nStep 3: Create a project\nAfter creating your new account proceeding to your dashboard, select “New Project”.\n\n\n\nStep 4: Create a database\nThe next step is to create your respective database. Here you must use the password you created for your survey project. See the Setting a Password page for details.\n\n\n\nStep 5: Find the DB parameters\nWhile on your project dashboard select the settings gear in the bottom left, then select “Database”.\n\n\n\n\nStep 6: Copy the DB parameters\nCopy the all of the connection parameters to your database.\n\n\n\nStep 7: Update the arguments in sd_database()\nNow that we’ve created our database and have gotten all the needed parameters we can now connect the database to our survey.\nTaking a look at our code inside of our survey.qmd file you will notice five arguments in sd_database(). This is where you will replace the NULL values with the ones you copied from your database. The last argument, table_name, can be any name of your choosing.\n\ndb &lt;- sd_database(\n  host       = NULL,\n  db_name    = NULL,\n  port       = NULL,\n  user       = NULL,\n  table_name = NULL\n)\n\nIf you don’t have a database setup yet, you can just leave the function blank and your survey will still run, just without any response data being stored:\n\ndb &lt;- sd_database()\n\n\n\nExample\nAn example of what the function should look like after you have updated all the parameters is below:\n\ndb &lt;- sd_database(\n  host       = \"aws-0-us-west-1.pooler.supabase.com\", \n  db_name    = \"postgres\", # For the purpose of supabase, this will always be \"postgres\".\n  port       = \"1234\", \n  user       = \"postgres.UserValue\",\n  table_name = \"my_table_name\"\n)\n\n\n\nTada!!!\nGoing back to your Project dashboard and selecting “Table Editor” on the left hand bar tab you should see your table appear once your survey is run and interacted with atleast once.\n\n\n\n\n Back to top",
     "crumbs": [
       "Documentation",
-      "Database Settings"
+      "Store Data"
     ]
   },
   {
@@ -443,7 +443,7 @@
     "text": "Install R & Quarto\nYou need both:\n\nInstall \nInstall Quarto\n\nAlso, we recommend working with an IDE. RStudio is great, and we also like VS Code and Positron.\n\n\nInstall the {surveydown} R package\nThe {surveydown} R package is not yet on CRAN, but you can install the development version from GitHub with the following command in your R console:\n\n# install.packages(\"remotes\")\nremotes::install_github(\"surveydown-dev/surveydown\")\n\n\n\nInstall the surveydown Quarto Extension\nOnce you start working on an actual survey, you’ll need the surveydown Quarto extension.\n\nNote: The extension must be locally installed in a _extensions folder in your root survey project folder.\n\nWe recommend starting with a template survey, which will automatically add the latest extension for you:\n\nsurveydown::sd_create_survey(\"path/to/folder\")\n\nOtherwise, you can install the extension using the terminal or with the {surveydown} package:\n\nUsing the Terminal:\n\n\nquarto install extension jhelvy/surveydown-ext\n\n\nUsing the {surveydown} R package:\n\n\nsurveydown::sd_update_extension()\n\n\n\nVersion Control\nWe made some R functions to make it easier to keep your R package and Quarto extension up to date.\nTo check if you have the latest R package and Quarto extension installed, run:\n\nsurveydown::sd_check_versions()\n\nTo update the R package and Quarto extension to the latest version, run:\n\nsurveydown::sd_update_surveydown()\n\n\n\n\n\n Back to top",
     "crumbs": [
       "Documentation",
-      "Installation"
+      "Install"
     ]
   },
   {
@@ -454,7 +454,7 @@
     "text": "Overview\nIn surveydown, surveys are designed using markdown and R code in a single Quarto document (a .qmd file). There is no GUI or drag-and-drop interface - simply write plain text (markdown & R code) and boom - you have a survey! 🎉\nThe {surveydown} R package provides a set of functions for defining the survey content and configuration options. Each function starts with sd_ to make them easy to identify.\nThe platform is based on some basic principles:\n\nAdd content to your survey using markdown text (or in RStudio use the visual editor).\nDefine survey questions in R code chunks with the sd_question() function.\nDefine pages using fences (:::), with navigation buttons handled using the sd_next() function.\nAdd rich functionality to your survey using configuration options in the server code chunk.\nStore your respondent data on supabase by setting the database settings in the server code chunk.\n\nThis approach ensures a flexible survey platform that is fully reproducible and easy to customize.\nThe remaining steps on this page will guide you through the process of creating a surveydown survey.\n\n\n1. Install\nSee installation.\n\n\n2. Start with a template\nIn the R console, run the following to to setup a template survey:\n\nsurveydown::sd_create_survey(\"path/to/folder\")\n\nThis will create a folder located at \"path/to/folder\" with the following files:\n\nexample.qmd: a template survey you should edit.\nexample.Rproj: An RStudio project file (helpful if you’re working in RStudio)\n_extensions: A folder with the surveydown Quarto extension needed to make everything work (don’t modify this).\n\n\n\n\n\n\n\nImportant\n\n\n\nEvery survey created with {surveydown} should be in its own separate project folder.\n\n\n\n\n3. Add content\nSee the components page for details on the main components in a surveydown survey. For a quick overview, here’s how you add pages and questions:\n\nAdd pages with fences, like this:\n\n\n::: {#page1 .sd-page}\n\nPage 1 content here\n\n:::\n\n\nAdd questions with the sd_question() function in code chunks (see the Question Types page for more on the types of questions supported). For example, here’s a multiple choice question:\n\n\n```{r}\nsd_question(\n  type  = 'mc',\n  id    = 'penguins',\n  label = \"Which is your favorite type of penguin?\",\n  option = c(\n    'Adélie'    = 'adelie',\n    'Chinstrap' = 'chinstrap',\n    'Gentoo'    = 'gentoo'\n  )\n)\n```\n\nOutput:\n\n\n\n\nWhich is your favorite type of penguin? *\n\n\n\n\n\nAdélie\n\n\n\n\n\nChinstrap\n\n\n\n\n\nGentoo\n\n\n\n\n\n\n\n\n\n4. Add configuration options\nIn the server chunk (bottom of the .qmd file), add control logic and other configuration options to your survey with the sd_config() function. See the Configuration Options page for more details.\n\n\n5. Setup your database\nAlso in the server chunk, setup your database with the sd_database() function. You can also leave it blank to preview / edit your survey without database connected, or set pause = TRUE to disconnect the survey. See the Database Settings page for more details.\n\n\n6. Locally preview\nPreview your survey by clicking the “Run Document” button in RStudio or in your terminal running the command:\n\nquarto serve survey_file_name.qmd\n\nReplacing survey_file_name.qmd with the name of your survey .qmd file.\n\n\n7. Deploy\nDeploy your survey by hosting it on your favorite server, like shinyapps.io, huggingface, etc. See the Deployment page for more details.\n\n\n\n\n Back to top",
     "crumbs": [
       "Documentation",
-      "Getting Started"
+      "Get Started"
     ]
   },
   {
@@ -465,8 +465,8 @@
     "text": "The sd_question() function has many optional arguments for modifying the appearance and behavior of questions. This page demonstrates some of the formatting options.",
     "crumbs": [
       "Documentation",
-      "Survey Content",
-      "Formatting Questions"
+      "**Survey Contents**",
+      "Formatting"
     ]
   },
   {
@@ -477,8 +477,8 @@
     "text": "Question labels\nThe label argument for any question type can accept markdown formatting. For example, the question below uses the * symbol to make some words bold, italic, and bold italic.\nCode chunk:\n\n```{r}\nsd_question(\n  type   = 'mc',\n  id     = 'markdown_label',\n  label  = \"**This** is a question *label* supporting ***markdown***:\",\n  option = c(\n    \"Option A\" = \"option_a\",\n    \"Option B\" = \"option_b\",\n    \"Option C\" = \"option_c\"\n  )\n)\n```\n\nOutput:\n\n\n\n\nThis is a question label supporting markdown: *\n\n\n\n\n\nOption A\n\n\n\n\n\nOption B\n\n\n\n\n\nOption C",
     "crumbs": [
       "Documentation",
-      "Survey Content",
-      "Formatting Questions"
+      "**Survey Contents**",
+      "Formatting"
     ]
   },
   {
@@ -489,8 +489,8 @@
     "text": "Option labels\nMarkdown formatting is also supported for the option labels in question types that have options, such as mc, mc_multiple, mc_buttons, and mc_multiple_buttons. For example:\nCode chunk:\n\n```{r}\nsd_question(\n  type   = 'mc_buttons',\n  id     = 'markdown_buttons',\n  label  = \"The 3 options below support markdown:\",\n  option = c(\n    \"*Option A*\"     = \"option_a\",\n    \"**Option B**\"   = \"option_b\",\n    \"***Option C***\" = \"option_c\"\n  )\n)\n```\n\nOutput:\n\n\n\n\nThe 3 options below support markdown: *\n\n\n\n\n\nOption A\n\nOption B\n\nOption C",
     "crumbs": [
       "Documentation",
-      "Survey Content",
-      "Formatting Questions"
+      "**Survey Contents**",
+      "Formatting"
     ]
   },
   {

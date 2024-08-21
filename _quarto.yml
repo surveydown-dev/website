@@ -8,16 +8,18 @@ project:
     - "!chunks/"
     - "index.qmd"
     - "about.qmd"
-    - "installation.qmd"
     - "documentation.qmd"
     - "getting-started.qmd"
+    - "installation.qmd"
     - "password.qmd"   
     - "components.qmd"
     - "questions.qmd"
     - "formatting.qmd"
+    - "reactivity.qmd"
     - "config.qmd"
     - "database.qmd"
     - "deployment.qmd"   
+    - "demos.qmd"
     - "faq.qmd"
     - "404.qmd"
 
@@ -49,11 +51,13 @@ website:
         href: about.qmd   
       - text: "Documentation"
         href: documentation.qmd   
-      - text: "FAQ"
-        href: faq.qmd
+      - text: "Demos"
+        href: demos.qmd
       - text: "{{< fa brands r-project >}} Package"
         href: https://pkg.surveydown.org/
     right:
+      - text: "FAQ"
+        href: faq.qmd
       - icon: github
         href: https://github.com/surveydown-dev
 
@@ -78,6 +82,8 @@ website:
               href: questions.qmd
             - text: "Formatting Questions"
               href: formatting.qmd
+            - text: "Reactivity"
+              href: reactivity.qmd
         - text: "Configuration Options"
           href: config.qmd   
         - text: "Database Settings"

@@ -180,58 +180,25 @@
     ]
   },
   {
-    "objectID": "deployment.html",
-    "href": "deployment.html",
-    "title": "Deploying Your Survey",
-    "section": "",
-    "text": "Once you have previewed and tested your survey and are ready to field it, it is time to make it live for respondents to fill out.\nTo deploy your survey, you’ll need to have the following recipes ready:\nThese steps are easy to follow. We will go through one by one.",
-    "crumbs": [
-      "Documentation",
-      "Deploying Your Survey"
-    ]
-  },
-  {
-    "objectID": "deployment.html#step-1-1-construct-your-survey",
-    "href": "deployment.html#step-1-1-construct-your-survey",
-    "title": "Deploying Your Survey",
-    "section": "Step 1-1: Construct your survey",
-    "text": "Step 1-1: Construct your survey\nConstruct your survey using the {surveydown} R package and the surveydown Quarto extension.\nThe previous articles in Usage Guide are sufficient to guide you through the survey construction process.",
-    "crumbs": [
-      "Documentation",
-      "Deploying Your Survey"
-    ]
-  },
-  {
-    "objectID": "deployment.html#step-1-2-set-your-password",
-    "href": "deployment.html#step-1-2-set-your-password",
-    "title": "Deploying Your Survey",
-    "section": "Step 1-2: Set your password",
-    "text": "Step 1-2: Set your password\nOne important setting is the password of your supabase project. Here’s how.\nWhile you set up your supabase project, you will create a password for it. This password will then be defined in your survey project. In the very end of your survey .qmd file, you’ll need to define the db variable, which should be the settings of your supabase project. There is an argument called password. You can directly paste your password here as password = \"my_password\", but it’s not recommended since this will make your supabase project unsafe.\nWe recommend you to write password = Sys.getenv(\"SUPABASE_PASSWORD\"), like this:\n\ndb &lt;- sd_database(\n  # Other settings...\n  password = Sys.getenv(\"SUPABASE_PASSWORD\")\n)\n\nThen, define the password using the sd_set_password() function. For example, if your password is my_password, you should run sd_set_password(\"my_password\") in the R Console.\nGreat! Now you have your supabase password successfully defined in your survey project!\nIf you are interested, below are the details of what sd_set_password() does:\n\nIt creates an .Renviron file or writes into an existing one.\nIn this .Renviron file, it writes in SUPABASE_PASSWORD=my_password, where \"my_password\" is whatever your argument of the sd_set_password() function.\nIf there is a previously defined SUPABASE_PASSWORD in .Renviron, it will be overwritten, so you are safe to run this function multiple times.\nIt adds .Renviron into .gitignore to avoid it being pushed to GitHub thus keeps your password safe. If you run multiple times, .Renviron will appear only once in .gitignore.",
-    "crumbs": [
-      "Documentation",
-      "Deploying Your Survey"
-    ]
-  },
-  {
-    "objectID": "deployment.html#step-1-3-render-your-.qmd-file",
-    "href": "deployment.html#step-1-3-render-your-.qmd-file",
-    "title": "Deploying Your Survey",
-    "section": "Step 1-3: Render your .qmd file",
-    "text": "Step 1-3: Render your .qmd file\nThis is simple: just hit Render or cmd/ctrl + shift + K (Mac/Win). But the reason why I make this a stand-alone step is that, WITHOUT rendering your .qmd file, your survey CANNOT be deployed online.\nOne more thing… If you fail to deploy locally while you have set every argument correctly in your db variable, try to define gssencmode = \"disable\" in your db variable:\n\ndb &lt;- sd_database(\n  # Other settings...\n  gssencmode = \"disable\"\n)\n\nThis can help solve your connection problem. The value of gssencmode is set to \"prefer\" by default.",
-    "crumbs": [
-      "Documentation",
-      "Deploying Your Survey"
-    ]
-  },
-  {
     "objectID": "getting-started.html",
     "href": "getting-started.html",
     "title": "Getting Started with surveydown",
     "section": "",
-    "text": "Overview\nIn surveydown, surveys are designed using markdown and R code in a single Quarto document (a .qmd file). There is no GUI or drag-and-drop interface - simply write plain text (markdown & R code) and boom - you have a survey! 🎉\nThe {surveydown} R package provides a set of functions for defining the survey content and configuration options. Each function starts with sd_ to make them easy to identify.\nThe platform is based on some basic principles:\n\nAdd content to your survey using markdown text (or in RStudio use the visual editor).\nDefine survey questions in R code chunks with the sd_question() function.\nDefine pages using fences (:::), with navigation buttons handled using the sd_next() function.\nAdd rich functionality to your survey in the server code chunk (the last code chunk at the bottom of the .qmd file), including complex configuration options with the sd_config() function, and the database settings with the sd_database() function.\n\nThis approach ensures a flexible survey platform that is fully reproducible and easy to customize.\nThe remaining steps on this page will guide you through the process of creating a surveydown survey.\n\n\n1. Install\nSee installation.\n\n\n2. Start with a template\nIn the R console, run the following to to setup a template survey:\n\nsurveydown::sd_create_survey(\"path/to/folder\")\n\nThis will create a folder located at \"path/to/folder\" with the following files:\n\nexample.qmd: a template survey you should edit.\nexample.Rproj: An RStudio project file (helpful if you’re working in RStudio)\n_extensions: A folder with the surveydown Quarto extension needed to make everything work (don’t modify this).\n\n\n\n\n\n\n\nImportant\n\n\n\nEvery survey created with {surveydown} should be in its own separate project folder.\n\n\n\n\n3. Add content\nSee the components page for details on the main components in a surveydown survey, like. For a quick overview, here’s how you add pages and questions:\n\nAdd pages with fences, like this:\n\n\n::: {#page1 .sd-page}\n\nPage 1 content here\n\n:::\n\n\nAdd questions with the sd_question() function in code chunks (see the Question Types page for more on the types of questions supported). For example, here’s a multiple choice question:\n\n\n```{r}\nsd_question(\n  type  = 'mc',\n  id    = 'penguins',\n  label = \"Which is your favorite type of penguin?\",\n  option = c(\n    'Adélie'    = 'adelie',\n    'Chinstrap' = 'chinstrap',\n    'Gentoo'    = 'gentoo'\n  )\n)\n```\n\n\n\n4. Add configuration options\nIn the server chunk (bottom of the .qmd file), add control logic and other configuration options to your survey with the sd_config() function. See the Configuration Options page for more details.\n\n\n5. Setup your database\nAlso in the server chunk, setup your database with the sd_database() function. You can also leave it blank to preview / edit your survey without database connected, or set pause = TRUE to disconnect the survey. See the Database Settings page for more details.\n\n\n6. Locally preview\nPreview your survey by clicking the “Run Document” button in RStudio or in your terminal running the command:\n\nquarto serve survey_file_name.qmd\n\nReplacing survey_file_name.qmd with the name of your survey .qmd file.\n\n\n7. Deploy\nDeploy your survey by hosting it on your favorite server, like shinyapps.io, huggingface, etc. See the Deployment page for more details.\n\n\n\n\n Back to top",
+    "text": "Overview\nIn surveydown, surveys are designed using markdown and R code in a single Quarto document (a .qmd file). There is no GUI or drag-and-drop interface - simply write plain text (markdown & R code) and boom - you have a survey! 🎉\nThe {surveydown} R package provides a set of functions for defining the survey content and configuration options. Each function starts with sd_ to make them easy to identify.\nThe platform is based on some basic principles:\n\nAdd content to your survey using markdown text (or in RStudio use the visual editor).\nDefine survey questions in R code chunks with the sd_question() function.\nDefine pages using fences (:::), with navigation buttons handled using the sd_next() function.\nAdd rich functionality to your survey using configuration options in the server code chunk.\nStore your respondent data on supabase by setting the database settings in the server code chunk.\n\nThis approach ensures a flexible survey platform that is fully reproducible and easy to customize.\nThe remaining steps on this page will guide you through the process of creating a surveydown survey.\n\n\n1. Install\nSee installation.\n\n\n2. Start with a template\nIn the R console, run the following to to setup a template survey:\n\nsurveydown::sd_create_survey(\"path/to/folder\")\n\nThis will create a folder located at \"path/to/folder\" with the following files:\n\nexample.qmd: a template survey you should edit.\nexample.Rproj: An RStudio project file (helpful if you’re working in RStudio)\n_extensions: A folder with the surveydown Quarto extension needed to make everything work (don’t modify this).\n\n\n\n\n\n\n\nImportant\n\n\n\nEvery survey created with {surveydown} should be in its own separate project folder.\n\n\n\n\n3. Add content\nSee the components page for details on the main components in a surveydown survey. For a quick overview, here’s how you add pages and questions:\n\nAdd pages with fences, like this:\n\n\n::: {#page1 .sd-page}\n\nPage 1 content here\n\n:::\n\n\nAdd questions with the sd_question() function in code chunks (see the Question Types page for more on the types of questions supported). For example, here’s a multiple choice question:\n\n\n```{r}\nsd_question(\n  type  = 'mc',\n  id    = 'penguins',\n  label = \"Which is your favorite type of penguin?\",\n  option = c(\n    'Adélie'    = 'adelie',\n    'Chinstrap' = 'chinstrap',\n    'Gentoo'    = 'gentoo'\n  )\n)\n```\n\nOutput:\n\n\n\n\nWhich is your favorite type of penguin? *\n\n\n\n\n\nAdélie\n\n\n\n\n\nChinstrap\n\n\n\n\n\nGentoo\n\n\n\n\n\n\n\n\n\n4. Add configuration options\nIn the server chunk (bottom of the .qmd file), add control logic and other configuration options to your survey with the sd_config() function. See the Configuration Options page for more details.\n\n\n5. Setup your database\nAlso in the server chunk, setup your database with the sd_database() function. You can also leave it blank to preview / edit your survey without database connected, or set pause = TRUE to disconnect the survey. See the Database Settings page for more details.\n\n\n6. Locally preview\nPreview your survey by clicking the “Run Document” button in RStudio or in your terminal running the command:\n\nquarto serve survey_file_name.qmd\n\nReplacing survey_file_name.qmd with the name of your survey .qmd file.\n\n\n7. Deploy\nDeploy your survey by hosting it on your favorite server, like shinyapps.io, huggingface, etc. See the Deployment page for more details.\n\n\n\n\n Back to top",
     "crumbs": [
       "Documentation",
       "Getting Started"
+    ]
+  },
+  {
+    "objectID": "installation.html",
+    "href": "installation.html",
+    "title": "Installation",
+    "section": "",
+    "text": "Install R & Quarto\nYou need both:\n\nInstall \nInstall Quarto\n\nAlso, we recommend working with an IDE. RStudio is great, and we also like VS Code and Positron.\n\n\nInstall the {surveydown} R package\nThe {surveydown} R package is not yet on CRAN, but you can install the development version from GitHub with the following command in your R console:\n\n# install.packages(\"remotes\")\nremotes::install_github(\"surveydown-dev/surveydown\")\n\n\n\nInstall the surveydown Quarto Extension\nOnce you start working on an actual survey, you’ll need the surveydown Quarto extension.\n\nNote: The extension must be locally installed in a _extensions folder in your root survey project folder.\n\nWe recommend starting with a template survey, which will automatically add the latest extension for you:\n\nsurveydown::sd_create_survey(\"path/to/folder\")\n\nOtherwise, you can install the extension using the terminal or with the {surveydown} package:\n\nUsing the Terminal:\n\n\nquarto install extension jhelvy/surveydown-ext\n\n\nUsing the {surveydown} R package:\n\n\nsurveydown::sd_update_extension()\n\n\n\nVersion Control\nWe made some R functions to make it easier to keep your R package and Quarto extension up to date.\nTo check if you have the latest R package and Quarto extension installed, run:\n\nsurveydown::sd_check_versions()\n\nTo update the R package and Quarto extension to the latest version, run:\n\nsurveydown::sd_update_surveydown()\n\n\n\n\n\n Back to top",
+    "crumbs": [
+      "Documentation",
+      "Installation"
     ]
   },
   {
@@ -295,14 +262,47 @@
     ]
   },
   {
-    "objectID": "installation.html",
-    "href": "installation.html",
-    "title": "Installation",
+    "objectID": "deployment.html",
+    "href": "deployment.html",
+    "title": "Deploying Your Survey",
     "section": "",
-    "text": "Install R & Quarto\nYou need both:\n\nInstall \nInstall Quarto\n\nAlso, we recommend working with an IDE. RStudio is great, and we also like VS Code and Positron.\n\n\nInstall the {surveydown} R package\nThe {surveydown} R package is not yet on CRAN, but you can install the development version from GitHub with the following command in your R console:\n\n# install.packages(\"remotes\")\nremotes::install_github(\"surveydown-dev/surveydown\")\n\n\n\nInstall the surveydown Quarto Extension\nOnce you start working on an actual survey, you’ll need the surveydown Quarto extension.\n\nNote: The extension must be locally installed in a _extensions folder in your root survey project folder.\n\nWe recommend starting with a template survey, which will automatically add the latest extension for you:\n\nsurveydown::sd_create_survey(\"path/to/folder\")\n\nOtherwise, you can install the extension using the terminal or with the {surveydown} package:\n\nUsing the Terminal:\n\n\nquarto install extension jhelvy/surveydown-ext\n\n\nUsing the {surveydown} R package:\n\n\nsurveydown::sd_update_extension()\n\n\n\nVersion Control\nWe made some R functions to make it easier to keep your R package and Quarto extension up to date.\nTo check if you have the latest R package and Quarto extension installed, run:\n\nsurveydown::sd_check_versions()\n\nTo update the R package and Quarto extension to the latest version, run:\n\nsurveydown::sd_update_surveydown()\n\n\n\n\n\n Back to top",
+    "text": "Once you have previewed and tested your survey and are ready to field it, it is time to make it live for respondents to fill out.\nTo deploy your survey, you’ll need to have the following recipes ready:\nThese steps are easy to follow. We will go through one by one.",
     "crumbs": [
       "Documentation",
-      "Installation"
+      "Deploying Your Survey"
+    ]
+  },
+  {
+    "objectID": "deployment.html#step-1-1-construct-your-survey",
+    "href": "deployment.html#step-1-1-construct-your-survey",
+    "title": "Deploying Your Survey",
+    "section": "Step 1-1: Construct your survey",
+    "text": "Step 1-1: Construct your survey\nConstruct your survey using the {surveydown} R package and the surveydown Quarto extension.\nThe previous articles in Usage Guide are sufficient to guide you through the survey construction process.",
+    "crumbs": [
+      "Documentation",
+      "Deploying Your Survey"
+    ]
+  },
+  {
+    "objectID": "deployment.html#step-1-2-set-your-password",
+    "href": "deployment.html#step-1-2-set-your-password",
+    "title": "Deploying Your Survey",
+    "section": "Step 1-2: Set your password",
+    "text": "Step 1-2: Set your password\nOne important setting is the password of your supabase project. Here’s how.\nWhile you set up your supabase project, you will create a password for it. This password will then be defined in your survey project. In the very end of your survey .qmd file, you’ll need to define the db variable, which should be the settings of your supabase project. There is an argument called password. You can directly paste your password here as password = \"my_password\", but it’s not recommended since this will make your supabase project unsafe.\nWe recommend you to write password = Sys.getenv(\"SUPABASE_PASSWORD\"), like this:\n\ndb &lt;- sd_database(\n  # Other settings...\n  password = Sys.getenv(\"SUPABASE_PASSWORD\")\n)\n\nThen, define the password using the sd_set_password() function. For example, if your password is my_password, you should run sd_set_password(\"my_password\") in the R Console.\nGreat! Now you have your supabase password successfully defined in your survey project!\nIf you are interested, below are the details of what sd_set_password() does:\n\nIt creates an .Renviron file or writes into an existing one.\nIn this .Renviron file, it writes in SUPABASE_PASSWORD=my_password, where \"my_password\" is whatever your argument of the sd_set_password() function.\nIf there is a previously defined SUPABASE_PASSWORD in .Renviron, it will be overwritten, so you are safe to run this function multiple times.\nIt adds .Renviron into .gitignore to avoid it being pushed to GitHub thus keeps your password safe. If you run multiple times, .Renviron will appear only once in .gitignore.",
+    "crumbs": [
+      "Documentation",
+      "Deploying Your Survey"
+    ]
+  },
+  {
+    "objectID": "deployment.html#step-1-3-render-your-.qmd-file",
+    "href": "deployment.html#step-1-3-render-your-.qmd-file",
+    "title": "Deploying Your Survey",
+    "section": "Step 1-3: Render your .qmd file",
+    "text": "Step 1-3: Render your .qmd file\nThis is simple: just hit Render or cmd/ctrl + shift + K (Mac/Win). But the reason why I make this a stand-alone step is that, WITHOUT rendering your .qmd file, your survey CANNOT be deployed online.\nOne more thing… If you fail to deploy locally while you have set every argument correctly in your db variable, try to define gssencmode = \"disable\" in your db variable:\n\ndb &lt;- sd_database(\n  # Other settings...\n  gssencmode = \"disable\"\n)\n\nThis can help solve your connection problem. The value of gssencmode is set to \"prefer\" by default.",
+    "crumbs": [
+      "Documentation",
+      "Deploying Your Survey"
     ]
   },
   {

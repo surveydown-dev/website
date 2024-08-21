@@ -312,7 +312,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Add content to your survey using markdown text (or in RStudio use the visual editor).</li>
 <li>Define survey questions in R code chunks with the <code>sd_question()</code> function.</li>
 <li>Define pages using fences (<code>:::</code>), with navigation buttons handled using the <code>sd_next()</code> function.</li>
-<li>Add rich functionality to your survey in the server code chunk (the last code chunk at the bottom of the .qmd file), including complex <a href="./config.html">configuration options</a> with the <code>sd_config()</code> function, and the <a href="./database.html">database settings</a> with the <code>sd_database()</code> function.</li>
+<li>Add rich functionality to your survey using <a href="./config.html">configuration options</a> in the server code chunk.</li>
+<li>Store your respondent data on supabase by setting the <a href="./database.html">database settings</a> in the server code chunk.</li>
 </ul>
 <p>This approach ensures a flexible survey platform that is fully reproducible and easy to customize.</p>
 <p>The remaining steps on this page will guide you through the process of creating a surveydown survey.</p>
@@ -331,7 +332,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><code>example.qmd</code>: a template survey you should edit.</li>
 <li><code>example.Rproj</code>: An RStudio project file (helpful if you’re working in RStudio)</li>
-<li><code>_extensions</code>: A folder with the <a href="https://github.com/jhelvy/surveydown-ext">surveydown Quarto extension</a> needed to make everything work (don’t modify this).</li>
+<li><code>_extensions</code>: A folder with the <a href="https://github.com/surveydown-dev/surveydown-ext">surveydown Quarto extension</a> needed to make everything work (don’t modify this).</li>
 </ul>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -349,7 +350,7 @@ Important
 </section>
 <section id="add-content" class="level1">
 <h1>3. Add content</h1>
-<p>See the <a href="./components.html">components</a> page for details on the main components in a surveydown survey, like. For a quick overview, here’s how you add pages and questions:</p>
+<p>See the <a href="./components.html">components</a> page for details on the main components in a surveydown survey. For a quick overview, here’s how you add pages and questions:</p>
 <ul>
 <li>Add pages with fences, like this:</li>
 </ul>
@@ -376,6 +377,37 @@ Important
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Output:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="container- penguins" data-question-id="penguins" class="question-container">
+<div id="penguins" style="width:100%;" class="form-group shiny-input-radiogroup shiny-input-container" role="radiogroup" aria-labelledby="penguins-label">
+<label class="control-label" id="penguins-label" for="penguins"><p>Which is your favorite type of penguin? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
+</label>
+<div class="shiny-options-group">
+<div class="radio">
+<label>
+<input type="radio" name="penguins" value="adelie">
+<span>Adélie</span>
+</label>
+</div>
+<div class="radio">
+<label>
+<input type="radio" name="penguins" value="chinstrap">
+<span>Chinstrap</span>
+</label>
+</div>
+<div class="radio">
+<label>
+<input type="radio" name="penguins" value="gentoo">
+<span>Gentoo</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </section>
 <section id="add-configuration-options" class="level1">

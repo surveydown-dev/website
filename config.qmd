@@ -92,7 +92,7 @@ Now we can define a custom function that will check the values of the `penguins`
 
 ```{r}
 show_other <- function(input) {
-  return(input$penguins == "other" & input$show_penguins_other == "show")
+  return(input$penguins == "other" & input$show_other == "show")
 }
 
 config <- sd_config(
@@ -270,6 +270,12 @@ Use the `show_all_pages` argument to show al pages at once.
 :::
 
 By setting `show_all_pages = TRUE` in the `sd_config()` function, all pages will be shown when the survey loads. This can be helpful for quickly previewing the survey content and / or printing out the entire survey as a PDF.
+
+```{r}
+config <- sd_config(
+  show_all_pages = TRUE
+)
+```
 
 # Admin page
 

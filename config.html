@@ -328,7 +328,12 @@ Tip
 <p>Use the <code>show_if</code> argument to control basic conditional display logic.</p>
 </div>
 </div>
-<p>To have a question display conditionally upon the value of another question, you need to define both the <strong>triggering question</strong> and the <strong>target question</strong>. For example, let’s say we have a multiple choice question about people’s favorite penguin type, and the last option is “other”. If the respondent chose it, you may want a second question to popup that allows them to specify the other penguin type. To implement this, you would need to first define both questions, e.g.:</p>
+<p>It is often useful to have a question display conditionally based on the value of another question. For example, let’s say we have a multiple choice question about people’s favorite penguin type, and the last option is “other”. If the respondent chose it, you may want a second question to popup that allows them to specify the other penguin type, like this:</p>
+<center>
+<img src="images/screenshots/show_if.gif" width="600">
+</center>
+<p><br></p>
+<p>To implement this, you first need to define both the <strong>triggering question</strong> and the <strong>target question</strong>, like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'mc'</span>,</span>
@@ -357,13 +362,13 @@ Tip
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This will make the <code>penguins_other</code> question only appear if the respondent chose the <code>other</code> option in the <code>penguins</code> question.</p>
-<p>Here we’re using the <code>tibble::tribble()</code> function to define a data frame with three columns:</p>
+<p>Here we’re using the <code>tibble::tribble()</code> function (which is like <code>data.frame()</code> but easier to read), to define a data frame with three columns:</p>
 <ul>
 <li><code>question_id</code>: The <code>id</code> of the triggering question.</li>
 <li><code>question_value</code>: The triggering value.</li>
 <li><code>target</code>: The <code>id</code> of the target question to display.</li>
 </ul>
+<p>Each row in the data frame defines a condition.</p>
 <p>You don’t have to use <code>tibble::tribble()</code>, and in fact if you have a lot of <code>show_if</code> conditions, then you could create a csv file with all of your conditions in it and read it in to set the <code>show_if</code> conditions (just make sure the header has the same three column names), e.g.:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>

@@ -1,0 +1,56 @@
+---
+title: "Fetching Data"
+---
+
+# Static Fetching
+
+Once you have your database properly set up and your survey is live, you can fetch the data using the `sd_get_data()` function. All you have to do is pass in the `db` object you created with `sd_database()` to the `sd_get_data()` function. 
+
+For example, if you have a table called `my_table` in your Supabase database, you can fetch the data like this:
+
+```{r}
+library(surveydown)
+
+db <- sd_database(
+  user   = 'postgres.axzkymswaxcasjdflkurrj',
+  host   = 'aws-0-us-east-1.pooler.supabase.com',
+  port   = 5678,
+  db_name = 'postgres',
+  table_name = 'my_table'
+)
+
+data <- sd_get_data(db)
+```
+
+Here the `data` object will be a data.frame with the data from your database.
+
+# Reactive Fetching
+
+The above example is intended for an analysis context, where all you want to do is fetch the latest data from your database. However, you may also want to fetch the data in a reactive context (i.e. in your survey). For example, perhaps you want to show respondents a bar chart of the most common responses to a question. To enable this, all you have to do is set `reactive = TRUE` in the `sd_get_data()` function:
+
+```{r}
+data <- sd_get_data(db, reactive = TRUE)
+```
+
+Now the `data` object will be a reactive expression, not a data.frame. 
+
+::: {.callout-important}
+
+The `reactive = TRUE` feature must be used in the server code chunk of your survey. Placing this anywhere else (e.g. a code chunk in the main part of your survey) will result in an error.
+
+:::
+
+To use it, you have to call it with `()` to get the latest data as a data.frame. For example:
+
+```{r}
+data <- sd_get_data(db, reactive = TRUE)
+
+output$my_plot <- renderPlot({  
+  my_data <- data()
+  # insert code here to make a plot with my_data
+})
+```
+
+Here the `my_data` object will be a data.frame with the latest data from your database, which you could then use to make a plot. In this example, the `output$my_plot` object will be a plot, which you can then display in your survey by placing `plotOutput("my_plot")` in a code chunk (or inline code) somewhere in your survey.
+
+See the [Reactivity](reactivity.qmd) page for more information on how to use reactivity in your survey.

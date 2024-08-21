@@ -364,14 +364,29 @@
     "text": "Welcome to surveydown.org!\nsurveydown is a flexible, open-source platform for making surveys with , Quarto, shiny, and supabase. The accompanying  package is still in development, but you can already use it to create surveys!\n\n\n\n\n\nAbout the package and the open-source technologies behind it.\n\n\nABOUT\n\n\n\n\n\n\n\n\nDemos showcasing surveydown features.\n\n\nDEMOS\n\n\n\n\n\n\n\n\nDocumentation for building surveys with surveydown.\n\n\nDOCUMENTATION\n\n\n\n\n\n\n\n\nFrequently asked questions.\n\n\nFAQ\n\n\n\n\n\n\n\n\n Back to top"
   },
   {
-    "objectID": "password.html",
-    "href": "password.html",
-    "title": "Setting a Password",
+    "objectID": "demos.html",
+    "href": "demos.html",
+    "title": "Demos",
     "section": "",
-    "text": "Note\n\n\n\nEvery surveydown survey needs a password to secure access to the survey data. You should set one password for each project.\n\n\n\nSetting your project password\nTo set your surveydown password in a given project, run:\n\nsd_set_password(\"your_password\")\n\n\n\n\n\n\n\nImportant\n\n\n\nDo NOT put the sd_set_password() function in your .qmd file!\n\n\nThis is designed to be run once in your R console and not again (unless you want to change the password).\n\n\nWhat does this do?\nBy running sd_set_password(), a .Renviron file is created in your project directory that contains your password. This file is used to access your database and write data to it, as well as provide access to the admin page. This file must remain in the root project directory - do not modify it.\nThe call to sd_set_password() also adds a .gitignore file in your project with .Renviron in it, so it won’t be accidentally pushed to GitHub. If a .gitignore file already exists, it will be updated to include .Renviron.\n\n\nWhat is the password used for?\nYour password is used for two purposes:\n\nObtaining access to the admin page of your survey.\nObtaining access to the Supabase database storing your survey data (see Database Settings).\n\n\n\n\n\n\n\nImportant\n\n\n\nBe sure to use the same password when setting up your supabase database.\n\n\n\n\n\n\n Back to top",
+    "text": "Conditional Showing\n      This demo showcases conditional showing of a question using show_if() and show_if_custom().\n    \n  \n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "blog/index.html",
+    "href": "blog/index.html",
+    "title": "Blog",
+    "section": "",
+    "text": "Introducing surveydown: A markdown-based framework for generating surveys with Quarto and shiny\n\n\n\n\n\nA quick overview of the {surveydown} R package for making markdown-based surveys with open-source technologies: Quarto, shiny, and supabase. \n\n\n\n\n\n2024-08-21\n\n\nJohn Paul Helveston\n\n\n\n\n\n\nNo matching items\n\n Back to top"
+  },
+  {
+    "objectID": "reactivity.html",
+    "href": "reactivity.html",
+    "title": "Reactivity",
+    "section": "",
+    "text": "Back to top",
     "crumbs": [
       "Documentation",
-      "Password"
+      "**Survey Contents**",
+      "Reactivity"
     ]
   },
   {
@@ -389,30 +404,15 @@
     "text": "Use the required_questions argument in sd_config() to control required responses. See making a question required."
   },
   {
-    "objectID": "reactivity.html",
-    "href": "reactivity.html",
-    "title": "Reactivity",
+    "objectID": "password.html",
+    "href": "password.html",
+    "title": "Setting a Password",
     "section": "",
-    "text": "Back to top",
+    "text": "Note\n\n\n\nEvery surveydown survey needs a password to secure access to the survey data. You should set one password for each project.\n\n\n\nSetting your project password\nTo set your surveydown password in a given project, run:\n\nsd_set_password(\"your_password\")\n\n\n\n\n\n\n\nImportant\n\n\n\nDo NOT put the sd_set_password() function in your .qmd file!\n\n\nThis is designed to be run once in your R console and not again (unless you want to change the password).\n\n\nWhat does this do?\nBy running sd_set_password(), a .Renviron file is created in your project directory that contains your password. This file is used to access your database and write data to it, as well as provide access to the admin page. This file must remain in the root project directory - do not modify it.\nThe call to sd_set_password() also adds a .gitignore file in your project with .Renviron in it, so it won’t be accidentally pushed to GitHub. If a .gitignore file already exists, it will be updated to include .Renviron.\n\n\nWhat is the password used for?\nYour password is used for two purposes:\n\nObtaining access to the admin page of your survey.\nObtaining access to the Supabase database storing your survey data (see Database Settings).\n\n\n\n\n\n\n\nImportant\n\n\n\nBe sure to use the same password when setting up your supabase database.\n\n\n\n\n\n\n Back to top",
     "crumbs": [
       "Documentation",
-      "**Survey Contents**",
-      "Reactivity"
+      "Password"
     ]
-  },
-  {
-    "objectID": "demos.html",
-    "href": "demos.html",
-    "title": "Demos",
-    "section": "",
-    "text": "Back to top"
-  },
-  {
-    "objectID": "blog/index.html",
-    "href": "blog/index.html",
-    "title": "Blog",
-    "section": "",
-    "text": "Introducing surveydown: A markdown-based framework for generating surveys with Quarto and shiny\n\n\n\n\n\nA quick overview of the {surveydown} R package for making markdown-based surveys with open-source technologies: Quarto, shiny, and supabase. \n\n\n\n\n\n2024-08-21\n\n\nJohn Paul Helveston\n\n\n\n\n\n\nNo matching items\n\n Back to top"
   },
   {
     "objectID": "documentation.html",

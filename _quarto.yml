@@ -23,6 +23,8 @@ project:
     - "demos.qmd"
     - "faq.qmd"
     - "404.qmd"
+    - "blog/index.qmd"
+    - "blog/**/*.qmd"
 
 website:
   title: surveydown.org
@@ -57,6 +59,8 @@ website:
       - text: "{{< fa brands r-project >}} Package"
         href: https://pkg.surveydown.org/
     right:
+      - text: "Blog"
+        href: blog/index.qmd
       - text: "FAQ"
         href: faq.qmd
       - icon: github
@@ -112,6 +116,5 @@ execute:
 knitr:
   opts_chunk:
     comment: "#>"
-fig-retina: 3
-toc: true
+fig-retina: 3y
 toc-location: right

@@ -202,47 +202,24 @@
     ]
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Overview",
+    "objectID": "database.html",
+    "href": "database.html",
+    "title": "Database Settings",
     "section": "",
-    "text": "Overview\nsurveydown is a flexible, open-source platform for making surveys with , Quarto, shiny, and supabase. The accompanying  package is still in development, but you can already use it to create surveys!\n\n\n\n\n\nThe basic concept is this:\n\nDesign your survey as a Quarto shiny document using markdown and R code.\nRender your doc into a shiny app that can be hosted online and sent to respondents.\nStore your survey responses in a supabase database.\n\nWe recommend reading the Getting Started page to get a sense of how to use surveydown. The rest of the documentation covers more details on how to use surveydown.\n\nGet Started!\n\n\n\nBackground & Motivation\nMost survey platforms (e.g., Google forms, Qualtrics, etc.) use drag-and-drop interfaces to design surveys, making version control and collaboration with others difficult. They’re also not reproducible (others cannot easily reproduce a survey made on these platforms), and many require a paid subscription or license to use.\nAs an open-source, markdown-based platform, surveydown was designed to address these problems. In surveydown, all survey content is created with plain text (markdown and R code) in a single .qmd file that renders into a shiny app. This makes your survey easy to reproduce, share, and version control with common tools like Git. The survey data collected is also owned by the survey designer in a supabase account. Best of all, everything is open source and free :)\nIf you’re curious where this whole idea came from, check out this blog post, which outlines more on the general idea and the motivation for it. The post is now outdated in terms of the overall package design, but it provides something of an origin story and some of the motivation for developing this project.\n\n\nEditing a surveydown survey\nEditing a surveydown survey feels like editing a Quarto document. As a result, we recommend working with an IDE to edit your surveys as they offer a better experience. RStudio is great, and we also like VS Code and Positron.\nOnce you have a survey ready to edit in your favorite IDE, you can render it locally to see how it will look as you change features. For example, the gif below shows what it looks like to make a question required. This gives you an idea for what the development process is like. And because surveydown leverages shiny and Quarto, you can add all sorts of custom features and styles to your survey!\n\n\n\n\n\n\n\n Back to top"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome to surveydown.org!",
-    "section": "",
-    "text": "Welcome to surveydown.org!\nsurveydown is a flexible, open-source platform for making surveys with , Quarto, shiny, and supabase. The accompanying  package is still in development, but you can already use it to create surveys!\n\n\n\n\n\nAbout the package and the open-source technologies behind it.\n\n\nABOUT\n\n\n\n\n\n\n\n\nDemos showcasing surveydown features.\n\n\nDEMOS\n\n\n\n\n\n\n\n\nDocumentation for building surveys with surveydown.\n\n\nDOCUMENTATION\n\n\n\n\n\n\n\n\nFrequently asked questions.\n\n\nFAQ\n\n\n\n\n\n\n\n\n Back to top"
-  },
-  {
-    "objectID": "password.html",
-    "href": "password.html",
-    "title": "Setting a Password",
-    "section": "",
-    "text": "Note\n\n\n\nEvery surveydown survey needs a password to secure access to the survey data. You should set one password for each project.\n\n\n\nSetting your project password\nTo set your surveydown password in a given project, run:\n\nsd_set_password(\"your_password\")\n\n\n\n\n\n\n\nImportant\n\n\n\nDo NOT put the sd_set_password() function in your .qmd file!\n\n\nThis is designed to be run once in your R console and not again (unless you want to change the password).\n\n\nWhat does this do?\nBy running sd_set_password(), a .Renviron file is created in your project directory that contains your password. This file is used to access your database and write data to it, as well as provide access to the admin page. This file must remain in the root project directory - do not modify it.\nThe call to sd_set_password() also adds a .gitignore file in your project with .Renviron in it, so it won’t be accidentally pushed to GitHub. If a .gitignore file already exists, it will be updated to include .Renviron.\n\n\nWhat is the password used for?\nYour password is used for two purposes:\n\nObtaining access to the admin page of your survey.\nObtaining access to the Supabase database storing your survey data (see Database Settings).\n\n\n\n\n\n\n\nImportant\n\n\n\nBe sure to use the same password when setting up your supabase database.\n\n\n\n\n\n\n Back to top",
+    "text": "This guide will help users set up a supabase account to work inside of SurveyDown for quick & live server updates\n\n\nStep 1: Create your account\nNavigate to supabase website and create an account.\n\n\nStep 2: Start a project\nFrom the Main page, select “Start your Project” underlined in red.\n\n\n\nStep 3: Create a project\nAfter creating your new account proceeding to your dashboard, select “New Project”.\n\n\n\nStep 4: Create a database\nThe next step is to create your respective database. Here you must use the password you created for your survey project. See the Setting a Password page for details.\n\n\n\nStep 5: Find the DB parameters\nWhile on your project dashboard select the settings gear in the bottom left, then select “Database”.\n\n\n\n\nStep 6: Copy the DB parameters\nCopy the all of the connection parameters to your database.\n\n\n\nStep 7: Update the arguments in sd_database()\nNow that we’ve created our database and have gotten all the needed parameters we can now connect the database to our survey.\nTaking a look at our code inside of our survey.qmd file you will notice five arguments in sd_database(). This is where you will replace the NULL values with the ones you copied from your database. The last argument, table_name, can be any name of your choosing.\n\ndb &lt;- sd_database(\n  host       = NULL,\n  db_name    = NULL,\n  port       = NULL,\n  user       = NULL,\n  table_name = NULL\n)\n\nIf you don’t have a database setup yet, you can just leave the function blank and your survey will still run, just without any response data being stored:\n\ndb &lt;- sd_database()\n\n\n\nExample\nAn example of what the function should look like after you have updated all the parameters is below:\n\ndb &lt;- sd_database(\n  host       = \"aws-0-us-west-1.pooler.supabase.com\", \n  db_name    = \"postgres\", # For the purpose of supabase, this will always be \"postgres\".\n  port       = \"1234\", \n  user       = \"postgres.UserValue\",\n  table_name = \"my_table_name\"\n)\n\n\n\nTada!!!\nGoing back to your Project dashboard and selecting “Table Editor” on the left hand bar tab you should see your table appear once your survey is run and interacted with atleast once.\n\n\n\n\n Back to top",
     "crumbs": [
       "Documentation",
-      "Setting a Password"
+      "Database Settings"
     ]
   },
   {
-    "objectID": "demos.html",
-    "href": "demos.html",
-    "title": "Demos",
+    "objectID": "documentation.html",
+    "href": "documentation.html",
+    "title": "surveydown.org",
     "section": "",
-    "text": "Back to top"
-  },
-  {
-    "objectID": "reactivity.html",
-    "href": "reactivity.html",
-    "title": "Reactivity",
-    "section": "",
-    "text": "Back to top",
+    "text": "Welcome to your first surveydown survey!\nWe recommend reading the Getting Started page to get a sense of how to use surveydown. The rest of the documentation covers more details on how to use surveydown.\n\nGet Started!\n\n\n\n\n\n Back to top",
     "crumbs": [
-      "Documentation",
-      "Survey Content",
-      "Reactivity"
+      "Documentation"
     ]
   },
   {
@@ -260,24 +237,58 @@
     "text": "Use the required_questions argument in sd_config() to control required responses. See making a question required."
   },
   {
-    "objectID": "documentation.html",
-    "href": "documentation.html",
-    "title": "surveydown.org",
+    "objectID": "reactivity.html",
+    "href": "reactivity.html",
+    "title": "Reactivity",
     "section": "",
-    "text": "Welcome to your first surveydown survey!\nWe recommend reading the Getting Started page to get a sense of how to use surveydown. The rest of the documentation covers more details on how to use surveydown.\n\nGet Started!\n\n\n\n\n\n Back to top",
+    "text": "Back to top",
     "crumbs": [
-      "Documentation"
+      "Documentation",
+      "Survey Content",
+      "Reactivity"
     ]
   },
   {
-    "objectID": "database.html",
-    "href": "database.html",
-    "title": "Database Settings",
+    "objectID": "demos.html",
+    "href": "demos.html",
+    "title": "Demos",
     "section": "",
-    "text": "This guide will help users set up a supabase account to work inside of SurveyDown for quick & live server updates\n\n\nStep 1: Create your account\nNavigate to supabase website and create an account.\n\n\nStep 2: Start a project\nFrom the Main page, select “Start your Project” underlined in red.\n\n\n\nStep 3: Create a project\nAfter creating your new account proceeding to your dashboard, select “New Project”.\n\n\n\nStep 4: Create a database\nThe next step is to create your respective database. Here you must use the password you created for your survey project. See the Setting a Password page for details.\n\n\n\nStep 5: Find the DB parameters\nWhile on your project dashboard select the settings gear in the bottom left, then select “Database”.\n\n\n\n\nStep 6: Copy the DB parameters\nCopy the all of the connection parameters to your database.\n\n\n\nStep 7: Update the arguments in sd_database()\nNow that we’ve created our database and have gotten all the needed parameters we can now connect the database to our survey.\nTaking a look at our code inside of our survey.qmd file you will notice five arguments in sd_database(). This is where you will replace the NULL values with the ones you copied from your database. The last argument, table_name, can be any name of your choosing.\n\ndb &lt;- sd_database(\n  host       = NULL,\n  db_name    = NULL,\n  port       = NULL,\n  user       = NULL,\n  table_name = NULL\n)\n\nIf you don’t have a database setup yet, you can just leave the function blank and your survey will still run, just without any response data being stored:\n\ndb &lt;- sd_database()\n\n\n\nExample\nAn example of what the function should look like after you have updated all the parameters is below:\n\ndb &lt;- sd_database(\n  host       = \"aws-0-us-west-1.pooler.supabase.com\", \n  db_name    = \"postgres\", # For the purpose of supabase, this will always be \"postgres\".\n  port       = \"1234\", \n  user       = \"postgres.UserValue\",\n  table_name = \"my_table_name\"\n)\n\n\n\nTada!!!\nGoing back to your Project dashboard and selecting “Table Editor” on the left hand bar tab you should see your table appear once your survey is run and interacted with atleast once.\n\n\n\n\n Back to top",
+    "text": "Back to top"
+  },
+  {
+    "objectID": "password.html",
+    "href": "password.html",
+    "title": "Setting a Password",
+    "section": "",
+    "text": "Note\n\n\n\nEvery surveydown survey needs a password to secure access to the survey data. You should set one password for each project.\n\n\n\nSetting your project password\nTo set your surveydown password in a given project, run:\n\nsd_set_password(\"your_password\")\n\n\n\n\n\n\n\nImportant\n\n\n\nDo NOT put the sd_set_password() function in your .qmd file!\n\n\nThis is designed to be run once in your R console and not again (unless you want to change the password).\n\n\nWhat does this do?\nBy running sd_set_password(), a .Renviron file is created in your project directory that contains your password. This file is used to access your database and write data to it, as well as provide access to the admin page. This file must remain in the root project directory - do not modify it.\nThe call to sd_set_password() also adds a .gitignore file in your project with .Renviron in it, so it won’t be accidentally pushed to GitHub. If a .gitignore file already exists, it will be updated to include .Renviron.\n\n\nWhat is the password used for?\nYour password is used for two purposes:\n\nObtaining access to the admin page of your survey.\nObtaining access to the Supabase database storing your survey data (see Database Settings).\n\n\n\n\n\n\n\nImportant\n\n\n\nBe sure to use the same password when setting up your supabase database.\n\n\n\n\n\n\n Back to top",
     "crumbs": [
       "Documentation",
-      "Database Settings"
+      "Setting a Password"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to surveydown.org!",
+    "section": "",
+    "text": "Welcome to surveydown.org!\nsurveydown is a flexible, open-source platform for making surveys with , Quarto, shiny, and supabase. The accompanying  package is still in development, but you can already use it to create surveys!\n\n\n\n\n\nAbout the package and the open-source technologies behind it.\n\n\nABOUT\n\n\n\n\n\n\n\n\nDemos showcasing surveydown features.\n\n\nDEMOS\n\n\n\n\n\n\n\n\nDocumentation for building surveys with surveydown.\n\n\nDOCUMENTATION\n\n\n\n\n\n\n\n\nFrequently asked questions.\n\n\nFAQ\n\n\n\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Overview",
+    "section": "",
+    "text": "Overview\nsurveydown is a flexible, open-source platform for making surveys with , Quarto, shiny, and supabase. The accompanying  package is still in development, but you can already use it to create surveys!\n\n\n\n\n\nThe basic concept is this:\n\nDesign your survey as a Quarto shiny document using markdown and R code.\nRender your doc into a shiny app that can be hosted online and sent to respondents.\nStore your survey responses in a supabase database.\n\nWe recommend reading the Getting Started page to get a sense of how to use surveydown. The rest of the documentation covers more details on how to use surveydown.\n\nGet Started!\n\n\n\nBackground & Motivation\nMost survey platforms (e.g., Google forms, Qualtrics, etc.) use drag-and-drop interfaces to design surveys, making version control and collaboration with others difficult. They’re also not reproducible (others cannot easily reproduce a survey made on these platforms), and many require a paid subscription or license to use.\nAs an open-source, markdown-based platform, surveydown was designed to address these problems. In surveydown, all survey content is created with plain text (markdown and R code) in a single .qmd file that renders into a shiny app. This makes your survey easy to reproduce, share, and version control with common tools like Git. The survey data collected is also owned by the survey designer in a supabase account. Best of all, everything is open source and free :)\nIf you’re curious where this whole idea came from, check out this blog post, which outlines more on the general idea and the motivation for it. The post is now outdated in terms of the overall package design, but it provides something of an origin story and some of the motivation for developing this project.\n\n\nEditing a surveydown survey\nEditing a surveydown survey feels like editing a Quarto document. As a result, we recommend working with an IDE to edit your surveys as they offer a better experience. RStudio is great, and we also like VS Code and Positron.\nOnce you have a survey ready to edit in your favorite IDE, you can render it locally to see how it will look as you change features. For example, the gif below shows what it looks like to make a question required. This gives you an idea for what the development process is like. And because surveydown leverages shiny and Quarto, you can add all sorts of custom features and styles to your survey!\n\n\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "fetching-data.html",
+    "href": "fetching-data.html",
+    "title": "Fetching Data",
+    "section": "",
+    "text": "Static Fetching\nOnce you have your database properly set up and your survey is live, you can fetch the data using the sd_get_data() function. All you have to do is pass in the db object you created with sd_database() to the sd_get_data() function.\nFor example, if you have a table called my_table in your Supabase database, you can fetch the data like this:\n\nlibrary(surveydown)\n\ndb &lt;- sd_database(\n  user   = 'postgres.axzkymswaxcasjdflkurrj',\n  host   = 'aws-0-us-east-1.pooler.supabase.com',\n  port   = 5678,\n  db_name = 'postgres',\n  table_name = 'my_table'\n)\n\ndata &lt;- sd_get_data(db)\n\nHere the data object will be a data.frame with the data from your database.\n\n\nReactive Fetching\nThe above example is intended for an analysis context, where all you want to do is fetch the latest data from your database. However, you may also want to fetch the data in a reactive context (i.e. in your survey). For example, perhaps you want to show respondents a bar chart of the most common responses to a question. To enable this, all you have to do is set reactive = TRUE in the sd_get_data() function:\n\ndata &lt;- sd_get_data(db, reactive = TRUE)\n\nNow the data object will be a reactive expression, not a data.frame.\n\n\n\n\n\n\nImportant\n\n\n\nThe reactive = TRUE feature must be used in the server code chunk of your survey. Placing this anywhere else (e.g. a code chunk in the main part of your survey) will result in an error.\n\n\nTo use it, you have to call it with () to get the latest data as a data.frame. For example:\n\ndata &lt;- sd_get_data(db, reactive = TRUE)\n\noutput$my_plot &lt;- renderPlot({  \n  my_data &lt;- data()\n  # insert code here to make a plot with my_data\n})\n\nHere the my_data object will be a data.frame with the latest data from your database, which you could then use to make a plot. In this example, the output$my_plot object will be a plot, which you can then display in your survey by placing plotOutput(\"my_plot\") in a code chunk (or inline code) somewhere in your survey.\nSee the Reactivity page for more information on how to use reactivity in your survey.\n\n\n\n\n Back to top",
+    "crumbs": [
+      "Documentation",
+      "Fetching Data"
     ]
   },
   {

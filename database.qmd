@@ -2,22 +2,21 @@
 title: "Database Settings"
 ---
 
-> This guide will help users set up a supabase account to work inside of SurveyDown 
-for quick & live server updates
+The default database for storing survey responses is [Supabase]({{< var url_supabase >}}). We plan to also support the ability to use your own database in the future.
 
 ## Step 1: Create your account 
 
-Navigate to the [supabase](https://supabase.com/) website and create an account by selecting "Start your project" on the main page.
+Navigate to the [Supabase]({{< var url_supabase >}}) website and create an account. 
 
 ## Step 2: Create a project
 
-After creating your new account proceed to your dashboard and select "New Project".
+Select "Start your project" on the main page or navigate to your dashboard and select "New Project".
 
 <img src="images/screenshots/main_pageS3.png" alt="drawing" width="700"/>
 
 ## Step 3: Create a database
 
-The next step is to create your respective database. Here you **must** use the password you created for your survey project. See the [Setting a Password](password.qmd) page for details. If you forgot the password you set earlier run the command `Sys.getenv("SUPABASE_PASSWORD")` inside your environment. 
+Create a database. Here you **must** use the password you created for your survey project (see the [Setting a Password](password.qmd) page). If you forgot the password you set earlier, you can run `sd_show_password()` in your R console to display it.
 
 <img src="images/screenshots/main_pageS4.png" alt="drawing" width="700"/>
 

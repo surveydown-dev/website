@@ -315,36 +315,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <section id="step-1-create-your-account" class="level1">
 <h1>Step 1: Create your account</h1>
-<p>Navigate to <a href="https://supabase.com/">supabase</a> website and create an account.</p>
+<p>Navigate to the <a href="https://supabase.com/">supabase</a> website and create an account by selecting “Start your project” on the main page.</p>
 </section>
-<section id="step-2-start-a-project" class="level1">
-<h1>Step 2: Start a project</h1>
-<p>From the Main page, select “Start your Project” underlined in red.</p>
-<p><img src="images/screenshots/main_pageS2.png" alt="drawing" width="700"></p>
-</section>
-<section id="step-3-create-a-project" class="level1">
-<h1>Step 3: Create a project</h1>
-<p>After creating your new account proceeding to your dashboard, select “New Project”.</p>
+<section id="step-2-create-a-project" class="level1">
+<h1>Step 2: Create a project</h1>
+<p>After creating your new account proceed to your dashboard and select “New Project”.</p>
 <p><img src="images/screenshots/main_pageS3.png" alt="drawing" width="700"></p>
 </section>
-<section id="step-4-create-a-database" class="level1">
-<h1>Step 4: Create a database</h1>
-<p>The next step is to create your respective database. Here you <strong>must</strong> use the password you created for your survey project. See the <a href="./password.html">Setting a Password</a> page for details.</p>
+<section id="step-3-create-a-database" class="level1">
+<h1>Step 3: Create a database</h1>
+<p>The next step is to create your respective database. Here you <strong>must</strong> use the password you created for your survey project. See the <a href="./password.html">Setting a Password</a> page for details. If you forgot the password you set earlier run the command <code>Sys.getenv("SUPABASE_PASSWORD")</code> inside your environment.</p>
 <p><img src="images/screenshots/main_pageS4.png" alt="drawing" width="700"></p>
 </section>
-<section id="step-5-find-the-db-parameters" class="level1">
-<h1>Step 5: Find the DB parameters</h1>
+<section id="step-4-find-the-db-parameters" class="level1">
+<h1>Step 4: Find the DB parameters</h1>
 <p>While on your project dashboard select the settings gear in the bottom left, then select “Database”.</p>
 <p><img src="images/screenshots/main_pageS5.png" alt="drawing" width="700"></p>
 <p><img src="images/screenshots/main_pageS6.png" alt="drawing" width="500"></p>
 </section>
-<section id="step-6-copy-the-db-parameters" class="level1">
-<h1>Step 6: Copy the DB parameters</h1>
+<section id="step-5-copy-the-db-parameters" class="level1">
+<h1>Step 5: Copy the DB parameters</h1>
 <p>Copy the all of the connection parameters to your database.</p>
 <p><img src="images/screenshots/main_pageS7.png" alt="drawing" width="700"></p>
 </section>
-<section id="step-7-update-the-arguments-in-sd_database" class="level1">
-<h1>Step 7: Update the arguments in <code>sd_database()</code></h1>
+<section id="step-6-update-the-arguments-in-sd_database" class="level1">
+<h1>Step 6: Update the arguments in <code>sd_database()</code></h1>
 <p>Now that we’ve created our database and have gotten all the needed parameters we can now connect the database to our survey.</p>
 <p>Taking a look at our code inside of our <strong>survey.qmd</strong> file you will notice five arguments in <code>sd_database()</code>. This is where you will replace the <code>NULL</code> values with the ones you copied from your database. The last argument, <code>table_name</code>, can be any name of your choosing.</p>
 <div class="cell">

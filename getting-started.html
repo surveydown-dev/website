@@ -312,8 +312,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="overview" class="level1">
-<h1>Overview</h1>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
 <p>In surveydown, surveys are designed using markdown and R code in a single <a href="https://quarto.org/">Quarto</a> document (a <code>.qmd</code> file). There is no GUI or drag-and-drop interface - simply write plain text (markdown &amp; R code) and boom - you have a survey! 🎉</p>
 <p>The <a href="https://pkg.surveydown.org">{surveydown}</a> R package provides a set of functions for defining the survey content and configuration options. Each function starts with <code>sd_</code> to make them easy to identify.</p>
 <p>The platform is based on some basic principles:</p>
@@ -327,12 +327,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This approach ensures a flexible survey platform that is fully reproducible and easy to customize.</p>
 <p>The remaining steps on this page will guide you through the process of creating a surveydown survey.</p>
 </section>
-<section id="install" class="level1">
-<h1>1. Install</h1>
+<section id="install" class="level2">
+<h2 class="anchored" data-anchor-id="install">1. Install</h2>
 <p>See <a href="./installation.html">installation</a>.</p>
 </section>
-<section id="start-with-a-template" class="level1">
-<h1>2. Start with a template</h1>
+<section id="start-with-a-template" class="level2">
+<h2 class="anchored" data-anchor-id="start-with-a-template">2. Start with a template</h2>
 <p>In the R console, run the following to to setup a template survey:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>surveydown<span class="sc">::</span><span class="fu">sd_create_survey</span>(<span class="st">"path/to/folder"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -357,8 +357,8 @@ Important
 </div>
 </div>
 </section>
-<section id="add-content" class="level1">
-<h1>3. Add content</h1>
+<section id="add-content" class="level2">
+<h2 class="anchored" data-anchor-id="add-content">3. Add content</h2>
 <p>See the <a href="./components.html">components</a> page for details on the main components in a surveydown survey. For a quick overview, here’s how you add pages and questions:</p>
 <ul>
 <li>Add pages with fences, like this:</li>
@@ -419,24 +419,24 @@ Important
 </div>
 </div>
 </section>
-<section id="add-configuration-options" class="level1">
-<h1>4. Add configuration options</h1>
+<section id="add-configuration-options" class="level2">
+<h2 class="anchored" data-anchor-id="add-configuration-options">4. Add configuration options</h2>
 <p>In the server chunk (bottom of the <code>.qmd</code> file), add control logic and other configuration options to your survey with the <code>sd_config()</code> function. See the <a href="./config.html">Configuration Options</a> page for more details.</p>
 </section>
-<section id="setup-your-database" class="level1">
-<h1>5. Setup your database</h1>
+<section id="setup-your-database" class="level2">
+<h2 class="anchored" data-anchor-id="setup-your-database">5. Setup your database</h2>
 <p>Also in the server chunk, setup your database with the <code>sd_database()</code> function. You can also leave it blank to preview / edit your survey without database connected, or set <code>pause = TRUE</code> to disconnect the survey. See the <a href="./database.html">Database Settings</a> page for more details.</p>
 </section>
-<section id="locally-preview" class="level1">
-<h1>6. Locally preview</h1>
+<section id="locally-preview" class="level2">
+<h2 class="anchored" data-anchor-id="locally-preview">6. Locally preview</h2>
 <p>Preview your survey by clicking the “Run Document” button in RStudio or in your terminal running the command:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>quarto serve survey_file_name.qmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Replacing <code>survey_file_name.qmd</code> with the name of your survey <code>.qmd</code> file.</p>
 </section>
-<section id="deploy" class="level1">
-<h1>7. Deploy</h1>
+<section id="deploy" class="level2">
+<h2 class="anchored" data-anchor-id="deploy">7. Deploy</h2>
 <p>Deploy your survey by hosting it on your favorite server, like <a href="https://shinyapps.io/">shinyapps.io</a>, <a href="https://huggingface.co/">huggingface</a>, etc. See the <a href="./deployment.html">Deployment</a> page for more details.</p>
 
 

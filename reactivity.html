@@ -316,10 +316,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>Because surveydown renders to a shiny app, it can take advantage of shiny’s <a href="https://shiny.posit.co/r/articles/build/reactivity-overview/">reactivity</a> features. This means you can create reactive expressions and reactive values that update the survey in response to user input or other events.</p>
 <p>This page demonstrates some common use cases for reactive programming in surveydown.</p>
-<section id="displaying-respondent-values" class="level1">
-<h1>Displaying respondent values</h1>
-<section id="basic-example" class="level2">
-<h2 class="anchored" data-anchor-id="basic-example">Basic example</h2>
+<section id="displaying-respondent-values" class="level2">
+<h2 class="anchored" data-anchor-id="displaying-respondent-values">Displaying respondent values</h2>
+<section id="basic-example" class="level3">
+<h3 class="anchored" data-anchor-id="basic-example">Basic example</h3>
 <p>A simply example of a reactive value is displaying the respondent’s name in a greeting message. First, you would ask the respondent’s name in a question:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
@@ -343,8 +343,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>We just made <code>sd_display_value()</code> as it’s easier to use if you’re not sure which <code>shiny</code> output function to use.</p>
 </section>
-<section id="showing-the-same-value-in-multiple-places" class="level2">
-<h2 class="anchored" data-anchor-id="showing-the-same-value-in-multiple-places">Showing the same value in multiple places</h2>
+<section id="showing-the-same-value-in-multiple-places" class="level3">
+<h3 class="anchored" data-anchor-id="showing-the-same-value-in-multiple-places">Showing the same value in multiple places</h3>
 <p>The <code>sd_display_value()</code> function can only be used once per each unique question <code>id</code> because the <code>id</code> gets used in the rendered HTML divs, and HTML with more than one element with the same id is invalid HTML. This is a general issue for shiny - outputs can only be used once per each unique <code>id</code> (see <a href="https://github.com/rstudio/shiny/issues/743">this GitHub issue</a> on the topic).</p>
 <p>The solution that we use is to simply make a copy of the value and then display the copy (this is also the <a href="https://github.com/rstudio/shiny/issues/743#issuecomment-652397537">solution</a> on the GitHub issue linked above).</p>
 <p>To do so, in the server code chunk use the <code>sd_copy_value()</code> function to create a copy of the value, like this:</p>
@@ -359,11 +359,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="randomizing-question-labels" class="level1">
-<h1>Randomizing question labels</h1>
+<section id="randomizing-question-labels" class="level2">
+<h2 class="anchored" data-anchor-id="randomizing-question-labels">Randomizing question labels</h2>
 <p>Showing a question with randomized labels is a common use case for reactive programming. There are at least two ways to achieve this.</p>
-<section id="live-randomization" class="level2">
-<h2 class="anchored" data-anchor-id="live-randomization">Live randomization</h2>
+<section id="live-randomization" class="level3">
+<h3 class="anchored" data-anchor-id="live-randomization">Live randomization</h3>
 <p>One approach is to generate the random labels in the server code chunk “live”, meaning that the labels will be generated when the survey is first loaded. For example, here I generate three random numbers between 1 and 100 and use them to create the option labels for a multiple choice question:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a vector of options</span></span>
@@ -410,8 +410,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_store_value</span>(q1_labels[<span class="dv">3</span>], <span class="at">id =</span> <span class="st">"q1_label_3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="pre-defined-randomization" class="level2">
-<h2 class="anchored" data-anchor-id="pre-defined-randomization">Pre-defined randomization</h2>
+<section id="pre-defined-randomization" class="level3">
+<h3 class="anchored" data-anchor-id="pre-defined-randomization">Pre-defined randomization</h3>
 <p>An alternative approach is to pre-define the randomized labels and store them in a separate design file, and then randomly select a set of labels for each respondent from the design file.</p>
 <p>For example, let’s generate 10 sets of 3 random numbers between 1 and 100 and store them in a data frame:</p>
 <div class="cell">

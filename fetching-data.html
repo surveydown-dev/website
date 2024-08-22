@@ -306,8 +306,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="static-fetching" class="level1">
-<h1>Static Fetching</h1>
+<section id="static-fetching" class="level2">
+<h2 class="anchored" data-anchor-id="static-fetching">Static Fetching</h2>
 <p>Once you have your database properly set up and your survey is live, you can fetch the data using the <code>sd_get_data()</code> function. All you have to do is pass in the <code>db</code> object you created with <code>sd_database()</code> to the <code>sd_get_data()</code> function.</p>
 <p>For example, if you have a table called <code>my_table</code> in your Supabase database, you can fetch the data like this:</p>
 <div class="cell">
@@ -325,8 +325,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Here the <code>data</code> object will be a data.frame with the data from your database.</p>
 </section>
-<section id="reactive-fetching" class="level1">
-<h1>Reactive Fetching</h1>
+<section id="reactive-fetching" class="level2">
+<h2 class="anchored" data-anchor-id="reactive-fetching">Reactive Fetching</h2>
 <p>The above example is intended for an analysis context, where all you want to do is fetch the latest data from your database. However, you may also want to fetch the data in a reactive context (i.e.&nbsp;in your survey). For example, perhaps you want to show respondents a bar chart of the most common responses to a question. To enable this, all you have to do is set <code>reactive = TRUE</code> in the <code>sd_get_data()</code> function:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">sd_get_data</span>(db, <span class="at">reactive =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

@@ -330,8 +330,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction-to-sd_question" class="level1">
-<h1>Introduction to <code>sd_question()</code></h1>
+<section id="introduction-to-sd_question" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-sd_question">Introduction to <code>sd_question()</code></h2>
 <p>All questions in a surveydown survey are created using the <code>sd_question()</code> function.</p>
 <p>The function requires the following three arguments:</p>
 <ul>
@@ -342,8 +342,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Many question types also require an <code>option</code> argument, which is a named vector of options for the question (e.g.&nbsp;for multiple choice questions).</p>
 <p>The function also includes many other optional arguments that can be used to customize the question appearance and behavior. See the <a href="https://pkg.surveydown.org/reference/sd_question">package documentation</a> for more details.</p>
 </section>
-<section id="question-types" class="level1">
-<h1>Question Types</h1>
+<section id="question-types" class="level2">
+<h2 class="anchored" data-anchor-id="question-types">Question Types</h2>
 <p>The following question types are supported by <code>{surveydown}</code>:</p>
 <ul>
 <li><code>text</code>: Single line open text input.</li>
@@ -359,8 +359,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>daterange</code>: Select two dates from calendar widgets (e.g.&nbsp;begin and end dates).</li>
 </ul>
 <p>Below are examples of each question type.</p>
-<section id="text" class="level2">
-<h2 class="anchored" data-anchor-id="text"><code>text</code></h2>
+<section id="text" class="level3">
+<h3 class="anchored" data-anchor-id="text"><code>text</code></h3>
 <p>Use <code>type = 'text'</code> to specify a text input type question.</p>
 <p>Code chunk:</p>
 <div class="cell">
@@ -385,8 +385,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="textarea" class="level2">
-<h2 class="anchored" data-anchor-id="textarea"><code>textarea</code></h2>
+<section id="textarea" class="level3">
+<h3 class="anchored" data-anchor-id="textarea"><code>textarea</code></h3>
 <p>Use <code>type = 'textarea'</code> to specify a text area input type question.</p>
 <p>Code chunk:</p>
 <div class="cell">
@@ -411,8 +411,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="numeric" class="level2">
-<h2 class="anchored" data-anchor-id="numeric"><code>numeric</code></h2>
+<section id="numeric" class="level3">
+<h3 class="anchored" data-anchor-id="numeric"><code>numeric</code></h3>
 <p>Use <code>type = 'numeric'</code> to specify a numeric input type.</p>
 <p>Code chunk:</p>
 <div class="cell">
@@ -437,8 +437,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="mc" class="level2">
-<h2 class="anchored" data-anchor-id="mc"><code>mc</code></h2>
+<section id="mc" class="level3">
+<h3 class="anchored" data-anchor-id="mc"><code>mc</code></h3>
 <p>Use <code>type = 'mc'</code> to specify a multiple choice type question with a single choice option.</p>
 <p>Code chunk:</p>
 <div class="cell">
@@ -515,8 +515,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="mc_buttons" class="level2">
-<h2 class="anchored" data-anchor-id="mc_buttons"><code>mc_buttons</code></h2>
+<section id="mc_buttons" class="level3">
+<h3 class="anchored" data-anchor-id="mc_buttons"><code>mc_buttons</code></h3>
 <p>Use <code>type = 'mc_buttons'</code> to generate the button version of <code>mc</code>.</p>
 <p>Code chunk:</p>
 <div class="cell">
@@ -568,8 +568,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="mc_multiple" class="level2">
-<h2 class="anchored" data-anchor-id="mc_multiple"><code>mc_multiple</code></h2>
+<section id="mc_multiple" class="level3">
+<h3 class="anchored" data-anchor-id="mc_multiple"><code>mc_multiple</code></h3>
 <p>Use <code>type = 'mc_multiple'</code> to specify a multiple choice type question with multiple selection enabled.</p>
 <p>Code chunk:</p>
 <div class="cell">
@@ -667,8 +667,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="mc_multiple_buttons" class="level2">
-<h2 class="anchored" data-anchor-id="mc_multiple_buttons"><code>mc_multiple_buttons</code></h2>
+<section id="mc_multiple_buttons" class="level3">
+<h3 class="anchored" data-anchor-id="mc_multiple_buttons"><code>mc_multiple_buttons</code></h3>
 <p>Use <code>type = 'mc_multiple_buttons'</code> to generate the button version of <code>mc_multiple</code>.</p>
 <p>Code chunk:</p>
 <div class="cell">
@@ -723,8 +723,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="select" class="level2">
-<h2 class="anchored" data-anchor-id="select"><code>select</code></h2>
+<section id="select" class="level3">
+<h3 class="anchored" data-anchor-id="select"><code>select</code></h3>
 <p>Use <code>type = 'select'</code> to specify a drop down select type question.</p>
 <p>Code chunk:</p>
 <div class="cell">
@@ -768,12 +768,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="slider-under-construction" class="level2">
-<h2 class="anchored" data-anchor-id="slider-under-construction"><code>slider</code> (Under Construction)</h2>
+<section id="slider-under-construction" class="level3">
+<h3 class="anchored" data-anchor-id="slider-under-construction"><code>slider</code> (Under Construction)</h3>
 <p>Due to compatibility issues, the <code>slider</code> type is still under construction.</p>
 </section>
-<section id="date" class="level2">
-<h2 class="anchored" data-anchor-id="date"><code>date</code></h2>
+<section id="date" class="level3">
+<h3 class="anchored" data-anchor-id="date"><code>date</code></h3>
 <p>Use <code>type = 'date'</code> to specify a date input type.</p>
 <p>Code chunk:</p>
 <div class="cell">
@@ -812,8 +812,8 @@ Note
 </div>
 </div>
 </section>
-<section id="daterange" class="level2">
-<h2 class="anchored" data-anchor-id="daterange"><code>daterange</code></h2>
+<section id="daterange" class="level3">
+<h3 class="anchored" data-anchor-id="daterange"><code>daterange</code></h3>
 <p>Use <code>type = 'daterange'</code> to specify a date range input type.</p>
 <p>Code chunk:</p>
 <div class="cell">

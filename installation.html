@@ -308,8 +308,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="install-r-quarto" class="level1">
-<h1>Install R &amp; Quarto</h1>
+<section id="install-r-quarto" class="level2">
+<h2 class="anchored" data-anchor-id="install-r-quarto">Install R &amp; Quarto</h2>
 <p>You need both:</p>
 <ul>
 <li><a href="https://CRAN.R-project.org/">Install <i class="fa-brands fa-r-project" aria-label="r-project"></i></a></li>
@@ -317,16 +317,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Also, we recommend working with an IDE. <a href="https://www.rstudio.com/categories/rstudio-ide/">RStudio</a> is great, and we also like <a href="https://code.visualstudio.com">VS Code</a> and <a href="https://github.com/posit-dev/positron">Positron</a>.</p>
 </section>
-<section id="install-the-surveydown-r-package" class="level1">
-<h1>Install the {surveydown} R package</h1>
+<section id="install-the-surveydown-r-package" class="level2">
+<h2 class="anchored" data-anchor-id="install-the-surveydown-r-package">Install the {surveydown} R package</h2>
 <p>The {surveydown} R package is not yet on CRAN, but you can install the development version from GitHub with the following command in your R console:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("remotes")</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"surveydown-dev/surveydown"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="install-the-surveydown-quarto-extension" class="level1">
-<h1>Install the surveydown Quarto Extension</h1>
+<section id="install-the-surveydown-quarto-extension" class="level2">
+<h2 class="anchored" data-anchor-id="install-the-surveydown-quarto-extension">Install the surveydown Quarto Extension</h2>
 <p>Once you start working on an actual survey, you’ll need the <a href="https://github.com/surveydown-dev/surveydown-ext">surveydown Quarto extension</a>.</p>
 <blockquote class="blockquote">
 <p><strong>Note</strong>: The extension must be locally installed in a <code>_extensions</code> folder in your root survey project folder.</p>
@@ -349,8 +349,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>surveydown<span class="sc">::</span><span class="fu">sd_update_extension</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="version-control" class="level1">
-<h1>Version Control</h1>
+<section id="version-control" class="level2">
+<h2 class="anchored" data-anchor-id="version-control">Version Control</h2>
 <p>We made some R functions to make it easier to keep your R package and Quarto extension up to date.</p>
 <p>To <em>check</em> if you have the latest R package and Quarto extension installed, run:</p>
 <div class="cell">

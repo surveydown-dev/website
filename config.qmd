@@ -4,9 +4,9 @@ title: "Configuration Options"
 
 All survey configuration options are defined with the `sd_config()` function in the server code chunk.
 
-# Conditional display
+## Conditional display
 
-## Basic conditional display
+### Basic conditional display
 
 ::: {.callout-tip}
 
@@ -71,7 +71,7 @@ config <- sd_config(
 )
 ```
 
-## Custom conditional display
+### Custom conditional display
 
 ::: {.callout-tip}
 
@@ -124,9 +124,9 @@ config <- sd_config(
 
 In this case, each row in the `tibble()` is a condition with each condition in the `condition` column and the target question to display in the `target` column. This layout is sometimes a little easier to read, especially if you have a lot of conditions.
 
-# Conditional skipping
+## Conditional skipping
 
-## Basic skipping
+### Basic skipping
 
 ::: {.callout-tip}
 
@@ -173,7 +173,7 @@ Sorry, but you are not qualified to take our survey.
 
 Notice that we don't have a `sd_next()` on this screenout page - that is how you define an end point for the survey taker. If there's no "Next" button, then they cannot navigate anywhere else, so the survey is over. This is why this `screenout` page doesn't necessarily have to be at the end of the survey as the respondent will not be able to navigate anywhere else once reaching this page.
 
-## Custom skipping
+### Custom skipping
 
 ::: {.callout-tip}
 
@@ -226,7 +226,7 @@ config <- sd_config(
 
 In this case, each row in the `tibble()` is a condition with each condition in the `condition` column and the target question to display in the `target` column. This layout is sometimes a little easier to read, especially if you have a lot of conditions.
 
-# Required responses
+## Required responses
 
 ::: {.callout-tip}
 
@@ -252,7 +252,7 @@ config <- sd_config(
 )
 ```
 
-# Starting page 
+## Starting page 
 
 ::: {.callout-tip}
 
@@ -268,7 +268,7 @@ config <- sd_config(
 )
 ```
 
-# Show all pages
+## Show all pages
 
 ::: {.callout-tip}
 
@@ -284,7 +284,7 @@ config <- sd_config(
 )
 ```
 
-# Admin page
+## Admin page
 
 ::: {.callout-tip}
 

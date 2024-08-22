@@ -12,11 +12,11 @@ sd_setup()
 
 The `sd_question()` function has many optional arguments for modifying the appearance and behavior of questions. This page demonstrates some of the formatting options.
 
-# Markdown formatting
+## Markdown formatting
 
 **Markdown** is supported for **question labels** and **option labels**.
 
-## Question labels
+### Question labels
 
 The `label` argument for any question type can accept markdown formatting. For example, the question below uses the `*` symbol to make some words bold, italic, and bold italic.
 
@@ -55,7 +55,7 @@ sd_question(
 )
 ```
 
-## Option labels
+### Option labels
 
 Markdown formatting is also supported for the `option` labels in question types that have options, such as `mc`, `mc_multiple`, `mc_buttons`, and `mc_multiple_buttons`. For example:
 
@@ -94,7 +94,7 @@ sd_question(
 )
 ```
 
-# HTML formatting
+## HTML formatting
 
 HTML formatting is supported for the `option` labels in question types that have options, such as `mc_buttons` and `mc_multiple_buttons`. This allows you to insert mixed content to achieve more complex labels, including plain text, markdown, and HTML code.
 
@@ -177,7 +177,7 @@ sd_question(
 )
 ```
 
-# Size formatting
+## Size formatting
 
 Use the `width`, `height` arguments to change the size of the question.
 

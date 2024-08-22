@@ -2,7 +2,7 @@
 title: "Fetching Data"
 ---
 
-# Static Fetching
+## Static Fetching
 
 Once you have your database properly set up and your survey is live, you can fetch the data using the `sd_get_data()` function. All you have to do is pass in the `db` object you created with `sd_database()` to the `sd_get_data()` function. 
 
@@ -24,7 +24,7 @@ data <- sd_get_data(db)
 
 Here the `data` object will be a data.frame with the data from your database.
 
-# Reactive Fetching
+## Reactive Fetching
 
 The above example is intended for an analysis context, where all you want to do is fetch the latest data from your database. However, you may also want to fetch the data in a reactive context (i.e. in your survey). For example, perhaps you want to show respondents a bar chart of the most common responses to a question. To enable this, all you have to do is set `reactive = TRUE` in the `sd_get_data()` function:
 

@@ -5,23 +5,23 @@ title: "Database Settings"
 > This guide will help users set up a supabase account to work inside of SurveyDown 
 for quick & live server updates
 
-# Step 1: Create your account 
+## Step 1: Create your account 
 
 Navigate to the [supabase](https://supabase.com/) website and create an account by selecting "Start your project" on the main page.
 
-# Step 2: Create a project
+## Step 2: Create a project
 
 After creating your new account proceed to your dashboard and select "New Project".
 
 <img src="images/screenshots/main_pageS3.png" alt="drawing" width="700"/>
 
-# Step 3: Create a database
+## Step 3: Create a database
 
 The next step is to create your respective database. Here you **must** use the password you created for your survey project. See the [Setting a Password](password.qmd) page for details. If you forgot the password you set earlier run the command `Sys.getenv("SUPABASE_PASSWORD")` inside your environment. 
 
 <img src="images/screenshots/main_pageS4.png" alt="drawing" width="700"/>
 
-# Step 4: Find the DB parameters
+## Step 4: Find the DB parameters
 
 While on your project dashboard select the settings gear in the bottom left, then select "Database".
 
@@ -29,13 +29,13 @@ While on your project dashboard select the settings gear in the bottom left, the
 
 <img src="images/screenshots/main_pageS6.png" alt="drawing" width="500"/>
 
-# Step 5: Copy the DB parameters
+## Step 5: Copy the DB parameters
 
 Copy the all of the connection parameters to your database.
 
 <img src="images/screenshots/main_pageS7.png" alt="drawing" width="700"/>
 
-# Step 6: Update the arguments in `sd_database()`
+## Step 6: Update the arguments in `sd_database()`
 
 Now that we've created our database and have gotten all the needed parameters we can now connect the database to our survey.
 
@@ -57,7 +57,7 @@ If you don't have a database setup yet, you can just leave the function blank an
 db <- sd_database()
 ```
 
-# Example
+## Example
 
 An example of what the function should look like after you have updated all the parameters is below:
 
@@ -71,7 +71,7 @@ db <- sd_database(
 )
 ```
 
-# Tada!!!
+## Tada!!!
 
 Going back to your Project dashboard and selecting *"Table Editor"* on the left hand bar tab you should see your table appear once your survey is run and interacted with atleast once.
 

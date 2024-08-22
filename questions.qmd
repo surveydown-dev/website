@@ -11,7 +11,7 @@ library(surveydown)
 sd_setup()
 ```
 
-# Introduction to `sd_question()`
+## Introduction to `sd_question()`
 
 All questions in a surveydown survey are created using the `sd_question()` function.
 
@@ -25,7 +25,7 @@ Many question types also require an `option` argument, which is a named vector o
 
 The function also includes many other optional arguments that can be used to customize the question appearance and behavior. See the [package documentation](https://pkg.surveydown.org/reference/sd_question) for more details.
 
-# Question Types
+## Question Types
 
 The following question types are supported by `{surveydown}`:
 
@@ -43,7 +43,7 @@ The following question types are supported by `{surveydown}`:
 
 Below are examples of each question type.
 
-## `text`
+### `text`
 
 Use `type = 'text'` to specify a text input type question.
 
@@ -72,7 +72,7 @@ sd_question(
 )
 ```
 
-## `textarea`
+### `textarea`
 
 Use `type = 'textarea'` to specify a text area input type question.
 
@@ -101,7 +101,7 @@ sd_question(
 )
 ```
 
-## `numeric`
+### `numeric`
 
 Use `type = 'numeric'` to specify a numeric input type.
 
@@ -130,7 +130,7 @@ sd_question(
 )
 ```
 
-## `mc`
+### `mc`
 
 Use `type = 'mc'` to specify a multiple choice type question with a single choice option.
 
@@ -177,7 +177,7 @@ sd_question(
 )
 ```
 
-## `mc_buttons`
+### `mc_buttons`
 
 Use `type = 'mc_buttons'` to generate the button version of `mc`.
 
@@ -224,7 +224,7 @@ sd_question(
 )
 ```
 
-## `mc_multiple`
+### `mc_multiple`
 
 Use `type = 'mc_multiple'` to specify a multiple choice type question with multiple selection enabled.
 
@@ -277,7 +277,7 @@ sd_question(
 )
 ```
 
-## `mc_multiple_buttons`
+### `mc_multiple_buttons`
 
 Use `type = 'mc_multiple_buttons'` to generate the button version of `mc_multiple`.
 
@@ -326,7 +326,7 @@ sd_question(
 )
 ```
 
-## `select`
+### `select`
 
 Use `type = 'select'` to specify a drop down select type question.
 
@@ -373,11 +373,11 @@ sd_question(
 )
 ```
 
-## `slider` (Under Construction)
+### `slider` (Under Construction)
 
 Due to compatibility issues, the `slider` type is still under construction.
 
-## `date`
+### `date`
 
 Use `type = 'date'` to specify a date input type.
 
@@ -414,7 +414,7 @@ The dialog box will only appear in a Shiny environment, hence why it is not appe
 
 :::
 
-## `daterange`
+### `daterange`
 
 Use `type = 'daterange'` to specify a date range input type.
 

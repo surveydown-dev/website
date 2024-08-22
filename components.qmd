@@ -11,28 +11,28 @@ library(surveydown)
 
 This guide covers the main elements in your `.qmd` survey file as well as how to add content to your survey, like pages, questions, etc.
 
-# Start with a template
+## Overview
 
-{{< include chunks/template.qmd >}}
-
-# Survey components
-
-Every {surveydown} survey is configured in a single `.qmd` file that consists of **4 parts**: 
+Every surveydown survey is configured in a single `.qmd` file that consists of **4 parts**: 
 
 1. The YAML header.
 2. The setup code chunk.
 3. The survey body. 
 4. The server code chunk. 
 
-```{r out.width = '70%', echo = FALSE, eval=TRUE}
+```{r}
+#| eval: true
+#| echo: false
+#| out-width: 60%
+
 knitr::include_graphics("images/screenshots/survey-screenshot.png")
 ```
 
-# 1. YAML Header
+## 1. YAML Header
 
 The YAML header is at the top of the `.qmd` file. In addition to two required elements, the YAML can be used to set the survey theme as well as modify the survey progress bar. 
 
-## Required YAML content
+### Required content
 
 For a surveydown survey, your YAML must contain at least the following:
 
@@ -45,7 +45,7 @@ filters: [surveydown]
 
 The `server: shiny` part ensures that the document will render as a shiny app. The `filters: [surveydown]` part applies the surveydown Quarto extension to the project, which is required.
 
-## Setting the theme 
+### Setting the theme 
 
 The YAML can also be used to set several **optional** global settings, such as the overall survey `theme`:
 
@@ -63,7 +63,7 @@ theme: [united, custom.scss]
 ---
 ```
 
-## Progress bar
+### Progress bar
 
 You can modify the survey progress bar with the `barcolor` and `barposition` keys, e.g.:
 
@@ -78,7 +78,7 @@ The `barcolor` key defines the color of the progress bar. It defaults to `theme`
 
 The `barposition` key defines the position of the progress bar. It defaults to `top`, but can also be changed to `bottom` or `none` (to remove the bar). The progress bar updates on every **question** the user clicks on, not pages.
 
-# 2. Setup code chunk
+## 2. Setup code chunk
 
 After the YAML header, you'll need to load the `surveydown` package and run the `sd_setup()` function. This should be placed inside a code chunk that looks like this:
 
@@ -97,13 +97,13 @@ sd_setup()
 
 Anything loaded in the setup chunk is accessible in both your survey body and your server, so we recommend also loading other packages and / or data in this chunk as well. 
 
-# 3. Survey body
+## 3. Survey body
 
 The survey body is all the content in between your setup code chunk and your server code chunk. You can use markdown (or the RStudio visual editor) to insert text, images, etc. just like you would in any Quarto document. 
 
 The unique elements to a surveydown survey are **pages**, **navigation buttons**, and **questions**.
 
-## Adding pages
+### Adding pages
 
 In surveydown, pages are defined using fences (`:::`), like this:
 
@@ -125,7 +125,7 @@ As you can see, we use three colon symbols `:::`, called a "fence", to mark the 
 
 In the starting fence, you need to define a page name (e.g. `welcome` and `page2` in the example above) and you need to define the class as `.sd-page`. Then anything you put between the page fences will appear on that page. 
 
-## Adding navigation buttons
+### Adding navigation buttons
 
 To navigate to the next page, you need to insert a `sd_next()` function call inside a code chunk, like this: 
 
@@ -161,7 +161,7 @@ sd_next(next_page = 'page2', label = 'Next page')
 sd_next(next_page = 'page2', label = 'Next page')
 ```
 
-## Ending the survey
+### Ending the survey
 
 To end a survey, all you have to do is create a page with no `sd_next()` button on it. This will effectively serve as a ending page, because the respondent will not be able to navigate anywhere else once reaching a page with no `sd_next()` button. 
 
@@ -177,7 +177,7 @@ Screenout page content here
 
 When a respondent reaches this page, they will not be able to navigate anywhere else, so the survey is over.
 
-## Adding questions
+### Adding questions
 
 Every survey question is created using the `sd_question()` function inside a code chunk. The question type is defined by the `type` argument. For example, to add a multiple choice question, you could insert the following code chunk:
 
@@ -222,7 +222,7 @@ The function has many other arguments for customizing the look and feel of the q
 
 By default all questions are optional, but you can make questions required in the configuration options (see the [Configuration Options](config.qmd#required-responses) page for details).
 
-# 4. Server code chunk
+## 4. Server code chunk
 
 At the very bottom of the .qmd file is a special "server" code chunk (that's the `#| context: server` bit) that defines the app server. This is where you can customize and control the survey flow logic as well as where you define the database that will store the survey response data. It looks like this:
 

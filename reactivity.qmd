@@ -13,9 +13,9 @@ Because surveydown renders to a shiny app, it can take advantage of shiny's [rea
 
 This page demonstrates some common use cases for reactive programming in surveydown.
 
-# Displaying respondent values
+## Displaying respondent values
 
-## Basic example
+### Basic example
 
 A simply example of a reactive value is displaying the respondent's name in a greeting message. First, you would ask the respondent's name in a question:
 
@@ -47,7 +47,7 @@ Welcome, `r shiny::textOutput("name")`!
 
 We just made `sd_display_value()` as it's easier to use if you're not sure which `shiny` output function to use.
 
-## Showing the same value in multiple places
+### Showing the same value in multiple places
 
 The `sd_display_value()` function can only be used once per each unique question `id` because the `id` gets used in the rendered HTML divs, and HTML with more than one element with the same id is invalid HTML. This is a general issue for shiny - outputs can only be used once per each unique `id` (see [this GitHub issue](https://github.com/rstudio/shiny/issues/743) on the topic).
 
@@ -67,11 +67,11 @@ Welcome, `r sd_display_value("name")`!
 Is it alright if we call you `r sd_display_value("name_copy")`?
 ```
 
-# Randomizing question labels
+## Randomizing question labels
 
 Showing a question with randomized labels is a common use case for reactive programming. There are at least two ways to achieve this.
 
-## Live randomization
+### Live randomization
 
 One approach is to generate the random labels in the server code chunk "live", meaning that the labels will be generated when the survey is first loaded. For example, here I generate three random numbers between 1 and 100 and use them to create the option labels for a multiple choice question:
 
@@ -128,7 +128,7 @@ sd_store_value(q1_labels[2], id = "q1_label_2")
 sd_store_value(q1_labels[3], id = "q1_label_3")
 ```
 
-## Pre-defined randomization
+### Pre-defined randomization
 
 An alternative approach is to pre-define the randomized labels and store them in a separate design file, and then randomly select a set of labels for each respondent from the design file.
 

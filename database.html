@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Database Settings – surveydown.org</title>
+<title>Data Storage – surveydown.org</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -108,14 +108,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style>html{ scroll-behavior: smooth; }</style>
 
 
-<meta property="og:title" content="Database Settings – surveydown.org">
+<meta property="og:title" content="Data Storage – surveydown.org">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://www.surveydown.org/images/logo.png">
 <meta property="og:site_name" content="https://surveydown.org">
 <meta property="og:locale" content="es_ES">
 <meta property="og:image:height" content="1680">
 <meta property="og:image:width" content="1680">
-<meta name="twitter:title" content="Database Settings – surveydown.org">
+<meta name="twitter:title" content="Data Storage – surveydown.org">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://www.surveydown.org/images/logo.png">
 <meta name="twitter:creator" content="@johnhelveston">
@@ -279,14 +279,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#step-1-create-your-account" id="toc-step-1-create-your-account" class="nav-link active" data-scroll-target="#step-1-create-your-account">Step 1: Create your account</a></li>
-  <li><a href="#step-2-create-a-project" id="toc-step-2-create-a-project" class="nav-link" data-scroll-target="#step-2-create-a-project">Step 2: Create a project</a></li>
-  <li><a href="#step-3-create-a-database" id="toc-step-3-create-a-database" class="nav-link" data-scroll-target="#step-3-create-a-database">Step 3: Create a database</a></li>
-  <li><a href="#step-4-find-the-db-parameters" id="toc-step-4-find-the-db-parameters" class="nav-link" data-scroll-target="#step-4-find-the-db-parameters">Step 4: Find the DB parameters</a></li>
-  <li><a href="#step-5-copy-the-db-parameters" id="toc-step-5-copy-the-db-parameters" class="nav-link" data-scroll-target="#step-5-copy-the-db-parameters">Step 5: Copy the DB parameters</a></li>
-  <li><a href="#step-6-update-the-arguments-in-sd_database" id="toc-step-6-update-the-arguments-in-sd_database" class="nav-link" data-scroll-target="#step-6-update-the-arguments-in-sd_database">Step 6: Update the arguments in <code>sd_database()</code></a></li>
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
-  <li><a href="#tada" id="toc-tada" class="nav-link" data-scroll-target="#tada">Tada!!!</a></li>
+  <li><a href="#supabase-account" id="toc-supabase-account" class="nav-link active" data-scroll-target="#supabase-account">Supabase Account</a>
+  <ul class="collapse">
+  <li><a href="#create-a-supabase-account" id="toc-create-a-supabase-account" class="nav-link" data-scroll-target="#create-a-supabase-account">1. Create a Supabase account</a></li>
+  <li><a href="#create-a-supabase-project" id="toc-create-a-supabase-project" class="nav-link" data-scroll-target="#create-a-supabase-project">2. Create a Supabase project</a></li>
+  </ul></li>
+  <li><a href="#step-3-copy-your-credentials" id="toc-step-3-copy-your-credentials" class="nav-link" data-scroll-target="#step-3-copy-your-credentials">Step 3: Copy your credentials</a></li>
   </ul>
 </nav>
     </div>
@@ -295,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Database Settings</h1>
+<h1 class="title">Data Storage</h1>
 </div>
 
 
@@ -313,35 +311,84 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>The default database for storing survey responses is <a href="https://supabase.com/">Supabase</a>. We plan to also support the ability to use your own database in the future.</p>
-<section id="step-1-create-your-account" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-create-your-account">Step 1: Create your account</h2>
-<p>Navigate to the <a href="https://supabase.com/">Supabase</a> website and create an account.</p>
+<section id="supabase-account" class="level2">
+<h2 class="anchored" data-anchor-id="supabase-account">Supabase Account</h2>
+<p>Below are the steps you need to go through on <a href="https://supabase.com/">Supabase</a>:</p>
+<ol type="1">
+<li>Create a Supabase account</li>
+<li>Create a Supabase project</li>
+<li>Copy your credentials</li>
+</ol>
+<p>We’ll walk you through one by one.</p>
+<section id="create-a-supabase-account" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-supabase-account">1. Create a Supabase account</h3>
+<p>Navigate to the <a href="https://supabase.com/">Supabase</a> website and create an account. You may use your GitHub account or create a new account using your email.</p>
+<p>While creating your account, it’s by default that you will have an organization under your account name. Your projects will be designated to this organization. You can have other organizations based on your need, but let’s just use this default one for now.</p>
 </section>
-<section id="step-2-create-a-project" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-create-a-project">Step 2: Create a project</h2>
-<p>Select “Start your project” on the main page or navigate to your dashboard and select “New Project”.</p>
-<p><img src="images/screenshots/main_pageS3.png" alt="drawing" width="700"></p>
+<section id="create-a-supabase-project" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-supabase-project">2. Create a Supabase project</h3>
+<p>Once you are logged in, the page will prompt you to create a project. It’s an obvious green button. Click on it and select your organization. A dialog box will pop up like this:</p>
+<center>
+<img src="images/screenshots/database_01.jpg" style="max-width: 600px; width: 100%;">
+</center>
+<p><br></p>
+<p>Fill in the project name and give it a strong password. Choose a region that is close to you (or close to your audiences). All settings can be modified at any time.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To avoid confusion, you need to deal with password both on Supabase and surveydown:</p>
+<ol type="1">
+<li><p>Supabase is where your password is <strong>defined</strong>. Set your password in this dialog box, or change it in project settings anytime.</p></li>
+<li><p>On surveydown, you deliver this password using <code>sd_set_password()</code>.</p></li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Your database password will be used in your surveydown survey(s) as credential to communicate with Supabase, and will also be your surveydown survey admin page password. Please choose a strong password and secure it.</p>
+<p>To know more about setting the password for your surveydown survey, go to the <a href="./password.html">Password</a> page.</p>
+</div>
+</div>
+<p>It takes several minutes to set up the database. You will know when it’s ready.</p>
 </section>
-<section id="step-3-create-a-database" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-create-a-database">Step 3: Create a database</h2>
-<p>Create a database. Here you <strong>must</strong> use the password you created for your survey project (see the <a href="./password.html">Setting a Password</a> page). If you forgot the password you set earlier, you can run <code>sd_show_password()</code> in your R console to display it.</p>
-<p><img src="images/screenshots/main_pageS4.png" alt="drawing" width="700"></p>
 </section>
-<section id="step-4-find-the-db-parameters" class="level2">
-<h2 class="anchored" data-anchor-id="step-4-find-the-db-parameters">Step 4: Find the DB parameters</h2>
-<p>While on your project dashboard select the settings gear in the bottom left, then select “Database”.</p>
-<p><img src="images/screenshots/main_pageS5.png" alt="drawing" width="700"></p>
-<p><img src="images/screenshots/main_pageS6.png" alt="drawing" width="500"></p>
-</section>
-<section id="step-5-copy-the-db-parameters" class="level2">
-<h2 class="anchored" data-anchor-id="step-5-copy-the-db-parameters">Step 5: Copy the DB parameters</h2>
-<p>Copy the all of the connection parameters to your database.</p>
-<p><img src="images/screenshots/main_pageS7.png" alt="drawing" width="700"></p>
-</section>
-<section id="step-6-update-the-arguments-in-sd_database" class="level2">
-<h2 class="anchored" data-anchor-id="step-6-update-the-arguments-in-sd_database">Step 6: Update the arguments in <code>sd_database()</code></h2>
-<p>Now that we’ve created our database and have gotten all the needed parameters we can now connect the database to our survey.</p>
-<p>Taking a look at our code inside of our <strong>survey.qmd</strong> file you will notice five arguments in <code>sd_database()</code>. This is where you will replace the <code>NULL</code> values with the ones you copied from your database. The last argument, <code>table_name</code>, can be any name of your choosing.</p>
+<section id="step-3-copy-your-credentials" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-copy-your-credentials">Step 3: Copy your credentials</h2>
+<p>Once your Supabase project is ready, go to <strong>“Project Settings”</strong> located at the bottom-left corner. Then, click on <strong>“Database”</strong> under “Configuration”.</p>
+<p>You’ll see the <strong>“Connection parameters”</strong> section like this:</p>
+<center>
+<img src="images/screenshots/database_02.jpg" style="max-width: 800px; width: 100%;">
+</center>
+<p><br></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is also where you change the password of your Supabase project.</p>
+</div>
+</div>
+<p>Now, deliver these parameters to your survey! In your survey <code>.qmd</code> file, you define <code>sd_database()</code> at the very bottom. In the template it looks like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">sd_database</span>(</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">host       =</span> <span class="cn">NULL</span>,</span>
@@ -351,27 +398,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">table_name =</span> <span class="cn">NULL</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>If you don’t have a database setup yet, you can just leave the function blank and your survey will still run, just without any response data being stored:</p>
+<p>Copy and paste the first 4 parameters from your Supabase page to <code>sd_database()</code>, aka “Host”, “Database name”, “Port”, and “User”. Again, your password should be defined using <code>sd_set_password()</code> in your R console, NOT in the <code>.qmd</code> file.</p>
+<p>The last parameter, <code>table_name</code>, can be anything of your choice. After your survey gets running, a table with this name will appear in <strong>“Table Editor”</strong> of your Supabase project. It’s located at the top-left corner of the page.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Run without Supabase:</strong></p>
+<p>If you don’t have a database setup yet, you can just leave the function blank and your survey will still run. Your survey data will be stored locally.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">sd_database</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="example" class="level2">
-<h2 class="anchored" data-anchor-id="example">Example</h2>
-<p>An example of what the function should look like after you have updated all the parameters is below:</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Pause Supabase connection:</strong></p>
+<p>At anytime, you can pause Supabase connection by defining <code>pause = TRUE</code> under <code>sd_database()</code>. Your survey data will be stored locally.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">sd_database</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">host       =</span> <span class="st">"aws-0-us-west-1.pooler.supabase.com"</span>, </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">db_name    =</span> <span class="st">"postgres"</span>, <span class="co"># For the purpose of supabase, this will always be "postgres".</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">port       =</span> <span class="st">"1234"</span>, </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">user       =</span> <span class="st">"postgres.UserValue"</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">table_name =</span> <span class="st">"my_table_name"</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Previous parameters...</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">pause =</span> <span class="cn">TRUE</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="tada" class="level2">
-<h2 class="anchored" data-anchor-id="tada">Tada!!!</h2>
-<p>Going back to your Project dashboard and selecting <em>“Table Editor”</em> on the left hand bar tab you should see your table appear once your survey is run and interacted with atleast once.</p>
+</div>
+</div>
+<p>Now you have completed your database settings. Once your survey is up and running, you can monitor the survey responses in <strong>“Table Editor”</strong> of your Supabase project. Again it’s located at the top-left corner of the page. The responses will update in real time, or you can refresh it manually.</p>
 
 
 </section>

@@ -1,44 +1,74 @@
 ---
-title: "Database Settings"
+title: "Data Storage"
 ---
 
 The default database for storing survey responses is [Supabase]({{< var url_supabase >}}). We plan to also support the ability to use your own database in the future.
 
-## Step 1: Create your account 
+## Supabase Account
 
-Navigate to the [Supabase]({{< var url_supabase >}}) website and create an account. 
+Below are the steps you need to go through on [Supabase]({{< var url_supabase >}}):
 
-## Step 2: Create a project
+1.  Create a Supabase account
+2.  Create a Supabase project
+3.  Copy your credentials
 
-Select "Start your project" on the main page or navigate to your dashboard and select "New Project".
+We'll walk you through one by one.
 
-<img src="images/screenshots/main_pageS3.png" alt="drawing" width="700"/>
+### 1. Create a Supabase account
 
-## Step 3: Create a database
+Navigate to the [Supabase]({{< var url_supabase >}}) website and create an account. You may use your GitHub account or create a new account using your email.
 
-Create a database. Here you **must** use the password you created for your survey project (see the [Setting a Password](password.qmd) page). If you forgot the password you set earlier, you can run `sd_show_password()` in your R console to display it.
+While creating your account, it's by default that you will have an organization under your account name. Your projects will be designated to this organization. You can have other organizations based on your need, but let's just use this default one for now.
 
-<img src="images/screenshots/main_pageS4.png" alt="drawing" width="700"/>
+### 2. Create a Supabase project
 
-## Step 4: Find the DB parameters
+Once you are logged in, the page will prompt you to create a project. It's an obvious green button. Click on it and select your organization. A dialog box will pop up like this:
 
-While on your project dashboard select the settings gear in the bottom left, then select "Database".
+<center>
+<img src="images/screenshots/database_01.jpg" style="max-width: 600px; width: 100%;">
+</center>
+<br>
 
-<img src="images/screenshots/main_pageS5.png" alt="drawing" width="700"/>
+Fill in the project name and give it a strong password. Choose a region that is close to you (or close to your audiences). All settings can be modified at any time.
 
-<img src="images/screenshots/main_pageS6.png" alt="drawing" width="500"/>
+::: {.callout-tip}
 
-## Step 5: Copy the DB parameters
+To avoid confusion, you need to deal with password both on Supabase and surveydown:
 
-Copy the all of the connection parameters to your database.
+1.  Supabase is where your password is **defined**. Set your password in this dialog box, or change it in project settings anytime.
 
-<img src="images/screenshots/main_pageS7.png" alt="drawing" width="700"/>
+2.  On surveydown, you deliver this password using `sd_set_password()`.
 
-## Step 6: Update the arguments in `sd_database()`
+:::
 
-Now that we've created our database and have gotten all the needed parameters we can now connect the database to our survey.
+::: {.callout-important}
 
-Taking a look at our code inside of our **survey.qmd** file you will notice five arguments in `sd_database()`. This is where you will replace the `NULL` values with the ones you copied from your database. The last argument, `table_name`, can be any name of your choosing.
+Your database password will be used in your surveydown survey(s) as credential to communicate with Supabase, and will also be your surveydown survey admin page password. Please choose a strong password and secure it.
+
+To know more about setting the password for your surveydown survey, go to the [Password](password.qmd) page.
+
+:::
+
+It takes several minutes to set up the database. You will know when it's ready.
+
+## Step 3: Copy your credentials
+
+Once your Supabase project is ready, go to **"Project Settings"** located at the bottom-left corner. Then, click on **"Database"** under "Configuration".
+
+You'll see the **"Connection parameters"** section like this:
+
+<center>
+<img src="images/screenshots/database_02.jpg" style="max-width: 800px; width: 100%;">
+</center>
+<br>
+
+::: {.callout-tip}
+
+This is also where you change the password of your Supabase project.
+
+:::
+
+Now, deliver these parameters to your survey! In your survey `.qmd` file, you define `sd_database()` at the very bottom. In the template it looks like this:
 
 ```{r}
 db <- sd_database(
@@ -50,27 +80,34 @@ db <- sd_database(
 )
 ```
 
-If you don't have a database setup yet, you can just leave the function blank and your survey will still run, just without any response data being stored:
+Copy and paste the first 4 parameters from your Supabase page to `sd_database()`, aka "Host", "Database name", "Port", and "User". Again, your password should be defined using `sd_set_password()` in your R console, NOT in the `.qmd` file.
+
+The last parameter, `table_name`, can be anything of your choice. After your survey gets running, a table with this name will appear in **"Table Editor"** of your Supabase project. It's located at the top-left corner of the page.
+
+::: {.callout-tip}
+**Run without Supabase:**
+
+If you don't have a database setup yet, you can just leave the function blank and your survey will still run. Your survey data will be stored locally.
 
 ```{r}
 db <- sd_database()
 ```
 
-## Example
+:::
 
-An example of what the function should look like after you have updated all the parameters is below:
+::: {.callout-tip}
+**Pause Supabase connection:**
+
+At anytime, you can pause Supabase connection by defining `pause = TRUE` under `sd_database()`. Your survey data will be stored locally.
 
 ```{r}
 db <- sd_database(
-  host       = "aws-0-us-west-1.pooler.supabase.com", 
-  db_name    = "postgres", # For the purpose of supabase, this will always be "postgres".
-  port       = "1234", 
-  user       = "postgres.UserValue",
-  table_name = "my_table_name"
+    # Previous parameters...
+    pause = TRUE
 )
 ```
 
-## Tada!!!
+:::
 
-Going back to your Project dashboard and selecting *"Table Editor"* on the left hand bar tab you should see your table appear once your survey is run and interacted with atleast once.
+Now you have completed your database settings. Once your survey is up and running, you can monitor the survey responses in **"Table Editor"** of your Supabase project. Again it's located at the top-left corner of the page. The responses will update in real time, or you can refresh it manually.
 

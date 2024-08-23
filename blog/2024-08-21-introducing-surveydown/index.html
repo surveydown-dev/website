@@ -273,7 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <center>
-<img src="logo.png" width="200">
+<img src="logo.png" style="max-width: 200px; width: 100%;">
 </center>
 <p><br></p>
 <blockquote class="blockquote">
@@ -286,7 +286,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://surveydown.org/">surveydown</a> is a flexible platform for making surveys in <i class="fa-brands fa-r-project" aria-label="r-project"></i> using three open source technologies: <a href="https://quarto.org/">Quarto</a>, <a href="https://shiny.posit.co/">shiny</a>, and <a href="https://supabase.com/">supabase</a>. The package is still in development, but you can already use it to create surveys.</p>
 <br>
 <center>
-<img src="technologies.png" width="600">
+<img src="technologies.png" style="max-width: 600px; width: 100%;">
 </center>
 <p><br></p>
 <p>The basic concept is this:</p>
@@ -354,7 +354,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>If you have the example open in RStudio, you can click the “Run document” button, or in your terminal run <code>quarto serve example.qmd</code>. Either approach should render the example survey into a shiny app that you can preview in a browser. Don’t worry just yet about setting up your database or making the survey live - for now, we’re going to focus on designing the survey and running it locally to preview it. The example survey should look like this:</p>
 <center>
-<img src="example.png" width="700">
+<img src="example.png" style="max-width: 700px; width: 100%;">
 </center>
 </section>
 <section id="adding-pages" class="level2">
@@ -519,7 +519,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>This will make the <code>penguins_other</code> question only appear if the respondent chose the <code>other</code> option in the <code>penguins</code> question, like this:</p>
 <center>
-<img src="show_if.gif" width="600" style="box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.3); border: 1px solid #000; border-radius: 5px;">
+<img src="show_if.gif" style="max-width: 600px; width: 100%; box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.3); border: 1px solid #000; border-radius: 5px;">
 </center>
 <p><br></p>
 <p>Here we’re using the <code>tibble::tribble()</code> function to define a data frame with three columns:</p>
@@ -623,12 +623,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt;   respondent_id     brand
-#&gt; 1             1      Ford
-#&gt; 2             1 Chevrolet
-#&gt; 3             1     Tesla
-#&gt; 4             2     Tesla
-#&gt; 5             2    Nissan
-#&gt; 6             2      Ford</code></pre>
+#&gt; 1             1     Honda
+#&gt; 2             1      Ford
+#&gt; 3             1    Toyota
+#&gt; 4             2 Chevrolet
+#&gt; 5             2    Toyota
+#&gt; 6             2     Honda</code></pre>
 </div>
 </div>
 <p>Note that this would not be done in your survey.qmd file - it’s just a one-time thing to create the design (probably stored in an R file).</p>

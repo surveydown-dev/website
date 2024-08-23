@@ -17,7 +17,7 @@ Use the `show_if` argument to control basic conditional display logic.
 It is often useful to have a question display conditionally based on the value of another question. For example, let's say we have a multiple choice question about people's favorite penguin type, and the last option is "other". If the respondent chose it, you may want a second question to popup that allows them to specify the other penguin type, like this:
 
 <center>
-<img src="images/screenshots/show_if.gif" width=600>
+<img src="images/screenshots/show_if.gif" style="max-width: 600px; width: 100%;">
 </center>
 <br>
 
@@ -68,7 +68,6 @@ You don't have to use `tibble::tribble()`, and in fact if you have a lot of `sho
 config <- sd_config(
   show_if = readr::read_csv('path/to/show_if_conditions.csv')
   )
-)
 ```
 
 ### Custom conditional display

@@ -210,7 +210,7 @@ config <- sd_config(
 )
 ```
 
-Just as with the [`show_if_custom` argument](config.html#custom-conditional-display), we provide the `skip_if_custom` argument a list of lists, where each sublist contains a `condition` and a `target`.
+Just as with the [`show_if_custom` argument](#custom-conditional-display), we provide the `skip_if_custom` argument a list of lists, where each sublist contains a `condition` and a `target`.
 
 If lists of lists are a little confusing, you can also use a `tibble::tribble()` to define the conditions, like this:
 
@@ -299,12 +299,12 @@ config <- sd_config(
 )
 ```
 
-When the admin page is enabled, you will be able to access the page by adding `?admin` to the end of the survey URL, e.g. `https://myname.shinyapps.io/?admin`. This will display a login page with a single "Password" parameter, which is the password set using `sd_set_password()`. See the [Setting a Password](password.qmd) page for details.
+When the admin page is enabled, you will be able to access the page by adding `?admin` to the end of the survey URL, e.g. `https://myname.shinyapps.io/?admin`. This will display a login page with a single "Password" parameter, which is the password set using `sd_set_password()`. See the [Password](password.qmd) page for details.
 
 The admin page has the following features:
 
 - **Pause Survey**: Once clicked, the shiny app pauses all instances replacing questions with a placeholder "Paused Survey" page. **Status: Non-functional**
-- **Pause DB**: Once clicked, the `pause` arugment set in `sd_database()` will be set to `TRUE`, pausing all database uploads. **Status: Non-functional**
+- **Pause DB**: Once clicked, the `pause` argument set in `sd_database()` will be set to `TRUE`, pausing all database uploads. **Status: Non-functional**
 - **Download Data**: Once clicked, the most recent table instance is pulled from the database and downloaded locally as a .csv file. 
 - **Admin Logout and Return to Survey**: Once clicked, the admin page will be logged out and the survey will be returned to the start page.
 - **Survey Data**: Pulls most recent instance of the database and displays the data. 

@@ -6,25 +6,25 @@ project:
     browser: true
   render:
     - "!chunks/"
-    - "index.qmd"
-    - "about.qmd"
-    - "documentation.qmd"
-    - "getting-started.qmd"
-    - "installation.qmd"
-    - "password.qmd"   
-    - "components.qmd"
-    - "questions.qmd"
-    - "formatting.qmd"
-    - "reactivity.qmd"
-    - "config.qmd"
-    - "database.qmd"
-    - "deployment.qmd"   
-    - "fetching-data.qmd"
-    - "demos.qmd"
-    - "faq.qmd"
     - "404.qmd"
+    - "about.qmd"
     - "blog/index.qmd"
     - "blog/**/*.qmd"
+    - "config-options.qmd"
+    - "deployment.qmd"
+    - "demos.qmd"
+    - "documentation.qmd"
+    - "faq.qmd"
+    - "fetch-data.qmd"
+    - "formatting.qmd"
+    - "get-started.qmd"
+    - "index.qmd"
+    - "installation.qmd"
+    - "password.qmd"
+    - "question-types.qmd"
+    - "reactivity.qmd"
+    - "store-data.qmd"
+    - "survey-components.qmd"
 
 website:
   title: surveydown.org
@@ -74,27 +74,29 @@ website:
         - text: "Documentation"
           href: documentation.qmd
         - text: "Get Started"
-          href: getting-started.qmd
-        - text: "Install"
+          href: get-started.qmd
+        - text: "Installation"
           href: installation.qmd
-        - text: "Password"
-          href: password.qmd
-        - text: "Survey Components"
-          href: components.qmd
-        - text: "Question Types"
-          href: questions.qmd
-        - text: "Formatting"
-          href: formatting.qmd
-        - text: "Reactivity"
-          href: reactivity.qmd
-        - text: "Configuration Options"
-          href: config.qmd   
-        - text: "Store Data"
-          href: database.qmd
-        - text: "Deploy"
-          href: deployment.qmd
-        - text: "Fetch Data"
-          href: fetching-data.qmd
+        - section: "Reference Manuals"
+          contents: 
+            - text: "Survey Components"
+              href: survey-components.qmd
+            - text: "Question Types"
+              href: question-types.qmd
+            - text: "Formatting"
+              href: formatting.qmd
+            - text: "Reactivity"
+              href: reactivity.qmd
+            - text: "Config Options"
+              href: config-options.qmd   
+            - text: "Store Data"
+              href: store-data.qmd
+            - text: "Password"
+              href: password.qmd
+            - text: "Deployment"
+              href: deployment.qmd
+            - text: "Fetch Data"
+              href: fetch-data.qmd
 
 format:
   html:

@@ -20,8 +20,8 @@ The platform is based on some basic principles:
 - Add content to your survey using markdown text (or in RStudio use the visual editor).
 - Define survey questions in R code chunks with the `sd_question()` function.
 - Define pages using fences (`:::`), with navigation buttons handled using the `sd_next()` function.
-- Add rich functionality to your survey using [configuration options](config.qmd) in the server code chunk.
-- Store your respondent data on supabase by setting the [database settings](database.qmd) in the server code chunk.
+- Add rich functionality to your survey using [config options](config-options.qmd) in the server code chunk.
+- Store your respondent data on supabase by setting the [database](store-data.qmd) in the server code chunk.
 
 This approach ensures a flexible survey platform that is fully reproducible and easy to customize.
 
@@ -29,7 +29,7 @@ The remaining steps on this page will guide you through the process of creating 
 
 ## 1. Install
 
-See [installation](installation.qmd).
+See the [Installation](installation.qmd) page.
 
 ## 2. Start with a template
 
@@ -37,7 +37,7 @@ See [installation](installation.qmd).
 
 ## 3. Add content
 
-See the [components](components.qmd) page for details on the main components in a surveydown survey. For a quick overview, here's how you add pages and questions:
+See the [Survey Components](survey-components.qmd) page for details on the main components in a surveydown survey. For a quick overview, here's how you add pages and questions:
 
 - Add pages with fences, like this:
 
@@ -49,7 +49,7 @@ Page 1 content here
 :::
 ```
 
-- Add questions with the `sd_question()` function in code chunks (see the [Question Types](questions.qmd) page for more on the types of questions supported). For example, here's a multiple choice question:
+- Add questions with the `sd_question()` function in code chunks (see the [Question Types](question-types.qmd) page for more on the types of questions supported). For example, here's a multiple choice question:
 
 ```{r}
 #| echo: fenced
@@ -86,11 +86,11 @@ sd_question(
 
 ## 4. Add configuration options
 
-In the server chunk (bottom of the `.qmd` file), add control logic and other configuration options to your survey with the `sd_config()` function. See the [Configuration Options](config.qmd) page for more details.
+In the server chunk (bottom of the `.qmd` file), add control logic and other configuration options to your survey with the `sd_config()` function. See the [Configuration Options](config-options.qmd) page for more details.
 
 ## 5. Setup your database
 
-Also in the server chunk, setup your database with the `sd_database()` function. You can also leave it blank to preview / edit your survey without database connected, or set `pause = TRUE` to disconnect the survey. See the [Database Settings](database.qmd) page for more details.
+Also in the server chunk, setup your database with the `sd_database()` function. You can also leave it blank to preview / edit your survey without database connected, or set `pause = TRUE` to disconnect the survey. See the [Store Data](store-data.qmd) page for more details.
 
 ## 6. Locally preview
 

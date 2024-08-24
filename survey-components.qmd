@@ -165,7 +165,7 @@ sd_next(next_page = 'page2', label = 'Next page')
 
 To end a survey, all you have to do is create a page with no `sd_next()` button on it. This will effectively serve as a ending page, because the respondent will not be able to navigate anywhere else once reaching a page with no `sd_next()` button. 
 
-For example, you may want to have a screenout page that respondents are sent to if they answer a certain way on a question (see the [basic skipping](config.qmd#basic-skipping) page for an example). You can do this by creating a page with no `sd_next()` button on it, like this:
+For example, you may want to have a screen-out page that respondents are sent to if they answer a certain way on a question (see the [basic skipping](config-options.qmd#basic-skipping) page for an example). You can do this by creating a page with no `sd_next()` button on it, like this:
 
 ```{r}
 ::: {#screenout .sd-page}
@@ -216,11 +216,11 @@ sd_question(
 
 <br>
 
-The `sd_question()` function can be used to create a variety of question types, like text input, select drop down choices, and more by changing the `type` argument (see the [Questions Types](questions.qmd) page).
+The `sd_question()` function can be used to create a variety of question types, like text input, select drop down choices, and more by changing the `type` argument (see the [Questions Types](question-types.qmd) page).
 
 The function has many other arguments for customizing the look and feel of the question, such as the `height` and `width` (see the [Formatting Questions](formatting.qmd) page).
 
-By default all questions are optional, but you can make questions required in the configuration options (see the [Configuration Options](config.qmd#required-responses) page for details).
+By default all questions are optional, but you can make questions required in the configuration options (see the [Configuration Options](config-options.qmd#required-responses) page for details).
 
 ## 4. Server code chunk
 
@@ -245,8 +245,8 @@ sd_server(
 )
 ```
 
-The `sd_config()` function is where you can define configuration options for the survey, such as [conditional display](config.qmd#conditional-display) (conditionally displaying a question based on responses to questions), or [conditional skip](config.qmd#conditional-skip) (conditionally sending the respondent to a page based on responses to questions). See the [Configuration Options](config.qmd) page for details.
+The `sd_config()` function is where you can define configuration options for the survey, such as [conditional display](config-options.qmd#conditional-display) (conditionally displaying a question based on responses to questions), or [conditional skip](config-options.qmd#conditional-skipping) (conditionally sending the respondent to a page based on responses to questions). See the [Configuration Options](config-options.qmd) page for details.
 
-The `sd_database()` function is where you set up your database. See the [Database Settings](database.qmd) page for details.
+The `sd_database()` function is where you set up your database. See the [Store Data](store-data.qmd) page for details.
 
 The `sd_server()` function at the bottom makes everything run, which you can safely ignore - just don't change it and all will be good!

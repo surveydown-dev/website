@@ -7,7 +7,7 @@ Once you have previewed and tested your survey and are ready to field it, it is 
 To deploy your survey, you'll need to have the following recipes ready:
 
 1. Your survey project made by Quarto that is properly rendered locally.
-2. Your supabase project with its credentials defined in your survey `.qmd` file. See the [Database Settings](database.qmd) page for details.
+2. Your supabase project with its credentials defined in your survey `.qmd` file. See the [Store Data](store-data) page for details.
 3. An account on [shinyapps](https://www.shinyapps.io), which will be used for survey online deployment.
 
 These steps are easy to follow. We will go through one by one.
@@ -72,7 +72,7 @@ This can help solve your connection problem. The value of `gssencmode` is set to
 
 ## Step 2: Supabase Project
 
-This is covered in [5. Database Setup](../doc/database_setup.html). I want to further mention that you don't need to actively create any table on your supabase project. In your `db` variable of your `.qmd` file, there is a `table_name` argument. Whatever name you define here will become the table name of your supabase:
+This is covered in [Store Data](store-data.qmd). I want to further mention that you don't need to actively create any table on your supabase project. In your `db` variable of your `.qmd` file, there is a `table_name` argument. Whatever name you define here will become the table name of your supabase:
 
 ```{r eval=FALSE}
 db <- sd_database(

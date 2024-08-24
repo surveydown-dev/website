@@ -1,0 +1,135 @@
+---
+server: shiny
+filters: [surveydown]
+---
+
+```{r}
+#| context: setup
+#| echo: false
+#| warning: false
+#| message: false
+
+# Run this in your R Console to install the latest version of the package:
+# remotes::install_github("surveydown-dev/surveydown", force = TRUE)
+
+# Run this to install or update the Quarto extension to the latest version:
+# surveydown::sd_update_extension()
+
+# Load the package
+library(surveydown)
+
+# Run initial setup function (essential - do not delete)
+sd_setup()
+```
+
+::: {#welcome .sd-page}
+
+# Welcome to our survey!
+
+This is a simple demonstration of a surveydown survey. It has two pages with one question on each page.
+
+Here is a basic "multiple choice" question, created using `type = 'mc'` inside the `sd_question()` function:
+
+```{r}
+sd_question(
+  type  = 'mc',
+  id    = 'penguins',
+  label = "Which type of penguin do you like the best?",
+  option = c(
+    'Adélie'    = 'adelie',
+    'Chinstrap' = 'chinstrap',
+    'Gentoo'    = 'gentoo'
+  )
+)
+```
+
+<br>
+
+You need to insert next buttons with `sd_next()` and set the `next_page` argument to the name of the page you want to go to next.
+
+```{r}
+sd_next(next_page = 'page2')
+```
+
+:::
+
+::: {#page2 .sd-page}
+
+This is another page in your survey.
+
+{surveydown} supports many types of questions. For example, here is a simple `text` type question:
+
+```{r}
+sd_question(
+  type  = "text",
+  id    = "silly_word",
+  label = "Write a silly word here:"
+)
+```
+ 
+<br>
+
+```{r}
+sd_next(next_page = 'end')
+```
+
+:::
+
+::: {#end .sd-page}
+
+This it the last page in the survey
+
+:::
+
+```{r}
+#| context: server
+
+##################
+# database setup #
+##################
+
+# surveydown stores data on a database that you define at https://supabase.com/
+# To connect to a database to store the survey data, update this with details
+# from your supabase account and database. See documentation for details at
+# https://surveydown.org/database
+
+# db <- sd_database(
+#   host       = "",
+#   dbname     = "",
+#   port       = "",
+#   user       = "",
+#   table_name = "",
+#   gssencmode = "prefer" # Change to "disable" if there's connection problem.
+# )
+
+# If you don't have a database setup you can just leave the function blank.
+# When testing without a database connected, a data.csv file will be
+# written to the project directory so you can preview the response data.
+
+db <- sd_database()
+
+################
+# config setup #
+################
+
+# Use the sd_config() function to customize features in your survey, like
+# logic to conditionally display questions or skip to pages based on responses
+# to skip other questions in your survey. See documentation for details at
+# https://surveydown.org/config
+
+config <- sd_config()
+
+####################################
+# Don't change anything below here #
+####################################
+
+# The sd_server function initiates your survey - don't change this
+
+sd_server(
+  input   = input,
+  output  = output,
+  session = session,
+  config  = config,
+  db      = db
+)
+```

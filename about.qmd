@@ -41,11 +41,11 @@ We've highlighted the core features of surveydown. Most of them are up and runni
 
 ```{r}
 #| eval: true
-library(tidyverse)
 library(here)
 library(kableExtra)
 
-features_df <- read_csv(here("files", "features.csv"))
+features_df <- read.csv(check.names = FALSE,
+                        here("files", "features.csv"))
 
 features_kable <- features_df %>% kable(
     format = 'html', escape = FALSE,

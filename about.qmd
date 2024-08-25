@@ -42,17 +42,15 @@ We've highlighted the core features of surveydown. Most of them are up and runni
 ```{r}
 #| eval: true
 library(here)
-library(kableExtra)
+library(tinytable)
 
 features_df <- read.csv(check.names = FALSE,
                         here("files", "features.csv"))
 
-features_kable <- features_df %>% kable(
-    format = 'html', escape = FALSE,
-    align = c('c', 'l', 'l', 'c'),
-    caption = 'Features of surveydown') %>%
-    kable_styling(bootstrap_options = c('hover'))
-features_kable
+features_table <- tt(features_df, theme = "striped") |>
+    style_tt(j = 1, align = "c") |>
+    style_tt(j = 4, align = "c")
+features_table
 ```
 
 

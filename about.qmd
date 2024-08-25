@@ -48,6 +48,7 @@ features_df <- read.csv(check.names = FALSE,
                         here("files", "features.csv"))
 
 features_table <- tt(features_df, theme = "striped") |>
+    style_tt(fontsize = 0.9) |>
     style_tt(j = 1, align = "c") |>
     style_tt(j = 4, align = "c")
 features_table

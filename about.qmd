@@ -35,6 +35,27 @@ As an open-source, markdown-based platform, surveydown was designed to address t
 
 If you're curious where this whole idea came from, check out this [blog post](https://www.jhelvy.com/blog/2023-04-06-markdown-surveys/), which outlines more on the general idea and the motivation for it. The post is now outdated in terms of the overall package design, but it provides something of an origin story and some of the motivation for developing this project.
 
+# Features
+
+We've highlighted the core features of surveydown. Most of them are up and running. Some of them are under construction.
+
+```{r}
+#| eval: true
+library(tidyverse)
+library(here)
+library(kableExtra)
+
+features_df <- read_csv(here("files", "features.csv"))
+
+features_kable <- features_df %>% kable(
+    format = 'html', escape = FALSE,
+    align = c('c', 'l', 'l', 'c'),
+    caption = 'Features of surveydown') %>%
+    kable_styling(bootstrap_options = c('hover'))
+features_kable
+```
+
+
 # Editing a surveydown survey
 
 Editing a surveydown survey feels like editing a [Quarto]({{< url_quarto >}}) document. As a result, we recommend working with an IDE to edit your surveys as they offer a better experience. [RStudio]({{< url_rstudio_ide >}}) is great, and we also like [VS Code]({{< url_vscode >}}) and [Positron]({{< url_positron >}}).

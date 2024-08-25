@@ -351,49 +351,11 @@
     ]
   },
   {
-    "objectID": "documentation.html",
-    "href": "documentation.html",
-    "title": "surveydown.org",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Overview",
     "section": "",
-    "text": "Welcome to your first surveydown survey!\nWe recommend reading the Get Started page to get a sense of how to use surveydown. The rest of the documentation covers more details on how to use surveydown.\n\nGet Started!\n\n\n\n\n\n Back to top",
-    "crumbs": [
-      "Documentation"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome to surveydown.org!",
-    "section": "",
-    "text": "Welcome to surveydown.org!\nsurveydown is a flexible, open-source platform for making surveys with , Quarto, shiny, and supabase. The accompanying  package is still in development, but you can already use it to create surveys!\n\n\n\n\n\nAbout the package and the open-source technologies behind it.\n\n\nABOUT\n\n\n\n\n\n\n\n\nDemos showcasing surveydown features.\n\n\nDEMOS\n\n\n\n\n\n\n\n\nDocumentation for building surveys with surveydown.\n\n\nDOCUMENTATION\n\n\n\n\n\n\n\n\nFrequently asked questions.\n\n\nFAQ\n\n\n\n\n\n\n\n\n Back to top"
-  },
-  {
-    "objectID": "blog/index.html",
-    "href": "blog/index.html",
-    "title": "Blog",
-    "section": "",
-    "text": "Introducing surveydown: A markdown-based framework for generating surveys with Quarto and shiny\n\n\n\n\n\nA quick overview of the {surveydown} R package for making markdown-based surveys with open-source technologies: Quarto, shiny, and supabase. \n\n\n\n\n\n2024-08-21\n\n\nJohn Paul Helveston\n\n\n\n\n\n\nNo matching items\n\n Back to top"
-  },
-  {
-    "objectID": "faq.html",
-    "href": "faq.html",
-    "title": "Frequently Asked Questions",
-    "section": "",
-    "text": "Use the required_questions argument in sd_config() to control required responses. See making a question required."
-  },
-  {
-    "objectID": "faq.html#how-do-i-make-a-question-required",
-    "href": "faq.html#how-do-i-make-a-question-required",
-    "title": "Frequently Asked Questions",
-    "section": "",
-    "text": "Use the required_questions argument in sd_config() to control required responses. See making a question required."
-  },
-  {
-    "objectID": "demos.html",
-    "href": "demos.html",
-    "title": "Demos",
-    "section": "",
-    "text": "Conditional Showing\n      This demo showcases conditional showing of a question using show_if() and show_if_custom().\n    \n  \n\n\n\n\n Back to top"
+    "text": "Overview\nsurveydown is a flexible, open-source platform for making surveys with , Quarto, shiny, and supabase. The accompanying  package is still in development, but you can already use it to create surveys!\n\n\n\n\n\nThe basic concept is this:\n\nDesign your survey as a Quarto shiny document using markdown and R code.\nRender your doc into a shiny app that can be hosted online and sent to respondents.\nStore your survey responses in a supabase database.\n\nWe recommend reading the Get Started page to get a sense of how to use surveydown. The rest of the documentation covers more details on how to use surveydown.\n\nGet Started!\n\n\n\nBackground & Motivation\nMost survey platforms (e.g., Google forms, Qualtrics, etc.) use drag-and-drop interfaces to design surveys, making version control and collaboration with others difficult. They’re also not reproducible (others cannot easily reproduce a survey made on these platforms), and many require a paid subscription or license to use.\nAs an open-source, markdown-based platform, surveydown was designed to address these problems. In surveydown, all survey content is created with plain text (markdown and R code) in a single .qmd file that renders into a shiny app. This makes your survey easy to reproduce, share, and version control with common tools like Git. The survey data collected is also owned by the survey designer in a supabase account. Best of all, everything is open source and free :)\nIf you’re curious where this whole idea came from, check out this blog post, which outlines more on the general idea and the motivation for it. The post is now outdated in terms of the overall package design, but it provides something of an origin story and some of the motivation for developing this project.\n\n\nEditing a surveydown survey\nEditing a surveydown survey feels like editing a Quarto document. As a result, we recommend working with an IDE to edit your surveys as they offer a better experience. RStudio is great, and we also like VS Code and Positron.\nOnce you have a survey ready to edit in your favorite IDE, you can render it locally to see how it will look as you change features. For example, the gif below shows what it looks like to make a question required. This gives you an idea for what the development process is like. And because surveydown leverages shiny and Quarto, you can add all sorts of custom features and styles to your survey!\n\n\n\n\n\nAuthors\nThe surveydown project is led by professor John Paul Helveston at George Washington University. The development team consists of the following members:\n\n\n\n\n\nJohn Paul Helveston, Ph.D.\nJohn Paul Helveston is an Assistant Professor in the Department of Engineering Management and Systems Engineering at George Washington University. Professor Helveston is the core designer and developer, and maintainer of both the surveydown project and this documentation website.\n\n\n\n\n\n\n\nPingfan Hu\nPingfan Hu is a Ph.D. student in Systems Engineering at George Washington University, supervised by professor Helveston. Pingfan is mainly responsible for UI design, user interactions, and website maintenance.\n\n\n\n\n\n\n\nBogdan Bunea\nBogdan Bunea is an undergraduate student majoring in Systems Engineering and minoring in Computer Science at George Washington University. Bogdan is mainly responsible for database connection and data management.\n\n\n\n\n\n\n Back to top"
   },
   {
     "objectID": "password.html",
@@ -456,11 +418,49 @@
     ]
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Overview",
+    "objectID": "blog/index.html",
+    "href": "blog/index.html",
+    "title": "Blog",
     "section": "",
-    "text": "Overview\nsurveydown is a flexible, open-source platform for making surveys with , Quarto, shiny, and supabase. The accompanying  package is still in development, but you can already use it to create surveys!\n\n\n\n\n\nThe basic concept is this:\n\nDesign your survey as a Quarto shiny document using markdown and R code.\nRender your doc into a shiny app that can be hosted online and sent to respondents.\nStore your survey responses in a supabase database.\n\nWe recommend reading the Get Started page to get a sense of how to use surveydown. The rest of the documentation covers more details on how to use surveydown.\n\nGet Started!\n\n\n\nBackground & Motivation\nMost survey platforms (e.g., Google forms, Qualtrics, etc.) use drag-and-drop interfaces to design surveys, making version control and collaboration with others difficult. They’re also not reproducible (others cannot easily reproduce a survey made on these platforms), and many require a paid subscription or license to use.\nAs an open-source, markdown-based platform, surveydown was designed to address these problems. In surveydown, all survey content is created with plain text (markdown and R code) in a single .qmd file that renders into a shiny app. This makes your survey easy to reproduce, share, and version control with common tools like Git. The survey data collected is also owned by the survey designer in a supabase account. Best of all, everything is open source and free :)\nIf you’re curious where this whole idea came from, check out this blog post, which outlines more on the general idea and the motivation for it. The post is now outdated in terms of the overall package design, but it provides something of an origin story and some of the motivation for developing this project.\n\n\nEditing a surveydown survey\nEditing a surveydown survey feels like editing a Quarto document. As a result, we recommend working with an IDE to edit your surveys as they offer a better experience. RStudio is great, and we also like VS Code and Positron.\nOnce you have a survey ready to edit in your favorite IDE, you can render it locally to see how it will look as you change features. For example, the gif below shows what it looks like to make a question required. This gives you an idea for what the development process is like. And because surveydown leverages shiny and Quarto, you can add all sorts of custom features and styles to your survey!\n\n\n\n\n\nAuthors\nThe surveydown project is led by professor John Paul Helveston at George Washington University. The development team consists of the following members:\n\n\n\n\n\nJohn Paul Helveston, Ph.D.\nJohn Paul Helveston is an Assistant Professor in the Department of Engineering Management and Systems Engineering at George Washington University. Professor Helveston is the core designer and developer, and maintainer of both the surveydown project and this documentation website.\n\n\n\n\n\n\n\nPingfan Hu\nPingfan Hu is a Ph.D. student in Systems Engineering at George Washington University, supervised by professor Helveston. Pingfan is mainly responsible for UI design, user interactions, and website maintenance.\n\n\n\n\n\n\n\nBogdan Bunea\nBogdan Bunea is an undergraduate student majoring in Systems Engineering and minoring in Computer Science at George Washington University. Bogdan is mainly responsible for database connection and data management.\n\n\n\n\n\n\n Back to top"
+    "text": "Introducing surveydown: A markdown-based framework for generating surveys with Quarto and shiny\n\n\n\n\n\nA quick overview of the {surveydown} R package for making markdown-based surveys with open-source technologies: Quarto, shiny, and supabase. \n\n\n\n\n\n2024-08-21\n\n\nJohn Paul Helveston\n\n\n\n\n\n\nNo matching items\n\n Back to top"
+  },
+  {
+    "objectID": "faq.html",
+    "href": "faq.html",
+    "title": "Frequently Asked Questions",
+    "section": "",
+    "text": "Use the required_questions argument in sd_config() to control required responses. See making a question required."
+  },
+  {
+    "objectID": "faq.html#how-do-i-make-a-question-required",
+    "href": "faq.html#how-do-i-make-a-question-required",
+    "title": "Frequently Asked Questions",
+    "section": "",
+    "text": "Use the required_questions argument in sd_config() to control required responses. See making a question required."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to surveydown.org!",
+    "section": "",
+    "text": "Welcome to surveydown.org!\nsurveydown is a flexible, open-source platform for making surveys with , Quarto, shiny, and supabase. The accompanying  package is still in development, but you can already use it to create surveys!\n\n\n\n\n\nAbout the package and the open-source technologies behind it.\n\n\nABOUT\n\n\n\n\n\n\n\n\nDemos showcasing surveydown features.\n\n\nDEMOS\n\n\n\n\n\n\n\n\nDocumentation for building surveys with surveydown.\n\n\nDOCUMENTATION\n\n\n\n\n\n\n\n\nFrequently asked questions.\n\n\nFAQ\n\n\n\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "documentation.html",
+    "href": "documentation.html",
+    "title": "surveydown.org",
+    "section": "",
+    "text": "Welcome to your first surveydown survey!\nWe recommend reading the Get Started page to get a sense of how to use surveydown. The rest of the documentation covers more details on how to use surveydown.\n\nGet Started!\n\n\n\n\n\n Back to top",
+    "crumbs": [
+      "Documentation"
+    ]
+  },
+  {
+    "objectID": "demos.html",
+    "href": "demos.html",
+    "title": "Demos",
+    "section": "",
+    "text": "Question Types\n\n\nA demo of all the question types currently supported by surveydown.\n\n\n\n\n\n\n\n\n\n\nConditional Display\n\n\nA demo of how to implement conditional display (showing a question based on a previous response).\n\n\n\n\n\n\n\n\n\n\nConditional Skipping\n\n\nA demo of how to implement conditional skipping (skipping to a page based on a previous response).\n\n\n\n\n\n\n\n\n\n\nRandomized Question Labels\n\n\nA demo of how to implement randomized question labels.\n\n\n\n\n\n\n\n\n\n\nRandomized Question Labels (Predefined)\n\n\nA demo of how to implement randomized question labels using predefined random labels.\n\n\n\n\n\n\n\n\n\n\nReactive Plot\n\n\nA demo of how to implement reactive plots in your survey.\n\n\n\n\n\n\n\n\n\n\nChoice-Based Conjoint\n\n\nA demo of how to implement a choice-based conjoint survey with surveydown.\n\n\n\n\n\n\n\n\n\n\n\n\n Back to top"
   },
   {
     "objectID": "store-data.html",

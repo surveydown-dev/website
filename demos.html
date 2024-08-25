@@ -74,7 +74,6 @@ ul.task-list li input[type="checkbox"] {
 <style>html{ scroll-behavior: smooth; }</style>
 
 
-<link rel="stylesheet" href="styles.css">
 <meta property="og:title" content="Demos – surveydown.org">
 <meta property="og:image" content="https://www.surveydown.org/images/logo.png">
 <meta property="og:site_name" content="https://surveydown.org">
@@ -150,8 +149,20 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#question-types" id="toc-question-types" class="nav-link active" data-scroll-target="#question-types">Question Types</a></li>
+  <li><a href="#conditional-display" id="toc-conditional-display" class="nav-link" data-scroll-target="#conditional-display">Conditional Display</a></li>
+  <li><a href="#conditional-skipping" id="toc-conditional-skipping" class="nav-link" data-scroll-target="#conditional-skipping">Conditional Skipping</a></li>
+  <li><a href="#randomized-question-labels" id="toc-randomized-question-labels" class="nav-link" data-scroll-target="#randomized-question-labels">Randomized Question Labels</a></li>
+  <li><a href="#randomized-question-labels-predefined" id="toc-randomized-question-labels-predefined" class="nav-link" data-scroll-target="#randomized-question-labels-predefined">Randomized Question Labels (Predefined)</a></li>
+  <li><a href="#reactive-plot" id="toc-reactive-plot" class="nav-link" data-scroll-target="#reactive-plot">Reactive Plot</a></li>
+  <li><a href="#choice-based-conjoint" id="toc-choice-based-conjoint" class="nav-link" data-scroll-target="#choice-based-conjoint">Choice-Based Conjoint</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -175,17 +186,106 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<a href="https://github.com/surveydown-dev/demo-show-if" target="_blank" class="card-link">
-  <div class="card">
-    <img src="./images/logo.png" alt="demo-show-if">
-    <div class="card-content">
-      <h2 class="card-title anchored">Conditional Showing</h2>
-      <p class="card-text">This demo showcases conditional showing of a question using <code>show_if()</code> and <code>show_if_custom()</code>.</p>
-    </div>
-  </div>
-</a>
+<section id="question-types" class="level3">
+<h3 class="anchored" data-anchor-id="question-types">Question Types</h3>
+<div class="grid">
+<div class="g-col-6">
+<p>A demo of all the <a href="question-types.html">question types</a> currently supported by surveydown.</p>
+</div>
+<div class="g-col-6">
+<div class="github-card" data-github="surveydown-dev/demo-question-types" data-width="400" data-height="153" data-theme="default">
+
+</div>
+<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+</div>
+</div>
+</section>
+<section id="conditional-display" class="level3">
+<h3 class="anchored" data-anchor-id="conditional-display">Conditional Display</h3>
+<div class="grid">
+<div class="g-col-6">
+<p>A demo of how to implement <a href="config-options.html#conditional-display">conditional display</a> (showing a question based on a previous response).</p>
+</div>
+<div class="g-col-6">
+<div class="github-card" data-github="surveydown-dev/demo-show-if" data-width="400" data-height="153" data-theme="default">
+
+</div>
+<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+</div>
+</div>
+</section>
+<section id="conditional-skipping" class="level3">
+<h3 class="anchored" data-anchor-id="conditional-skipping">Conditional Skipping</h3>
+<div class="grid">
+<div class="g-col-6">
+<p>A demo of how to implement <a href="config-options.html#conditional-skipping">conditional skipping</a> (skipping to a page based on a previous response).</p>
+</div>
+<div class="g-col-6">
+<div class="github-card" data-github="surveydown-dev/demo-skip-if" data-width="400" data-height="153" data-theme="default">
+
+</div>
+<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+</div>
+</div>
+</section>
+<section id="randomized-question-labels" class="level3">
+<h3 class="anchored" data-anchor-id="randomized-question-labels">Randomized Question Labels</h3>
+<div class="grid">
+<div class="g-col-6">
+<p>A demo of how to implement <a href="reactivity.html#randomizing-question-labels">randomized question labels</a>.</p>
+</div>
+<div class="g-col-6">
+<div class="github-card" data-github="surveydown-dev/demo-randomized-question-labels" data-width="400" data-height="153" data-theme="default">
+
+</div>
+<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+</div>
+</div>
+</section>
+<section id="randomized-question-labels-predefined" class="level3">
+<h3 class="anchored" data-anchor-id="randomized-question-labels-predefined">Randomized Question Labels (Predefined)</h3>
+<div class="grid">
+<div class="g-col-6">
+<p>A demo of how to implement randomized question labels using <a href="reactivity.html#pre-defined-randomization">predefined random labels</a>.</p>
+</div>
+<div class="g-col-6">
+<div class="github-card" data-github="surveydown-dev/demo-randomized-question-labels-predefined" data-width="400" data-height="153" data-theme="default">
+
+</div>
+<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+</div>
+</div>
+</section>
+<section id="reactive-plot" class="level3">
+<h3 class="anchored" data-anchor-id="reactive-plot">Reactive Plot</h3>
+<div class="grid">
+<div class="g-col-6">
+<p>A demo of how to implement reactive plots in your survey.</p>
+</div>
+<div class="g-col-6">
+<div class="github-card" data-github="surveydown-dev/demo-reactive-plot" data-width="400" data-height="153" data-theme="default">
+
+</div>
+<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+</div>
+</div>
+</section>
+<section id="choice-based-conjoint" class="level3">
+<h3 class="anchored" data-anchor-id="choice-based-conjoint">Choice-Based Conjoint</h3>
+<div class="grid">
+<div class="g-col-6">
+<p>A demo of how to implement a choice-based conjoint survey with surveydown.</p>
+</div>
+<div class="g-col-6">
+<div class="github-card" data-github="surveydown-dev/demo-choice-based-conjoint" data-width="400" data-height="153" data-theme="default">
+
+</div>
+<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+</div>
+</div>
 
 
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -39,7 +39,7 @@ jobs:
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          install.packages("remotes")
+          install.packages(c("remotes", "tidyverse", "here", "kableExtra"))
           remotes::install_deps(dependencies = TRUE)
           remotes::install_github("surveydown-dev/surveydown@main")
         shell: Rscript {0}

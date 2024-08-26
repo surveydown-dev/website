@@ -157,9 +157,9 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#background-motivation" id="toc-background-motivation" class="nav-link" data-scroll-target="#background-motivation">Background &amp; Motivation</a></li>
   <li><a href="#features" id="toc-features" class="nav-link" data-scroll-target="#features">Features</a></li>
   <li><a href="#editing-a-surveydown-survey" id="toc-editing-a-surveydown-survey" class="nav-link" data-scroll-target="#editing-a-surveydown-survey">Editing a surveydown survey</a></li>
+  <li><a href="#background-motivation" id="toc-background-motivation" class="nav-link" data-scroll-target="#background-motivation">Background &amp; Motivation</a></li>
   <li><a href="#authors" id="toc-authors" class="nav-link" data-scroll-target="#authors">Authors</a></li>
   </ul>
 </nav>
@@ -189,12 +189,6 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="./get-started.html"><button type="button" class="btn btn-primary btn-lg">Get Started!</button></a></p>
 </div>
 </section>
-<section id="background-motivation" class="level1">
-<h1>Background &amp; Motivation</h1>
-<p>Most survey platforms (e.g., Google forms, Qualtrics, etc.) use drag-and-drop interfaces to design surveys, making version control and collaboration with others difficult. They’re also not reproducible (others cannot easily reproduce a survey made on these platforms), and many require a paid subscription or license to use.</p>
-<p>As an open-source, markdown-based platform, surveydown was designed to address these problems. In surveydown, all survey content is created with plain text (markdown and R code) in a single <code>.qmd</code> file that renders into a shiny app. This makes your survey easy to reproduce, share, and version control with common tools like Git. The survey data collected is also owned by the survey designer in a supabase account. Best of all, everything is open source and free :)</p>
-<p>If you’re curious where this whole idea came from, check out this <a href="https://www.jhelvy.com/blog/2023-04-06-markdown-surveys/">blog post</a>, which outlines more on the general idea and the motivation for it. The post is now outdated in terms of the overall package design, but it provides something of an origin story and some of the motivation for developing this project.</p>
-</section>
 <section id="features" class="level1">
 <h1>Features</h1>
 <p>We’ve highlighted the core features of surveydown. Most of them are up and running. Some of them are under construction.</p>
@@ -203,12 +197,12 @@ ul.task-list li input[type="checkbox"] {
 <!-- preamble start -->
 
     <script>
-      function styleCell_49el5dhc0kii0ugjp6d6(i, j, css_id) {
-        var table = document.getElementById("tinytable_49el5dhc0kii0ugjp6d6");
+      function styleCell_0697pcsipr7iaokl1nep(i, j, css_id) {
+        var table = document.getElementById("tinytable_0697pcsipr7iaokl1nep");
         table.rows[i].cells[j].classList.add(css_id);
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_49el5dhc0kii0ugjp6d6');
+        var table = document.getElementById('tinytable_0697pcsipr7iaokl1nep');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -216,8 +210,8 @@ ul.task-list li input[type="checkbox"] {
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_49el5dhc0kii0ugjp6d6(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_49el5dhc0kii0ugjp6d6");
+      function spanCell_0697pcsipr7iaokl1nep(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_0697pcsipr7iaokl1nep");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -243,208 +237,169 @@ ul.task-list li input[type="checkbox"] {
         targetCell.rowSpan = rowspan;
         targetCell.colSpan = colspan;
       }
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(0, 0, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(0, 1, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(0, 2, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(0, 3, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(1, 0, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(1, 1, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(1, 2, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(1, 3, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(2, 0, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(2, 1, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(2, 2, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(2, 3, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(3, 0, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(3, 1, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(3, 2, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(3, 3, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(4, 0, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(4, 1, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(4, 2, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(4, 3, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(5, 0, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(5, 1, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(5, 2, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(5, 3, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(6, 0, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(6, 1, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(6, 2, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(6, 3, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(7, 0, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(7, 1, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(7, 2, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(7, 3, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(8, 0, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(8, 1, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(8, 2, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(8, 3, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(9, 0, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(9, 1, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(9, 2, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(9, 3, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(10, 0, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(10, 1, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(10, 2, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(10, 3, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(11, 0, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(11, 1, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(11, 2, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(11, 3, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(12, 0, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(12, 1, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(12, 2, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(12, 3, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(13, 0, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(13, 1, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(13, 2, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(13, 3, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(14, 0, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(14, 1, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(14, 2, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(14, 3, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(15, 0, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(15, 1, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(15, 2, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(15, 3, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(16, 0, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(16, 1, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(16, 2, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(16, 3, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(17, 0, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(17, 1, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(17, 2, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(17, 3, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(18, 0, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(18, 1, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(18, 2, 'tinytable_css_idpoiu0lnhqh8yuzxy6otg') })
-window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(18, 3, 'tinytable_css_id2a3ani9yzoa698vki2e8') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(0, 0, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(0, 1, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(0, 2, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(1, 0, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(1, 1, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(1, 2, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(2, 0, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(2, 1, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(2, 2, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(3, 0, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(3, 1, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(3, 2, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(4, 0, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(4, 1, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(4, 2, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(5, 0, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(5, 1, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(5, 2, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(6, 0, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(6, 1, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(6, 2, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(7, 0, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(7, 1, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(7, 2, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(8, 0, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(8, 1, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(8, 2, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(9, 0, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(9, 1, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(9, 2, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(10, 0, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(10, 1, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(10, 2, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(11, 0, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(11, 1, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(11, 2, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(12, 0, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(12, 1, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(12, 2, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(13, 0, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(13, 1, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(13, 2, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(14, 0, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(14, 1, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(14, 2, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(15, 0, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(15, 1, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(15, 2, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(16, 0, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(16, 1, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(16, 2, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(17, 0, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(17, 1, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(17, 2, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(18, 0, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(18, 1, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
+window.addEventListener('load', function () { styleCell_0697pcsipr7iaokl1nep(18, 2, 'tinytable_css_idnukxdheefbri5gk9g5ji') })
     </script>
 
     <style>
-    .table td.tinytable_css_id2a3ani9yzoa698vki2e8, .table th.tinytable_css_id2a3ani9yzoa698vki2e8 {  text-align: center;  font-size: 0.9em; }
-    .table td.tinytable_css_idpoiu0lnhqh8yuzxy6otg, .table th.tinytable_css_idpoiu0lnhqh8yuzxy6otg {  font-size: 0.9em; }
+    .table td.tinytable_css_idnukxdheefbri5gk9g5ji, .table th.tinytable_css_idnukxdheefbri5gk9g5ji {  font-size: 0.9em; }
     </style>
     <div class="container">
-      <table class="table table-striped" id="tinytable_49el5dhc0kii0ugjp6d6" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-striped" id="tinytable_0697pcsipr7iaokl1nep" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         <thead>
         
               <tr>
-                <th scope="col">No.</th>
-                <th scope="col">Feature</th>
-                <th scope="col">How to Trigger</th>
                 <th scope="col">Progress</th>
+                <th scope="col">Feature</th>
+                <th scope="col">Implementation</th>
               </tr>
         </thead>
         
         <tbody>
                 <tr>
-                  <td> 1</td>
-                  <td>Multiple question types                            </td>
-                  <td><code>sd_question()</code>                                                          </td>
                   <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
+                  <td>Wide variety of <a href="question-types.html">question types</a>                                            </td>
+                  <td><code>sd_question()</code>                                                                                   </td>
                 </tr>
                 <tr>
-                  <td> 2</td>
-                  <td>Obtain reactive survey results                     </td>
-                  <td><code>sd_get_data(db, reactive = TRUE)</code>                                       </td>
                   <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
+                  <td>Ability to <a href="fetch-data.html#reactive-fetching">use latest survey results</a> in the survey itself   </td>
+                  <td><code>sd_get_data(db, reactive = TRUE)</code>                                                                </td>
                 </tr>
                 <tr>
-                  <td> 3</td>
-                  <td>Preview mode that pauses database connection       </td>
-                  <td><code>sd_database(pause = TRUE)</code>                                              </td>
                   <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
+                  <td>Preview mode (pauses database connection)                                                                   </td>
+                  <td><code>sd_database(pause = TRUE)</code>                                                                       </td>
                 </tr>
                 <tr>
-                  <td> 4</td>
-                  <td>Conditionally display question                     </td>
-                  <td><code>sd_config(show_if = XXX)</code> &amp; <code>sd_config(show_if_custom = XXX)</code></td>
                   <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
+                  <td><a href="config-options.html#conditional-display">Conditionally display questions</a>                       </td>
+                  <td><code>sd_config(show_if = XXX)</code> &amp; <code>sd_config(show_if_custom = XXX)</code>                         </td>
                 </tr>
                 <tr>
-                  <td> 5</td>
-                  <td>Conditionally skip to page                         </td>
-                  <td><code>sd_config(skip_if = XXX)</code> &amp; <code>sd_config(skip_if_custom = XXX)</code></td>
                   <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
+                  <td><a href="config-options.html#conditional-skipping">Conditionally skip to pages</a>                          </td>
+                  <td><code>sd_config(skip_if = XXX)</code> &amp; <code>sd_config(skip_if_custom = XXX)</code>                         </td>
                 </tr>
                 <tr>
-                  <td> 6</td>
-                  <td>Option to designate starting page                  </td>
-                  <td><code>sd_config(start_page = "page_id")</code>                                      </td>
                   <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
+                  <td>Start survey from a <a href="config-options.html#starting-page">specific page</a>                           </td>
+                  <td><code>sd_config(start_page = "page_id")</code>                                                               </td>
                 </tr>
                 <tr>
-                  <td> 7</td>
-                  <td>Option to show all questions on one page           </td>
-                  <td><code>sd_config(show_all_pages = TRUE)</code>                                       </td>
                   <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
+                  <td><a href="config-options.html#show-all-pages">Show all pages at once</a>                                     </td>
+                  <td><code>sd_config(show_all_pages = TRUE)</code>                                                                </td>
                 </tr>
                 <tr>
-                  <td> 8</td>
-                  <td>All questions set as required                      </td>
-                  <td><code>sd_config(all_questions_required = TRUE)</code>                               </td>
                   <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
+                  <td><a href="config-options.html#required-responses">Require</a> specific questions be answered                 </td>
+                  <td><code>sd_config(required_questions = c("question_1", "question_2")</code>                                    </td>
                 </tr>
                 <tr>
-                  <td> 9</td>
-                  <td>Customize required questions                       </td>
-                  <td><code>sd_config(required_questions = c("question_1", "question_2")</code>           </td>
                   <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
+                  <td>Set all questions as <a href="config-options.html#required-responses">required</a>                          </td>
+                  <td><code>sd_config(all_questions_required = TRUE)</code>                                                        </td>
                 </tr>
                 <tr>
-                  <td>10</td>
-                  <td>Time stamps of each question and page interaction  </td>
-                  <td>Happens by default.                                                                 </td>
                   <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
+                  <td>Time stamps recorded for each question and page interaction                                                 </td>
+                  <td>Happens by default.                                                                                          </td>
                 </tr>
                 <tr>
-                  <td>11</td>
-                  <td>Form validation: limit input based on question type</td>
-                  <td>Happens by default                                                                  </td>
+                  <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
+                  <td><a href="survey-components.html#progress-bar">Progress bar</a> bar that updates on each question interaction</td>
+                  <td>Happens by default.                                                                                          </td>
+                </tr>
+                <tr>
+                  <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
+                  <td>Customizable <a href="survey-components.html#progress-bar">progress bar</a> color                           </td>
+                  <td>In the YAML header, type:<br><code>barcolor = "A_HEX_COLOR"</code>.                                          </td>
+                </tr>
+                <tr>
+                  <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
+                  <td>Customizable <a href="survey-components.html#progress-bar">progress bar</a> position                        </td>
+                  <td>In the YAML header, type:<br><code>barposition = "top"</code>, <code>"bottom"<code>, or <code>"none"<code>.</code></code></code></code></td>
+                </tr>
+                <tr>
+                  <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
+                  <td><a href="formatting.html#markdown-formatting">Markdown formatting</a> for options and buttons               </td>
+                  <td>Just use markdown on options and buttons.                                                                    </td>
+                </tr>
+                <tr>
+                  <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
+                  <td>Customizable scss theme file                                                                                </td>
+                  <td>Define an xxx.scss file and use <code>theme = xxx.scss</code> in the YAML header.                            </td>
+                </tr>
+                <tr>
                   <td><img src="images/screwdriver-wrench.svg" alt="Screwdriver wrench" width="20" height="20"></td>
+                  <td>Form validation (limit input based on question type)                                                        </td>
+                  <td>Happens by default                                                                                           </td>
                 </tr>
                 <tr>
-                  <td>12</td>
-                  <td>Cookies to store user progress                     </td>
-                  <td>Happens by default                                                                  </td>
                   <td><img src="images/screwdriver-wrench.svg" alt="Screwdriver wrench" width="20" height="20"></td>
+                  <td>Cookies to store user progress                                                                              </td>
+                  <td>Happens by default                                                                                           </td>
                 </tr>
                 <tr>
-                  <td>13</td>
-                  <td>A top progress bar with your theme color           </td>
-                  <td>Happens by default.                                                                 </td>
-                  <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
-                </tr>
-                <tr>
-                  <td>14</td>
-                  <td>Customizable progress bar color                    </td>
-                  <td>In your YAML header, type <code>barcolor = "A_HEX_COLOR"</code>.                    </td>
-                  <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
-                </tr>
-                <tr>
-                  <td>15</td>
-                  <td>Customizable progress bar position                 </td>
-                  <td>In your YAML header, type <code>barposition = "top"</code> or <code>"bottom"<code>.</code></code></td>
-                  <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
-                </tr>
-                <tr>
-                  <td>16</td>
-                  <td>User tracking via url parameters                   </td>
-                  <td>By inputting the url parameters the users can go to the desired page                </td>
                   <td><img src="images/screwdriver-wrench.svg" alt="Screwdriver wrench" width="20" height="20"></td>
-                </tr>
-                <tr>
-                  <td>17</td>
-                  <td>Markdown capability for options and buttons        </td>
-                  <td>Just use markdown on options and buttons.                                           </td>
-                  <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
-                </tr>
-                <tr>
-                  <td>18</td>
-                  <td>Customizable scss theme file                       </td>
-                  <td>Define an xxx.scss file and use <code>theme = xxx.scss</code> in your YAML header.  </td>
-                  <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
+                  <td>User tracking via url parameters                                                                            </td>
+                  <td>By inputting the url parameters the users can go to the desired page                                         </td>
                 </tr>
         </tbody>
       </table>
@@ -460,6 +415,12 @@ window.addEventListener('load', function () { styleCell_49el5dhc0kii0ugjp6d6(18,
 <center>
 <img src="images/screenshots/required.gif" width="100%">
 </center>
+</section>
+<section id="background-motivation" class="level1">
+<h1>Background &amp; Motivation</h1>
+<p>Most survey platforms (e.g., Google forms, Qualtrics, etc.) use drag-and-drop interfaces to design surveys, making version control and collaboration with others difficult. They’re also not reproducible (others cannot easily reproduce a survey made on these platforms), and many require a paid subscription or license to use.</p>
+<p>As an open-source, markdown-based platform, surveydown was designed to address these problems. In surveydown, all survey content is created with plain text (markdown and R code) in a single <code>.qmd</code> file that renders into a shiny app. This makes your survey easy to reproduce, share, and version control with common tools like Git. The survey data collected is also owned by the survey designer in a supabase account. Best of all, everything is open source and free :)</p>
+<p>If you’re curious where this whole idea came from, check out this <a href="https://www.jhelvy.com/blog/2023-04-06-markdown-surveys/">blog post</a>, which outlines more on the general idea and the motivation for it. The post is now outdated in terms of the overall package design, but it provides something of an origin story and some of the motivation for developing this project.</p>
 </section>
 <section id="authors" class="level1">
 <h1>Authors</h1>

@@ -18,3 +18,23 @@ source("_common.R")
 ### Welcome to your first surveydown survey!
 
 {{< include chunks/start.qmd >}}
+
+### Features
+
+```{r}
+#| eval: true
+
+complete <- '<img src="images/check.svg" alt="Check mark" width="20" height="20">'
+incomplete <- '<img src="images/screwdriver-wrench.svg" alt="Screwdriver wrench" width="20" height="20">'
+
+library(tinytable)
+
+features_df <- read.csv(
+    file.path("files", "features.csv"),
+    check.names = FALSE
+)
+features_df$Progress <- ifelse(features_df$Progress == 1, complete, incomplete)
+
+tt(features_df, theme = "striped") |>
+    style_tt(fontsize = 0.9)
+```

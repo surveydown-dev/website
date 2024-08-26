@@ -6,27 +6,31 @@ execute:
 ---
 
 ```{r}
-build_github_card_layout <- function(repo_name, description) {
+create_demo_card <- function(title, description, repo_name, icon) {
   cat(
-    '::: {.grid}\n\n',
-    '::: {.g-col-6}\n\n',
-    description,
-    '\n\n:::\n\n',
-    '::: {.g-col-6}\n\n',
-    '<div class="github-card" data-github="surveydown-dev/', repo_name, '" data-width="400" data-height="153" data-theme="default"></div>\n',
-    '<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>\n',
-    '\n\n:::\n\n',
+    '::: {.grid .align-items-center}\n\n',
+    '::: {.g-col-1 .text-center}\n\n',
+    '<i class="fa ', icon, ' fa-2x" aria-hidden="true" style="color: #00bc8c;"></i>\n\n',
+    ':::\n\n',
+    '::: {.g-col-9}\n\n',
+    '### ', title, '\n\n',
+    description, '\n\n',
+    ':::\n\n',
+    '::: {.g-col-2 .text-end}\n\n',
+    '[![GitHub](https://img.shields.io/badge/view_on-GitHub-00bc8c?style=for-the-badge&logo=GitHub)](https://github.com/surveydown-dev/', repo_name, ')\n\n',
+    ':::\n\n',
     ':::\n\n',
     sep = ""
   )
 }
 
-build_github_card_grid <- function(df) {
+build_demo_grid <- function(df) {
   for (i in 1:nrow(df)) {
-    cat('\n### ', df$title[i], '\n\n', sep = "")
-    build_github_card_layout(
+    create_demo_card(
+      title = df$title[i],
+      description = df$description[i],
       repo_name = df$repo_name[i],
-      description = df$description[i]
+      icon = df$icon[i]
     )
     cat('\n')  # Add a newline between entries for better readability
   }
@@ -63,8 +67,18 @@ df <- data.frame(
     "A demo of how to implement randomized question labels using [predefined random labels](reactivity.html#pre-defined-randomization).",
     "A demo of how to implement reactive plots in your survey.", 
     "A demo of how to implement a choice-based conjoint survey with surveydown."
+  ), 
+  icon = c(
+    "fa-list-ul",
+    "fa-eye",
+    "fa-forward",
+    "fa-random",
+    "fa-shuffle",
+    "fa-chart-line",
+    "fa-balance-scale"
   )
 )
 
-build_github_card_grid(df)
+build_demo_grid(df)
 ```
+

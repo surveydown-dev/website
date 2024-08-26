@@ -27,33 +27,27 @@ The basic concept is this:
 
 {{< include chunks/start.qmd >}}
 
-# Background & Motivation
-
-Most survey platforms (e.g., Google forms, Qualtrics, etc.) use drag-and-drop interfaces to design surveys, making version control and collaboration with others difficult. They're also not reproducible (others cannot easily reproduce a survey made on these platforms), and many require a paid subscription or license to use.
-
-As an open-source, markdown-based platform, surveydown was designed to address these problems. In surveydown, all survey content is created with plain text (markdown and R code) in a single `.qmd` file that renders into a shiny app. This makes your survey easy to reproduce, share, and version control with common tools like Git. The survey data collected is also owned by the survey designer in a supabase account. Best of all, everything is open source and free :)
-
-If you're curious where this whole idea came from, check out this [blog post](https://www.jhelvy.com/blog/2023-04-06-markdown-surveys/), which outlines more on the general idea and the motivation for it. The post is now outdated in terms of the overall package design, but it provides something of an origin story and some of the motivation for developing this project.
-
 # Features
 
 We've highlighted the core features of surveydown. Most of them are up and running. Some of them are under construction.
 
 ```{r}
 #| eval: true
-library(here)
+
+complete <- '<img src="images/check.svg" alt="Check mark" width="20" height="20">'
+incomplete <- '<img src="images/screwdriver-wrench.svg" alt="Screwdriver wrench" width="20" height="20">'
+
 library(tinytable)
 
-features_df <- read.csv(check.names = FALSE,
-                        here("files", "features.csv"))
+features_df <- read.csv(
+    file.path("files", "features.csv"),
+    check.names = FALSE
+)
+features_df$Progress <- ifelse(features_df$Progress == 1, complete, incomplete)
 
-features_table <- tt(features_df, theme = "striped") |>
-    style_tt(fontsize = 0.9) |>
-    style_tt(j = 1, align = "c") |>
-    style_tt(j = 4, align = "c")
-features_table
+tt(features_df, theme = "striped") |>
+    style_tt(fontsize = 0.9)
 ```
-
 
 # Editing a surveydown survey
 
@@ -64,6 +58,14 @@ Once you have a survey ready to edit in your favorite IDE, you can render it loc
 <center>
 <img src="images/screenshots/required.gif" width=100%>
 </center>
+
+# Background & Motivation
+
+Most survey platforms (e.g., Google forms, Qualtrics, etc.) use drag-and-drop interfaces to design surveys, making version control and collaboration with others difficult. They're also not reproducible (others cannot easily reproduce a survey made on these platforms), and many require a paid subscription or license to use.
+
+As an open-source, markdown-based platform, surveydown was designed to address these problems. In surveydown, all survey content is created with plain text (markdown and R code) in a single `.qmd` file that renders into a shiny app. This makes your survey easy to reproduce, share, and version control with common tools like Git. The survey data collected is also owned by the survey designer in a supabase account. Best of all, everything is open source and free :)
+
+If you're curious where this whole idea came from, check out this [blog post](https://www.jhelvy.com/blog/2023-04-06-markdown-surveys/), which outlines more on the general idea and the motivation for it. The post is now outdated in terms of the overall package design, but it provides something of an origin story and some of the motivation for developing this project.
 
 # Authors
 

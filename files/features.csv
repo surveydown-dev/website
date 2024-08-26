@@ -1,19 +1,19 @@
-No.,Feature,How to Trigger,Progress
-1,Multiple question types,<code>sd_question()</code>,"<img src=""images/check.svg"" alt=""Check mark"" width=""20"" height=""20"">"
-2,Obtain reactive survey results,"<code>sd_get_data(db, reactive = TRUE)</code>","<img src=""images/check.svg"" alt=""Check mark"" width=""20"" height=""20"">"
-3,Preview mode that pauses database connection,<code>sd_database(pause = TRUE)</code>,"<img src=""images/check.svg"" alt=""Check mark"" width=""20"" height=""20"">"
-4,Conditionally display question,<code>sd_config(show_if = XXX)</code> & <code>sd_config(show_if_custom = XXX)</code>,"<img src=""images/check.svg"" alt=""Check mark"" width=""20"" height=""20"">"
-5,Conditionally skip to page,<code>sd_config(skip_if = XXX)</code> & <code>sd_config(skip_if_custom = XXX)</code>,"<img src=""images/check.svg"" alt=""Check mark"" width=""20"" height=""20"">"
-6,Option to designate starting page,"<code>sd_config(start_page = ""page_id"")</code>","<img src=""images/check.svg"" alt=""Check mark"" width=""20"" height=""20"">"
-7,Option to show all questions on one page,<code>sd_config(show_all_pages = TRUE)</code>,"<img src=""images/check.svg"" alt=""Check mark"" width=""20"" height=""20"">"
-8,All questions set as required,<code>sd_config(all_questions_required = TRUE)</code>,"<img src=""images/check.svg"" alt=""Check mark"" width=""20"" height=""20"">"
-9,Customize required questions,"<code>sd_config(required_questions = c(""question_1"", ""question_2"")</code>","<img src=""images/check.svg"" alt=""Check mark"" width=""20"" height=""20"">"
-10,Time stamps of each question and page interaction,Happens by default.,"<img src=""images/check.svg"" alt=""Check mark"" width=""20"" height=""20"">"
-11,Form validation: limit input based on question type,Happens by default,"<img src=""images/screwdriver-wrench.svg"" alt=""Screwdriver wrench"" width=""20"" height=""20"">"
-12,Cookies to store user progress,Happens by default,"<img src=""images/screwdriver-wrench.svg"" alt=""Screwdriver wrench"" width=""20"" height=""20"">"
-13,A top progress bar with your theme color,Happens by default.,"<img src=""images/check.svg"" alt=""Check mark"" width=""20"" height=""20"">"
-14,Customizable progress bar color,"In your YAML header, type <code>barcolor = ""A_HEX_COLOR""</code>.","<img src=""images/check.svg"" alt=""Check mark"" width=""20"" height=""20"">"
-15,Customizable progress bar position,"In your YAML header, type <code>barposition = ""top""</code> or <code>""bottom""<code/>.","<img src=""images/check.svg"" alt=""Check mark"" width=""20"" height=""20"">"
-16,User tracking via url parameters,By inputting the url parameters the users can go to the desired page,"<img src=""images/screwdriver-wrench.svg"" alt=""Screwdriver wrench"" width=""20"" height=""20"">"
-17,Markdown capability for options and buttons,Just use markdown on options and buttons.,"<img src=""images/check.svg"" alt=""Check mark"" width=""20"" height=""20"">"
-18,Customizable scss theme file,Define an xxx.scss file and use <code>theme = xxx.scss</code> in your YAML header.,"<img src=""images/check.svg"" alt=""Check mark"" width=""20"" height=""20"">"
+Progress,Feature,Implementation
+1,"Wide variety of <a href=""question-types.html"">question types</a>",<code>sd_question()</code>
+1,"Ability to <a href=""fetch-data.html#reactive-fetching"">use latest survey results</a> in the survey itself","<code>sd_get_data(db, reactive = TRUE)</code>"
+1,Preview mode (pauses database connection),<code>sd_database(pause = TRUE)</code>
+1,"<a href=""config-options.html#conditional-display"">Conditionally display questions</a>",<code>sd_config(show_if = XXX)</code> & <code>sd_config(show_if_custom = XXX)</code>
+1,"<a href=""config-options.html#conditional-skipping"">Conditionally skip to pages</a>",<code>sd_config(skip_if = XXX)</code> & <code>sd_config(skip_if_custom = XXX)</code>
+1,"Start survey from a <a href=""config-options.html#starting-page"">specific page</a>","<code>sd_config(start_page = ""page_id"")</code>"
+1,"<a href=""config-options.html#show-all-pages"">Show all pages at once</a>",<code>sd_config(show_all_pages = TRUE)</code>
+1,"<a href=""config-options.html#required-responses"">Require</a> specific questions be answered","<code>sd_config(required_questions = c(""question_1"", ""question_2"")</code>"
+1,"Set all questions as <a href=""config-options.html#required-responses"">required</a>",<code>sd_config(all_questions_required = TRUE)</code>
+1,Time stamps recorded for each question and page interaction,Happens by default.
+1,"<a href=""survey-components.html#progress-bar"">Progress bar</a> bar that updates on each question interaction",Happens by default.
+1,"Customizable <a href=""survey-components.html#progress-bar"">progress bar</a> color","In the YAML header, type:<br><code>barcolor = ""A_HEX_COLOR""</code>."
+1,"Customizable <a href=""survey-components.html#progress-bar"">progress bar</a> position","In the YAML header, type:<br><code>barposition = ""top""</code>, <code>""bottom""<code/>, or <code>""none""<code/>."
+1,"<a href=""formatting.html#markdown-formatting"">Markdown formatting</a> for options and buttons",Just use markdown on options and buttons.
+1,Customizable scss theme file,Define an xxx.scss file and use <code>theme = xxx.scss</code> in the YAML header.
+0,Form validation (limit input based on question type),Happens by default
+0,Cookies to store user progress,Happens by default
+0,User tracking via url parameters,By inputting the url parameters the users can go to the desired page

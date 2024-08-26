@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>documentation – surveydown.org</title>
+<title>Tips – surveydown.org</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -74,14 +108,14 @@ ul.task-list li input[type="checkbox"] {
 <style>html{ scroll-behavior: smooth; }</style>
 
 
-<meta property="og:title" content="surveydown.org">
+<meta property="og:title" content="Tips – surveydown.org">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://www.surveydown.org/images/logo.png">
 <meta property="og:site_name" content="https://surveydown.org">
 <meta property="og:locale" content="es_ES">
 <meta property="og:image:height" content="1564">
 <meta property="og:image:width" content="1564">
-<meta name="twitter:title" content="surveydown.org">
+<meta name="twitter:title" content="Tips – surveydown.org">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://www.surveydown.org/images/logo.png">
 <meta name="twitter:creator" content="@johnhelveston">
@@ -91,7 +125,7 @@ ul.task-list li input[type="checkbox"] {
 <meta name="twitter:image-width" content="1564">
 </head>
 
-<body class="nav-sidebar docked nav-fixed fullcontent">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -151,7 +185,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./documentation.html">Documentation</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./survey-components.html">Reference Manuals</a></li><li class="breadcrumb-item"><a href="./tips.html">Tips</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -165,7 +199,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./documentation.html" class="sidebar-item-text sidebar-link active">
+  <a href="./documentation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Documentation</span></a>
   </div>
 </li>
@@ -246,7 +280,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tips.html" class="sidebar-item-text sidebar-link">
+  <a href="./tips.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Tips</span></a>
   </div>
 </li>
@@ -257,235 +291,79 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#splitting-into-separate-files" id="toc-splitting-into-separate-files" class="nav-link active" data-scroll-target="#splitting-into-separate-files">Splitting into separate files</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-
-
-
-<section id="welcome-to-your-first-surveydown-survey" class="level3">
-<h3 class="anchored" data-anchor-id="welcome-to-your-first-surveydown-survey">Welcome to your first surveydown survey!</h3>
-<p>We recommend reading the <a href="./get-started.html">Get Started</a> page to get a sense of how to use surveydown. The rest of the documentation covers more details on how to use surveydown.</p>
-<div class="text-center">
-<p><a href="./get-started.html"><button type="button" class="btn btn-primary btn-lg">Get Started!</button></a></p>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./survey-components.html">Reference Manuals</a></li><li class="breadcrumb-item"><a href="./tips.html">Tips</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Tips</h1>
 </div>
-</section>
-<section id="features" class="level3">
-<h3 class="anchored" data-anchor-id="features">Features</h3>
-<div class="cell">
-<div class="cell-output-display">
-<!-- preamble start -->
 
-    <script>
-      function styleCell_14fs163wo20c25789vh1(i, j, css_id) {
-        var table = document.getElementById("tinytable_14fs163wo20c25789vh1");
-        table.rows[i].cells[j].classList.add(css_id);
-      }
-      function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_14fs163wo20c25789vh1');
-        var newRow = table.insertRow(i);
-        var newCell = newRow.insertCell(0);
-        newCell.setAttribute("colspan", colspan);
-        // newCell.innerText = content;
-        // this may be unsafe, but innerText does not interpret <br>
-        newCell.innerHTML = content;
-      }
-      function spanCell_14fs163wo20c25789vh1(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_14fs163wo20c25789vh1");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
-        for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
-            }
-          }
-        }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
-      }
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(0, 0, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(0, 1, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(0, 2, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(1, 0, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(1, 1, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(1, 2, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(2, 0, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(2, 1, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(2, 2, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(3, 0, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(3, 1, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(3, 2, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(4, 0, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(4, 1, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(4, 2, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(5, 0, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(5, 1, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(5, 2, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(6, 0, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(6, 1, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(6, 2, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(7, 0, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(7, 1, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(7, 2, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(8, 0, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(8, 1, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(8, 2, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(9, 0, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(9, 1, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(9, 2, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(10, 0, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(10, 1, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(10, 2, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(11, 0, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(11, 1, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(11, 2, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(12, 0, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(12, 1, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(12, 2, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(13, 0, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(13, 1, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(13, 2, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(14, 0, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(14, 1, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(14, 2, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(15, 0, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(15, 1, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(15, 2, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(16, 0, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(16, 1, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(16, 2, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(17, 0, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(17, 1, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(17, 2, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(18, 0, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(18, 1, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-window.addEventListener('load', function () { styleCell_14fs163wo20c25789vh1(18, 2, 'tinytable_css_idy6c0b7r0b62zy0njf6in') })
-    </script>
 
-    <style>
-    .table td.tinytable_css_idy6c0b7r0b62zy0njf6in, .table th.tinytable_css_idy6c0b7r0b62zy0njf6in {  font-size: 0.9em; }
-    </style>
-    <div class="container">
-      <table class="table table-striped" id="tinytable_14fs163wo20c25789vh1" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
-        <thead>
-        
-              <tr>
-                <th scope="col">Progress</th>
-                <th scope="col">Feature</th>
-                <th scope="col">Implementation</th>
-              </tr>
-        </thead>
-        
-        <tbody>
-                <tr>
-                  <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
-                  <td>Wide variety of <a href="question-types.html">question types</a>                                            </td>
-                  <td><code>sd_question()</code>                                                                                   </td>
-                </tr>
-                <tr>
-                  <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
-                  <td>Ability to <a href="fetch-data.html#reactive-fetching">use latest survey results</a> in the survey itself   </td>
-                  <td><code>sd_get_data(db, reactive = TRUE)</code>                                                                </td>
-                </tr>
-                <tr>
-                  <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
-                  <td>Preview mode (pauses database connection)                                                                   </td>
-                  <td><code>sd_database(pause = TRUE)</code>                                                                       </td>
-                </tr>
-                <tr>
-                  <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
-                  <td><a href="config-options.html#conditional-display">Conditionally display questions</a>                       </td>
-                  <td><code>sd_config(show_if = XXX)</code> &amp; <code>sd_config(show_if_custom = XXX)</code>                         </td>
-                </tr>
-                <tr>
-                  <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
-                  <td><a href="config-options.html#conditional-skipping">Conditionally skip to pages</a>                          </td>
-                  <td><code>sd_config(skip_if = XXX)</code> &amp; <code>sd_config(skip_if_custom = XXX)</code>                         </td>
-                </tr>
-                <tr>
-                  <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
-                  <td>Start survey from a <a href="config-options.html#starting-page">specific page</a>                           </td>
-                  <td><code>sd_config(start_page = "page_id")</code>                                                               </td>
-                </tr>
-                <tr>
-                  <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
-                  <td><a href="config-options.html#show-all-pages">Show all pages at once</a>                                     </td>
-                  <td><code>sd_config(show_all_pages = TRUE)</code>                                                                </td>
-                </tr>
-                <tr>
-                  <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
-                  <td><a href="config-options.html#required-responses">Require</a> specific questions be answered                 </td>
-                  <td><code>sd_config(required_questions = c("question_1", "question_2")</code>                                    </td>
-                </tr>
-                <tr>
-                  <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
-                  <td>Set all questions as <a href="config-options.html#required-responses">required</a>                          </td>
-                  <td><code>sd_config(all_questions_required = TRUE)</code>                                                        </td>
-                </tr>
-                <tr>
-                  <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
-                  <td>Time stamps recorded for each question and page interaction                                                 </td>
-                  <td>Happens by default.                                                                                          </td>
-                </tr>
-                <tr>
-                  <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
-                  <td><a href="survey-components.html#progress-bar">Progress bar</a> bar that updates on each question interaction</td>
-                  <td>Happens by default.                                                                                          </td>
-                </tr>
-                <tr>
-                  <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
-                  <td>Customizable <a href="survey-components.html#progress-bar">progress bar</a> color                           </td>
-                  <td>In the YAML header, type:<br><code>barcolor = "A_HEX_COLOR"</code>.                                          </td>
-                </tr>
-                <tr>
-                  <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
-                  <td>Customizable <a href="survey-components.html#progress-bar">progress bar</a> position                        </td>
-                  <td>In the YAML header, type:<br><code>barposition = "top"</code>, <code>"bottom"<code>, or <code>"none"<code>.</code></code></code></code></td>
-                </tr>
-                <tr>
-                  <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
-                  <td><a href="formatting.html#markdown-formatting">Markdown formatting</a> for options and buttons               </td>
-                  <td>Just use markdown on options and buttons.                                                                    </td>
-                </tr>
-                <tr>
-                  <td><img src="images/check.svg" alt="Check mark" width="20" height="20">                     </td>
-                  <td>Customizable scss theme file                                                                                </td>
-                  <td>Define an xxx.scss file and use <code>theme = xxx.scss</code> in the YAML header.                            </td>
-                </tr>
-                <tr>
-                  <td><img src="images/screwdriver-wrench.svg" alt="Screwdriver wrench" width="20" height="20"></td>
-                  <td>Form validation (limit input based on question type)                                                        </td>
-                  <td>Happens by default                                                                                           </td>
-                </tr>
-                <tr>
-                  <td><img src="images/screwdriver-wrench.svg" alt="Screwdriver wrench" width="20" height="20"></td>
-                  <td>Cookies to store user progress                                                                              </td>
-                  <td>Happens by default                                                                                           </td>
-                </tr>
-                <tr>
-                  <td><img src="images/screwdriver-wrench.svg" alt="Screwdriver wrench" width="20" height="20"></td>
-                  <td>User tracking via url parameters                                                                            </td>
-                  <td>By inputting the url parameters the users can go to the desired page                                         </td>
-                </tr>
-        </tbody>
-      </table>
-    </div>
-<!-- hack to avoid NA insertion in last line -->
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This page has some helpful suggestions for working with surveydown surveys.</p>
+<section id="splitting-into-separate-files" class="level2">
+<h2 class="anchored" data-anchor-id="splitting-into-separate-files">Splitting into separate files</h2>
+<p>If you have a survey with a lengthy setup or server chunk, it can be helpful to split these into into separate files so that you can open them in separate tabs in your editor. This prevents the need to have to scroll up and down to find the setup or server code.</p>
+<p>For example, you might have a <code>setup.R</code> file and <code>server.R</code> file in your project directory. You could then source them into your survey in the appropriate chunks, like this:</p>
+<div class="cell" data-context="setup">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| context: setup</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| warning: false</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| message: false</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="in">source("setup.R")</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>And you server code chunk might look like this:</p>
+<div class="cell" data-context="server">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| context: server</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="in">source("server.R")</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="in">sd_server(</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="in">  input   = input,</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="in">  output  = output,</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="in">  session = session,</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="in">  config  = config,</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="in">  db      = db</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>With this setup, all of your setup settings would be in the <code>setup.R</code> file, and all of your server settings should be in the <code>server.R</code> file.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that you still need to include the <code>sd_server()</code> function in your server code chunk after sourcing the <code>server.R</code> file.</p>
 </div>
 </div>
 
@@ -743,6 +621,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

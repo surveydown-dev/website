@@ -1,0 +1,45 @@
+---
+title: "Tips"
+---
+
+This page has some helpful suggestions for working with surveydown surveys.
+
+## Splitting into separate files
+
+If you have a survey with a lengthy setup or server chunk, it can be helpful to split these into into separate files so that you can open them in separate tabs in your editor. This prevents the need to have to scroll up and down to find the setup or server code.
+
+For example, you might have a `setup.R` file and `server.R` file in your project directory. You could then source them into your survey in the appropriate chunks, like this:
+
+```{r}
+#| echo: fenced
+#| context: setup
+#| warning: false
+#| message: false
+
+source("setup.R")
+```
+
+And you server code chunk might look like this:
+
+```{r}
+#| echo: fenced
+#| context: server
+
+source("server.R")
+
+sd_server(
+  input   = input,
+  output  = output,
+  session = session,
+  config  = config,
+  db      = db
+)
+```
+
+With this setup, all of your setup settings would be in the `setup.R` file, and all of your server settings should be in the `server.R` file. 
+
+::: {.callout-important}
+
+Note that you still need to include the `sd_server()` function in your server code chunk after sourcing the `server.R` file. 
+
+:::

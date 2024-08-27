@@ -6,15 +6,15 @@ This page has some helpful suggestions for working with surveydown surveys.
 
 ## Splitting the server chunk into a separate file
 
-The server chunk contains the following components:
+The server chunk contains many components:
 
-1.  The reactive questions: `sd_question(reactive = TRUE)`.
-2.  Database setup: `sd_database()`. This defines your Supabase connection.
-3.  Config setup: `sd_config()`. This defines skipping and showing logic, required questions, showing all pages, and the admin page.
+1. The database setup via `sd_database()`, which defines your Supabase connection.
+2. Any configuration options via `sd_config()`, such as conditional show logic, skip logic, required questions, etc.
+3. Any other code, such as reactive questions (`sd_question(reactive = TRUE)`), other variables you wish to store in your database, etc. 
 
-As your survey context grows, you may have a survey with a lengthy server chunk, it can be helpful to split it into into a separate file so that you can open it in a separate tab in your editor. This prevents the need to have to scroll up and down to find the server code.
+As your survey grows in length and complexity, the server chunk can get quite long, and scrolling up and down to edit it along with the main survey content can be annoying. To address this, it can be helpful to split up your server code into a separate file so that you can open it in a separate tab in your editor.
 
-For example, you might have a `server.R` file in your project directory. You could then source it into your survey in the appropriate chunks, like this:
+To enable this, create a `server.R` file (can be any name you wish) in your project directory, and put all of your server code in this file except for the call to `sd_server()`. Then you can source the file into the server chunk like this:
 
 ```{r}
 #| echo: fenced
@@ -31,7 +31,7 @@ sd_server(
 )
 ```
 
-With this setup, all of your server settings should be in the `server.R` file. 
+With this setup, your server code chunk will remain unchanged and you will only need to edit your `server.R` file to customize your server settings.
 
 ::: {.callout-important}
 

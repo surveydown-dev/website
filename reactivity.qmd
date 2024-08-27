@@ -9,7 +9,7 @@ title: "Reactivity"
 set.seed(42)
 ```
 
-Because surveydown renders to a shiny app, it can take advantage of shiny's [reactivity](https://shiny.posit.co/r/articles/build/reactivity-overview/) features. This means you can create reactive expressions and reactive values that update the survey in response to user input or other events.
+Because surveydown renders to a Shiny app, it can take advantage of Shiny's [reactivity](https://shiny.posit.co/r/articles/build/reactivity-overview/) features. This means you can create reactive expressions and reactive values that update the survey in response to user input or other events.
 
 This page demonstrates some common use cases for reactive programming in surveydown.
 
@@ -37,7 +37,7 @@ If the respondent entered "Dave" in the `name` question, this would render as:
 
 > Welcome, Dave!
 
-This works because under the hood, the `sd_display_value()` function is calling a shiny output function, like `shiny::textOutput()`, which is designed to show reactive values (values that change based on a user input). 
+This works because under the hood, the `sd_display_value()` function is calling a `shiny` output function, like `shiny::textOutput()`, which is designed to show reactive values (values that change based on a user input). 
 
 You could also use any `shiny` output function directly, like this:
 
@@ -49,7 +49,7 @@ We just made `sd_display_value()` as it's easier to use if you're not sure which
 
 ### Showing the same value in multiple places
 
-The `sd_display_value()` function can only be used once per each unique question `id` because the `id` gets used in the rendered HTML divs, and HTML with more than one element with the same id is invalid HTML. This is a general issue for shiny - outputs can only be used once per each unique `id` (see [this GitHub issue](https://github.com/rstudio/shiny/issues/743) on the topic).
+The `sd_display_value()` function can only be used once per each unique question `id` because the `id` gets used in the rendered HTML divs, and HTML with more than one element with the same id is invalid HTML. This is a general issue for Shiny - outputs can only be used once per each unique `id` (see [this GitHub issue](https://github.com/rstudio/shiny/issues/743) on the topic).
 
 The solution that we use is to simply make a copy of the value and then display the copy (this is also the [solution](https://github.com/rstudio/shiny/issues/743#issuecomment-652397537) on the GitHub issue linked above). 
 

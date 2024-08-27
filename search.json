@@ -382,11 +382,11 @@
     ]
   },
   {
-    "objectID": "tips.html#splitting-into-separate-files",
-    "href": "tips.html#splitting-into-separate-files",
+    "objectID": "tips.html#splitting-the-server-chunk-into-a-separate-file",
+    "href": "tips.html#splitting-the-server-chunk-into-a-separate-file",
     "title": "Tips",
-    "section": "Splitting into separate files",
-    "text": "Splitting into separate files\nIf you have a survey with a lengthy server chunk, it can be helpful to split it into into a separate file so that you can open it in a separate tab in your editor. This prevents the need to have to scroll up and down to find the server code.\nFor example, you might have a server.R file in your project directory. You could then source it into your survey in the appropriate chunks, like this:\n\n```{r}\n#| context: server\n\nsource(\"server.R\")\n\nsd_server(\n  input   = input,\n  output  = output,\n  session = session,\n  config  = config,\n  db      = db\n)\n```\n\nWith this setup, all of your server settings should be in the server.R file.\n\n\n\n\n\n\nImportant\n\n\n\nNote that you still need to include the sd_server() function in your server code chunk after sourcing the server.R file.",
+    "section": "Splitting the server chunk into a separate file",
+    "text": "Splitting the server chunk into a separate file\nThe server chunk contains the following components:\n\nThe reactive questions: sd_question(reactive = TRUE).\nDatabase setup: sd_database(). This defines your Supabase connection.\nConfig setup: sd_config(). This defines skipping and showing logic, required questions, showing all pages, and the admin page.\n\nAs your survey context grows, you may have a survey with a lengthy server chunk, it can be helpful to split it into into a separate file so that you can open it in a separate tab in your editor. This prevents the need to have to scroll up and down to find the server code.\nFor example, you might have a server.R file in your project directory. You could then source it into your survey in the appropriate chunks, like this:\n\n```{r}\n#| context: server\n\nsource(\"server.R\")\n\nsd_server(\n  input   = input,\n  output  = output,\n  session = session,\n  config  = config,\n  db      = db\n)\n```\n\nWith this setup, all of your server settings should be in the server.R file.\n\n\n\n\n\n\nImportant\n\n\n\nNote that you still need to include the sd_server() function in your server code chunk after sourcing the server.R file.",
     "crumbs": [
       "Documentation",
       "Reference Manuals",

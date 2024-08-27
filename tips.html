@@ -296,7 +296,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#splitting-into-separate-files" id="toc-splitting-into-separate-files" class="nav-link active" data-scroll-target="#splitting-into-separate-files">Splitting into separate files</a></li>
+  <li><a href="#splitting-the-server-chunk-into-a-separate-file" id="toc-splitting-the-server-chunk-into-a-separate-file" class="nav-link active" data-scroll-target="#splitting-the-server-chunk-into-a-separate-file">Splitting the server chunk into a separate file</a></li>
   </ul>
 </nav>
     </div>
@@ -323,9 +323,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>This page has some helpful suggestions for working with surveydown surveys.</p>
-<section id="splitting-into-separate-files" class="level2">
-<h2 class="anchored" data-anchor-id="splitting-into-separate-files">Splitting into separate files</h2>
-<p>If you have a survey with a lengthy server chunk, it can be helpful to split it into into a separate file so that you can open it in a separate tab in your editor. This prevents the need to have to scroll up and down to find the server code.</p>
+<section id="splitting-the-server-chunk-into-a-separate-file" class="level2">
+<h2 class="anchored" data-anchor-id="splitting-the-server-chunk-into-a-separate-file">Splitting the server chunk into a separate file</h2>
+<p>The server chunk contains the following components:</p>
+<ol type="1">
+<li>The reactive questions: <code>sd_question(reactive = TRUE)</code>.</li>
+<li>Database setup: <code>sd_database()</code>. This defines your Supabase connection.</li>
+<li>Config setup: <code>sd_config()</code>. This defines skipping and showing logic, required questions, showing all pages, and the admin page.</li>
+</ol>
+<p>As your survey context grows, you may have a survey with a lengthy server chunk, it can be helpful to split it into into a separate file so that you can open it in a separate tab in your editor. This prevents the need to have to scroll up and down to find the server code.</p>
 <p>For example, you might have a <code>server.R</code> file in your project directory. You could then source it into your survey in the appropriate chunks, like this:</p>
 <div class="cell" data-context="server">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>

@@ -4,9 +4,15 @@ title: "Tips"
 
 This page has some helpful suggestions for working with surveydown surveys.
 
-## Splitting into separate files
+## Splitting the server chunk into a separate file
 
-If you have a survey with a lengthy server chunk, it can be helpful to split it into into a separate file so that you can open it in a separate tab in your editor. This prevents the need to have to scroll up and down to find the server code.
+The server chunk contains the following components:
+
+1.  The reactive questions: `sd_question(reactive = TRUE)`.
+2.  Database setup: `sd_database()`. This defines your Supabase connection.
+3.  Config setup: `sd_config()`. This defines skipping and showing logic, required questions, showing all pages, and the admin page.
+
+As your survey context grows, you may have a survey with a lengthy server chunk, it can be helpful to split it into into a separate file so that you can open it in a separate tab in your editor. This prevents the need to have to scroll up and down to find the server code.
 
 For example, you might have a `server.R` file in your project directory. You could then source it into your survey in the appropriate chunks, like this:
 

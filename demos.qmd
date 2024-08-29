@@ -1,6 +1,7 @@
 ---
 title: "Demos"
 toc: false
+css: styles.css
 execute: 
   echo: false
   eval: true
@@ -9,34 +10,26 @@ execute:
 ```{r}
 create_demo_card <- function(title, description, repo_name, icon) {
   cat(
-    '::: {.grid .align-items-center}\n\n',
-    '::: {.g-col-1 .text-center}\n\n',
-    '<i class="fa ', icon, ' fa-2x" aria-hidden="true" style="color: #00bc8c;"></i>\n\n',
-    ':::\n\n',
-    '::: {.g-col-8}\n\n',
+    '::: {.demo-card}\n',
+    '::: {.demo-card-icon}\n',
+    '<i class="fa ', icon, ' fa-lg" aria-hidden="true" style="color: #00bc8c;"></i>\n',
+    ':::\n',
+    '::: {.demo-card-content}\n',
     '### ', title, '\n\n',
-    description, '\n\n',
-    ':::\n\n',
-    '::: {.g-col-3 .text-end}\n\n',
-    '<style>\n',
-    '  @media (min-width: 768px) {\n',
-    '    .github-badge { height: 28px; }\n',
-    '    .fa-2x { font-size: 2em; }\n',
-    '  }\n',
-    '  @media (max-width: 767px) {\n',
-    '    .github-badge { height: 20px; }\n',
-    '    .fa-2x { font-size: 1.5em; }\n',
-    '  }\n',
-    '</style>\n',
-    '<a href="https://github.com/surveydown-dev/', repo_name, '">\n',
+    description, '\n',
+    ':::\n',
+    '::: {.demo-card-button}\n',
+    '<a href="https://github.com/surveydown-dev/', repo_name, '" class="d-inline-block">\n',
     '  <img class="github-badge" src="https://img.shields.io/badge/view_on-GitHub-00bc8c?style=for-the-badge&logo=GitHub" alt="View on GitHub">\n',
-    '</a>\n\n',
-    ':::\n\n',
+    '</a>\n',
+    ':::\n',
     ':::\n\n',
     sep = ""
   )
 }
+```
 
+```{r}
 build_demo_grid <- function(df) {
   for (i in 1:nrow(df)) {
     create_demo_card(
@@ -45,7 +38,7 @@ build_demo_grid <- function(df) {
       repo_name = df$repo_name[i],
       icon = df$icon[i]
     )
-    cat('\n')  # Add a newline between entries for better readability
+    cat('\n')
   }
 }
 ```

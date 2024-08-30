@@ -9,14 +9,12 @@ Once you have your database properly set up and your survey is live, you can fet
 For example, if you have a table called `my_table` in your Supabase database, you can fetch the data like this:
 
 ```{r}
-library(surveydown)
-
 db <- sd_database(
-  user   = 'postgres.axzkymswaxcasjdflkurrj',
-  host   = 'aws-0-us-east-1.pooler.supabase.com',
-  port   = 5678,
-  db_name = 'postgres',
-  table_name = 'my_table'
+  host   = "my_host",
+  dbname = "my_dbname",
+  port   = "my_port",
+  user   = "my_user",
+  table  = "my_table"
 )
 
 data <- sd_get_data(db)
@@ -25,6 +23,8 @@ data <- sd_get_data(db)
 Here the `data` object will be a data.frame with the data from your database.
 
 ## Reactive Fetching
+
+> Run the [Demo survey of reactive plot](https://github.com/surveydown-dev/demo-reactive-plot) to see how `sd_get_data()` is implemented reactively.
 
 The above example is intended for an analysis context, where all you want to do is fetch the latest data from your database. However, you may also want to fetch the data in a reactive context (i.e. in your survey). For example, perhaps you want to show respondents a bar chart of the most common responses to a question. To enable this, all you have to do is set `reactive = TRUE` in the `sd_get_data()` function:
 
@@ -54,3 +54,14 @@ output$my_plot <- renderPlot({
 Here the `my_data` object will be a data.frame with the latest data from your database, which you could then use to make a plot. In this example, the `output$my_plot` object will be a plot, which you can then display in your survey by placing `plotOutput("my_plot")` in a code chunk (or inline code) somewhere in your survey.
 
 See the [Reactivity](reactivity.qmd) page for more information on how to use reactivity in your survey.
+
+::: {.callout-tip}
+
+The `sd_get_data()` function also accepts a parameter of `refresh_interval`, which defines the interval of the refreshing time, in seconds. By default it's set to `5`. You can modify it by changing this value:
+
+```{r}
+# Change refresh_interval to 10
+data <- sd_get_data(db, refresh_interval = 10)
+```
+
+:::

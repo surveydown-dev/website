@@ -284,11 +284,40 @@
     ]
   },
   {
-    "objectID": "demos.html",
-    "href": "demos.html",
-    "title": "Demos",
+    "objectID": "fetch-data.html",
+    "href": "fetch-data.html",
+    "title": "Fetching Data",
     "section": "",
-    "text": "Question Types\nA demo of all the question types currently supported by surveydown.\n\n\n  \n\n\n\n\n\n\n\nConditional Display\nA demo of how to implement conditional display (showing a question based on a previous response).\n\n\n  \n\n\n\n\n\n\n\nConditional Skipping\nA demo of how to implement conditional skipping (skipping to a page based on a previous response).\n\n\n  \n\n\n\n\n\n\n\nRandomized Question Labels\nA demo of how to implement randomized question labels.\n\n\n  \n\n\n\n\n\n\n\nRandomized Question Labels (Predefined)\nA demo of how to implement randomized question labels using predefined random labels.\n\n\n  \n\n\n\n\n\n\n\nReactive Plot\nA demo of how to implement reactive plots in your survey.\n\n\n  \n\n\n\n\n\n\n\nChoice-Based Conjoint\nA demo of how to implement a choice-based conjoint survey with surveydown.\n\n\n  \n\n\n\n\n\n Back to top"
+    "text": "Once you have your database properly set up and your survey is live, you can fetch the data using the sd_get_data() function. All you have to do is pass in the db object you created with sd_database() to the sd_get_data() function.\nFor example, if you have a table called my_table in your Supabase database, you can fetch the data like this:\n\ndb &lt;- sd_database(\n  host   = \"my_host\",\n  dbname = \"my_dbname\",\n  port   = \"my_port\",\n  user   = \"my_user\",\n  table  = \"my_table\"\n)\n\ndata &lt;- sd_get_data(db)\n\nHere the data object will be a data.frame with the data from your database.",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Fetch Data"
+    ]
+  },
+  {
+    "objectID": "fetch-data.html#static-fetching",
+    "href": "fetch-data.html#static-fetching",
+    "title": "Fetching Data",
+    "section": "",
+    "text": "Once you have your database properly set up and your survey is live, you can fetch the data using the sd_get_data() function. All you have to do is pass in the db object you created with sd_database() to the sd_get_data() function.\nFor example, if you have a table called my_table in your Supabase database, you can fetch the data like this:\n\ndb &lt;- sd_database(\n  host   = \"my_host\",\n  dbname = \"my_dbname\",\n  port   = \"my_port\",\n  user   = \"my_user\",\n  table  = \"my_table\"\n)\n\ndata &lt;- sd_get_data(db)\n\nHere the data object will be a data.frame with the data from your database.",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Fetch Data"
+    ]
+  },
+  {
+    "objectID": "fetch-data.html#reactive-fetching",
+    "href": "fetch-data.html#reactive-fetching",
+    "title": "Fetching Data",
+    "section": "Reactive Fetching",
+    "text": "Reactive Fetching\n\nRun the Demo survey of reactive plot to see how sd_get_data() is implemented reactively.\n\nThe above example is intended for an analysis context, where all you want to do is fetch the latest data from your database. However, you may also want to fetch the data in a reactive context (i.e. in your survey). For example, perhaps you want to show respondents a bar chart of the most common responses to a question. To enable this, all you have to do is set reactive = TRUE in the sd_get_data() function:\n\ndata &lt;- sd_get_data(db, reactive = TRUE)\n\nNow the data object will be a reactive expression, not a data.frame.\n\n\n\n\n\n\nImportant\n\n\n\nThe reactive = TRUE feature must be used in the server code chunk of your survey. Placing this anywhere else (e.g. a code chunk in the main part of your survey) will result in an error.\n\n\nTo use it, you have to call it with () to get the latest data as a data.frame. For example:\n\ndata &lt;- sd_get_data(db, reactive = TRUE)\n\noutput$my_plot &lt;- renderPlot({  \n  my_data &lt;- data()\n  # insert code here to make a plot with my_data\n})\n\nHere the my_data object will be a data.frame with the latest data from your database, which you could then use to make a plot. In this example, the output$my_plot object will be a plot, which you can then display in your survey by placing plotOutput(\"my_plot\") in a code chunk (or inline code) somewhere in your survey.\nSee the Reactivity page for more information on how to use reactivity in your survey.\n\n\n\n\n\n\nTip\n\n\n\nThe sd_get_data() function also accepts a parameter of refresh_interval, which defines the interval of the refreshing time, in seconds. By default it’s set to 5. You can modify it by changing this value:\n\n# Change refresh_interval to 10\ndata &lt;- sd_get_data(db, refresh_interval = 10)",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Fetch Data"
+    ]
   },
   {
     "objectID": "about.html",
@@ -410,40 +439,11 @@
     ]
   },
   {
-    "objectID": "fetch-data.html",
-    "href": "fetch-data.html",
-    "title": "Fetching Data",
+    "objectID": "demos.html",
+    "href": "demos.html",
+    "title": "Demos",
     "section": "",
-    "text": "Once you have your database properly set up and your survey is live, you can fetch the data using the sd_get_data() function. All you have to do is pass in the db object you created with sd_database() to the sd_get_data() function.\nFor example, if you have a table called my_table in your Supabase database, you can fetch the data like this:\n\nlibrary(surveydown)\n\ndb &lt;- sd_database(\n  user   = 'postgres.axzkymswaxcasjdflkurrj',\n  host   = 'aws-0-us-east-1.pooler.supabase.com',\n  port   = 5678,\n  db_name = 'postgres',\n  table_name = 'my_table'\n)\n\ndata &lt;- sd_get_data(db)\n\nHere the data object will be a data.frame with the data from your database.",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "Fetch Data"
-    ]
-  },
-  {
-    "objectID": "fetch-data.html#static-fetching",
-    "href": "fetch-data.html#static-fetching",
-    "title": "Fetching Data",
-    "section": "",
-    "text": "Once you have your database properly set up and your survey is live, you can fetch the data using the sd_get_data() function. All you have to do is pass in the db object you created with sd_database() to the sd_get_data() function.\nFor example, if you have a table called my_table in your Supabase database, you can fetch the data like this:\n\nlibrary(surveydown)\n\ndb &lt;- sd_database(\n  user   = 'postgres.axzkymswaxcasjdflkurrj',\n  host   = 'aws-0-us-east-1.pooler.supabase.com',\n  port   = 5678,\n  db_name = 'postgres',\n  table_name = 'my_table'\n)\n\ndata &lt;- sd_get_data(db)\n\nHere the data object will be a data.frame with the data from your database.",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "Fetch Data"
-    ]
-  },
-  {
-    "objectID": "fetch-data.html#reactive-fetching",
-    "href": "fetch-data.html#reactive-fetching",
-    "title": "Fetching Data",
-    "section": "Reactive Fetching",
-    "text": "Reactive Fetching\nThe above example is intended for an analysis context, where all you want to do is fetch the latest data from your database. However, you may also want to fetch the data in a reactive context (i.e. in your survey). For example, perhaps you want to show respondents a bar chart of the most common responses to a question. To enable this, all you have to do is set reactive = TRUE in the sd_get_data() function:\n\ndata &lt;- sd_get_data(db, reactive = TRUE)\n\nNow the data object will be a reactive expression, not a data.frame.\n\n\n\n\n\n\nImportant\n\n\n\nThe reactive = TRUE feature must be used in the server code chunk of your survey. Placing this anywhere else (e.g. a code chunk in the main part of your survey) will result in an error.\n\n\nTo use it, you have to call it with () to get the latest data as a data.frame. For example:\n\ndata &lt;- sd_get_data(db, reactive = TRUE)\n\noutput$my_plot &lt;- renderPlot({  \n  my_data &lt;- data()\n  # insert code here to make a plot with my_data\n})\n\nHere the my_data object will be a data.frame with the latest data from your database, which you could then use to make a plot. In this example, the output$my_plot object will be a plot, which you can then display in your survey by placing plotOutput(\"my_plot\") in a code chunk (or inline code) somewhere in your survey.\nSee the Reactivity page for more information on how to use reactivity in your survey.",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "Fetch Data"
-    ]
+    "text": "Question Types\nA demo of all the question types currently supported by surveydown.\n\n\n  \n\n\n\n\n\n\n\nConditional Display\nA demo of how to implement conditional display (showing a question based on a previous response).\n\n\n  \n\n\n\n\n\n\n\nConditional Skipping\nA demo of how to implement conditional skipping (skipping to a page based on a previous response).\n\n\n  \n\n\n\n\n\n\n\nRandomized Question Labels\nA demo of how to implement randomized question labels.\n\n\n  \n\n\n\n\n\n\n\nRandomized Question Labels (Predefined)\nA demo of how to implement randomized question labels using predefined random labels.\n\n\n  \n\n\n\n\n\n\n\nReactive Plot\nA demo of how to implement reactive plots in your survey.\n\n\n  \n\n\n\n\n\n\n\nChoice-Based Conjoint\nA demo of how to implement a choice-based conjoint survey with surveydown.\n\n\n  \n\n\n\n\n\n Back to top"
   },
   {
     "objectID": "store-data.html",

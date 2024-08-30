@@ -4,49 +4,32 @@ title: "Deploying Your Survey"
 
 Once you have previewed and tested your survey and are ready to field it, it is time to make it live for respondents to fill out.
 
-To deploy your survey, you'll need to have the following recipes ready:
+You need to have the following recipes ready:
 
 1. Your survey project made by Quarto that is properly rendered locally.
-2. Your Supabase project with its credentials defined in your survey `.qmd` file. See the [Store Data](store-data) page for details.
+2. Your [Supabase](https://supabase.com) project with its credentials defined in your survey `.qmd` file. See the [Store Data](store-data.qmd) page for details.
 3. An account on [shinyapps](https://www.shinyapps.io), which will be used for survey online deployment.
 
 These steps are easy to follow. We will go through one by one.
 
-## Demo Survey
-
-If you have trouble constructing your own survey, we have prepared a demo survey:
-
-1. [Online demo survey](https://pingfan.shinyapps.io/demo/)
-2. [GitHub repository](https://github.com/jhelvy/surveydown_demo)
-
-This survey was made on [RStudio](https://posit.co/products/open-source/rstudio/) using the {surveydown} R package and the surveydown Quarto extension, with survey data stored on [Supabase](https://supabase.com), and its online website deployed on [shinyapps](https://www.shinyapps.io).
-
-## Step 1: Survey Project
+## Step 1: surveydown Survey
 
 ### Step 1-1: Construct your survey
 
-Construct your survey using the {surveydown} R package and the surveydown Quarto extension.
-
-The previous articles in **Usage Guide** are sufficient to guide you through the survey construction process.
+Construct your survey using the {surveydown} R package and the surveydown Quarto extension. The [Getting Started](get-started.qmd) page can guide you through the survey construction process. If you have trouble creating your survey, check out our [demo surveys](demos.qmd) as a staring up of your survey design.
 
 ### Step 1-2: Set your password
 
 One important setting is the **password** of your Supabase project. Here's how.
 
-While you set up your Supabase project, you will create a password for it. This password will then be defined in your survey project. In the very end of your survey `.qmd` file, you'll need to define the `db` variable, which should be the settings of your Supabase project. There is an argument called `password`. You can directly paste your password here as `password = "my_password"`, but it's not recommended since this will make your Supabase project unsafe.
+While you set up your Supabase project, you will create a password for it. This password will then be defined in your survey project. Then, you need to deliver your password to your surveydown survey:
 
-We recommend you to write `password = Sys.getenv("SUPABASE_PASSWORD")`, like this:
-
-```{r eval=FALSE}
-db <- sd_database(
-  # Other settings...
-  password = Sys.getenv("SUPABASE_PASSWORD")
-)
+```{r}
+# Do it in your R console instead of your qmd file:
+surveydown::sd_set_password("my_password")
 ```
 
-Then, define the password using the `sd_set_password()` function. For example, if your password is `my_password`, you should run `sd_set_password("my_password")` in the R Console.
-
-Great! Now you have your Supabase password successfully defined in your survey project!
+You only need to set it once for each surveydown survey.
 
 If you are interested, below are the details of what `sd_set_password()` does:
 
@@ -72,18 +55,18 @@ This can help solve your connection problem. The value of `gssencmode` is set to
 
 ## Step 2: Supabase Project
 
-This is covered in [Store Data](store-data.qmd). I want to further mention that you don't need to actively create any table on your Supabase project. In your `db` variable of your `.qmd` file, there is a `table_name` argument. Whatever name you define here will become the table name of your Supabase:
+This is covered in [Store Data](store-data.qmd). I want to further mention that you don't need to actively create any table on your Supabase project. In your `db` variable of your `.qmd` file, there is a `table` argument. Whatever name you define here will become the table name of your Supabase:
 
 ```{r eval=FALSE}
 db <- sd_database(
   # Other settings...
-  table_name = "demo"
+  table = "demo"
 )
 ```
 
 In the above example, the table name in my Supabase project will be `"demo"`. If your survey project runs successfully locally and can have survey data collected in Supabase, you are ready for your online deployment.
 
-## Step 3: Online Deployment
+## Step 3: Deploy Online
 
 So this is our final step: to deploy your survey online. I'm glad you've made this far! You are almost there!
 
@@ -110,7 +93,11 @@ rsconnect::deployDoc("your_survey.qmd")
 
 The URL of this page will be your domain followed by `/your_survey`, which means the name of your `.qmd` file will be in the URL. The tab name of the HTML page is also `your_survey`. Better give a good name to your `.qmd` file.
 
-**Again, you'll need to firstly render locally and make sure it works properly. Otherwise, this deployment will fail.**
+::: {.callout-important}
+
+Again, before you deploy online, you'll need to firstly render your surveydown survey locally and make sure it works properly. Otherwise, this deployment will fail.
+
+:::
 
 If you want to define a different tab name for your survey page, run:
 
@@ -123,6 +110,8 @@ rsconnect::deployDoc(
 
 Now you should have your survey site deployed. The survey is now served on **shinyapps.io**, with its data stored on **Supabase**. Congratulations!
 
+::: {.callout-tip}
+
 Further explanation (with my personal interpretation) of the deployment functions:
 
 In rsconnect, there are two functions that can be used for deployment: `deployApp()` and `deployDoc()`. They serve different purposes and should NOT be mix-used.
@@ -131,4 +120,6 @@ In rsconnect, there are two functions that can be used for deployment: `deployAp
 2.  `deployDoc()` is used to deploy a Quarto Shiny Document. It works for a single file and tries to "automatically discover dependencies" (direct paste from [official instructions](https://rstudio.github.io/rsconnect/reference/deployDoc.html)).
 3.  Since our survey is a Quarto Shiny Document, we use `deployDoc()`.
 
-> I guess `deployDoc()` is a newer function that specifically works for `.qmd`. I have a feeling that this function is specifically made for `.qmd` to match the fact of "single document" and "dependencies". In our case, `deployDoc()` is a perfect match.
+I guess `deployDoc()` is a newer function that specifically works for `.qmd`. I have a feeling that this function is specifically made for `.qmd` to match the fact of "single document" and "dependencies". In our case, `deployDoc()` is a perfect match.
+
+:::

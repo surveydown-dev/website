@@ -296,15 +296,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#demo-survey" id="toc-demo-survey" class="nav-link active" data-scroll-target="#demo-survey">Demo Survey</a></li>
-  <li><a href="#step-1-survey-project" id="toc-step-1-survey-project" class="nav-link" data-scroll-target="#step-1-survey-project">Step 1: Survey Project</a>
+  <li><a href="#step-1-surveydown-survey" id="toc-step-1-surveydown-survey" class="nav-link active" data-scroll-target="#step-1-surveydown-survey">Step 1: surveydown Survey</a>
   <ul class="collapse">
   <li><a href="#step-1-1-construct-your-survey" id="toc-step-1-1-construct-your-survey" class="nav-link" data-scroll-target="#step-1-1-construct-your-survey">Step 1-1: Construct your survey</a></li>
   <li><a href="#step-1-2-set-your-password" id="toc-step-1-2-set-your-password" class="nav-link" data-scroll-target="#step-1-2-set-your-password">Step 1-2: Set your password</a></li>
   <li><a href="#step-1-3-render-your-.qmd-file" id="toc-step-1-3-render-your-.qmd-file" class="nav-link" data-scroll-target="#step-1-3-render-your-.qmd-file">Step 1-3: Render your <code>.qmd</code> file</a></li>
   </ul></li>
   <li><a href="#step-2-supabase-project" id="toc-step-2-supabase-project" class="nav-link" data-scroll-target="#step-2-supabase-project">Step 2: Supabase Project</a></li>
-  <li><a href="#step-3-online-deployment" id="toc-step-3-online-deployment" class="nav-link" data-scroll-target="#step-3-online-deployment">Step 3: Online Deployment</a></li>
+  <li><a href="#step-3-deploy-online" id="toc-step-3-deploy-online" class="nav-link" data-scroll-target="#step-3-deploy-online">Step 3: Deploy Online</a></li>
   </ul>
 </nav>
     </div>
@@ -331,42 +330,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Once you have previewed and tested your survey and are ready to field it, it is time to make it live for respondents to fill out.</p>
-<p>To deploy your survey, you’ll need to have the following recipes ready:</p>
+<p>You need to have the following recipes ready:</p>
 <ol type="1">
 <li>Your survey project made by Quarto that is properly rendered locally.</li>
-<li>Your Supabase project with its credentials defined in your survey <code>.qmd</code> file. See the <a href="store-data">Store Data</a> page for details.</li>
+<li>Your <a href="https://supabase.com">Supabase</a> project with its credentials defined in your survey <code>.qmd</code> file. See the <a href="./store-data.html">Store Data</a> page for details.</li>
 <li>An account on <a href="https://www.shinyapps.io">shinyapps</a>, which will be used for survey online deployment.</li>
 </ol>
 <p>These steps are easy to follow. We will go through one by one.</p>
-<section id="demo-survey" class="level2">
-<h2 class="anchored" data-anchor-id="demo-survey">Demo Survey</h2>
-<p>If you have trouble constructing your own survey, we have prepared a demo survey:</p>
-<ol type="1">
-<li><a href="https://pingfan.shinyapps.io/demo/">Online demo survey</a></li>
-<li><a href="https://github.com/jhelvy/surveydown_demo">GitHub repository</a></li>
-</ol>
-<p>This survey was made on <a href="https://posit.co/products/open-source/rstudio/">RStudio</a> using the {surveydown} R package and the surveydown Quarto extension, with survey data stored on <a href="https://supabase.com">Supabase</a>, and its online website deployed on <a href="https://www.shinyapps.io">shinyapps</a>.</p>
-</section>
-<section id="step-1-survey-project" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-survey-project">Step 1: Survey Project</h2>
+<section id="step-1-surveydown-survey" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-surveydown-survey">Step 1: surveydown Survey</h2>
 <section id="step-1-1-construct-your-survey" class="level3">
 <h3 class="anchored" data-anchor-id="step-1-1-construct-your-survey">Step 1-1: Construct your survey</h3>
-<p>Construct your survey using the {surveydown} R package and the surveydown Quarto extension.</p>
-<p>The previous articles in <strong>Usage Guide</strong> are sufficient to guide you through the survey construction process.</p>
+<p>Construct your survey using the {surveydown} R package and the surveydown Quarto extension. The <a href="./get-started.html">Getting Started</a> page can guide you through the survey construction process. If you have trouble creating your survey, check out our <a href="./demos.html">demo surveys</a> as a staring up of your survey design.</p>
 </section>
 <section id="step-1-2-set-your-password" class="level3">
 <h3 class="anchored" data-anchor-id="step-1-2-set-your-password">Step 1-2: Set your password</h3>
 <p>One important setting is the <strong>password</strong> of your Supabase project. Here’s how.</p>
-<p>While you set up your Supabase project, you will create a password for it. This password will then be defined in your survey project. In the very end of your survey <code>.qmd</code> file, you’ll need to define the <code>db</code> variable, which should be the settings of your Supabase project. There is an argument called <code>password</code>. You can directly paste your password here as <code>password = "my_password"</code>, but it’s not recommended since this will make your Supabase project unsafe.</p>
-<p>We recommend you to write <code>password = Sys.getenv("SUPABASE_PASSWORD")</code>, like this:</p>
+<p>While you set up your Supabase project, you will create a password for it. This password will then be defined in your survey project. Then, you need to deliver your password to your surveydown survey:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">sd_database</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Other settings...</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">password =</span> <span class="fu">Sys.getenv</span>(<span class="st">"SUPABASE_PASSWORD"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Do it in your R console instead of your qmd file:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>surveydown<span class="sc">::</span><span class="fu">sd_set_password</span>(<span class="st">"my_password"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Then, define the password using the <code>sd_set_password()</code> function. For example, if your password is <code>my_password</code>, you should run <code>sd_set_password("my_password")</code> in the R Console.</p>
-<p>Great! Now you have your Supabase password successfully defined in your survey project!</p>
+<p>You only need to set it once for each surveydown survey.</p>
 <p>If you are interested, below are the details of what <code>sd_set_password()</code> does:</p>
 <ol type="1">
 <li>It creates an <code>.Renviron</code> file or writes into an existing one.</li>
@@ -390,17 +375,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="step-2-supabase-project" class="level2">
 <h2 class="anchored" data-anchor-id="step-2-supabase-project">Step 2: Supabase Project</h2>
-<p>This is covered in <a href="./store-data.html">Store Data</a>. I want to further mention that you don’t need to actively create any table on your Supabase project. In your <code>db</code> variable of your <code>.qmd</code> file, there is a <code>table_name</code> argument. Whatever name you define here will become the table name of your Supabase:</p>
+<p>This is covered in <a href="./store-data.html">Store Data</a>. I want to further mention that you don’t need to actively create any table on your Supabase project. In your <code>db</code> variable of your <code>.qmd</code> file, there is a <code>table</code> argument. Whatever name you define here will become the table name of your Supabase:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">sd_database</span>(</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Other settings...</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">table_name =</span> <span class="st">"demo"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">table =</span> <span class="st">"demo"</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In the above example, the table name in my Supabase project will be <code>"demo"</code>. If your survey project runs successfully locally and can have survey data collected in Supabase, you are ready for your online deployment.</p>
 </section>
-<section id="step-3-online-deployment" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-online-deployment">Step 3: Online Deployment</h2>
+<section id="step-3-deploy-online" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-deploy-online">Step 3: Deploy Online</h2>
 <p>So this is our final step: to deploy your survey online. I’m glad you’ve made this far! You are almost there!</p>
 <p>We’ll use <a href="https://www.shinyapps.io">shinyapps.io</a>. Now before we start, here are two explanations to clear out your possible questions:</p>
 <ol type="1">
@@ -418,7 +403,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">deployDoc</span>(<span class="st">"your_survey.qmd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The URL of this page will be your domain followed by <code>/your_survey</code>, which means the name of your <code>.qmd</code> file will be in the URL. The tab name of the HTML page is also <code>your_survey</code>. Better give a good name to your <code>.qmd</code> file.</p>
-<p><strong>Again, you’ll need to firstly render locally and make sure it works properly. Otherwise, this deployment will fail.</strong></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Again, before you deploy online, you’ll need to firstly render your surveydown survey locally and make sure it works properly. Otherwise, this deployment will fail.</p>
+</div>
+</div>
 <p>If you want to define a different tab name for your survey page, run:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">deployDoc</span>(</span>
@@ -427,6 +424,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now you should have your survey site deployed. The survey is now served on <strong>shinyapps.io</strong>, with its data stored on <strong>Supabase</strong>. Congratulations!</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Further explanation (with my personal interpretation) of the deployment functions:</p>
 <p>In rsconnect, there are two functions that can be used for deployment: <code>deployApp()</code> and <code>deployDoc()</code>. They serve different purposes and should NOT be mix-used.</p>
 <ol type="1">
@@ -434,9 +441,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>deployDoc()</code> is used to deploy a Quarto Shiny Document. It works for a single file and tries to “automatically discover dependencies” (direct paste from <a href="https://rstudio.github.io/rsconnect/reference/deployDoc.html">official instructions</a>).</li>
 <li>Since our survey is a Quarto Shiny Document, we use <code>deployDoc()</code>.</li>
 </ol>
-<blockquote class="blockquote">
 <p>I guess <code>deployDoc()</code> is a newer function that specifically works for <code>.qmd</code>. I have a feeling that this function is specifically made for <code>.qmd</code> to match the fact of “single document” and “dependencies”. In our case, <code>deployDoc()</code> is a perfect match.</p>
-</blockquote>
+</div>
+</div>
 
 
 </section>

@@ -323,14 +323,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This page has some helpful suggestions for working with surveydown surveys.</p>
 <section id="splitting-the-server-chunk-into-a-separate-file" class="level2">
 <h2 class="anchored" data-anchor-id="splitting-the-server-chunk-into-a-separate-file">Splitting the server chunk into a separate file</h2>
-<p>The server chunk contains many components:</p>
-<ol type="1">
-<li>The database setup via <code>sd_database()</code>, which defines your Supabase connection.</li>
-<li>Any configuration options via <code>sd_config()</code>, such as conditional show logic, skip logic, required questions, etc.</li>
-<li>Any other code, such as reactive questions (<code>sd_question(reactive = TRUE)</code>), other variables you wish to store in your database, etc.</li>
-</ol>
-<p>As your survey grows in length and complexity, the server chunk can get quite long, and scrolling up and down to edit it along with the main survey content can be annoying. To address this, it can be helpful to split up your server code into a separate file so that you can open it in a separate tab in your editor.</p>
+<p>The server chunk contains many components. As your survey grows in length and complexity, the server chunk can get quite long, and scrolling up and down to edit it along with the main survey content can be annoying. To address this, it can be helpful to split up your server code into a separate file so that you can open it in a separate tab in your editor.</p>
 <p>To enable this, create a <code>server.R</code> file (can be any name you wish) in your project directory, and put all of your server code in this file except for the call to <code>sd_server()</code>. Then you can source the file into the server chunk like this:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true"><code>survey.qmd</code> file</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><code>server.R</code> file</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell" data-context="server">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| context: server</span></span>
@@ -345,6 +343,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="in">  db      = db</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="in">db &lt;- sd_database(</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">  # your database setup here</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="in">config &lt;- sd_config(</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="in">  # your config here</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="in"># Any other server code here</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </div>
 <p>With this setup, your server code chunk will remain unchanged and you will only need to edit your <code>server.R</code> file to customize your server settings.</p>
 <div class="callout callout-style-default callout-important callout-titled">

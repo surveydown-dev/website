@@ -54,3 +54,36 @@ With this setup, your server code chunk will remain unchanged and you will only 
 Note that you still need to include the `sd_server()` function in your server code chunk after sourcing the `server.R` file. 
 
 :::
+
+## Programmatically generate survey questions
+
+You can use R to programmatically generate survey questions, which can be useful if you have a large number of questions that are similar to each other. One way to do this is to first create a data frame with the question parameters, and then use the `sd_question()` function to create the questions.
+
+Here's an example using `map()` over the list of question parameters in the `items` data frame to generate a list of questions. Note that the list of questions is wrapped in `shiny::tagList()`, which is necessary for the survey to render properly since the `map()` function returns a list.
+
+```{r}
+#| eval: false
+
+items <- tibble(
+  type = "mc",
+  id = as.character(1:5),
+  label = LETTERS[1:5],
+  option = list(c(
+    "None" = "0", 
+    "A Little" = "1",
+    "A lot" = "2"
+  ))
+)
+
+shiny::tagList(
+  map(1:nrow(items), function(i) {
+    args <- items[i, ]
+    sd_question(
+      id     = as.character(args$id),
+      type   = args$type,
+      label  = args$label,
+      option = unlist(args$option)
+    )
+  })
+)
+```

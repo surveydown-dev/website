@@ -219,68 +219,87 @@
     "text": "Footnotes\n\n\nYes, people have actually done conjoint surveys on fruit before.↩︎"
   },
   {
-    "objectID": "installation.html",
-    "href": "installation.html",
-    "title": "Installation",
+    "objectID": "tips.html",
+    "href": "tips.html",
+    "title": "Tips",
     "section": "",
-    "text": "You need both:\n\nInstall \nInstall Quarto\n\nAlso, we recommend working with an IDE. RStudio is great, and we also like VS Code and Positron.",
+    "text": "This page has some helpful suggestions for working with surveydown surveys.",
     "crumbs": [
       "Documentation",
-      "Installation"
+      "Reference Manuals",
+      "Tips"
     ]
   },
   {
-    "objectID": "installation.html#install-r-quarto",
-    "href": "installation.html#install-r-quarto",
-    "title": "Installation",
+    "objectID": "tips.html#splitting-the-server-chunk-into-a-separate-file",
+    "href": "tips.html#splitting-the-server-chunk-into-a-separate-file",
+    "title": "Tips",
+    "section": "Splitting the server chunk into a separate file",
+    "text": "Splitting the server chunk into a separate file\nThe server chunk contains many components. As your survey grows in length and complexity, the server chunk can get quite long, and scrolling up and down to edit it along with the main survey content can be annoying. To address this, it can be helpful to split up your server code into a separate file so that you can open it in a separate tab in your editor.\nTo enable this, create a server.R file (can be any name you wish) in your project directory, and put all of your server code in this file except for the call to sd_server(). Then you can source the file into the server chunk like this:\n\nsurvey.qmd fileserver.R file\n\n\n\n```{r}\n#| context: server\n\nsource(\"server.R\")\n\nsd_server(\n  input   = input,\n  output  = output,\n  session = session,\n  config  = config,\n  db      = db\n)\n```\n\n\n\n\n```{r}\ndb &lt;- sd_database(\n  # your database setup here\n)\n\nconfig &lt;- sd_config(\n  # your config here\n)\n\n# Any other server code here\n```\n\n\n\n\nWith this setup, your server code chunk will remain unchanged and you will only need to edit your server.R file to customize your server settings.\n\n\n\n\n\n\nImportant\n\n\n\nNote that you still need to include the sd_server() function in your server code chunk after sourcing the server.R file.",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Tips"
+    ]
+  },
+  {
+    "objectID": "tips.html#programmatically-generate-survey-questions",
+    "href": "tips.html#programmatically-generate-survey-questions",
+    "title": "Tips",
+    "section": "Programmatically generate survey questions",
+    "text": "Programmatically generate survey questions\nYou can use R to programmatically generate survey questions, which can be useful if you have a large number of questions that are similar to each other. One way to do this is to first create a data frame with the question parameters, and then use the sd_question() function to create the questions.\nHere’s an example using map() over the list of question parameters in the items data frame to generate a list of questions. Note that the list of questions is wrapped in shiny::tagList(), which is necessary for the survey to render properly since the map() function returns a list.\n\nitems &lt;- tibble(\n  type = \"mc\",\n  id = as.character(1:5),\n  label = LETTERS[1:5],\n  option = list(c(\n    \"None\" = \"0\", \n    \"A Little\" = \"1\",\n    \"A lot\" = \"2\"\n  ))\n)\n\nshiny::tagList(\n  map(1:nrow(items), function(i) {\n    args &lt;- items[i, ]\n    sd_question(\n      id     = as.character(args$id),\n      type   = args$type,\n      label  = args$label,\n      option = unlist(args$option)\n    )\n  })\n)",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Tips"
+    ]
+  },
+  {
+    "objectID": "deployment.html",
+    "href": "deployment.html",
+    "title": "Deploying Your Survey",
     "section": "",
-    "text": "You need both:\n\nInstall \nInstall Quarto\n\nAlso, we recommend working with an IDE. RStudio is great, and we also like VS Code and Positron.",
+    "text": "Once you have previewed and tested your survey and are ready to field it, it is time to make it live for respondents to fill out.\nYou need to have the following recipes ready:\nThese steps are easy to follow. We will go through one by one.",
     "crumbs": [
       "Documentation",
-      "Installation"
+      "Reference Manuals",
+      "Deployment"
     ]
   },
   {
-    "objectID": "installation.html#install-the-surveydown-r-package",
-    "href": "installation.html#install-the-surveydown-r-package",
-    "title": "Installation",
-    "section": "Install the {surveydown} R package",
-    "text": "Install the {surveydown} R package\nThe {surveydown} R package is not yet on CRAN, but you can install the development version from GitHub with the following command in your R console:\n\n# install.packages(\"remotes\")\nremotes::install_github(\"surveydown-dev/surveydown\")",
+    "objectID": "deployment.html#step-1-surveydown-survey",
+    "href": "deployment.html#step-1-surveydown-survey",
+    "title": "Deploying Your Survey",
+    "section": "Step 1: surveydown Survey",
+    "text": "Step 1: surveydown Survey\n\nStep 1-1: Construct your survey\nConstruct your survey using the {surveydown} R package and the surveydown Quarto extension. The Getting Started page can guide you through the survey construction process. If you have trouble creating your survey, check out our demo surveys as a staring up of your survey design.\n\n\nStep 1-2: Set your password\nOne important setting is the password of your Supabase project. Here’s how.\nWhile you set up your Supabase project, you will create a password for it. This password will then be defined in your survey project. Then, you need to deliver your password to your surveydown survey:\n\n# Do it in your R console instead of your qmd file:\nsurveydown::sd_set_password(\"my_password\")\n\nYou only need to set it once for each surveydown survey.\nIf you are interested, below are the details of what sd_set_password() does:\n\nIt creates an .Renviron file or writes into an existing one.\nIn this .Renviron file, it writes in SUPABASE_PASSWORD=my_password, where \"my_password\" is whatever your argument of the sd_set_password() function.\nIf there is a previously defined SUPABASE_PASSWORD in .Renviron, it will be overwritten, so you are safe to run this function multiple times.\nIt adds .Renviron into .gitignore to avoid it being pushed to GitHub thus keeps your password safe. If you run multiple times, .Renviron will appear only once in .gitignore.\n\n\n\nStep 1-3: Render your .qmd file\nThis is simple: just hit Render or cmd/ctrl + shift + K (Mac/Win). But the reason why I make this a stand-alone step is that, WITHOUT rendering your .qmd file, your survey CANNOT be deployed online.\nOne more thing… If you fail to deploy locally while you have set every argument correctly in your db variable, try to define gssencmode = \"disable\" in your db variable:\n\ndb &lt;- sd_database(\n  # Other settings...\n  gssencmode = \"disable\"\n)\n\nThis can help solve your connection problem. The value of gssencmode is set to \"prefer\" by default.",
     "crumbs": [
       "Documentation",
-      "Installation"
+      "Reference Manuals",
+      "Deployment"
     ]
   },
   {
-    "objectID": "installation.html#install-the-surveydown-quarto-extension",
-    "href": "installation.html#install-the-surveydown-quarto-extension",
-    "title": "Installation",
-    "section": "Install the surveydown Quarto Extension",
-    "text": "Install the surveydown Quarto Extension\nOnce you start working on an actual survey, you’ll need the surveydown Quarto extension.\n\nNote: The extension must be locally installed in a _extensions folder in your root survey project folder.\n\nWe recommend starting with a template survey, which will automatically add the latest extension for you:\n\nsurveydown::sd_create_survey(\"path/to/folder\")\n\nOtherwise, you can install the extension using the terminal or with the {surveydown} package:\n\nUsing the Terminal:\n\n\nquarto install extension jhelvy/surveydown-ext\n\n\nUsing the {surveydown} R package:\n\n\nsurveydown::sd_update_extension()",
+    "objectID": "deployment.html#step-2-supabase-project",
+    "href": "deployment.html#step-2-supabase-project",
+    "title": "Deploying Your Survey",
+    "section": "Step 2: Supabase Project",
+    "text": "Step 2: Supabase Project\nThis is covered in Store Data. I want to further mention that you don’t need to actively create any table on your Supabase project. In your db variable of your .qmd file, there is a table argument. Whatever name you define here will become the table name of your Supabase:\n\ndb &lt;- sd_database(\n  # Other settings...\n  table = \"demo\"\n)\n\nIn the above example, the table name in my Supabase project will be \"demo\". If your survey project runs successfully locally and can have survey data collected in Supabase, you are ready for your online deployment.",
     "crumbs": [
       "Documentation",
-      "Installation"
+      "Reference Manuals",
+      "Deployment"
     ]
   },
   {
-    "objectID": "installation.html#version-control",
-    "href": "installation.html#version-control",
-    "title": "Installation",
-    "section": "Version Control",
-    "text": "Version Control\nWe made some R functions to make it easier to keep your R package and Quarto extension up to date.\nTo check if you have the latest R package and Quarto extension installed, run:\n\nsurveydown::sd_check_versions()\n\nTo update the R package and Quarto extension to the latest version, run:\n\nsurveydown::sd_update_surveydown()",
+    "objectID": "deployment.html#step-3-deploy-online",
+    "href": "deployment.html#step-3-deploy-online",
+    "title": "Deploying Your Survey",
+    "section": "Step 3: Deploy Online",
+    "text": "Step 3: Deploy Online\nSo this is our final step: to deploy your survey online. I’m glad you’ve made this far! You are almost there!\nWe’ll use shinyapps.io. Now before we start, here are two explanations to clear out your possible questions:\n\nshinyapps.io can support both Shiny Apps and Quarto Shiny Documents. In our case, our survey is considered as a Quarto Shiny Document.\nQuarto Pub is also a website publishing platform. In fact, both Quarto Pub and shinyapps.io are provided by Posit. However, we DON’T use Quarto Pub for our survey deployment. The core reason is that, shinyapps.io can make interactive websites, but Quarto Pub only makes static websites. A survey is apparently an interactive website, so it’s compatible with shinyapps.io, not Quarto Pub.\n\nTo start using shinyapps.io, you’ll need to create an account and follow the basic instructions to set up your sub-domain and authorize your IDE. See more information here.\nOnce you have your account and your sub-domain ready, it’s time to deploy your survey website.\nMake sure you have the rsconnect R package installed (You should have done this while you authorize your IDE):\n\ninstall.packages('rsconnect')\n\nThe simplest way is to run this:\n\nrsconnect::deployDoc(\"your_survey.qmd\")\n\nThe URL of this page will be your domain followed by /your_survey, which means the name of your .qmd file will be in the URL. The tab name of the HTML page is also your_survey. Better give a good name to your .qmd file.\n\n\n\n\n\n\nImportant\n\n\n\nAgain, before you deploy online, you’ll need to firstly render your surveydown survey locally and make sure it works properly. Otherwise, this deployment will fail.\n\n\nIf you want to define a different tab name for your survey page, run:\n\nrsconnect::deployDoc(\n  doc = \"your_survey.qmd\",\n  appName = \"Survey Name\"\n)\n\nNow you should have your survey site deployed. The survey is now served on shinyapps.io, with its data stored on Supabase. Congratulations!\n\n\n\n\n\n\nTip\n\n\n\nFurther explanation (with my personal interpretation) of the deployment functions:\nIn rsconnect, there are two functions that can be used for deployment: deployApp() and deployDoc(). They serve different purposes and should NOT be mix-used.\n\ndeployApp() is used to deploy a Shiny App. It doesn’t work for .qmd, but works for Shiny App and .rmd, and it accepts multiple files.\ndeployDoc() is used to deploy a Quarto Shiny Document. It works for a single file and tries to “automatically discover dependencies” (direct paste from official instructions).\nSince our survey is a Quarto Shiny Document, we use deployDoc().\n\nI guess deployDoc() is a newer function that specifically works for .qmd. I have a feeling that this function is specifically made for .qmd to match the fact of “single document” and “dependencies”. In our case, deployDoc() is a perfect match.",
     "crumbs": [
       "Documentation",
-      "Installation"
-    ]
-  },
-  {
-    "objectID": "documentation.html",
-    "href": "documentation.html",
-    "title": "surveydown.org",
-    "section": "",
-    "text": "Welcome to your first surveydown survey!\nWe recommend reading the Get Started page to get a sense of how to use surveydown. The rest of the documentation covers more details on how to use surveydown.\n\nGet Started!\n\n\n\nFeatures\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Progress\n                Feature\n                Implementation\n              \n        \n        \n        \n                \n                                       \n                  Wide variety of question types                                                          \n                  sd_question()                                                                                             \n                \n                \n                                       \n                  Ability to use latest survey results in the survey itself                 \n                  sd_get_data(db, reactive = TRUE)                                                                          \n                \n                \n                                       \n                  Preview mode (pauses database connection)                                                                                 \n                  sd_database(pause = TRUE)                                                                                 \n                \n                \n                                       \n                  Conditionally display questions                                     \n                  sd_config(show_if = XXX) & sd_config(show_if_custom = XXX)                                   \n                \n                \n                                       \n                  Conditionally skip to pages                                        \n                  sd_config(skip_if = XXX) & sd_config(skip_if_custom = XXX)                                   \n                \n                \n                                       \n                  Start survey from a specific page (helpful when editing)                  \n                  sd_config(start_page = \"page_id\")                                                                         \n                \n                \n                                       \n                  Show all pages at once (helpful for editing or printing out whole survey)\n                  sd_config(show_all_pages = TRUE)                                                                          \n                \n                \n                                       \n                  Require specific questions be answered                               \n                  sd_config(required_questions = c(\"question_1\", \"question_2\"))                                             \n                \n                \n                                       \n                  Require all questions be answered                                    \n                  sd_config(all_questions_required = TRUE)                                                                  \n                \n                \n                                       \n                  Time stamps recorded for each question and page interaction                                                               \n                  Happens by default.                                                                                                    \n                \n                \n                                       \n                  Progress bar bar that updates on each question interaction              \n                  Happens by default.                                                                                                    \n                \n                \n                                       \n                  Customizable progress bar color                                         \n                  In the YAML header, type:barcolor = \"A_HEX_COLOR\"                                                     \n                \n                \n                                       \n                  Customizable progress bar position                                      \n                  In the YAML header, type:barposition = \"top\", \"bottom\", or \"none\"           \n                \n                \n                                       \n                  Markdown formatting for options and buttons                             \n                  Just use markdown on options and buttons.                                                                              \n                \n                \n                                       \n                  Customizable scss theme file                                                                                              \n                  Use theme = custom.scss in the YAML header and put a custom.scss file in the project folder. \n                \n                \n                  \n                  Admin page with password login to preview / download data, pause survey, etc.     \n                  sd_config(admin_page = TRUE), then access with url, e.g. https://mysurvey.shinyapps.io/?admin\n                \n                \n                  \n                  Form validation (limit input based on question type)                                                                      \n                  Happens by default                                                                                                     \n                \n                \n                  \n                  Cookies to store user progress                                                                                            \n                  Happens by default                                                                                                     \n                \n                \n                  \n                  User tracking via url parameters                                                                                          \n                  By inputting the url parameters the users can go to the desired page                                                   \n                \n        \n      \n    \n\n\n\n\n\n\n\n Back to top",
-    "crumbs": [
-      "Documentation"
+      "Reference Manuals",
+      "Deployment"
     ]
   },
   {
@@ -470,75 +489,68 @@
     ]
   },
   {
-    "objectID": "tips.html",
-    "href": "tips.html",
-    "title": "Tips",
+    "objectID": "documentation.html",
+    "href": "documentation.html",
+    "title": "surveydown.org",
     "section": "",
-    "text": "This page has some helpful suggestions for working with surveydown surveys.",
+    "text": "Welcome to your first surveydown survey!\nWe recommend reading the Get Started page to get a sense of how to use surveydown. The rest of the documentation covers more details on how to use surveydown.\n\nGet Started!\n\n\n\nFeatures\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Progress\n                Feature\n                Implementation\n              \n        \n        \n        \n                \n                                       \n                  Wide variety of question types                                                          \n                  sd_question()                                                                                             \n                \n                \n                                       \n                  Ability to use latest survey results in the survey itself                 \n                  sd_get_data(db, reactive = TRUE)                                                                          \n                \n                \n                                       \n                  Preview mode (pauses database connection)                                                                                 \n                  sd_database(pause = TRUE)                                                                                 \n                \n                \n                                       \n                  Conditionally display questions                                     \n                  sd_config(show_if = XXX) & sd_config(show_if_custom = XXX)                                   \n                \n                \n                                       \n                  Conditionally skip to pages                                        \n                  sd_config(skip_if = XXX) & sd_config(skip_if_custom = XXX)                                   \n                \n                \n                                       \n                  Start survey from a specific page (helpful when editing)                  \n                  sd_config(start_page = \"page_id\")                                                                         \n                \n                \n                                       \n                  Show all pages at once (helpful for editing or printing out whole survey)\n                  sd_config(show_all_pages = TRUE)                                                                          \n                \n                \n                                       \n                  Require specific questions be answered                               \n                  sd_config(required_questions = c(\"question_1\", \"question_2\"))                                             \n                \n                \n                                       \n                  Require all questions be answered                                    \n                  sd_config(all_questions_required = TRUE)                                                                  \n                \n                \n                                       \n                  Time stamps recorded for each question and page interaction                                                               \n                  Happens by default.                                                                                                    \n                \n                \n                                       \n                  Progress bar bar that updates on each question interaction              \n                  Happens by default.                                                                                                    \n                \n                \n                                       \n                  Customizable progress bar color                                         \n                  In the YAML header, type:barcolor = \"A_HEX_COLOR\"                                                     \n                \n                \n                                       \n                  Customizable progress bar position                                      \n                  In the YAML header, type:barposition = \"top\", \"bottom\", or \"none\"           \n                \n                \n                                       \n                  Markdown formatting for options and buttons                             \n                  Just use markdown on options and buttons.                                                                              \n                \n                \n                                       \n                  Customizable scss theme file                                                                                              \n                  Use theme = custom.scss in the YAML header and put a custom.scss file in the project folder. \n                \n                \n                  \n                  Admin page with password login to preview / download data, pause survey, etc.     \n                  sd_config(admin_page = TRUE), then access with url, e.g. https://mysurvey.shinyapps.io/?admin\n                \n                \n                  \n                  Form validation (limit input based on question type)                                                                      \n                  Happens by default                                                                                                     \n                \n                \n                  \n                  Cookies to store user progress                                                                                            \n                  Happens by default                                                                                                     \n                \n                \n                  \n                  User tracking via url parameters                                                                                          \n                  By inputting the url parameters the users can go to the desired page                                                   \n                \n        \n      \n    \n\n\n\n\n\n\n\n Back to top",
     "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "Tips"
+      "Documentation"
     ]
   },
   {
-    "objectID": "tips.html#splitting-the-server-chunk-into-a-separate-file",
-    "href": "tips.html#splitting-the-server-chunk-into-a-separate-file",
-    "title": "Tips",
-    "section": "Splitting the server chunk into a separate file",
-    "text": "Splitting the server chunk into a separate file\nThe server chunk contains many components. As your survey grows in length and complexity, the server chunk can get quite long, and scrolling up and down to edit it along with the main survey content can be annoying. To address this, it can be helpful to split up your server code into a separate file so that you can open it in a separate tab in your editor.\nTo enable this, create a server.R file (can be any name you wish) in your project directory, and put all of your server code in this file except for the call to sd_server(). Then you can source the file into the server chunk like this:\n\nsurvey.qmd fileserver.R file\n\n\n\n```{r}\n#| context: server\n\nsource(\"server.R\")\n\nsd_server(\n  input   = input,\n  output  = output,\n  session = session,\n  config  = config,\n  db      = db\n)\n```\n\n\n\n\n```{r}\ndb &lt;- sd_database(\n  # your database setup here\n)\n\nconfig &lt;- sd_config(\n  # your config here\n)\n\n# Any other server code here\n```\n\n\n\n\nWith this setup, your server code chunk will remain unchanged and you will only need to edit your server.R file to customize your server settings.\n\n\n\n\n\n\nImportant\n\n\n\nNote that you still need to include the sd_server() function in your server code chunk after sourcing the server.R file.",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "Tips"
-    ]
-  },
-  {
-    "objectID": "deployment.html",
-    "href": "deployment.html",
-    "title": "Deploying Your Survey",
+    "objectID": "installation.html",
+    "href": "installation.html",
+    "title": "Installation",
     "section": "",
-    "text": "Once you have previewed and tested your survey and are ready to field it, it is time to make it live for respondents to fill out.\nYou need to have the following recipes ready:\nThese steps are easy to follow. We will go through one by one.",
+    "text": "You need both:\n\nInstall \nInstall Quarto\n\nAlso, we recommend working with an IDE. RStudio is great, and we also like VS Code and Positron.",
     "crumbs": [
       "Documentation",
-      "Reference Manuals",
-      "Deployment"
+      "Installation"
     ]
   },
   {
-    "objectID": "deployment.html#step-1-surveydown-survey",
-    "href": "deployment.html#step-1-surveydown-survey",
-    "title": "Deploying Your Survey",
-    "section": "Step 1: surveydown Survey",
-    "text": "Step 1: surveydown Survey\n\nStep 1-1: Construct your survey\nConstruct your survey using the {surveydown} R package and the surveydown Quarto extension. The Getting Started page can guide you through the survey construction process. If you have trouble creating your survey, check out our demo surveys as a staring up of your survey design.\n\n\nStep 1-2: Set your password\nOne important setting is the password of your Supabase project. Here’s how.\nWhile you set up your Supabase project, you will create a password for it. This password will then be defined in your survey project. Then, you need to deliver your password to your surveydown survey:\n\n# Do it in your R console instead of your qmd file:\nsurveydown::sd_set_password(\"my_password\")\n\nYou only need to set it once for each surveydown survey.\nIf you are interested, below are the details of what sd_set_password() does:\n\nIt creates an .Renviron file or writes into an existing one.\nIn this .Renviron file, it writes in SUPABASE_PASSWORD=my_password, where \"my_password\" is whatever your argument of the sd_set_password() function.\nIf there is a previously defined SUPABASE_PASSWORD in .Renviron, it will be overwritten, so you are safe to run this function multiple times.\nIt adds .Renviron into .gitignore to avoid it being pushed to GitHub thus keeps your password safe. If you run multiple times, .Renviron will appear only once in .gitignore.\n\n\n\nStep 1-3: Render your .qmd file\nThis is simple: just hit Render or cmd/ctrl + shift + K (Mac/Win). But the reason why I make this a stand-alone step is that, WITHOUT rendering your .qmd file, your survey CANNOT be deployed online.\nOne more thing… If you fail to deploy locally while you have set every argument correctly in your db variable, try to define gssencmode = \"disable\" in your db variable:\n\ndb &lt;- sd_database(\n  # Other settings...\n  gssencmode = \"disable\"\n)\n\nThis can help solve your connection problem. The value of gssencmode is set to \"prefer\" by default.",
+    "objectID": "installation.html#install-r-quarto",
+    "href": "installation.html#install-r-quarto",
+    "title": "Installation",
+    "section": "",
+    "text": "You need both:\n\nInstall \nInstall Quarto\n\nAlso, we recommend working with an IDE. RStudio is great, and we also like VS Code and Positron.",
     "crumbs": [
       "Documentation",
-      "Reference Manuals",
-      "Deployment"
+      "Installation"
     ]
   },
   {
-    "objectID": "deployment.html#step-2-supabase-project",
-    "href": "deployment.html#step-2-supabase-project",
-    "title": "Deploying Your Survey",
-    "section": "Step 2: Supabase Project",
-    "text": "Step 2: Supabase Project\nThis is covered in Store Data. I want to further mention that you don’t need to actively create any table on your Supabase project. In your db variable of your .qmd file, there is a table argument. Whatever name you define here will become the table name of your Supabase:\n\ndb &lt;- sd_database(\n  # Other settings...\n  table = \"demo\"\n)\n\nIn the above example, the table name in my Supabase project will be \"demo\". If your survey project runs successfully locally and can have survey data collected in Supabase, you are ready for your online deployment.",
+    "objectID": "installation.html#install-the-surveydown-r-package",
+    "href": "installation.html#install-the-surveydown-r-package",
+    "title": "Installation",
+    "section": "Install the {surveydown} R package",
+    "text": "Install the {surveydown} R package\nThe {surveydown} R package is not yet on CRAN, but you can install the development version from GitHub with the following command in your R console:\n\n# install.packages(\"remotes\")\nremotes::install_github(\"surveydown-dev/surveydown\")",
     "crumbs": [
       "Documentation",
-      "Reference Manuals",
-      "Deployment"
+      "Installation"
     ]
   },
   {
-    "objectID": "deployment.html#step-3-deploy-online",
-    "href": "deployment.html#step-3-deploy-online",
-    "title": "Deploying Your Survey",
-    "section": "Step 3: Deploy Online",
-    "text": "Step 3: Deploy Online\nSo this is our final step: to deploy your survey online. I’m glad you’ve made this far! You are almost there!\nWe’ll use shinyapps.io. Now before we start, here are two explanations to clear out your possible questions:\n\nshinyapps.io can support both Shiny Apps and Quarto Shiny Documents. In our case, our survey is considered as a Quarto Shiny Document.\nQuarto Pub is also a website publishing platform. In fact, both Quarto Pub and shinyapps.io are provided by Posit. However, we DON’T use Quarto Pub for our survey deployment. The core reason is that, shinyapps.io can make interactive websites, but Quarto Pub only makes static websites. A survey is apparently an interactive website, so it’s compatible with shinyapps.io, not Quarto Pub.\n\nTo start using shinyapps.io, you’ll need to create an account and follow the basic instructions to set up your sub-domain and authorize your IDE. See more information here.\nOnce you have your account and your sub-domain ready, it’s time to deploy your survey website.\nMake sure you have the rsconnect R package installed (You should have done this while you authorize your IDE):\n\ninstall.packages('rsconnect')\n\nThe simplest way is to run this:\n\nrsconnect::deployDoc(\"your_survey.qmd\")\n\nThe URL of this page will be your domain followed by /your_survey, which means the name of your .qmd file will be in the URL. The tab name of the HTML page is also your_survey. Better give a good name to your .qmd file.\n\n\n\n\n\n\nImportant\n\n\n\nAgain, before you deploy online, you’ll need to firstly render your surveydown survey locally and make sure it works properly. Otherwise, this deployment will fail.\n\n\nIf you want to define a different tab name for your survey page, run:\n\nrsconnect::deployDoc(\n  doc = \"your_survey.qmd\",\n  appName = \"Survey Name\"\n)\n\nNow you should have your survey site deployed. The survey is now served on shinyapps.io, with its data stored on Supabase. Congratulations!\n\n\n\n\n\n\nTip\n\n\n\nFurther explanation (with my personal interpretation) of the deployment functions:\nIn rsconnect, there are two functions that can be used for deployment: deployApp() and deployDoc(). They serve different purposes and should NOT be mix-used.\n\ndeployApp() is used to deploy a Shiny App. It doesn’t work for .qmd, but works for Shiny App and .rmd, and it accepts multiple files.\ndeployDoc() is used to deploy a Quarto Shiny Document. It works for a single file and tries to “automatically discover dependencies” (direct paste from official instructions).\nSince our survey is a Quarto Shiny Document, we use deployDoc().\n\nI guess deployDoc() is a newer function that specifically works for .qmd. I have a feeling that this function is specifically made for .qmd to match the fact of “single document” and “dependencies”. In our case, deployDoc() is a perfect match.",
+    "objectID": "installation.html#install-the-surveydown-quarto-extension",
+    "href": "installation.html#install-the-surveydown-quarto-extension",
+    "title": "Installation",
+    "section": "Install the surveydown Quarto Extension",
+    "text": "Install the surveydown Quarto Extension\nOnce you start working on an actual survey, you’ll need the surveydown Quarto extension.\n\nNote: The extension must be locally installed in a _extensions folder in your root survey project folder.\n\nWe recommend starting with a template survey, which will automatically add the latest extension for you:\n\nsurveydown::sd_create_survey(\"path/to/folder\")\n\nOtherwise, you can install the extension using the terminal or with the {surveydown} package:\n\nUsing the Terminal:\n\n\nquarto install extension jhelvy/surveydown-ext\n\n\nUsing the {surveydown} R package:\n\n\nsurveydown::sd_update_extension()",
     "crumbs": [
       "Documentation",
-      "Reference Manuals",
-      "Deployment"
+      "Installation"
+    ]
+  },
+  {
+    "objectID": "installation.html#version-control",
+    "href": "installation.html#version-control",
+    "title": "Installation",
+    "section": "Version Control",
+    "text": "Version Control\nWe made some R functions to make it easier to keep your R package and Quarto extension up to date.\nTo check if you have the latest R package and Quarto extension installed, run:\n\nsurveydown::sd_check_versions()\n\nTo update the R package and Quarto extension to the latest version, run:\n\nsurveydown::sd_update_surveydown()",
+    "crumbs": [
+      "Documentation",
+      "Installation"
     ]
   },
   {

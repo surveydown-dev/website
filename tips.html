@@ -295,6 +295,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#splitting-the-server-chunk-into-a-separate-file" id="toc-splitting-the-server-chunk-into-a-separate-file" class="nav-link active" data-scroll-target="#splitting-the-server-chunk-into-a-separate-file">Splitting the server chunk into a separate file</a></li>
+  <li><a href="#programmatically-generate-survey-questions" id="toc-programmatically-generate-survey-questions" class="nav-link" data-scroll-target="#programmatically-generate-survey-questions">Programmatically generate survey questions</a></li>
   </ul>
 </nav>
     </div>
@@ -375,6 +376,35 @@ Important
 <div class="callout-body-container callout-body">
 <p>Note that you still need to include the <code>sd_server()</code> function in your server code chunk after sourcing the <code>server.R</code> file.</p>
 </div>
+</div>
+</section>
+<section id="programmatically-generate-survey-questions" class="level2">
+<h2 class="anchored" data-anchor-id="programmatically-generate-survey-questions">Programmatically generate survey questions</h2>
+<p>You can use R to programmatically generate survey questions, which can be useful if you have a large number of questions that are similar to each other. One way to do this is to first create a data frame with the question parameters, and then use the <code>sd_question()</code> function to create the questions.</p>
+<p>Here’s an example using <code>map()</code> over the list of question parameters in the <code>items</code> data frame to generate a list of questions. Note that the list of questions is wrapped in <code>shiny::tagList()</code>, which is necessary for the survey to render properly since the <code>map()</code> function returns a list.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>items <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"mc"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">as.character</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">list</span>(<span class="fu">c</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"None"</span> <span class="ot">=</span> <span class="st">"0"</span>, </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A Little"</span> <span class="ot">=</span> <span class="st">"1"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A lot"</span> <span class="ot">=</span> <span class="st">"2"</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">tagList</span>(</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(items), <span class="cf">function</span>(i) {</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    args <span class="ot">&lt;-</span> items[i, ]</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd_question</span>(</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">id     =</span> <span class="fu">as.character</span>(args<span class="sc">$</span>id),</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">type   =</span> args<span class="sc">$</span>type,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">label  =</span> args<span class="sc">$</span>label,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">option =</span> <span class="fu">unlist</span>(args<span class="sc">$</span>option)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

@@ -79,9 +79,9 @@ This approach inserts all the questions on the same page. We haven't found a way
 ## Code chunk
 
 ```{r}
-#| eval: false
 #| echo: fenced
 
+# Generate data frame of question parameters
 items <- tibble::tibble(
   type = "mc",
   id = as.character(1:3),
@@ -93,6 +93,7 @@ items <- tibble::tibble(
   ))
 )
 
+# Generate questions
 shiny::tagList(
   purrr::map(1:nrow(items), function(i) {
     args <- items[i, ]
@@ -112,6 +113,7 @@ shiny::tagList(
 #| eval: true
 #| echo: false
 
+# Generate data frame of question parameters
 items <- tibble::tibble(
   type = "mc",
   id = as.character(1:3),
@@ -123,6 +125,7 @@ items <- tibble::tibble(
   ))
 )
 
+# Generate questions
 shiny::tagList(
   purrr::map(1:nrow(items), function(i) {
     args <- items[i, ]

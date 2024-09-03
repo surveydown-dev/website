@@ -305,10 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction-to-sd_question" id="toc-introduction-to-sd_question" class="nav-link active" data-scroll-target="#introduction-to-sd_question">Introduction to <code>sd_question()</code></a></li>
-  <li><a href="#question-types" id="toc-question-types" class="nav-link" data-scroll-target="#question-types">Question Types</a>
-  <ul class="collapse">
-  <li><a href="#text" id="toc-text" class="nav-link" data-scroll-target="#text"><code>text</code></a></li>
+  <li><a href="#text" id="toc-text" class="nav-link active" data-scroll-target="#text"><code>text</code></a></li>
   <li><a href="#textarea" id="toc-textarea" class="nav-link" data-scroll-target="#textarea"><code>textarea</code></a></li>
   <li><a href="#numeric" id="toc-numeric" class="nav-link" data-scroll-target="#numeric"><code>numeric</code></a></li>
   <li><a href="#mc" id="toc-mc" class="nav-link" data-scroll-target="#mc"><code>mc</code></a></li>
@@ -316,10 +313,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#mc_multiple" id="toc-mc_multiple" class="nav-link" data-scroll-target="#mc_multiple"><code>mc_multiple</code></a></li>
   <li><a href="#mc_multiple_buttons" id="toc-mc_multiple_buttons" class="nav-link" data-scroll-target="#mc_multiple_buttons"><code>mc_multiple_buttons</code></a></li>
   <li><a href="#select" id="toc-select" class="nav-link" data-scroll-target="#select"><code>select</code></a></li>
-  <li><a href="#slider-under-construction" id="toc-slider-under-construction" class="nav-link" data-scroll-target="#slider-under-construction"><code>slider</code> (Under Construction)</a></li>
+  <li><a href="#slider" id="toc-slider" class="nav-link" data-scroll-target="#slider"><code>slider</code></a></li>
   <li><a href="#date" id="toc-date" class="nav-link" data-scroll-target="#date"><code>date</code></a></li>
   <li><a href="#daterange" id="toc-daterange" class="nav-link" data-scroll-target="#daterange"><code>daterange</code></a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -345,8 +341,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction-to-sd_question" class="level2">
-<h2 class="anchored" data-anchor-id="introduction-to-sd_question">Introduction to <code>sd_question()</code></h2>
 <p>All questions in a surveydown survey are created using the <code>sd_question()</code> function.</p>
 <p>The function requires the following three arguments:</p>
 <ul>
@@ -354,12 +348,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>label</code>: The label that will be displayed on the question in the survey.</li>
 <li><code>type</code>: The type of question.</li>
 </ul>
-<p>Many question types also require an <code>option</code> argument, which is a named vector of options for the question (e.g.&nbsp;for multiple choice questions).</p>
-<p>The function also includes many other optional arguments that can be used to customize the question appearance and behavior. See the <a href="https://pkg.surveydown.org/reference/sd_question">package documentation</a> for more details.</p>
-</section>
-<section id="question-types" class="level2">
-<h2 class="anchored" data-anchor-id="question-types">Question Types</h2>
-<p>The following question types are supported by <code>{surveydown}</code>:</p>
+<p>Many question types also require an <code>option</code> argument, which is a named vector of options for the question (e.g.&nbsp;for multiple choice questions). The function also includes many other optional arguments that can be used to customize the question appearance and behavior. See the <a href="https://pkg.surveydown.org/reference/sd_question">package documentation</a> for more details.</p>
+<p>The following question types are currently supported:</p>
 <ul>
 <li><code>text</code>: Single line open text input.</li>
 <li><code>textarea</code>: Multiple line open text input.</li>
@@ -374,10 +364,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>daterange</code>: Select two dates from calendar widgets (e.g.&nbsp;begin and end dates).</li>
 </ul>
 <p>Below are examples of each question type.</p>
-<section id="text" class="level3">
-<h3 class="anchored" data-anchor-id="text"><code>text</code></h3>
+<section id="text" class="level2">
+<h2 class="anchored" data-anchor-id="text"><code>text</code></h2>
 <p>Use <code>type = 'text'</code> to specify a text input type question.</p>
-<p>Code chunk:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Code chunk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
@@ -387,7 +380,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Output:</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div id="container- word" data-question-id="word" class="question-container" oninput="Shiny.setInputValue('word_interacted', true, {priority: 'event'});">
@@ -399,11 +393,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
 </section>
-<section id="textarea" class="level3">
-<h3 class="anchored" data-anchor-id="textarea"><code>textarea</code></h3>
+<section id="textarea" class="level2">
+<h2 class="anchored" data-anchor-id="textarea"><code>textarea</code></h2>
 <p>Use <code>type = 'textarea'</code> to specify a text area input type question.</p>
-<p>Code chunk:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Code chunk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
@@ -413,7 +413,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Output:</p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div id="container- paragraph" data-question-id="paragraph" class="question-container" oninput="Shiny.setInputValue('paragraph_interacted', true, {priority: 'event'});">
@@ -425,11 +426,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
 </section>
-<section id="numeric" class="level3">
-<h3 class="anchored" data-anchor-id="numeric"><code>numeric</code></h3>
+<section id="numeric" class="level2">
+<h2 class="anchored" data-anchor-id="numeric"><code>numeric</code></h2>
 <p>Use <code>type = 'numeric'</code> to specify a numeric input type.</p>
-<p>Code chunk:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Code chunk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
@@ -439,7 +446,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Output:</p>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div id="container- age" data-question-id="age" class="question-container" oninput="Shiny.setInputValue('age_interacted', true, {priority: 'event'});">
@@ -451,11 +459,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
 </section>
-<section id="mc" class="level3">
-<h3 class="anchored" data-anchor-id="mc"><code>mc</code></h3>
+<section id="mc" class="level2">
+<h2 class="anchored" data-anchor-id="mc"><code>mc</code></h2>
 <p>Use <code>type = 'mc'</code> to specify a multiple choice type question with a single choice option.</p>
-<p>Code chunk:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Code chunk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
@@ -474,7 +488,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Output:</p>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div id="container- artist" data-question-id="artist" class="question-container" oninput="Shiny.setInputValue('artist_interacted', true, {priority: 'event'});">
@@ -529,11 +544,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
 </section>
-<section id="mc_buttons" class="level3">
-<h3 class="anchored" data-anchor-id="mc_buttons"><code>mc_buttons</code></h3>
+<section id="mc_buttons" class="level2">
+<h2 class="anchored" data-anchor-id="mc_buttons"><code>mc_buttons</code></h2>
 <p>Use <code>type = 'mc_buttons'</code> to generate the button version of <code>mc</code>.</p>
-<p>Code chunk:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">Code chunk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
@@ -552,7 +573,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Output:</p>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div id="container- fruit" data-question-id="fruit" class="question-container" oninput="Shiny.setInputValue('fruit_interacted', true, {priority: 'event'});">
@@ -582,11 +604,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
 </section>
-<section id="mc_multiple" class="level3">
-<h3 class="anchored" data-anchor-id="mc_multiple"><code>mc_multiple</code></h3>
+<section id="mc_multiple" class="level2">
+<h2 class="anchored" data-anchor-id="mc_multiple"><code>mc_multiple</code></h2>
 <p>Use <code>type = 'mc_multiple'</code> to specify a multiple choice type question with multiple selection enabled.</p>
-<p>Code chunk:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">Code chunk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
@@ -608,7 +636,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Output:</p>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div id="container- swift" data-question-id="swift" class="question-container" oninput="Shiny.setInputValue('swift_interacted', true, {priority: 'event'});">
@@ -681,11 +710,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
 </section>
-<section id="mc_multiple_buttons" class="level3">
-<h3 class="anchored" data-anchor-id="mc_multiple_buttons"><code>mc_multiple_buttons</code></h3>
+<section id="mc_multiple_buttons" class="level2">
+<h2 class="anchored" data-anchor-id="mc_multiple_buttons"><code>mc_multiple_buttons</code></h2>
 <p>Use <code>type = 'mc_multiple_buttons'</code> to generate the button version of <code>mc_multiple</code>.</p>
-<p>Code chunk:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">Code chunk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
@@ -705,7 +740,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Output:</p>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div id="container- michael_jackson" data-question-id="michael_jackson" class="question-container" oninput="Shiny.setInputValue('michael_jackson_interacted', true, {priority: 'event'});">
@@ -737,11 +773,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
 </section>
-<section id="select" class="level3">
-<h3 class="anchored" data-anchor-id="select"><code>select</code></h3>
+<section id="select" class="level2">
+<h2 class="anchored" data-anchor-id="select"><code>select</code></h2>
 <p>Use <code>type = 'select'</code> to specify a drop down select type question.</p>
-<p>Code chunk:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true">Code chunk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
@@ -760,7 +802,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Output:</p>
+</div>
+<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
 <div class="cell">
 <div class="cell-output-display no-overflow-x">
 <div id="container- education" data-question-id="education" class="question-container" oninput="Shiny.setInputValue('education_interacted', true, {priority: 'event'});">
@@ -782,15 +825,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
 </section>
-<section id="slider-under-construction" class="level3">
-<h3 class="anchored" data-anchor-id="slider-under-construction"><code>slider</code> (Under Construction)</h3>
+<section id="slider" class="level2">
+<h2 class="anchored" data-anchor-id="slider"><code>slider</code></h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Due to compatibility issues, the <code>slider</code> type is still under construction.</p>
+</div>
+</div>
 </section>
-<section id="date" class="level3">
-<h3 class="anchored" data-anchor-id="date"><code>date</code></h3>
-<p>Use <code>type = 'date'</code> to specify a date input type.</p>
-<p>Code chunk:</p>
+<section id="date" class="level2">
+<h2 class="anchored" data-anchor-id="date"><code>date</code></h2>
+<p>Use <code>type = 'date'</code> to specify a date input type. The date value will be today’s date by default. Upon clicking on the text box, you are provided with a date dialog box to choose date from.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The dialog box will only appear in a Shiny environment, hence why it is not appearing when clicked in this example.</p>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">Code chunk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
@@ -800,7 +874,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Output:</p>
+</div>
+<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div id="container- dob" data-question-id="dob" class="question-container" oninput="Shiny.setInputValue('dob_interacted', true, {priority: 'event'});">
@@ -817,7 +892,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>The date value will be today’s date by default. Upon clicking on the text box, you are provided with a date dialog box to choose date from.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="daterange" class="level2">
+<h2 class="anchored" data-anchor-id="daterange"><code>daterange</code></h2>
+<p>Use <code>type = 'daterange'</code> to specify a date range input type.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -828,14 +909,13 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The dialog box will only appear in a Shiny environment, hence why it is not appearing when clicked here.</p>
+<p>The dialog box will only appear in a Shiny environment, hence why it is not appearing when clicked in this example.</p>
 </div>
 </div>
-</section>
-<section id="daterange" class="level3">
-<h3 class="anchored" data-anchor-id="daterange"><code>daterange</code></h3>
-<p>Use <code>type = 'daterange'</code> to specify a date range input type.</p>
-<p>Code chunk:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true">Code chunk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
@@ -845,7 +925,8 @@ Note
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Output:</p>
+</div>
+<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div id="container- hs_date" data-question-id="hs_date" class="question-container" oninput="Shiny.setInputValue('hs_date_interacted', true, {priority: 'event'});">
@@ -868,22 +949,11 @@ Note
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The dialog box will only appear in a Shiny environment, hence why it is not appearing when clicked here.</p>
 </div>
 </div>
 
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->

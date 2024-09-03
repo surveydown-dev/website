@@ -11,8 +11,6 @@ library(surveydown)
 sd_setup()
 ```
 
-## Introduction to `sd_question()`
-
 All questions in a surveydown survey are created using the `sd_question()` function.
 
 The function requires the following three arguments:
@@ -21,13 +19,9 @@ The function requires the following three arguments:
 - `label`: The label that will be displayed on the question in the survey.
 - `type`: The type of question.
 
-Many question types also require an `option` argument, which is a named vector of options for the question (e.g. for multiple choice questions).
+Many question types also require an `option` argument, which is a named vector of options for the question (e.g. for multiple choice questions). The function also includes many other optional arguments that can be used to customize the question appearance and behavior. See the [package documentation](https://pkg.surveydown.org/reference/sd_question) for more details.
 
-The function also includes many other optional arguments that can be used to customize the question appearance and behavior. See the [package documentation](https://pkg.surveydown.org/reference/sd_question) for more details.
-
-## Question Types
-
-The following question types are supported by `{surveydown}`:
+The following question types are currently supported:
 
 - `text`: Single line open text input.
 - `textarea`: Multiple line open text input.
@@ -43,11 +37,13 @@ The following question types are supported by `{surveydown}`:
 
 Below are examples of each question type.
 
-### `text`
+## `text`
 
 Use `type = 'text'` to specify a text input type question.
 
-Code chunk:
+::: {.panel-tabset}
+
+## Code chunk
 
 ```{r}
 #| echo: fenced
@@ -59,7 +55,7 @@ sd_question(
 )
 ```
 
-Output:
+## Output
 
 ```{r}
 #| eval: true
@@ -71,354 +67,398 @@ sd_question(
   label = "Write a word:"
 )
 ```
-
-### `textarea`
-
-Use `type = 'textarea'` to specify a text area input type question.
-
-Code chunk:
-
-```{r}
-#| echo: fenced
-
-sd_question(
-  type  = "textarea",
-  id    = "paragraph",
-  label = "Write a paragraph:"
-)
-```
-
-Output:
-
-```{r}
-#| eval: true
-#| echo: false
-
-sd_question(
-  type  = "textarea",
-  id    = "paragraph",
-  label = "Write a paragraph:"
-)
-```
-
-### `numeric`
-
-Use `type = 'numeric'` to specify a numeric input type.
-
-Code chunk:
-
-```{r}
-#| echo: fenced
-
-sd_question(
-  type  = 'numeric',
-  id    = 'age',
-  label = "What's your age?"
-)
-```
-
-Output:
-
-```{r}
-#| eval: true
-#| echo: false
-
-sd_question(
-  type  = 'numeric',
-  id    = 'age',
-  label = "What's your age?"
-)
-```
-
-### `mc`
-
-Use `type = 'mc'` to specify a multiple choice type question with a single choice option.
-
-Code chunk:
-
-```{r}
-#| echo: fenced
-
-sd_question(
-  type   = 'mc',
-  id     = 'artist',
-  label  = "Which artist do you prefer most from this list?",
-  option = c(
-    "Taylor Swift" = "taylor_swift",
-    "Beyoncé"      = "beyonce",
-    "Adele"        = "adele",
-    "Rihanna"      = "rihanna",
-    "Lady Gaga"    = "ladygaga",
-    "Ed Sheeran"   = "ed_sheeran",
-    "Drake"        = "drake"
-  )
-)
-```
-
-Output:
-
-```{r}
-#| eval: true
-#| echo: false
-
-sd_question(
-  type   = 'mc',
-  id     = 'artist',
-  label  = "Which artist do you prefer most from this list?",
-  option = c(
-    "Taylor Swift" = "taylor_swift",
-    "Beyoncé"      = "beyonce",
-    "Adele"        = "adele",
-    "Rihanna"      = "rihanna",
-    "Lady Gaga"    = "ladygaga",
-    "Ed Sheeran"   = "ed_sheeran",
-    "Drake"        = "drake"
-  )
-)
-```
-
-### `mc_buttons`
-
-Use `type = 'mc_buttons'` to generate the button version of `mc`.
-
-Code chunk:
-
-```{r}
-#| echo: fenced
-
-sd_question(
-  type   = 'mc_buttons',
-  id     = 'fruit',
-  label  = "Which fruit do you prefer most from this list?",
-  option = c(
-    "Apple"      = "apple",
-    "Banana"     = "banana",
-    "Pear"       = "pear",
-    "Strawberry" = "strawberry",
-    "Grape"      = "grape",
-    "Mango"      = "mango",
-    "Watermelon" = "watermelon"
-  )
-)
-```
-
-Output:
-
-```{r}
-#| eval: true
-#| echo: false
-
-sd_question(
-  type   = 'mc_buttons',
-  id     = 'fruit',
-  label  = "Which fruit do you prefer most from this list?",
-  option = c(
-    "Apple"      = "apple",
-    "Banana"     = "banana",
-    "Pear"       = "pear",
-    "Strawberry" = "strawberry",
-    "Grape"      = "grape",
-    "Mango"      = "mango",
-    "Watermelon" = "watermelon"
-  )
-)
-```
-
-### `mc_multiple`
-
-Use `type = 'mc_multiple'` to specify a multiple choice type question with multiple selection enabled.
-
-Code chunk:
-
-```{r}
-#| echo: fenced
-
-sd_question(
-  type  = 'mc_multiple',
-  id    = 'swift',
-  label = "What are your favorite Taylor Swift albums (select all that apply)?",
-  option = c(
-    "Taylor Swift (2006)" = "taylor_swift",
-    "Fearless (2008)"     = "fearless",
-    "Speak Now (2010)"    = "speak_now",
-    "Red (2012)"          = "red",
-    "1989 (2014)"         = "1989",
-    "Reputation (2017)"   = "reputation",
-    "Lover (2019)"        = "lover",
-    "Folklore (2020)"     = "folklore",
-    "Evermore (2020)"     = "evermore",
-    "Midnights (2022)"    = "midnights"
-  )
-)
-```
-
-Output:
-
-```{r}
-#| eval: true
-#| echo: false
-
-sd_question(
-  type  = 'mc_multiple',
-  id    = 'swift',
-  label = "What are your favorite Taylor Swift albums (select all that apply)?",
-  option = c(
-    "Taylor Swift (2006)" = "taylor_swift",
-    "Fearless (2008)"     = "fearless",
-    "Speak Now (2010)"    = "speak_now",
-    "Red (2012)"          = "red",
-    "1989 (2014)"         = "1989",
-    "Reputation (2017)"   = "reputation",
-    "Lover (2019)"        = "lover",
-    "Folklore (2020)"     = "folklore",
-    "Evermore (2020)"     = "evermore",
-    "Midnights (2022)"    = "midnights"
-  )
-)
-```
-
-### `mc_multiple_buttons`
-
-Use `type = 'mc_multiple_buttons'` to generate the button version of `mc_multiple`.
-
-Code chunk:
-
-```{r}
-#| echo: fenced
-
-sd_question(
-  type  = 'mc_multiple_buttons',
-  id    = 'michael_jackson',
-  label = "Which are your favorite Michael Jackson songs (select all that apply)?",
-  option = c(
-    "Thriller (1982)"          = "thriller",
-    "Billie Jean (1982)"       = "billie_jean",
-    "Beat It (1982)"           = "beat_it",
-    "Man in the Mirror (1987)" = "man_in_the_mirror",
-    "Smooth Criminal (1987)"   = "smooth_criminal",
-    "Black or White (1991)"    = "black_or_white",
-    "Bad (1987)"               = "bad",
-    "Human Nature (1982)"      = "human_nature"
-  )
-)
-```
-
-Output:
-
-```{r}
-#| eval: true
-#| echo: false
-
-sd_question(
-  type  = 'mc_multiple_buttons',
-  id    = 'michael_jackson',
-  label = "Which are your favorite Michael Jackson songs (select all that apply)?",
-  option = c(
-    "Thriller (1982)"          = "thriller",
-    "Billie Jean (1982)"       = "billie_jean",
-    "Beat It (1982)"           = "beat_it",
-    "Man in the Mirror (1987)" = "man_in_the_mirror",
-    "Smooth Criminal (1987)"   = "smooth_criminal",
-    "Black or White (1991)"    = "black_or_white",
-    "Bad (1987)"               = "bad",
-    "Human Nature (1982)"      = "human_nature"
-  )
-)
-```
-
-### `select`
-
-Use `type = 'select'` to specify a drop down select type question.
-
-Code chunk:
-
-```{r}
-#| echo: fenced
-
-sd_question(
-  type  = 'select',
-  id    = 'education',
-  label = "What is the highest level of education you have attained?",
-  option = c(
-    "Did not attend high school" = "hs_no",
-    "Some high school"           = "hs_some",
-    "High school graduate"       = "hs_grad",
-    "Some college"               = "college_some",
-    "College"                    = "college_grad",
-    "Graduate Work"              = "grad",
-    "Prefer not to say"          = "no_response"
-  )
-)
-```
-
-Output:
-
-```{r}
-#| eval: true
-#| echo: false
-
-sd_question(
-  type  = 'select',
-  id    = 'education',
-  label = "What is the highest level of education you have attained?",
-  option = c(
-    "Did not attend high school" = "hs_no",
-    "Some high school"           = "hs_some",
-    "High school graduate"       = "hs_grad",
-    "Some college"               = "college_some",
-    "College"                    = "college_grad",
-    "Graduate Work"              = "grad",
-    "Prefer not to say"          = "no_response"
-  )
-)
-```
-
-### `slider` (Under Construction)
-
-Due to compatibility issues, the `slider` type is still under construction.
-
-### `date`
-
-Use `type = 'date'` to specify a date input type.
-
-Code chunk:
-
-```{r}
-#| echo: fenced
-
-sd_question(
-  type  = 'date',
-  id    = 'dob',
-  label = "What is your date of birth?"
-)
-```
-
-Output:
-
-```{r}
-#| eval: true
-#| echo: false
-
-sd_question(
-  type  = 'date',
-  id    = 'dob',
-  label = "What is your date of birth?"
-)
-```
-
-The date value will be today's date by default. Upon clicking on the text box, you are provided with a date dialog box to choose date from.
-
-::: {.callout-note}
-
-The dialog box will only appear in a Shiny environment, hence why it is not appearing when clicked here.
 
 :::
 
-### `daterange`
+## `textarea`
+
+Use `type = 'textarea'` to specify a text area input type question.
+
+::: {.panel-tabset}
+
+## Code chunk
+
+```{r}
+#| echo: fenced
+
+sd_question(
+  type  = "textarea",
+  id    = "paragraph",
+  label = "Write a paragraph:"
+)
+```
+
+## Output
+
+```{r}
+#| eval: true
+#| echo: false
+
+sd_question(
+  type  = "textarea",
+  id    = "paragraph",
+  label = "Write a paragraph:"
+)
+```
+
+:::
+
+## `numeric`
+
+Use `type = 'numeric'` to specify a numeric input type.
+
+::: {.panel-tabset}
+
+## Code chunk
+
+```{r}
+#| echo: fenced
+
+sd_question(
+  type  = 'numeric',
+  id    = 'age',
+  label = "What's your age?"
+)
+```
+
+## Output
+
+```{r}
+#| eval: true
+#| echo: false
+
+sd_question(
+  type  = 'numeric',
+  id    = 'age',
+  label = "What's your age?"
+)
+```
+
+:::
+
+## `mc`
+
+Use `type = 'mc'` to specify a multiple choice type question with a single choice option.
+
+::: {.panel-tabset}
+
+## Code chunk
+
+```{r}
+#| echo: fenced
+
+sd_question(
+  type   = 'mc',
+  id     = 'artist',
+  label  = "Which artist do you prefer most from this list?",
+  option = c(
+    "Taylor Swift" = "taylor_swift",
+    "Beyoncé"      = "beyonce",
+    "Adele"        = "adele",
+    "Rihanna"      = "rihanna",
+    "Lady Gaga"    = "ladygaga",
+    "Ed Sheeran"   = "ed_sheeran",
+    "Drake"        = "drake"
+  )
+)
+```
+
+## Output
+
+```{r}
+#| eval: true
+#| echo: false
+
+sd_question(
+  type   = 'mc',
+  id     = 'artist',
+  label  = "Which artist do you prefer most from this list?",
+  option = c(
+    "Taylor Swift" = "taylor_swift",
+    "Beyoncé"      = "beyonce",
+    "Adele"        = "adele",
+    "Rihanna"      = "rihanna",
+    "Lady Gaga"    = "ladygaga",
+    "Ed Sheeran"   = "ed_sheeran",
+    "Drake"        = "drake"
+  )
+)
+```
+
+:::
+
+## `mc_buttons`
+
+Use `type = 'mc_buttons'` to generate the button version of `mc`.
+
+::: {.panel-tabset}
+
+## Code chunk
+
+```{r}
+#| echo: fenced
+
+sd_question(
+  type   = 'mc_buttons',
+  id     = 'fruit',
+  label  = "Which fruit do you prefer most from this list?",
+  option = c(
+    "Apple"      = "apple",
+    "Banana"     = "banana",
+    "Pear"       = "pear",
+    "Strawberry" = "strawberry",
+    "Grape"      = "grape",
+    "Mango"      = "mango",
+    "Watermelon" = "watermelon"
+  )
+)
+```
+
+## Output
+
+```{r}
+#| eval: true
+#| echo: false
+
+sd_question(
+  type   = 'mc_buttons',
+  id     = 'fruit',
+  label  = "Which fruit do you prefer most from this list?",
+  option = c(
+    "Apple"      = "apple",
+    "Banana"     = "banana",
+    "Pear"       = "pear",
+    "Strawberry" = "strawberry",
+    "Grape"      = "grape",
+    "Mango"      = "mango",
+    "Watermelon" = "watermelon"
+  )
+)
+```
+
+:::
+
+## `mc_multiple`
+
+Use `type = 'mc_multiple'` to specify a multiple choice type question with multiple selection enabled.
+
+::: {.panel-tabset}
+
+## Code chunk
+
+```{r}
+#| echo: fenced
+
+sd_question(
+  type  = 'mc_multiple',
+  id    = 'swift',
+  label = "What are your favorite Taylor Swift albums (select all that apply)?",
+  option = c(
+    "Taylor Swift (2006)" = "taylor_swift",
+    "Fearless (2008)"     = "fearless",
+    "Speak Now (2010)"    = "speak_now",
+    "Red (2012)"          = "red",
+    "1989 (2014)"         = "1989",
+    "Reputation (2017)"   = "reputation",
+    "Lover (2019)"        = "lover",
+    "Folklore (2020)"     = "folklore",
+    "Evermore (2020)"     = "evermore",
+    "Midnights (2022)"    = "midnights"
+  )
+)
+```
+
+## Output
+
+```{r}
+#| eval: true
+#| echo: false
+
+sd_question(
+  type  = 'mc_multiple',
+  id    = 'swift',
+  label = "What are your favorite Taylor Swift albums (select all that apply)?",
+  option = c(
+    "Taylor Swift (2006)" = "taylor_swift",
+    "Fearless (2008)"     = "fearless",
+    "Speak Now (2010)"    = "speak_now",
+    "Red (2012)"          = "red",
+    "1989 (2014)"         = "1989",
+    "Reputation (2017)"   = "reputation",
+    "Lover (2019)"        = "lover",
+    "Folklore (2020)"     = "folklore",
+    "Evermore (2020)"     = "evermore",
+    "Midnights (2022)"    = "midnights"
+  )
+)
+```
+
+:::
+
+## `mc_multiple_buttons`
+
+Use `type = 'mc_multiple_buttons'` to generate the button version of `mc_multiple`.
+
+::: {.panel-tabset}
+
+## Code chunk
+
+```{r}
+#| echo: fenced
+
+sd_question(
+  type  = 'mc_multiple_buttons',
+  id    = 'michael_jackson',
+  label = "Which are your favorite Michael Jackson songs (select all that apply)?",
+  option = c(
+    "Thriller (1982)"          = "thriller",
+    "Billie Jean (1982)"       = "billie_jean",
+    "Beat It (1982)"           = "beat_it",
+    "Man in the Mirror (1987)" = "man_in_the_mirror",
+    "Smooth Criminal (1987)"   = "smooth_criminal",
+    "Black or White (1991)"    = "black_or_white",
+    "Bad (1987)"               = "bad",
+    "Human Nature (1982)"      = "human_nature"
+  )
+)
+```
+
+## Output
+
+```{r}
+#| eval: true
+#| echo: false
+
+sd_question(
+  type  = 'mc_multiple_buttons',
+  id    = 'michael_jackson',
+  label = "Which are your favorite Michael Jackson songs (select all that apply)?",
+  option = c(
+    "Thriller (1982)"          = "thriller",
+    "Billie Jean (1982)"       = "billie_jean",
+    "Beat It (1982)"           = "beat_it",
+    "Man in the Mirror (1987)" = "man_in_the_mirror",
+    "Smooth Criminal (1987)"   = "smooth_criminal",
+    "Black or White (1991)"    = "black_or_white",
+    "Bad (1987)"               = "bad",
+    "Human Nature (1982)"      = "human_nature"
+  )
+)
+```
+
+:::
+
+## `select`
+
+Use `type = 'select'` to specify a drop down select type question.
+
+::: {.panel-tabset}
+
+## Code chunk
+
+```{r}
+#| echo: fenced
+
+sd_question(
+  type  = 'select',
+  id    = 'education',
+  label = "What is the highest level of education you have attained?",
+  option = c(
+    "Did not attend high school" = "hs_no",
+    "Some high school"           = "hs_some",
+    "High school graduate"       = "hs_grad",
+    "Some college"               = "college_some",
+    "College"                    = "college_grad",
+    "Graduate Work"              = "grad",
+    "Prefer not to say"          = "no_response"
+  )
+)
+```
+
+## Output
+
+```{r}
+#| eval: true
+#| echo: false
+
+sd_question(
+  type  = 'select',
+  id    = 'education',
+  label = "What is the highest level of education you have attained?",
+  option = c(
+    "Did not attend high school" = "hs_no",
+    "Some high school"           = "hs_some",
+    "High school graduate"       = "hs_grad",
+    "Some college"               = "college_some",
+    "College"                    = "college_grad",
+    "Graduate Work"              = "grad",
+    "Prefer not to say"          = "no_response"
+  )
+)
+```
+
+:::
+
+## `slider` 
+
+::: {.callout-note}
+
+Due to compatibility issues, the `slider` type is still under construction.
+
+:::
+
+## `date`
+
+Use `type = 'date'` to specify a date input type. The date value will be today's date by default. Upon clicking on the text box, you are provided with a date dialog box to choose date from.
+
+::: {.callout-note}
+
+The dialog box will only appear in a Shiny environment, hence why it is not appearing when clicked in this example.
+
+:::
+
+::: {.panel-tabset}
+
+## Code chunk
+
+```{r}
+#| echo: fenced
+
+sd_question(
+  type  = 'date',
+  id    = 'dob',
+  label = "What is your date of birth?"
+)
+```
+
+## Output
+
+```{r}
+#| eval: true
+#| echo: false
+
+sd_question(
+  type  = 'date',
+  id    = 'dob',
+  label = "What is your date of birth?"
+)
+```
+
+:::
+
+## `daterange`
 
 Use `type = 'daterange'` to specify a date range input type.
 
-Code chunk:
+::: {.callout-note}
+
+The dialog box will only appear in a Shiny environment, hence why it is not appearing when clicked in this example.
+
+:::
+
+::: {.panel-tabset}
+
+## Code chunk
 
 ```{r}
 #| echo: fenced
@@ -430,7 +470,7 @@ sd_question(
 )
 ```
 
-Output:
+## Output
 
 ```{r}
 #| eval: true
@@ -442,9 +482,5 @@ sd_question(
   label = "When did you start and finish high school?"
 )
 ```
-
-::: {.callout-note}
-
-The dialog box will only appear in a Shiny environment, hence why it is not appearing when clicked here.
 
 :::

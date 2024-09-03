@@ -20,7 +20,9 @@ The `sd_question()` function has many optional arguments for modifying the appea
 
 The `label` argument for any question type can accept markdown formatting. For example, the question below uses the `*` symbol to make some words bold, italic, and bold italic.
 
-Code chunk:
+::: {.panel-tabset}
+
+### Code chunk
 
 ```{r}
 #| echo: fenced
@@ -37,7 +39,7 @@ sd_question(
 )
 ```
 
-Output:
+### Output
 
 ```{r}
 #| eval: true
@@ -54,12 +56,16 @@ sd_question(
   )
 )
 ```
+
+:::
 
 ### Option labels
 
 Markdown formatting is also supported for the `option` labels in question types that have options, such as `mc`, `mc_multiple`, `mc_buttons`, and `mc_multiple_buttons`. For example:
 
-Code chunk:
+::: {.panel-tabset}
+
+### Code chunk
 
 ```{r}
 #| echo: fenced
@@ -76,7 +82,7 @@ sd_question(
 )
 ```
 
-Output:
+### Output
 
 ```{r}
 #| eval: true
@@ -93,6 +99,8 @@ sd_question(
   )
 )
 ```
+
+:::
 
 ## HTML formatting
 
@@ -100,7 +108,9 @@ HTML formatting is supported for the `option` labels in question types that have
 
 For example, here is a question with some complex labels for a choice question that include markdown and HTML code to embed images.
 
-Code chunk:
+::: {.panel-tabset}
+
+## Code chunk
 
 ```{r}
 #| echo: fenced
@@ -138,7 +148,7 @@ sd_question(
 )
 ```
 
-Output:
+## Output
 
 ```{r}
 #| eval: true
@@ -173,9 +183,12 @@ sd_question(
   type   = 'mc_buttons',
   id     = 'html_buttons',
   label  = "A sample survey question using `mc_buttons`",
-  option = html_button_options
+  option = html_button_options,
+  width  = "100%"
 )
 ```
+
+:::
 
 ## Size formatting
 
@@ -183,7 +196,9 @@ Use the `width`, `height` arguments to change the size of the question.
 
 For example, the question below uses the `width` and `height` arguments to change the size of a text area question.
 
-Code chunk:
+::: {.panel-tabset}
+
+## Code chunk
 
 ```{r}
 #| echo: fenced
@@ -197,7 +212,7 @@ sd_question(
 )
 ```
 
-Output:
+## Output
 
 ```{r}
 #| eval: true
@@ -211,3 +226,5 @@ sd_question(
   height = "100px"
 )
 ```
+
+:::

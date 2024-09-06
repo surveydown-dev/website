@@ -66,9 +66,10 @@ This is also where you change the password of your Supabase project.
 
 :::
 
-Now, deliver these parameters to your survey! In your survey `.qmd` file, you define `sd_database()` at the very bottom. In the template it looks like this:
+Now, deliver these parameters to your survey! In your survey `.qmd` file, you define `sd_database()` in your setup chunk. In the template it looks like this:
 
 ```{r}
+# In your setup chunk
 db <- sd_database(
   host   = NULL,
   dbname = NULL,
@@ -94,14 +95,14 @@ db <- sd_database()
 :::
 
 ::: {.callout-tip}
-**Pause Supabase connection:**
+**Ignore Supabase connection:**
 
-At anytime, you can pause Supabase connection by defining `pause = TRUE` under `sd_database()`. Your survey data will be stored locally.
+At anytime, you can ignore Supabase connection by defining `ignore = TRUE` under `sd_database()`. Your survey data will be stored locally.
 
 ```{r}
 db <- sd_database(
     # Previous parameters...
-    pause = TRUE
+    ignore = TRUE
 )
 ```
 

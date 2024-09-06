@@ -6,9 +6,10 @@ title: "Fetching Data"
 
 Once you have your database properly set up and your survey is live, you can fetch the data using the `sd_get_data()` function. All you have to do is pass in the `db` object you created with `sd_database()` to the `sd_get_data()` function. 
 
-For example, if you have a table called `my_table` in your Supabase database, you can fetch the data like this:
+For example, if you have a table called `my_table` in your Supabase database:
 
 ```{r}
+# In your setup chunk
 db <- sd_database(
   host   = "my_host",
   dbname = "my_dbname",
@@ -16,9 +17,15 @@ db <- sd_database(
   user   = "my_user",
   table  = "my_table"
 )
+```
 
+You can fetch the data like this:
+
+```{r}
+# In your server chunk or server.R
 data <- sd_get_data(db)
 ```
+
 
 Here the `data` object will be a data.frame with the data from your database.
 

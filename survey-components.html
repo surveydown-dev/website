@@ -442,6 +442,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 <button id="next-page2" type="button" class="btn btn-default action-button" style="display: block; margin: auto;" onclick="Shiny.setInputValue('next_page', 'page2');">Next</button>
+<script>
+    $(document).ready(function() {
+        var buttonId = 'next-page2';
+        $(document).on('keydown', function(event) {
+            if (event.key === 'Enter' && !event.repeat) {
+                var $button = $('#' + buttonId);
+                if ($button.is(':visible')) {
+                    $button.click();
+                    event.preventDefault();
+                }
+            }
+        });
+    });
+    </script>
 </div>
 </div>
 <p>In this example, the next button has to be inserted in a code chunk in between the <code>:::</code> fences of the <code>welcome</code> page in order to have a “Next” button that goes on to page 2. You can also send the user to other pages by just changing the value assigned to the <code>next_page</code> argument.</p>
@@ -454,6 +468,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 <button id="next-page2" type="button" class="btn btn-default action-button" style="display: block; margin: auto;" onclick="Shiny.setInputValue('next_page', 'page2');">Next page</button>
+<script>
+    $(document).ready(function() {
+        var buttonId = 'next-page2';
+        $(document).on('keydown', function(event) {
+            if (event.key === 'Enter' && !event.repeat) {
+                var $button = $('#' + buttonId);
+                if ($button.is(':visible')) {
+                    $button.click();
+                    event.preventDefault();
+                }
+            }
+        });
+    });
+    </script>
 </div>
 </div>
 </section>

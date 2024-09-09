@@ -294,9 +294,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#create-a-supabase-account" id="toc-create-a-supabase-account" class="nav-link active" data-scroll-target="#create-a-supabase-account">1. Create a Supabase account</a></li>
-  <li><a href="#create-a-supabase-project" id="toc-create-a-supabase-project" class="nav-link" data-scroll-target="#create-a-supabase-project">2. Create a Supabase project</a></li>
-  <li><a href="#copy-your-credentials" id="toc-copy-your-credentials" class="nav-link" data-scroll-target="#copy-your-credentials">3: Copy your credentials</a></li>
+  <li><a href="#create-a-supabase-account" id="toc-create-a-supabase-account" class="nav-link active" data-scroll-target="#create-a-supabase-account">Create a Supabase account</a></li>
+  <li><a href="#create-a-supabase-project" id="toc-create-a-supabase-project" class="nav-link" data-scroll-target="#create-a-supabase-project">Create a Supabase project</a></li>
+  <li><a href="#copy-your-credentials" id="toc-copy-your-credentials" class="nav-link" data-scroll-target="#copy-your-credentials">Copy your credentials</a></li>
+  <li><a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips">Tips</a>
+  <ul class="collapse">
+  <li><a href="#ignoring-the-supabase-connection" id="toc-ignoring-the-supabase-connection" class="nav-link" data-scroll-target="#ignoring-the-supabase-connection">Ignoring the Supabase connection</a></li>
+  <li><a href="#disabling-gssencmode" id="toc-disabling-gssencmode" class="nav-link" data-scroll-target="#disabling-gssencmode">Disabling <code>gssencmode</code></a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -331,35 +336,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>We’ll walk you through one by one.</p>
 <section id="create-a-supabase-account" class="level2">
-<h2 class="anchored" data-anchor-id="create-a-supabase-account">1. Create a Supabase account</h2>
+<h2 class="anchored" data-anchor-id="create-a-supabase-account">Create a Supabase account</h2>
 <p>Navigate to the <a href="https://supabase.com/">Supabase</a> website and create an account. You may use your GitHub account or create a new account using your email.</p>
 <p>While creating your account, it’s by default that you will have an organization under your account name. Your projects will be designated to this organization. You can have other organizations based on your need, but let’s just use this default one for now.</p>
 </section>
 <section id="create-a-supabase-project" class="level2">
-<h2 class="anchored" data-anchor-id="create-a-supabase-project">2. Create a Supabase project</h2>
+<h2 class="anchored" data-anchor-id="create-a-supabase-project">Create a Supabase project</h2>
 <p>Once you are logged in, the page will prompt you to create a project. It’s an obvious green button. Click on it and select your organization. A dialog box will pop up like this:</p>
 <center>
 <img src="images/screenshots/database_01.jpg" style="max-width: 600px; width: 100%;">
 </center>
 <p><br></p>
-<p>Fill in the project name and give it a strong password. Choose a region that is close to you (or close to your audiences). All settings can be modified at any time.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>To avoid confusion, you need to deal with password both on Supabase and surveydown:</p>
-<ol type="1">
-<li><p>Supabase is where your password is <strong>defined</strong>. Set your password in this dialog box, or change it in project settings anytime.</p></li>
-<li><p>On surveydown, you deliver this password using <code>sd_set_password()</code>.</p></li>
-</ol>
-</div>
-</div>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -370,14 +357,27 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Your database password will be used in your surveydown survey(s) as credential to communicate with Supabase, and will also be your surveydown survey admin page password. Please choose a strong password and secure it.</p>
-<p>To know more about setting the password for your surveydown survey, go to the <a href="./password.html">Password</a> page.</p>
+<p>One Supabase project can support multiple surveydown surveys, but we recommend that you have only one survey per project to avoid potential mistakes.</p>
 </div>
 </div>
-<p>It takes several minutes to set up the database. You will know when it’s ready.</p>
+<p>Fill in the project name and give it a strong password. Choose a region that is close to you (or close to your audiences). All settings can be modified at any time.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Once you set the password, don’t forget to also set the same password in surveydown with <code>sd_set_password()</code>. Go to the <a href="./password.html">Password</a> page for details.</p>
+<p>You will need this both to communicate with your Supabase project and also to log in to your admin page, should you decide to enable it.</p>
+</div>
+</div>
 </section>
 <section id="copy-your-credentials" class="level2">
-<h2 class="anchored" data-anchor-id="copy-your-credentials">3: Copy your credentials</h2>
+<h2 class="anchored" data-anchor-id="copy-your-credentials">Copy your credentials</h2>
 <p>Once your Supabase project is ready, go to <strong>“Project Settings”</strong> located at the bottom-left corner. Then, click on <strong>“Database”</strong> under “Configuration”.</p>
 <p>You’ll see the <strong>“Connection parameters”</strong> section like this:</p>
 <center>
@@ -401,11 +401,11 @@ Tip
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In your setup chunk</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">sd_database</span>(</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">host   =</span> <span class="cn">NULL</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">dbname =</span> <span class="cn">NULL</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">port   =</span> <span class="cn">NULL</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">user   =</span> <span class="cn">NULL</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">table  =</span> <span class="cn">NULL</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">host   =</span> <span class="st">""</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">dbname =</span> <span class="st">""</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">port   =</span> <span class="st">""</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">user   =</span> <span class="st">""</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">table  =</span> <span class="st">"any_name"</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Copy and paste the first 4 parameters from your Supabase page to <code>sd_database()</code>, aka “Host”, “Database name”, “Port”, and “User”. Again, your password should be defined using <code>sd_set_password()</code> in your R console, NOT in the <code>.qmd</code> file.</p>
@@ -427,50 +427,33 @@ Tip
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Ignore Supabase connection:</strong></p>
-<p>At anytime, you can ignore Supabase connection by defining <code>ignore = TRUE</code> under <code>sd_database()</code>. Your survey data will be stored locally.</p>
+</section>
+<section id="tips" class="level2">
+<h2 class="anchored" data-anchor-id="tips">Tips</h2>
+<section id="ignoring-the-supabase-connection" class="level3">
+<h3 class="anchored" data-anchor-id="ignoring-the-supabase-connection">Ignoring the Supabase connection</h3>
+<p>While editing your survey, you may want to not connect to the database. This can be easily implemented by setting <code>ignore = TRUE</code> in <code>sd_database()</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">sd_database</span>(</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Previous parameters...</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ignore =</span> <span class="cn">TRUE</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Disable <code>gssencmode</code>:</strong></p>
-<p>If you’ve set everything correctly but still encounter connection error, try to disable <code>gssencmode</code>:</p>
+<p>With this setting, your connection parameters can remain set, but the survey will not attempt to connect to your database. Instead, a local <code>data.csv</code> file will be created in your project folder so you can preview the survey data.</p>
+</section>
+<section id="disabling-gssencmode" class="level3">
+<h3 class="anchored" data-anchor-id="disabling-gssencmode">Disabling <code>gssencmode</code></h3>
+<p>If you’ve set everything correctly but still encounter connection error, try to disable <code>gssencmode</code> like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">sd_database</span>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Previous parameters...</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">gssencmode =</span> <span class="st">"disable"</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>By default, <code>gssencmode</code> is set as <code>"prefer"</code>. It secures your connection with PostgreSQL, which is the SQL used by Supabase. We generally recommend that you <strong>DON’T disable <code>gssencmode</code></strong>.</p>
-</div>
-</div>
-<p>Now you have completed your database settings. Once your survey is up and running, you can monitor the survey responses in <strong>“Table Editor”</strong> of your Supabase project. Again it’s located at the top-left corner of the page. The responses will update in real time, or you can refresh it manually.</p>
+<p>By default, <code>gssencmode</code> is set as <code>"prefer"</code>. It secures your connection with PostgreSQL, which is the SQL used by Supabase. We generally recommend that you <strong>DO NOT disable <code>gssencmode</code></strong>, but sometimes this is necessary, especially when you are working on a protected network, e.g.&nbsp;on a VPN.</p>
 
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->

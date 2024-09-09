@@ -388,6 +388,10 @@ Important
 <ul>
 <li>Add questions with the <code>sd_question()</code> function in code chunks (see the <a href="./question-types.html">Question Types</a> page for more on the types of questions supported). For example, here’s a multiple choice question:</li>
 </ul>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Code chunk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
@@ -402,7 +406,8 @@ Important
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Output:</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div id="container- penguins" data-question-id="penguins" class="question-container" oninput="Shiny.setInputValue('penguins_interacted', true, {priority: 'event'});">
@@ -433,6 +438,9 @@ Important
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
 </section>
 <section id="add-configuration-options" class="level2">
 <h2 class="anchored" data-anchor-id="add-configuration-options">4. Add configuration options</h2>
@@ -440,15 +448,14 @@ Important
 </section>
 <section id="setup-your-database" class="level2">
 <h2 class="anchored" data-anchor-id="setup-your-database">5. Setup your database</h2>
-<p>Also in the server chunk, setup your database with the <code>sd_database()</code> function. You can also leave it blank to preview / edit your survey without database connected, or set <code>pause = TRUE</code> to disconnect the survey. See the <a href="./store-data.html">Store Data</a> page for more details.</p>
+<p>In the setup chunk (top of the <code>.qmd</code> file), setup your database with the <code>sd_database()</code> function. You can also leave it blank to preview / edit your survey without database connected, or set <code>ignore = TRUE</code> to run the survey without storing data. See the <a href="./store-data.html">Store Data</a> page for more details.</p>
 </section>
 <section id="locally-preview" class="level2">
 <h2 class="anchored" data-anchor-id="locally-preview">6. Locally preview</h2>
-<p>Preview your survey by clicking the “Run Document” button in RStudio or in your terminal running the command:</p>
+<p>Preview your survey by clicking the “Run Document” button in RStudio or in your terminal running the command (replacing <code>survey_file_name.qmd</code> with the name of your survey <code>.qmd</code> file):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>quarto serve survey_file_name.qmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Replacing <code>survey_file_name.qmd</code> with the name of your survey <code>.qmd</code> file.</p>
 </section>
 <section id="deploy" class="level2">
 <h2 class="anchored" data-anchor-id="deploy">7. Deploy</h2>

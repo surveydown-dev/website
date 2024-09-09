@@ -396,7 +396,7 @@ Tip
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_if =</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">'path/to/show_if_conditions.csv'</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="custom-conditional-display" class="level3">
@@ -642,6 +642,19 @@ Tip
 <p>Use the <code>admin_page</code> argument to control whether the admin page is created.</p>
 </div>
 </div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The admin page is currently under development and has limited functionality.</p>
+</div>
+</div>
 <p>By default, the admin page is not created. But if you want one, set <code>admin_page</code> to <code>TRUE</code> inside the <code>sd_config()</code> function, like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">sd_config</span>(</span>
@@ -651,11 +664,11 @@ Tip
 <p>When the admin page is enabled, you will be able to access the page by adding <code>?admin</code> to the end of the survey URL, e.g.&nbsp;<code>https://myname.shinyapps.io/?admin</code>. This will display a login page with a single “Password” parameter, which is the password set using <code>sd_set_password()</code>. See the <a href="./password.html">Password</a> page for details.</p>
 <p>The admin page has the following features:</p>
 <ul>
-<li><strong>Pause Survey</strong>: Once clicked, the Shiny app pauses all instances replacing questions with a placeholder “Paused Survey” page. <strong>Status: Non-functional</strong></li>
-<li><strong>Pause DB</strong>: Once clicked, the <code>pause</code> argument set in <code>sd_database()</code> will be set to <code>TRUE</code>, pausing all database uploads. <strong>Status: Non-functional</strong></li>
-<li><strong>Download Data</strong>: Once clicked, the most recent table instance is pulled from the database and downloaded locally as a .csv file.</li>
+<li><strong>Pause Survey</strong>: Once clicked, the Shiny app pauses all instances replacing questions with a placeholder page.</li>
+<li><strong>Pause DB</strong>: Once clicked, the all database uploads will be paused. You can still take the survey, but the data will not be updated in the database.</li>
+<li><strong>Download Data</strong>: Download the most recent table instance from the database as a .csv file.</li>
 <li><strong>Admin Logout and Return to Survey</strong>: Once clicked, the admin page will be logged out and the survey will be returned to the start page.</li>
-<li><strong>Survey Data</strong>: Pulls most recent instance of the database and displays the data.</li>
+<li><strong>Survey Data Preview</strong>: View the latest instance of the database table.</li>
 </ul>
 
 

@@ -51,6 +51,10 @@ Page 1 content here
 
 - Add questions with the `sd_question()` function in code chunks (see the [Question Types](question-types.qmd) page for more on the types of questions supported). For example, here's a multiple choice question:
 
+::: {.panel-tabset}
+
+## Code chunk
+
 ```{r}
 #| echo: fenced
 
@@ -66,11 +70,11 @@ sd_question(
 )
 ```
 
-Output:
+## Output
 
 ```{r}
-#| echo: false
 #| eval: true
+#| echo: false
 
 sd_question(
   type  = 'mc',
@@ -84,23 +88,23 @@ sd_question(
 )
 ```
 
+:::
+
 ## 4. Add configuration options
 
 In the server chunk (bottom of the `.qmd` file), add control logic and other configuration options to your survey with the `sd_config()` function. See the [Configuration Options](config-options.qmd) page for more details.
 
 ## 5. Setup your database
 
-Also in the server chunk, setup your database with the `sd_database()` function. You can also leave it blank to preview / edit your survey without database connected, or set `pause = TRUE` to disconnect the survey. See the [Store Data](store-data.qmd) page for more details.
+In the setup chunk (top of the `.qmd` file), setup your database with the `sd_database()` function. You can also leave it blank to preview / edit your survey without database connected, or set `ignore = TRUE` to run the survey without storing data. See the [Store Data](store-data.qmd) page for more details.
 
 ## 6. Locally preview
 
-Preview your survey by clicking the "Run Document" button in RStudio or in your terminal running the command:
+Preview your survey by clicking the "Run Document" button in RStudio or in your terminal running the command (replacing `survey_file_name.qmd` with the name of your survey `.qmd` file):
 
 ```{r}
 quarto serve survey_file_name.qmd
 ```
-
-Replacing `survey_file_name.qmd` with the name of your survey `.qmd` file.
 
 ## 7. Deploy
 

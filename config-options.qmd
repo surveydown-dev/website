@@ -67,7 +67,7 @@ You don't have to use `tibble::tribble()`, and in fact if you have a lot of `sho
 ```{r}
 config <- sd_config(
   show_if = readr::read_csv('path/to/show_if_conditions.csv')
-  )
+)
 ```
 
 ### Custom conditional display
@@ -291,6 +291,12 @@ Use the `admin_page` argument to control whether the admin page is created.
 
 :::
 
+::: {.callout-important}
+
+The admin page is currently under development and has limited functionality.
+
+:::
+
 By default, the admin page is not created. But if you want one, set `admin_page` to `TRUE` inside the `sd_config()` function, like this:
 
 ```{r}
@@ -303,8 +309,8 @@ When the admin page is enabled, you will be able to access the page by adding `?
 
 The admin page has the following features:
 
-- **Pause Survey**: Once clicked, the Shiny app pauses all instances replacing questions with a placeholder "Paused Survey" page. **Status: Non-functional**
-- **Pause DB**: Once clicked, the `pause` argument set in `sd_database()` will be set to `TRUE`, pausing all database uploads. **Status: Non-functional**
-- **Download Data**: Once clicked, the most recent table instance is pulled from the database and downloaded locally as a .csv file. 
+- **Pause Survey**: Once clicked, the Shiny app pauses all instances replacing questions with a placeholder page.
+- **Pause DB**: Once clicked, the all database uploads will be paused. You can still take the survey, but the data will not be updated in the database.
+- **Download Data**: Download the most recent table instance from the database as a .csv file. 
 - **Admin Logout and Return to Survey**: Once clicked, the admin page will be logged out and the survey will be returned to the start page.
-- **Survey Data**: Pulls most recent instance of the database and displays the data. 
+- **Survey Data Preview**: View the latest instance of the database table.

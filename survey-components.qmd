@@ -96,9 +96,27 @@ library(surveydown)
 
 # Run initial setup function (essential - do not delete)
 sd_setup()
+
+# Setup your database
+db <- sd_database(
+  host   = "",
+  dbname = "",
+  port   = "",
+  user   = "",
+  table  = "",
+  ignore = TRUE
+)
 ```
 
-Anything loaded in the setup chunk is accessible in both your survey body and your server, so we recommend also loading other packages and / or data in this chunk as well. 
+Anything loaded in the setup chunk is accessible in both your survey body and your server. This is similar in a standard Shiny app to anything loaded in the global environment before defining a `ui` and `server`. 
+
+::: {.callout-important}
+
+**Note**: Every surveydown survey requires loading the `surveydown` package with `library(surveydown)` and running the `sd_setup()` function.
+
+:::
+
+We also define a `db` object that will be used to store survey data. You can find more on how to set this up on the [Store Data](store-data.qmd) page.
 
 ## 3. Survey body
 
@@ -227,7 +245,7 @@ By default all questions are optional, but you can make questions required in th
 
 ## 4. Server code chunk
 
-At the very bottom of the .qmd file is a special "server" code chunk (that's the `#| context: server` bit) that defines the app server. This is where you can customize and control the survey flow logic as well as where you define the database that will store the survey response data. It looks like this:
+At the very bottom of the .qmd file is a special "server" code chunk (that's the `#| context: server` bit) that defines the app server. This is where you can set custom control logic and other configuration options. It looks like this:
 
 ```{r}
 #| echo: fenced
@@ -235,9 +253,6 @@ At the very bottom of the .qmd file is a special "server" code chunk (that's the
 
 # Define the configuration settings
 config <- sd_config()
-
-# Define the database settings
-db <- sd_database()
 
 # The sd_server() function initiates your survey - don't change this
 sd_server(
@@ -250,6 +265,4 @@ sd_server(
 
 The `sd_config()` function is where you can define configuration options for the survey, such as [conditional display](config-options.qmd#conditional-display) (conditionally displaying a question based on responses to questions), or [conditional skip](config-options.qmd#conditional-skipping) (conditionally sending the respondent to a page based on responses to questions). See the [Configuration Options](config-options.qmd) page for details.
 
-The `sd_database()` function is where you set up your database. See the [Store Data](store-data.qmd) page for details.
-
-The `sd_server()` function at the bottom makes everything run, which you can safely ignore - just don't change it and all will be good!
+The `sd_server()` function at the bottom makes everything run, which you can safely ignore - just don't change it and all will be good! It should always be the last code in the server code chunk.

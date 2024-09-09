@@ -12,13 +12,13 @@ Below are the steps you need to go through on [Supabase]({{< var url_supabase >}
 
 We'll walk you through one by one.
 
-## 1. Create a Supabase account
+## Create a Supabase account
 
 Navigate to the [Supabase]({{< var url_supabase >}}) website and create an account. You may use your GitHub account or create a new account using your email.
 
 While creating your account, it's by default that you will have an organization under your account name. Your projects will be designated to this organization. You can have other organizations based on your need, but let's just use this default one for now.
 
-## 2. Create a Supabase project
+## Create a Supabase project
 
 Once you are logged in, the page will prompt you to create a project. It's an obvious green button. Click on it and select your organization. A dialog box will pop up like this:
 
@@ -27,29 +27,23 @@ Once you are logged in, the page will prompt you to create a project. It's an ob
 </center>
 <br>
 
-Fill in the project name and give it a strong password. Choose a region that is close to you (or close to your audiences). All settings can be modified at any time.
+::: {.callout-important}
 
-::: {.callout-tip}
-
-To avoid confusion, you need to deal with password both on Supabase and surveydown:
-
-1.  Supabase is where your password is **defined**. Set your password in this dialog box, or change it in project settings anytime.
-
-2.  On surveydown, you deliver this password using `sd_set_password()`.
+One Supabase project can support multiple surveydown surveys, but we recommend that you have only one survey per project to avoid potential mistakes.
 
 :::
+
+Fill in the project name and give it a strong password. Choose a region that is close to you (or close to your audiences). All settings can be modified at any time.
 
 ::: {.callout-important}
 
-Your database password will be used in your surveydown survey(s) as credential to communicate with Supabase, and will also be your surveydown survey admin page password. Please choose a strong password and secure it.
+Once you set the password, don't forget to also set the same password in surveydown with `sd_set_password()`. Go to the [Password](password.qmd) page for details.
 
-To know more about setting the password for your surveydown survey, go to the [Password](password.qmd) page.
+You will need this both to communicate with your Supabase project and also to log in to your admin page, should you decide to enable it.
 
 :::
 
-It takes several minutes to set up the database. You will know when it's ready.
-
-## 3: Copy your credentials
+## Copy your credentials
 
 Once your Supabase project is ready, go to **"Project Settings"** located at the bottom-left corner. Then, click on **"Database"** under "Configuration".
 
@@ -71,11 +65,11 @@ Now, deliver these parameters to your survey! In your survey `.qmd` file, you de
 ```{r}
 # In your setup chunk
 db <- sd_database(
-  host   = NULL,
-  dbname = NULL,
-  port   = NULL,
-  user   = NULL,
-  table  = NULL
+  host   = "",
+  dbname = "",
+  port   = "",
+  user   = "",
+  table  = "any_name"
 )
 ```
 
@@ -94,10 +88,11 @@ db <- sd_database()
 
 :::
 
-::: {.callout-tip}
-**Ignore Supabase connection:**
+## Tips
 
-At anytime, you can ignore Supabase connection by defining `ignore = TRUE` under `sd_database()`. Your survey data will be stored locally.
+### Ignoring the Supabase connection
+
+While editing your survey, you may want to not connect to the database. This can be easily implemented by setting `ignore = TRUE` in `sd_database()`:
 
 ```{r}
 db <- sd_database(
@@ -106,12 +101,11 @@ db <- sd_database(
 )
 ```
 
-:::
+With this setting, your connection parameters can remain set, but the survey will not attempt to connect to your database. Instead, a local `data.csv` file will be created in your project folder so you can preview the survey data.
 
-::: {.callout-tip}
-**Disable `gssencmode`:**
+### Disabling `gssencmode`
 
-If you've set everything correctly but still encounter connection error, try to disable `gssencmode`:
+If you've set everything correctly but still encounter connection error, try to disable `gssencmode` like this:
 
 ```{r}
 db <- sd_database(
@@ -120,9 +114,4 @@ db <- sd_database(
 )
 ```
 
-By default, `gssencmode` is set as `"prefer"`. It secures your connection with PostgreSQL, which is the SQL used by Supabase. We generally recommend that you **DON'T disable `gssencmode`**.
-
-:::
-
-Now you have completed your database settings. Once your survey is up and running, you can monitor the survey responses in **"Table Editor"** of your Supabase project. Again it's located at the top-left corner of the page. The responses will update in real time, or you can refresh it manually.
-
+By default, `gssencmode` is set as `"prefer"`. It secures your connection with PostgreSQL, which is the SQL used by Supabase. We generally recommend that you **DO NOT disable `gssencmode`**, but sometimes this is necessary, especially when you are working on a protected network, e.g. on a VPN. 

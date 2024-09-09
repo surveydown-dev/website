@@ -37,15 +37,11 @@ If the respondent entered "Dave" in the `name` question, this would render as:
 
 > Welcome, Dave!
 
-This works because under the hood, the `sd_display_value()` function is calling a `shiny` output function, like `shiny::textOutput()`, which is designed to show reactive values (values that change based on a user input). 
+::: {.callout-note title="How this works under the hood"}
 
-You could also use any `shiny` output function directly, like this:
+Every question has an `id`, and the values chosen are stored automatically as `id_value` (e.g. if the question `id` was `name`, then the value would be stored as `name_value`). In the `sd_display_value()` function, we append this `_value` to the `id` to get the object we want to display, then we use an appropriate `shiny` output function to display it, e.g. `shiny::textOutput()`.
 
-```{r}
-Welcome, `r shiny::textOutput("name")`!
-```
-
-We just made `sd_display_value()` as it's easier to use if you're not sure which `shiny` output function to use.
+:::
 
 ### Showing the same value in multiple places
 
@@ -66,6 +62,18 @@ Welcome, `r sd_display_value("name")`!
 
 Is it alright if we call you `r sd_display_value("name_copy")`?
 ```
+
+If the respondent entered "Dave" in the `name` question, this would render as:
+
+> Welcome, Dave!
+> 
+> Is it alright if we call you Dave?
+
+::: {.callout-note}
+
+If you find this annoying, we agree! This is a bit of a hack and we are working on a better solution, but it is somewhat a limitation of Shiny that we have to live with for now.
+
+:::
 
 ## Randomizing question labels
 

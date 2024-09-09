@@ -4,6 +4,11 @@
   align-items: flex-start;
   width: 100%; 
   margin-bottom: 1rem; 
+  border: 1px solid #e0e0e0;  /* Light grey border */
+  border-radius: 8px;  /* Rounded corners */
+  background-color: #f8f9fa;  /* Light background color */
+  padding: 1rem;  /* Padding inside the card */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);  /* Subtle shadow for depth */
 }
 .demo-card-icon { 
   flex-shrink: 0; 
@@ -21,15 +26,15 @@
 }
 .demo-card-content p {
   margin-top: 0;
+  margin-bottom: 0;
 }
 .demo-card-button { 
   flex-shrink: 0; 
   text-align: right; 
   padding-top: 0.25rem;
 }
-.github-badge { 
-  max-width: 100%; 
-  height: auto; 
+.custom-button {
+  white-space: nowrap;  /* Prevent button text from wrapping */
 }
 @media (min-width: 768px) {
   .demo-card-icon { width: 5%; }
@@ -40,4 +45,19 @@
   .demo-card-icon { width: 5%; }
   .demo-card-content { width: 65%; }
   .demo-card-button { width: 30%; }
+}
+
+/* Hover effect for grey buttons (Demo Survey) */
+.custom-button[style*="background-color: #808080"]:hover {
+  background-color: #666666 !important;
+}
+
+/* Hover effect for blue buttons (Demo Video) */
+.custom-button[style*="background-color: #4DA6FF"]:hover {
+  background-color: #3385D6 !important;
+}
+
+/* Hover effect for green buttons (GitHub Repo) */
+.custom-button[style*="background-color: #28a745"]:hover {
+  background-color: #218838 !important;
 }

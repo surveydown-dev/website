@@ -8,7 +8,11 @@ execute:
 ---
 
 ```{r}
-create_demo_card <- function(title, description, repo_name, icon) {
+create_demo_card <- function(title, description, repo_name, icon, demo_url, demo_type = "survey") {
+  button_text <- if(demo_type == "video") "Demo Video" else "Demo Survey"
+  button_color <- if(demo_type == "video") "#4DA6FF" else "#808080"
+  button_icon <- if(demo_type == "video") "{{< fa solid video >}}" else "{{< fa solid clipboard-list >}}"
+  
   cat(
     '::: {.demo-card}\n',
     '::: {.demo-card-icon}\n',
@@ -19,8 +23,12 @@ create_demo_card <- function(title, description, repo_name, icon) {
     description, '\n',
     ':::\n',
     '::: {.demo-card-button}\n',
-    '<a href="https://github.com/surveydown-dev/', repo_name, '" class="d-inline-block">\n',
-    '  <img class="github-badge" src="https://img.shields.io/badge/view_on-GitHub-00bc8c?style=for-the-badge&logo=GitHub" alt="View on GitHub">\n',
+    '<a href="https://github.com/surveydown-dev/', repo_name, '" class="d-inline-block mb-2 custom-button" style="background-color: #28a745; color: white; padding: 6px 10px; text-decoration: none; font-weight: bold; border-radius: 3px; transition: background-color 0.3s; font-size: 0.8em;">\n',
+    '  {{< fa brands github >}} GitHub Repo\n',
+    '</a>\n',
+    '<br>\n',
+    '<a href="', demo_url, '" class="d-inline-block custom-button" style="background-color: ', button_color, '; color: white; padding: 6px 10px; text-decoration: none; font-weight: bold; border-radius: 3px; transition: background-color 0.3s; font-size: 0.8em;">\n',
+    '  ', button_icon, ' ', button_text, '\n',
     '</a>\n',
     ':::\n',
     ':::\n\n',
@@ -36,7 +44,9 @@ build_demo_grid <- function(df) {
       title = df$title[i],
       description = df$description[i],
       repo_name = df$repo_name[i],
-      icon = df$icon[i]
+      icon = df$icon[i],
+      demo_url = df$demo_url[i],
+      demo_type = df$demo_type[i]
     )
     cat('\n')
   }
@@ -82,9 +92,26 @@ df <- data.frame(
     "fa-shuffle",
     "fa-chart-line",
     "fa-balance-scale"
+  ),
+  demo_url = c(
+    "https://surveydown.shinyapps.io/types/",
+    "https://surveydown.shinyapps.io/showif/",
+    "https://surveydown.shinyapps.io/skipif/",
+    "https://surveydown.shinyapps.io/random/",
+    "https://youtu.be/65tkD8Zyd68",
+    "https://example.com/demo-reactive-plot",
+    "https://surveydown.shinyapps.io/conjoint/"
+  ),
+  demo_type = c(
+    "survey",
+    "survey",
+    "survey",
+    "survey",
+    "video",
+    "video",
+    "survey"
   )
 )
 
 build_demo_grid(df)
 ```
-

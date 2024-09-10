@@ -58,53 +58,53 @@ build_demo_grid <- function(df) {
 
 df <- data.frame(
   title = c(
-    "Question Types", 
-    "Conditional Display", 
-    "Conditional Skipping", 
+    "Question Types",
+    "Conditional Display",
+    "Conditional Skipping",
+    "Choice-Based Conjoint",
     "Randomized Question Labels",
     "Randomized Question Labels (Predefined)",
     "Reactive Plot",
-    "Choice-Based Conjoint",
     "External Redirect"
   ),
   repo_name = c(
-    "demo-question-types", 
-    "demo-show-if", 
-    "demo-skip-if", 
+    "demo-question-types",
+    "demo-show-if",
+    "demo-skip-if",
+    "demo-choice-based-conjoint",
     "demo-randomized-question-labels",
     "demo-randomized-question-labels-predefined",
     "demo-reactive-plot",
-    "demo-choice-based-conjoint",
     "demo-external-redirect"
   ),
   description = c(
     "A demo of all the [question types](question-types.html) currently supported by surveydown.",
     "A demo of how to implement [conditional display](config-options.html#conditional-display) (showing a question based on a previous response).",
     "A demo of how to implement [conditional skipping](config-options.html#conditional-skipping) (skipping to a page based on a previous response).",
+    "A demo of how to implement a choice-based conjoint survey with surveydown.",
     "A demo of how to implement [randomized question labels](reactivity.html#randomizing-question-labels).",
     "A demo of how to implement randomized question labels using [predefined random labels](reactivity.html#pre-defined-randomization).",
-    "A demo of how to implement reactive plots in your survey.", 
-    "A demo of how to implement a choice-based conjoint survey with surveydown.",
+    "A demo of how to implement reactive plots in your survey.",
     "A demo of how to implement external redirection links in your survey."
   ), 
   icon = c(
     "fa-list-ul",
     "fa-eye",
     "fa-forward",
+    "fa-balance-scale",
     "fa-random",
     "fa-shuffle",
     "fa-chart-line",
-    "fa-balance-scale",
     "fa-arrow-up-from-bracket"
   ),
   demo_url = c(
     "https://surveydown.shinyapps.io/types/",
     "https://surveydown.shinyapps.io/showif/",
     "https://surveydown.shinyapps.io/skipif/",
+    "https://surveydown.shinyapps.io/conjoint/",
     "https://surveydown.shinyapps.io/random/",
     "https://youtu.be/zXIt-SZ_Yzg",
     "https://youtu.be/iv4o1QMY7to",
-    "https://surveydown.shinyapps.io/conjoint/",
     "https://surveydown.org"
   ),
   demo_type = c(
@@ -112,9 +112,9 @@ df <- data.frame(
     "survey",
     "survey",
     "survey",
-    "video",
-    "video",
     "survey",
+    "video",
+    "video",
     "video"
   )
 )

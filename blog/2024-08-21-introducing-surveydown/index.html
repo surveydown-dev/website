@@ -280,9 +280,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <img src="logo.png" style="max-width: 200px; width: 100%;">
 </center>
 <p><br></p>
-<blockquote class="blockquote">
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>This post was made just after launching surveydown, so some of the information may be out of date. Check the <a href="https://surveydown.org/documentation">documentation</a> for the latest information.</strong></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>Note:</strong> This post is largely a copy of the <a href="https://www.jhelvy.com/blog/2024-08-10-introducing-surveydown/">a similar post</a> I made on my personal website, with some minor edits.</p>
-</blockquote>
+</div>
+</div>
 <p>This post introduces the {surveydown} R package, a new way to design surveys using markdown, R, Quarto, and shiny. The idea for this platform has been brewing for a while (see <a href="https://jhelvy.com/blog/2023-04-06-markdown-surveys/">this blog post</a> for more on the motivation for this project), but now the package is finally here!</p>
 <p>In this post, I’m going to show you a quick overview of the {surveydown} R package for making markdown-based surveys as well as a little about <em>why</em> we built surveydown.</p>
 <section id="a-new-way-to-design-surveys" class="level1">
@@ -389,6 +412,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 <button id="next-page2" type="button" class="btn btn-default action-button" style="display: block; margin: auto;" onclick="Shiny.setInputValue('next_page', 'page2');">Next</button>
+<script>
+    $(document).ready(function() {
+        var buttonId = 'next-page2';
+        $(document).on('keydown', function(event) {
+            if (event.key === 'Enter' && !event.repeat) {
+                var $button = $('#' + buttonId);
+                if ($button.is(':visible')) {
+                    $button.click();
+                    event.preventDefault();
+                }
+            }
+        });
+    });
+    </script>
 </div>
 </div>
 <p>You would need to place the code chunk in between the <code>:::</code> fences of the <code>welcome</code> page in order to have a “Next” button that goes on to page 2. You can also send the user to other pages by just changing the <code>next_page</code> argument. Finally, you can also change the label of the button by changing the <code>label</code> argument, like this:</p>
@@ -400,6 +437,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 <button id="next-page2" type="button" class="btn btn-default action-button" style="display: block; margin: auto;" onclick="Shiny.setInputValue('next_page', 'page2');">Next page</button>
+<script>
+    $(document).ready(function() {
+        var buttonId = 'next-page2';
+        $(document).on('keydown', function(event) {
+            if (event.key === 'Enter' && !event.repeat) {
+                var $button = $('#' + buttonId);
+                if ($button.is(':visible')) {
+                    $button.click();
+                    event.preventDefault();
+                }
+            }
+        });
+    });
+    </script>
 </div>
 </div>
 </section>
@@ -423,7 +474,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The above code chunk will create a multiple choice question that looks like this:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="container- penguins" data-question-id="penguins" class="question-container">
+<div id="container- penguins" data-question-id="penguins" class="question-container" oninput="Shiny.setInputValue('penguins_interacted', true, {priority: 'event'});">
 <div id="penguins" style="width:500px;" class="form-group shiny-input-radiogroup shiny-input-container" role="radiogroup" aria-labelledby="penguins-label">
 <label class="control-label" id="penguins-label" for="penguins"><p>Which is your favorite type of penguin? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
 </label>
@@ -627,12 +678,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt;   respondent_id     brand
-#&gt; 1             1    Toyota
+#&gt; 1             1     Tesla
 #&gt; 2             1      Ford
 #&gt; 3             1 Chevrolet
-#&gt; 4             2    Toyota
-#&gt; 5             2 Chevrolet
-#&gt; 6             2      Ford</code></pre>
+#&gt; 4             2 Chevrolet
+#&gt; 5             2      Ford
+#&gt; 6             2    Nissan</code></pre>
 </div>
 </div>
 <p>Note that this would not be done in your survey.qmd file - it’s just a one-time thing to create the design (probably stored in an R file).</p>

@@ -425,7 +425,7 @@ Note
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ...and 5 more questions like this</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Remember that since the labels in the options are being <em>dynamically</em> generated on each new session (each respondent), they have to be created in the server, not in the main survey body. As a result, the <code>sd_question()</code> function must also be created in the server code (if you put this code in the main body, only one random set of choice options will be generated, and they’ll be the same for everyone).</p>
-<p>To display each question in the survey body, we use <code>sd_output('id')</code>, changing <code>id</code> to each corresponding choice question we created. In the demo <code>survey.qmd</code> file, you’ll see that there are 6 choice questions displayed in the main survey body (each on their own page), and each of those 6 questions are defined in the <code>server.R</code> file.</p>
+<p>To display each question in the survey body, we use <code>sd_output("id", type = "question")</code>, changing <code>id</code> to each corresponding choice question we created. In the demo <code>survey.qmd</code> file, you’ll see that there are 6 choice questions displayed in the main survey body (each on their own page), and each of those 6 questions are defined in the <code>server.R</code> file.</p>
 <p>When rendered, a choice question will look like this, with the values matching whatever alternative was chosen in the design file:</p>
 <div class="cell">
 <div class="cell-output-display">

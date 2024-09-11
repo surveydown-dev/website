@@ -270,7 +270,7 @@
     "href": "blog/2024-08-28-choice-based-conjoint-surveys-with-surveydown/index.html#getting-started",
     "title": "Choice-based conjoint surveys in R with surveydown",
     "section": "Getting started",
-    "text": "Getting started\nIf you want to start from a blank slate, take a look at the Get Started documentation page.\nFor this post, we recommend starting from the demo survey available at this GitHub repo. It provides an already working survey that you can modify to the needs of your conjoint survey.\nThe demo repo has a lot of files in it, but the main files defining the survey itself are:\n\nsurvey.qmd: The main body of the survey.\nserver.R: The server defining the logic implemented in the survey, including randomizing questions, connecting to a database, etc.\n\nIn a typical surveydown survey, our server code chunk (bottom of the survey.qmd file) is not that long, so we just keep everything there. However, in this case since we have a lot more going on in our server, we chose to use a split file structure where we separate out most of the server code in a separate server.R file. We then source that file in the server code chunk (the source(\"server.R\") part in our server code chunk). This just makes it easier to edit the server code as the server.R file can be opened in a separate tab rather than having to scroll up and down the longer survey.qmd file.\n\n\n\n\n\n\nNote\n\n\n\nWe recommend opening the survey.Rproj if you’re working in RStudio to make sure RStudio opens to the correct project folder."
+    "text": "Getting started\nIf you want to start from a blank slate, take a look at the Getting Started documentation page.\nFor this post, we recommend starting from the demo survey available at this GitHub repo. It provides an already working survey that you can modify to the needs of your conjoint survey.\nThe demo repo has a lot of files in it, but the main files defining the survey itself are:\n\nsurvey.qmd: The main body of the survey.\nserver.R: The server defining the logic implemented in the survey, including randomizing questions, connecting to a database, etc.\n\nIn a typical surveydown survey, our server code chunk (bottom of the survey.qmd file) is not that long, so we just keep everything there. However, in this case since we have a lot more going on in our server, we chose to use a split file structure where we separate out most of the server code in a separate server.R file. We then source that file in the server code chunk (the source(\"server.R\") part in our server code chunk). This just makes it easier to edit the server code as the server.R file can be opened in a separate tab rather than having to scroll up and down the longer survey.qmd file.\n\n\n\n\n\n\nNote\n\n\n\nWe recommend opening the survey.Rproj if you’re working in RStudio to make sure RStudio opens to the correct project folder."
   },
   {
     "objectID": "blog/2024-08-28-choice-based-conjoint-surveys-with-surveydown/index.html#content-in-the-survey-body",
@@ -582,7 +582,7 @@
     "href": "about.html",
     "title": "Overview",
     "section": "",
-    "text": "Overview\nsurveydown is a flexible, open-source platform for making surveys with , Quarto, Shiny, and Supabase. The accompanying  package is still in development, but you can already use it to create surveys!\n\n\n\n\n\nThe basic concept is this:\n\nDesign your survey as a Quarto Shiny document using markdown and R code.\nRender your doc into a Shiny app that can be hosted online and sent to respondents.\nStore your survey responses in a Supabase database.\n\nWe recommend reading the Get Started page to get a sense of how to use surveydown. The rest of the documentation covers more details on how to use surveydown.\n\nGet Started!\n\n\n\nEditing a surveydown survey\nEditing a surveydown survey feels like editing a Quarto document. As a result, we recommend working with an IDE to edit your surveys as they offer a better experience. RStudio is great, and we also like VS Code and Positron.\nOnce you have a survey ready to edit in your favorite IDE, you can render it locally to see how it will look as you change features. For example, the gif below shows what it looks like to make a question required. This gives you an idea for what the development process is like. And because surveydown leverages Shiny and Quarto, you can add all sorts of custom features and styles to your survey!\n\n\n\n\n\nBackground & Motivation\nMost survey platforms (e.g., Google forms, Qualtrics, etc.) use drag-and-drop interfaces to design surveys, making version control and collaboration with others difficult. They’re also not reproducible (others cannot easily reproduce a survey made on these platforms), and many require a paid subscription or license to use.\nAs an open-source, markdown-based platform, surveydown was designed to address these problems. In surveydown, all survey content is created with plain text (markdown and R code) in a single .qmd file that renders into a Shiny app. This makes your survey easy to reproduce, share, and version control with common tools like Git. The survey data collected is also owned by the survey designer in a Supabase account. Best of all, everything is open source and free :)\nIf you’re curious where this whole idea came from, check out this blog post, which outlines more on the general idea and the motivation for it. The post is now outdated in terms of the overall package design, but it provides something of an origin story and some of the motivation for developing this project.\n\n\nAuthors\nThe surveydown project is led by professor John Paul Helveston at George Washington University. The development team consists of the following members:\n\n\n\n\n\nJohn Paul Helveston, Ph.D.\nJohn Paul Helveston is an Assistant Professor in the Department of Engineering Management and Systems Engineering at George Washington University. Professor Helveston is the core designer and developer, and maintainer of both the surveydown project and this documentation website.\n\n\n\n\n\n\n\nPingfan Hu\nPingfan Hu is a Ph.D. student in Systems Engineering at George Washington University, supervised by professor Helveston. Pingfan is mainly responsible for UI design, user interactions, and website maintenance.\n\n\n\n\n\n\n\nBogdan Bunea\nBogdan Bunea is an undergraduate student majoring in Systems Engineering and minoring in Computer Science at George Washington University. Bogdan is mainly responsible for database connection and data management.\n\n\n\n\n\n\n Back to top"
+    "text": "Overview\nsurveydown is a flexible, open-source platform for making surveys with , Quarto, Shiny, and Supabase. The accompanying  package is still in development, but you can already use it to create surveys!\n\n\n\n\n\nThe basic concept is this:\n\nDesign your survey as a Quarto Shiny document using markdown and R code.\nRender your doc into a Shiny app that can be hosted online and sent to respondents.\nStore your survey responses in a Supabase database.\n\nWe recommend reading the Getting Started page to get a sense of how to use surveydown. The rest of the documentation covers more details on how to use surveydown.\n\nGetting Started!\n\n\n\nEditing a surveydown survey\nEditing a surveydown survey feels like editing a Quarto document. As a result, we recommend working with an IDE to edit your surveys as they offer a better experience. RStudio is great, and we also like VS Code and Positron.\nOnce you have a survey ready to edit in your favorite IDE, you can render it locally to see how it will look as you change features. For example, the gif below shows what it looks like to make a question required. This gives you an idea for what the development process is like. And because surveydown leverages Shiny and Quarto, you can add all sorts of custom features and styles to your survey!\n\n\n\n\n\nBackground & Motivation\nMost survey platforms (e.g., Google forms, Qualtrics, etc.) use drag-and-drop interfaces to design surveys, making version control and collaboration with others difficult. They’re also not reproducible (others cannot easily reproduce a survey made on these platforms), and many require a paid subscription or license to use.\nAs an open-source, markdown-based platform, surveydown was designed to address these problems. In surveydown, all survey content is created with plain text (markdown and R code) in a single .qmd file that renders into a Shiny app. This makes your survey easy to reproduce, share, and version control with common tools like Git. The survey data collected is also owned by the survey designer in a Supabase account. Best of all, everything is open source and free :)\nIf you’re curious where this whole idea came from, check out this blog post, which outlines more on the general idea and the motivation for it. The post is now outdated in terms of the overall package design, but it provides something of an origin story and some of the motivation for developing this project.\n\n\nAuthors\nThe surveydown project is led by professor John Paul Helveston at George Washington University. The development team consists of the following members:\n\n\n\n\n\nJohn Paul Helveston, Ph.D.\nJohn Paul Helveston is an Assistant Professor in the Department of Engineering Management and Systems Engineering at George Washington University. Professor Helveston is the core designer and developer, and maintainer of both the surveydown project and this documentation website.\n\n\n\n\n\n\n\nPingfan Hu\nPingfan Hu is a Ph.D. student in Systems Engineering at George Washington University, supervised by professor Helveston. Pingfan is mainly responsible for UI design, user interactions, and website maintenance.\n\n\n\n\n\n\n\nBogdan Bunea\nBogdan Bunea is an undergraduate student majoring in Systems Engineering and minoring in Computer Science at George Washington University. Bogdan is mainly responsible for database connection and data management.\n\n\n\n\n\n\n Back to top"
   },
   {
     "objectID": "demos.html",
@@ -596,7 +596,7 @@
     "href": "documentation.html",
     "title": "surveydown.org",
     "section": "",
-    "text": "Welcome to your first surveydown survey!\nWe recommend reading the Get Started page to get a sense of how to use surveydown. The rest of the documentation covers more details on how to use surveydown.\n\nGet Started!\n\n\n\nFeatures\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Progress\n                Feature\n                Implementation\n              \n        \n        \n        \n                \n                                       \n                  Wide variety of question types                                                          \n                  sd_question()                                                                                             \n                \n                \n                                       \n                  Ability to use latest survey results in the survey itself                 \n                  sd_get_data(db, reactive = TRUE)                                                                          \n                \n                \n                                       \n                  Preview mode (pauses database connection)                                                                                 \n                  sd_database(pause = TRUE)                                                                                 \n                \n                \n                                       \n                  Conditionally display questions                                     \n                  sd_config(show_if = XXX) & sd_config(show_if_custom = XXX)                                   \n                \n                \n                                       \n                  Conditionally skip to pages                                        \n                  sd_config(skip_if = XXX) & sd_config(skip_if_custom = XXX)                                   \n                \n                \n                                       \n                  Start survey from a specific page (helpful when editing)                  \n                  sd_config(start_page = \"page_id\")                                                                         \n                \n                \n                                       \n                  Show all pages at once (helpful for editing or printing out whole survey)\n                  sd_config(show_all_pages = TRUE)                                                                          \n                \n                \n                                       \n                  Require specific questions be answered                               \n                  sd_config(required_questions = c(\"question_1\", \"question_2\"))                                             \n                \n                \n                                       \n                  Require all questions be answered                                    \n                  sd_config(all_questions_required = TRUE)                                                                  \n                \n                \n                                       \n                  Time stamps recorded for each question and page interaction                                                               \n                  Happens by default.                                                                                                    \n                \n                \n                                       \n                  Progress bar bar that updates on each question interaction              \n                  Happens by default.                                                                                                    \n                \n                \n                                       \n                  Customizable progress bar color                                         \n                  In the YAML header, type:barcolor = \"A_HEX_COLOR\"                                                     \n                \n                \n                                       \n                  Customizable progress bar position                                      \n                  In the YAML header, type:barposition = \"top\", \"bottom\", or \"none\"           \n                \n                \n                                       \n                  Markdown formatting for options and buttons                             \n                  Just use markdown on options and buttons.                                                                              \n                \n                \n                                       \n                  Customizable scss theme file                                                                                              \n                  Use theme = custom.scss in the YAML header and put a custom.scss file in the project folder. \n                \n                \n                  \n                  Admin page with password login to preview / download data, pause survey, etc.     \n                  sd_config(admin_page = TRUE), then access with url, e.g. https://mysurvey.shinyapps.io/?admin\n                \n                \n                  \n                  Form validation (limit input based on question type)                                                                      \n                  Happens by default                                                                                                     \n                \n                \n                  \n                  Cookies to store user progress                                                                                            \n                  Happens by default                                                                                                     \n                \n                \n                  \n                  User tracking via url parameters                                                                                          \n                  By inputting the url parameters the users can go to the desired page                                                   \n                \n        \n      \n    \n\n\n\n\n\n\n\n Back to top",
+    "text": "Welcome to your first surveydown survey!\nWe recommend reading the Getting Started page to get a sense of how to use surveydown. The rest of the documentation covers more details on how to use surveydown.\n\nGetting Started!\n\n\n\nFeatures\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Progress\n                Feature\n                Implementation\n              \n        \n        \n        \n                \n                                       \n                  Wide variety of question types                                                          \n                  sd_question()                                                                                             \n                \n                \n                                       \n                  Ability to use latest survey results in the survey itself                 \n                  sd_get_data(db, reactive = TRUE)                                                                          \n                \n                \n                                       \n                  Preview mode (pauses database connection)                                                                                 \n                  sd_database(pause = TRUE)                                                                                 \n                \n                \n                                       \n                  Conditionally display questions                                     \n                  sd_config(show_if = XXX) & sd_config(show_if_custom = XXX)                                   \n                \n                \n                                       \n                  Conditionally skip to pages                                        \n                  sd_config(skip_if = XXX) & sd_config(skip_if_custom = XXX)                                   \n                \n                \n                                       \n                  Start survey from a specific page (helpful when editing)                  \n                  sd_config(start_page = \"page_id\")                                                                         \n                \n                \n                                       \n                  Show all pages at once (helpful for editing or printing out whole survey)\n                  sd_config(show_all_pages = TRUE)                                                                          \n                \n                \n                                       \n                  Require specific questions be answered                               \n                  sd_config(required_questions = c(\"question_1\", \"question_2\"))                                             \n                \n                \n                                       \n                  Require all questions be answered                                    \n                  sd_config(all_questions_required = TRUE)                                                                  \n                \n                \n                                       \n                  Time stamps recorded for each question and page interaction                                                               \n                  Happens by default.                                                                                                    \n                \n                \n                                       \n                  Progress bar bar that updates on each question interaction              \n                  Happens by default.                                                                                                    \n                \n                \n                                       \n                  Customizable progress bar color                                         \n                  In the YAML header, type:barcolor = \"A_HEX_COLOR\"                                                     \n                \n                \n                                       \n                  Customizable progress bar position                                      \n                  In the YAML header, type:barposition = \"top\", \"bottom\", or \"none\"           \n                \n                \n                                       \n                  Markdown formatting for options and buttons                             \n                  Just use markdown on options and buttons.                                                                              \n                \n                \n                                       \n                  Customizable scss theme file                                                                                              \n                  Use theme = custom.scss in the YAML header and put a custom.scss file in the project folder. \n                \n                \n                  \n                  Admin page with password login to preview / download data, pause survey, etc.     \n                  sd_config(admin_page = TRUE), then access with url, e.g. https://mysurvey.shinyapps.io/?admin\n                \n                \n                  \n                  Form validation (limit input based on question type)                                                                      \n                  Happens by default                                                                                                     \n                \n                \n                  \n                  Cookies to store user progress                                                                                            \n                  Happens by default                                                                                                     \n                \n                \n                  \n                  User tracking via url parameters                                                                                          \n                  By inputting the url parameters the users can go to the desired page                                                   \n                \n        \n      \n    \n\n\n\n\n\n\n\n Back to top",
     "crumbs": [
       "Documentation"
     ]
@@ -657,102 +657,102 @@
     ]
   },
   {
-    "objectID": "get-started.html",
-    "href": "get-started.html",
+    "objectID": "getting-started.html",
+    "href": "getting-started.html",
     "title": "Getting Started",
     "section": "",
     "text": "In surveydown, surveys are designed using markdown and R code in a single Quarto document (a .qmd file). There is no GUI or drag-and-drop interface - simply write plain text (markdown & R code) and boom - you have a survey! 🎉\nThe {surveydown} R package provides a set of functions for defining the survey content and configuration options. Each function starts with sd_ to make them easy to identify.\nThe platform is based on some basic principles:\n\nAdd content to your survey using markdown text (or in RStudio use the visual editor).\nDefine survey questions in R code chunks with the sd_question() function.\nDefine pages using fences (:::), with navigation buttons handled using the sd_next() function.\nAdd rich functionality to your survey using config options in the server code chunk.\nStore your respondent data on Supabase by setting the database in the server code chunk.\n\nThis approach ensures a flexible survey platform that is fully reproducible and easy to customize.\nThe remaining steps on this page will guide you through the process of creating a surveydown survey.",
     "crumbs": [
       "Documentation",
-      "Get Started"
+      "Getting Started"
     ]
   },
   {
-    "objectID": "get-started.html#overview",
-    "href": "get-started.html#overview",
+    "objectID": "getting-started.html#overview",
+    "href": "getting-started.html#overview",
     "title": "Getting Started",
     "section": "",
     "text": "In surveydown, surveys are designed using markdown and R code in a single Quarto document (a .qmd file). There is no GUI or drag-and-drop interface - simply write plain text (markdown & R code) and boom - you have a survey! 🎉\nThe {surveydown} R package provides a set of functions for defining the survey content and configuration options. Each function starts with sd_ to make them easy to identify.\nThe platform is based on some basic principles:\n\nAdd content to your survey using markdown text (or in RStudio use the visual editor).\nDefine survey questions in R code chunks with the sd_question() function.\nDefine pages using fences (:::), with navigation buttons handled using the sd_next() function.\nAdd rich functionality to your survey using config options in the server code chunk.\nStore your respondent data on Supabase by setting the database in the server code chunk.\n\nThis approach ensures a flexible survey platform that is fully reproducible and easy to customize.\nThe remaining steps on this page will guide you through the process of creating a surveydown survey.",
     "crumbs": [
       "Documentation",
-      "Get Started"
+      "Getting Started"
     ]
   },
   {
-    "objectID": "get-started.html#install",
-    "href": "get-started.html#install",
+    "objectID": "getting-started.html#install",
+    "href": "getting-started.html#install",
     "title": "Getting Started",
     "section": "1. Install",
     "text": "1. Install\nSee the Installation page.",
     "crumbs": [
       "Documentation",
-      "Get Started"
+      "Getting Started"
     ]
   },
   {
-    "objectID": "get-started.html#start-with-a-template",
-    "href": "get-started.html#start-with-a-template",
+    "objectID": "getting-started.html#start-with-a-template",
+    "href": "getting-started.html#start-with-a-template",
     "title": "Getting Started",
     "section": "2. Start with a template",
     "text": "2. Start with a template\nIn the R console, run the following to to setup a template survey:\n\nsurveydown::sd_create_survey(\"path/to/folder\")\n\nThis will create a folder located at \"path/to/folder\" with the following files:\n\nexample.qmd: a template survey you should edit.\nexample.Rproj: An RStudio project file (helpful if you’re working in RStudio)\n_extensions: A folder with the surveydown Quarto extension needed to make everything work (don’t modify this).\n\n\n\n\n\n\n\nImportant\n\n\n\nEvery survey created with {surveydown} should be in its own separate project folder.",
     "crumbs": [
       "Documentation",
-      "Get Started"
+      "Getting Started"
     ]
   },
   {
-    "objectID": "get-started.html#add-content",
-    "href": "get-started.html#add-content",
+    "objectID": "getting-started.html#add-content",
+    "href": "getting-started.html#add-content",
     "title": "Getting Started",
     "section": "3. Add content",
     "text": "3. Add content\nSee the Survey Components page for details on the main components in a surveydown survey. For a quick overview, here’s how you add pages and questions:\n\nAdd pages with fences, like this:\n\n\n::: {#page1 .sd-page}\n\nPage 1 content here\n\n:::\n\n\nAdd questions with the sd_question() function in code chunks (see the Question Types page for more on the types of questions supported). For example, here’s a multiple choice question:\n\n\nCode chunkOutput\n\n\n\n```{r}\nsd_question(\n  type  = 'mc',\n  id    = 'penguins',\n  label = \"Which is your favorite type of penguin?\",\n  option = c(\n    'Adélie'    = 'adelie',\n    'Chinstrap' = 'chinstrap',\n    'Gentoo'    = 'gentoo'\n  )\n)\n```\n\n\n\n\n\n\n\nWhich is your favorite type of penguin? *\n\n\n\n\n\nAdélie\n\n\n\n\n\nChinstrap\n\n\n\n\n\nGentoo",
     "crumbs": [
       "Documentation",
-      "Get Started"
+      "Getting Started"
     ]
   },
   {
-    "objectID": "get-started.html#add-configuration-options",
-    "href": "get-started.html#add-configuration-options",
+    "objectID": "getting-started.html#add-configuration-options",
+    "href": "getting-started.html#add-configuration-options",
     "title": "Getting Started",
     "section": "4. Add configuration options",
     "text": "4. Add configuration options\nIn the server chunk (bottom of the .qmd file), add control logic and other configuration options to your survey with the sd_config() function. See the Configuration Options page for more details.",
     "crumbs": [
       "Documentation",
-      "Get Started"
+      "Getting Started"
     ]
   },
   {
-    "objectID": "get-started.html#setup-your-database",
-    "href": "get-started.html#setup-your-database",
+    "objectID": "getting-started.html#setup-your-database",
+    "href": "getting-started.html#setup-your-database",
     "title": "Getting Started",
     "section": "5. Setup your database",
     "text": "5. Setup your database\nIn the setup chunk (top of the .qmd file), setup your database with the sd_database() function. You can also leave it blank to preview / edit your survey without database connected, or set ignore = TRUE to run the survey without storing data. See the Store Data page for more details.",
     "crumbs": [
       "Documentation",
-      "Get Started"
+      "Getting Started"
     ]
   },
   {
-    "objectID": "get-started.html#locally-preview",
-    "href": "get-started.html#locally-preview",
+    "objectID": "getting-started.html#locally-preview",
+    "href": "getting-started.html#locally-preview",
     "title": "Getting Started",
     "section": "6. Locally preview",
     "text": "6. Locally preview\nPreview your survey by clicking the “Run Document” button in RStudio or in your terminal running the command (replacing survey_file_name.qmd with the name of your survey .qmd file):\n\nquarto serve survey_file_name.qmd",
     "crumbs": [
       "Documentation",
-      "Get Started"
+      "Getting Started"
     ]
   },
   {
-    "objectID": "get-started.html#deploy",
-    "href": "get-started.html#deploy",
+    "objectID": "getting-started.html#deploy",
+    "href": "getting-started.html#deploy",
     "title": "Getting Started",
     "section": "7. Deploy",
     "text": "7. Deploy\nDeploy your survey by hosting it on your favorite server, like shinyapps.io, huggingface, etc. See the Deployment page for more details.",
     "crumbs": [
       "Documentation",
-      "Get Started"
+      "Getting Started"
     ]
   },
   {

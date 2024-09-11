@@ -343,9 +343,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"What is your name?"</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Then you can use the <code>sd_display_value()</code> function to display the value of the <code>"name"</code> question in other parts of your survey. For example:</p>
+<p>Then you can use the <code>sd_output()</code> function to display the value of the <code>"name"</code> question in other parts of your survey. For example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Welcome, <span class="st">`</span><span class="at">r sd_display_value("name")</span><span class="st">`</span><span class="sc">!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Welcome, <span class="st">`</span><span class="at">r sd_output("name", type = "value")</span><span class="st">`</span><span class="sc">!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If the respondent entered “Dave” in the <code>name</code> question, this would render as:</p>
 <blockquote class="blockquote">
@@ -361,23 +361,23 @@ How this works under the hood
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Every question has an <code>id</code>, and the values chosen are stored automatically as <code>id_value</code> (e.g.&nbsp;if the question <code>id</code> was <code>name</code>, then the value would be stored as <code>name_value</code>). In the <code>sd_display_value()</code> function, we append this <code>_value</code> to the <code>id</code> to get the object we want to display, then we use an appropriate <code>shiny</code> output function to display it, e.g.&nbsp;<code>shiny::textOutput()</code>.</p>
+<p>Every question has an <code>id</code>, and the values chosen are stored automatically as <code>id_value</code> (e.g.&nbsp;if the question <code>id</code> was <code>name</code>, then the value would be stored as <code>name_value</code>). In the <code>sd_output()</code> function, we append this <code>_value</code> to the <code>id</code> to get the object we want to display if the user defines <code>type = "value"</code>, then we use an appropriate <code>shiny</code> output function to display it, e.g.&nbsp;<code>shiny::textOutput()</code>. You can also use <code>sd_output()</code> to show reactive questions with <code>type = "question"</code> or other stored values from the server code chunk.</p>
 </div>
 </div>
 </section>
 <section id="showing-the-same-value-in-multiple-places" class="level3">
 <h3 class="anchored" data-anchor-id="showing-the-same-value-in-multiple-places">Showing the same value in multiple places</h3>
-<p>The <code>sd_display_value()</code> function can only be used once per each unique question <code>id</code> because the <code>id</code> gets used in the rendered HTML divs, and HTML with more than one element with the same id is invalid HTML. This is a general issue for Shiny - outputs can only be used once per each unique <code>id</code> (see <a href="https://github.com/rstudio/shiny/issues/743">this GitHub issue</a> on the topic).</p>
+<p>The <code>sd_output()</code> function can only be used once per each unique question <code>id</code> because the <code>id</code> gets used in the rendered HTML divs, and HTML with more than one element with the same id is invalid HTML. This is a general issue for Shiny - outputs can only be used once per each unique <code>id</code> (see <a href="https://github.com/rstudio/shiny/issues/743">this GitHub issue</a> on the topic).</p>
 <p>The solution that we use is to simply make a copy of the value and then display the copy (this is also the <a href="https://github.com/rstudio/shiny/issues/743#issuecomment-652397537">solution</a> on the GitHub issue linked above).</p>
 <p>To do so, in the server code chunk use the <code>sd_copy_value()</code> function to create a copy of the value, like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_copy_value</span>(<span class="at">id =</span> <span class="st">"name"</span>, <span class="at">id_copy =</span> <span class="st">"name_copy"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>You can then use the <code>sd_display_value()</code> function to display both the original and copied values. For example:</p>
+<p>You can then use the <code>sd_output()</code> function to display both the original and copied values. For example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Welcome, <span class="st">`</span><span class="at">r sd_display_value("name")</span><span class="st">`</span><span class="sc">!</span></span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Welcome, <span class="st">`</span><span class="at">r sd_output("name", type = "value")</span><span class="st">`</span><span class="sc">!</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>Is it alright <span class="cf">if</span> we call you <span class="st">`</span><span class="at">r sd_display_value("name_copy")</span><span class="st">`</span>?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>Is it alright <span class="cf">if</span> we call you <span class="st">`</span><span class="at">r sd_output("name_copy", type = "value")</span><span class="st">`</span>?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If the respondent entered “Dave” in the <code>name</code> question, this would render as:</p>
 <blockquote class="blockquote">
@@ -422,20 +422,19 @@ Note
 </div>
 </div>
 <p>Remember that the names of the vector are the labels, so the respondents will see the numbers in the names of the above vector, and the values (<code>'option1'</code>, etc.) will be stored in the resulting survey data.</p>
-<p>To then use these options in a multiple choice question, you would use the <code>sd_question()</code> function with <code>reactive = TRUE</code>, like this:</p>
+<p>To then use these options in a multiple choice question, you would use the <code>sd_question()</code> function like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">"q1"</span>,</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"mc"</span>,  </span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Which of these numbers is the largest?"</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> q1_options,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">reactive =</span> <span class="cn">TRUE</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> q1_options</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The key here is <code>reactive = TRUE</code>, which tells surveydown to make this a reactive question. By putting this question inside the server code chunk, the question will be created as a reactive question that can be displayed in the survey using the <code>sd_display_question()</code> function, like this:</p>
+<p>By defining this question inside the server code chunk, the question will be created as a reactive question that can be displayed in the survey using the <code>sd_output()</code> function, like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_display_question(id = "q1")</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_output(id = "q1", type = "question")</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>One important caveat to this approach is that the random numbers that are generated are not automatically stored in the survey data (because they are generated live). If you needed to store the random numbers, you can use the <code>sd_store_value()</code> function, like this:</p>
@@ -500,9 +499,8 @@ Note
 <span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">"q1"</span>,</span>
 <span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"mc"</span>,  </span>
 <span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Which of these numbers is the largest?"</span>,</span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> q1_options,</span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">reactive =</span> <span class="cn">TRUE</span></span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> q1_options</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

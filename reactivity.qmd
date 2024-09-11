@@ -27,10 +27,10 @@ sd_question(
 )
 ```
 
-Then you can use the `sd_display_value()` function to display the value of the `"name"` question in other parts of your survey. For example:
+Then you can use the `sd_output()` function to display the value of the `"name"` question in other parts of your survey. For example:
 
 ```{r}
-Welcome, `r sd_display_value("name")`!
+Welcome, `r sd_output("name", type = "value")`!
 ```
 
 If the respondent entered "Dave" in the `name` question, this would render as:
@@ -39,13 +39,13 @@ If the respondent entered "Dave" in the `name` question, this would render as:
 
 ::: {.callout-note title="How this works under the hood"}
 
-Every question has an `id`, and the values chosen are stored automatically as `id_value` (e.g. if the question `id` was `name`, then the value would be stored as `name_value`). In the `sd_display_value()` function, we append this `_value` to the `id` to get the object we want to display, then we use an appropriate `shiny` output function to display it, e.g. `shiny::textOutput()`.
+Every question has an `id`, and the values chosen are stored automatically as `id_value` (e.g. if the question `id` was `name`, then the value would be stored as `name_value`). In the `sd_output()` function, we append this `_value` to the `id` to get the object we want to display if the user defines `type = "value"`, then we use an appropriate `shiny` output function to display it, e.g. `shiny::textOutput()`. You can also use `sd_output()` to show reactive questions with `type = "question"` or other stored values from the server code chunk.
 
 :::
 
 ### Showing the same value in multiple places
 
-The `sd_display_value()` function can only be used once per each unique question `id` because the `id` gets used in the rendered HTML divs, and HTML with more than one element with the same id is invalid HTML. This is a general issue for Shiny - outputs can only be used once per each unique `id` (see [this GitHub issue](https://github.com/rstudio/shiny/issues/743) on the topic).
+The `sd_output()` function can only be used once per each unique question `id` because the `id` gets used in the rendered HTML divs, and HTML with more than one element with the same id is invalid HTML. This is a general issue for Shiny - outputs can only be used once per each unique `id` (see [this GitHub issue](https://github.com/rstudio/shiny/issues/743) on the topic).
 
 The solution that we use is to simply make a copy of the value and then display the copy (this is also the [solution](https://github.com/rstudio/shiny/issues/743#issuecomment-652397537) on the GitHub issue linked above). 
 
@@ -55,12 +55,12 @@ To do so, in the server code chunk use the `sd_copy_value()` function to create 
 sd_copy_value(id = "name", id_copy = "name_copy")
 ```
 
-You can then use the `sd_display_value()` function to display both the original and copied values. For example:
+You can then use the `sd_output()` function to display both the original and copied values. For example:
 
 ```{r}
-Welcome, `r sd_display_value("name")`!
+Welcome, `r sd_output("name", type = "value")`!
 
-Is it alright if we call you `r sd_display_value("name_copy")`?
+Is it alright if we call you `r sd_output("name_copy", type = "value")`?
 ```
 
 If the respondent entered "Dave" in the `name` question, this would render as:
@@ -100,24 +100,23 @@ q1_options
 
 Remember that the names of the vector are the labels, so the respondents will see the numbers in the names of the above vector, and the values (`'option1'`, etc.) will be stored in the resulting survey data.
 
-To then use these options in a multiple choice question, you would use the `sd_question()` function with `reactive = TRUE`, like this:
+To then use these options in a multiple choice question, you would use the `sd_question()` function like this:
 
 ```{r}
 sd_question(
   id = "q1",
   type = "mc",  
   label = "Which of these numbers is the largest?",
-  option = q1_options,
-  reactive = TRUE
+  option = q1_options
 )
 ```
 
-The key here is `reactive = TRUE`, which tells surveydown to make this a reactive question. By putting this question inside the server code chunk, the question will be created as a reactive question that can be displayed in the survey using the `sd_display_question()` function, like this:
+By defining this question inside the server code chunk, the question will be created as a reactive question that can be displayed in the survey using the `sd_output()` function, like this:
 
 ```{r}
 #| echo: fenced
 
-sd_display_question(id = "q1")
+sd_output(id = "q1", type = "question")
 ```
 
 One important caveat to this approach is that the random numbers that are generated are not automatically stored in the survey data (because they are generated live). If you needed to store the random numbers, you can use the `sd_store_value()` function, like this:
@@ -184,10 +183,6 @@ sd_question(
   id = "q1",
   type = "mc",  
   label = "Which of these numbers is the largest?",
-  option = q1_options,
-  reactive = TRUE
+  option = q1_options
 )
 ```
-
-
-

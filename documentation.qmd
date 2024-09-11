@@ -36,5 +36,6 @@ features_df <- read.csv(
 features_df$Progress <- ifelse(features_df$Progress == 1, complete, incomplete)
 
 tt(features_df, theme = "striped") |>
-    style_tt(fontsize = 0.9)
+    style_tt(fontsize = 0.9) |>
+    style_tt(j = 1, align = "c")
 ```

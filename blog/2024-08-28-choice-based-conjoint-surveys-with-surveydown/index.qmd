@@ -78,7 +78,7 @@ We recommend opening the `survey.Rproj` if you're working in RStudio to make sur
 
 ## Content in the survey body
 
-After the setup code chunk, we have a series of pages (defined with `:::` fences) that include markdown-formatted text and survey questions (defined with `sd_question()`). You can modify any of this content as you wish to suit the needs of your survey. 
+After the setup code chunk (where we load the package and establish a database connection with `sd_database()`), we have a series of pages (defined with `:::` fences) that include markdown-formatted text and survey questions (defined with `sd_question()`). You can modify any of this content as you wish to suit the needs of your survey. 
 
 In this demo, we have a few other examples included, like a conditionally displayed question (the `fav_fruit` question will not display if you choose "No" on the first question about liking fruit) as well as a question that skips people to the end (if you choose "blue" and not "red" on the `screening` page). The logic controlling the conditional display and skipping is defined in the `sd_config()` function inside the `server.R` file.
 
@@ -200,16 +200,15 @@ sd_question(
   type   = 'mc_buttons',
   id     = 'cbc_q1',
   label  = "(1 of 6) If these were your only options, which would you choose?",
-  option = cbc1_options,
-  reactive = TRUE
+  option = cbc1_options
 )
 
 # ...and 5 more questions like this
 ```
 
-Note here the final argument: `reactive = TRUE`. Since the labels in the options are being _dynamically_ generated on each new session (each respondent), they have to be created in the server, not in the main survey body. As a result, the `sd_question()` function must also be created in the server code (if you put this code in the main body, only one random set of choice options will be generated, and they'll be the same for everyone). 
+Remember that since the labels in the options are being _dynamically_ generated on each new session (each respondent), they have to be created in the server, not in the main survey body. As a result, the `sd_question()` function must also be created in the server code (if you put this code in the main body, only one random set of choice options will be generated, and they'll be the same for everyone). 
 
-By setting `reactive = TRUE`, we're telling surveydown that this question should not be displayed here, it just needs to generate the question and store it's `id`. Then in the survey body we tell it where to display the question with `sd_display_question('id')`, changing `id` to each corresponding choice question we created. In the demo `survey.qmd` file, you'll see that there are 6 choice questions displayed in the main survey body (each on their own page), and each of those 6 questions are defined in the `server.R` file. 
+To display each question in the survey body, we use `sd_output('id')`, changing `id` to each corresponding choice question we created. In the demo `survey.qmd` file, you'll see that there are 6 choice questions displayed in the main survey body (each on their own page), and each of those 6 questions are defined in the `server.R` file. 
 
 When rendered, a choice question will look like this, with the values matching whatever alternative was chosen in the design file:
 
@@ -298,11 +297,11 @@ sd_question(
 
 ## Preview and check
 
-The rest of the `server.R` file has the remaining components we need to establish a database connection (with `sd_database()`) and include any conditional display or skip logic (with `sd_config()`). This is all standard features of any surveydown survey, so we won't cover them in detail here and instead direct you to the [documentation](https://surveydown.org/documentation) for details.
+The rest of the `server.R` file has the remaining components we need, like any conditional display or skip logic using `sd_config()`. This is all standard features of any surveydown survey, so we won't cover them in detail here and instead direct you to the [documentation](https://surveydown.org/documentation) for details.
 
-But before you go live, it's a good idea to do some quick testing. You can test your survey even without having it connected to a database by setting `pause  = TRUE` in the `sd_database()` function. Of course, you probably should also test it after connecting it to a database to ensure that responses are being properly stored. 
+But before you go live, it's a good idea to do some quick testing. You can test your survey even without having it connected to a database by setting `ignore = TRUE` in the `sd_database()` function. Of course, you probably should also test it after connecting it to a database to ensure that responses are being properly stored. 
 
-When testing, you'll probably get an error - don't panic! Read the terminal output carefully and debug. There's a good chance you may have missed a bug somewhere in your server code. But since it's in a separate `server.R` file, you should be able to open this and run through your code to check that things are working properly.
+When testing, you might get an error - don't panic! Read the terminal output carefully and debug. There's a good chance you may have missed a bug somewhere in your server code. But since it's in a separate `server.R` file, you should be able to open this and run through your code to check that things are working properly.
 
 ## Getting the data
 

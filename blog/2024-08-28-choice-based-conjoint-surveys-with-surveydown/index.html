@@ -314,7 +314,7 @@ Note
 </section>
 <section id="content-in-the-survey-body" class="level2">
 <h2 class="anchored" data-anchor-id="content-in-the-survey-body">Content in the survey body</h2>
-<p>After the setup code chunk, we have a series of pages (defined with <code>:::</code> fences) that include markdown-formatted text and survey questions (defined with <code>sd_question()</code>). You can modify any of this content as you wish to suit the needs of your survey.</p>
+<p>After the setup code chunk (where we load the package and establish a database connection with <code>sd_database()</code>), we have a series of pages (defined with <code>:::</code> fences) that include markdown-formatted text and survey questions (defined with <code>sd_question()</code>). You can modify any of this content as you wish to suit the needs of your survey.</p>
 <p>In this demo, we have a few other examples included, like a conditionally displayed question (the <code>fav_fruit</code> question will not display if you choose “No” on the first question about liking fruit) as well as a question that skips people to the end (if you choose “blue” and not “red” on the <code>screening</code> page). The logic controlling the conditional display and skipping is defined in the <code>sd_config()</code> function inside the <code>server.R</code> file.</p>
 <p>None of this is necessary for a conjoint survey, but often times these are features that you may want to include, such as screening people out of the survey if they don’t qualify to take it, so we include it for demonstration purposes.</p>
 </section>
@@ -419,14 +419,13 @@ Note
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type   =</span> <span class="st">'mc_buttons'</span>,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id     =</span> <span class="st">'cbc_q1'</span>,</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label  =</span> <span class="st">"(1 of 6) If these were your only options, which would you choose?"</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> cbc1_options,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">reactive =</span> <span class="cn">TRUE</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ...and 5 more questions like this</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> cbc1_options</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ...and 5 more questions like this</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Note here the final argument: <code>reactive = TRUE</code>. Since the labels in the options are being <em>dynamically</em> generated on each new session (each respondent), they have to be created in the server, not in the main survey body. As a result, the <code>sd_question()</code> function must also be created in the server code (if you put this code in the main body, only one random set of choice options will be generated, and they’ll be the same for everyone).</p>
-<p>By setting <code>reactive = TRUE</code>, we’re telling surveydown that this question should not be displayed here, it just needs to generate the question and store it’s <code>id</code>. Then in the survey body we tell it where to display the question with <code>sd_display_question('id')</code>, changing <code>id</code> to each corresponding choice question we created. In the demo <code>survey.qmd</code> file, you’ll see that there are 6 choice questions displayed in the main survey body (each on their own page), and each of those 6 questions are defined in the <code>server.R</code> file.</p>
+<p>Remember that since the labels in the options are being <em>dynamically</em> generated on each new session (each respondent), they have to be created in the server, not in the main survey body. As a result, the <code>sd_question()</code> function must also be created in the server code (if you put this code in the main body, only one random set of choice options will be generated, and they’ll be the same for everyone).</p>
+<p>To display each question in the survey body, we use <code>sd_output('id')</code>, changing <code>id</code> to each corresponding choice question we created. In the demo <code>survey.qmd</code> file, you’ll see that there are 6 choice questions displayed in the main survey body (each on their own page), and each of those 6 questions are defined in the <code>server.R</code> file.</p>
 <p>When rendered, a choice question will look like this, with the values matching whatever alternative was chosen in the design file:</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -592,9 +591,9 @@ sd_question(
 </section>
 <section id="preview-and-check" class="level2">
 <h2 class="anchored" data-anchor-id="preview-and-check">Preview and check</h2>
-<p>The rest of the <code>server.R</code> file has the remaining components we need to establish a database connection (with <code>sd_database()</code>) and include any conditional display or skip logic (with <code>sd_config()</code>). This is all standard features of any surveydown survey, so we won’t cover them in detail here and instead direct you to the <a href="https://surveydown.org/documentation">documentation</a> for details.</p>
-<p>But before you go live, it’s a good idea to do some quick testing. You can test your survey even without having it connected to a database by setting <code>pause  = TRUE</code> in the <code>sd_database()</code> function. Of course, you probably should also test it after connecting it to a database to ensure that responses are being properly stored.</p>
-<p>When testing, you’ll probably get an error - don’t panic! Read the terminal output carefully and debug. There’s a good chance you may have missed a bug somewhere in your server code. But since it’s in a separate <code>server.R</code> file, you should be able to open this and run through your code to check that things are working properly.</p>
+<p>The rest of the <code>server.R</code> file has the remaining components we need, like any conditional display or skip logic using <code>sd_config()</code>. This is all standard features of any surveydown survey, so we won’t cover them in detail here and instead direct you to the <a href="https://surveydown.org/documentation">documentation</a> for details.</p>
+<p>But before you go live, it’s a good idea to do some quick testing. You can test your survey even without having it connected to a database by setting <code>ignore = TRUE</code> in the <code>sd_database()</code> function. Of course, you probably should also test it after connecting it to a database to ensure that responses are being properly stored.</p>
+<p>When testing, you might get an error - don’t panic! Read the terminal output carefully and debug. There’s a good chance you may have missed a bug somewhere in your server code. But since it’s in a separate <code>server.R</code> file, you should be able to open this and run through your code to check that things are working properly.</p>
 </section>
 <section id="getting-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="getting-the-data">Getting the data</h2>

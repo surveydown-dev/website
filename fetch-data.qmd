@@ -48,7 +48,7 @@ Now the `data` object will be a reactive expression, not a data.frame.
 To use it, you have to call it with `()` to get the latest data as a data.frame. For example:
 
 ```{r}
-data <- sd_get_data(db)
+data <- sd_get_data(db, refresh_interval = 5)
 
 output$my_plot <- renderPlot({  
   my_data <- data()
@@ -56,17 +56,8 @@ output$my_plot <- renderPlot({
 })
 ```
 
-Here the `my_data` object will be a data.frame with the latest data from your database, which you could then use to make a plot. In this example, the `output$my_plot` object will be a plot, which you can then display in your survey by placing `plotOutput("my_plot")` in a code chunk (or inline code) somewhere in your survey.
+Here the `my_data` object will be a data.frame with the latest data from your database, refreshed every 5 sections according to the `refresh_interval` parameter (5 seconds is the default value), which you could then use to make a plot. 
+
+In this example, the `output$my_plot` object will be a plot, which you can then display in your survey by placing `plotOutput("my_plot")` in a code chunk (or inline code) somewhere in your survey.
 
 See the [Reactivity](reactivity.qmd) page for more information on how to use reactivity in your survey.
-
-::: {.callout-tip}
-
-The `sd_get_data()` function also accepts a parameter of `refresh_interval`, which defines the interval of the refreshing time, in seconds. By default it's set to `5`. You can modify it by changing this value:
-
-```{r}
-# Change refresh_interval to 10
-data <- sd_get_data(db, refresh_interval = 10)
-```
-
-:::

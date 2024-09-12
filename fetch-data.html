@@ -365,32 +365,16 @@ Tip
 <p>Now the <code>data</code> object will be a reactive expression, not a data.frame.</p>
 <p>To use it, you have to call it with <code>()</code> to get the latest data as a data.frame. For example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">sd_get_data</span>(db)</span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">sd_get_data</span>(db, <span class="at">refresh_interval =</span> <span class="dv">5</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>my_plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({  </span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  my_data <span class="ot">&lt;-</span> <span class="fu">data</span>()</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># insert code here to make a plot with my_data</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Here the <code>my_data</code> object will be a data.frame with the latest data from your database, which you could then use to make a plot. In this example, the <code>output$my_plot</code> object will be a plot, which you can then display in your survey by placing <code>plotOutput("my_plot")</code> in a code chunk (or inline code) somewhere in your survey.</p>
+<p>Here the <code>my_data</code> object will be a data.frame with the latest data from your database, refreshed every 5 sections according to the <code>refresh_interval</code> parameter (5 seconds is the default value), which you could then use to make a plot.</p>
+<p>In this example, the <code>output$my_plot</code> object will be a plot, which you can then display in your survey by placing <code>plotOutput("my_plot")</code> in a code chunk (or inline code) somewhere in your survey.</p>
 <p>See the <a href="./reactivity.html">Reactivity</a> page for more information on how to use reactivity in your survey.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The <code>sd_get_data()</code> function also accepts a parameter of <code>refresh_interval</code>, which defines the interval of the refreshing time, in seconds. By default it’s set to <code>5</code>. You can modify it by changing this value:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Change refresh_interval to 10</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">sd_get_data</span>(db, <span class="at">refresh_interval =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
 
 
 </section>

@@ -327,24 +327,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Helpful links:</p>
-<ol type="1">
-<li><p><a href="https://github.com/surveydown-dev/demo-external-redirect">Demo survey of External Redirect</a></p></li>
-<li><p><a href="https://www.youtube.com/watch?v=Q4sQjkHm3do">Video Showcase of External Redirect</a></p></li>
-</ol>
-</div>
-</div>
 <p>Like other operations, there are also two types of redirection: static and reactive. A <strong>static</strong> redirect provides a hard-coded URL, like <a href="https://www.google.com">google.com</a>, <a href="https://www.apple.com">apple.com</a>, etc. A <strong>reactive</strong> redirect grabs parameters from your survey URL and allows you to use them to construct a new redirect URL.</p>
+<p>We highly recommend you to watch the <a href="https://www.youtube.com/watch?v=Q4sQjkHm3do">video showcase</a> and play with our <a href="https://github.com/surveydown-dev/demo-external-redirect">demo survey</a>, so that you can have a full understanding of how this works:</p>
+<center>
+<a href="https://www.youtube.com/watch?v=Q4sQjkHm3do" class="btn btn-primary" role="button"> Video Showcase </a> <a href="https://github.com/surveydown-dev/demo-external-redirect" class="btn btn-primary" role="button"> Demo Survey </a>
+</center>
 <section id="static-redirect" class="level2">
 <h2 class="anchored" data-anchor-id="static-redirect">Static Redirect</h2>
 <p>In your <strong>survey body</strong>, use the <code>sd_redirect()</code> function and define your parameters. Below is an example of a redirect button that goes to <a href="https://www.google.com">google.com</a>.</p>
@@ -358,8 +345,9 @@ Tip
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id     =</span> <span class="st">"redirect"</span>,</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">url    =</span> <span class="st">"https://www.google.com"</span>,</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label  =</span> <span class="st">"Click to Google"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">button =</span> <span class="cn">TRUE</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">button =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">newtab =</span> <span class="cn">TRUE</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
@@ -378,7 +366,7 @@ Tip
         background-color: #f9f9f9;
         margin: 0.5rem 0.5rem;
         ">
-<button id="redirect" type="button" class="btn btn-default action-button" onclick="window.location.href = 'https://www.google.com';">Click to Google</button>
+<button id="redirect" type="button" class="btn btn-default action-button" onclick="window.open('https://www.google.com', '_blank');">Click to Google</button>
 </div>
 </div>
 </div>
@@ -390,9 +378,8 @@ Tip
 <section id="reactive-redirect" class="level2">
 <h2 class="anchored" data-anchor-id="reactive-redirect">Reactive Redirect</h2>
 <p>Reactive redirect is essentially useful if you deploy your survey on survey panels like <a href="https://www.prolific.com">Prolific</a> or <a href="https://www.dynata.com">Dynata</a>. These survey panels usually use different IDs to identify survey respondents.</p>
-<p>We highly recommend you to watch the <a href="https://www.youtube.com/watch?v=Q4sQjkHm3do">video recording</a> and play with our <a href="https://github.com/surveydown-dev/demo-external-redirect">demo survey</a>, so that you can have a full understanding of how this works.</p>
-<p>To make reactive redirect work, you need to edit both in your <strong>server chunk</strong>, and your <strong>survey body</strong>. We’ll use an exmaple to showcase this. This is the same example in our <a href="https://github.com/surveydown-dev/demo-external-redirect">demo survey</a>.</p>
-<p><strong>Firstly</strong>, in your <strong>server chunk</strong>, define your <code>url_normal</code> URL object. You’ll use the <code>sd_get_url_pars()</code> function to retrieve all the parameters in your survey URL, and concatenate with customized texts including id names or status values, etc. In this example, we defined 3 IDs: <code>id_a</code>, <code>id_b</code>, and <code>id_c</code>, which should be grabbed from your survey link.</p>
+<p>To make reactive redirect work, you need to edit both in your <strong>server chunk</strong>, and your <strong>survey body</strong>. We’ll use an example to explain the process. This is the same example in our <a href="https://github.com/surveydown-dev/demo-external-redirect">demo survey</a>.</p>
+<p><strong>Firstly</strong>, in your <strong>server chunk</strong>, define <code>url_normal</code>. It is an <a href="https://shiny.posit.co/r/getstarted/shiny-basics/lesson6/">reactive expression</a> in Shiny apps. You’ll use the <code>sd_get_url_pars()</code> function to retrieve all the parameters in your survey URL, and concatenate with customized texts including id names, status values, etc. In this example, we defined 3 IDs: <code>id_a</code>, <code>id_b</code>, and <code>id_c</code>, which should be grabbed from your survey link.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reactive expression that generates a url for a normal ending</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>url_normal <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
@@ -406,7 +393,7 @@ Tip
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                <span class="st">"&amp;status=0"</span>)) <span class="co"># status of 0 indicates normal ending</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Secondly</strong>, also in your <strong>server chunk</strong>, create the redirect button using <code>sd_redirect()</code>. Note that we passed the <code>url_normal()</code> object, which has a pair of <strong>parentheses</strong>, to the <code>url</code> parameter.</p>
+<p><strong>Secondly</strong>, also in your <strong>server chunk</strong>, create the redirect button using <code>sd_redirect()</code>. Note that we passed <code>url_normal()</code> value, with a pair of <strong>parentheses</strong>, to the <code>url</code> parameter.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the redirect button for normal ending</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_redirect</span>(</span>
@@ -415,6 +402,19 @@ Tip
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">button =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Redirect with Normal Status"</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You may have noticed that we created <code>url_normal</code>, and then passed <code>url_normal()</code> to <code>sd_redirect()</code>. This is how Shiny app deals with reactivity. Here <code>url_normal</code> is created by <code>reactive()</code> and is called “reactive expression”. <code>url_normal()</code> is a string value containing the concatenated URL. In other words, the <code>url_normal()</code> value is the result of the <code>url_normal</code> expression.</p>
+</div>
 </div>
 <p><strong>Finally</strong>, in your <strong>survey body</strong>, output this <code>redirect_normal</code> URL using the <code>sd_output()</code> function:</p>
 <div class="cell">
@@ -435,7 +435,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Apply count-down delay (only applies for <strong>static</strong> redirect):</p>
+<p>Count-down delay (only applies for <strong>static</strong> redirect):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># count-down of 10 seconds</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_redirect</span>(</span>
@@ -443,18 +443,6 @@ Tip
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">delay  =</span> <span class="dv">10</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <p>Open at a new tab (applies for both <strong>static</strong> and <strong>reactive</strong>):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_redirect</span>(</span>

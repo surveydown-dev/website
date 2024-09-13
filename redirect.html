@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Survey Components – surveydown.org</title>
+<title>External Redirect – surveydown.org</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -108,12 +108,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style>html{ scroll-behavior: smooth; }</style>
 
 
-<meta property="og:title" content="Survey Components – surveydown.org">
+<meta property="og:title" content="External Redirect – surveydown.org">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://www.surveydown.org/images/logo.ico">
 <meta property="og:site_name" content="https://surveydown.org">
 <meta property="og:locale" content="es_ES">
-<meta name="twitter:title" content="Survey Components – surveydown.org">
+<meta name="twitter:title" content="External Redirect – surveydown.org">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://www.surveydown.org/images/logo.png">
 <meta name="twitter:creator" content="@johnhelveston">
@@ -183,7 +183,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./survey-components.html">Reference Manuals</a></li><li class="breadcrumb-item"><a href="./survey-components.html">Survey Components</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./survey-components.html">Reference Manuals</a></li><li class="breadcrumb-item"><a href="./redirect.html">Redirect</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -224,7 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./survey-components.html" class="sidebar-item-text sidebar-link active">
+  <a href="./survey-components.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Survey Components</span></a>
   </div>
 </li>
@@ -248,7 +248,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./redirect.html" class="sidebar-item-text sidebar-link">
+  <a href="./redirect.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Redirect</span></a>
   </div>
 </li>
@@ -300,31 +300,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#yaml-header" id="toc-yaml-header" class="nav-link" data-scroll-target="#yaml-header">1. YAML Header</a>
-  <ul class="collapse">
-  <li><a href="#required-content" id="toc-required-content" class="nav-link" data-scroll-target="#required-content">Required content</a></li>
-  <li><a href="#setting-the-theme" id="toc-setting-the-theme" class="nav-link" data-scroll-target="#setting-the-theme">Setting the theme</a></li>
-  <li><a href="#progress-bar" id="toc-progress-bar" class="nav-link" data-scroll-target="#progress-bar">Progress bar</a></li>
-  </ul></li>
-  <li><a href="#setup-code-chunk" id="toc-setup-code-chunk" class="nav-link" data-scroll-target="#setup-code-chunk">2. Setup code chunk</a></li>
-  <li><a href="#survey-body" id="toc-survey-body" class="nav-link" data-scroll-target="#survey-body">3. Survey body</a>
-  <ul class="collapse">
-  <li><a href="#adding-pages" id="toc-adding-pages" class="nav-link" data-scroll-target="#adding-pages">Adding pages</a></li>
-  <li><a href="#adding-navigation-buttons" id="toc-adding-navigation-buttons" class="nav-link" data-scroll-target="#adding-navigation-buttons">Adding navigation buttons</a></li>
-  <li><a href="#ending-the-survey" id="toc-ending-the-survey" class="nav-link" data-scroll-target="#ending-the-survey">Ending the survey</a></li>
-  <li><a href="#adding-questions" id="toc-adding-questions" class="nav-link" data-scroll-target="#adding-questions">Adding questions</a></li>
-  </ul></li>
-  <li><a href="#server-code-chunk" id="toc-server-code-chunk" class="nav-link" data-scroll-target="#server-code-chunk">4. Server code chunk</a></li>
+  <li><a href="#static-redirect" id="toc-static-redirect" class="nav-link active" data-scroll-target="#static-redirect">Static Redirect</a></li>
+  <li><a href="#reactive-redirect" id="toc-reactive-redirect" class="nav-link" data-scroll-target="#reactive-redirect">Reactive Redirect</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./survey-components.html">Reference Manuals</a></li><li class="breadcrumb-item"><a href="./survey-components.html">Survey Components</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./survey-components.html">Reference Manuals</a></li><li class="breadcrumb-item"><a href="./redirect.html">Redirect</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Survey Components</h1>
+<h1 class="title">External Redirect</h1>
 </div>
 
 
@@ -341,286 +327,144 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This guide covers the main elements in your <code>.qmd</code> survey file as well as how to add content to your survey, like pages, questions, etc.</p>
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>Every surveydown survey is configured in a single <code>.qmd</code> file that consists of <strong>4 parts</strong>:</p>
-<ol type="1">
-<li>The YAML header.</li>
-<li>The setup code chunk.</li>
-<li>The survey body.</li>
-<li>The server code chunk.</li>
-</ol>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="images/screenshots/components_01.jpeg" class="img-fluid figure-img" style="width:60.0%"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="images/screenshots/components_02.jpeg" class="img-fluid figure-img" style="width:60.0%"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="images/screenshots/components_03.jpeg" class="img-fluid figure-img" style="width:60.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="yaml-header" class="level2">
-<h2 class="anchored" data-anchor-id="yaml-header">1. YAML Header</h2>
-<p>The YAML header is at the top of the <code>.qmd</code> file. In addition to two required elements, the YAML can be used to set the survey theme as well as modify the survey progress bar.</p>
-<section id="required-content" class="level3">
-<h3 class="anchored" data-anchor-id="required-content">Required content</h3>
-<p>For a surveydown survey, your YAML must contain at least the following:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">server</span><span class="kw">:</span><span class="at"> shiny</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">filters</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">surveydown</span><span class="kw">]</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The <code>server: shiny</code> part ensures that the document will render as a Shiny app. The <code>filters: [surveydown]</code> part applies the surveydown Quarto extension to the project, which is required.</p>
-</section>
-<section id="setting-the-theme" class="level3">
-<h3 class="anchored" data-anchor-id="setting-the-theme">Setting the theme</h3>
-<p>The YAML can also be used to set several <strong>optional</strong> global settings, such as the overall survey <code>theme</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span><span class="kw">:</span><span class="at"> united</span><span class="co"> # Any bootswatch theme </span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>There are <a href="https://bootswatch.com">25 bootswatch themes</a> to choose from. You can also provide a <code>custom.scss</code> file to further modify the theme, or even combine the two, e.g.:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">united</span><span class="kw">,</span><span class="at"> custom.scss</span><span class="kw">]</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="progress-bar" class="level3">
-<h3 class="anchored" data-anchor-id="progress-bar">Progress bar</h3>
-<p>You can modify the survey progress bar with the <code>barcolor</code> and <code>barposition</code> keys, e.g.:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barcolor</span><span class="kw">:</span><span class="at"> theme </span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">barposition</span><span class="kw">:</span><span class="at"> top </span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The <code>barcolor</code> key defines the color of the progress bar. It defaults to <code>theme</code>, meaning it will take the primary theme color. You may also use any hex code to overwrite this color as you wish, e.g.: <code>#768692</code>.</p>
-<p>The <code>barposition</code> key defines the position of the progress bar. It defaults to <code>top</code>, but can also be changed to <code>bottom</code> or <code>none</code> (to remove the bar). The progress bar updates on every <strong>question</strong> the user clicks on, not pages.</p>
-</section>
-</section>
-<section id="setup-code-chunk" class="level2">
-<h2 class="anchored" data-anchor-id="setup-code-chunk">2. Setup code chunk</h2>
-<p>After the YAML header, you’ll need to load the <code>surveydown</code> package and run the <code>sd_setup()</code> function. This should be placed inside a code chunk that looks like this:</p>
-<div class="cell" data-context="setup">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| context: setup</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| warning: false</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| message: false</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="in"># Load the package</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="in">library(surveydown)</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="in"># Run initial setup function (essential - do not delete)</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="in">sd_setup()</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="in"># Setup your database</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="in">db &lt;- sd_database(</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="in">  host   = "",</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="in">  dbname = "",</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="in">  port   = "",</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="in">  user   = "",</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="in">  table  = "",</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="in">  ignore = TRUE</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Anything loaded in the setup chunk is accessible in both your survey body and your server. This is similar in a standard Shiny app to anything loaded in the global environment before defining a <code>ui</code> and <code>server</code>.</p>
-<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Important
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Note</strong>: Every surveydown survey requires loading the <code>surveydown</code> package with <code>library(surveydown)</code> and running the <code>sd_setup()</code> function.</p>
+<p>Helpful links:</p>
+<ol type="1">
+<li><p><a href="https://github.com/surveydown-dev/demo-external-redirect">Demo survey of External Redirect</a></p></li>
+<li><p><a href="https://www.youtube.com/watch?v=Q4sQjkHm3do">Video Showcase of External Redirect</a></p></li>
+</ol>
 </div>
 </div>
-<p>We also define a <code>db</code> object that will be used to store survey data. You can find more on how to set this up on the <a href="./store-data.html">Store Data</a> page.</p>
-</section>
-<section id="survey-body" class="level2">
-<h2 class="anchored" data-anchor-id="survey-body">3. Survey body</h2>
-<p>The survey body is all the content in between your setup code chunk and your server code chunk. You can use markdown (or the RStudio visual editor) to insert text, images, etc. just like you would in any Quarto document.</p>
-<p>The unique elements to a surveydown survey are <strong>pages</strong>, <strong>navigation buttons</strong>, and <strong>questions</strong>.</p>
-<section id="adding-pages" class="level3">
-<h3 class="anchored" data-anchor-id="adding-pages">Adding pages</h3>
-<p>In surveydown, pages are defined using fences (<code>:::</code>), like this:</p>
+<p>Like other operations, there are also two types of redirection: static and reactive. A <strong>static</strong> redirect provides a hard-coded URL, like <a href="https://www.google.com">google.com</a>, <a href="https://www.apple.com">apple.com</a>, etc. A <strong>reactive</strong> redirect grabs parameters from your survey URL and allows you to use them to construct a new redirect URL.</p>
+<section id="static-redirect" class="level2">
+<h2 class="anchored" data-anchor-id="static-redirect">Static Redirect</h2>
+<p>In your <strong>survey body</strong>, use the <code>sd_redirect()</code> function and define your parameters. Below is an example of a redirect button that goes to <a href="https://www.google.com">google.com</a>.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Code chunk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span> {<span class="co">#welcome .sd-page}</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>Page <span class="dv">1</span> content here</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="er">:::</span> {<span class="co">#page2 .sd-page}</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>Page <span class="dv">2</span> content here</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Static redirect</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_redirect</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id     =</span> <span class="st">"redirect"</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">url    =</span> <span class="st">"https://www.google.com"</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label  =</span> <span class="st">"Click to Google"</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">button =</span> <span class="cn">TRUE</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>As you can see, we use three colon symbols <code>:::</code>, called a “fence”, to mark the start and end of pages. This notation is commonly used in Quarto for a variety of use cases, like defining <a href="https://quarto.org/docs/authoring/figures.html#subfigures">subfigures</a> in images.</p>
-<p>In the starting fence, you need to define a page name (e.g.&nbsp;<code>welcome</code> and <code>page2</code> in the example above) and you need to define the class as <code>.sd-page</code>. Then anything you put between the page fences will appear on that page.</p>
-</section>
-<section id="adding-navigation-buttons" class="level3">
-<h3 class="anchored" data-anchor-id="adding-navigation-buttons">Adding navigation buttons</h3>
-<p>To navigate to the next page, you need to insert a <code>sd_next()</code> function call inside a code chunk, like this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_next(next_page = 'page2')</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The above code chunk will create a “Next” button that goes on to page 2 that looks like this:</p>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
 <div class="cell-output-display">
-<div style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
-<button id="next-page2" type="button" class="btn btn-default action-button" style="display: block; margin: auto;" onclick="Shiny.setInputValue('next_page', 'page2');">Next</button>
-</div>
-<script>
-    $(document).ready(function() {
-        var buttonId = 'next-page2';
-        $(document).on('keydown', function(event) {
-            if (event.key === 'Enter' && !event.repeat) {
-                var $button = $('#' + buttonId);
-                if ($button.is(':visible')) {
-                    $button.click();
-                    event.preventDefault();
-                }
-            }
-        });
-    });
-    </script>
+<div style="
+        text-align: center;
+        margin: 0.5rem 0.5rem;
+        ">
+<div style="
+        display: inline-block;
+        text-align: center;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 0.5rem 0.5rem;
+        background-color: #f9f9f9;
+        margin: 0.5rem 0.5rem;
+        ">
+<button id="redirect" type="button" class="btn btn-default action-button" onclick="window.location.href = 'https://www.google.com';">Click to Google</button>
 </div>
 </div>
-<p>In this example, the next button has to be inserted in a code chunk in between the <code>:::</code> fences of the <code>welcome</code> page in order to have a “Next” button that goes on to page 2. You can also send the user to other pages by just changing the value assigned to the <code>next_page</code> argument.</p>
-<p>Finally, you can also change the label of the button by changing the <code>label</code> argument, like this:</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="reactive-redirect" class="level2">
+<h2 class="anchored" data-anchor-id="reactive-redirect">Reactive Redirect</h2>
+<p>Reactive redirect is essentially useful if you deploy your survey on survey panels like <a href="https://www.prolific.com">Prolific</a> or <a href="https://www.dynata.com">Dynata</a>. These survey panels usually use different IDs to identify survey respondents.</p>
+<p>We highly recommend you to watch the <a href="https://www.youtube.com/watch?v=Q4sQjkHm3do">video recording</a> and play with our <a href="https://github.com/surveydown-dev/demo-external-redirect">demo survey</a>, so that you can have a full understanding of how this works.</p>
+<p>To make reactive redirect work, you need to edit both in your <strong>server chunk</strong>, and your <strong>survey body</strong>. We’ll use an exmaple to showcase this. This is the same example in our <a href="https://github.com/surveydown-dev/demo-external-redirect">demo survey</a>.</p>
+<p><strong>Firstly</strong>, in your <strong>server chunk</strong>, define your <code>url_normal</code> URL object. You’ll use the <code>sd_get_url_pars()</code> function to retrieve all the parameters in your survey URL, and concatenate with customized texts including id names or status values, etc. In this example, we defined 3 IDs: <code>id_a</code>, <code>id_b</code>, and <code>id_c</code>, which should be grabbed from your survey link.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_next(next_page = 'page2', label = 'Next page')</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reactive expression that generates a url for a normal ending</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>url_normal <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  params <span class="ot">&lt;-</span> <span class="fu">sd_get_url_pars</span>()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  id_a <span class="ot">&lt;-</span> params[<span class="st">"id_a"</span>]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  id_b <span class="ot">&lt;-</span> params[<span class="st">"id_b"</span>]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  id_c <span class="ot">&lt;-</span> params[<span class="st">"id_c"</span>]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">paste0</span>(<span class="st">"https://www.google.com?id_a="</span>, id_a,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                <span class="st">"id_b="</span>, id_b,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                <span class="st">"id_c="</span>, id_c,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                <span class="st">"&amp;status=0"</span>)) <span class="co"># status of 0 indicates normal ending</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><strong>Secondly</strong>, also in your <strong>server chunk</strong>, create the redirect button using <code>sd_redirect()</code>. Note that we passed the <code>url_normal()</code> object, which has a pair of <strong>parentheses</strong>, to the <code>url</code> parameter.</p>
 <div class="cell">
-<div class="cell-output-display">
-<div style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
-<button id="next-page2" type="button" class="btn btn-default action-button" style="display: block; margin: auto;" onclick="Shiny.setInputValue('next_page', 'page2');">Next page</button>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the redirect button for normal ending</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_redirect</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">"redirect_normal"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">url =</span> <span class="fu">url_normal</span>(),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">button =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Redirect with Normal Status"</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<script>
-    $(document).ready(function() {
-        var buttonId = 'next-page2';
-        $(document).on('keydown', function(event) {
-            if (event.key === 'Enter' && !event.repeat) {
-                var $button = $('#' + buttonId);
-                if ($button.is(':visible')) {
-                    $button.click();
-                    event.preventDefault();
-                }
-            }
-        });
-    });
-    </script>
-</div>
-</div>
-</section>
-<section id="ending-the-survey" class="level3">
-<h3 class="anchored" data-anchor-id="ending-the-survey">Ending the survey</h3>
-<p>To end a survey, all you have to do is create a page with no <code>sd_next()</code> button on it. This will effectively serve as a ending page, because the respondent will not be able to navigate anywhere else once reaching a page with no <code>sd_next()</code> button.</p>
-<p>For example, you may want to have a screen-out page that respondents are sent to if they answer a certain way on a question (see the <a href="./config-options.html#basic-skipping">basic skipping</a> page for an example). You can do this by creating a page with no <code>sd_next()</code> button on it, like this:</p>
+<p><strong>Finally</strong>, in your <strong>survey body</strong>, output this <code>redirect_normal</code> URL using the <code>sd_output()</code> function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span> {<span class="co">#screenout .sd-page}</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>Screenout page content here</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Put this in the desired place of your survey body</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_output</span>(<span class="st">"redirect_normal"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>When a respondent reaches this page, they will not be able to navigate anywhere else, so the survey is over.</p>
-</section>
-<section id="adding-questions" class="level3">
-<h3 class="anchored" data-anchor-id="adding-questions">Adding questions</h3>
-<p>Every survey question is created using the <code>sd_question()</code> function inside a code chunk. The question type is defined by the <code>type</code> argument. For example, to add a multiple choice question, you could insert the following code chunk:</p>
+<p>After all these are done, your <code>sd_output()</code> function will generate a button that redirect you to this link:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = 'mc',</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = 'penguins',</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "Which is your favorite type of penguin?",</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="in">  option = c(</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="in">    'Adélie'    = 'adelie',</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="in">    'Chinstrap' = 'chinstrap',</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="in">    'Gentoo'    = 'gentoo'</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>www.google.com<span class="sc">/</span>?id_a<span class="ot">=</span>a123id_b<span class="ot">=</span>b234id_c<span class="ot">=</span>c345<span class="sc">&amp;</span>status<span class="ot">=</span><span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The above code chunk will create a multiple choice question that looks like this:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Apply count-down delay (only applies for <strong>static</strong> redirect):</p>
 <div class="cell">
-<div class="cell-output-display">
-<div id="container- penguins" data-question-id="penguins" class="question-container" oninput="Shiny.setInputValue('penguins_interacted', true, {priority: 'event'});">
-<div id="penguins" style="width:100%;" class="form-group shiny-input-radiogroup shiny-input-container" role="radiogroup" aria-labelledby="penguins-label">
-<label class="control-label" id="penguins-label" for="penguins"><p>Which is your favorite type of penguin? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
-</label>
-<div class="shiny-options-group">
-<div class="radio">
-<label>
-<input type="radio" name="penguins" value="adelie">
-<span>Adélie</span>
-</label>
-</div>
-<div class="radio">
-<label>
-<input type="radio" name="penguins" value="chinstrap">
-<span>Chinstrap</span>
-</label>
-</div>
-<div class="radio">
-<label>
-<input type="radio" name="penguins" value="gentoo">
-<span>Gentoo</span>
-</label>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># count-down of 10 seconds</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_redirect</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># previous parameters...</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">delay  =</span> <span class="dv">10</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
 </div>
 </div>
+<div class="callout-body-container callout-body">
+<p>Open at a new tab (applies for both <strong>static</strong> and <strong>reactive</strong>):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_redirect</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># previous parameters...</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">newtab  =</span> <span class="cn">TRUE</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><br></p>
-<p>The <code>sd_question()</code> function can be used to create a variety of question types, like text input, select drop down choices, and more by changing the <code>type</code> argument (see the <a href="./question-types.html">Questions Types</a> page).</p>
-<p>The function has many other arguments for customizing the look and feel of the question, such as the <code>height</code> and <code>width</code> (see the <a href="./formatting.html">Formatting Questions</a> page).</p>
-<p>By default all questions are optional, but you can make questions required in the configuration options (see the <a href="./config-options.html#required-responses">Configuration Options</a> page for details).</p>
-</section>
-</section>
-<section id="server-code-chunk" class="level2">
-<h2 class="anchored" data-anchor-id="server-code-chunk">4. Server code chunk</h2>
-<p>At the very bottom of the .qmd file is a special “server” code chunk (that’s the <code>#| context: server</code> bit) that defines the app server. This is where you can set custom control logic and other configuration options. It looks like this:</p>
-<div class="cell" data-context="server">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| context: server</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="in"># Define the configuration settings</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="in">config &lt;- sd_config()</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="in"># The sd_server() function initiates your survey - don't change this</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="in">sd_server(</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="in">  input   = input,</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="in">  session = session,</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="in">  config  = config,</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="in">  db      = db</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If <code>newtab</code> is used together with <code>delay</code>, the new tab opened after count-down might be blocked by the browser. We’ve tested it with Safari and Edge. It worked fine on Safari, but Edge blocks it with a pop-up notice.</p>
 </div>
-<p>The <code>sd_config()</code> function is where you can define configuration options for the survey, such as <a href="./config-options.html#conditional-display">conditional display</a> (conditionally displaying a question based on responses to questions), or <a href="./config-options.html#conditional-skipping">conditional skip</a> (conditionally sending the respondent to a page based on responses to questions). See the <a href="./config-options.html">Configuration Options</a> page for details.</p>
-<p>The <code>sd_server()</code> function at the bottom makes everything run, which you can safely ignore - just don’t change it and all will be good! It should always be the last code in the server code chunk.</p>
+</div>
 
 
 </section>

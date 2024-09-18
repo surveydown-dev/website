@@ -249,6 +249,26 @@ config <- sd_config(
 )
 ```
 
+## Pre-rendering your survey
+
+When you run your app, the `sd_config()` function actually renders the `survey.qmd` file and parses its content. We designed it this way to ensure that the latest changes to your `survey.qmd` file are always included, but this also can result is a slight delay when the app loads.
+
+To speed this up, you can render your `survey.qmd` file first, either by clicking the "Render" button in RStudio or by running the following in the terminal:
+
+```{r}
+quarto render survey.qmd
+```
+
+This will generate a `survey.html` file in the project folder which you can then tell surveydown to use instead of re-rendering the `survey.qmd` file like this:
+
+```{r}
+config <- sd_config(
+  survey = "survey.html"
+)
+```
+
+This can dramatically accelerate the initial page loading.
+
 ## Admin page
 
 ::: {.callout-important}

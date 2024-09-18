@@ -6,13 +6,12 @@ surveydown::sd_create_survey("path/to/folder")
 
 This will create a folder located at `"path/to/folder"` with the following files:
 
-- `example.qmd`: a template survey you should edit.
+- `survey.qmd`: a template survey where you define your survey content (text, questions, images, etc.).
+- `app.R`: a template app file where you define your database, survey configuration options, and any other server logic.
 - `example.Rproj`: An RStudio project file (helpful if you're working in RStudio)
-- `_extensions`: A folder with the [surveydown Quarto extension]({{< var url_extension >}}) needed to make everything work (don't modify this).
 
 ::: {.callout-important}
 
 Every survey created with {surveydown} should be in its own separate project folder.
 
 :::
-

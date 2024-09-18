@@ -2,17 +2,11 @@
 title: "Configuration Options"
 ---
 
-All survey configuration options are defined with the `sd_config()` function in the server code chunk.
+All survey configuration options are defined with the `sd_config()` function in the server function in the `app.R` file.
 
 ## Conditional display
 
 ### Basic conditional display
-
-::: {.callout-tip}
-
-Use the `show_if` argument to control basic conditional display logic.
-
-:::
 
 It is often useful to have a question display conditionally based on the value of another question. For example, let's say we have a multiple choice question about people's favorite penguin type, and the last option is "other". If the respondent chose it, you may want a second question to popup that allows them to specify the other penguin type, like this:
 
@@ -21,9 +15,11 @@ It is often useful to have a question display conditionally based on the value o
 </center>
 <br>
 
-To implement this, you first need to define both the **triggering question** and the **target question**, like this:
+To implement this, you first need to define both the **triggering question** and the **target question** in the `survey.qmd` file, like this:
 
 ```{r}
+#| echo: fenced
+
 sd_question(
   type  = 'mc',
   id    = 'penguins',
@@ -43,7 +39,7 @@ sd_question(
 )
 ```
 
-Then in the server code chunk, you can use the `show_if` argument to define that the `penguins_other` question would only be shown if the respondent chose the `other` option in the `penguins` question, like this:
+Then in the server function, you can use the `show_if` argument to define that the `penguins_other` question would only be shown if the respondent chose the `other` option in the `penguins` question, like this:
 
 ```{r}
 config <- sd_config(
@@ -72,17 +68,13 @@ config <- sd_config(
 
 ### Custom conditional display
 
-::: {.callout-tip}
-
-Use the `show_if_custom` argument to control custom conditional display logic.
-
-:::
-
 The standard `show_if` argument is great for simple conditional display logic, but sometimes you need more flexibility. For example, you may want to display a question based on the values of two different questions. In this case, you can use the `show_if_custom` argument to define a custom function that determines the conditions for displaying a target question. 
 
 Using the same example as above, let's say we only want to display the `penguins_other` question if the respondent chose the `other` option in the `penguins` question and also if they chose `show` in a second question, `show_other`:
 
 ```{r}
+#| echo: fenced
+
 sd_question(
   type  = 'mc',
   id    = 'show_other',
@@ -127,15 +119,11 @@ In this case, each row in the `tibble()` is a condition with each condition in t
 
 ### Basic skipping
 
-::: {.callout-tip}
-
-Use the `skip_if` argument to control basic skipping logic.
-
-:::
-
-Often times you'll want to send people to different parts of the survey based on responses to questions. For example, let's say you want to screen out people who do not own a vehicle. To do this, you would first define a question about their vehicle ownership, e.g.:
+Often times you'll want to send people to different parts of the survey based on responses to questions. For example, let's say you want to screen out people who do not own a vehicle. To do this, you would first define a question in the `survey.qmd` file about their vehicle ownership, e.g.:
 
 ```{r}
+#| echo: fenced
+
 sd_question(
   type  = 'mc',
   id    = 'vehicle_ownership',
@@ -147,7 +135,7 @@ sd_question(
 )
 ```
 
-Then in the server code chunk, you can use the `skip_if` argument in `sd_config()` to define the behavior of the next button on the page where you ask this question, like this:
+Then in the server function, you can use the `skip_if` argument in `sd_config()` to define the behavior of the next button on the page where you ask this question, like this:
 
 ```{r}
 config <- sd_config(
@@ -174,17 +162,13 @@ Notice that we don't have a `sd_next()` on this screenout page - that is how you
 
 ### Custom skipping
 
-::: {.callout-tip}
-
-Use the `skip_if_custom` argument to control custom skipping logic.
-
-:::
-
 Similar to the `show_if_custom` argument, the `skip_if_custom` argument allows you to define custom skipping logic. This is useful if you need to skip a question based on the values of two or more different questions (or other conditions).
 
-For example, let's say you want to screen out respondents only if they choose `no` on the `vehicle_ownership` question and `no` on a second question, `vehicle_buyer`:
+For example, let's say you want to screen out respondents only if they choose `no` on the `vehicle_ownership` question and `no` on a second question, `vehicle_buyer` (also defined in the `survey.qmd` file):
 
 ```{r}
+#| echo: fenced
+
 sd_question(
   type  = 'mc',
   id    = 'vehicle_buyer',
@@ -196,7 +180,7 @@ sd_question(
 )
 ```
 
-To implement this, we can define a custom function that will check the values of the `vehicle_ownership` and `vehicle_buyer` questions and return a logical value indicating whether both conditions are met. Then we can use this function in the `skip_if_custom` argument:
+To implement this, in the server function we can define a custom function that will check the values of the `vehicle_ownership` and `vehicle_buyer` questions and return a logical value indicating whether both conditions are met. Then we can use this function in the `skip_if_custom` argument:
 
 ```{r}
 screenout <- function(input) {
@@ -227,12 +211,6 @@ In this case, each row in the `tibble()` is a condition with each condition in t
 
 ## Required responses
 
-::: {.callout-tip}
-
-Use the `required_questions` argument to control required responses.
-
-:::
-
 By default, no questions are required. However, you can make questions required by adding the question `id` to the `required_questions` argument in `sd_config()`, like this:
 
 ```{r}
@@ -253,12 +231,6 @@ config <- sd_config(
 
 ## Starting page 
 
-::: {.callout-tip}
-
-Use the `start_page` argument to control the starting page.
-
-:::
-
 When editing your survey, it can be helpful to start the survey at a specific page. You can define the starting page by setting the `start_page` argument to a page `id` in the `sd_config()` function, like this:
 
 ```{r}
@@ -269,12 +241,6 @@ config <- sd_config(
 
 ## Show all pages
 
-::: {.callout-tip}
-
-Use the `show_all_pages` argument to show al pages at once.
-
-:::
-
 By setting `show_all_pages = TRUE` in the `sd_config()` function, all pages will be shown when the survey loads. This can be helpful for quickly previewing the survey content and / or printing out the entire survey as a PDF.
 
 ```{r}
@@ -284,12 +250,6 @@ config <- sd_config(
 ```
 
 ## Admin page
-
-::: {.callout-tip}
-
-Use the `admin_page` argument to control whether the admin page is created.
-
-:::
 
 ::: {.callout-important}
 

@@ -9,7 +9,6 @@ Once you have your database properly set up and your survey is live, you can fet
 For example, if you have a table called `my_table` in your Supabase database:
 
 ```{r}
-# In your setup chunk
 db <- sd_database(
   host   = "my_host",
   dbname = "my_dbname",
@@ -22,7 +21,6 @@ db <- sd_database(
 You can fetch the data like this:
 
 ```{r}
-# In your server chunk or server.R
 data <- sd_get_data(db)
 ```
 
@@ -36,16 +34,13 @@ Run the [Demo survey](https://github.com/surveydown-dev/demo-reactive-plot) of a
 
 :::
 
-The above example is intended for an analysis context, where all you want to do is fetch the latest data from your database. However, you may also want to fetch the data in a reactive context (i.e. in your survey). For example, perhaps you want to show respondents a bar chart of the most common responses to a question. The `sd_get_data()` function is compatible with reactive fetching as well:
+The above example is intended for an analysis context, where all you want to do is fetch the latest data from your database. However, you may also want to fetch the data in a reactive context (i.e. in your survey). For example, perhaps you want to show respondents a bar chart of the most common responses to a question. The `sd_get_data()` function is compatible with reactive fetching as well - just call it inside the server function in your `app.R` file:
 
 ```{r}
-# Same as static fetching
 data <- sd_get_data(db)
 ```
 
-Now the `data` object will be a reactive expression, not a data.frame. 
-
-To use it, you have to call it with `()` to get the latest data as a data.frame. For example:
+Now the `data` object will be a reactive expression, not a data.frame. To use it, you have to call it with `()` to get the latest data as a data.frame. For example:
 
 ```{r}
 data <- sd_get_data(db, refresh_interval = 5)
@@ -58,6 +53,6 @@ output$my_plot <- renderPlot({
 
 Here the `my_data` object will be a data.frame with the latest data from your database, refreshed every 5 sections according to the `refresh_interval` parameter (5 seconds is the default value), which you could then use to make a plot. 
 
-In this example, the `output$my_plot` object will be a plot, which you can then display in your survey by placing `plotOutput("my_plot")` in a code chunk (or inline code) somewhere in your survey.
+In this example, the `output$my_plot` object will be a plot, which you can then display in your survey by placing `plotOutput("my_plot")` in a code chunk somewhere in your `survey.qmd` file.
 
 See the [Reactivity](reactivity.qmd) page for more information on how to use reactivity in your survey.

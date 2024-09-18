@@ -1,0 +1,42 @@
+---
+title: New
+description: |
+  New
+date: '2024-09-18'
+image: "images/example.png"
+twitter-card:
+  creator: "@johnhelveston"
+  site: "@johnhelveston"
+  image: images/example.png
+  card-style: summary_large_image
+  image-width: 150
+  image-height: 150
+categories:
+  - R
+format: html
+execute: 
+  eval: false
+toc: true
+lightbox: true
+draft: true
+---
+
+```{r}
+#| label: setup
+#| eval: true
+#| include: false
+
+library(surveydown)
+```
+
+With the release of {surveydown} 0.3.0, we introduced some major breaking changes with prior versions, so we felt we should make a blog post to both explain why we felt these changes are needed as well as introduce the new architecture we have adopted.
+
+# Motivation
+
+In the original conception of surveydown, the entire survey was defined in a single Quarto shiny document which would render into a shiny app. While this was a rather parsimonious design, it also had some flaws that weren't immediately apparent.
+
+One major issue was [security](https://github.com/surveydown-dev/surveydown/issues/93). With Quarto shiny documents, the qmd file is first rendered into a static html page that is then used to define the elements of the user interface. This meant that for us to introduce the concept of _pages_, we had to rely on a hand-wavy combination of JS and CSS. The shiny app that was rendered was actually just one big html page with all of the content available, but then we used CSS to hide the "pages" (divs) that we didn't want to see until a user clicked a "next" button, which just triggers some JS code to change what "page" was shown.
+
+This results in a smooth and nice user experience, but anyone could still see the source code to any component of the survey they wanted. In any survey, a user could right-click and open "Inspect" then manually change the CSS of a page div from `style="display: none;"` to `style="display: show;"` and boom - the div would appear!
+
+This meant that pages with things like completion codes or redirect buttons at the end could be easily shown without going through the whole survey. So this was a pretty significant security problem that required a new architecture.

@@ -2,36 +2,52 @@
 title: "Configuration Options"
 ---
 
-All survey configuration options are defined with the `sd_config()` function in the server function in the `app.R` file.
+All survey configuration settings are defined within the `server` function in the `app.R` file. The `server()` function is a standard Shiny server function that takes `input`, `output`, and `session` as arguments. At a minimum, it should include the following:
 
-## Conditional display
+```{r}
+server <- function(input, output, session) {
 
-### Basic conditional display
+  sd_server(
+    db = db
+  )
 
-It is often useful to have a question display conditionally based on the value of another question. For example, let's say we have a multiple choice question about people's favorite penguin type, and the last option is "other". If the respondent chose it, you may want a second question to popup that allows them to specify the other penguin type, like this:
+}
+```
+
+The `db = db` part is required if you are using a database connection. This connection should be defined using the `sd_database()` function, and we typically store it as `db` in the global environment (before the `server()` function but still inside the `app.R` file). See the [Store Data](store-data.qmd) page for more details.
+
+Beyond these requirements, there are several other optional settings you can use to customize the survey behavior. We will go over them in the following sections.
+
+## Conditional display with `sd_show_if()`
+
+It is often useful to have a question display based on some condition, such as the respondent choosing a particular value in a multiple choice question. 
+
+For example, let's say we have a choice question about people's favorite penguin type, and the last option is "other". If the respondent chose it, you may want a second question to display that allows them to specify the "other" penguin type, like this:
 
 <center>
 <img src="images/screenshots/show_if.gif" style="max-width: 600px; width: 100%;">
 </center>
 <br>
 
-To implement this, you first need to define both the **triggering question** and the **target question** in the `survey.qmd` file, like this:
+To implement this, you first need to define both the **conditional question** and the **target question** in the `survey.qmd` file, like this:
 
 ```{r}
 #| echo: fenced
 
+# Conditional question
 sd_question(
-  type  = 'mc',
-  id    = 'penguins',
+  type  = "mc",
+  id    = "penguins",
   label = "Which is your favorite type of penguin?",
   option = c(
-    'Adélie'    = 'adelie',
-    'Chinstrap' = 'chinstrap',
-    'Gentoo'    = 'gentoo',
-    'Other'     = 'other'
+    "Adélie"    = "adelie",
+    "Chinstrap" = "chinstrap",
+    "Gentoo"    = "gentoo",
+    "Other"     = "other"
   )
 )
 
+# Target question
 sd_question(
   type  = "text",
   id    = "penguins_other",
@@ -39,87 +55,57 @@ sd_question(
 )
 ```
 
-Then in the server function, you can use the `show_if` argument to define that the `penguins_other` question would only be shown if the respondent chose the `other` option in the `penguins` question, like this:
+Then in the server function in the `app.R` file, you can use the `sd_show_if()` function to define that the `"penguins_other"` question would only be shown if the respondent chose the `"other"` option in the `"penguins"` question, like this:
 
 ```{r}
-config <- sd_config(
-  show_if = tibble::tribble(
-    ~question_id,  ~question_value, ~target,
-    "penguins",    "other",         "penguins_other"
+server <- function(input, output, session) {
+
+  sd_show_if(
+    input$penguins == "other" ~ "penguins_other", 
+    # Add additional conditions here
   )
-)
-```
 
-Here we're using the `tibble::tribble()` function (which is like `data.frame()` but easier to read), to define a data frame with three columns:
+  sd_server(db = db)
 
-- `question_id`: The `id` of the triggering question.
-- `question_value`: The triggering value.
-- `target`: The `id` of the target question to display.
-
-Each row in the data frame defines a condition. 
-
-You don't have to use `tibble::tribble()`, and in fact if you have a lot of `show_if` conditions, then you could create a csv file with all of your conditions in it and read it in to set the `show_if` conditions (just make sure the header has the same three column names), e.g.:
-
-```{r}
-config <- sd_config(
-  show_if = readr::read_csv('path/to/show_if_conditions.csv')
-)
-```
-
-### Custom conditional display
-
-The standard `show_if` argument is great for simple conditional display logic, but sometimes you need more flexibility. For example, you may want to display a question based on the values of two different questions. In this case, you can use the `show_if_custom` argument to define a custom function that determines the conditions for displaying a target question. 
-
-Using the same example as above, let's say we only want to display the `penguins_other` question if the respondent chose the `other` option in the `penguins` question and also if they chose `show` in a second question, `show_other`:
-
-```{r}
-#| echo: fenced
-
-sd_question(
-  type  = 'mc',
-  id    = 'show_other',
-  label = "Should we show the 'other' option question?",
-  option = c(
-    'Show' = 'show',
-    'Hide' = 'hide'
-  )
-)
-```
-
-Now we can define a custom function that will check the values of the `penguins` and `show_other` questions and return a logical value indicating whether both conditions are met. Then we can use this function in the `show_if_custom` argument:
-
-```{r}
-show_other <- function(input) {
-  return(input$penguins == "other" & input$show_other == "show")
 }
-
-config <- sd_config(
-  show_if_custom = list(
-    list(condition = show_other, target = "penguins_other")
-  )
-)
 ```
 
-Here we provided the `show_if_custom` argument a list of lists, where each sublist contains a `condition` and a `target`. In this example, we just have one condition (the `show_other` function, which if true will display the `penguins_other` question), but you can add as many conditions as you want.
+You can provide multiple conditions to the `sd_show_if()` function, each separated by a comma. The structure for each condition in the `sd_show_if()` function is always:
 
-If lists of lists are a little confusing, you can also use a `tibble::tribble()` to define the conditions, like this:
+> `<condition> ~ "target_question_id"`
+
+In the example above, the `input$penguins == "other"` is the condition, and `"penguins_other"` is the target question. The `~` symbol is used to separate the condition from the target question.
+
+::: {.callout-note}
+
+The `input` object is a Shiny object that stores each question `id` defined by `sd_question()` in your `survey.qmd` file, so whenever referring to a question in a condition, you must use the format `input$question_id`.
+
+:::
+
+For situlations where the conditional logic is more complex, we recommend defining a custom function that will return a logical value (`TRUE` or `FALSE`) indicating whether the target question should be displayed. You can then pass this function to the `sd_show_if()` function. Using the same example as above, you might have something like this:
 
 ```{r}
-config <- sd_config(
-  show_if_custom = tibble::tribble(
-    ~condition, ~target,
-    show_other, "penguins_other"
+server <- function(input, output, session) {
+
+  complex_condition <- function(input) {
+    # Code here to do something like check the values of multiple questions
+    # Should return a logical value (TRUE or FALSE)
+  }
+
+  sd_show_if(
+    complex_condition ~ "penguins_other"
   )
-)
+
+  sd_server(db = db)
+
+}
 ```
 
-In this case, each row in the `tibble()` is a condition with each condition in the `condition` column and the target question to display in the `target` column. This layout is sometimes a little easier to read, especially if you have a lot of conditions.
+## Conditional skipping with `sd_skip_if()`
 
-## Conditional skipping
+Often times you'll want to send respondents to different parts of the survey based on some condition, such as the respondent choosing a particular value in a multiple choice question. 
 
-### Basic skipping
-
-Often times you'll want to send people to different parts of the survey based on responses to questions. For example, let's say you want to screen out people who do not own a vehicle. To do this, you would first define a question in the `survey.qmd` file about their vehicle ownership, e.g.:
+For example, let's say you want to screen out people who do not own a vehicle. To do this, you would first define a question in your `survey.qmd` file about their vehicle ownership, e.g.:
 
 ```{r}
 #| echo: fenced
@@ -135,20 +121,7 @@ sd_question(
 )
 ```
 
-Then in the server function, you can use the `skip_if` argument in `sd_config()` to define the behavior of the next button on the page where you ask this question, like this:
-
-```{r}
-config <- sd_config(
-  skip_if = tibble::tribble(
-    ~question_id,        ~question_value, ~target,
-    "vehicle_ownership", "no",            "screenout"
-  )
-)
-```
-
-This sets up a condition where the respondent will be sent to a page named `screenout` if they choose `no` on the `vehicle_ownership` question. Notice that again we used `tibble::tribble()` to define the conditions, just as we did for the `show_if` argument in [basic conditional display](#basic-conditional-display), but again you could use a csv file if you have a lot of conditions.
-
-In this example, you could make a `screenout` page and put it anywhere in your survey after the `vehicle_ownership` question, something like this:
+You would also need to define a screenout page to send respondents to, like this:
 
 ```{r}
 ::: {#screenout .sd-page}
@@ -158,63 +131,54 @@ Sorry, but you are not qualified to take our survey.
 :::
 ```
 
-Notice that we don't have a `sd_next()` on this screenout page - that is how you define an end point for the survey taker. If there's no "Next" button, then they cannot navigate anywhere else, so the survey is over. This is why this `screenout` page doesn't necessarily have to be at the end of the survey as the respondent will not be able to navigate anywhere else once reaching this page.
-
-### Custom skipping
-
-Similar to the `show_if_custom` argument, the `skip_if_custom` argument allows you to define custom skipping logic. This is useful if you need to skip a question based on the values of two or more different questions (or other conditions).
-
-For example, let's say you want to screen out respondents only if they choose `no` on the `vehicle_ownership` question and `no` on a second question, `vehicle_buyer` (also defined in the `survey.qmd` file):
+Then in the server function in the `app.R` file, you can use the `sd_skip_if()` function to define the condition under which the respondent will be sent to the target `screenout` page, like this:
 
 ```{r}
-#| echo: fenced
+server <- function(input, output, session) {
 
-sd_question(
-  type  = 'mc',
-  id    = 'vehicle_buyer',
-  label = "Are you looking to buy a vehicle soon?",
-  option = c(
-    'Yes' = 'yes',
-    'No'  = 'no'
+  sd_skip_if(
+    input$vehicle_ownership == "no" ~ "screenout", 
+    # Add additional conditions here
   )
-)
-```
 
-To implement this, in the server function we can define a custom function that will check the values of the `vehicle_ownership` and `vehicle_buyer` questions and return a logical value indicating whether both conditions are met. Then we can use this function in the `skip_if_custom` argument:
+  sd_server(db = db)
 
-```{r}
-screenout <- function(input) {
-  return(input$vehicle_ownership == "no" & input$vehicle_buyer == "no")
 }
-
-config <- sd_config(
-  skip_if_custom = list(
-    list(condition = screenout, target = "screenout")
-  )
-)
 ```
 
-Just as with the [`show_if_custom` argument](#custom-conditional-display), we provide the `skip_if_custom` argument a list of lists, where each sublist contains a `condition` and a `target`.
+Just like the `sd_show_if()` function, you can provide multiple conditions to the `sd_skip_if()` function, each separated by a comma. The structure for each condition in the `sd_skip_if()` function is always:
 
-If lists of lists are a little confusing, you can also use a `tibble::tribble()` to define the conditions, like this:
+> `<condition> ~ "target_page_id"`
+
+For more complex conditional skipping logic you could define a custom function that returns a logical value (`TRUE` or `FALSE`) indicating whether a condition has been met, then pass this function to the `sd_skip_if()` function. Using the same example as above, you might have something like this:
 
 ```{r}
-config <- sd_config(
-  skip_if_custom = tibble::tribble(
-    ~condition, ~target,
-    screenout, "screenout"
+server <- function(input, output, session) {
+
+  complex_condition <- function(input) {
+    # Code here to do something like check the values of multiple questions
+    # Should return a logical value (TRUE or FALSE)
+  }
+
+  sd_skip_if(
+    complex_condition ~ "screenout"
   )
-)
+
+  sd_server(db = db)
+
+}
 ```
 
-In this case, each row in the `tibble()` is a condition with each condition in the `condition` column and the target question to display in the `target` column. This layout is sometimes a little easier to read, especially if you have a lot of conditions.
+## Server options
 
-## Required responses
+The `sd_server()` function called inside the `server()` function in the `app.R` file has several other arguments that you can use to customize the survey behavior.
 
-By default, no questions are required. However, you can make questions required by adding the question `id` to the `required_questions` argument in `sd_config()`, like this:
+### Required responses
+
+By default, no questions are required. However, you can make questions required by providing a vector containing the `id` of the questions to be required to the `required_questions` argument in `sd_server()`, like
 
 ```{r}
-config <- sd_config(
+sd_server(
   required_questions = c("vehicle_ownership", "penguins_other")
 )
 ```
@@ -224,34 +188,24 @@ This will make the respondent unable to proceed until they have answered the req
 You can also make all questions required by setting `all_questions_required = TRUE` like this:
 
 ```{r}
-config <- sd_config(
+sd_server(
   all_questions_required = TRUE
 )
 ```
 
-## Starting page 
+### Starting page 
 
-When editing your survey, it can be helpful to start the survey at a specific page. You can define the starting page by setting the `start_page` argument to a page `id` in the `sd_config()` function, like this:
+When editing your survey, it can be helpful to start the survey at a specific page. You can define the starting page with the `start_page` argument in the `sd_server()` function, like this:
 
 ```{r}
-config <- sd_config(
+sd_server(
   start_page = "page_id"
 )
 ```
 
-## Show all pages
+### Pre-rendering your survey
 
-By setting `show_all_pages = TRUE` in the `sd_config()` function, all pages will be shown when the survey loads. This can be helpful for quickly previewing the survey content and / or printing out the entire survey as a PDF.
-
-```{r}
-config <- sd_config(
-  show_all_pages = TRUE
-)
-```
-
-## Pre-rendering your survey
-
-When you run your app, the `sd_config()` function actually renders the `survey.qmd` file and parses its content. We designed it this way to ensure that the latest changes to your `survey.qmd` file are always included, but this also can result is a slight delay when the app loads.
+When you run your app, the `survey.qmd` file gets rendered and parsed. We designed it this way to ensure that the latest changes to your `survey.qmd` file are always included, but this also can result is a delay when the app loads.
 
 To speed this up, you can render your `survey.qmd` file first, either by clicking the "Render" button in RStudio or by running the following in the terminal:
 
@@ -259,17 +213,17 @@ To speed this up, you can render your `survey.qmd` file first, either by clickin
 quarto render survey.qmd
 ```
 
-This will generate a `survey.html` file in the project folder which you can then tell surveydown to use instead of re-rendering the `survey.qmd` file like this:
+This will generate a `survey.html` file in the project folder, and you can tell surveydown to use this pre-rendered file by setting the `use_html` argument to `TRUE` in the `sd_server()` function, like this:
 
 ```{r}
-config <- sd_config(
-  survey = "survey.html"
+sd_server(
+  use_html = TRUE
 )
 ```
 
-This can dramatically accelerate the initial page loading.
+This can significantly speed up the initial page loading.
 
-## Admin page
+### Admin page
 
 ::: {.callout-important}
 
@@ -277,10 +231,10 @@ The admin page is currently under development and has limited functionality.
 
 :::
 
-By default, the admin page is not created. But if you want one, set `admin_page` to `TRUE` inside the `sd_config()` function, like this:
+By default, the admin page is not created. But if you want one, set `admin_page` to `TRUE` inside the `sd_server()` function, like this:
 
 ```{r}
-config <- sd_config(
+sd_server(
   admin_page = TRUE
 )
 ```

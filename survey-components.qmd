@@ -11,12 +11,9 @@ library(surveydown)
 
 ## Overview
 
-Every surveydown survey is composed of a _survey_ and an _app_.
+{{< include chunks/files.qmd >}}
 
-- The **survey** is a Quarto document (`survey.qmd`) that contains the survey content (pages, questions, etc). 
-- The **app** is an R script (`app.R`) that contains the **setup** (libraries, database configuration, etc.) and **server** configuration options, like conditional skipping / display, etc.
-
-These files **must** be named `survey.qmd` and `app.R`. They typically look something like this:
+They typically look something like this:
 
 ::: {.panel-tabset}
 

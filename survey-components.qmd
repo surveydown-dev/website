@@ -13,22 +13,86 @@ library(surveydown)
 
 ## Overview
 
-Every surveydown survey is configured in two files: 
+Every surveydown survey is composed of a _survey_ and an _app_.
 
-1. `survey.qmd`: Contains the survey content (pages, questions, etc). 
-2. `app.R`: Contains the ui settings (themes, colors, fonts, etc.) and server logic (conditional skipping / display, etc.).
+- The **survey** is a Quarto document (`.qmd`) that contains the survey content (pages, questions, etc). 
+- The **app** is an R script (`.R`) that contains the **setup** (libraries, database configuration, etc.) and **server** configuration options, like conditional skipping / display, etc.
 
-They look something like this:
+They typically look something like this:
 
-::: {layout-ncol=2}
+::: {.panel-tabset}
 
-#### `survey.qmd` file
+## `survey.qmd` file
 
-![](images/screenshots/survey.png)
+````{qmd}
+---
+format: html
+echo: false
+warning: false
+---
 
-#### `app.R` file
+```{r}
+library(surveydown)
+```
 
-![](images/screenshots/app.png)
+::: {#welcome .sd-page}
+
+# Welcome to our survey!
+
+```{r}
+sd_question(
+  type  = 'mc',
+  id    = 'penguins',
+  label = "Which type of penguin do you like the best?",
+  option = c(
+    'Adélie'    = 'adelie',
+    'Chinstrap' = 'chinstrap',
+    'Gentoo'    = 'gentoo'
+  )
+)
+
+sd_next(next_page = 'end')
+```
+
+:::
+
+::: {#end .sd-page}
+
+This it the last page in the survey
+
+:::
+
+````
+
+## `app.R` file
+
+```{r}
+library(surveydown)
+
+db <- sd_database(
+  host   = "",
+  dbname = "",
+  port   = "",
+  user   = "",
+  table  = "",
+  ignore = TRUE
+)
+
+server <- function(input, output, session) {
+  config <- sd_config()
+
+  sd_server(
+    input   = input,
+    output  = output,
+    session = session,
+    config  = config,
+    db      = db
+  )
+
+}
+
+shiny::shinyApp(ui = sd_ui(), server = server)
+```
 
 :::
 
@@ -38,15 +102,12 @@ The `survey.qmd` file is where you define the content of your survey. It is a st
 
 ### YAML header
 
-The YAML header is at the top of the `survey.qmd` file. It contains some basic settings that you shouldn't change:
+The YAML header is at the top of the `survey.qmd` file. It contains some basic settings, like this:
 
 ``` yaml
 ---
-format:
-  html:
-    self-contained: true
+format: html
 echo: false
-message: false
 warning: false
 ---
 ```

@@ -9,7 +9,9 @@ You need both:
 - [Install {{< fa brands r-project >}}]({{< var url_rproject >}})
 - [Install Quarto]({{< var url_quarto >}})
 
-Also, we recommend working with an IDE. [RStudio]({{< var url_rstudio_ide >}}) is great, and we also like [VS Code]({{< var url_vscode >}}) and [Positron]({{< var url_positron >}}).
+We also recommend working with an IDE that has good support for R, Quarto, and Shiny.
+
+[RStudio]({{< var url_rstudio_ide >}}) is great, and we also like [VS Code]({{< var url_vscode >}}) and [Positron]({{< var url_positron >}}).
 
 ## Install the {surveydown} R package
 
@@ -24,13 +26,13 @@ remotes::install_github("surveydown-dev/surveydown")
 
 We made some R functions to make it easier to keep your R package.
 
-To _check_ if you have the latest R package extension installed, run:
+To _check_ which version of the {surveydown} package you have installed, run:
 
 ```{r}
 surveydown::sd_version()
 ```
 
-To _update_ the R package to the latest version, run:
+To _update_ to the latest version of the {surveydown} package, run:
 
 ```{r}
 surveydown::sd_update()

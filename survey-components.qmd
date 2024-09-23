@@ -1,7 +1,5 @@
 ---
 title: "Survey Components"
-toc-expand: true
-lightbox: true
 ---
 
 ```{r}
@@ -15,10 +13,10 @@ library(surveydown)
 
 Every surveydown survey is composed of a _survey_ and an _app_.
 
-- The **survey** is a Quarto document (`.qmd`) that contains the survey content (pages, questions, etc). 
-- The **app** is an R script (`.R`) that contains the **setup** (libraries, database configuration, etc.) and **server** configuration options, like conditional skipping / display, etc.
+- The **survey** is a Quarto document (`survey.qmd`) that contains the survey content (pages, questions, etc). 
+- The **app** is an R script (`app.R`) that contains the **setup** (libraries, database configuration, etc.) and **server** configuration options, like conditional skipping / display, etc.
 
-They typically look something like this:
+These files **must** be named `survey.qmd` and `app.R`. They typically look something like this:
 
 ::: {.panel-tabset}
 
@@ -98,7 +96,7 @@ shiny::shinyApp(ui = sd_ui(), server = server)
 
 ## The `survey.qmd` file
 
-The `survey.qmd` file is where you define the content of your survey. It is a standard Quarto document, so you can use markdown (or the RStudio visual editor) to insert text, images, etc. just like you would in any Quarto document.
+The `survey.qmd` file is where you define the main survey content of your survey, such as pages, questions, and navigation buttons. It is a standard Quarto document, so you can use markdown (or the RStudio visual editor) to insert text, images, etc. just like you would in any Quarto document.
 
 ### YAML header
 
@@ -112,7 +110,42 @@ warning: false
 ---
 ```
 
-Setting `self-contained: true` is important to ensure that the survey components will render properly in the survey app. The other settings are optional, though we recommend you keep them to ensure a good experience for your respondents. Typically you wouldn't want warnings or messages to appear nor the code defining the survey questions to be displayed - that's what these settings are for. 
+The only required setting is `format: html`, as the document should render as an HTML document. The other settings are optional, though we recommend you keep them to ensure a good experience for your respondents. Typically you wouldn't want warnings or the code defining the survey questions to be displayed in your survey - that's what the `echo: false` and `warning: false` settings are for. 
+
+### Changing the look and feel
+
+Because the `survey.qmd` is a Quarto document, you can use any of the [Quarto formatting options](https://quarto.org/docs/reference/formats/html.html#format-options) to change the look and feel of your survey. 
+
+For example, you can change the overall survey theme using the `theme` key:
+
+``` yaml
+---
+theme: united # Any bootswatch theme 
+---
+```
+
+There are [25 bootswatch themes](https://quarto.org/docs/output-formats/html-themes.html) to choose from. You can also provide a `custom.scss` file to further modify the theme, or even combine the two, e.g.:
+
+``` yaml
+---
+theme: [united, custom.scss]
+---
+```
+
+### Progress bar
+
+You can modify the survey progress bar with the `barcolor` and `barposition` keys, e.g.:
+
+``` yaml
+---
+barcolor: "#768692"
+barposition: top 
+---
+```
+
+The `barcolor` key defines the color of the progress bar. It defaults to the primary theme color, but you can change it to any hex code you wish here to overwrite the theme color.
+
+The `barposition` key defines the position of the progress bar. It defaults to `top`, but can also be changed to `bottom` or `none` (to remove the bar). The progress bar updates on every **question** the user clicks on, not pages.
 
 The rest of the content in the `survey.qmd` file is the content you want in your survey, including **pages**, **navigation buttons**, and **questions**.
 
@@ -145,33 +178,39 @@ To navigate to the next page, you need to insert a `sd_next()` function call ins
 ```{r}
 #| echo: fenced
 
-sd_next(next_page = 'page2')
+sd_next()
 ```
 
-The above code chunk will create a "Next" button that goes on to page 2 that looks like this:
+The above code chunk will create a "Next" button that goes on to the immediate next page. The button will look like this:
 
 ```{r}
 #| eval: true
 #| echo: false
 
-sd_next(next_page = 'page2')
+sd_next()
 ```
 
-In this example, the next button has to be inserted in a code chunk in between the `:::` fences of the `welcome` page in order to have a "Next" button that goes on to page 2. You can also send the user to other pages by just changing the value assigned to the `next_page` argument. 
+You can also send the user to other pages by just changing the value assigned to the `next_page` argument. For example, to send the user to a page with the id `page3`, you can use:
+
+```{r}
+#| echo: fenced
+
+sd_next(next_page = 'page3')
+```
 
 Finally, you can also change the label of the button by changing the `label` argument, like this:
 
 ```{r}
 #| echo: fenced
 
-sd_next(next_page = 'page2', label = 'Next page')
+sd_next(label = 'Next page')
 ```
 
 ```{r}
 #| eval: true
 #| echo: false
 
-sd_next(next_page = 'page2', label = 'Next page')
+sd_next(label = 'Next page')
 ```
 
 ### Adding questions
@@ -284,21 +323,18 @@ This will create a button with the label "Redirect to Google" that the responden
 
 ## The `app.R` file
 
-The `app.R` file is where you define the ui settings and server logic for your survey. It creates a standard Shiny app, so if you are familiar with Shiny you should feel right at home. The main components of the `app.R` file are:
+The `app.R` file is where you define the global settings and server logic for your survey. It defines a Shiny app, so if you are familiar with Shiny you should feel right at home. The main components of the `app.R` file are:
 
-- **Setup**: where you define global settings (e.g., loading the surveydown package and defining the database).
-- **UI**: where you define the look of the survey (themes, fonts, colors, etc.)
+- **Global settings**: where you load the surveydown package and define the database connection.
 - **Server**: where you define the logic of the survey (conditional skipping / display, etc.)
 
-### Setup
+### Global settings
 
-The setup is at the top of the `app.R` file. At a minimum, you need to load the `surveydown` package and define the database connection. You can also load other packages / global objects here if you need to. It typically looks like this:
+The global settings are at the top of the `app.R` file. At a minimum, you need to load the `surveydown` package and define the database connection. You can also load other packages / global objects here if you need to. It typically looks like this:
 
 ```{r}
-# Load the package
 library(surveydown)
 
-# Setup your database
 db <- sd_database(
   host   = "",
   dbname = "",
@@ -310,59 +346,6 @@ db <- sd_database(
 
 The `db` object is used to store survey data - see the [Store Data](store-data.qmd) page for details on how to set up the database connection.
 
-::: {.callout-important}
-
-**Note**: Every surveydown survey requires loading the `surveydown` package with `library(surveydown)`
-
-:::
-
-### UI
-
-The UI is defined using the `sd_ui()` function. If you want to just use the default theme and settings, then all you need is to call the `sd_ui()` function like this:
-
-```{r}
-ui <- sd_ui()
-```
-
-You can pass other optional arguments to the `sd_ui()` function to modify the look and feel of the survey.
-
-#### Look and feel
-
-There are [25 bootswatch themes](https://bootswatch.com) to choose from to style your survey. 
-
-To set a theme, use the `theme` argument in the `sd_ui()` function, e.g.:
-
-```{r}
-ui <- sd_ui(theme = 'united')
-```
-
-We've also included a `background` argument to quickly change the background color of the survey. For example, to set the background color to a light blue/gray, you can use:
-
-```{r}
-ui <- sd_ui(background = '#f2f6f9')
-```
-
-Finally, if you have any other custom CSS changes you'd like to make, create a `custom.css` file and include it in the `sd_ui()` function, like this:
-
-```{r}
-ui <- sd_ui(custom_css = 'custom.css')
-```
-
-#### Progress bar
-
-Every surveydown survey has a progress bar that shows the respondent's progress through the survey. You can modify the progress bar with the `barcolor` and `barposition` arguments in the `sd_ui()` function, e.g.:
-
-```{r}
-ui <- sd_ui(
-  barcolor    = '#768692',
-  barposition = 'top'
-)
-```
-
-The `barcolor` argument defines the color of the progress bar. It defaults to `theme`, meaning it will take the primary theme color. You may also use any hex code to overwrite this color as you wish, e.g.: `#768692`.
-
-The `barposition` argument defines the position of the progress bar. It defaults to `top`, but can also be changed to `bottom` or `none` (to remove the bar). The progress bar updates on every **question** the user clicks on, not pages.
-
 ### Server 
 
 The server function is where you can set custom control logic and other configuration options. It typically looks like this:
@@ -370,33 +353,38 @@ The server function is where you can set custom control logic and other configur
 ```{r}
 server <- function(input, output, session) {
 
-    # Define the configuration settings
-    config <- sd_config()
+  # Define conditional skip logic (skip to page if a condition is true)
+  sd_skip_if()
 
-    # The sd_server() function initiates your survey - don't change this
-    sd_server(
-        input   = input,
-        output  = output,
-        session = session,
-        config  = config,
-        db      = db
-    )
+  # Define conditional display logic (show a question if a condition is true)
+  sd_show_if()
+
+  # Main server to control the app
+  sd_server(db = db)
 }
 ```
 
-The `sd_config()` function is where you can define configuration options for the survey, such as [conditional display](config-options.qmd#conditional-display) (conditionally displaying a question based on responses to questions), or [conditional skip](config-options.qmd#conditional-skipping) (conditionally sending the respondent to a page based on responses to questions). See the [Configuration Options](config-options.qmd) page for details.
+The `server()` function is where you can define configuration options for the survey, such as [conditional display](config-options.qmd#conditional-display) logic with the `sd_show_if()` function, or [conditional skip](config-options.qmd#conditional-skipping) logic with the `sd_skip_if()` function. The `sd_server()` function at the bottom makes everything run. It also includes some optional arguments that you can use to customize the survey. 
 
-The `sd_server()` function at the bottom makes everything run, which you can safely ignore - just don't change it and all will be good! **It should always be the last code in the server code chunk.**
+See the [Configuration Options](config-options.qmd) page for details on the different options you can use to customize the survey control logic.
 
 ### Run code
 
 At the very bottom of the `app.R` file, you will see the following code:
 
 ```{r}
-shiny::shinyApp(ui = ui, server = server)
+shiny::shinyApp(ui = sd_ui(), server = server)
 ```
 
-This code defines the Shiny app. This code should always be at the bottom of the `app.R` file.
+This code defines the Shiny app and should always be at the bottom of the `app.R` file.
+
+::: {.callout-tip}
+
+**What's with the `sd_ui()` function?**
+
+In a typical Shiny app, you have to define the UI and server functions separately. In a surveydown survey, the UI is a fixed structure that is defined by the `sd_ui()` function, so simply provide it to the `ui` argument in `shiny::shinyApp()` to run the survey.
+
+:::
 
 To run your survey, click the "Run App" button in RStudio. This will start a web server to run your survey locally. Typically, RStudio will launch the app in a new window, but you can also choose to have the app launch in a dedicated viewer pane, or in your external web browser. Make your selection by clicking the icon next to Run App:
 

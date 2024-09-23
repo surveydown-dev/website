@@ -1,7 +1,7 @@
 ---
-title: New architecture in v0.3.0!
+title: New architecture in v0.3.0 (and loads of breaking changes)!
 description: |
-  We're releasing v0.3.0, and with it multiple breaking changes from an architecture overall.
+  We're releasing v0.3.0, and with it multiple breaking changes.
 date: '2024-09-18'
 image: "image.png"
 twitter-card:
@@ -28,9 +28,9 @@ lightbox: true
 library(surveydown)
 ```
 
-The surveydown package is only about a month and a half old, and thanks to many early users we learned about some design flaws that needed to be fixed. As a result, with the release of {surveydown} 0.3.0, the package has undergone a major overhaul to improve security, modularity, and extensibility. 
+The surveydown package is only a couple months old, and thanks to many early users we learned about some design flaws that needed to be fixed. As a result, with the release of {surveydown} 0.3.0, the package has undergone a major overhaul to improve security, modularity, and extensibility. 
 
-We introduced some major breaking changes in this release, so we felt we should make a blog post to both explain why we felt these changes were needed as well as introduce the new architecture we have adopted.
+We introduced several major breaking changes in this release, so we felt we should make a blog post to both explain why we felt these changes were needed as well as introduce the new architecture we have adopted.
 
 ## Motivation
 
@@ -44,48 +44,136 @@ This was obviously a major security issue as pages with things like completion c
 
 ## New architecture
 
-The new architecture employs a traditional shiny app with a two-file design:
+The new architecture employs a two-file design composed of a _survey_ and an _app_ that renders to a traditional Shiny app:
 
-1. `survey.qmd`: Contains the survey content (pages, questions, etc). 
-2. `app.R`: Contains the ui settings (themes, colors, fonts, etc.) and server logic (conditional skipping / display, etc.).
+- `survey.qmd`: A Quarto document that contains the survey content (pages, questions, etc), which renders to an HTML file.
+- `app.R`: An R script defining a Shiny app that contains the global settings (libraries, database configuration, etc.) and server configuration options (e.g., conditional skipping / display, etc.).
 
-They look something like this:
+**These files must be named `survey.qmd` and `app.R`**.
 
-::: {layout-ncol=2}
+They typically look something like this:
 
-#### `survey.qmd` file
+::: {.panel-tabset}
 
-![](survey.png)
+## `survey.qmd` file
 
-#### `app.R` file
+````{qmd}
+---
+format: html
+echo: false
+warning: false
+---
 
-![](app.png)
+```{r}
+library(surveydown)
+```
+
+::: {#welcome .sd-page}
+
+# Welcome to our survey!
+
+```{r}
+sd_question(
+  type  = 'mc',
+  id    = 'penguins',
+  label = "Which type of penguin do you like the best?",
+  option = c(
+    'Adélie'    = 'adelie',
+    'Chinstrap' = 'chinstrap',
+    'Gentoo'    = 'gentoo'
+  )
+)
+
+sd_next(next_page = 'end')
+```
+
+:::
+
+::: {#end .sd-page}
+
+This it the last page in the survey
+
+:::
+
+````
+
+## `app.R` file
+
+```{r}
+library(surveydown)
+
+db <- sd_database(
+  host   = "",
+  dbname = "",
+  port   = "",
+  user   = "",
+  table  = "",
+  ignore = TRUE
+)
+
+server <- function(input, output, session) {
+
+  # Define conditional skip logic here (skip to page if a condition is true)
+  sd_skip_if()
+
+  # Define  conditional display logic here (show a question if a condition is true)
+  sd_show_if()
+
+  # Main server to control the app
+  sd_server()
+}
+
+shiny::shinyApp(ui = sd_ui(), server = server)
+```
 
 :::
 
 This approach allows us to separate the _survey content_ (in the `survey.qmd` file) from the _survey logic_ (in the `app.R` file), which comes with a few benefits:
 
 1. **Security**: Since the rendered survey content is no longer directly embedded in the app as a single html page, it makes it much harder for users to tamper with the content. Only the content on one page at a time will be rendered by the server.
-2. **Extensibility**: While we originally designed surveydown for Quarto, you could just as easily render a RMarkdown document instead of a Quarto document as the content now just renders to a static html page.
-3. **Clarity**: With two files, it is now clearer where the survey content versus control logic should be defined. Before, all of the server logic was in a single server code chunk at the end of the `survey.qmd` file, which required the user to scroll up and down to edit the server logic versus the survey content. Now a user can have both files open in two tabs in RStudio and more easily edit the survey content and server content.
-4. **Simplicity**: The new design eliminates the need for a Quarto extension to render the survey. This allows us to ship all of the core functionality of surveydown as a single R package, which is installed globally on your system.
+2. **Clarity**: With two files, it is now clearer where the survey content versus control logic should be defined. Before, all of the server logic was in a single server code chunk at the end of the `survey.qmd` file, which required the user to scroll up and down to edit the server logic versus the survey content. Now a user can have both files open in two tabs in an IDE and more easily edit the survey content and server content.
+3. **Simplicity**: The new design eliminates the need for a Quarto extension to render the survey. This allows us to ship all of the core functionality of surveydown as a single R package, which is installed globally on your system.
 
 The updated documentation of the [Survey Components](https://surveydown.org/survey-components.html) page reflects this new design.
 
 ## New page architecture
 
-The motivation to secure the page content led to a totally new approach to designing the survey pages. Our new approach leverages the `sd_config()` function to render the `survey.qmd` into a static html page and then parse it into a list of page objects. Each page object is itself a list of elements, including the page ID, question IDs, etc., as well as the rendered html content for that page. 
+The motivation to secure the page content led to a totally new approach to designing the survey pages. Our new approach actually renders the `survey.qmd` into a static html page and then parses it into a list of page objects. Each page object is itself a list of elements, including the page ID, question IDs, etc., as well as the rendered html content for that page. 
 
-The `sd_server()` function now uses this list of page objects to display one page at a time via a `shiny::renderUI()` function into a single "main" output. This approach allowed us to fine tune the control of what content is being served, eliminating the ability of survey respondents to see anything other than the content on the current page. 
+The `sd_server()` function then uses this list of page objects to display one page at a time via a `shiny::renderUI()` function into a single "main" output. This approach allowed us to control what content is being served, eliminating the ability of survey respondents to see anything other than the content on the current page.
 
 This approach also gave us the opportunity to overhaul how pagination works in general. Previously, users had to add a `sd_next(next_page = "page_id")` button at the end of each page, making sure to specify the next page to go to. This was a bit annoying as most of the time you just want to go to the next page, so specifying it felt redundant. Now users can simply add `sd_next()` at the bottom of each page and the server will go to the next page by default. If you want to direct the respondent to a different page, then you specify the target page using `sd_next(next_page = "page_id")`.
 
-## Changing the look and feel of the survey
+## Improved conditional show and skip logic
 
-Inside the `app.R` file, there is now a `sd_ui()` function where you can define the look and feel of the survey. This includes things like the theme, colors, fonts, and even the color and position of the progress bar. 
+Conditionally displaying questions or skipping to pages is a core logic that many surveys need. Our original approach was relatively clunky, so since we were already introducing many breaking designs, we figured we should overhaul the logic for conditional skipping and displaying.
 
-Previously this was all defined in the yaml header of the `survey.qmd` file, which required the use of a Quarto extension and some rather hacky methods to implement it. Now this extension is no longer needed, and all of the functionality is built into the `sd_ui()` function. This provides a much cleaner interface for users to customize the look and feel of their survey and makes it easier to version control changes as users only need to update the surveydown package to get the latest ui features. See the [documentation](https://surveydown.org/survey-components.html#ui) on the `sd_ui()` function for more details.
+The new approach uses just two functions: `sd_skip_if()` and `sd_show_if()`. These functions can be provided in the main `server()` function in the `app.R` file to define the conditions and targets for either conditional displaying a question or conditionally skipping to a page. The structure for each condition in these new functions is always as follows:
+
+> `<condition> ~ "target_question_id"`
+
+As an example, let's say we want to show a question called `"penguins_other"` if the respondent chose the `"other"` option in a question called `"penguins"`. We could do this with the following code in the `app.R` file:
+
+```{r}
+server <- function(input, output, session) {
+
+  sd_show_if(
+    input$penguins == "other" ~ "penguins_other"
+  )
+
+  sd_server(db = db)
+
+}
+```
+
+You can provide multiple conditions to the `sd_show_if()` function, each separated by a comma. The `sd_skip_if()` function works the same way, but it will skip to a target page instead of showing a target question. See the revised [Configuration Options](https://surveydown.org/config-options) page for more details on the new changes.
+
+## No more `sd_config()` function
+
+One more small change we made is that the `sd_config()` function is no longer needed. Since we moved the conditional skip and show logic into their own functions, we took the remaining arguments that used to be provided to `sd_config()` and added them to the `sd_server()` function as options. You can now simply pass these arguments to the `sd_server()` function in the `app.R` file.
 
 ## Our apologies
 
-That's about it for the changes with v0.3.0. We want to send our deepest apologies for anyone who has already begun a study using the orginal design. The most recent version prior to v0.3.0 was v0.2.4, so this is the version you should install if you want to stick with the old design. That said, all development will now continue on this new design, so we strongly recommend updating to the new version and converting any existing surveys to the new design. The biggest change you'll need to make is to move your server logic out of the `survey.qmd` file and into the `app.R` file. We've also updated all our [demos](https://surveydown.org/demos) to the new design, so you can refer to these for examples on how to convert your existing surveys.
+That's about it for the changes with v0.3.0. We want to send our deepest apologies for anyone who has already begun a study using the orginal design. The most recent version prior to v0.3.0 was v0.2.4, so this is the version you should install if you want to stick with the old design. 
+
+That said, all development will now continue on this new design, so we strongly recommend updating to the new version and converting any existing surveys to the new design. The biggest change you'll need to make is to move your server logic out of the `survey.qmd` file and into the `app.R` file. We've also updated all our [demos](https://surveydown.org/demos) to the new design, so you can refer to these for examples on how to convert your existing surveys.

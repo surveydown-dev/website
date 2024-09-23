@@ -74,16 +74,15 @@ db <- sd_database(
 )
 
 server <- function(input, output, session) {
-  config <- sd_config()
 
-  sd_server(
-    input   = input,
-    output  = output,
-    session = session,
-    config  = config,
-    db      = db
-  )
+  # Define conditional skip logic here (skip to page if a condition is true)
+  sd_skip_if()
 
+  # Define  conditional display logic here (show a question if a condition is true)
+  sd_show_if()
+
+  # Main server to control the app
+  sd_server()
 }
 
 shiny::shinyApp(ui = sd_ui(), server = server)

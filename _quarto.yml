@@ -14,12 +14,14 @@ project:
     - "deployment.qmd"
     - "demos.qmd"
     - "documentation.qmd"
+    - "external-resources.qmd"
     - "faq.qmd"
     - "fetch-data.qmd"
     - "formatting.qmd"
     - "getting-started.qmd"
     - "index.qmd"
     - "installation.qmd"
+    - "template.qmd"
     - "password.qmd"
     - "question-types.qmd"
     - "reactivity.qmd"
@@ -83,12 +85,16 @@ website:
           href: installation.qmd
         - section: "Reference Manuals"
           contents: 
+            - text: "Start with a Template"
+              href: template.qmd
             - text: "Survey Components"
               href: survey-components.qmd
             - text: "Question Types"
               href: question-types.qmd
             - text: "Formatting"
               href: formatting.qmd
+            - text: "External Resources"
+              href: external-resources.qmd
             - text: "Reactivity"
               href: reactivity.qmd
             - text: "Redirect"
@@ -121,6 +127,7 @@ execute:
   eval: false
   warning: false
   message: false
+code-link: true
 knitr:
   opts_chunk:
     comment: "#>"

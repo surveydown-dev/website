@@ -1,7 +1,7 @@
 Progress,Feature,Implementation
 1,"Wide variety of <a href=""question-types.html"">question types</a>",<code>sd_question()</code>
 1,"Ability to <a href=""fetch-data.html#reactive-fetching"">use latest survey results</a> in the survey itself","<code>sd_get_data(db, reactive = TRUE)</code>"
-1,Preview mode (pauses database connection),<code>sd_database(pause = TRUE)</code>
+1,Pause database connection,<code>sd_database(ignore = TRUE)</code>
 1,"<a href=""config-options.html#conditional-display"">Conditionally display questions</a>",<code>sd_config(show_if = XXX)</code> & <code>sd_config(show_if_custom = XXX)</code>
 1,"<a href=""config-options.html#conditional-skipping"">Conditionally skip to pages</a>",<code>sd_config(skip_if = XXX)</code> & <code>sd_config(skip_if_custom = XXX)</code>
 1,"Start survey from a <a href=""config-options.html#starting-page"">specific page</a> (helpful when editing) ","<code>sd_config(start_page = ""page_id"")</code>"
@@ -10,11 +10,12 @@ Progress,Feature,Implementation
 1,"<a href=""config-options.html#required-responses"">Require</a> all questions be answered",<code>sd_config(all_questions_required = TRUE)</code>
 1,Time stamps recorded for each question and page interaction,Happens by default.
 1,"<a href=""survey-components.html#progress-bar"">Progress bar</a> bar that updates on each question interaction",Happens by default.
-1,"Customizable <a href=""survey-components.html#progress-bar"">progress bar</a> color","In the YAML header, type:<br><code>barcolor = ""A_HEX_COLOR""</code>"
-1,"Customizable <a href=""survey-components.html#progress-bar"">progress bar</a> position","In the YAML header, type:<br><code>barposition = ""top""</code>, <code>""bottom""<code/>, or <code>""none""<code/>"
+1,"Customizable <a href=""survey-components.html#progress-bar"">progress bar</a> color","In the <code>sd_ui()</code> function, use:<br><code>barcolor = ""#123456""</code>"
+1,"Customizable <a href=""survey-components.html#progress-bar"">progress bar</a> position","In the <code>sd_ui()</code> function, use:<br><code>barposition = ""top""</code>, <code>""bottom""</code>, or <code>""none""<code/>"
 1,"<a href=""formatting.html#markdown-formatting"">Markdown formatting</a> for options and buttons",Just use markdown on options and buttons.
-1,Customizable scss theme file,Use <code>theme = custom.scss</code> in the YAML header and put a <code>custom.scss</code> file in the project folder.
-1,"Pass parameters through the url, e.g. to track user IDs","Insert url parameters with a <code>?</code>, e.g. <code>mysurvey.shinyapps.io/?id_a=123&id_b=456</code>"
+1,Support for bootstrap themes,"In the <code>sd_ui()</code> function, use:<br><code>theme = “theme_name”</code>"
+1,Customizable scss theme file,"In the <code>sd_ui()</code> function, use:<br><code>custom_css = “custom.css”</code>, where <code>“custom.css”</code> is a custom css file."
+1,"Pass parameters through the url, e.g. to track user IDs","Insert url parameters with a <code>?</code>, e.g. <code>mysurvey.shinyapps.io/?id_a=123&id_b=456</code><br>then obtain the parameters in the server with <code>sd_get_url_pars()</code>"
 1,"<a href=""redirection.html"">Redirect</a> users to an external url",Use <code>sd_redirect()</code>
 0,"<a href=""config-options#admin-page"">Admin page</a> with password login to preview / download data, pause survey, etc.","<code>sd_config(admin_page = TRUE)</code>, then access with url, e.g. <code>https://mysurvey.shinyapps.io/?admin</code>"
 0,Form validation (limit input based on question type),Happens by default

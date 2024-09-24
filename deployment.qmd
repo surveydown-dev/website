@@ -6,14 +6,11 @@ title: "Deploying Your Survey"
 
 Before deploying your survey, make sure you have done the following:
 
-1. You have rendered your Quarto shiny d ocumentand tested it locally by clicking the "Run Document" button in RStudio or in your terminal running the command:
-```{r}
-quarto serve survey_file_name.qmd
-```
-
-2. You have set up a [Supabase]({{< var url_supabase >}}) project and have already added the database parameters in the `sd_database()` function in the setup code chunk (see the [Store Data](store-data.qmd) page for details).
-3. You have set the password for your survey using `surveydown::sd_set_password("my_password")`, using the password you set in the Supabase project.
-4. You have created an account on [shinyapps]({{< var url_shinyapps >}}), which will be used for survey online deployment.
+1. You have rendered your `survey.qmd` document. 
+2. You have locally run your `app.R` file by clicking the "Run App" button in RStudio or in your R console running the `runApp()` command.
+3. You have set up a [Supabase]({{< var url_supabase >}}) project and have already added the database parameters in the `sd_database()` function in the setup code chunk (see the [Store Data](store-data.qmd) page for details).
+4. You have set the password for your survey using `surveydown::sd_set_password("my_password")`, using the password you set in the Supabase project.
+5. You have created an account on [shinyapps]({{< var url_shinyapps >}}), which will be used for survey online deployment.
 
 With these steps completed, you are ready to deploy your survey online.
 
@@ -42,31 +39,9 @@ install.packages('rsconnect')
 Then, the simplest way to deploy your survey is to run this:
 
 ```{r}
-rsconnect::deployDoc("your_survey.qmd")
+rsconnect::deployApp(appName = "Survey Name")
 ```
 
-The URL of this page will be your domain followed by `/your_survey`, which means the name of your `.qmd` file will be in the URL. The tab name of the HTML page is also `your_survey`. If you want to define a different tab name for your survey page, run:
+The tab name of the HTML page is defined by the `appName` argument. 
 
-```{r}
-rsconnect::deployDoc(
-  doc = "your_survey.qmd",
-  appName = "Survey Name"
-)
-```
-
-::: {.callout-important}
-
-Just as a reminder, don't forget to render your surveydown survey locally and make sure it works properly **before you deploy online**. Otherwise, this deployment will fail.
-
-:::
-
-That's it!Now you should have your survey site deployed on **shinyapps.io**, with its data stored on **Supabase**. Congratulations!
-
-::: {.callout-note}
-
-In rsconnect, there are two functions that can be used to deploy a shiny app: `deployApp()` and `deployDoc()`. They serve different purposes:
-
-- `deployApp()` is used to deploy a Shiny App. It doesn't work for `.qmd` documents, but it does work for Shiny Apps and `.rmd` documents, and it accepts multiple files.
-- `deployDoc()` is used to deploy a Quarto Shiny document. It works for a single file and tries to "automatically discover dependencies", according to the [official instructions](https://rstudio.github.io/rsconnect/reference/deployDoc.html)).
-
-:::
+That's it! Now you should have your survey site deployed on **shinyapps.io**, with its data stored on **Supabase**. Congratulations!

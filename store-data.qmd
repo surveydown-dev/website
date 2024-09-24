@@ -2,15 +2,13 @@
 title: "Storing Data"
 ---
 
-The default database for storing survey responses is [Supabase]({{< var url_supabase >}}). We plan to also support the ability to use your own database in the future.
+The surveydown package is designed to work with any Postgres database. Since many may not want to create such a database on their own, we recommend using [Supabase]({{< var url_supabase >}}), which is a free, open-source Postgres database service.
 
-Below are the steps you need to go through on [Supabase]({{< var url_supabase >}}):
+In this guide, we'll walk you through the steps to set up a Supabase project and connect your surveydown survey to it.
 
 1.  Create a Supabase account
 2.  Create a Supabase project
 3.  Copy your credentials
-
-We'll walk you through one by one.
 
 ## Create a Supabase account
 
@@ -29,7 +27,7 @@ Once you are logged in, the page will prompt you to create a project. It's an ob
 
 ::: {.callout-important}
 
-One Supabase project can support multiple surveydown surveys, but we recommend that you have only one survey per project to avoid potential mistakes.
+One Supabase project can support multiple surveydown surveys if you wish, but we recommend that you have only one survey per project to avoid potential mistakes.
 
 :::
 
@@ -60,10 +58,9 @@ This is also where you change the password of your Supabase project.
 
 :::
 
-Now, deliver these parameters to your survey! In your survey `.qmd` file, you define `sd_database()` in your setup chunk. In the template it looks like this:
+Now, deliver these parameters to your app! In your `app.R` file, you define `sd_database()` at the top before defining the `server()` function. Anything loaded here is globally accessible, so this is where your database configuration should go. In the template it looks like this:
 
 ```{r}
-# In your setup chunk
 db <- sd_database(
   host   = "",
   dbname = "",
@@ -73,20 +70,9 @@ db <- sd_database(
 )
 ```
 
-Copy and paste the first 4 parameters from your Supabase page to `sd_database()`, aka "Host", "Database name", "Port", and "User". Again, your password should be defined using `sd_set_password()` in your R console, NOT in the `.qmd` file.
+Copy and paste the first 4 parameters from your Supabase page to `sd_database()`, aka "Host", "Database name", "Port", and "User". Again, your password should be defined using `sd_set_password()` in your R console, NOT in the `app.R` file.
 
-The last parameter, `table`, can be anything of your choice. After your survey gets running, a table with this name will appear in **"Table Editor"** of your Supabase project. It's located at the top-left corner of the page.
-
-::: {.callout-tip}
-**Run without Supabase:**
-
-If you don't have a database setup yet, you can just leave the function blank and your survey will still run. Your survey data will be stored locally.
-
-```{r}
-db <- sd_database()
-```
-
-:::
+The last parameter, `table`, can be any string you want. After your survey gets running, a table with this name will appear in **"Table Editor"** of your Supabase project. It's located at the top-left corner of the page.
 
 ## Tips
 

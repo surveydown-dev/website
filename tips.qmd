@@ -13,54 +13,9 @@ sd_setup()
 
 This page has some helpful suggestions for working with surveydown surveys.
 
-## Splitting the server chunk into a separate file
-
-The server chunk contains many components. As your survey grows in length and complexity, the server chunk can get quite long, and scrolling up and down to edit it along with the main survey content can be annoying. To address this, it can be helpful to split up your server code into a separate file so that you can open it in a separate tab in your editor.
-
-To enable this, create a `server.R` file (can be any name you wish) in your projec  t directory, and put all of your server code in this file except for the call to `sd_server()`. Then you can source the file into the server chunk like this:
-
-::: {.panel-tabset}
-
-## `survey.qmd` file
-
-```{r}
-#| echo: fenced
-#| context: server
-
-source("server.R")
-
-sd_server(
-  input   = input,
-  output  = output,
-  session = session,
-  config  = config,
-  db      = db
-)
-```
-
-## `server.R` file
-
-```{r}
-config <- sd_config(
-  # your config here
-)
-
-# Any other server code here
-```
-
-:::
-
-With this setup, your server code chunk will remain unchanged and you will only need to edit your `server.R` file to customize your server settings.
-
-::: {.callout-important}
-
-Note that you still need to include the `sd_server()` function in your server code chunk after sourcing the `server.R` file. 
-
-:::
-
 ## Programmatically generate survey questions
 
-You can use {{< fa brands r-project >}} code to programmatically generate survey questions, which can be useful if you have a large number of questions that are similar to each other. One way to do this is to first create a data frame with the question parameters, and then use the `sd_question()` function to create the questions.
+You can use {{< fa brands r-project >}} code to programmatically generate survey questions in your `survey.qmd` file, which can be useful if you have a large number of questions that are similar to each other. One way to do this is to first create a data frame with the question parameters, and then use the `sd_question()` function to create the questions.
 
 Here's an example using `map()` over the `items` data frame to generate a list of questions. Note that the list of questions is wrapped in `shiny::tagList()`, which is necessary for the survey to render properly since the `map()` function returns a list.
 

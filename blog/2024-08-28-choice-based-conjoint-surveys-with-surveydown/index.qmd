@@ -33,6 +33,12 @@ library(glue)
 sd_setup()
 ```
 
+::: {.callout-important}
+
+**This post was updated on 2024-09-23 to match the new architecture introduced in v0.3.0.** See the [blog post](https://surveydown.org/blog/2024-09-18-new-app-design/) on the v0.3.0 release for more details.
+
+:::
+
 Because [surveydown](https://surveydown.org/) surveys run as a shiny app, you can include custom logic in the background by writing some {{< fa brands r-project>}} code in your server. In this post, I'm going to show you one approach for using surveydown to create a particular type of complex survey: a **choice-based conjoint survey**. 
 
 ::: {.callout-note}
@@ -49,13 +55,13 @@ You can view the live demo survey [here](https://surveydown.shinyapps.io/conjoin
 
 ## Introduction
 
-If you've never used surveydown before, take a look at [this post](https://surveydown.org/blog/2024-08-21-introducing-surveydown/) to get a quick introduction to the package and how to use it to make a survey.
+If you've never used surveydown before, take a look at the [Getting Started](https://surveydown.org/getting-started.html) page to get a quick introduction to the package and how to use it to make a survey.
 
-The basic concept is:
+The basic concept is this:
 
-1. Design your survey as a [Quarto shiny document](https://quarto.org/docs/dashboards/interactivity/shiny-r.html) using markdown and R code.
-2. Render your doc into a [shiny](https://shiny.posit.co/) app that can be hosted online and sent to respondents.
-3. Store your survey responses in a [supabase](https://supabase.com/) database.
+1.  Design your survey as a [Quarto]({{< url_quarto >}}) document using markdown and R code.
+2.  Convert your survey into a [Shiny]({{< url_shiny >}}) app that can be hosted online and sent to respondents.
+3.  Store your survey responses in a [Supabase]({{< url_supabase >}}) database.
 
 ## Getting started 
 
@@ -66,9 +72,7 @@ For this post, we recommend starting from the demo survey available at [this Git
 The demo repo has a lot of files in it, but the main files defining the survey itself are:
 
 - `survey.qmd`: The main body of the survey. 
-- `server.R`: The server defining the logic implemented in the survey, including randomizing questions, connecting to a database, etc.
-
-In a typical surveydown survey, our server code chunk (bottom of the `survey.qmd` file) is not that long, so we just keep everything there. However, in this case since we have a lot more going on in our server, we chose to use a [split file structure](https://surveydown.org/tips.html#splitting-the-server-chunk-into-a-separate-file) where we separate out most of the server code in a separate `server.R` file. We then source that file in the server code chunk (the `source("server.R")` part in our server code chunk). This just makes it easier to edit the server code as the `server.R` file can be opened in a separate tab rather than having to scroll up and down the longer `survey.qmd` file.
+- `app.R`: The app file containing the server logic implemented in the survey, including randomizing questions, connecting to a database, etc.
 
 ::: {.callout-note}
 
@@ -78,9 +82,9 @@ We recommend opening the `survey.Rproj` if you're working in RStudio to make sur
 
 ## Content in the survey body
 
-After the setup code chunk (where we load the package and establish a database connection with `sd_database()`), we have a series of pages (defined with `:::` fences) that include markdown-formatted text and survey questions (defined with `sd_question()`). You can modify any of this content as you wish to suit the needs of your survey. 
+After the setup code chunk where we load the surveydown package, we have a series of pages (defined with `:::` fences) that include markdown-formatted text and survey questions (defined with `sd_question()`). You can modify any of this content as you wish to suit the needs of your survey. 
 
-In this demo, we have a few other examples included, like a conditionally displayed question (the `fav_fruit` question will not display if you choose "No" on the first question about liking fruit) as well as a question that skips people to the end (if you choose "blue" and not "red" on the `screening` page). The logic controlling the conditional display and skipping is defined in the `sd_config()` function inside the `server.R` file.
+In this demo, we have a few other examples included, like a conditionally displayed question (the `fav_fruit` question will not display if you choose "No" on the first question about liking fruit) as well as a question that skips people to the end (if you choose "blue" and not "red" on the `screening` page). The logic controlling the conditional display and skipping is defined with the `sd_skip_if()` function in the `app.R` file.
 
 None of this is necessary for a conjoint survey, but often times these are features that you may want to include, such as screening people out of the survey if they don't qualify to take it, so we include it for demonstration purposes.
 
@@ -92,7 +96,7 @@ We use the [cbcTools](https://jhelvy.github.io/cbcTools/) package to create the 
 
 ## Implementing the choice questions
 
-The choice questions are implemented at the top of the `server.R` file in the demo repo. This code does the following steps:
+The choice questions are implemented at the top of the `server()` function in the `app.R` file in the demo repo. This code does the following steps:
 
 ###  1. Read in the design file
 
@@ -208,7 +212,7 @@ sd_question(
 
 Remember that since the labels in the options are being _dynamically_ generated on each new session (each respondent), they have to be created in the server, not in the main survey body. As a result, the `sd_question()` function must also be created in the server code (if you put this code in the main body, only one random set of choice options will be generated, and they'll be the same for everyone). 
 
-To display each question in the survey body, we use `sd_output("id", type = "question")`, changing `id` to each corresponding choice question we created. In the demo `survey.qmd` file, you'll see that there are 6 choice questions displayed in the main survey body (each on their own page), and each of those 6 questions are defined in the `server.R` file. 
+To display each question in the survey body, we use `sd_output("id", type = "question")`, changing `id` to each corresponding choice question we created. In the demo `survey.qmd` file, you'll see that there are 6 choice questions displayed in the main survey body (each on their own page), and each of those 6 questions are defined in the `server()` function in the `app.R` file. 
 
 When rendered, a choice question will look like this, with the values matching whatever alternative was chosen in the design file:
 
@@ -297,11 +301,11 @@ sd_question(
 
 ## Preview and check
 
-The rest of the `server.R` file has the remaining components we need, like any conditional display or skip logic using `sd_config()`. This is all standard features of any surveydown survey, so we won't cover them in detail here and instead direct you to the [documentation](https://surveydown.org/documentation) for details.
+The rest of the `server()` function in the `app.R` file has the remaining components we need, like any conditional display or skip logic. This is all standard features of any surveydown survey, so we won't cover them in detail here and instead direct you to the [documentation](https://surveydown.org/documentation) for details.
 
 But before you go live, it's a good idea to do some quick testing. You can test your survey even without having it connected to a database by setting `ignore = TRUE` in the `sd_database()` function. Of course, you probably should also test it after connecting it to a database to ensure that responses are being properly stored. 
 
-When testing, you might get an error - don't panic! Read the terminal output carefully and debug. There's a good chance you may have missed a bug somewhere in your server code. But since it's in a separate `server.R` file, you should be able to open this and run through your code to check that things are working properly.
+When testing, you might get an error - don't panic! Read the terminal output carefully and debug. There's a good chance you may have missed a bug somewhere in your server code. Look in your `app.R` file to see if you can spot the error.
 
 ## Getting the data
 

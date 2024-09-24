@@ -15,33 +15,21 @@ execute:
 </center>
 <br>
 
-The basic concept is this:
+The basic concept is:
 
-1.  Design your survey as a [Quarto Shiny
-    document]({{< url_quarto_shiny >}})
-    using markdown and R code.
-2.  Render your doc into a [Shiny]({{< url_shiny >}}) app that can
-    be hosted online and sent to respondents.
-3.  Store your survey responses in a [Supabase]({{< url_supabase >}})
-    database.
+1. Design your survey as a [Quarto]({{< url_quarto >}}) document using markdown and R code.
+2. Convert your survey into a [Shiny]({{< url_shiny >}}) app that can be hosted online and sent to respondents.
+3. Store your survey responses in a [Supabase]({{< url_supabase >}}) database (or any Postgres database).
+
+The {surveydown} R package provides functions to bring this all together.
 
 {{< include chunks/start.qmd >}}
-
-# Editing a surveydown survey
-
-Editing a surveydown survey feels like editing a [Quarto]({{< url_quarto >}}) document. As a result, we recommend working with an IDE to edit your surveys as they offer a better experience. [RStudio]({{< url_rstudio_ide >}}) is great, and we also like [VS Code]({{< url_vscode >}}) and [Positron]({{< url_positron >}}).
-
-Once you have a survey ready to edit in your favorite IDE, you can render it locally to see how it will look as you change features. For example, the gif below shows what it looks like to [make a question required](config-options.qmd#required-responses). This gives you an idea for what the development process is like. And because surveydown leverages [Shiny]({{< url_shiny >}}) and [Quarto]({{< url_quarto >}}), you can add all sorts of custom features and styles to your survey!
-
-<center>
-<img src="images/screenshots/required.gif" width=100%>
-</center>
 
 # Background & Motivation
 
 Most survey platforms (e.g., Google forms, Qualtrics, etc.) use drag-and-drop interfaces to design surveys, making version control and collaboration with others difficult. They're also not reproducible (others cannot easily reproduce a survey made on these platforms), and many require a paid subscription or license to use.
 
-As an open-source, markdown-based platform, surveydown was designed to address these problems. In surveydown, all survey content is created with plain text (markdown and R code) in a single `.qmd` file that renders into a Shiny app. This makes your survey easy to reproduce, share, and version control with common tools like Git. The survey data collected is also owned by the survey designer in a Supabase account. Best of all, everything is open source and free :)
+The surveydown package was designed to address these problems. As an open-source, markdown-based platform, all survey content is defined with plain text (markdown and R code) in a `survey.qmd` file and an `app.R` file that renders your survey into a Shiny app that can be hosted online. This makes your survey easy to reproduce, share, and version control with common tools like Git. The survey data collected is also owned by the survey designer in a separate Postgres database (we recommend Supabase as a free and open-source database provider).
 
 If you're curious where this whole idea came from, check out this [blog post](https://www.jhelvy.com/blog/2023-04-06-markdown-surveys/), which outlines more on the general idea and the motivation for it. The post is now outdated in terms of the overall package design, but it provides something of an origin story and some of the motivation for developing this project.
 
@@ -50,37 +38,55 @@ If you're curious where this whole idea came from, check out this [blog post](ht
 The surveydown project is led by professor [John Paul Helveston](https://www.jhelvy.com/) at George Washington University. The development team consists of the following members:
 
 ::: {style="display: flex; flex-wrap: wrap; gap: 2%;"}
+
 ::: {style="width: 22%;"}
+
 ![](/images/authors/john_helveston_square.png){style="width: 200px; border-radius: 50%;"}
+
 :::
 
 ::: {style="width: 76%;"}
+
 **John Paul Helveston, Ph.D.**
 
 [John Paul Helveston](https://www.jhelvy.com) is an Assistant Professor in the Department of Engineering Management and Systems Engineering at George Washington University. Professor Helveston is the core designer and developer, and maintainer of both the surveydown project and this documentation website.
+
 :::
+
 :::
 
 ::: {style="display: flex; flex-wrap: wrap; gap: 2%;"}
+
 ::: {style="width: 22%;"}
+
 ![](/images/authors/pingfan_hu.jpg){style="width: 200px; border-radius: 50%;"}
+
 :::
 
 ::: {style="width: 76%;"}
+
 **Pingfan Hu**
 
 [Pingfan Hu](https://pingfanhu.com) is a Ph.D. student in Systems Engineering at George Washington University, supervised by professor Helveston. Pingfan is mainly responsible for UI design, user interactions, and website maintenance.
+
 :::
+
 :::
 
 ::: {style="display: flex; flex-wrap: wrap; gap: 2%;"}
+
 ::: {style="width: 22%;"}
+
 ![](/images/authors/bogdan_bunea.jpg){style="width: 200px; border-radius: 50%;"}
+
 :::
 
 ::: {style="width: 76%;"}
+
 **Bogdan Bunea**
 
 [Bogdan Bunea](https://www.linkedin.com/in/bogdanbt/) is an undergraduate student majoring in Systems Engineering and minoring in Computer Science at George Washington University. Bogdan is mainly responsible for database connection and data management.
+
 :::
+
 :::

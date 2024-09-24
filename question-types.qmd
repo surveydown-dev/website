@@ -8,10 +8,10 @@ toc-expand: true
 #| include: false
 
 library(surveydown)
-sd_setup()
+shiny::shinyOptions(bootstrapTheme = bslib::bs_theme(version = 5L))
 ```
 
-All questions in a surveydown survey are created using the `sd_question()` function.
+All questions in a surveydown survey are created using the `sd_question()` function. Calls to `sd_question()` should be put inside code chunks in the `survey.qmd` file to define the survey questions.
 
 The function requires the following three arguments:
 

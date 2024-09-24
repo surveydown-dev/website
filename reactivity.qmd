@@ -39,7 +39,7 @@ If the respondent entered "Dave" in the `name` question, this would render as:
 
 ::: {.callout-note title="How this works under the hood"}
 
-Every question has an `id`, and the values chosen are stored automatically as `id_value` (e.g. if the question `id` was `name`, then the value would be stored as `name_value`). In the `sd_output()` function, we append this `_value` to the `id` to get the object we want to display if the user defines `type = "value"`, then we use an appropriate `shiny` output function to display it, e.g. `shiny::textOutput()`. You can also use `sd_output()` to show reactive questions with `type = "question"` or other stored values from the server code chunk.
+Every question has an `id`, and the values chosen are stored automatically as `id_value` (e.g. if the question `id` was `name`, then the value would be stored as `name_value`). In the `sd_output()` function, we append this `_value` to the `id` to get the object we want to display if the user defines `type = "value"`, then we use an appropriate `shiny` output function to display it, e.g. `shiny::textOutput()`. You can also use `sd_output()` to show reactive questions with `type = "question"` or other stored values from the server function in the `app.R` file.
 
 :::
 
@@ -49,13 +49,13 @@ The `sd_output()` function can only be used once per each unique question `id` b
 
 The solution that we use is to simply make a copy of the value and then display the copy (this is also the [solution](https://github.com/rstudio/shiny/issues/743#issuecomment-652397537) on the GitHub issue linked above). 
 
-To do so, in the server code chunk use the `sd_copy_value()` function to create a copy of the value, like this:
+To do so, in the server function in the `app.R` file use the `sd_copy_value()` function to create a copy of the value, like this:
 
 ```{r}
 sd_copy_value(id = "name", id_copy = "name_copy")
 ```
 
-You can then use the `sd_output()` function to display both the original and copied values. For example:
+You can then use the `sd_output()` function in your `survey.qmd` file to display both the original and copied values. For example:
 
 ```{r}
 Welcome, `r sd_output("name", type = "value")`!
@@ -81,7 +81,7 @@ Showing a question with randomized labels is a common use case for reactive prog
 
 ### Live randomization
 
-One approach is to generate the random labels in the server code chunk "live", meaning that the labels will be generated when the survey is first loaded. For example, here I generate three random numbers between 1 and 100 and use them to create the option labels for a multiple choice question:
+One approach is to generate the random labels in the server function "live", meaning that the labels will be generated when the survey is first loaded. For example, let's say in my server function I generate three random numbers between 1 and 100 and use them to create the option labels for a multiple choice question:
 
 ```{r}
 #| eval: true
@@ -100,7 +100,7 @@ q1_options
 
 Remember that the names of the vector are the labels, so the respondents will see the numbers in the names of the above vector, and the values (`'option1'`, etc.) will be stored in the resulting survey data.
 
-To then use these options in a multiple choice question, you would use the `sd_question()` function like this:
+To then use these options in a multiple choice question, you would use the `sd_question()` function also in the server function (**not** in the `survey.qmd` file) like this:
 
 ```{r}
 sd_question(
@@ -111,7 +111,7 @@ sd_question(
 )
 ```
 
-By defining this question inside the server code chunk, the question will be created as a reactive question that can be displayed in the survey using the `sd_output()` function, like this:
+By defining this question inside the server function, the question will be created as a reactive question that can then be displayed in the `survey.qmd` file using the `sd_output()` function, like this:
 
 ```{r}
 #| echo: fenced
@@ -157,7 +157,7 @@ Now we can write this design to a csv file:
 readr::write_csv(design, "design.csv")
 ```
 
-Then in your server code chunk, you could read in the design file and use it to randomize the labels for each question. Here the only thing you would need to keep track of the randomly chosen row id:
+Then in your server function in the `app.R` file, you could read in the design file and use it to randomize the labels for each question. Here the only thing you would need to keep track of the randomly chosen row id:
 
 ```{r}
 # Read in the design file
@@ -185,4 +185,12 @@ sd_question(
   label = "Which of these numbers is the largest?",
   option = q1_options
 )
+```
+
+Once again, you would be able to then display this question in the `survey.qmd` file using the `sd_output()` function:
+
+```{r}
+#| echo: fenced
+
+sd_output(id = "q1", type = "question")
 ```

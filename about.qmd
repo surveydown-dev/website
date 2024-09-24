@@ -15,11 +15,13 @@ execute:
 </center>
 <br>
 
-The basic concept is this:
+The basic concept is:
 
-1.  Design your survey as a [Quarto]({{< url_quarto >}}) document using markdown and R code.
-2.  Convert your survey into a [Shiny]({{< url_shiny >}}) app that can be hosted online and sent to respondents.
-3.  Store your survey responses in a [Supabase]({{< url_supabase >}}) database.
+1. Design your survey as a [Quarto]({{< url_quarto >}}) document using markdown and R code.
+2. Convert your survey into a [Shiny]({{< url_shiny >}}) app that can be hosted online and sent to respondents.
+3. Store your survey responses in a [Supabase]({{< url_supabase >}}) database (or any Postgres database).
+
+The {surveydown} R package provides functions to bring this all together.
 
 {{< include chunks/start.qmd >}}
 
@@ -27,7 +29,7 @@ The basic concept is this:
 
 Most survey platforms (e.g., Google forms, Qualtrics, etc.) use drag-and-drop interfaces to design surveys, making version control and collaboration with others difficult. They're also not reproducible (others cannot easily reproduce a survey made on these platforms), and many require a paid subscription or license to use.
 
-As an open-source, markdown-based platform, surveydown was designed to address these problems. In surveydown, all survey content is defined with plain text (markdown and R code) in a `survey.qmd` file and an `app.R` file that renders your survey into a Shiny app that can be hosted online. This makes your survey easy to reproduce, share, and version control with common tools like Git. The survey data collected is also owned by the survey designer in a Supabase account. Best of all, everything is open source and free :)
+The surveydown package was designed to address these problems. As an open-source, markdown-based platform, all survey content is defined with plain text (markdown and R code) in a `survey.qmd` file and an `app.R` file that renders your survey into a Shiny app that can be hosted online. This makes your survey easy to reproduce, share, and version control with common tools like Git. The survey data collected is also owned by the survey designer in a separate Postgres database (we recommend Supabase as a free and open-source database provider).
 
 If you're curious where this whole idea came from, check out this [blog post](https://www.jhelvy.com/blog/2023-04-06-markdown-surveys/), which outlines more on the general idea and the motivation for it. The post is now outdated in terms of the overall package design, but it provides something of an origin story and some of the motivation for developing this project.
 

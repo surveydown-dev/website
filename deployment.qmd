@@ -8,9 +8,9 @@ Before deploying your survey, make sure you have done the following:
 
 1. You have rendered your `survey.qmd` document. 
 2. You have locally run your `app.R` file by clicking the "Run App" button in RStudio or in your R console running the `runApp()` command.
-3. You have set up a [Supabase]({{< var url_supabase >}}) project and have already added the database parameters in the `sd_database()` function in the setup code chunk (see the [Store Data](store-data.qmd) page for details).
+3. You have set up a {{< var supabase >}} project and have already added the database parameters in the `sd_database()` function in the setup code chunk (see the [Store Data](store-data.qmd) page for details).
 4. You have set the password for your survey using `surveydown::sd_set_password("my_password")`, using the password you set in the Supabase project.
-5. You have created an account on [shinyapps]({{< var url_shinyapps >}}), which will be used for survey online deployment.
+5. You have created an account on {{< var shinyapps >}}, which will be used for survey online deployment.
 
 With these steps completed, you are ready to deploy your survey online.
 
@@ -18,7 +18,7 @@ With these steps completed, you are ready to deploy your survey online.
 
 Deploying your survey is pretty much the same as deploying any other Shiny app. 
 
-We recommend using [shinyapps.io]({{< var url_shinyapps >}}) to host your survey as it is designed to work with Shiny Apps, but you can also use other hosting services such as [RStudio Connect](https://docs.posit.co/connect/) or [huggingface]({{< var url_huggingface >}}). 
+We recommend using {{< var shinyapps >}} to host your survey as it is designed to work with Shiny Apps, but you can also use other hosting services such as [RStudio Connect](https://docs.posit.co/connect/) or {{< var huggingface >}}. 
 
 ::: {.callout-note}
 

@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
-<script src="../../site_libs/sw-buttons-group-0.8.6/buttons-group.js"></script>
+<script src="../../site_libs/sw-buttons-group-0.8.7/buttons-group.js"></script>
 <script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
@@ -261,6 +261,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>This post was updated on 2024-09-23 to match the new architecture introduced in v0.3.0.</strong> See the <a href="https://surveydown.org/blog/2024-09-18-new-app-design/">blog post</a> on the v0.3.0 release for more details.</p>
+</div>
+</div>
 <p>Because <a href="https://surveydown.org/">surveydown</a> surveys run as a shiny app, you can include custom logic in the background by writing some <i class="fa-brands fa-r-project" aria-label="r-project"></i> code in your server. In this post, I’m going to show you one approach for using surveydown to create a particular type of complex survey: a <strong>choice-based conjoint survey</strong>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -280,12 +293,12 @@ Note
 <p>You can view the live demo survey <a href="https://surveydown.shinyapps.io/conjoint/">here</a>, and all files used to create the survey are on <a href="https://github.com/surveydown-dev/demo-choice-based-conjoint">this GitHub repo</a>.</p>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>If you’ve never used surveydown before, take a look at <a href="https://surveydown.org/blog/2024-08-21-introducing-surveydown/">this post</a> to get a quick introduction to the package and how to use it to make a survey.</p>
-<p>The basic concept is:</p>
+<p>If you’ve never used surveydown before, take a look at the <a href="https://surveydown.org/getting-started.html">Getting Started</a> page to get a quick introduction to the package and how to use it to make a survey.</p>
+<p>The basic concept is this:</p>
 <ol type="1">
-<li>Design your survey as a <a href="https://quarto.org/docs/dashboards/interactivity/shiny-r.html">Quarto shiny document</a> using markdown and R code.</li>
-<li>Render your doc into a <a href="https://shiny.posit.co/">shiny</a> app that can be hosted online and sent to respondents.</li>
-<li>Store your survey responses in a <a href="https://supabase.com/">supabase</a> database.</li>
+<li>Design your survey as a <a href="{{< url_quarto  >}}">Quarto</a> document using markdown and R code.</li>
+<li>Convert your survey into a <a href="{{< url_shiny  >}}">Shiny</a> app that can be hosted online and sent to respondents.</li>
+<li>Store your survey responses in a <a href="{{< url_supabase  >}}">Supabase</a> database.</li>
 </ol>
 </section>
 <section id="getting-started" class="level2">
@@ -295,9 +308,8 @@ Note
 <p>The demo repo has a lot of files in it, but the main files defining the survey itself are:</p>
 <ul>
 <li><code>survey.qmd</code>: The main body of the survey.</li>
-<li><code>server.R</code>: The server defining the logic implemented in the survey, including randomizing questions, connecting to a database, etc.</li>
+<li><code>app.R</code>: The app file containing the server logic implemented in the survey, including randomizing questions, connecting to a database, etc.</li>
 </ul>
-<p>In a typical surveydown survey, our server code chunk (bottom of the <code>survey.qmd</code> file) is not that long, so we just keep everything there. However, in this case since we have a lot more going on in our server, we chose to use a <a href="https://surveydown.org/tips.html#splitting-the-server-chunk-into-a-separate-file">split file structure</a> where we separate out most of the server code in a separate <code>server.R</code> file. We then source that file in the server code chunk (the <code>source("server.R")</code> part in our server code chunk). This just makes it easier to edit the server code as the <code>server.R</code> file can be opened in a separate tab rather than having to scroll up and down the longer <code>survey.qmd</code> file.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -314,8 +326,8 @@ Note
 </section>
 <section id="content-in-the-survey-body" class="level2">
 <h2 class="anchored" data-anchor-id="content-in-the-survey-body">Content in the survey body</h2>
-<p>After the setup code chunk (where we load the package and establish a database connection with <code>sd_database()</code>), we have a series of pages (defined with <code>:::</code> fences) that include markdown-formatted text and survey questions (defined with <code>sd_question()</code>). You can modify any of this content as you wish to suit the needs of your survey.</p>
-<p>In this demo, we have a few other examples included, like a conditionally displayed question (the <code>fav_fruit</code> question will not display if you choose “No” on the first question about liking fruit) as well as a question that skips people to the end (if you choose “blue” and not “red” on the <code>screening</code> page). The logic controlling the conditional display and skipping is defined in the <code>sd_config()</code> function inside the <code>server.R</code> file.</p>
+<p>After the setup code chunk where we load the surveydown package, we have a series of pages (defined with <code>:::</code> fences) that include markdown-formatted text and survey questions (defined with <code>sd_question()</code>). You can modify any of this content as you wish to suit the needs of your survey.</p>
+<p>In this demo, we have a few other examples included, like a conditionally displayed question (the <code>fav_fruit</code> question will not display if you choose “No” on the first question about liking fruit) as well as a question that skips people to the end (if you choose “blue” and not “red” on the <code>screening</code> page). The logic controlling the conditional display and skipping is defined with the <code>sd_skip_if()</code> function in the <code>app.R</code> file.</p>
 <p>None of this is necessary for a conjoint survey, but often times these are features that you may want to include, such as screening people out of the survey if they don’t qualify to take it, so we include it for demonstration purposes.</p>
 </section>
 <section id="defining-the-choice-questions" class="level2">
@@ -325,7 +337,7 @@ Note
 </section>
 <section id="implementing-the-choice-questions" class="level2">
 <h2 class="anchored" data-anchor-id="implementing-the-choice-questions">Implementing the choice questions</h2>
-<p>The choice questions are implemented at the top of the <code>server.R</code> file in the demo repo. This code does the following steps:</p>
+<p>The choice questions are implemented at the top of the <code>server()</code> function in the <code>app.R</code> file in the demo repo. This code does the following steps:</p>
 <section id="read-in-the-design-file" class="level3">
 <h3 class="anchored" data-anchor-id="read-in-the-design-file">1. Read in the design file</h3>
 <p>Pretty straightforward - this is one line to read in the <code>choice_questions.csv</code> design file that we saved in the project folder.</p>
@@ -425,25 +437,42 @@ Note
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ...and 5 more questions like this</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Remember that since the labels in the options are being <em>dynamically</em> generated on each new session (each respondent), they have to be created in the server, not in the main survey body. As a result, the <code>sd_question()</code> function must also be created in the server code (if you put this code in the main body, only one random set of choice options will be generated, and they’ll be the same for everyone).</p>
-<p>To display each question in the survey body, we use <code>sd_output("id", type = "question")</code>, changing <code>id</code> to each corresponding choice question we created. In the demo <code>survey.qmd</code> file, you’ll see that there are 6 choice questions displayed in the main survey body (each on their own page), and each of those 6 questions are defined in the <code>server.R</code> file.</p>
+<p>To display each question in the survey body, we use <code>sd_output("id", type = "question")</code>, changing <code>id</code> to each corresponding choice question we created. In the demo <code>survey.qmd</code> file, you’ll see that there are 6 choice questions displayed in the main survey body (each on their own page), and each of those 6 questions are defined in the <code>server()</code> function in the <code>app.R</code> file.</p>
 <p>When rendered, a choice question will look like this, with the values matching whatever alternative was chosen in the design file:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="container- cbc_q1" data-question-id="cbc_q1" class="question-container" oninput="Shiny.setInputValue('cbc_q1_interacted', true, {priority: 'event'});">
+<div id="container-cbc_q1" data-question-id="cbc_q1" class="question-container" oninput="Shiny.setInputValue('cbc_q1_interacted', true, {priority: 'event'});">
 <div class="form-group shiny-input-container shiny-input-radiogroup shiny-input-container-inline" style="width:100%;">
 <label class="control-label" id="cbc_q1-label" for="cbc_q1"><p>(1 of 6) If these were your only options, which would you choose? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
 </label>
 <br>
 <div id="cbc_q1" class="radio-group-buttons">
 <div aria-labelledby="cbc_q1-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
-<input type="radio" autocomplete="off" id="cbc_q11" name="cbc_q1" value="option_1" class="btn-check">
-<label class="btn radiobtn btn-outline-primary" for="cbc_q11"><strong>Option 1</strong><br><img src="images/honeycrisp.jpg" width="100"><br><strong>Type</strong>: Honeycrisp<br><strong>Price</strong>: $ 1 / lb</label>
-<input type="radio" autocomplete="off" id="cbc_q12" name="cbc_q1" value="option_2" class="btn-check">
-<label class="btn radiobtn btn-outline-primary" for="cbc_q12"><strong>Option 2</strong><br><img src="images/fuji.jpg" width="100"><br><strong>Type</strong>: Fuji<br><strong>Price</strong>: $ 3 / lb</label>
-<input type="radio" autocomplete="off" id="cbc_q13" name="cbc_q1" value="option_3" class="btn-check">
-<label class="btn radiobtn btn-outline-primary" for="cbc_q13"><strong>Option 3</strong><br><img src="images/redDelicious.jpg" width="100"><br><strong>Type</strong>: Red Delicious<br><strong>Price</strong>: $ 2.5 / lb</label>
+<div class="btn-group btn-group-toggle" role="group">
+<button class="btn radiobtn btn-default">
+<input type="radio" autocomplete="off" name="cbc_q1" value="option_1">
+<strong>Option 1</strong><br><img src="images/honeycrisp.jpg" width="100"><br><strong>Type</strong>: Honeycrisp<br><strong>Price</strong>: $ 1 / lb
+</button>
+</div>
+<div class="btn-group btn-group-toggle" role="group">
+<button class="btn radiobtn btn-default">
+<input type="radio" autocomplete="off" name="cbc_q1" value="option_2">
+<strong>Option 2</strong><br><img src="images/fuji.jpg" width="100"><br><strong>Type</strong>: Fuji<br><strong>Price</strong>: $ 3 / lb
+</button>
+</div>
+<div class="btn-group btn-group-toggle" role="group">
+<button class="btn radiobtn btn-default">
+<input type="radio" autocomplete="off" name="cbc_q1" value="option_3">
+<strong>Option 3</strong><br><img src="images/redDelicious.jpg" width="100"><br><strong>Type</strong>: Red Delicious<br><strong>Price</strong>: $ 2.5 / lb
+</button>
 </div>
 </div>
+</div>
+<script>
+            $(document).on('click', '#cbc_q1 .btn', function() {
+                Shiny.setInputValue('cbc_q1_interacted', true, {priority: 'event'});
+            });
+        </script>
 </div>
 </div>
 </div>
@@ -456,6 +485,7 @@ Note
 In the example above, the conjoint choice questions are displayed as "buttons" where all the information for each alternative is shown as a button. This works particularly well for mobile phone applications where the user may need to scroll vertically to see each option. 
 
 An alternative is to use a tabular layout where each column represents an alternative and the row names explain the attribute. This takes a little manipulation to get it right, but the key concept is to use `kable()` to display the transpose of the `df` data frame (the subset of rows for a particular respondent). We also use the wonderful [kableExtra](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html) package to modify some of the table stying. We don't explain this code in detail, but the gist of what we're doing here is creating a dataframe with our alternatives and displaying it as a table with `kable()`.
+
 
 
 ::: {.cell}
@@ -537,7 +567,9 @@ kable(t(alts1), escape = FALSE) |>
 :::
 
 
+
 Of course, the table is just showing the options, but it doesn't allow respondents to indicate their choice. So we still need to create a 
+
 
 
 ::: {.cell}
@@ -558,21 +590,38 @@ sd_question(
 
 
 ```{=html}
-<div id="container- cbc_q1" data-question-id="cbc_q1" class="question-container" oninput="Shiny.setInputValue(&#39;cbc_q1_interacted&#39;, true, {priority: &#39;event&#39;});">
+<div id="container-cbc_q1" data-question-id="cbc_q1" class="question-container" oninput="Shiny.setInputValue(&#39;cbc_q1_interacted&#39;, true, {priority: &#39;event&#39;});">
 <div class="form-group shiny-input-container shiny-input-radiogroup shiny-input-container-inline" style="width:100%;">
 <label class="control-label" id="cbc_q1-label" for="cbc_q1"><p>(1 of 6) If the above options were your only options, which would you choose? <span class='required-asterisk' style='display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;'>*</span></p>
 </label>
 <br/>
 <div id="cbc_q1" class="radio-group-buttons">
 <div aria-labelledby="cbc_q1-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
-<input type="radio" autocomplete="off" id="cbc_q11" name="cbc_q1" value="option_1" class="btn-check"/>
-<label class="btn radiobtn btn-outline-primary" for="cbc_q11">Option 1</label>
-<input type="radio" autocomplete="off" id="cbc_q12" name="cbc_q1" value="option_2" class="btn-check"/>
-<label class="btn radiobtn btn-outline-primary" for="cbc_q12">Option 2</label>
-<input type="radio" autocomplete="off" id="cbc_q13" name="cbc_q1" value="option_3" class="btn-check"/>
-<label class="btn radiobtn btn-outline-primary" for="cbc_q13">Option 3</label>
+<div class="btn-group btn-group-toggle" role="group">
+<button class="btn radiobtn btn-default">
+<input type="radio" autocomplete="off" name="cbc_q1" value="option_1"/>
+Option 1
+</button>
+</div>
+<div class="btn-group btn-group-toggle" role="group">
+<button class="btn radiobtn btn-default">
+<input type="radio" autocomplete="off" name="cbc_q1" value="option_2"/>
+Option 2
+</button>
+</div>
+<div class="btn-group btn-group-toggle" role="group">
+<button class="btn radiobtn btn-default">
+<input type="radio" autocomplete="off" name="cbc_q1" value="option_3"/>
+Option 3
+</button>
 </div>
 </div>
+</div>
+<script>
+            $(document).on('click', '#cbc_q1 .btn', function() {
+                Shiny.setInputValue('cbc_q1_interacted', true, {priority: 'event'});
+            });
+        </script>
 </div>
 </div>
 ```
@@ -580,6 +629,7 @@ sd_question(
 
 :::
 :::
+
 
 
 <center>
@@ -591,9 +641,9 @@ sd_question(
 </section>
 <section id="preview-and-check" class="level2">
 <h2 class="anchored" data-anchor-id="preview-and-check">Preview and check</h2>
-<p>The rest of the <code>server.R</code> file has the remaining components we need, like any conditional display or skip logic using <code>sd_config()</code>. This is all standard features of any surveydown survey, so we won’t cover them in detail here and instead direct you to the <a href="https://surveydown.org/documentation">documentation</a> for details.</p>
+<p>The rest of the <code>server()</code> function in the <code>app.R</code> file has the remaining components we need, like any conditional display or skip logic. This is all standard features of any surveydown survey, so we won’t cover them in detail here and instead direct you to the <a href="https://surveydown.org/documentation">documentation</a> for details.</p>
 <p>But before you go live, it’s a good idea to do some quick testing. You can test your survey even without having it connected to a database by setting <code>ignore = TRUE</code> in the <code>sd_database()</code> function. Of course, you probably should also test it after connecting it to a database to ensure that responses are being properly stored.</p>
-<p>When testing, you might get an error - don’t panic! Read the terminal output carefully and debug. There’s a good chance you may have missed a bug somewhere in your server code. But since it’s in a separate <code>server.R</code> file, you should be able to open this and run through your code to check that things are working properly.</p>
+<p>When testing, you might get an error - don’t panic! Read the terminal output carefully and debug. There’s a good chance you may have missed a bug somewhere in your server code. Look in your <code>app.R</code> file to see if you can spot the error.</p>
 </section>
 <section id="getting-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="getting-the-data">Getting the data</h2>

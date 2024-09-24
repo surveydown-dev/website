@@ -183,7 +183,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./survey-components.html">Reference Manuals</a></li><li class="breadcrumb-item"><a href="./store-data.html">Store Data</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./template.html">Reference Manuals</a></li><li class="breadcrumb-item"><a href="./store-data.html">Store Data</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -224,6 +224,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./template.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Start with a Template</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./survey-components.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Survey Components</span></a>
   </div>
@@ -238,6 +244,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./formatting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Formatting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./external-resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">External Resources</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -314,7 +326,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./survey-components.html">Reference Manuals</a></li><li class="breadcrumb-item"><a href="./store-data.html">Store Data</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./template.html">Reference Manuals</a></li><li class="breadcrumb-item"><a href="./store-data.html">Store Data</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Storing Data</h1>
 </div>
@@ -333,14 +345,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>The default database for storing survey responses is <a href="https://supabase.com/">Supabase</a>. We plan to also support the ability to use your own database in the future.</p>
-<p>Below are the steps you need to go through on <a href="https://supabase.com/">Supabase</a>:</p>
+<p>The surveydown package is designed to work with any Postgres database. Since many may not want to create such a database on their own, we recommend using <a href="https://supabase.com/">Supabase</a>, which is a free, open-source Postgres database service.</p>
+<p>In this guide, we’ll walk you through the steps to set up a Supabase project and connect your surveydown survey to it.</p>
 <ol type="1">
 <li>Create a Supabase account</li>
 <li>Create a Supabase project</li>
 <li>Copy your credentials</li>
 </ol>
-<p>We’ll walk you through one by one.</p>
 <section id="create-a-supabase-account" class="level2">
 <h2 class="anchored" data-anchor-id="create-a-supabase-account">Create a Supabase account</h2>
 <p>Navigate to the <a href="https://supabase.com/">Supabase</a> website and create an account. You may use your GitHub account or create a new account using your email.</p>
@@ -363,7 +374,7 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>One Supabase project can support multiple surveydown surveys, but we recommend that you have only one survey per project to avoid potential mistakes.</p>
+<p>One Supabase project can support multiple surveydown surveys if you wish, but we recommend that you have only one survey per project to avoid potential mistakes.</p>
 </div>
 </div>
 <p>Fill in the project name and give it a strong password. Choose a region that is close to you (or close to your audiences). All settings can be modified at any time.</p>
@@ -403,36 +414,18 @@ Tip
 <p>This is also where you change the password of your Supabase project.</p>
 </div>
 </div>
-<p>Now, deliver these parameters to your survey! In your survey <code>.qmd</code> file, you define <code>sd_database()</code> in your setup chunk. In the template it looks like this:</p>
+<p>Now, deliver these parameters to your app! In your <code>app.R</code> file, you define <code>sd_database()</code> at the top before defining the <code>server()</code> function. Anything loaded here is globally accessible, so this is where your database configuration should go. In the template it looks like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In your setup chunk</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">sd_database</span>(</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">host   =</span> <span class="st">""</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">dbname =</span> <span class="st">""</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">port   =</span> <span class="st">""</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">user   =</span> <span class="st">""</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">table  =</span> <span class="st">"any_name"</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">sd_database</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">host   =</span> <span class="st">""</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dbname =</span> <span class="st">""</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">port   =</span> <span class="st">""</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">user   =</span> <span class="st">""</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">table  =</span> <span class="st">"any_name"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Copy and paste the first 4 parameters from your Supabase page to <code>sd_database()</code>, aka “Host”, “Database name”, “Port”, and “User”. Again, your password should be defined using <code>sd_set_password()</code> in your R console, NOT in the <code>.qmd</code> file.</p>
-<p>The last parameter, <code>table</code>, can be anything of your choice. After your survey gets running, a table with this name will appear in <strong>“Table Editor”</strong> of your Supabase project. It’s located at the top-left corner of the page.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Run without Supabase:</strong></p>
-<p>If you don’t have a database setup yet, you can just leave the function blank and your survey will still run. Your survey data will be stored locally.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">sd_database</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
+<p>Copy and paste the first 4 parameters from your Supabase page to <code>sd_database()</code>, aka “Host”, “Database name”, “Port”, and “User”. Again, your password should be defined using <code>sd_set_password()</code> in your R console, NOT in the <code>app.R</code> file.</p>
+<p>The last parameter, <code>table</code>, can be any string you want. After your survey gets running, a table with this name will appear in <strong>“Table Editor”</strong> of your Supabase project. It’s located at the top-left corner of the page.</p>
 </section>
 <section id="tips" class="level2">
 <h2 class="anchored" data-anchor-id="tips">Tips</h2>
@@ -440,10 +433,10 @@ Tip
 <h3 class="anchored" data-anchor-id="ignoring-the-supabase-connection">Ignoring the Supabase connection</h3>
 <p>While editing your survey, you may want to not connect to the database. This can be easily implemented by setting <code>ignore = TRUE</code> in <code>sd_database()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">sd_database</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Previous parameters...</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ignore =</span> <span class="cn">TRUE</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">sd_database</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Previous parameters...</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ignore =</span> <span class="cn">TRUE</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>With this setting, your connection parameters can remain set, but the survey will not attempt to connect to your database. Instead, a local <code>data.csv</code> file will be created in your project folder so you can preview the survey data.</p>
 </section>
@@ -451,10 +444,10 @@ Tip
 <h3 class="anchored" data-anchor-id="disabling-gssencmode">Disabling <code>gssencmode</code></h3>
 <p>If you’ve set everything correctly but still encounter connection error, try to disable <code>gssencmode</code> like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">sd_database</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Previous parameters...</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">gssencmode =</span> <span class="st">"disable"</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">sd_database</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Previous parameters...</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">gssencmode =</span> <span class="st">"disable"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>By default, <code>gssencmode</code> is set as <code>"prefer"</code>. It secures your connection with PostgreSQL, which is the SQL used by Supabase. We generally recommend that you <strong>DO NOT disable <code>gssencmode</code></strong>, but sometimes this is necessary, especially when you are working on a protected network, e.g.&nbsp;on a VPN.</p>
 

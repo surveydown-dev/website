@@ -183,7 +183,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./survey-components.html">Reference Manuals</a></li><li class="breadcrumb-item"><a href="./deployment.html">Deployment</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./template.html">Reference Manuals</a></li><li class="breadcrumb-item"><a href="./deployment.html">Deployment</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -224,6 +224,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./template.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Start with a Template</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./survey-components.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Survey Components</span></a>
   </div>
@@ -238,6 +244,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./formatting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Formatting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./external-resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">External Resources</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -308,7 +320,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./survey-components.html">Reference Manuals</a></li><li class="breadcrumb-item"><a href="./deployment.html">Deployment</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./template.html">Reference Manuals</a></li><li class="breadcrumb-item"><a href="./deployment.html">Deployment</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Deploying Your Survey</h1>
 </div>
@@ -331,12 +343,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="preparing-to-deploy">Preparing to deploy</h2>
 <p>Before deploying your survey, make sure you have done the following:</p>
 <ol type="1">
-<li>You have rendered your Quarto shiny d ocumentand tested it locally by clicking the “Run Document” button in RStudio or in your terminal running the command:</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>quarto serve survey_file_name.qmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="2" type="1">
+<li>You have rendered your <code>survey.qmd</code> document.</li>
+<li>You have locally run your <code>app.R</code> file by clicking the “Run App” button in RStudio or in your R console running the <code>runApp()</code> command.</li>
 <li>You have set up a <a href="https://supabase.com/">Supabase</a> project and have already added the database parameters in the <code>sd_database()</code> function in the setup code chunk (see the <a href="./store-data.html">Store Data</a> page for details).</li>
 <li>You have set the password for your survey using <code>surveydown::sd_set_password("my_password")</code>, using the password you set in the Supabase project.</li>
 <li>You have created an account on <a href="https://shinyapps.io/">shinyapps</a>, which will be used for survey online deployment.</li>
@@ -364,50 +372,14 @@ Note
 <p>Once you have your account and your sub-domain ready, it’s time to deploy your survey website.</p>
 <p>Make sure you have the <a href="https://rstudio.github.io/rsconnect/">rsconnect</a> <i class="fa-brands fa-r-project" aria-label="r-project"></i> package installed (you should have done this while authorizing your IDE):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'rsconnect'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'rsconnect'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then, the simplest way to deploy your survey is to run this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">deployDoc</span>(<span class="st">"your_survey.qmd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">deployApp</span>(<span class="at">appName =</span> <span class="st">"Survey Name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The URL of this page will be your domain followed by <code>/your_survey</code>, which means the name of your <code>.qmd</code> file will be in the URL. The tab name of the HTML page is also <code>your_survey</code>. If you want to define a different tab name for your survey page, run:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">deployDoc</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">doc =</span> <span class="st">"your_survey.qmd"</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">appName =</span> <span class="st">"Survey Name"</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Just as a reminder, don’t forget to render your surveydown survey locally and make sure it works properly <strong>before you deploy online</strong>. Otherwise, this deployment will fail.</p>
-</div>
-</div>
-<p>That’s it!Now you should have your survey site deployed on <strong>shinyapps.io</strong>, with its data stored on <strong>Supabase</strong>. Congratulations!</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>In rsconnect, there are two functions that can be used to deploy a shiny app: <code>deployApp()</code> and <code>deployDoc()</code>. They serve different purposes:</p>
-<ul>
-<li><code>deployApp()</code> is used to deploy a Shiny App. It doesn’t work for <code>.qmd</code> documents, but it does work for Shiny Apps and <code>.rmd</code> documents, and it accepts multiple files.</li>
-<li><code>deployDoc()</code> is used to deploy a Quarto Shiny document. It works for a single file and tries to “automatically discover dependencies”, according to the <a href="https://rstudio.github.io/rsconnect/reference/deployDoc.html">official instructions</a>).</li>
-</ul>
-</div>
-</div>
+<p>The tab name of the HTML page is defined by the <code>appName</code> argument.</p>
+<p>That’s it! Now you should have your survey site deployed on <strong>shinyapps.io</strong>, with its data stored on <strong>Supabase</strong>. Congratulations!</p>
 
 
 </section>

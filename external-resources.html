@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Getting Started – surveydown.org</title>
+<title>External Resources – surveydown.org</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -108,12 +108,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style>html{ scroll-behavior: smooth; }</style>
 
 
-<meta property="og:title" content="Getting Started – surveydown.org">
+<meta property="og:title" content="External Resources – surveydown.org">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://www.surveydown.org/images/logo.ico">
 <meta property="og:site_name" content="https://surveydown.org">
 <meta property="og:locale" content="es_ES">
-<meta name="twitter:title" content="Getting Started – surveydown.org">
+<meta name="twitter:title" content="External Resources – surveydown.org">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://www.surveydown.org/images/logo.png">
 <meta name="twitter:creator" content="@johnhelveston">
@@ -183,7 +183,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Getting Started</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./template.html">Reference Manuals</a></li><li class="breadcrumb-item"><a href="./external-resources.html">External Resources</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -203,7 +203,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./getting-started.html" class="sidebar-item-text sidebar-link active">
+  <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Getting Started</span></a>
   </div>
 </li>
@@ -248,7 +248,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./external-resources.html" class="sidebar-item-text sidebar-link">
+  <a href="./external-resources.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">External Resources</span></a>
   </div>
 </li>
@@ -312,23 +312,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#install" id="toc-install" class="nav-link" data-scroll-target="#install">1. Install</a></li>
-  <li><a href="#start-with-a-template" id="toc-start-with-a-template" class="nav-link" data-scroll-target="#start-with-a-template">2. Start with a template</a></li>
-  <li><a href="#add-survey-content-in-your-survey.qmd-file" id="toc-add-survey-content-in-your-survey.qmd-file" class="nav-link" data-scroll-target="#add-survey-content-in-your-survey.qmd-file">3. Add survey content in your <code>survey.qmd</code> file</a></li>
-  <li><a href="#add-configuration-options" id="toc-add-configuration-options" class="nav-link" data-scroll-target="#add-configuration-options">4. Add configuration options</a></li>
-  <li><a href="#setup-your-database" id="toc-setup-your-database" class="nav-link" data-scroll-target="#setup-your-database">5. Setup your database</a></li>
-  <li><a href="#locally-preview" id="toc-locally-preview" class="nav-link" data-scroll-target="#locally-preview">6. Locally preview</a></li>
-  <li><a href="#deploy" id="toc-deploy" class="nav-link" data-scroll-target="#deploy">7. Deploy</a></li>
+  <li><a href="#default-folders" id="toc-default-folders" class="nav-link active" data-scroll-target="#default-folders">Default folders</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./template.html">Reference Manuals</a></li><li class="breadcrumb-item"><a href="./external-resources.html">External Resources</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Getting Started</h1>
+<h1 class="title">External Resources</h1>
 </div>
 
 
@@ -345,119 +338,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>Every surveydown survey is composed of a <em>survey</em> and an <em>app</em>, defined in two separate files:</p>
-<ul>
-<li><code>survey.qmd</code>: A Quarto document that contains the survey content (pages, questions, etc), which renders to an HTML file.</li>
-<li><code>app.R</code>: An R script defining a Shiny app that contains the global settings (libraries, database configuration, etc.) and server configuration options (e.g., conditional skipping / display, etc.).</li>
-</ul>
-<p><strong>These files must be named <code>survey.qmd</code> and <code>app.R</code></strong>.</p>
-<p>The <a href="https://pkg.surveydown.org">{surveydown}</a> R package provides a set of functions for defining the survey content and configuration options. Each function starts with <code>sd_</code> to make them easy to identify.</p>
-<p>The platform is based on some basic principles:</p>
-<ul>
-<li>Add content to your <code>survey.qmd</code> file using markdown text (or in RStudio use the visual editor).</li>
-<li>Define survey questions in R code chunks with the <code>sd_question()</code> function.</li>
-<li>Define pages using fences (<code>:::</code>), with navigation buttons handled using the <code>sd_next()</code> function.</li>
-<li>Add rich functionality to your survey using <a href="./config-options.html">config options</a> in the server function in the <code>app.R</code> file.</li>
-<li>Store your respondent data in a database (see <a href="./store-data.html">Store Data</a>).</li>
-</ul>
-<p>This approach ensures a flexible survey platform that is fully reproducible and easy to customize.</p>
-<p>The remaining steps on this page will guide you through the process of creating a surveydown survey.</p>
-</section>
-<section id="install" class="level2">
-<h2 class="anchored" data-anchor-id="install">1. Install</h2>
-<p>See the <a href="./installation.html">Installation</a> page.</p>
-</section>
-<section id="start-with-a-template" class="level2">
-<h2 class="anchored" data-anchor-id="start-with-a-template">2. Start with a template</h2>
-<p>See the <a href="./template.html">Template</a> page.</p>
-</section>
-<section id="add-survey-content-in-your-survey.qmd-file" class="level2">
-<h2 class="anchored" data-anchor-id="add-survey-content-in-your-survey.qmd-file">3. Add survey content in your <code>survey.qmd</code> file</h2>
-<p>See the <a href="./survey-components.html">Survey Components</a> page for details on the main components in a surveydown survey. For a quick overview, here’s how you add pages and questions:</p>
-<ul>
-<li>Add pages with fences, like this:</li>
-</ul>
+<p>Often times you will want to include external resources in your survey, things like images, videos, etc. While you can easily include these in your <code>survey.qmd</code> file by referencing their location in your survey project folder, these resources may not always be available in the shiny app defined in your <code>app.R</code> file.</p>
+<p>To address this, you should always place external resources in a separate folder and then make sure that folder is added to Shiny’s resource path. You can do this in your <code>app.R</code> file by using the <code>sd_add_folder()</code> function at the beginning of the file after loading the <code>surveydown</code> package, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span> {<span class="co">#page1 .sd-page}</span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(surveydown)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Page <span class="dv">1</span> content here</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_add_folder</span>(<span class="st">"resources"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>This will make all files in a folder called <code>resources</code> available to Shiny.</p>
+<section id="default-folders" class="level2">
+<h2 class="anchored" data-anchor-id="default-folders">Default folders</h2>
+<p>The <code>surveydown</code> package will automatically add the following folders to Shiny’s resource path:</p>
 <ul>
-<li>Add questions with the <code>sd_question()</code> function in code chunks (see the <a href="./question-types.html">Question Types</a> page for more on the types of questions supported). For example, here’s a multiple choice question:</li>
+<li><code>www</code></li>
+<li><code>images</code></li>
+<li><code>css</code></li>
+<li><code>js</code></li>
 </ul>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Code chunk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Output</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = 'mc',</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = 'penguins',</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "Which is your favorite type of penguin?",</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="in">  option = c(</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="in">    'Adélie'    = 'adelie',</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="in">    'Chinstrap' = 'chinstrap',</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="in">    'Gentoo'    = 'gentoo'</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="cell">
-<div class="cell-output-display">
-<div id="container-penguins" data-question-id="penguins" class="question-container" oninput="Shiny.setInputValue('penguins_interacted', true, {priority: 'event'});">
-<div id="penguins" style="width:100%;" class="form-group shiny-input-radiogroup shiny-input-container" role="radiogroup" aria-labelledby="penguins-label">
-<label class="control-label" id="penguins-label" for="penguins"><p>Which is your favorite type of penguin? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
-</label>
-<div class="shiny-options-group">
-<div class="radio">
-<label>
-<input type="radio" name="penguins" value="adelie">
-<span>Adélie</span>
-</label>
-</div>
-<div class="radio">
-<label>
-<input type="radio" name="penguins" value="chinstrap">
-<span>Chinstrap</span>
-</label>
-</div>
-<div class="radio">
-<label>
-<input type="radio" name="penguins" value="gentoo">
-<span>Gentoo</span>
-</label>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="add-configuration-options" class="level2">
-<h2 class="anchored" data-anchor-id="add-configuration-options">4. Add configuration options</h2>
-<p>In the server function in the <code>app.R</code> file, add control logic and other configuration options to your survey. See the <a href="./config-options.html">Configuration Options</a> page for more details.</p>
-</section>
-<section id="setup-your-database" class="level2">
-<h2 class="anchored" data-anchor-id="setup-your-database">5. Setup your database</h2>
-<p>In the global settings at the top of the <code>app.R</code> file, setup your database with the <code>sd_database()</code> function. You can also leave it blank to preview / edit your survey without database connected, or set <code>ignore = TRUE</code> to run the survey without storing data. See the <a href="./store-data.html">Store Data</a> page for more details.</p>
-</section>
-<section id="locally-preview" class="level2">
-<h2 class="anchored" data-anchor-id="locally-preview">6. Locally preview</h2>
-<p>Preview your survey by clicking the “Run App” button in RStudio or in your R console running the <code>runApp()</code> command.</p>
-</section>
-<section id="deploy" class="level2">
-<h2 class="anchored" data-anchor-id="deploy">7. Deploy</h2>
-<p>Deploy your survey by hosting it on your favorite server, like <a href="https://shinyapps.io/">shinyapps.io</a>, <a href="https://huggingface.co/">huggingface</a>, etc. See the <a href="./deployment.html">Deployment</a> page for more details.</p>
+<p>If any of these folders exist in your project, they will automatically be added to Shiny’s resource path. For this reason, we recommend that you always put images inside a <code>images</code> folder in your project directory, css files inside a <code>css</code> folder, and so on. This will make it easier to manage your resources and ensure that they are always available to Shiny.</p>
 
 
 </section>

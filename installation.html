@@ -224,6 +224,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./template.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Start with a Template</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./survey-components.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Survey Components</span></a>
   </div>
@@ -238,6 +244,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./formatting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Formatting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./external-resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">External Resources</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -302,7 +314,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#install-r-quarto" id="toc-install-r-quarto" class="nav-link active" data-scroll-target="#install-r-quarto">Install R &amp; Quarto</a></li>
   <li><a href="#install-the-surveydown-r-package" id="toc-install-the-surveydown-r-package" class="nav-link" data-scroll-target="#install-the-surveydown-r-package">Install the {surveydown} R package</a></li>
-  <li><a href="#install-the-surveydown-quarto-extension" id="toc-install-the-surveydown-quarto-extension" class="nav-link" data-scroll-target="#install-the-surveydown-quarto-extension">Install the surveydown Quarto Extension</a></li>
   <li><a href="#version-control" id="toc-version-control" class="nav-link" data-scroll-target="#version-control">Version Control</a></li>
   </ul>
 </nav>
@@ -336,7 +347,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="https://CRAN.R-project.org/">Install <i class="fa-brands fa-r-project" aria-label="r-project"></i></a></li>
 <li><a href="https://quarto.org/">Install Quarto</a></li>
 </ul>
-<p>Also, we recommend working with an IDE. <a href="https://www.rstudio.com/categories/rstudio-ide/">RStudio</a> is great, and we also like <a href="https://code.visualstudio.com">VS Code</a> and <a href="https://github.com/posit-dev/positron">Positron</a>.</p>
+<p>We also recommend working with an IDE that has good support for R, Quarto, and Shiny.</p>
+<p><a href="https://www.rstudio.com/categories/rstudio-ide/">RStudio</a> is great, and we also like <a href="https://code.visualstudio.com">VS Code</a> and <a href="https://github.com/posit-dev/positron">Positron</a>.</p>
 </section>
 <section id="install-the-surveydown-r-package" class="level2">
 <h2 class="anchored" data-anchor-id="install-the-surveydown-r-package">Install the {surveydown} R package</h2>
@@ -346,40 +358,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"surveydown-dev/surveydown"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="install-the-surveydown-quarto-extension" class="level2">
-<h2 class="anchored" data-anchor-id="install-the-surveydown-quarto-extension">Install the surveydown Quarto Extension</h2>
-<p>Once you start working on an actual survey, you’ll need the <a href="https://github.com/surveydown-dev/surveydown-ext">surveydown Quarto extension</a>.</p>
-<blockquote class="blockquote">
-<p><strong>Note</strong>: The extension must be locally installed in a <code>_extensions</code> folder in your root survey project folder.</p>
-</blockquote>
-<p>We recommend starting with a template survey, which will automatically add the latest extension for you:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>surveydown<span class="sc">::</span><span class="fu">sd_create_survey</span>(<span class="st">"path/to/folder"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Otherwise, you can install the extension using the terminal or with the {surveydown} package:</p>
-<ul>
-<li>Using the Terminal:</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>quarto install extension jhelvy<span class="sc">/</span>surveydown<span class="sc">-</span>ext</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>Using the {surveydown} R package:</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>surveydown<span class="sc">::</span><span class="fu">sd_update_extension</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
 <section id="version-control" class="level2">
 <h2 class="anchored" data-anchor-id="version-control">Version Control</h2>
-<p>We made some R functions to make it easier to keep your R package and Quarto extension up to date.</p>
-<p>To <em>check</em> if you have the latest R package and Quarto extension installed, run:</p>
+<p>We made some R functions to make it easier to keep your R package.</p>
+<p>To <em>check</em> which version of the {surveydown} package you have installed, run:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>surveydown<span class="sc">::</span><span class="fu">sd_check_versions</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>surveydown<span class="sc">::</span><span class="fu">sd_version</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>To <em>update</em> the R package and Quarto extension to the latest version, run:</p>
+<p>To <em>update</em> to the latest version of the {surveydown} package, run:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>surveydown<span class="sc">::</span><span class="fu">sd_update_surveydown</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>surveydown<span class="sc">::</span><span class="fu">sd_update</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

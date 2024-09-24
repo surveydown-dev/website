@@ -210,7 +210,7 @@ Note
 <section id="why-is-my-shinyapps-deployment-failing" class="level2">
 <h2 class="anchored" data-anchor-id="why-is-my-shinyapps-deployment-failing">Why is my shinyapps deployment failing?</h2>
 <p>First, make sure everything is correctly defined, including your Supabase project settings and password settings. The password in your project folder should be the same as your Supabase project password (see <a href="./password.html">here</a> for how to set the password). Then, make sure your survey runs on your local machine and can successfully link with your Supabase project table. With these confirmed, your shinyapps deployment should work without problem.</p>
-<p>If you still encounter an error (e.g., the page shows the app failed to start, or you see the page but it doesn’t run properly), try clearing your cache. The simplest way to do so is to reboot your computer. It may also help if you delete the previously generated html file, <code>rsconnect</code> folder, and the survey folder generated when you locally rendered the <code>.qmd</code> file. After re-rendering, you should be able to deploy the app without error.</p>
+<p>If you still encounter an error (e.g., the page shows the app failed to start, or you see the page but it doesn’t run properly), try clearing your cache. The simplest way to do so is to <strong>reboot your computer</strong>. It may also help if you delete previously generated files, such as the <code>survey.html</code> file if you rendered it and the <code>rsconnect</code> folder. After re-rendering, you should be able to deploy the app without error.</p>
 
 
 </section>

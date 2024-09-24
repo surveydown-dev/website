@@ -290,7 +290,7 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>This post was made just after launching surveydown, so some of the information may be out of date. Check the <a href="https://surveydown.org/documentation">documentation</a> for the latest information.</strong></p>
+<p><strong>This post was made just after launching surveydown. Much of the platform architecture has changed since then, so check the <a href="https://surveydown.org/documentation">documentation</a> for the latest correct information.</strong></p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -411,10 +411,12 @@ Note
 <p>The above code chunk will create a “Next” button that goes on to page 2 that looks like this:</p>
 <div class="cell">
 <div class="cell-output-display">
-<button id="next-page2" type="button" class="btn btn-default action-button" style="display: block; margin: auto;" onclick="Shiny.setInputValue('next_page', 'page2');">Next</button>
+<div data-next-page="page2" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+<button id="page_id_next" type="button" class="btn btn-default action-button" style="display: block; margin: auto;" onclick="Shiny.setInputValue('next_page', this.parentElement.getAttribute('data-next-page'));">Next</button>
+</div>
 <script>
     $(document).ready(function() {
-        var buttonId = 'next-page2';
+        var buttonId = 'page_id_next';
         $(document).on('keydown', function(event) {
             if (event.key === 'Enter' && !event.repeat) {
                 var $button = $('#' + buttonId);
@@ -436,10 +438,12 @@ Note
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<button id="next-page2" type="button" class="btn btn-default action-button" style="display: block; margin: auto;" onclick="Shiny.setInputValue('next_page', 'page2');">Next page</button>
+<div data-next-page="page2" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+<button id="page_id_next" type="button" class="btn btn-default action-button" style="display: block; margin: auto;" onclick="Shiny.setInputValue('next_page', this.parentElement.getAttribute('data-next-page'));">Next page</button>
+</div>
 <script>
     $(document).ready(function() {
-        var buttonId = 'next-page2';
+        var buttonId = 'page_id_next';
         $(document).on('keydown', function(event) {
             if (event.key === 'Enter' && !event.repeat) {
                 var $button = $('#' + buttonId);
@@ -474,7 +478,7 @@ Note
 <p>The above code chunk will create a multiple choice question that looks like this:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="container- penguins" data-question-id="penguins" class="question-container" oninput="Shiny.setInputValue('penguins_interacted', true, {priority: 'event'});">
+<div id="container-penguins" data-question-id="penguins" class="question-container" oninput="Shiny.setInputValue('penguins_interacted', true, {priority: 'event'});">
 <div id="penguins" style="width:500px;" class="form-group shiny-input-radiogroup shiny-input-container" role="radiogroup" aria-labelledby="penguins-label">
 <label class="control-label" id="penguins-label" for="penguins"><p>Which is your favorite type of penguin? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
 </label>
@@ -678,12 +682,12 @@ Note
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt;   respondent_id     brand
-#&gt; 1             1     Tesla
-#&gt; 2             1      Ford
-#&gt; 3             1 Chevrolet
-#&gt; 4             2 Chevrolet
+#&gt; 1             1     Honda
+#&gt; 2             1     Tesla
+#&gt; 3             1    Nissan
+#&gt; 4             2     Tesla
 #&gt; 5             2      Ford
-#&gt; 6             2    Nissan</code></pre>
+#&gt; 6             2 Chevrolet</code></pre>
 </div>
 </div>
 <p>Note that this would not be done in your survey.qmd file - it’s just a one-time thing to create the design (probably stored in an R file).</p>

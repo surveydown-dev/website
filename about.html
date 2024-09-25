@@ -178,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
 <ol type="1">
 <li>Design your survey as a <a href="https://quarto.org/">Quarto</a> document using markdown and R code.</li>
 <li>Convert your survey into a <a href="https://shiny.posit.co/">Shiny</a> app that can be hosted online and sent to respondents.</li>
-<li>Store your survey responses in a <a href="https://supabase.com/">Supabase</a> database (or any Postgres database).</li>
+<li>Store your survey responses in a <a href="https://supabase.com/">Supabase</a> database (or any PostgreSQL database).</li>
 </ol>
 <p>The {surveydown} R package provides functions to bring this all together.</p>
 <p>We recommend reading the <a href="./getting-started.html">Getting Started</a> page to get a sense of how to use surveydown. The rest of the documentation covers more details on how to use surveydown.</p>
@@ -189,7 +189,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="background-motivation" class="level1">
 <h1>Background &amp; Motivation</h1>
 <p>Most survey platforms (e.g., Google forms, Qualtrics, etc.) use drag-and-drop interfaces to design surveys, making version control and collaboration with others difficult. They’re also not reproducible (others cannot easily reproduce a survey made on these platforms), and many require a paid subscription or license to use.</p>
-<p>The surveydown package was designed to address these problems. As an open-source, markdown-based platform, all survey content is defined with plain text (markdown and R code) in a <code>survey.qmd</code> file and an <code>app.R</code> file that renders your survey into a Shiny app that can be hosted online. This makes your survey easy to reproduce, share, and version control with common tools like Git. The survey data collected is also owned by the survey designer in a separate Postgres database (we recommend Supabase as a free and open-source database provider).</p>
+<p>The surveydown package was designed to address these problems. As an open-source, markdown-based platform, all survey content is defined with plain text (markdown and R code) in a <code>survey.qmd</code> file and an <code>app.R</code> file that renders your survey into a Shiny app that can be hosted online. This makes your survey easy to reproduce, share, and version control with common tools like Git. The survey data collected is also owned by the survey designer in a separate PostgreSQL database (we recommend Supabase as a free and open-source database provider).</p>
 <p>If you’re curious where this whole idea came from, check out this <a href="https://www.jhelvy.com/blog/2023-04-06-markdown-surveys/">blog post</a>, which outlines more on the general idea and the motivation for it. The post is now outdated in terms of the overall package design, but it provides something of an origin story and some of the motivation for developing this project.</p>
 </section>
 <section id="authors" class="level1">

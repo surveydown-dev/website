@@ -1,24 +1,29 @@
 ---
 title: "Configuration Options"
+code-annotations: hover
 ---
 
-All survey configuration settings are defined within the `server` function in the `app.R` file. The `server()` function is a standard Shiny server function that takes `input`, `output`, and `session` as arguments. At a minimum, it should include the following:
+All survey configuration settings are defined within the `server` function in the `app.R` file. The `server()` function is a standard Shiny server function that takes `input`, `output`, and `session` as arguments. 
+
+If you create a new survey using a [template](template.qmd), the `server()` function looks like this:
 
 ```{r}
 server <- function(input, output, session) {
 
-  sd_server(
-    db = db
-  )
+  sd_skip_if()
+
+  sd_show_if()
+
+  sd_server(db = db)
 
 }
 ```
 
-The `db = db` part is required if you are using a database connection. This connection should be defined using the `sd_database()` function, and we typically store it as `db` in the global environment (before the `server()` function but still inside the `app.R` file). See the [Store Data](store-data.qmd) page for more details.
+The `sd_skip_if()` and `sd_show_if()` functions are used to define conditional skip and show logic for the survey, and the `sd_server()` function is used to run the survey. The `db = db` argument is required if you are using a database connection, which should be defined using the `sd_database()` function (we typically store it as `db` in the global environment...see the [Store Data](store-data.qmd) page for more details).
 
-Beyond these requirements, there are several other optional settings you can use to customize the survey behavior. We will go over them in the following sections.
+This page goes over how to use each of these functions to control many aspects of the survey flow logic.
 
-## Conditional display with `sd_show_if()`
+## Conditional display
 
 It is often useful to have a question display based on some condition, such as the respondent choosing a particular value in a multiple choice question. 
 
@@ -37,7 +42,7 @@ To implement this, you first need to define both the **conditional question** an
 # Conditional question
 sd_question(
   type  = "mc",
-  id    = "penguins",
+  id    = "penguins", # <1>
   label = "Which is your favorite type of penguin?",
   option = c(
     "Adélie"    = "adelie",
@@ -50,10 +55,12 @@ sd_question(
 # Target question
 sd_question(
   type  = "text",
-  id    = "penguins_other",
+  id    = "penguins_other", 
   label = "Please specify the other penguin type:"
 )
 ```
+
+1. The `"penguins"` question is the conditional question, and the `"penguins_other"` question is the target question.
 
 Then in the server function in the `app.R` file, you can use the `sd_show_if()` function to define that the `"penguins_other"` question would only be shown if the respondent chose the `"other"` option in the `"penguins"` question, like this:
 
@@ -61,14 +68,15 @@ Then in the server function in the `app.R` file, you can use the `sd_show_if()` 
 server <- function(input, output, session) {
 
   sd_show_if(
-    input$penguins == "other" ~ "penguins_other", 
-    # Add additional conditions here
+    input$penguins == "other" ~ "penguins_other" # <1>
   )
 
   sd_server(db = db)
 
 }
 ```
+
+1. `input$penguins == "other"` is the condition, and `"penguins_other"` is the target question that will be shown if the condition is met.
 
 You can provide multiple conditions to the `sd_show_if()` function, each separated by a comma. The structure for each condition in the `sd_show_if()` function is always:
 
@@ -88,12 +96,12 @@ For situlations where the conditional logic is more complex, we recommend defini
 server <- function(input, output, session) {
 
   complex_condition <- function(input) {
-    # Code here to do something like check the values of multiple questions
-    # Should return a logical value (TRUE or FALSE)
+    # Condition code here, e.g. check the values of multiple questions
+    # Must return a logical value (TRUE or FALSE)
   }
 
   sd_show_if(
-    complex_condition ~ "penguins_other"
+    complex_condition ~ "penguins_other" # <1>
   )
 
   sd_server(db = db)
@@ -101,7 +109,9 @@ server <- function(input, output, session) {
 }
 ```
 
-## Conditional skipping with `sd_skip_if()`
+1. Note that here the `complex_condition` function is defined as the condition without `()` after it. This is because we are passing the function itself, not the result of the function.
+
+## Conditional skipping 
 
 Often times you'll want to send respondents to different parts of the survey based on some condition, such as the respondent choosing a particular value in a multiple choice question. 
 
@@ -137,14 +147,15 @@ Then in the server function in the `app.R` file, you can use the `sd_skip_if()` 
 server <- function(input, output, session) {
 
   sd_skip_if(
-    input$vehicle_ownership == "no" ~ "screenout", 
-    # Add additional conditions here
+    input$vehicle_ownership == "no" ~ "screenout" # <1>
   )
 
   sd_server(db = db)
 
 }
 ```
+
+1. `input$vehicle_ownership == "no"` is the condition, and `"screenout"` is the target page that the respondent will be sent to if the condition is met.
 
 Just like the `sd_show_if()` function, you can provide multiple conditions to the `sd_skip_if()` function, each separated by a comma. The structure for each condition in the `sd_skip_if()` function is always:
 
@@ -156,12 +167,12 @@ For more complex conditional skipping logic you could define a custom function t
 server <- function(input, output, session) {
 
   complex_condition <- function(input) {
-    # Code here to do something like check the values of multiple questions
-    # Should return a logical value (TRUE or FALSE)
+    # Condition code here, e.g. check the values of multiple questions
+    # Must return a logical value (TRUE or FALSE)
   }
 
   sd_skip_if(
-    complex_condition ~ "screenout"
+    complex_condition ~ "screenout" # <1>
   )
 
   sd_server(db = db)
@@ -169,19 +180,23 @@ server <- function(input, output, session) {
 }
 ```
 
+1. Note that here the `complex_condition` function is defined as the condition without `()` after it. This is because we are passing the function itself, not the result of the function.
+
 ## Server options
 
 The `sd_server()` function called inside the `server()` function in the `app.R` file has several other arguments that you can use to customize the survey behavior.
 
-### Required responses
+### Required questions
 
 By default, no questions are required. However, you can make questions required by providing a vector containing the `id` of the questions to be required to the `required_questions` argument in `sd_server()`, like
 
 ```{r}
 sd_server(
-  required_questions = c("vehicle_ownership", "penguins_other")
+  required_questions = c("vehicle_ownership", "penguins_other") # <1>
 )
 ```
+
+1. The `required_questions` argument takes a vector of question `id`s that you want to make required.
 
 This will make the respondent unable to proceed until they have answered the required questions. It will also place a red asterisk (*) next to the question label to indicate that the question is required.
 

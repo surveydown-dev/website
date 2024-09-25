@@ -1,0 +1,31 @@
+---
+title: "Security"
+---
+
+There are three main security considerations when working with a surveydown survey:
+ 
+1. The surveydown application code
+2. The hosting environment
+3. The data storage environment
+
+While we have worked to make our application code secure, it is ultimately up to you to choose appropriate host and data storage environments that are also secure.
+
+## The surveydown application code
+
+The application code refers to the resulting Shiny app from a surveydown survey. Since surveydown users will be collecting potentially sensitive data from survey respondents, we have tried to develop the platform with data security in mind. We have taken care to follow many best practices, such as using [SQL injection prevention](https://shiny.posit.co/r/articles/build/sql-injections/) strategies in how we store the survey response data. We also adopted an architecture where all content on any page in the survey is served entirely from the shiny server, meaning that respondents taking the survey cannot see the underlying html source code for any of the content being displayed in the survey. This is important so respondents cannot see content on other pages (e.g., completion codes) before getting there from the survey navigation buttons.
+
+Despite our efforts, however, we do not (yet) have any form of security compliance certificate that we can provide. This means we cannot guarantee the application code is compliant with common security protocols, such as SOC2 Type 2 or HIPPA. This is an eventual goal, but for now this is a limitation for using this package for some domains that require certain certifications. 
+
+## The hosting environment
+
+The default free service for hosting a surveydown survey is {{< var shinyapps >}}. **This free service is not HIPPA compliant**. According to the [Posit Documentation on Security and Compliance](https://docs.posit.co/shinyapps.io/guide/security_and_compliance/index.html) for {{< var shinyapps >}}:
+
+> shinyapps.io is currently hosted on Amazon’s Web Services (AWS) infrastructure in the us-east-1 region. The infrastructure used is not the HIPAA-compliant stack, so if you need to be in a HIPAA-compliant environment, we recommend deploying and operating your own Posit Connect or Shiny Server Open Source instance.
+
+This means that if you require a HIPPA compliant hosting service, we recommend that follow Posit's guidelines and deploy your own Posit Connect or Shiny Server Open Source instance.
+
+## The data storage environment
+
+We designed surveydown to be able to [store data](store-data.qmd) on any PostgreSQL database. This gives you flexibility on where you choose to store your data, and it is up to you to find a suitable host. 
+
+Fortunately, the default service we recommend using ({{< var supabase >}}) is actually [SOC2 Type 2 and HIPPA compliant](https://supabase.com/security) 🎉

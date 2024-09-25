@@ -585,13 +585,6 @@
     "text": "Welcome to surveydown.org!\nsurveydown is a flexible, open-source platform for making surveys with , Quarto, Shiny, and Supabase.\n\n\n\n\n\nAbout the package and the open-source technologies behind it.\n\n\nABOUT\n\n\n\n\n\n\n\n\nDemos showcasing surveydown features.\n\n\nDEMOS\n\n\n\n\n\n\n\n\nDocumentation for building surveys with surveydown.\n\n\nDOCUMENTATION\n\n\n\n\n\n\n\n\nFrequently asked questions.\n\n\nFAQ\n\n\n\n\n\n\n\n\n Back to top"
   },
   {
-    "objectID": "blog/index.html",
-    "href": "blog/index.html",
-    "title": "Blog",
-    "section": "",
-    "text": "New architecture in v0.3.0 (and loads of breaking changes)!\n\n\n\n\n\nWe’re releasing v0.3.0, and with it multiple breaking changes. \n\n\n\n\n\n2024-09-18\n\n\nJohn Paul Helveston\n\n\n\n\n\n\n\n\n\n\n\n\nChoice-based conjoint surveys in R with surveydown\n\n\n\n\n\nA how-to guide for using R to design and implement choice-based conjoint surveys using the surveydown R package \n\n\n\n\n\n2024-08-28\n\n\nJohn Paul Helveston\n\n\n\n\n\n\n\n\n\n\n\n\nIntroducing surveydown: A markdown-based framework for generating surveys with Quarto and shiny\n\n\n\n\n\nA quick overview of the {surveydown} R package for making markdown-based surveys with open-source technologies: Quarto, shiny, and supabase. \n\n\n\n\n\n2024-08-21\n\n\nJohn Paul Helveston\n\n\n\n\n\n\nNo matching items\n\n Back to top"
-  },
-  {
     "objectID": "faq.html",
     "href": "faq.html",
     "title": "Frequently Asked Questions",
@@ -611,6 +604,61 @@
     "title": "Frequently Asked Questions",
     "section": "Why is my shinyapps deployment failing?",
     "text": "Why is my shinyapps deployment failing?\nFirst, make sure everything is correctly defined, including your Supabase project settings and password settings. The password in your project folder should be the same as your Supabase project password (see here for how to set the password). Then, make sure your survey runs on your local machine and can successfully link with your Supabase project table. With these confirmed, your shinyapps deployment should work without problem.\nIf you still encounter an error (e.g., the page shows the app failed to start, or you see the page but it doesn’t run properly), try clearing your cache. The simplest way to do so is to reboot your computer. It may also help if you delete previously generated files, such as the survey.html file if you rendered it and the rsconnect folder. After re-rendering, you should be able to deploy the app without error."
+  },
+  {
+    "objectID": "blog/index.html",
+    "href": "blog/index.html",
+    "title": "Blog",
+    "section": "",
+    "text": "New architecture in v0.3.0 (and loads of breaking changes)!\n\n\n\n\n\nWe’re releasing v0.3.0, and with it multiple breaking changes. \n\n\n\n\n\n2024-09-18\n\n\nJohn Paul Helveston\n\n\n\n\n\n\n\n\n\n\n\n\nChoice-based conjoint surveys in R with surveydown\n\n\n\n\n\nA how-to guide for using R to design and implement choice-based conjoint surveys using the surveydown R package \n\n\n\n\n\n2024-08-28\n\n\nJohn Paul Helveston\n\n\n\n\n\n\n\n\n\n\n\n\nIntroducing surveydown: A markdown-based framework for generating surveys with Quarto and shiny\n\n\n\n\n\nA quick overview of the {surveydown} R package for making markdown-based surveys with open-source technologies: Quarto, shiny, and supabase. \n\n\n\n\n\n2024-08-21\n\n\nJohn Paul Helveston\n\n\n\n\n\n\nNo matching items\n\n Back to top"
+  },
+  {
+    "objectID": "security.html",
+    "href": "security.html",
+    "title": "Security",
+    "section": "",
+    "text": "There are three main security considerations when working with a surveydown survey:\nWhile we have worked to make our application code secure, it is ultimately up to you to choose appropriate host and data storage environments that are also secure.",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Security"
+    ]
+  },
+  {
+    "objectID": "security.html#the-surveydown-application-code",
+    "href": "security.html#the-surveydown-application-code",
+    "title": "Security",
+    "section": "The surveydown application code",
+    "text": "The surveydown application code\nThe application code refers to the resulting Shiny app from a surveydown survey. Since surveydown users will be collecting potentially sensitive data from survey respondents, we have tried to develop the platform with data security in mind. We have taken care to follow many best practices, such as using SQL injection prevention strategies in how we store the survey response data. We also adopted an architecture where all content on any page in the survey is served entirely from the shiny server, meaning that respondents taking the survey cannot see the underlying html source code for any of the content being displayed in the survey. This is important so respondents cannot see content on other pages (e.g., completion codes) before getting there from the survey navigation buttons.\nDespite our efforts, however, we do not (yet) have any form of security compliance certificate that we can provide. This means we cannot guarantee the application code is compliant with common security protocols, such as SOC2 Type 2 or HIPPA. This is an eventual goal, but for now this is a limitation for using this package for some domains that require certain certifications.",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Security"
+    ]
+  },
+  {
+    "objectID": "security.html#the-hosting-environment",
+    "href": "security.html#the-hosting-environment",
+    "title": "Security",
+    "section": "The hosting environment",
+    "text": "The hosting environment\nThe default free service for hosting a surveydown survey is shinyapps.io. This free service is not HIPPA compliant. According to the Posit Documentation on Security and Compliance for shinyapps.io:\n\nshinyapps.io is currently hosted on Amazon’s Web Services (AWS) infrastructure in the us-east-1 region. The infrastructure used is not the HIPAA-compliant stack, so if you need to be in a HIPAA-compliant environment, we recommend deploying and operating your own Posit Connect or Shiny Server Open Source instance.\n\nThis means that if you require a HIPPA compliant hosting service, we recommend that follow Posit’s guidelines and deploy your own Posit Connect or Shiny Server Open Source instance.",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Security"
+    ]
+  },
+  {
+    "objectID": "security.html#the-data-storage-environment",
+    "href": "security.html#the-data-storage-environment",
+    "title": "Security",
+    "section": "The data storage environment",
+    "text": "The data storage environment\nWe designed surveydown to be able to store data on any PostgreSQL database. This gives you flexibility on where you choose to store your data, and it is up to you to find a suitable host.\nFortunately, the default service we recommend using (Supabase) is actually SOC2 Type 2 and HIPPA compliant 🎉",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Security"
+    ]
   },
   {
     "objectID": "external-resources.html",

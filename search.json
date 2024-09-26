@@ -395,7 +395,7 @@
     "href": "getting-started.html#deploy",
     "title": "Getting Started",
     "section": "7. Deploy",
-    "text": "7. Deploy\nDeploy your survey by hosting it on your favorite server, like shinyapps.io, HuggingFace, etc. See the Deployment page for more details.",
+    "text": "7. Deploy\nDeploy your survey by hosting it on your favorite server, like shinyapps.io, HuggingFace, Posit Connect Cloud, Heroku, etc. See the Deployment page for more details.",
     "crumbs": [
       "Documentation",
       "Getting Started"
@@ -487,209 +487,11 @@
     ]
   },
   {
-    "objectID": "store-data.html",
-    "href": "store-data.html",
-    "title": "Storing Data",
-    "section": "",
-    "text": "The surveydown package is designed to work with any PostgreSQL database. Since many may not want to create such a database on their own, we recommend using Supabase, which is a free, open-source PostgreSQL database service.\nIn this guide, we’ll walk you through the steps to set up a Supabase project and connect your surveydown survey to it.",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "Store Data"
-    ]
-  },
-  {
-    "objectID": "store-data.html#create-a-supabase-account",
-    "href": "store-data.html#create-a-supabase-account",
-    "title": "Storing Data",
-    "section": "Create a Supabase account",
-    "text": "Create a Supabase account\nNavigate to the Supabase website and create an account. You may use your GitHub account or create a new account using your email.\nWhile creating your account, it’s by default that you will have an organization under your account name. Your projects will be designated to this organization. You can have other organizations based on your need, but let’s just use this default one for now.",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "Store Data"
-    ]
-  },
-  {
-    "objectID": "store-data.html#create-a-supabase-project",
-    "href": "store-data.html#create-a-supabase-project",
-    "title": "Storing Data",
-    "section": "Create a Supabase project",
-    "text": "Create a Supabase project\nOnce you are logged in, the page will prompt you to create a project. It’s an obvious green button. Click on it and select your organization. A dialog box will pop up like this:\n\n\n\n\n\n\n\n\n\n\nImportant\n\n\n\nOne Supabase project can support multiple surveydown surveys if you wish, but we recommend that you have only one survey per project to avoid potential mistakes.\n\n\nFill in the project name and give it a strong password. Choose a region that is close to you (or close to your audiences). All settings can be modified at any time.\n\n\n\n\n\n\nImportant\n\n\n\nOnce you set the password, don’t forget to also set the same password in surveydown with sd_set_password(). Go to the Password page for details.\nYou will need this both to communicate with your Supabase project and also to log in to your admin page, should you decide to enable it.",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "Store Data"
-    ]
-  },
-  {
-    "objectID": "store-data.html#copy-your-credentials",
-    "href": "store-data.html#copy-your-credentials",
-    "title": "Storing Data",
-    "section": "Copy your credentials",
-    "text": "Copy your credentials\nOnce your Supabase project is ready, go to “Project Settings” located at the bottom-left corner. Then, click on “Database” under “Configuration”.\nYou’ll see the “Connection parameters” section like this:\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nThis is also where you change the password of your Supabase project.\n\n\nNow, deliver these parameters to your app! In your app.R file, you define sd_database() at the top before defining the server() function. Anything loaded here is globally accessible, so this is where your database configuration should go. In the template it looks like this:\n\ndb &lt;- sd_database(\n  host   = \"\",\n  dbname = \"\",\n  port   = \"\",\n  user   = \"\",\n  table  = \"any_name\"\n)\n\nCopy and paste the first 4 parameters from your Supabase page to sd_database(), aka “Host”, “Database name”, “Port”, and “User”. Again, your password should be defined using sd_set_password() in your R console, NOT in the app.R file.\nThe last parameter, table, can be any string you want. After your survey gets running, a table with this name will appear in “Table Editor” of your Supabase project. It’s located at the top-left corner of the page.",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "Store Data"
-    ]
-  },
-  {
-    "objectID": "store-data.html#tips",
-    "href": "store-data.html#tips",
-    "title": "Storing Data",
-    "section": "Tips",
-    "text": "Tips\n\nIgnoring the Supabase connection\nWhile editing your survey, you may want to not connect to the database. This can be easily implemented by setting ignore = TRUE in sd_database():\n\ndb &lt;- sd_database(\n    # Previous parameters...\n    ignore = TRUE\n)\n\nWith this setting, your connection parameters can remain set, but the survey will not attempt to connect to your database. Instead, a local data.csv file will be created in your project folder so you can preview the survey data.\n\n\nDisabling gssencmode\nIf you’ve set everything correctly but still encounter connection error, try to disable gssencmode like this:\n\ndb &lt;- sd_database(\n    # Previous parameters...\n    gssencmode = \"disable\"\n)\n\nBy default, gssencmode is set as \"prefer\". It secures your connection with PostgreSQL, which is the SQL used by Supabase. We generally recommend that you DO NOT disable gssencmode, but sometimes this is necessary, especially when you are working on a protected network, e.g. on a VPN.",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "Store Data"
-    ]
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Overview",
-    "section": "",
-    "text": "Overview\nsurveydown is a flexible, open-source platform for making surveys with , Quarto, Shiny, and Supabase.\n\n\n\n\n\nThe basic concept is:\n\nDesign your survey as a Quarto document using markdown and R code.\nConvert your survey into a Shiny app that can be hosted online and sent to respondents.\nStore your survey responses in a Supabase database (or any PostgreSQL database).\n\nThe {surveydown} R package provides functions to bring this all together.\nWe recommend reading the Getting Started page to get a sense of how to use surveydown. The rest of the documentation covers more details on how to use surveydown.\n\nClick here to get started!\n\n\n\nBackground & Motivation\nMost survey platforms (e.g., Google forms, Qualtrics, etc.) use drag-and-drop interfaces to design surveys, making version control and collaboration with others difficult. They’re also not reproducible (others cannot easily reproduce a survey made on these platforms), and many require a paid subscription or license to use.\nThe surveydown package was designed to address these problems. As an open-source, markdown-based platform, all survey content is defined with plain text (markdown and R code) in a survey.qmd file and an app.R file that renders your survey into a Shiny app that can be hosted online. This makes your survey easy to reproduce, share, and version control with common tools like Git. The survey data collected is also owned by the survey designer in a separate PostgreSQL database (we recommend Supabase as a free and open-source database provider).\nIf you’re curious where this whole idea came from, check out this blog post, which outlines more on the general idea and the motivation for it. The post is now outdated in terms of the overall package design, but it provides something of an origin story and some of the motivation for developing this project.\n\n\nAuthors\nThe surveydown project is led by professor John Paul Helveston at George Washington University. The development team consists of the following members:\n\n\n\n\n\nJohn Paul Helveston, Ph.D.\nJohn Paul Helveston is an Assistant Professor in the Department of Engineering Management and Systems Engineering at George Washington University. Professor Helveston is the core designer and developer, and maintainer of both the surveydown project and this documentation website.\n\n\n\n\n\n\n\nPingfan Hu\nPingfan Hu is a Ph.D. student in Systems Engineering at George Washington University, supervised by professor Helveston. Pingfan is mainly responsible for UI design, user interactions, and website maintenance.\n\n\n\n\n\n\n\nBogdan Bunea\nBogdan Bunea is an undergraduate student majoring in Systems Engineering and minoring in Computer Science at George Washington University. Bogdan is mainly responsible for database connection and data management.\n\n\n\n\n\n\n Back to top"
-  },
-  {
-    "objectID": "template.html",
-    "href": "template.html",
-    "title": "Start with a Template",
-    "section": "",
-    "text": "We recommend starting with a template to build your surveydown survey.\nIn the R console, run the following to to setup a template survey:\nsurveydown::sd_create_survey(\"path/to/folder\")\nThis will create a folder located at \"path/to/folder\" with the following files:",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "Start with a Template"
-    ]
-  },
-  {
-    "objectID": "template.html#single-vs-multiple-file-structure",
-    "href": "template.html#single-vs-multiple-file-structure",
-    "title": "Start with a Template",
-    "section": "Single vs Multiple File Structure",
-    "text": "Single vs Multiple File Structure\nThe app.R file defines the Shiny app, which by default is a single file. If you wish to define your app using separate files, you can do so by setting the structure argument to \"multi\" in the sd_create_survey() function. This will create a template with four files:\n\nsurveydown::sd_create_survey(\"path/to/folder\", structure = \"multi\")\n\n\nsurvey.qmd: a template survey where you define your survey content (text, questions, images, etc.).\nui.R: The main UI file for the Shiny app. It will only contain the sd_ui() function.\nserver.R: a template server file where you define the server logic of the app.\nglobal.R: a template global file where you define any global variables, libraries, or functions.",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "Start with a Template"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome to surveydown.org!",
-    "section": "",
-    "text": "Welcome to surveydown.org!\nsurveydown is a flexible, open-source platform for making surveys with , Quarto, Shiny, and Supabase.\n\n\n\n\n\nAbout the package and the open-source technologies behind it.\n\n\nABOUT\n\n\n\n\n\n\n\n\nDemos showcasing surveydown features.\n\n\nDEMOS\n\n\n\n\n\n\n\n\nDocumentation for building surveys with surveydown.\n\n\nDOCUMENTATION\n\n\n\n\n\n\n\n\nFrequently asked questions.\n\n\nFAQ\n\n\n\n\n\n\n\n\n Back to top"
-  },
-  {
-    "objectID": "faq.html",
-    "href": "faq.html",
-    "title": "Frequently Asked Questions",
-    "section": "",
-    "text": "Note\n\n\n\nHave a question but don’t see an answer here? Feel free to make a post on GitHub:\n\nPost a bug report or documentation issue on the GitHub repo issues page.\nAsk a question, make a feature request, start a discussion, or show off your project on the discussion board."
-  },
-  {
-    "objectID": "faq.html#how-do-i-make-a-question-required",
-    "href": "faq.html#how-do-i-make-a-question-required",
-    "title": "Frequently Asked Questions",
-    "section": "How do I make a question required?",
-    "text": "How do I make a question required?\nUse the required_questions argument in sd_config() to control required responses. See making a question required."
-  },
-  {
-    "objectID": "faq.html#why-is-my-shinyapps-deployment-failing",
-    "href": "faq.html#why-is-my-shinyapps-deployment-failing",
-    "title": "Frequently Asked Questions",
-    "section": "Why is my shinyapps deployment failing?",
-    "text": "Why is my shinyapps deployment failing?\nFirst, make sure everything is correctly defined, including your Supabase project settings and password settings. The password in your project folder should be the same as your Supabase project password (see here for how to set the password). Then, make sure your survey runs on your local machine and can successfully link with your Supabase project table. With these confirmed, your shinyapps deployment should work without problem.\nIf you still encounter an error (e.g., the page shows the app failed to start, or you see the page but it doesn’t run properly), try clearing your cache. The simplest way to do so is to reboot your computer. It may also help if you delete previously generated files, such as the survey.html file if you rendered it and the rsconnect folder. After re-rendering, you should be able to deploy the app without error."
-  },
-  {
-    "objectID": "blog/index.html",
-    "href": "blog/index.html",
-    "title": "Blog",
-    "section": "",
-    "text": "New architecture in v0.3.0 (and loads of breaking changes)!\n\n\n\n\n\nWe’re releasing v0.3.0, and with it multiple breaking changes. \n\n\n\n\n\n2024-09-18\n\n\nJohn Paul Helveston\n\n\n\n\n\n\n\n\n\n\n\n\nChoice-based conjoint surveys in R with surveydown\n\n\n\n\n\nA how-to guide for using R to design and implement choice-based conjoint surveys using the surveydown R package \n\n\n\n\n\n2024-08-28\n\n\nJohn Paul Helveston\n\n\n\n\n\n\n\n\n\n\n\n\nIntroducing surveydown: A markdown-based framework for generating surveys with Quarto and shiny\n\n\n\n\n\nA quick overview of the {surveydown} R package for making markdown-based surveys with open-source technologies: Quarto, shiny, and supabase. \n\n\n\n\n\n2024-08-21\n\n\nJohn Paul Helveston\n\n\n\n\n\n\nNo matching items\n\n Back to top"
-  },
-  {
-    "objectID": "security.html",
-    "href": "security.html",
-    "title": "Security",
-    "section": "",
-    "text": "There are three main security considerations when working with a surveydown survey:\nWhile we have worked to make our application code secure, it is ultimately up to you to choose appropriate host and data storage environments that are also secure for your needs.",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "Security"
-    ]
-  },
-  {
-    "objectID": "security.html#the-surveydown-application-code",
-    "href": "security.html#the-surveydown-application-code",
-    "title": "Security",
-    "section": "The surveydown application code",
-    "text": "The surveydown application code\nThe application code refers to the resulting Shiny app generated from a surveydown survey. Since surveydown users will be collecting potentially sensitive data from survey respondents, we have tried to develop the platform with data security in mind. We have taken care to follow many best practices, such as using SQL injection prevention strategies in how we store the survey response data, and ensuring that users store their database passwords as environment variables that are also added to a .gitignore file. We also adopted an architecture where all content on any page in the survey is served entirely from the shiny server, meaning that respondents taking the survey cannot see the underlying html source code for any of the content being displayed in the survey. This is important so respondents cannot see content on other pages (e.g., completion codes) before getting there from the survey navigation buttons.\nDespite our efforts, however, we do not (yet) have any form of security compliance certificate that we can provide. This means we cannot guarantee the application code is compliant with common security protocols, such as SOC2 Type 2 or HIPPA. This is an eventual goal, but for now this is a limitation for using this package for some domains that require certain certifications.",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "Security"
-    ]
-  },
-  {
-    "objectID": "security.html#the-hosting-environment",
-    "href": "security.html#the-hosting-environment",
-    "title": "Security",
-    "section": "The hosting environment",
-    "text": "The hosting environment\nThe default free service for hosting a surveydown survey is shinyapps.io. This free service is not HIPPA compliant. According to the Posit Documentation on Security and Compliance for shinyapps.io:\n\nshinyapps.io is currently hosted on Amazon’s Web Services (AWS) infrastructure in the us-east-1 region. The infrastructure used is not the HIPAA-compliant stack, so if you need to be in a HIPAA-compliant environment, we recommend deploying and operating your own Posit Connect or Shiny Server Open Source instance.\n\nThis means that if you require a HIPPA compliant hosting service, we recommend that follow Posit’s guidelines and deploy your own Posit Connect or Shiny Server Open Source instance.",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "Security"
-    ]
-  },
-  {
-    "objectID": "security.html#the-data-storage-environment",
-    "href": "security.html#the-data-storage-environment",
-    "title": "Security",
-    "section": "The data storage environment",
-    "text": "The data storage environment\nWe designed surveydown to be able to store data on any PostgreSQL database. This gives you flexibility on where you choose to store your data, and it is up to you to find a suitable host.\nFortunately, the default service we recommend using (Supabase) is actually SOC2 Type 2 and HIPPA compliant 🎉",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "Security"
-    ]
-  },
-  {
-    "objectID": "external-resources.html",
-    "href": "external-resources.html",
-    "title": "External Resources",
-    "section": "",
-    "text": "Often times you will want to include external resources in your survey, things like images, videos, etc. While you can easily include these in your survey.qmd file by referencing their location in your survey project folder, these resources may not always be available in the shiny app defined in your app.R file.\nTo address this, you should always place external resources in a separate folder and then make sure that folder is added to Shiny’s resource path. You can do this in your app.R file by using the sd_add_folder() function at the beginning of the file after loading the surveydown package, like this:\nlibrary(surveydown)\n\nsd_add_folder(\"resources\")\nThis will make all files in a folder called resources available to Shiny.",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "External Resources"
-    ]
-  },
-  {
-    "objectID": "external-resources.html#default-folders",
-    "href": "external-resources.html#default-folders",
-    "title": "External Resources",
-    "section": "Default folders",
-    "text": "Default folders\nThe surveydown package will automatically add the following folders to Shiny’s resource path:\n\nwww\nimages\ncss\njs\n\nIf any of these folders exist in your project, they will automatically be added to Shiny’s resource path. For this reason, we recommend that you always put images inside a images folder in your project directory, css files inside a css folder, and so on. This will make it easier to manage your resources and ensure that they are always available to Shiny.",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "External Resources"
-    ]
-  },
-  {
     "objectID": "deployment.html",
     "href": "deployment.html",
     "title": "Deploying Your Survey",
     "section": "",
-    "text": "Before deploying your survey, make sure you have done the following:\n\nYou have rendered your survey.qmd document.\nYou have locally run your app.R file by clicking the “Run App” button in RStudio or in your R console running the runApp() command.\nYou have set up a Supabase project and have already added the database parameters in the sd_database() function in the setup code chunk (see the Store Data page for details).\nYou have set the password for your survey using surveydown::sd_set_password(\"my_password\"), using the password you set in the Supabase project.\nYou have created an account on shinyapps.io, which will be used for survey online deployment.\n\nWith these steps completed, you are ready to deploy your survey online.",
+    "text": "Before deploying your survey, make sure everything is working locally. You should have done the following:\n\nYou have rendered your survey.qmd document and don’t see any errors.\nYou have locally run your app.R file by clicking the “Run App” button in RStudio or in your R console running the runApp() command and don’t see any errors.\nYou have set up a database connection to store survey responses (e.g. using a Supabase project) and have already added the database parameters in the sd_database() function in your app.R file (see the Store Data page).\nYou have set the password for your survey using surveydown::sd_set_password(\"my_password\") using the password you set in the Supabase project (see the Password page).\n\nWith these steps completed, you are ready to deploy your survey online.",
     "crumbs": [
       "Documentation",
       "Reference Manuals",
@@ -701,7 +503,7 @@
     "href": "deployment.html#preparing-to-deploy",
     "title": "Deploying Your Survey",
     "section": "",
-    "text": "Before deploying your survey, make sure you have done the following:\n\nYou have rendered your survey.qmd document.\nYou have locally run your app.R file by clicking the “Run App” button in RStudio or in your R console running the runApp() command.\nYou have set up a Supabase project and have already added the database parameters in the sd_database() function in the setup code chunk (see the Store Data page for details).\nYou have set the password for your survey using surveydown::sd_set_password(\"my_password\"), using the password you set in the Supabase project.\nYou have created an account on shinyapps.io, which will be used for survey online deployment.\n\nWith these steps completed, you are ready to deploy your survey online.",
+    "text": "Before deploying your survey, make sure everything is working locally. You should have done the following:\n\nYou have rendered your survey.qmd document and don’t see any errors.\nYou have locally run your app.R file by clicking the “Run App” button in RStudio or in your R console running the runApp() command and don’t see any errors.\nYou have set up a database connection to store survey responses (e.g. using a Supabase project) and have already added the database parameters in the sd_database() function in your app.R file (see the Store Data page).\nYou have set the password for your survey using surveydown::sd_set_password(\"my_password\") using the password you set in the Supabase project (see the Password page).\n\nWith these steps completed, you are ready to deploy your survey online.",
     "crumbs": [
       "Documentation",
       "Reference Manuals",
@@ -713,11 +515,67 @@
     "href": "deployment.html#deploying-to-shinyapps.io",
     "title": "Deploying Your Survey",
     "section": "Deploying to shinyapps.io",
-    "text": "Deploying to shinyapps.io\nDeploying your survey is pretty much the same as deploying any other Shiny app.\nWe recommend using shinyapps.io to host your survey as it is designed to work with Shiny Apps, but you can also use other hosting services such as RStudio Connect or HuggingFace.\n\n\n\n\n\n\nNote\n\n\n\nYou may have deployed other Quarto documents on Quarto Pub before. Note that Quarto Pub is only for static websites, while your survey is an interactive website. Therefore, you SHOULD NOT use Quarto Pub for your survey deployment.\n\n\nTo start using shinyapps.io, you’ll need to create an account and follow the basic instructions to set up your sub-domain and authorize your IDE. See more information here.\nOnce you have your account and your sub-domain ready, it’s time to deploy your survey website.\nMake sure you have the rsconnect  package installed (you should have done this while authorizing your IDE):\n\ninstall.packages('rsconnect')\n\nThen, the simplest way to deploy your survey is to run this:\n\nrsconnect::deployApp(appName = \"Survey Name\")\n\nThe tab name of the HTML page is defined by the appName argument.\nThat’s it! Now you should have your survey site deployed on shinyapps.io, with its data stored on Supabase. Congratulations!",
+    "text": "Deploying to shinyapps.io\nDeploying your survey is pretty much the same as deploying any other Shiny app.\nWe recommend using shinyapps.io to host your survey as it is designed to work with Shiny Apps, but you can also use other hosting services such as RStudio Connect or HuggingFace.\n\n\n\n\n\n\nNote\n\n\n\nYou may have deployed other Quarto documents on Quarto Pub before, but this site is only for static websites, so you SHOULD NOT use Quarto Pub for your survey deployment.\n\n\nTo start using shinyapps.io, you’ll need to create an account and follow the basic instructions to set up your sub-domain and authorize your IDE. See more information here.\nOnce you have your account and sub-domain ready, make sure you have the rsconnect package installed. You should have done this while authorizing your IDE, but in case you didn’t, you can install it with:\n\ninstall.packages('rsconnect')\n\nThen to deploy your survey, run:\n\nrsconnect::deployApp(appName = \"Survey Name\")\n\nThe tab name of the HTML page is defined by the appName argument.\nThat’s it! Now you should have your survey site deployed on shinyapps.io. Congratulations! 🎉",
     "crumbs": [
       "Documentation",
       "Reference Manuals",
       "Deployment"
+    ]
+  },
+  {
+    "objectID": "deployment.html#deploying-to-other-hosting-services",
+    "href": "deployment.html#deploying-to-other-hosting-services",
+    "title": "Deploying Your Survey",
+    "section": "Deploying to Other Hosting Services",
+    "text": "Deploying to Other Hosting Services\nYou can deploy shiny apps to other hosting services, such as:\n\nPosit Connect Cloud\nHugging Face\nHeroku\n\nYou can also install Posit Connect on your own server, which is the recommended approach for remaining compliant with any security protocols your organization requires.",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Deployment"
+    ]
+  },
+  {
+    "objectID": "installation.html",
+    "href": "installation.html",
+    "title": "Installation",
+    "section": "",
+    "text": "You need both:\n\nInstall \nInstall Quarto\n\nWe also recommend working with an IDE that has good support for R, Quarto, and Shiny.\nRStudio is great, and we also like VSCode and Positron.",
+    "crumbs": [
+      "Documentation",
+      "Installation"
+    ]
+  },
+  {
+    "objectID": "installation.html#install-r-quarto",
+    "href": "installation.html#install-r-quarto",
+    "title": "Installation",
+    "section": "",
+    "text": "You need both:\n\nInstall \nInstall Quarto\n\nWe also recommend working with an IDE that has good support for R, Quarto, and Shiny.\nRStudio is great, and we also like VSCode and Positron.",
+    "crumbs": [
+      "Documentation",
+      "Installation"
+    ]
+  },
+  {
+    "objectID": "installation.html#install-the-surveydown-r-package",
+    "href": "installation.html#install-the-surveydown-r-package",
+    "title": "Installation",
+    "section": "Install the {surveydown} R package",
+    "text": "Install the {surveydown} R package\nThe {surveydown} R package is not yet on CRAN, but you can install the development version from GitHub with the following command in your R console:\n\n# install.packages(\"remotes\")\nremotes::install_github(\"surveydown-dev/surveydown\")",
+    "crumbs": [
+      "Documentation",
+      "Installation"
+    ]
+  },
+  {
+    "objectID": "installation.html#version-control",
+    "href": "installation.html#version-control",
+    "title": "Installation",
+    "section": "Version Control",
+    "text": "Version Control\nWe made some R functions to make it easier to keep your R package.\nTo check which version of the {surveydown} package you have installed, run:\n\nsurveydown::sd_version()\n\nTo update to the latest version of the {surveydown} package, run:\n\nsurveydown::sd_update()",
+    "crumbs": [
+      "Documentation",
+      "Installation"
     ]
   },
   {
@@ -781,47 +639,201 @@
     ]
   },
   {
-    "objectID": "installation.html",
-    "href": "installation.html",
-    "title": "Installation",
+    "objectID": "security.html",
+    "href": "security.html",
+    "title": "Security",
     "section": "",
-    "text": "You need both:\n\nInstall \nInstall Quarto\n\nWe also recommend working with an IDE that has good support for R, Quarto, and Shiny.\nRStudio is great, and we also like VSCode and Positron.",
+    "text": "There are three main security considerations when working with a surveydown survey:\nWhile we have worked to make our application code secure, it is ultimately up to you to choose appropriate host and data storage environments that are also secure for your needs.",
     "crumbs": [
       "Documentation",
-      "Installation"
+      "Reference Manuals",
+      "Security"
     ]
   },
   {
-    "objectID": "installation.html#install-r-quarto",
-    "href": "installation.html#install-r-quarto",
-    "title": "Installation",
+    "objectID": "security.html#the-surveydown-application-code",
+    "href": "security.html#the-surveydown-application-code",
+    "title": "Security",
+    "section": "The surveydown application code",
+    "text": "The surveydown application code\nThe application code refers to the resulting Shiny app generated from a surveydown survey. Since surveydown users will be collecting potentially sensitive data from survey respondents, we have tried to develop the platform with data security in mind. We have taken care to follow many best practices, such as using SQL injection prevention strategies in how we store the survey response data, and ensuring that users store their database passwords as environment variables that are also added to a .gitignore file. We also adopted an architecture where all content on any page in the survey is served entirely from the shiny server, meaning that respondents taking the survey cannot see the underlying html source code for any of the content being displayed in the survey. This is important so respondents cannot see content on other pages (e.g., completion codes) before getting there from the survey navigation buttons.\nDespite our efforts, however, we do not (yet) have any form of security compliance certificate that we can provide. This means we cannot guarantee the application code is compliant with common security protocols, such as SOC2 Type 2 or HIPPA. This is an eventual goal, but for now this is a limitation for using this package for some domains that require certain certifications.",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Security"
+    ]
+  },
+  {
+    "objectID": "security.html#the-hosting-environment",
+    "href": "security.html#the-hosting-environment",
+    "title": "Security",
+    "section": "The hosting environment",
+    "text": "The hosting environment\n\nShinyapps.io\nThe free service we use for hosting a surveydown survey is shinyapps.io, which is not HIPPA compliant. According to the Posit Documentation on Security and Compliance for shinyapps.io:\n\nshinyapps.io is currently hosted on Amazon’s Web Services (AWS) infrastructure in the us-east-1 region. The infrastructure used is not the HIPAA-compliant stack, so if you need to be in a HIPAA-compliant environment, we recommend deploying and operating your own Posit Connect or Shiny Server Open Source instance.\n\nThis means that if you require a HIPPA compliant hosting service, we recommend that follow Posit’s guidelines and deploy your own instance of Posit Connect.\n\n\nOther Hosting Services\nYou can deploy shiny apps to other hosting services, such as:\n\nPosit Connect Cloud\nHugging Face\nHeroku\n\nYou can also install Posit Connect on your own server, which is the recommended approach for remaining compliant with any security protocols your organization requires.\nWhatever hosting service you choose, please read carefully about the security implications of the environment you choose.",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Security"
+    ]
+  },
+  {
+    "objectID": "security.html#the-data-storage-environment",
+    "href": "security.html#the-data-storage-environment",
+    "title": "Security",
+    "section": "The data storage environment",
+    "text": "The data storage environment\nWe designed surveydown to be able to store data on any PostgreSQL database. This gives you flexibility on where you choose to store your data, and it is up to you to find a suitable host.\nFortunately, the default service we recommend using (Supabase) is actually SOC2 Type 2 and HIPPA compliant 🎉\nAs with the hosting service, please choose a data storage environment carefully and read about the security implications of the environment you choose.",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Security"
+    ]
+  },
+  {
+    "objectID": "external-resources.html",
+    "href": "external-resources.html",
+    "title": "External Resources",
     "section": "",
-    "text": "You need both:\n\nInstall \nInstall Quarto\n\nWe also recommend working with an IDE that has good support for R, Quarto, and Shiny.\nRStudio is great, and we also like VSCode and Positron.",
+    "text": "Often times you will want to include external resources in your survey, things like images, videos, etc. While you can easily include these in your survey.qmd file by referencing their location in your survey project folder, these resources may not always be available in the shiny app defined in your app.R file.\nTo address this, you should always place external resources in a separate folder and then make sure that folder is added to Shiny’s resource path. You can do this in your app.R file by using the sd_add_folder() function at the beginning of the file after loading the surveydown package, like this:\nlibrary(surveydown)\n\nsd_add_folder(\"resources\")\nThis will make all files in a folder called resources available to Shiny.",
     "crumbs": [
       "Documentation",
-      "Installation"
+      "Reference Manuals",
+      "External Resources"
     ]
   },
   {
-    "objectID": "installation.html#install-the-surveydown-r-package",
-    "href": "installation.html#install-the-surveydown-r-package",
-    "title": "Installation",
-    "section": "Install the {surveydown} R package",
-    "text": "Install the {surveydown} R package\nThe {surveydown} R package is not yet on CRAN, but you can install the development version from GitHub with the following command in your R console:\n\n# install.packages(\"remotes\")\nremotes::install_github(\"surveydown-dev/surveydown\")",
+    "objectID": "external-resources.html#default-folders",
+    "href": "external-resources.html#default-folders",
+    "title": "External Resources",
+    "section": "Default folders",
+    "text": "Default folders\nThe surveydown package will automatically add the following folders to Shiny’s resource path:\n\nwww\nimages\ncss\njs\n\nIf any of these folders exist in your project, they will automatically be added to Shiny’s resource path. For this reason, we recommend that you always put images inside a images folder in your project directory, css files inside a css folder, and so on. This will make it easier to manage your resources and ensure that they are always available to Shiny.",
     "crumbs": [
       "Documentation",
-      "Installation"
+      "Reference Manuals",
+      "External Resources"
     ]
   },
   {
-    "objectID": "installation.html#version-control",
-    "href": "installation.html#version-control",
-    "title": "Installation",
-    "section": "Version Control",
-    "text": "Version Control\nWe made some R functions to make it easier to keep your R package.\nTo check which version of the {surveydown} package you have installed, run:\n\nsurveydown::sd_version()\n\nTo update to the latest version of the {surveydown} package, run:\n\nsurveydown::sd_update()",
+    "objectID": "faq.html",
+    "href": "faq.html",
+    "title": "Frequently Asked Questions",
+    "section": "",
+    "text": "Note\n\n\n\nHave a question but don’t see an answer here? Feel free to make a post on GitHub:\n\nPost a bug report or documentation issue on the GitHub repo issues page.\nAsk a question, make a feature request, start a discussion, or show off your project on the discussion board."
+  },
+  {
+    "objectID": "faq.html#how-do-i-make-a-question-required",
+    "href": "faq.html#how-do-i-make-a-question-required",
+    "title": "Frequently Asked Questions",
+    "section": "How do I make a question required?",
+    "text": "How do I make a question required?\nUse the required_questions argument in sd_config() to control required responses. See making a question required."
+  },
+  {
+    "objectID": "faq.html#why-is-my-shinyapps-deployment-failing",
+    "href": "faq.html#why-is-my-shinyapps-deployment-failing",
+    "title": "Frequently Asked Questions",
+    "section": "Why is my shinyapps deployment failing?",
+    "text": "Why is my shinyapps deployment failing?\nFirst, make sure everything is correctly defined, including your Supabase project settings and password settings. The password in your project folder should be the same as your Supabase project password (see here for how to set the password). Then, make sure your survey runs on your local machine and can successfully link with your Supabase project table. With these confirmed, your shinyapps deployment should work without problem.\nIf you still encounter an error (e.g., the page shows the app failed to start, or you see the page but it doesn’t run properly), try clearing your cache. The simplest way to do so is to reboot your computer. It may also help if you delete previously generated files, such as the survey.html file if you rendered it and the rsconnect folder. After re-rendering, you should be able to deploy the app without error."
+  },
+  {
+    "objectID": "blog/index.html",
+    "href": "blog/index.html",
+    "title": "Blog",
+    "section": "",
+    "text": "New architecture in v0.3.0 (and loads of breaking changes)!\n\n\n\n\n\nWe’re releasing v0.3.0, and with it multiple breaking changes. \n\n\n\n\n\n2024-09-18\n\n\nJohn Paul Helveston\n\n\n\n\n\n\n\n\n\n\n\n\nChoice-based conjoint surveys in R with surveydown\n\n\n\n\n\nA how-to guide for using R to design and implement choice-based conjoint surveys using the surveydown R package \n\n\n\n\n\n2024-08-28\n\n\nJohn Paul Helveston\n\n\n\n\n\n\n\n\n\n\n\n\nIntroducing surveydown: A markdown-based framework for generating surveys with Quarto and shiny\n\n\n\n\n\nA quick overview of the {surveydown} R package for making markdown-based surveys with open-source technologies: Quarto, shiny, and supabase. \n\n\n\n\n\n2024-08-21\n\n\nJohn Paul Helveston\n\n\n\n\n\n\nNo matching items\n\n Back to top"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to surveydown.org!",
+    "section": "",
+    "text": "Welcome to surveydown.org!\nsurveydown is a flexible, open-source platform for making surveys with , Quarto, Shiny, and Supabase.\n\n\n\n\n\nAbout the package and the open-source technologies behind it.\n\n\nABOUT\n\n\n\n\n\n\n\n\nDemos showcasing surveydown features.\n\n\nDEMOS\n\n\n\n\n\n\n\n\nDocumentation for building surveys with surveydown.\n\n\nDOCUMENTATION\n\n\n\n\n\n\n\n\nFrequently asked questions.\n\n\nFAQ\n\n\n\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "template.html",
+    "href": "template.html",
+    "title": "Start with a Template",
+    "section": "",
+    "text": "We recommend starting with a template to build your surveydown survey.\nIn the R console, run the following to to setup a template survey:\nsurveydown::sd_create_survey(\"path/to/folder\")\nThis will create a folder located at \"path/to/folder\" with the following files:",
     "crumbs": [
       "Documentation",
-      "Installation"
+      "Reference Manuals",
+      "Start with a Template"
+    ]
+  },
+  {
+    "objectID": "template.html#single-vs-multiple-file-structure",
+    "href": "template.html#single-vs-multiple-file-structure",
+    "title": "Start with a Template",
+    "section": "Single vs Multiple File Structure",
+    "text": "Single vs Multiple File Structure\nThe app.R file defines the Shiny app, which by default is a single file. If you wish to define your app using separate files, you can do so by setting the structure argument to \"multi\" in the sd_create_survey() function. This will create a template with four files:\n\nsurveydown::sd_create_survey(\"path/to/folder\", structure = \"multi\")\n\n\nsurvey.qmd: a template survey where you define your survey content (text, questions, images, etc.).\nui.R: The main UI file for the Shiny app. It will only contain the sd_ui() function.\nserver.R: a template server file where you define the server logic of the app.\nglobal.R: a template global file where you define any global variables, libraries, or functions.",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Start with a Template"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Overview",
+    "section": "",
+    "text": "Overview\nsurveydown is a flexible, open-source platform for making surveys with , Quarto, Shiny, and Supabase.\n\n\n\n\n\nThe basic concept is:\n\nDesign your survey as a Quarto document using markdown and R code.\nConvert your survey into a Shiny app that can be hosted online and sent to respondents.\nStore your survey responses in a Supabase database (or any PostgreSQL database).\n\nThe {surveydown} R package provides functions to bring this all together.\nWe recommend reading the Getting Started page to get a sense of how to use surveydown. The rest of the documentation covers more details on how to use surveydown.\n\nClick here to get started!\n\n\n\nBackground & Motivation\nMost survey platforms (e.g., Google forms, Qualtrics, etc.) use drag-and-drop interfaces to design surveys, making version control and collaboration with others difficult. They’re also not reproducible (others cannot easily reproduce a survey made on these platforms), and many require a paid subscription or license to use.\nThe surveydown package was designed to address these problems. As an open-source, markdown-based platform, all survey content is defined with plain text (markdown and R code) in a survey.qmd file and an app.R file that renders your survey into a Shiny app that can be hosted online. This makes your survey easy to reproduce, share, and version control with common tools like Git. The survey data collected is also owned by the survey designer in a separate PostgreSQL database (we recommend Supabase as a free and open-source database provider).\nIf you’re curious where this whole idea came from, check out this blog post, which outlines more on the general idea and the motivation for it. The post is now outdated in terms of the overall package design, but it provides something of an origin story and some of the motivation for developing this project.\n\n\nAuthors\nThe surveydown project is led by professor John Paul Helveston at George Washington University. The development team consists of the following members:\n\n\n\n\n\nJohn Paul Helveston, Ph.D.\nJohn Paul Helveston is an Assistant Professor in the Department of Engineering Management and Systems Engineering at George Washington University. Professor Helveston is the core designer and developer, and maintainer of both the surveydown project and this documentation website.\n\n\n\n\n\n\n\nPingfan Hu\nPingfan Hu is a Ph.D. student in Systems Engineering at George Washington University, supervised by professor Helveston. Pingfan is mainly responsible for UI design, user interactions, and website maintenance.\n\n\n\n\n\n\n\nBogdan Bunea\nBogdan Bunea is an undergraduate student majoring in Systems Engineering and minoring in Computer Science at George Washington University. Bogdan is mainly responsible for database connection and data management.\n\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "store-data.html",
+    "href": "store-data.html",
+    "title": "Storing Data",
+    "section": "",
+    "text": "The surveydown package is designed to work with any PostgreSQL database. Since many may not want to create such a database on their own, we recommend using Supabase, which is a free, open-source PostgreSQL database service.\nIn this guide, we’ll walk you through the steps to set up a Supabase project and connect your surveydown survey to it.",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Store Data"
+    ]
+  },
+  {
+    "objectID": "store-data.html#create-a-supabase-account",
+    "href": "store-data.html#create-a-supabase-account",
+    "title": "Storing Data",
+    "section": "Create a Supabase account",
+    "text": "Create a Supabase account\nNavigate to the Supabase website and create an account. You may use your GitHub account or create a new account using your email.\nWhile creating your account, it’s by default that you will have an organization under your account name. Your projects will be designated to this organization. You can have other organizations based on your need, but let’s just use this default one for now.",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Store Data"
+    ]
+  },
+  {
+    "objectID": "store-data.html#create-a-supabase-project",
+    "href": "store-data.html#create-a-supabase-project",
+    "title": "Storing Data",
+    "section": "Create a Supabase project",
+    "text": "Create a Supabase project\nOnce you are logged in, the page will prompt you to create a project. It’s an obvious green button. Click on it and select your organization. A dialog box will pop up like this:\n\n\n\n\n\n\n\n\n\n\nImportant\n\n\n\nOne Supabase project can support multiple surveydown surveys if you wish, but we recommend that you have only one survey per project to avoid potential mistakes.\n\n\nFill in the project name and give it a strong password. Choose a region that is close to you (or close to your audiences). All settings can be modified at any time.\n\n\n\n\n\n\nImportant\n\n\n\nOnce you set the password, don’t forget to also set the same password in surveydown with sd_set_password(). Go to the Password page for details.\nYou will need this both to communicate with your Supabase project and also to log in to your admin page, should you decide to enable it.",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Store Data"
+    ]
+  },
+  {
+    "objectID": "store-data.html#copy-your-credentials",
+    "href": "store-data.html#copy-your-credentials",
+    "title": "Storing Data",
+    "section": "Copy your credentials",
+    "text": "Copy your credentials\nOnce your Supabase project is ready, go to “Project Settings” located at the bottom-left corner. Then, click on “Database” under “Configuration”.\nYou’ll see the “Connection parameters” section like this:\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nThis is also where you change the password of your Supabase project.\n\n\nNow, deliver these parameters to your app! In your app.R file, you define sd_database() at the top before defining the server() function. Anything loaded here is globally accessible, so this is where your database configuration should go. In the template it looks like this:\n\ndb &lt;- sd_database(\n  host   = \"\",\n  dbname = \"\",\n  port   = \"\",\n  user   = \"\",\n  table  = \"any_name\"\n)\n\nCopy and paste the first 4 parameters from your Supabase page to sd_database(), aka “Host”, “Database name”, “Port”, and “User”. Again, your password should be defined using sd_set_password() in your R console, NOT in the app.R file.\nThe last parameter, table, can be any string you want. After your survey gets running, a table with this name will appear in “Table Editor” of your Supabase project. It’s located at the top-left corner of the page.",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Store Data"
+    ]
+  },
+  {
+    "objectID": "store-data.html#tips",
+    "href": "store-data.html#tips",
+    "title": "Storing Data",
+    "section": "Tips",
+    "text": "Tips\n\nIgnoring the Supabase connection\nWhile editing your survey, you may want to not connect to the database. This can be easily implemented by setting ignore = TRUE in sd_database():\n\ndb &lt;- sd_database(\n    # Previous parameters...\n    ignore = TRUE\n)\n\nWith this setting, your connection parameters can remain set, but the survey will not attempt to connect to your database. Instead, a local data.csv file will be created in your project folder so you can preview the survey data.\n\n\nDisabling gssencmode\nIf you’ve set everything correctly but still encounter connection error, try to disable gssencmode like this:\n\ndb &lt;- sd_database(\n    # Previous parameters...\n    gssencmode = \"disable\"\n)\n\nBy default, gssencmode is set as \"prefer\". It secures your connection with PostgreSQL, which is the SQL used by Supabase. We generally recommend that you DO NOT disable gssencmode, but sometimes this is necessary, especially when you are working on a protected network, e.g. on a VPN.",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Store Data"
     ]
   },
   {
@@ -829,7 +841,7 @@
     "href": "demos.html",
     "title": "Demos",
     "section": "",
-    "text": "Tip\n\n\n\nPlease render the .qmd file before running the app.\nIn these demos, we’ve defined use_html = TRUE in sd_server(). This will increase the page loading speed, but it requires the existence of the HTML file. Rendering the .qmd file can create the HTML.\n\n\n\n\n\n\n\nQuestion Types\nA demo of all the question types currently supported by surveydown.\n\n\n  GitHub Repo     Demo Survey \n\n\n\n\n\n\n\nConditional Display\nA demo of how to implement conditional display (showing a question based on a previous response).\n\n\n  GitHub Repo     Demo Survey \n\n\n\n\n\n\n\nConditional Skipping\nA demo of how to implement conditional skipping (skipping to a page based on a previous response).\n\n\n  GitHub Repo     Demo Survey \n\n\n\n\n\n\n\nChoice-Based Conjoint\nA demo of how to implement a choice-based conjoint survey with surveydown.\n\n\n  GitHub Repo     Demo Survey \n\n\n\n\n\n\n\nRandomized Question Labels\nA demo of how to implement randomized question labels.\n\n\n  GitHub Repo     Demo Survey \n\n\n\n\n\n\n\nRandomized Question Labels (Predefined)\nA demo of how to implement randomized question labels using predefined random labels.\n\n\n  GitHub Repo     Demo Video \n\n\n\n\n\n\n\nReactive Plot\nA demo of how to implement reactive plots in your survey.\n\n\n  GitHub Repo     Demo Video \n\n\n\n\n\n\n\nExternal Redirect\nA demo of how to implement external redirection links in your survey.\n\n\n  GitHub Repo     Demo Video \n\n\n\n\n\n Back to top"
+    "text": "Note\n\n\n\nIf you download a demo repository and want to run it, please render the .qmd file before running the app.\nIn these demos, we’ve defined use_html = TRUE in sd_server(). This will make the app load faster, but it requires that the .qmd file already be rendered into an HTML file.\n\n\n\n\n\n\n\nQuestion Types\nA demo of all the question types currently supported by surveydown.\n\n\n  GitHub Repo     Demo Survey \n\n\n\n\n\n\n\nConditional Display\nA demo of how to implement conditional display (showing a question based on a previous response).\n\n\n  GitHub Repo     Demo Survey \n\n\n\n\n\n\n\nConditional Skipping\nA demo of how to implement conditional skipping (skipping to a page based on a previous response).\n\n\n  GitHub Repo     Demo Survey \n\n\n\n\n\n\n\nChoice-Based Conjoint\nA demo of how to implement a choice-based conjoint survey with surveydown.\n\n\n  GitHub Repo     Demo Survey \n\n\n\n\n\n\n\nRandomized Question Labels\nA demo of how to implement randomized question labels.\n\n\n  GitHub Repo     Demo Survey \n\n\n\n\n\n\n\nRandomized Question Labels (Predefined)\nA demo of how to implement randomized question labels using predefined random labels.\n\n\n  GitHub Repo     Demo Video \n\n\n\n\n\n\n\nReactive Plot\nA demo of how to implement reactive plots in your survey.\n\n\n  GitHub Repo     Demo Video \n\n\n\n\n\n\n\nExternal Redirect\nA demo of how to implement external redirection links in your survey.\n\n\n  GitHub Repo     Demo Video \n\n\n\n\n\n Back to top"
   },
   {
     "objectID": "documentation.html",

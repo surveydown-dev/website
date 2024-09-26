@@ -4,13 +4,12 @@ title: "Deploying Your Survey"
 
 ## Preparing to deploy
 
-Before deploying your survey, make sure you have done the following:
+Before deploying your survey, make sure everything is working locally. You should have done the following:
 
-1. You have rendered your `survey.qmd` document. 
-2. You have locally run your `app.R` file by clicking the "Run App" button in RStudio or in your R console running the `runApp()` command.
-3. You have set up a {{< var supabase >}} project and have already added the database parameters in the `sd_database()` function in the setup code chunk (see the [Store Data](store-data.qmd) page for details).
-4. You have set the password for your survey using `surveydown::sd_set_password("my_password")`, using the password you set in the Supabase project.
-5. You have created an account on {{< var shinyapps >}}, which will be used for survey online deployment.
+1. You have rendered your `survey.qmd` document and don't see any errors. 
+2. You have locally run your `app.R` file by clicking the "Run App" button in RStudio or in your R console running the `runApp()` command and don't see any errors.
+3. You have set up a database connection to store survey responses (e.g. using a {{< var supabase >}} project) and have already added the database parameters in the `sd_database()` function in your `app.R` file (see the [Store Data](store-data.qmd) page).
+4. You have set the password for your survey using `surveydown::sd_set_password("my_password")` using the password you set in the Supabase project (see the [Password](password.qmd) page).
 
 With these steps completed, you are ready to deploy your survey online.
 
@@ -22,21 +21,19 @@ We recommend using {{< var shinyapps >}} to host your survey as it is designed t
 
 ::: {.callout-note}
 
-You may have deployed other Quarto documents on [Quarto Pub](https://quartopub.com) before. Note that Quarto Pub is only for static websites, while your survey is an interactive website. Therefore, you **SHOULD NOT** use Quarto Pub for your survey deployment.
+You may have deployed other Quarto documents on [Quarto Pub](https://quartopub.com) before, but this site is only for static websites, so you **SHOULD NOT** use Quarto Pub for your survey deployment.
 
 :::
 
-To start using shinyapps.io, you'll need to create an account and follow the basic instructions to set up your sub-domain and authorize your IDE. See more information [here](https://docs.posit.co/shinyapps.io/guide/getting_started/).
+To start using {{< var shinyapps >}}, you'll need to create an account and follow the basic instructions to set up your sub-domain and authorize your IDE. See more information [here](https://docs.posit.co/shinyapps.io/guide/getting_started/).
 
-Once you have your account and your sub-domain ready, it's time to deploy your survey website.
-
-Make sure you have the [rsconnect](https://rstudio.github.io/rsconnect/) {{< fa brands r-project >}} package installed (you should have done this while authorizing your IDE):
+Once you have your account and sub-domain ready, make sure you have the [rsconnect](https://rstudio.github.io/rsconnect/) package installed. You should have done this while authorizing your IDE, but in case you didn't, you can install it with:
 
 ```{r}
 install.packages('rsconnect')
 ```
 
-Then, the simplest way to deploy your survey is to run this:
+Then to deploy your survey, run:
 
 ```{r}
 rsconnect::deployApp(appName = "Survey Name")
@@ -44,4 +41,8 @@ rsconnect::deployApp(appName = "Survey Name")
 
 The tab name of the HTML page is defined by the `appName` argument. 
 
-That's it! Now you should have your survey site deployed on **shinyapps.io**, with its data stored on **Supabase**. Congratulations!
+That's it! Now you should have your survey site deployed on **shinyapps.io**. Congratulations! 🎉
+
+## Deploying to Other Hosting Services
+
+{{< include chunks/deploy-alts.qmd >}}

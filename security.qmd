@@ -18,14 +18,24 @@ Despite our efforts, however, we do not (yet) have any form of security complian
 
 ## The hosting environment
 
-The default free service for hosting a surveydown survey is {{< var shinyapps >}}. **This free service is not HIPPA compliant**. According to the [Posit Documentation on Security and Compliance](https://docs.posit.co/shinyapps.io/guide/security_and_compliance/index.html) for {{< var shinyapps >}}:
+### Shinyapps.io
+
+The free service we use for hosting a surveydown survey is {{< var shinyapps >}}, which **is not HIPPA compliant**. According to the [Posit Documentation on Security and Compliance](https://docs.posit.co/shinyapps.io/guide/security_and_compliance/index.html) for {{< var shinyapps >}}:
 
 > shinyapps.io is currently hosted on Amazon’s Web Services (AWS) infrastructure in the us-east-1 region. The infrastructure used is not the HIPAA-compliant stack, so if you need to be in a HIPAA-compliant environment, we recommend deploying and operating your own Posit Connect or Shiny Server Open Source instance.
 
-This means that if you require a HIPPA compliant hosting service, we recommend that follow Posit's guidelines and deploy your own Posit Connect or Shiny Server Open Source instance.
+This means that if you require a HIPPA compliant hosting service, we recommend that follow Posit's guidelines and deploy your own instance of [Posit Connect](https://posit.co/products/enterprise/connect/).
+
+### Other Hosting Services
+
+{{< include chunks/deploy-alts.qmd >}}
+
+Whatever hosting service you choose, please read carefully about the security implications of the environment you choose.
 
 ## The data storage environment
 
 We designed surveydown to be able to [store data](store-data.qmd) on any PostgreSQL database. This gives you flexibility on where you choose to store your data, and it is up to you to find a suitable host. 
 
 Fortunately, the default service we recommend using ({{< var supabase >}}) is actually [SOC2 Type 2 and HIPPA compliant](https://supabase.com/security) 🎉
+
+As with the hosting service, please choose a data storage environment carefully and read about the security implications of the environment you choose.

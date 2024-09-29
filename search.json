@@ -732,6 +732,13 @@
     "text": "Why is my shinyapps deployment failing?\nFirst, make sure everything is correctly defined, including your Supabase project settings and password settings. The password in your project folder should be the same as your Supabase project password (see here for how to set the password). Then, make sure your survey runs on your local machine and can successfully link with your Supabase project table. With these confirmed, your shinyapps deployment should work without problem.\nIf you still encounter an error (e.g., the page shows the app failed to start, or you see the page but it doesn’t run properly), try clearing your cache. The simplest way to do so is to reboot your computer. It may also help if you delete previously generated files, such as the survey.html file if you rendered it and the rsconnect folder. After re-rendering, you should be able to deploy the app without error."
   },
   {
+    "objectID": "faq.html#why-does-my-app-load-slowly",
+    "href": "faq.html#why-does-my-app-load-slowly",
+    "title": "Frequently Asked Questions",
+    "section": "Why does my app load slowly?",
+    "text": "Why does my app load slowly?\nIf your app takes a little while to load, one reason may be that you haven’t pre-rendered your survey.qmd file. The sd_server() function in yourapp.R file has an optional use_html argument which defaults to FALSE, which means your app will render the survey.qmd file on each session, which can be slow. If you instead render the survey.qmd file first yourself and then set use_html = TRUE in sd_server(), your app will load much faster. See “Pre-rendering your survey” for more details."
+  },
+  {
     "objectID": "blog/index.html",
     "href": "blog/index.html",
     "title": "Blog",

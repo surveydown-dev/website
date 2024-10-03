@@ -1,6 +1,7 @@
 ---
 title: "Question Types"
 toc-expand: true
+css: surveydown.css
 ---
 
 ```{r}
@@ -403,7 +404,30 @@ sd_question(
 
 ::: {.callout-note}
 
-Due to compatibility issues, the `slider` type is still under construction.
+The dialog box will only appear in a Shiny environment.
+
+:::
+
+::: {.panel-tabset}
+
+## Code chunk
+
+```{r}
+#| echo: fenced
+
+sd_question(
+  type  = 'slider',
+  id    = 'climate_care',
+  label = "To what extent do you believe human-caused climate change is real?",
+  option = c(
+    "Don't Believe"    = "dont_believe",
+    "Somewhat Believe" = "somewhat",
+    "Neutral"          = "neutral",
+    "Believe"          = "believe",
+    "Strongly Believe" = "strongly_believe"
+  )
+)
+```
 
 :::
 
@@ -480,6 +504,57 @@ sd_question(
   type  = 'daterange',
   id    = 'hs_date',
   label = "When did you start and finish high school?"
+)
+```
+
+:::
+
+## `matrix`
+
+Use `type = 'matrix'` to specify a matrix input type.
+
+::: {.panel-tabset}
+
+## Code chunk
+
+```{r}
+#| echo: fenced
+
+sd_question(
+  type   = "matrix",
+  id     = "car_preference",
+  label  = "Please indicate your agreement with the following statements.",
+  row    = c(
+    "buy_gasoline" = "I'd like to buy a gasoline car.",
+    "buy_ev"       = "I'd like to buy an EV."
+  ),
+  option = c(
+    "Disagree" = "disagree",
+    "Neutral"  = "neutral",
+    "Agree"    = "agree"
+  )
+)
+```
+
+## Output
+
+```{r}
+#| eval: true
+#| echo: false
+
+sd_question(
+  type   = "matrix",
+  id     = "car_preference",
+  label  = "Please indicate your agreement with the following statements.",
+  row    = c(
+    "buy_gasoline" = "I'd like to buy a gasoline car.",
+    "buy_ev"       = "I'd like to buy an EV."
+  ),
+  option = c(
+    "Disagree" = "disagree",
+    "Neutral"  = "neutral",
+    "Agree"    = "agree"
+  )
 )
 ```
 

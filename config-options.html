@@ -325,6 +325,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#required-questions" id="toc-required-questions" class="nav-link" data-scroll-target="#required-questions">Required questions</a></li>
   <li><a href="#starting-page" id="toc-starting-page" class="nav-link" data-scroll-target="#starting-page">Starting page</a></li>
   <li><a href="#pre-rendering-your-survey" id="toc-pre-rendering-your-survey" class="nav-link" data-scroll-target="#pre-rendering-your-survey">Pre-rendering your survey</a></li>
+  <li><a href="#auto-scroll" id="toc-auto-scroll" class="nav-link" data-scroll-target="#auto-scroll">Auto scroll</a></li>
   <li><a href="#admin-page" id="toc-admin-page" class="nav-link" data-scroll-target="#admin-page">Admin page</a></li>
   </ul></li>
   </ul>
@@ -597,6 +598,15 @@ Note
 </div>
 <p>This can significantly speed up the initial page loading.</p>
 </section>
+<section id="auto-scroll" class="level3">
+<h3 class="anchored" data-anchor-id="auto-scroll">Auto scroll</h3>
+<p>The auto scroll feature allows the page to automatically scroll according to the user’s working progress and is enabled by default.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_server</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">auto_scroll =</span> <span class="cn">TRUE</span> <span class="co"># Change to FALSE to switch it off.</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 <section id="admin-page" class="level3">
 <h3 class="anchored" data-anchor-id="admin-page">Admin page</h3>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -614,9 +624,9 @@ Important
 </div>
 <p>By default, the admin page is not created. But if you want one, set <code>admin_page</code> to <code>TRUE</code> inside the <code>sd_server()</code> function, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_server</span>(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">admin_page =</span> <span class="cn">TRUE</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_server</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">admin_page =</span> <span class="cn">TRUE</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>When the admin page is enabled, you will be able to access the page by adding <code>?admin</code> to the end of the survey URL, e.g.&nbsp;<code>https://myname.shinyapps.io/?admin</code>. This will display a login page with a single “Password” parameter, which is the password set using <code>sd_set_password()</code>. See the <a href="./password.html">Password</a> page for details.</p>
 <p>The admin page has the following features:</p>

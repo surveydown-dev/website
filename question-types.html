@@ -119,6 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap-datepicker-css-1.9.0/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 
 
+<link rel="stylesheet" href="surveydown.css">
 <meta property="og:title" content="Question Types – surveydown.org">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://www.surveydown.org/images/logo.ico">
@@ -340,6 +341,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#slider" id="toc-slider" class="nav-link" data-scroll-target="#slider"><code>slider</code></a></li>
   <li><a href="#date" id="toc-date" class="nav-link" data-scroll-target="#date"><code>date</code></a></li>
   <li><a href="#daterange" id="toc-daterange" class="nav-link" data-scroll-target="#daterange"><code>daterange</code></a></li>
+  <li><a href="#matrix" id="toc-matrix" class="nav-link" data-scroll-target="#matrix"><code>matrix</code></a></li>
   </ul>
 </nav>
     </div>
@@ -409,10 +411,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 <div id="container-word" data-question-id="word" class="question-container" style="width: 100%;" oninput="Shiny.setInputValue('word_interacted', true, {priority: 'event'});">
+<div>
 <div class="form-group shiny-input-container">
 <label class="control-label" id="word-label" for="word"><p>Write a word: <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
 </label>
 <input id="word" type="text" class="shiny-input-text form-control" value="">
+</div>
 </div>
 </div>
 </div>
@@ -442,10 +446,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 <div id="container-paragraph" data-question-id="paragraph" class="question-container" style="width: 100%;" oninput="Shiny.setInputValue('paragraph_interacted', true, {priority: 'event'});">
+<div>
 <div class="form-group shiny-input-container">
 <label class="control-label" id="paragraph-label" for="paragraph"><p>Write a paragraph: <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
 </label>
 <textarea id="paragraph" class="shiny-input-textarea form-control" style="height:100px;" rows="6" cols="80"></textarea>
+</div>
 </div>
 </div>
 </div>
@@ -475,10 +481,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 <div id="container-age" data-question-id="age" class="question-container" style="width: 100%;" oninput="Shiny.setInputValue('age_interacted', true, {priority: 'event'});">
+<div>
 <div class="form-group shiny-input-container">
 <label class="control-label" id="age-label" for="age"><p>What’s your age? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
 </label>
 <input id="age" type="number" class="shiny-input-number form-control">
+</div>
 </div>
 </div>
 </div>
@@ -517,6 +525,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 <div id="container-artist" data-question-id="artist" class="question-container" style="width: 100%;" oninput="Shiny.setInputValue('artist_interacted', true, {priority: 'event'});">
+<div>
 <div id="artist" class="form-group shiny-input-radiogroup shiny-input-container" role="radiogroup" aria-labelledby="artist-label">
 <label class="control-label" id="artist-label" for="artist"><p>Which artist do you prefer most from this list? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
 </label>
@@ -571,6 +580,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</div>
 </section>
 <section id="mc_buttons" class="level2">
 <h2 class="anchored" data-anchor-id="mc_buttons"><code>mc_buttons</code></h2>
@@ -602,6 +612,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 <div id="container-fruit" data-question-id="fruit" class="question-container" style="width: 100%;" oninput="Shiny.setInputValue('fruit_interacted', true, {priority: 'event'});">
+<div>
 <div class="form-group shiny-input-container shiny-input-radiogroup shiny-input-container-inline">
 <label class="control-label" id="fruit-label" for="fruit"><p>Which fruit do you prefer most from this list? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
 </label>
@@ -629,6 +640,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                 Shiny.setInputValue('fruit_interacted', true, {priority: 'event'});
             });
         </script>
+</div>
 </div>
 </div>
 </div>
@@ -670,6 +682,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 <div id="container-swift" data-question-id="swift" class="question-container" style="width: 100%;" oninput="Shiny.setInputValue('swift_interacted', true, {priority: 'event'});">
+<div>
 <div id="swift" class="form-group shiny-input-checkboxgroup shiny-input-container" role="group" aria-labelledby="swift-label">
 <label class="control-label" id="swift-label" for="swift"><p>What are your favorite Taylor Swift albums (select all that apply)? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
 </label>
@@ -742,6 +755,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</div>
 </section>
 <section id="mc_multiple_buttons" class="level2">
 <h2 class="anchored" data-anchor-id="mc_multiple_buttons"><code>mc_multiple_buttons</code></h2>
@@ -774,6 +788,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 <div id="container-michael_jackson" data-question-id="michael_jackson" class="question-container" style="width: 100%;" oninput="Shiny.setInputValue('michael_jackson_interacted', true, {priority: 'event'});">
+<div>
 <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
 <label class="control-label" id="michael_jackson-label" for="michael_jackson"><p>Which are your favorite Michael Jackson songs (select all that apply)? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
 </label>
@@ -803,6 +818,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                 Shiny.setInputValue('michael_jackson_interacted', true, {priority: 'event'});
             });
         </script>
+</div>
 </div>
 </div>
 </div>
@@ -841,6 +857,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display no-overflow-x">
 <div id="container-education" data-question-id="education" class="question-container" style="width: 100%;" oninput="Shiny.setInputValue('education_interacted', true, {priority: 'event'});">
+<div>
 <div class="form-group shiny-input-container">
 <label class="control-label" id="education-label" for="education"><p>What is the highest level of education you have attained? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
 </label>
@@ -862,6 +879,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</div>
 </section>
 <section id="slider" class="level2">
 <h2 class="anchored" data-anchor-id="slider"><code>slider</code></h2>
@@ -875,7 +893,30 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Due to compatibility issues, the <code>slider</code> type is still under construction.</p>
+<p>The dialog box will only appear in a Shiny environment.</p>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">Code chunk</a></li></ul>
+<div class="tab-content">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = 'slider',</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = 'climate_care',</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "To what extent do you believe human-caused climate change is real?",</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="in">  option = c(</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="in">    "Don't Believe"    = "dont_believe",</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="in">    "Somewhat Believe" = "somewhat",</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="in">    "Neutral"          = "neutral",</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="in">    "Believe"          = "believe",</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="in">    "Strongly Believe" = "strongly_believe"</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 </div>
 </div>
 </section>
@@ -896,23 +937,24 @@ Note
 </div>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">Code chunk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false">Output</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true">Code chunk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false">Output</a></li></ul>
 <div class="tab-content">
-<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
+<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = 'date',</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = 'dob',</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "What is your date of birth?"</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = 'date',</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = 'dob',</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "What is your date of birth?"</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
+<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div id="container-dob" data-question-id="dob" class="question-container" style="width: 100%;" oninput="Shiny.setInputValue('dob_interacted', true, {priority: 'event'});">
+<div>
 <div id="dob" class="shiny-date-input form-group shiny-input-container">
 <label class="control-label" id="dob-label" for="dob"><p>What is your date of birth? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
 </label>
@@ -922,6 +964,7 @@ Note
                 Shiny.setInputValue('dob_interacted', true, {priority: 'event'});
             });
          }, 1000);</script>
+</div>
 </div>
 </div>
 </div>
@@ -947,23 +990,24 @@ Note
 </div>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true">Code chunk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false">Output</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true">Code chunk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false">Output</a></li></ul>
 <div class="tab-content">
-<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
+<div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = 'daterange',</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = 'hs_date',</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "When did you start and finish high school?"</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = 'daterange',</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = 'hs_date',</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "When did you start and finish high school?"</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
+<div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div id="container-hs_date" data-question-id="hs_date" class="question-container" style="width: 100%;" oninput="Shiny.setInputValue('hs_date_interacted', true, {priority: 'event'});">
+<div>
 <div id="hs_date" class="shiny-date-range-input form-group shiny-input-container">
 <label class="control-label" id="hs_date-label" for="hs_date"><p>When did you start and finish high school? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
 </label>
@@ -980,6 +1024,112 @@ Note
             });
          }, 1000);</script>
 </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="matrix" class="level2">
+<h2 class="anchored" data-anchor-id="matrix"><code>matrix</code></h2>
+<p>Use <code>type = 'matrix'</code> to specify a matrix input type.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true">Code chunk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type   = "matrix",</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id     = "car_preference",</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label  = "Please indicate your agreement with the following statements.",</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="in">  row    = c(</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="in">    "buy_gasoline" = "I'd like to buy a gasoline car.",</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="in">    "buy_ev"       = "I'd like to buy an EV."</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="in">  ),</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="in">  option = c(</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="in">    "Disagree" = "disagree",</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="in">    "Neutral"  = "neutral",</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="in">    "Agree"    = "agree"</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="matrix-question-container">
+<label class="control-label"><p>Please indicate your agreement with the following statements. <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
+</label>
+
+<table class="matrix-question caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th"></td>
+<td data-quarto-table-cell-role="th">Disagree</td>
+<td data-quarto-table-cell-role="th">Neutral</td>
+<td data-quarto-table-cell-role="th">Agree</td>
+</tr>
+</tbody>
+<tbody>
+<tr class="odd">
+<td>I'd like to buy a gasoline car.</td>
+<td colspan="3"><div id="container-car_preference_buy_gasoline" class="question-container" data-question-id="car_preference_buy_gasoline" style="width: 100%;" oninput="Shiny.setInputValue('car_preference_buy_gasoline_interacted', true, {priority: 'event'});">
+<div>
+<div id="car_preference_buy_gasoline" class="form-group shiny-input-radiogroup shiny-input-container" role="radiogroup" aria-labelledby="car_preference_buy_gasoline-label">
+<label class="control-label" id="car_preference_buy_gasoline-label" for="car_preference_buy_gasoline">
+<p><span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
+</label>
+<div class="shiny-options-group">
+<div class="radio">
+<label> <input type="radio" name="car_preference_buy_gasoline" value="disagree"> <span>Disagree</span> </label>
+</div>
+<div class="radio">
+<label> <input type="radio" name="car_preference_buy_gasoline" value="neutral"> <span>Neutral</span> </label>
+</div>
+<div class="radio">
+<label> <input type="radio" name="car_preference_buy_gasoline" value="agree"> <span>Agree</span> </label>
+</div>
+</div>
+</div>
+</div>
+</div></td>
+</tr>
+<tr class="even">
+<td>I'd like to buy an EV.</td>
+<td colspan="3"><div id="container-car_preference_buy_ev" class="question-container" data-question-id="car_preference_buy_ev" style="width: 100%;" oninput="Shiny.setInputValue('car_preference_buy_ev_interacted', true, {priority: 'event'});">
+<div>
+<div id="car_preference_buy_ev" class="form-group shiny-input-radiogroup shiny-input-container" role="radiogroup" aria-labelledby="car_preference_buy_ev-label">
+<label class="control-label" id="car_preference_buy_ev-label" for="car_preference_buy_ev">
+<p><span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
+</label>
+<div class="shiny-options-group">
+<div class="radio">
+<label> <input type="radio" name="car_preference_buy_ev" value="disagree"> <span>Disagree</span> </label>
+</div>
+<div class="radio">
+<label> <input type="radio" name="car_preference_buy_ev" value="neutral"> <span>Neutral</span> </label>
+</div>
+<div class="radio">
+<label> <input type="radio" name="car_preference_buy_ev" value="agree"> <span>Agree</span> </label>
+</div>
+</div>
+</div>
+</div>
+</div></td>
+</tr>
+</tbody>
+</table>
+
 </div>
 </div>
 </div>

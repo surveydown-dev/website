@@ -511,22 +511,8 @@ This it the last page in the survey
 <div class="cell">
 <div class="cell-output-display">
 <div data-next-page="" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
-<button id="page_id_next" type="button" class="btn btn-default action-button" style="display: block; margin: auto;" onclick="Shiny.setInputValue('next_page', this.parentElement.getAttribute('data-next-page'));">Next</button>
+<button class="btn btn-default action-button sd-enter-button" id="page_id_next" onclick="Shiny.setInputValue('next_page', this.parentElement.getAttribute('data-next-page'));" style="display: block; margin: auto;" type="button">Next</button>
 </div>
-<script>
-    $(document).ready(function() {
-        var buttonId = 'page_id_next';
-        $(document).on('keydown', function(event) {
-            if (event.key === 'Enter' && !event.repeat) {
-                var $button = $('#' + buttonId);
-                if ($button.is(':visible')) {
-                    $button.click();
-                    event.preventDefault();
-                }
-            }
-        });
-    });
-    </script>
 </div>
 </div>
 <p>You can also send the user to other pages by just changing the value assigned to the <code>next_page</code> argument. For example, to send the user to a page with the id <code>page3</code>, you can use:</p>
@@ -544,22 +530,8 @@ This it the last page in the survey
 <div class="cell">
 <div class="cell-output-display">
 <div data-next-page="" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
-<button id="page_id_next" type="button" class="btn btn-default action-button" style="display: block; margin: auto;" onclick="Shiny.setInputValue('next_page', this.parentElement.getAttribute('data-next-page'));">Next page</button>
+<button class="btn btn-default action-button sd-enter-button" id="page_id_next" onclick="Shiny.setInputValue('next_page', this.parentElement.getAttribute('data-next-page'));" style="display: block; margin: auto;" type="button">Next page</button>
 </div>
-<script>
-    $(document).ready(function() {
-        var buttonId = 'page_id_next';
-        $(document).on('keydown', function(event) {
-            if (event.key === 'Enter' && !event.repeat) {
-                var $button = $('#' + buttonId);
-                if ($button.is(':visible')) {
-                    $button.click();
-                    event.preventDefault();
-                }
-            }
-        });
-    });
-    </script>
 </div>
 </div>
 </section>
@@ -583,10 +555,10 @@ This it the last page in the survey
 <p>The above code chunk will create a multiple choice question that looks like this:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="container-penguins" data-question-id="penguins" class="question-container" style="width: 100%;" oninput="Shiny.setInputValue('penguins_interacted', true, {priority: 'event'});">
+<div id="container-penguins" data-question-id="penguins" class="question-container" style="width: 100%; position: relative;" oninput="Shiny.setInputValue('penguins_interacted', true, {priority: 'event'});">
 <div>
 <div id="penguins" class="form-group shiny-input-radiogroup shiny-input-container" role="radiogroup" aria-labelledby="penguins-label">
-<label class="control-label" id="penguins-label" for="penguins"><p>Which is your favorite type of penguin? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
+<label class="control-label" id="penguins-label" for="penguins"><p>Which is your favorite type of penguin? <span class="required-asterisk" style="display: inline; color: red; font-size: 1.5em; position: absolute; top: 0; right: 0.5em;">*</span></p>
 </label>
 <div class="shiny-options-group">
 <div class="radio">

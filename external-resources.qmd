@@ -4,12 +4,12 @@ title: "External Resources"
 
 Often times you will want to include external resources in your survey, things like images, videos, etc. While you can easily include these in your `survey.qmd` file by referencing their location in your survey project folder, these resources may not always be available in the shiny app defined in your `app.R` file.
 
-To address this, you should always place external resources in a separate folder and then make sure that folder is added to Shiny's resource path. You can do this in your `app.R` file by using the `sd_add_folder()` function at the beginning of the file after loading the `surveydown` package, like this:
+To address this, you should always place external resources in a separate folder and then make sure that folder is added to Shiny's resource path. You can do this in your `app.R` file by using the `sd_include_folder()` function at the beginning of the file after loading the `surveydown` package, like this:
 
 ```{r}
 library(surveydown)
 
-sd_add_folder("resources")
+sd_include_folder("resources")
 ```
 
 This will make all files in a folder called `resources` available to Shiny. 

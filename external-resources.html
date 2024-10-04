@@ -345,11 +345,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Often times you will want to include external resources in your survey, things like images, videos, etc. While you can easily include these in your <code>survey.qmd</code> file by referencing their location in your survey project folder, these resources may not always be available in the shiny app defined in your <code>app.R</code> file.</p>
-<p>To address this, you should always place external resources in a separate folder and then make sure that folder is added to Shiny’s resource path. You can do this in your <code>app.R</code> file by using the <code>sd_add_folder()</code> function at the beginning of the file after loading the <code>surveydown</code> package, like this:</p>
+<p>To address this, you should always place external resources in a separate folder and then make sure that folder is added to Shiny’s resource path. You can do this in your <code>app.R</code> file by using the <code>sd_include_folder()</code> function at the beginning of the file after loading the <code>surveydown</code> package, like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(surveydown)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_add_folder</span>(<span class="st">"resources"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_include_folder</span>(<span class="st">"resources"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This will make all files in a folder called <code>resources</code> available to Shiny.</p>
 <section id="default-folders" class="level2">

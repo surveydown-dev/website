@@ -327,6 +327,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#pre-rendering-your-survey" id="toc-pre-rendering-your-survey" class="nav-link" data-scroll-target="#pre-rendering-your-survey">Pre-rendering your survey</a></li>
   <li><a href="#auto-scroll" id="toc-auto-scroll" class="nav-link" data-scroll-target="#auto-scroll">Auto scroll</a></li>
   <li><a href="#admin-page" id="toc-admin-page" class="nav-link" data-scroll-target="#admin-page">Admin page</a></li>
+  <li><a href="#rating-question" id="toc-rating-question" class="nav-link" data-scroll-target="#rating-question">Rating question</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -637,6 +638,34 @@ Important
 <li><strong>Admin Logout and Return to Survey</strong>: Once clicked, the admin page will be logged out and the survey will be returned to the start page.</li>
 <li><strong>Survey Data Preview</strong>: View the latest instance of the database table.</li>
 </ul>
+</section>
+<section id="rating-question" class="level3">
+<h3 class="anchored" data-anchor-id="rating-question">Rating question</h3>
+<p>You may want to add a rating question by the end of the survey to collect user reflections. Simply set <code>rate_survey</code> to <code>TRUE</code> (Default to <code>FALSE</code>):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_server</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">rate_survey =</span> <span class="cn">TRUE</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Survey rating is triggered by the “Exit Survey” button by the end of the survey. If you want to implement the survey rating, make sure you define the Exit Button by the end of the survey using the <code>sd_close()</code> function, and then define <code>rate_survey = TRUE</code> in <code>sd_server()</code>.</p>
+<p>Below are the <code>TRUE</code> and <code>FALSE</code> cases for <code>rate_survey</code>:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true"><code>TRUE</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><code>FALSE</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>If <code>rate_survey</code> is <code>TRUE</code>, a survey rating question will pop up:</p>
+<center>
+<img src="images/screenshots/rate_survey.gif" style="max-width: 550px; width: 100%;">
+</center>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>If <code>rate_survey</code> is <code>FALSE</code>, a confirm exit dialog box will pop up:</p>
+<center>
+<img src="images/screenshots/confirm_exit.gif" style="max-width: 550px; width: 100%;">
+</center>
+</div>
+</div>
+</div>
 
 
 </section>

@@ -273,3 +273,37 @@ The admin page has the following features:
 - **Download Data**: Download the most recent table instance from the database as a .csv file. 
 - **Admin Logout and Return to Survey**: Once clicked, the admin page will be logged out and the survey will be returned to the start page.
 - **Survey Data Preview**: View the latest instance of the database table.
+
+### Rating question
+
+You may want to add a rating question by the end of the survey to collect user reflections. Simply set `rate_survey` to `TRUE` (Default to `FALSE`):
+
+```{r}
+sd_server(
+  rate_survey = TRUE
+)
+```
+
+Survey rating is triggered by the "Exit Survey" button by the end of the survey. If you want to implement the survey rating, make sure you define the Exit Button by the end of the survey using the `sd_close()` function, and then define `rate_survey = TRUE` in `sd_server()`.
+
+Below are the `TRUE` and `FALSE` cases for `rate_survey`:
+
+::: {.panel-tabset}
+
+## `TRUE`
+
+If `rate_survey` is `TRUE`, a survey rating question will pop up:
+
+<center>
+<img src="images/screenshots/rate_survey.gif" style="max-width: 550px; width: 100%;">
+</center>
+
+## `FALSE`
+
+If `rate_survey` is `FALSE`, a confirm exit dialog box will pop up:
+
+<center>
+<img src="images/screenshots/confirm_exit.gif" style="max-width: 550px; width: 100%;">
+</center>
+
+:::

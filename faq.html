@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -157,6 +191,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#how-do-i-make-a-question-required" id="toc-how-do-i-make-a-question-required" class="nav-link active" data-scroll-target="#how-do-i-make-a-question-required">How do I make a question required?</a></li>
   <li><a href="#why-is-my-shinyapps-deployment-failing" id="toc-why-is-my-shinyapps-deployment-failing" class="nav-link" data-scroll-target="#why-is-my-shinyapps-deployment-failing">Why is my shinyapps deployment failing?</a></li>
   <li><a href="#why-does-my-app-load-slowly" id="toc-why-does-my-app-load-slowly" class="nav-link" data-scroll-target="#why-does-my-app-load-slowly">Why does my app load slowly?</a></li>
+  <li><a href="#why-cant-i-install-the-package" id="toc-why-cant-i-install-the-package" class="nav-link" data-scroll-target="#why-cant-i-install-the-package">Why can’t I install the package?</a></li>
+  <li><a href="#how-to-set-a-password-for-my-surveydown-project-and-why-do-i-need-a-password" id="toc-how-to-set-a-password-for-my-surveydown-project-and-why-do-i-need-a-password" class="nav-link" data-scroll-target="#how-to-set-a-password-for-my-surveydown-project-and-why-do-i-need-a-password">How to set a password for my surveydown project, and why do I need a password?</a></li>
   </ul>
 </nav>
     </div>
@@ -216,6 +252,44 @@ Note
 <section id="why-does-my-app-load-slowly" class="level2">
 <h2 class="anchored" data-anchor-id="why-does-my-app-load-slowly">Why does my app load slowly?</h2>
 <p>If your app takes a little while to load, one reason may be that you haven’t pre-rendered your <code>survey.qmd</code> file. The <code>sd_server()</code> function in your<code>app.R</code> file has an optional <code>use_html</code> argument which defaults to <code>FALSE</code>, which means your app will render the <code>survey.qmd</code> file on each session, which can be slow. If you instead render the <code>survey.qmd</code> file first yourself and then set <code>use_html = TRUE</code> in <code>sd_server()</code>, your app will load much faster. See <a href="config-options.html#pre-rendering-your-survey">“Pre-rendering your survey”</a> for more details.</p>
+</section>
+<section id="why-cant-i-install-the-package" class="level2">
+<h2 class="anchored" data-anchor-id="why-cant-i-install-the-package">Why can’t I install the package?</h2>
+<p><strong>1. Install from the repo (recommended)</strong></p>
+<p>Usually, we install a package by the <code>install.packages()</code> function. For example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>However, this function is only effective for packages on <a href="https://cran.r-project.org">CRAN</a>, a database that stores the R packages. Since <code>surveydown</code> is still under construction, it’s not available on CRAN yet (but it will be).</p>
+<p>Now the recommended way of installing <code>surveydown</code> is to install it directly from its GitHub repo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"surveydown-dev/surveydown"</span>, <span class="at">force =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>2. Download the source code and install locally (alternative)</strong></p>
+<p>If you still cannot have your package installed, it could be because that your path was managed by some package managing system like <a href="https://www.anaconda.com">Anaconda</a>. An alternative is to download the zip file of <code>surveydown</code> and install it locally.</p>
+<p>To download the zip file, go the the <a href="https://github.com/surveydown-dev/surveydown">surveydown repo</a>, click on the green “Code” button and click on “Download Zip”, or simplify click on <a href="https://github.com/surveydown-dev/surveydown/archive/refs/heads/main.zip">this link</a>.</p>
+<p>Unzip this repo, and open the <code>surveydown.Rproj</code> file. In your R Console panel, run this code to install:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install</span>(<span class="at">force =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="how-to-set-a-password-for-my-surveydown-project-and-why-do-i-need-a-password" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-set-a-password-for-my-surveydown-project-and-why-do-i-need-a-password">How to set a password for my surveydown project, and why do I need a password?</h2>
+<p>In <a href="https://supabase.com">Supabase</a> (the database we use for surveydown), we need a password to access the database and establish connection. In surveydown, we’ve prepared a function for you: <code>sd_set_password()</code>. This function helps you set up your password that can be used to connect to Supabase. It is also the password for your admin page.</p>
+<p><strong>Below is what <code>sd_set_password()</code> exactly does:</strong></p>
+<p>For example, say your password is <code>MyPassword</code>. Then you define your password by:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_set_password</span>(<span class="st">"MyPassword"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>After you defined your password, <strong>restart</strong> your R session by clicking on “Session” on your menu and choose “Restart R”.</p>
+<p>This will save your password into a newly created <code>.Renviron</code> file. The statement looks like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>SURVEYDOWN_PASSWORD<span class="ot">=</span>MyPassword</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, this function also adds the <code>.Renviron</code> file into your <code>.gitignore</code> file (if you want to store your project on GitHub), so that it won’t be pushed to your GitHub repo. Your password is always stored locally on your machine.</p>
+<p>You need to make sure that this password you defined matches with your Supabase project (in this case, it should be <code>MyPassword</code>).</p>
+<p>There is no defined sequence in these 2 above moves. You can define your Supabase project password first, and then define your local password using <code>sd_set_password()</code>, or you can do it inversely. The only thing that matters is when you attempt to connect to Supabase using your survey, these 2 passwords should match.</p>
+<p>For more information about setting password, proceed to the <a href="./password.html">password</a> page.</p>
 
 
 </section>

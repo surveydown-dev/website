@@ -14,7 +14,7 @@ Because surveydown renders to a Shiny app, it can take advantage of Shiny's [rea
 
 This page demonstrates some common use cases for reactive programming in surveydown.
 
-## Displaying question values
+## Displaying question values in the survey
 
 A simple example of using a reactive value is displaying a question value somewhere else in the survey. 
 
@@ -111,6 +111,66 @@ If the respondent entered "Dave" in the `name` question, this would render as:
 If you find this annoying, we agree! This is a bit of a hack and we are working on a better solution, but it is a limitation of Shiny that we have to live with, at least for now.
 
 :::
+
+## Defining questions in the server function
+
+Often you will want to define questions where the label or options change based on the respondent's answers to other questions. You can do this by defining the question in the server function and then displaying it in the `survey.qmd` file using the `sd_output()` function.
+
+For example, let's say you want to ask a follow-up question based on the respondent's answer to a previous question. To do this, you would define the first question in the `survey.qmd` file as usual, e.g.:
+
+```{r}
+sd_question(
+  id     = "pet_type",
+  type   = "mc",
+  label  = "Which do you like more, dogs or cats?",
+  option = c("Dogs" = "dog", "Cats" = "cat")
+)
+```
+
+My follow-up question is whether or not the respondent has a pet of the type they chose above. To do this, you would define the follow-up question in the `app.R` file's `server()` function like this:
+
+```{r}
+server <- function(input, output, session) {
+
+  observe({
+    pet_type <- input$pet_type
+
+    # Make the question label and options
+    label <-glue::glue("Are you a {pet_type} owner?")
+    options <- c('yes', 'no')
+    names(options)[1] <- glue::glue("Yes, am a {pet_type} owner")
+    names(options)[2] <- glue::glue("No, I am not a {pet_type} owner")
+
+    # Make the question
+    sd_question(
+      type   = "mc",
+      id     = "pet_owner",
+      label  = label,
+      option = options
+    )
+  })
+
+  sd_server()
+}
+```
+
+The `pet_owner` question is a reactive question where the label and options will change based on the respondent's answer to the `pet_type` question.
+
+::: {.callout-note}
+
+The `observe()` function is used to create the reactive question. This is a core concept in Shiny [reactivity](https://shiny.posit.co/r/articles/build/reactivity-overview/) that allows you to create reactive expressions that can change based on the values of other reactive expressions.
+
+Also, in this example we use the [`glue` package](https://cran.r-project.org/web/packages/glue/readme/README.html) to create the question label and options. This is a powerful package for creating strings that contain variable values. 
+
+:::
+
+Finally, you can display the `pet_owner` question in the `survey.qmd` file using the `sd_output()` function, like this:
+
+```{r}
+#| echo: fenced
+
+sd_output(id = "pet_owner", type = "question")
+```
 
 ## Randomizing question labels
 

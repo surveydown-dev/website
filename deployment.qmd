@@ -42,10 +42,19 @@ install.packages('rsconnect')
 Then to deploy your survey, run:
 
 ```{r}
-rsconnect::deployApp(appName = "Survey Name")
+# Define your app name with the appName parameter
+rsconnect::deployApp(appName = "My Survey")
 ```
 
-The tab name of the HTML page is defined by the `appName` argument. 
+We've also made a wrapper function in surveydown, so you can also run this to deploy your survey:
+
+```{r}
+# If left blank, your app name will be "survey"
+sd_deploy()
+
+# You can also pick your own app name
+sd_deploy("My Survey")
+```
 
 That's it! Now you should have your survey site deployed on **shinyapps.io**. Congratulations! 🎉
 

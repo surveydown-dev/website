@@ -148,7 +148,7 @@
     "href": "question-types.html#matrix",
     "title": "Question Types",
     "section": "matrix",
-    "text": "matrix\nUse type = 'matrix' to specify a matrix input type.\n\nCode chunkOutput\n\n\n\n```{r}\nsd_question(\n  type   = \"matrix\",\n  id     = \"car_preference\",\n  label  = \"Please indicate your agreement with the following statements.\",\n  row    = c(\n    \"buy_gasoline\" = \"I'd like to buy a gasoline car.\",\n    \"buy_ev\"       = \"I'd like to buy an EV.\"\n  ),\n  option = c(\n    \"Disagree\" = \"disagree\",\n    \"Neutral\"  = \"neutral\",\n    \"Agree\"    = \"agree\"\n  )\n)\n```\n\n\n\n\n\n\n\nPlease indicate your agreement with the following statements.\n\n\n\n\n\n\n\n\n\n\n\n\nDisagree\nNeutral\nAgree\n\n\n\n\nI'd like to buy a gasoline car.\n\n\n\n\n\n  Disagree \n\n\n  Neutral \n\n\n  Agree \n\n\n\n*\n\n\n\nI'd like to buy an EV.\n\n\n\n\n\n  Disagree \n\n\n  Neutral \n\n\n  Agree \n\n\n\n*\n\n\n\n\n\n\n*",
+    "text": "matrix\nUse type = 'matrix' to specify a matrix input type.\n\nCode chunkOutput\n\n\n\n```{r}\nsd_question(\n  type   = \"matrix\",\n  id     = \"car_preference\",\n  label  = \"Please indicate your agreement with the following statements.\",\n  row    = c(\n    \"buy_gasoline\" = \"I'd like to buy a gasoline car.\",\n    \"buy_ev\"       = \"I'd like to buy an EV.\"\n  ),\n  option = c(\n    \"Disagree\" = \"disagree\",\n    \"Neutral\"  = \"neutral\",\n    \"Agree\"    = \"agree\"\n  )\n)\n```\n\n\n\n\n\n\nPlease indicate your agreement with the following statements.\n\n\n\n\n\n\n\n\n\n\n\n\nDisagree\nNeutral\nAgree\n\n\n\n\nbuy_gasoline\n\n\n\n\n\n  Disagree \n\n\n  Neutral \n\n\n  Agree \n\n\n\n*\n\n\n\nbuy_ev\n\n\n\n\n\n  Disagree \n\n\n  Neutral \n\n\n  Agree \n\n\n\n*",
     "crumbs": [
       "Documentation",
       "Reference Manuals",
@@ -391,11 +391,40 @@
     ]
   },
   {
-    "objectID": "demos.html",
-    "href": "demos.html",
-    "title": "Demos",
+    "objectID": "fetch-data.html",
+    "href": "fetch-data.html",
+    "title": "Fetching Data",
     "section": "",
-    "text": "Note\n\n\n\nIf you download a demo repository and want to run it, please render the .qmd file before running the app.\nIn these demos, we’ve defined use_html = TRUE in sd_server(). This will make the app load faster, but it requires that the .qmd file already be rendered into an HTML file.\n\n\n\n\n\n\n\nQuestion Types\nA demo of all the question types currently supported by surveydown.\n\n\n  GitHub Repo     Demo Survey \n\n\n\n\n\n\n\nConditional Display\nA demo of how to implement conditional display (showing a question based on a previous response).\n\n\n  GitHub Repo     Demo Survey \n\n\n\n\n\n\n\nConditional Skipping\nA demo of how to implement conditional skipping (skipping to a page based on a previous response).\n\n\n  GitHub Repo     Demo Survey \n\n\n\n\n\n\n\nChoice-Based Conjoint\nA demo of how to implement a choice-based conjoint survey with surveydown.\n\n\n  GitHub Repo     Demo Survey \n\n\n\n\n\n\n\nRandomized Question Labels\nA demo of how to implement randomized question labels.\n\n\n  GitHub Repo     Demo Survey \n\n\n\n\n\n\n\nRandomized Question Labels (Predefined)\nA demo of how to implement randomized question labels using predefined random labels.\n\n\n  GitHub Repo     Demo Video \n\n\n\n\n\n\n\nReactive Plot\nA demo of how to implement a reactive plot (a summary plot of all prior response data updated in real time).\n\n\n  GitHub Repo     Demo Video \n\n\n\n\n\n\n\nExternal Redirect\nA demo of how to implement external redirection links in your survey.\n\n\n  GitHub Repo     Demo Video \n\n\n\n\n\n Back to top"
+    "text": "Once you have your database properly set up and your survey is live, you can fetch the data using the sd_get_data() function. All you have to do is pass in the db object you created with sd_database() to the sd_get_data() function.\nFor example, if you have a table called my_table in your Supabase database:\n\ndb &lt;- sd_database(\n  host   = \"my_host\",\n  dbname = \"my_dbname\",\n  port   = \"my_port\",\n  user   = \"my_user\",\n  table  = \"my_table\"\n)\n\nYou can fetch the data like this:\n\ndata &lt;- sd_get_data(db)\n\nHere the data object will be a data.frame with the data from your database.",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Fetch Data"
+    ]
+  },
+  {
+    "objectID": "fetch-data.html#static-fetching",
+    "href": "fetch-data.html#static-fetching",
+    "title": "Fetching Data",
+    "section": "",
+    "text": "Once you have your database properly set up and your survey is live, you can fetch the data using the sd_get_data() function. All you have to do is pass in the db object you created with sd_database() to the sd_get_data() function.\nFor example, if you have a table called my_table in your Supabase database:\n\ndb &lt;- sd_database(\n  host   = \"my_host\",\n  dbname = \"my_dbname\",\n  port   = \"my_port\",\n  user   = \"my_user\",\n  table  = \"my_table\"\n)\n\nYou can fetch the data like this:\n\ndata &lt;- sd_get_data(db)\n\nHere the data object will be a data.frame with the data from your database.",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Fetch Data"
+    ]
+  },
+  {
+    "objectID": "fetch-data.html#reactive-fetching",
+    "href": "fetch-data.html#reactive-fetching",
+    "title": "Fetching Data",
+    "section": "Reactive Fetching",
+    "text": "Reactive Fetching\n\n\n\n\n\n\nTip\n\n\n\nRun the Demo survey of a reactive plot for an example of reactively fetching data.\n\n\nThe above example is intended for an analysis context, where all you want to do is fetch the latest data from your database. However, you may also want to fetch the data in a reactive context (i.e. in your survey). For example, perhaps you want to show respondents a bar chart of the most common responses to a question. The sd_get_data() function is compatible with reactive fetching as well - just call it inside the server() function in your app.R file:\n\nserver &lt;- function(input, output, session) {\n\n  data &lt;- sd_get_data(db)\n\n  sd_server()\n\n}\n\nNow the data object will be a reactive expression, not a data.frame. To use it, you have to call it with () to get the latest data as a data.frame. For example:\n\nserver &lt;- function(input, output, session) {\n\n  data &lt;- sd_get_data(db, refresh_interval = 5)\n\n  output$my_plot &lt;- renderPlot({  \n    my_data &lt;- data()\n    # insert code here to make a plot with my_data\n  })\n\n  sd_server()\n\n}\n\nHere the my_data object will be a data.frame with the latest data from your database, refreshed every 5 sections according to the refresh_interval parameter (5 seconds is the default value), which you could then use to make a plot.\nIn this example, the output$my_plot object will be a plot, which you can then display in your survey by placing plotOutput(\"my_plot\") in a code chunk somewhere in your survey.qmd file.\nSee the Reactivity page for more information on how to use reactivity in your survey.",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Fetch Data"
+    ]
   },
   {
     "objectID": "store-data.html",
@@ -679,6 +708,13 @@
     ]
   },
   {
+    "objectID": "demos.html",
+    "href": "demos.html",
+    "title": "Demos",
+    "section": "",
+    "text": "Note\n\n\n\nIf you download a demo repository and want to run it, please render the .qmd file before running the app.\nIn these demos, we’ve defined use_html = TRUE in sd_server(). This will make the app load faster, but it requires that the .qmd file already be rendered into an HTML file.\n\n\n\n\n\n\n\nQuestion Types\nA demo of all the question types currently supported by surveydown.\n\n\n  GitHub Repo     Demo Survey \n\n\n\n\n\n\n\nConditional Display\nA demo of how to implement conditional display (showing a question based on a previous response).\n\n\n  GitHub Repo     Demo Survey \n\n\n\n\n\n\n\nConditional Skipping\nA demo of how to implement conditional skipping (skipping to a page based on a previous response).\n\n\n  GitHub Repo     Demo Survey \n\n\n\n\n\n\n\nChoice-Based Conjoint\nA demo of how to implement a choice-based conjoint survey with surveydown.\n\n\n  GitHub Repo     Demo Survey \n\n\n\n\n\n\n\nRandomized Question Labels\nA demo of how to implement randomized question labels.\n\n\n  GitHub Repo     Demo Survey \n\n\n\n\n\n\n\nRandomized Question Labels (Predefined)\nA demo of how to implement randomized question labels using predefined random labels.\n\n\n  GitHub Repo     Demo Video \n\n\n\n\n\n\n\nReactive Plot\nA demo of how to implement a reactive plot (a summary plot of all prior response data updated in real time).\n\n\n  GitHub Repo     Demo Video \n\n\n\n\n\n\n\nExternal Redirect\nA demo of how to implement external redirection links in your survey.\n\n\n  GitHub Repo     Demo Video \n\n\n\n\n\n Back to top"
+  },
+  {
     "objectID": "deployment.html",
     "href": "deployment.html",
     "title": "Deploying Your Survey",
@@ -707,7 +743,7 @@
     "href": "deployment.html#deploying-to-shinyapps.io",
     "title": "Deploying Your Survey",
     "section": "Deploying to shinyapps.io",
-    "text": "Deploying to shinyapps.io\nDeploying your survey is pretty much the same as deploying any other Shiny app.\nWe recommend using shinyapps.io to host your survey as it is designed to work with Shiny Apps, but you can also use other hosting services such as RStudio Connect or HuggingFace.\n\n\n\n\n\n\nNote\n\n\n\nYou may have deployed other Quarto documents on Quarto Pub before, but this site is only for static websites, so you SHOULD NOT use Quarto Pub for your survey deployment.\n\n\nTo start using shinyapps.io, you’ll need to create an account and follow the basic instructions to set up your sub-domain and authorize your IDE. See more information here.\nOnce you have your account and sub-domain ready, make sure you have the rsconnect package installed. You should have done this while authorizing your IDE, but in case you didn’t, you can install it with:\n\ninstall.packages('rsconnect')\n\nThen to deploy your survey, run:\n\nrsconnect::deployApp(appName = \"Survey Name\")\n\nThe tab name of the HTML page is defined by the appName argument.\nThat’s it! Now you should have your survey site deployed on shinyapps.io. Congratulations! 🎉",
+    "text": "Deploying to shinyapps.io\nDeploying your survey is pretty much the same as deploying any other Shiny app.\nWe recommend using shinyapps.io to host your survey as it is designed to work with Shiny Apps, but you can also use other hosting services such as RStudio Connect or HuggingFace.\n\n\n\n\n\n\nNote\n\n\n\nYou may have deployed other Quarto documents on Quarto Pub before, but this site is only for static websites, so you SHOULD NOT use Quarto Pub for your survey deployment.\n\n\nTo start using shinyapps.io, you’ll need to create an account and follow the basic instructions to set up your sub-domain and authorize your IDE. See more information here.\nOnce you have your account and sub-domain ready, make sure you have the rsconnect package installed. You should have done this while authorizing your IDE, but in case you didn’t, you can install it with:\n\ninstall.packages('rsconnect')\n\nThen to deploy your survey, run:\n\n# Define your app name with the appName parameter\nrsconnect::deployApp(appName = \"My Survey\")\n\nWe’ve also made a wrapper function in surveydown, so you can also run this to deploy your survey:\n\n# If left blank, your app name will be \"survey\"\nsd_deploy()\n\n# You can also pick your own app name\nsd_deploy(\"My Survey\")\n\nThat’s it! Now you should have your survey site deployed on shinyapps.io. Congratulations! 🎉",
     "crumbs": [
       "Documentation",
       "Reference Manuals",
@@ -724,42 +760,6 @@
       "Documentation",
       "Reference Manuals",
       "Deployment"
-    ]
-  },
-  {
-    "objectID": "fetch-data.html",
-    "href": "fetch-data.html",
-    "title": "Fetching Data",
-    "section": "",
-    "text": "Once you have your database properly set up and your survey is live, you can fetch the data using the sd_get_data() function. All you have to do is pass in the db object you created with sd_database() to the sd_get_data() function.\nFor example, if you have a table called my_table in your Supabase database:\n\ndb &lt;- sd_database(\n  host   = \"my_host\",\n  dbname = \"my_dbname\",\n  port   = \"my_port\",\n  user   = \"my_user\",\n  table  = \"my_table\"\n)\n\nYou can fetch the data like this:\n\ndata &lt;- sd_get_data(db)\n\nHere the data object will be a data.frame with the data from your database.",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "Fetch Data"
-    ]
-  },
-  {
-    "objectID": "fetch-data.html#static-fetching",
-    "href": "fetch-data.html#static-fetching",
-    "title": "Fetching Data",
-    "section": "",
-    "text": "Once you have your database properly set up and your survey is live, you can fetch the data using the sd_get_data() function. All you have to do is pass in the db object you created with sd_database() to the sd_get_data() function.\nFor example, if you have a table called my_table in your Supabase database:\n\ndb &lt;- sd_database(\n  host   = \"my_host\",\n  dbname = \"my_dbname\",\n  port   = \"my_port\",\n  user   = \"my_user\",\n  table  = \"my_table\"\n)\n\nYou can fetch the data like this:\n\ndata &lt;- sd_get_data(db)\n\nHere the data object will be a data.frame with the data from your database.",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "Fetch Data"
-    ]
-  },
-  {
-    "objectID": "fetch-data.html#reactive-fetching",
-    "href": "fetch-data.html#reactive-fetching",
-    "title": "Fetching Data",
-    "section": "Reactive Fetching",
-    "text": "Reactive Fetching\n\n\n\n\n\n\nTip\n\n\n\nRun the Demo survey of a reactive plot for an example of reactively fetching data.\n\n\nThe above example is intended for an analysis context, where all you want to do is fetch the latest data from your database. However, you may also want to fetch the data in a reactive context (i.e. in your survey). For example, perhaps you want to show respondents a bar chart of the most common responses to a question. The sd_get_data() function is compatible with reactive fetching as well - just call it inside the server() function in your app.R file:\n\nserver &lt;- function(input, output, session) {\n\n  data &lt;- sd_get_data(db)\n\n  sd_server()\n\n}\n\nNow the data object will be a reactive expression, not a data.frame. To use it, you have to call it with () to get the latest data as a data.frame. For example:\n\nserver &lt;- function(input, output, session) {\n\n  data &lt;- sd_get_data(db, refresh_interval = 5)\n\n  output$my_plot &lt;- renderPlot({  \n    my_data &lt;- data()\n    # insert code here to make a plot with my_data\n  })\n\n  sd_server()\n\n}\n\nHere the my_data object will be a data.frame with the latest data from your database, refreshed every 5 sections according to the refresh_interval parameter (5 seconds is the default value), which you could then use to make a plot.\nIn this example, the output$my_plot object will be a plot, which you can then display in your survey by placing plotOutput(\"my_plot\") in a code chunk somewhere in your survey.qmd file.\nSee the Reactivity page for more information on how to use reactivity in your survey.",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "Fetch Data"
     ]
   },
   {

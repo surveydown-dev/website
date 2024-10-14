@@ -1,46 +1,92 @@
+/* Light mode styles */
+:root {
+  --card-bg: #f8f9fa;
+  --card-border: #e0e0e0;
+  --text-color: #212529;
+  --icon-color: #00bc8c;
+  --link-color: #00bc8c;
+}
+
+/* Dark mode styles */
+.quarto-light {
+  --card-bg: #f8f9fa;
+  --card-border: #e0e0e0;
+  --text-color: #212529;
+  --icon-color: #00bc8c;
+  --link-color: #00bc8c;
+}
+
+.quarto-dark {
+  --card-bg: #2c3034;
+  --card-border: #495057;
+  --text-color: #f8f9fa;
+  --icon-color: #00bc8c;
+  --link-color: #00bc8c;
+}
+
 /* Card Styles */
 .demo-card { 
   display: flex; 
   align-items: flex-start;
   width: 100%; 
   margin-bottom: 1rem; 
-  border: 1px solid #e0e0e0;  /* Light grey border */
-  border-radius: 8px;  /* Rounded corners */
-  background-color: #f8f9fa;  /* Light background color */
-  padding: 1rem;  /* Padding inside the card */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);  /* Subtle shadow for depth */
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  background-color: var(--card-bg);
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  color: var(--text-color);
 }
+
 .demo-card-icon { 
   flex-shrink: 0; 
   text-align: center; 
   padding-top: 0.25rem;
   padding-right: 1rem;
 }
+
+.demo-card-icon i {
+  color: var(--icon-color);
+}
+
 .demo-card-content { 
   flex-grow: 1; 
   padding-left: 1rem;
 }
+
 .demo-card-content h3 {
   margin-top: 0;
   margin-bottom: 0.5rem;
+  color: var(--text-color);
 }
+
 .demo-card-content p {
   margin-top: 0;
   margin-bottom: 0;
+  color: var(--text-color);
 }
+
+.demo-card-content a {
+  color: var(--link-color);
+}
+
 .demo-card-button { 
   flex-shrink: 0; 
   text-align: right; 
   padding-top: 0.25rem;
 }
+
 .custom-button {
-  white-space: nowrap;  /* Prevent button text from wrapping */
+  white-space: nowrap;
 }
+
+/* Responsive layout */
 @media (min-width: 768px) {
   .demo-card-icon { width: 5%; }
   .demo-card-content { width: 75%; }
   .demo-card-button { width: 20%; }
 }
+
 @media (max-width: 767px) {
   .demo-card-icon { width: 5%; }
   .demo-card-content { width: 60%; }
@@ -50,17 +96,15 @@
   }
 }
 
-/* Hover effect for grey buttons (Demo Survey) */
+/* Button hover effects */
 .custom-button[style*="background-color: #808080"]:hover {
   background-color: #666666 !important;
 }
 
-/* Hover effect for blue buttons (Demo Video) */
 .custom-button[style*="background-color: #4DA6FF"]:hover {
   background-color: #3385D6 !important;
 }
 
-/* Hover effect for green buttons (GitHub Repo) */
 .custom-button[style*="background-color: #28a745"]:hover {
   background-color: #218838 !important;
 }

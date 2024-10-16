@@ -13,12 +13,6 @@ Before deploying your survey, make sure everything is working locally. You shoul
 
 With these steps completed, you are ready to deploy your survey online.
 
-::: {.callout-tip}
-
-To make your app load faster, we recommend you render your `survey.qmd` file first, then set `use_html = TRUE` inside the `sd_server()` function in your `app.R` file. This will tell surveydown to skip rendering the `survey.qmd` file when the app launches and to instead use the pre-rendered html file, which will load much faster. 
-
-:::
-
 ## Deploying to shinyapps.io
 
 Deploying your survey is pretty much the same as deploying any other Shiny app. 

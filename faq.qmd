@@ -29,10 +29,6 @@ First, make sure everything is correctly defined, including your Supabase projec
 
 If you still encounter an error (e.g., the page shows the app failed to start, or you see the page but it doesn't run properly), try clearing your cache. The simplest way to do so is to **reboot your computer**. It may also help if you delete previously generated files, such as the `survey.html` file if you rendered it and the `rsconnect` folder. After re-rendering, you should be able to deploy the app without error.
 
-## Why does my app load slowly?
-
-If your app takes a little while to load, one reason may be that you haven't pre-rendered your `survey.qmd` file. The `sd_server()` function in your`app.R` file has an optional `use_html` argument which defaults to `FALSE`, which means your app will render the `survey.qmd` file on each session, which can be slow. If you instead render the `survey.qmd` file first yourself and then set `use_html = TRUE` in `sd_server()`, your app will load much faster. See ["Pre-rendering your survey"](config-options.html#pre-rendering-your-survey) for more details.
-
 ## Why can't I install the package?
 
 **1. Install from the repo (recommended)**

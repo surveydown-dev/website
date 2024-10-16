@@ -7,14 +7,6 @@ execute:
   eval: true
 ---
 
-::: {.callout-note}
-
-If you download a demo repository and want to run it, **please render the `.qmd` file before running the app.**
-
-In these demos, we've defined `use_html = TRUE` in `sd_server()`. This will make the app load faster, but it requires that the `.qmd` file already be rendered into an HTML file.
-
-:::
-
 ```{r}
 create_demo_card <- function(title, description, repo_name, icon, demo_url, demo_type = "survey") {
   button_text <- if(demo_type == "video") "Demo Video" else "Demo Survey"

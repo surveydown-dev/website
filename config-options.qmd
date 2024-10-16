@@ -218,26 +218,6 @@ sd_server(
 )
 ```
 
-### Pre-rendering your survey
-
-When you run your app, the `survey.qmd` file gets rendered and parsed. We designed it this way to ensure that the latest changes to your `survey.qmd` file are always included, but this also can result is a delay when the app loads.
-
-To speed this up, you can render your `survey.qmd` file first, either by clicking the "Render" button in RStudio or by running the following in the terminal:
-
-```{r}
-quarto render survey.qmd
-```
-
-This will generate a `survey.html` file in the project folder, and you can tell surveydown to use this pre-rendered file by setting the `use_html` argument to `TRUE` in the `sd_server()` function, like this:
-
-```{r}
-sd_server(
-  use_html = TRUE
-)
-```
-
-This can significantly speed up the initial page loading.
-
 ### Auto scroll
 
 The auto scroll feature allows the page to automatically scroll according to the user's working progress and is enabled by default.

@@ -356,19 +356,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>You have set the password for your survey using <code>surveydown::sd_set_password("my_password")</code> using the password you set in the Supabase project (see the <a href="./password.html">Password</a> page).</li>
 </ol>
 <p>With these steps completed, you are ready to deploy your survey online.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>To make your app load faster, we recommend you render your <code>survey.qmd</code> file first, then set <code>use_html = TRUE</code> inside the <code>sd_server()</code> function in your <code>app.R</code> file. This will tell surveydown to skip rendering the <code>survey.qmd</code> file when the app launches and to instead use the pre-rendered html file, which will load much faster.</p>
-</div>
-</div>
 </section>
 <section id="deploying-to-shinyapps.io" class="level2">
 <h2 class="anchored" data-anchor-id="deploying-to-shinyapps.io">Deploying to shinyapps.io</h2>

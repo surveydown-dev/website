@@ -324,7 +324,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#required-questions" id="toc-required-questions" class="nav-link" data-scroll-target="#required-questions">Required questions</a></li>
   <li><a href="#starting-page" id="toc-starting-page" class="nav-link" data-scroll-target="#starting-page">Starting page</a></li>
-  <li><a href="#pre-rendering-your-survey" id="toc-pre-rendering-your-survey" class="nav-link" data-scroll-target="#pre-rendering-your-survey">Pre-rendering your survey</a></li>
   <li><a href="#auto-scroll" id="toc-auto-scroll" class="nav-link" data-scroll-target="#auto-scroll">Auto scroll</a></li>
   <li><a href="#admin-page" id="toc-admin-page" class="nav-link" data-scroll-target="#admin-page">Admin page</a></li>
   <li><a href="#rating-question" id="toc-rating-question" class="nav-link" data-scroll-target="#rating-question">Rating question</a></li>
@@ -584,28 +583,13 @@ Note
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="pre-rendering-your-survey" class="level3">
-<h3 class="anchored" data-anchor-id="pre-rendering-your-survey">Pre-rendering your survey</h3>
-<p>When you run your app, the <code>survey.qmd</code> file gets rendered and parsed. We designed it this way to ensure that the latest changes to your <code>survey.qmd</code> file are always included, but this also can result is a delay when the app loads.</p>
-<p>To speed this up, you can render your <code>survey.qmd</code> file first, either by clicking the “Render” button in RStudio or by running the following in the terminal:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>quarto render survey.qmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This will generate a <code>survey.html</code> file in the project folder, and you can tell surveydown to use this pre-rendered file by setting the <code>use_html</code> argument to <code>TRUE</code> in the <code>sd_server()</code> function, like this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_server</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">use_html =</span> <span class="cn">TRUE</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This can significantly speed up the initial page loading.</p>
-</section>
 <section id="auto-scroll" class="level3">
 <h3 class="anchored" data-anchor-id="auto-scroll">Auto scroll</h3>
 <p>The auto scroll feature allows the page to automatically scroll according to the user’s working progress and is enabled by default.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_server</span>(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">auto_scroll =</span> <span class="cn">TRUE</span> <span class="co"># Change to FALSE to switch it off.</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_server</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">auto_scroll =</span> <span class="cn">TRUE</span> <span class="co"># Change to FALSE to switch it off.</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="admin-page" class="level3">
@@ -625,9 +609,9 @@ Important
 </div>
 <p>By default, the admin page is not created. But if you want one, set <code>admin_page</code> to <code>TRUE</code> inside the <code>sd_server()</code> function, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_server</span>(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">admin_page =</span> <span class="cn">TRUE</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_server</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">admin_page =</span> <span class="cn">TRUE</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>When the admin page is enabled, you will be able to access the page by adding <code>?admin</code> to the end of the survey URL, e.g.&nbsp;<code>https://myname.shinyapps.io/?admin</code>. This will display a login page with a single “Password” parameter, which is the password set using <code>sd_set_password()</code>. See the <a href="./password.html">Password</a> page for details.</p>
 <p>The admin page has the following features:</p>
@@ -643,9 +627,9 @@ Important
 <h3 class="anchored" data-anchor-id="rating-question">Rating question</h3>
 <p>You may want to add a rating question by the end of the survey to collect user reflections. Simply set <code>rate_survey</code> to <code>TRUE</code> (Default to <code>FALSE</code>):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_server</span>(</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">rate_survey =</span> <span class="cn">TRUE</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_server</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">rate_survey =</span> <span class="cn">TRUE</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Survey rating is triggered by the “Exit Survey” button by the end of the survey. If you want to implement the survey rating, make sure you define the Exit Button by the end of the survey using the <code>sd_close()</code> function, and then define <code>rate_survey = TRUE</code> in <code>sd_server()</code>.</p>
 <p>Below are the <code>TRUE</code> and <code>FALSE</code> cases for <code>rate_survey</code>:</p>

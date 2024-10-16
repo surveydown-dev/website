@@ -190,7 +190,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#how-do-i-make-a-question-required" id="toc-how-do-i-make-a-question-required" class="nav-link active" data-scroll-target="#how-do-i-make-a-question-required">How do I make a question required?</a></li>
   <li><a href="#why-is-my-shinyapps-deployment-failing" id="toc-why-is-my-shinyapps-deployment-failing" class="nav-link" data-scroll-target="#why-is-my-shinyapps-deployment-failing">Why is my shinyapps deployment failing?</a></li>
-  <li><a href="#why-does-my-app-load-slowly" id="toc-why-does-my-app-load-slowly" class="nav-link" data-scroll-target="#why-does-my-app-load-slowly">Why does my app load slowly?</a></li>
   <li><a href="#why-cant-i-install-the-package" id="toc-why-cant-i-install-the-package" class="nav-link" data-scroll-target="#why-cant-i-install-the-package">Why can’t I install the package?</a></li>
   <li><a href="#how-to-set-a-password-for-my-surveydown-project-and-why-do-i-need-a-password" id="toc-how-to-set-a-password-for-my-surveydown-project-and-why-do-i-need-a-password" class="nav-link" data-scroll-target="#how-to-set-a-password-for-my-surveydown-project-and-why-do-i-need-a-password">How to set a password for my surveydown project, and why do I need a password?</a></li>
   </ul>
@@ -248,10 +247,6 @@ Note
 <h2 class="anchored" data-anchor-id="why-is-my-shinyapps-deployment-failing">Why is my shinyapps deployment failing?</h2>
 <p>First, make sure everything is correctly defined, including your Supabase project settings and password settings. The password in your project folder should be the same as your Supabase project password (see <a href="./password.html">here</a> for how to set the password). Then, make sure your survey runs on your local machine and can successfully link with your Supabase project table. With these confirmed, your shinyapps deployment should work without problem.</p>
 <p>If you still encounter an error (e.g., the page shows the app failed to start, or you see the page but it doesn’t run properly), try clearing your cache. The simplest way to do so is to <strong>reboot your computer</strong>. It may also help if you delete previously generated files, such as the <code>survey.html</code> file if you rendered it and the <code>rsconnect</code> folder. After re-rendering, you should be able to deploy the app without error.</p>
-</section>
-<section id="why-does-my-app-load-slowly" class="level2">
-<h2 class="anchored" data-anchor-id="why-does-my-app-load-slowly">Why does my app load slowly?</h2>
-<p>If your app takes a little while to load, one reason may be that you haven’t pre-rendered your <code>survey.qmd</code> file. The <code>sd_server()</code> function in your<code>app.R</code> file has an optional <code>use_html</code> argument which defaults to <code>FALSE</code>, which means your app will render the <code>survey.qmd</code> file on each session, which can be slow. If you instead render the <code>survey.qmd</code> file first yourself and then set <code>use_html = TRUE</code> in <code>sd_server()</code>, your app will load much faster. See <a href="config-options.html#pre-rendering-your-survey">“Pre-rendering your survey”</a> for more details.</p>
 </section>
 <section id="why-cant-i-install-the-package" class="level2">
 <h2 class="anchored" data-anchor-id="why-cant-i-install-the-package">Why can’t I install the package?</h2>

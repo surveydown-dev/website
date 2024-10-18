@@ -525,6 +525,54 @@
     "text": "New architecture in v0.3.0 (and loads of breaking changes)!\n\n\n\n\n\nWe’re releasing v0.3.0, and with it multiple breaking changes. \n\n\n\n\n\n2024-09-18\n\n\nJohn Paul Helveston\n\n\n\n\n\n\n\n\n\n\n\n\nChoice-based conjoint surveys in R with surveydown\n\n\n\n\n\nA how-to guide for using R to design and implement choice-based conjoint surveys using the surveydown R package \n\n\n\n\n\n2024-08-28\n\n\nJohn Paul Helveston\n\n\n\n\n\n\n\n\n\n\n\n\nIntroducing surveydown: A markdown-based framework for generating surveys with Quarto and shiny\n\n\n\n\n\nA quick overview of the {surveydown} R package for making markdown-based surveys with open-source technologies: Quarto, shiny, and supabase. \n\n\n\n\n\n2024-08-21\n\n\nJohn Paul Helveston\n\n\n\n\n\n\nNo matching items\n\n Back to top"
   },
   {
+    "objectID": "performance.html",
+    "href": "performance.html",
+    "title": "Performance",
+    "section": "",
+    "text": "Our goal in designing surveydown was to create a package that was both performant and easy to use. While we’ve worked to ensure that the package is efficient, the ultimate performance of your survey in the field will depend on the services you use to host your app, store your data, and field your survey.",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Performance"
+    ]
+  },
+  {
+    "objectID": "performance.html#hosting",
+    "href": "performance.html#hosting",
+    "title": "Performance",
+    "section": "Hosting",
+    "text": "Hosting\nWe recommend using shinyapps.io to host your survey as it is designed to work with Shiny Apps. The platform offers a free tier that should work well for most simple surveys. However, more complex surveys may require paid plans to achieve better performance.\nOne thing you can do to improve the performance is to max out the memory settings for your app in the “settings” tab in your app dashboard. It should look something like this:\n\n\n\n\nThe free tier allows for 1 GB of memory, and paid plans can go up much higher (this screenhot is from an earlier period when the free tier memory limits were larger).\nThe other thing to consider is the number of active hours (the free tier allows for 25 active hours per month).\nDepending on your needs, a paid plan may be worth the investment during your actual survey fielding to ensure a smooth user experience. And of course, you can consider other hosting services that might have better options.",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Performance"
+    ]
+  },
+  {
+    "objectID": "performance.html#database",
+    "href": "performance.html#database",
+    "title": "Performance",
+    "section": "Database",
+    "text": "Database\nThe surveydown package is designed to work with any PostgreSQL database, but we recommend using Supabase to store your survey responses as it is a fast, reliable, and scalable PostgreSQL database. Like shinyapps.io, Supabase offers a free tier that should work well for most simple surveys, but a paid plan may be needed if you expect to have a large number of concurrent respondents.\nThe free tier allows for 20 concurrent database connections, but since surveydown uses a pooled connection to the database, this limit not directly translate to a hard limit of 20 concurrent respondents.",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Performance"
+    ]
+  },
+  {
+    "objectID": "performance.html#fielding-options",
+    "href": "performance.html#fielding-options",
+    "title": "Performance",
+    "section": "Fielding Options",
+    "text": "Fielding Options\nMany researchers use panel providers like Prolific to recruit respondents for their surveys. Given the large number of potential concurrent respondents, you may want to place a limit on the number of people who can complete your survey at once to avoid overloading your app. On prolific, for example, you can set a quota in your study settings, which looks something like this:\n\n\n\n\nAnother option to consider is what types of devices your respondents will be completing your survey on. You may want to test how your survey renders on phones versus computers to see if there are siginificant differences. Some panel providers have options to limit which devices respondents can use to take the survey. On prolific this looks like this:\n\n\n\n\nMany panel providers offer these kinds of fielding options, and we recommend checking with your panel provider to help prevent overloading your app.",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Performance"
+    ]
+  },
+  {
     "objectID": "external-resources.html",
     "href": "external-resources.html",
     "title": "External Resources",

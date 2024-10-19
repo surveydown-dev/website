@@ -1,0 +1,129 @@
+---
+title: "Server Options"
+code-annotations: hover
+---
+
+All survey configuration settings are defined within the `server` function in the `app.R` file. The `server()` function is a standard Shiny server function that takes `input`, `output`, and `session` as arguments. 
+
+If you create a new survey using a [template](template.qmd), the `server()` function looks like this:
+
+```{r}
+server <- function(input, output, session) {
+
+  # Define conditional skip logic (skip to page if a condition is true)
+  sd_skip_if()
+
+  # Define conditional display logic (show a question if a condition is true)
+  sd_show_if()
+
+  # Main server to control the app
+  sd_server(db = db)
+
+}
+```
+
+The `sd_skip_if()` and `sd_show_if()` functions are used to define conditional skip and show logic for the survey (see the [Conditional Control](conditional-control.qmd) page for more details), and the `sd_server()` function is used to run the survey. 
+
+The `db = db` argument in `sd_server()` is required if you are using a database connection, which should be defined using the `sd_database()` function (see the [Store Data](store-data.qmd) page for more details). But this function also has many options arguments. This page details these options.
+
+## Required questions
+
+By default, no questions are required. However, you can make questions required by providing a vector containing the `id` of the questions to be required to the `required_questions` argument in `sd_server()`, like
+
+```{r}
+sd_server(
+  required_questions = c("vehicle_ownership", "penguins_other") # <1>
+)
+```
+
+1. The `required_questions` argument takes a vector of question `id`s that you want to make required.
+
+This will make the respondent unable to proceed until they have answered the required questions. It will also place a red asterisk (*) next to the question label to indicate that the question is required.
+
+You can also make all questions required by setting `all_questions_required = TRUE` like this:
+
+```{r}
+sd_server(
+  all_questions_required = TRUE
+)
+```
+
+## Starting page 
+
+When editing your survey, it can be helpful to start the survey at a specific page. You can define the starting page with the `start_page` argument in the `sd_server()` function, like this:
+
+```{r}
+sd_server(
+  start_page = "page_id"
+)
+```
+
+## Auto scroll
+
+The auto scroll feature allows the page to automatically scroll according to the user's working progress and is enabled by default.
+
+```{r}
+sd_server(
+  auto_scroll = TRUE # Change to FALSE to switch it off.
+)
+```
+
+## Admin page
+
+::: {.callout-important}
+
+The admin page is currently under development and has limited functionality.
+
+:::
+
+By default, the admin page is not created. But if you want one, set `admin_page` to `TRUE` inside the `sd_server()` function, like this:
+
+```{r}
+sd_server(
+  admin_page = TRUE
+)
+```
+
+When the admin page is enabled, you will be able to access the page by adding `?admin` to the end of the survey URL, e.g. `https://myname.shinyapps.io/?admin`. This will display a login page with a single "Password" parameter, which is the password set using `sd_set_password()`. See the [Password](password.qmd) page for details.
+
+The admin page has the following features:
+
+- **Pause Survey**: Once clicked, the Shiny app pauses all instances replacing questions with a placeholder page.
+- **Pause DB**: Once clicked, the all database uploads will be paused. You can still take the survey, but the data will not be updated in the database.
+- **Download Data**: Download the most recent table instance from the database as a .csv file. 
+- **Admin Logout and Return to Survey**: Once clicked, the admin page will be logged out and the survey will be returned to the start page.
+- **Survey Data Preview**: View the latest instance of the database table.
+
+## Rating question
+
+You may want to add a rating question by the end of the survey to collect user reflections. Simply set `rate_survey` to `TRUE` (Default to `FALSE`):
+
+```{r}
+sd_server(
+  rate_survey = TRUE
+)
+```
+
+Survey rating is triggered by the "Exit Survey" button by the end of the survey. If you want to implement the survey rating, make sure you define the Exit Button by the end of the survey using the `sd_close()` function, and then define `rate_survey = TRUE` in `sd_server()`.
+
+Below are the `TRUE` and `FALSE` cases for `rate_survey`:
+
+::: {.panel-tabset}
+
+## `TRUE`
+
+If `rate_survey` is `TRUE`, a survey rating question will pop up:
+
+<center>
+<img src="images/screenshots/rate_survey.gif" style="max-width: 550px; width: 100%;">
+</center>
+
+## `FALSE`
+
+If `rate_survey` is `FALSE`, a confirm exit dialog box will pop up:
+
+<center>
+<img src="images/screenshots/confirm_exit.gif" style="max-width: 550px; width: 100%;">
+</center>
+
+:::

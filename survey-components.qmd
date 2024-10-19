@@ -344,7 +344,9 @@ The `db` object is used to store survey data - see the [Store Data](store-data.q
 
 ### Server 
 
-The server function is where you can set custom control logic and other configuration options. It typically looks like this:
+The `server()` function is a standard Shiny server function that takes `input`, `output`, and `session` as arguments. It is where you can set custom control logic and other configuration options, such as [conditional display](conditional-control.qmd#conditional-display) logic with the `sd_show_if()` function, or [conditional skip](conditional-control.qmd#conditional-skipping) logic with the `sd_skip_if()` function.
+
+If you create a new survey using a [template](template.qmd), the `server()` function looks like this:
 
 ```{r}
 server <- function(input, output, session) {
@@ -357,12 +359,19 @@ server <- function(input, output, session) {
 
   # Main server to control the app
   sd_server(db = db)
+
 }
 ```
 
-The `server()` function is where you can define configuration options for the survey, such as [conditional display](config-options.qmd#conditional-display) logic with the `sd_show_if()` function, or [conditional skip](config-options.qmd#conditional-skipping) logic with the `sd_skip_if()` function. The `sd_server()` function at the bottom makes everything run. It also includes some optional arguments that you can use to customize the survey. 
+The `sd_server()` function at the bottom makes everything run. It also includes some optional arguments that you can use to customize the survey. 
 
-See the [Configuration Options](config-options.qmd) page for details on the different options you can use to customize the survey control logic.
+See the [Server Options](server-options.qmd) page for details on the different options you can use to customize the server.
+
+::: {.callout-note}
+
+The `db = db` argument in `sd_server()` is required if you are using a database connection, which should be defined using the `sd_database()` function as mentioned above in the [Global Settings](#global-settings) section. See the [Store Data](store-data.qmd) page for more details.
+
+:::
 
 ### Run code
 

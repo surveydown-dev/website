@@ -124,7 +124,7 @@ In the example above, `input$vehicle_ownership == "no"` is the condition, and `"
 
 ## Common conditions
 
-### 1. Single & Multiple conditions
+### Single & Multiple conditions
 
 Both the `sd_show_if()` and `sd_skip_if()` functions require a condition that returns a logical value (`TRUE` or `FALSE`). The condition can be defined in a number of ways. The [show_if](https://github.com/surveydown-dev/demo-show-if) demo app provides a number of examples of how to use the `sd_show_if()` function with a variety of conditions, but the same principles apply to conditions used in the `sd_skip_if()` function. In this section, we'll highlight some of the examples used in that demo.
 
@@ -146,7 +146,7 @@ In the first example, the `penguins_simple` question is checked to see if the re
 
 In the second example, the `penguins_complex` question is checked to see if the respondent chose the `"other"` option, and the `show_other` question is checked to see if the respondent chose the `"show"` option. If both conditions are met, the `penguins_complex_other` question will be shown.
 
-### 2. Numeric values
+### Numeric values
 
 Another common condition is checking the value of a numeric question. To do so, you need to wrap the `input$question_id` in the `as.numeric()` function because all question values are stored as strings:
 
@@ -160,7 +160,7 @@ sd_show_if(
 
 In the example above, the `car_number` question is checked to see if the respondent chose a number greater than 1. If they did, the `ev_ownership` question will be shown.
 
-### 3. Multiple response questions
+### Multiple response questions
 
 For multiple response question types (e.g. [`mc_multiple`](question-types.html#mc_multiple)), the value returned is a vector of strings. You can use this value to check for different conditions, such as _inclusion_ using the `%in%` operator, or the _length_ using the `length()` function, like this:
 
@@ -180,7 +180,7 @@ In the first example, the `fav_fruits` question is checked to see if the respond
 
 In the second example, the `fav_fruits` question is checked to see if the respondent chose more than 3 fruits; if so, the `fruit_number` question will be shown.
 
-### 4. Answering status condition
+### Answering status condition
 
 You may want to show a target question if the base question is answered. To do this, we've created an `sd_is_answered()` function to judge if a question is answered or not and returns `TRUE`/`FALSE` accordingly. For example, here is a question asking for your favorite fruit:
 

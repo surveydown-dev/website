@@ -1,0 +1,16 @@
+If you create a new survey using a [template](template.qmd), the `server()` function looks like this:
+
+```{r}
+server <- function(input, output, session) {
+
+  # Define conditional skip logic (skip to page if a condition is true)
+  sd_skip_if()
+
+  # Define conditional display logic (show a question if a condition is true)
+  sd_show_if()
+
+  # Main server to control the app
+  sd_server(db = db)
+
+}
+```

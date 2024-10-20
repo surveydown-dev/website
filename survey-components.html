@@ -242,8 +242,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./formatting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Formatting</span></a>
+  <a href="./question-formatting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Question Formatting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./server-options.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Server Options</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conditional-control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conditional Control</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -262,12 +274,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./redirect.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Redirect</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./config-options.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Config Options</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -592,13 +598,13 @@ This it the last page in the survey
 </div>
 <p><br></p>
 <p>The <code>sd_question()</code> function can be used to create a variety of question types, like text input, select drop down choices, and more by changing the <code>type</code> argument (see the <a href="./question-types.html">Questions Types</a> page).</p>
-<p>The function has many other arguments for customizing the look and feel of the question, such as the <code>height</code> and <code>width</code> (see the <a href="./formatting.html">Formatting Questions</a> page).</p>
-<p>By default all questions are optional, but you can make questions required in the configuration options (see the <a href="./config-options.html#required-responses">Configuration Options</a> page for details).</p>
+<p>The function has many other arguments for customizing the look and feel of the question, such as the <code>height</code> and <code>width</code> (see the <a href="formatting.qmd">Formatting Questions</a> page).</p>
+<p>By default all questions are optional, but you can make questions required in the server options (see the <a href="./server-options.html#required-questions">Server Options</a> page for details).</p>
 </section>
 <section id="ending-the-survey" class="level3">
 <h3 class="anchored" data-anchor-id="ending-the-survey">Ending the survey</h3>
 <p>The simplest way to end a survey is to create a page with no <code>sd_next()</code> button on it. This will effectively serve as a ending page, because the respondent will not be able to navigate anywhere else once reaching a page with no next button.</p>
-<p>For example, you may want to have a screen-out page that respondents are sent to if they answer a certain way on a question (e.g., see <a href="./config-options.html#basic-skipping">basic skipping</a>. You can do this by creating a page with no <code>sd_next()</code> button on it, like this:</p>
+<p>For example, you may want to have a screen-out page that respondents are sent to if they answer a certain way on a question (e.g., see <a href="./conditional-control.html#conditional-skipping">conditional skipping</a>. You can do this by creating a page with no <code>sd_next()</code> button on it, like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span> {<span class="co">#screenout .sd-page}</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -672,7 +678,8 @@ This it the last page in the survey
 </section>
 <section id="server" class="level3">
 <h3 class="anchored" data-anchor-id="server">Server</h3>
-<p>The server function is where you can set custom control logic and other configuration options. It typically looks like this:</p>
+<p>The <code>server()</code> function is a standard Shiny server function that takes <code>input</code>, <code>output</code>, and <code>session</code> as arguments. It is where you can set custom control logic and other configuration options, such as <a href="./conditional-control.html#conditional-display">conditional display</a> logic with the <code>sd_show_if()</code> function, or <a href="./conditional-control.html#conditional-skipping">conditional skip</a> logic with the <code>sd_skip_if()</code> function.</p>
+<p>If you create a new survey using a <a href="./template.html">template</a>, the <code>server()</code> function looks like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -684,10 +691,24 @@ This it the last page in the survey
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Main server to control the app</span></span>
 <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_server</span>(<span class="at">db =</span> db)</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The <code>server()</code> function is where you can define configuration options for the survey, such as <a href="./config-options.html#conditional-display">conditional display</a> logic with the <code>sd_show_if()</code> function, or <a href="./config-options.html#conditional-skipping">conditional skip</a> logic with the <code>sd_skip_if()</code> function. The <code>sd_server()</code> function at the bottom makes everything run. It also includes some optional arguments that you can use to customize the survey.</p>
-<p>See the <a href="./config-options.html">Configuration Options</a> page for details on the different options you can use to customize the survey control logic.</p>
+<p>The <code>sd_server()</code> function at the bottom makes everything run. It also includes some optional arguments that you can use to customize the survey.</p>
+<p>See the <a href="./server-options.html">Server Options</a> page for details on the different options you can use to customize the server.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <code>db = db</code> argument in <code>sd_server()</code> is required if you are using a database connection, which should be defined using the <code>sd_database()</code> function as mentioned above in the <a href="#global-settings">Global Settings</a> section. See the <a href="./store-data.html">Store Data</a> page for more details.</p>
+</div>
+</div>
 </section>
 <section id="run-code" class="level3">
 <h3 class="anchored" data-anchor-id="run-code">Run code</h3>

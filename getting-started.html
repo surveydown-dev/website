@@ -242,8 +242,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./formatting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Formatting</span></a>
+  <a href="./question-formatting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Question Formatting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./server-options.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Server Options</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conditional-control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conditional Control</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -262,12 +274,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./redirect.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Redirect</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./config-options.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Config Options</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -328,7 +334,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#install" id="toc-install" class="nav-link" data-scroll-target="#install">1. Install</a></li>
   <li><a href="#start-with-a-template" id="toc-start-with-a-template" class="nav-link" data-scroll-target="#start-with-a-template">2. Start with a template</a></li>
   <li><a href="#add-survey-content-in-your-survey.qmd-file" id="toc-add-survey-content-in-your-survey.qmd-file" class="nav-link" data-scroll-target="#add-survey-content-in-your-survey.qmd-file">3. Add survey content in your <code>survey.qmd</code> file</a></li>
-  <li><a href="#add-configuration-options" id="toc-add-configuration-options" class="nav-link" data-scroll-target="#add-configuration-options">4. Add configuration options</a></li>
+  <li><a href="#add-control-options" id="toc-add-control-options" class="nav-link" data-scroll-target="#add-control-options">4. Add control options</a></li>
   <li><a href="#setup-your-database" id="toc-setup-your-database" class="nav-link" data-scroll-target="#setup-your-database">5. Setup your database</a></li>
   <li><a href="#locally-preview" id="toc-locally-preview" class="nav-link" data-scroll-target="#locally-preview">6. Locally preview</a></li>
   <li><a href="#deploy" id="toc-deploy" class="nav-link" data-scroll-target="#deploy">7. Deploy</a></li>
@@ -371,7 +377,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Add content to your <code>survey.qmd</code> file using markdown text (or in RStudio use the visual editor).</li>
 <li>Define survey questions in R code chunks with the <code>sd_question()</code> function.</li>
 <li>Define pages using fences (<code>:::</code>), with navigation buttons handled using the <code>sd_next()</code> function.</li>
-<li>Add rich functionality to your survey using <a href="./config-options.html">config options</a> in the server function in the <code>app.R</code> file.</li>
+<li>Add rich functionality to your survey using a variety of <a href="./server-options.html">server options</a> and <a href="./conditional-control.html">conditional control logic</a> in the <code>server()</code> function in the <code>app.R</code> file.</li>
 <li>Store your respondent data in a database (see <a href="./store-data.html">Store Data</a>).</li>
 </ul>
 <p>This approach ensures a flexible survey platform that is fully reproducible and easy to customize.</p>
@@ -456,9 +462,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="add-configuration-options" class="level2">
-<h2 class="anchored" data-anchor-id="add-configuration-options">4. Add configuration options</h2>
-<p>In the server function in the <code>app.R</code> file, add control logic and other configuration options to your survey. See the <a href="./config-options.html">Configuration Options</a> page for more details.</p>
+<section id="add-control-options" class="level2">
+<h2 class="anchored" data-anchor-id="add-control-options">4. Add control options</h2>
+<p>In the <code>server()</code> function in the <code>app.R</code> file, add rich functionality to your survey using a variety of <a href="./server-options.html">server options</a> and <a href="./conditional-control.html">conditional control logic</a>.</p>
 </section>
 <section id="setup-your-database" class="level2">
 <h2 class="anchored" data-anchor-id="setup-your-database">5. Setup your database</h2>

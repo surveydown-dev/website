@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Configuration Options – surveydown.org</title>
+<title>Conditional Control – surveydown.org</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -108,12 +108,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style>html{ scroll-behavior: smooth; }</style>
 
 
-<meta property="og:title" content="Configuration Options – surveydown.org">
+<meta property="og:title" content="Conditional Control – surveydown.org">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://www.surveydown.org/images/logo.ico">
 <meta property="og:site_name" content="https://surveydown.org">
 <meta property="og:locale" content="es_ES">
-<meta name="twitter:title" content="Configuration Options – surveydown.org">
+<meta name="twitter:title" content="Conditional Control – surveydown.org">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://www.surveydown.org/images/logo.png">
 <meta name="twitter:creator" content="@johnhelveston">
@@ -183,7 +183,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./template.html">Reference Manuals</a></li><li class="breadcrumb-item"><a href="./config-options.html">Config Options</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./template.html">Reference Manuals</a></li><li class="breadcrumb-item"><a href="./conditional-control.html">Conditional Control</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -242,8 +242,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./formatting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Formatting</span></a>
+  <a href="./question-formatting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Question Formatting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./server-options.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Server Options</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conditional-control.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Conditional Control</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -262,12 +274,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./redirect.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Redirect</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./config-options.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Config Options</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -326,23 +332,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#conditional-display" id="toc-conditional-display" class="nav-link active" data-scroll-target="#conditional-display">Conditional display</a></li>
   <li><a href="#conditional-skipping" id="toc-conditional-skipping" class="nav-link" data-scroll-target="#conditional-skipping">Conditional skipping</a></li>
-  <li><a href="#server-options" id="toc-server-options" class="nav-link" data-scroll-target="#server-options">Server options</a>
+  <li><a href="#common-conditions" id="toc-common-conditions" class="nav-link" data-scroll-target="#common-conditions">Common conditions</a>
   <ul class="collapse">
-  <li><a href="#required-questions" id="toc-required-questions" class="nav-link" data-scroll-target="#required-questions">Required questions</a></li>
-  <li><a href="#starting-page" id="toc-starting-page" class="nav-link" data-scroll-target="#starting-page">Starting page</a></li>
-  <li><a href="#auto-scroll" id="toc-auto-scroll" class="nav-link" data-scroll-target="#auto-scroll">Auto scroll</a></li>
-  <li><a href="#admin-page" id="toc-admin-page" class="nav-link" data-scroll-target="#admin-page">Admin page</a></li>
-  <li><a href="#rating-question" id="toc-rating-question" class="nav-link" data-scroll-target="#rating-question">Rating question</a></li>
+  <li><a href="#single-multiple-conditions" id="toc-single-multiple-conditions" class="nav-link" data-scroll-target="#single-multiple-conditions">Single &amp; Multiple conditions</a></li>
+  <li><a href="#numeric-values" id="toc-numeric-values" class="nav-link" data-scroll-target="#numeric-values">Numeric values</a></li>
+  <li><a href="#multiple-response-questions" id="toc-multiple-response-questions" class="nav-link" data-scroll-target="#multiple-response-questions">Multiple response questions</a></li>
+  <li><a href="#answering-status-condition" id="toc-answering-status-condition" class="nav-link" data-scroll-target="#answering-status-condition">Answering status condition</a></li>
   </ul></li>
+  <li><a href="#creating-custom-conditions" id="toc-creating-custom-conditions" class="nav-link" data-scroll-target="#creating-custom-conditions">Creating custom conditions</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./template.html">Reference Manuals</a></li><li class="breadcrumb-item"><a href="./config-options.html">Config Options</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./template.html">Reference Manuals</a></li><li class="breadcrumb-item"><a href="./conditional-control.html">Conditional Control</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Configuration Options</h1>
+<h1 class="title">Conditional Control</h1>
 </div>
 
 
@@ -364,16 +370,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_skip_if</span>()</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_show_if</span>()</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_server</span>(<span class="at">db =</span> db)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Define conditional skip logic (skip to page if a condition is true)</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_skip_if</span>()</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Define conditional display logic (show a question if a condition is true)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_show_if</span>()</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Main server to control the app</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_server</span>(<span class="at">db =</span> db)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The <code>sd_skip_if()</code> and <code>sd_show_if()</code> functions are used to define conditional skip and show logic for the survey, and the <code>sd_server()</code> function is used to run the survey. The <code>db = db</code> argument is required if you are using a database connection, which should be defined using the <code>sd_database()</code> function (we typically store it as <code>db</code> in the global environment…see the <a href="./store-data.html">Store Data</a> page for more details).</p>
-<p>This page goes over how to use each of these functions to control many aspects of the survey flow logic.</p>
+<p>The <code>sd_skip_if()</code> and <code>sd_show_if()</code> functions are used to define conditional skip and show logic for the survey. This page details how to use each of these functions to control many aspects of the survey flow logic.</p>
 <section id="conditional-display" class="level2">
 <h2 class="anchored" data-anchor-id="conditional-display">Conditional display</h2>
 <p>It is often useful to have a question display based on some condition, such as the respondent choosing a particular value in a multiple choice question.</p>
@@ -384,61 +392,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><br></p>
 <p>To implement this, you first need to define both the <strong>conditional question</strong> and the <strong>target question</strong> in the <code>survey.qmd</code> file, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode markdown code-annotation-code code-with-copy code-annotated"><code class="sourceCode markdown"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="annotated-cell-2-2"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a><span class="in"># Conditional question</span></span>
-<span id="annotated-cell-2-3"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
-<span id="annotated-cell-2-4"><a href="#annotated-cell-2-4" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = "mc",</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1">1</button><span id="annotated-cell-2-5" class="code-annotation-target"><a href="#annotated-cell-2-5" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = "penguins",</span></span>
-<span id="annotated-cell-2-6"><a href="#annotated-cell-2-6" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "Which is your favorite type of penguin?",</span></span>
-<span id="annotated-cell-2-7"><a href="#annotated-cell-2-7" aria-hidden="true" tabindex="-1"></a><span class="in">  option = c(</span></span>
-<span id="annotated-cell-2-8"><a href="#annotated-cell-2-8" aria-hidden="true" tabindex="-1"></a><span class="in">    "Adélie"    = "adelie",</span></span>
-<span id="annotated-cell-2-9"><a href="#annotated-cell-2-9" aria-hidden="true" tabindex="-1"></a><span class="in">    "Chinstrap" = "chinstrap",</span></span>
-<span id="annotated-cell-2-10"><a href="#annotated-cell-2-10" aria-hidden="true" tabindex="-1"></a><span class="in">    "Gentoo"    = "gentoo",</span></span>
-<span id="annotated-cell-2-11"><a href="#annotated-cell-2-11" aria-hidden="true" tabindex="-1"></a><span class="in">    "Other"     = "other"</span></span>
-<span id="annotated-cell-2-12"><a href="#annotated-cell-2-12" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
-<span id="annotated-cell-2-13"><a href="#annotated-cell-2-13" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
-<span id="annotated-cell-2-14"><a href="#annotated-cell-2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-2-15"><a href="#annotated-cell-2-15" aria-hidden="true" tabindex="-1"></a><span class="in"># Target question</span></span>
-<span id="annotated-cell-2-16"><a href="#annotated-cell-2-16" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
-<span id="annotated-cell-2-17"><a href="#annotated-cell-2-17" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = "text",</span></span>
-<span id="annotated-cell-2-18"><a href="#annotated-cell-2-18" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = "penguins_other", </span></span>
-<span id="annotated-cell-2-19"><a href="#annotated-cell-2-19" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "Please specify the other penguin type:"</span></span>
-<span id="annotated-cell-2-20"><a href="#annotated-cell-2-20" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
-<span id="annotated-cell-2-21"><a href="#annotated-cell-2-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-annotation">
-<dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="5" data-code-annotation="1">The <code>"penguins"</code> question is the conditional question, and the <code>"penguins_other"</code> question is the target question.</span>
-</dd>
-</dl>
-</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="in"># Base question</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = "mc",</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = "penguins",</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "Which is your favorite type of penguin?",</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="in">  option = c(</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="in">    "Adélie"    = "adelie",</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="in">    "Chinstrap" = "chinstrap",</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="in">    "Gentoo"    = "gentoo",</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="in">    "Other"     = "other"</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="in"># Target question</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = "text",</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = "penguins_other", </span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "Please specify the other penguin type:"</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then in the server function in the <code>app.R</code> file, you can use the <code>sd_show_if()</code> function to define that the <code>"penguins_other"</code> question would only be shown if the respondent chose the <code>"other"</code> option in the <code>"penguins"</code> question, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="annotated-cell-3-2"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-3-3"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_show_if</span>(</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1">1</button><span id="annotated-cell-3-4" class="code-annotation-target"><a href="#annotated-cell-3-4" aria-hidden="true" tabindex="-1"></a>    input<span class="sc">$</span>penguins <span class="sc">==</span> <span class="st">"other"</span> <span class="sc">~</span> <span class="st">"penguins_other"</span></span>
-<span id="annotated-cell-3-5"><a href="#annotated-cell-3-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="annotated-cell-3-6"><a href="#annotated-cell-3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-3-7"><a href="#annotated-cell-3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_server</span>(<span class="at">db =</span> db)</span>
-<span id="annotated-cell-3-8"><a href="#annotated-cell-3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-3-9"><a href="#annotated-cell-3-9" aria-hidden="true" tabindex="-1"></a>}</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-annotation">
-<dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="4" data-code-annotation="1"><code>input$penguins == "other"</code> is the condition, and <code>"penguins_other"</code> is the target question that will be shown if the condition is met.</span>
-</dd>
-</dl>
-</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_show_if</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    input<span class="sc">$</span>penguins <span class="sc">==</span> <span class="st">"other"</span> <span class="sc">~</span> <span class="st">"penguins_other"</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_server</span>(<span class="at">db =</span> db)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can provide multiple conditions to the <code>sd_show_if()</code> function, each separated by a comma. The structure for each condition in the <code>sd_show_if()</code> function is always:</p>
 <blockquote class="blockquote">
 <p><code>&lt;condition&gt; ~ "target_question_id"</code></p>
 </blockquote>
-<p>In the example above, the <code>input$penguins == "other"</code> is the condition, and <code>"penguins_other"</code> is the target question. The <code>~</code> symbol is used to separate the condition from the target question.</p>
+<p>In the example above, <code>input$penguins == "other"</code> is the condition, and <code>"penguins_other"</code> is the target question that will be shown if the condition is met. The <code>~</code> symbol is used to separate the condition from the target question.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -452,213 +444,201 @@ Note
 <p>The <code>input</code> object is a Shiny object that stores each question <code>id</code> defined by <code>sd_question()</code> in your <code>survey.qmd</code> file, so whenever referring to a question in a condition, you must use the format <code>input$question_id</code>.</p>
 </div>
 </div>
-<p>For situlations where the conditional logic is more complex, we recommend defining a custom function that will return a logical value (<code>TRUE</code> or <code>FALSE</code>) indicating whether the target question should be displayed. You can then pass this function to the <code>sd_show_if()</code> function. Using the same example as above, you might have something like this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="annotated-cell-4-2"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-4-3"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a>  complex_condition <span class="ot">&lt;-</span> <span class="cf">function</span>(input) {</span>
-<span id="annotated-cell-4-4"><a href="#annotated-cell-4-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Condition code here, e.g. check the values of multiple questions</span></span>
-<span id="annotated-cell-4-5"><a href="#annotated-cell-4-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Must return a logical value (TRUE or FALSE)</span></span>
-<span id="annotated-cell-4-6"><a href="#annotated-cell-4-6" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="annotated-cell-4-7"><a href="#annotated-cell-4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-4-8"><a href="#annotated-cell-4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_show_if</span>(</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1">1</button><span id="annotated-cell-4-9" class="code-annotation-target"><a href="#annotated-cell-4-9" aria-hidden="true" tabindex="-1"></a>    complex_condition <span class="sc">~</span> <span class="st">"penguins_other"</span></span>
-<span id="annotated-cell-4-10"><a href="#annotated-cell-4-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="annotated-cell-4-11"><a href="#annotated-cell-4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-4-12"><a href="#annotated-cell-4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_server</span>(<span class="at">db =</span> db)</span>
-<span id="annotated-cell-4-13"><a href="#annotated-cell-4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-4-14"><a href="#annotated-cell-4-14" aria-hidden="true" tabindex="-1"></a>}</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-annotation">
-<dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-4" data-code-lines="9" data-code-annotation="1">Note that here the <code>complex_condition</code> function is defined as the condition without <code>()</code> after it. This is because we are passing the function itself, not the result of the function.</span>
-</dd>
-</dl>
-</div>
-</div>
 </section>
 <section id="conditional-skipping" class="level2">
 <h2 class="anchored" data-anchor-id="conditional-skipping">Conditional skipping</h2>
 <p>Often times you’ll want to send respondents to different parts of the survey based on some condition, such as the respondent choosing a particular value in a multiple choice question.</p>
 <p>For example, let’s say you want to screen out people who do not own a vehicle. To do this, you would first define a question in your <code>survey.qmd</code> file about their vehicle ownership, e.g.:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = 'mc',</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = 'vehicle_ownership',</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "Do you own your vehicle?",</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="in">  option = c(</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="in">    'Yes' = 'yes',</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="in">    'No'  = 'no'</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = 'mc',</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = 'vehicle_ownership',</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "Do you own your vehicle?",</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="in">  option = c(</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="in">    'Yes' = 'yes',</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="in">    'No'  = 'no'</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You would also need to define a screenout page to send respondents to, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span> {<span class="co">#screenout .sd-page}</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Sorry, but you are not qualified to take our survey.</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span> {<span class="co">#screenout .sd-page}</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Sorry, but you are not qualified to take our survey.</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then in the server function in the <code>app.R</code> file, you can use the <code>sd_skip_if()</code> function to define the condition under which the respondent will be sent to the target <code>screenout</code> page, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-7-1"><a href="#annotated-cell-7-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="annotated-cell-7-2"><a href="#annotated-cell-7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-7-3"><a href="#annotated-cell-7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_skip_if</span>(</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1">1</button><span id="annotated-cell-7-4" class="code-annotation-target"><a href="#annotated-cell-7-4" aria-hidden="true" tabindex="-1"></a>    input<span class="sc">$</span>vehicle_ownership <span class="sc">==</span> <span class="st">"no"</span> <span class="sc">~</span> <span class="st">"screenout"</span></span>
-<span id="annotated-cell-7-5"><a href="#annotated-cell-7-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="annotated-cell-7-6"><a href="#annotated-cell-7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-7-7"><a href="#annotated-cell-7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_server</span>(<span class="at">db =</span> db)</span>
-<span id="annotated-cell-7-8"><a href="#annotated-cell-7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-7-9"><a href="#annotated-cell-7-9" aria-hidden="true" tabindex="-1"></a>}</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-annotation">
-<dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-7" data-code-lines="4" data-code-annotation="1"><code>input$vehicle_ownership == "no"</code> is the condition, and <code>"screenout"</code> is the target page that the respondent will be sent to if the condition is met.</span>
-</dd>
-</dl>
-</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_skip_if</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    input<span class="sc">$</span>vehicle_ownership <span class="sc">==</span> <span class="st">"no"</span> <span class="sc">~</span> <span class="st">"screenout"</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_server</span>(<span class="at">db =</span> db)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Just like the <code>sd_show_if()</code> function, you can provide multiple conditions to the <code>sd_skip_if()</code> function, each separated by a comma. The structure for each condition in the <code>sd_skip_if()</code> function is always:</p>
 <blockquote class="blockquote">
 <p><code>&lt;condition&gt; ~ "target_page_id"</code></p>
 </blockquote>
-<p>For more complex conditional skipping logic you could define a custom function that returns a logical value (<code>TRUE</code> or <code>FALSE</code>) indicating whether a condition has been met, then pass this function to the <code>sd_skip_if()</code> function. Using the same example as above, you might have something like this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-8-1"><a href="#annotated-cell-8-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="annotated-cell-8-2"><a href="#annotated-cell-8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-8-3"><a href="#annotated-cell-8-3" aria-hidden="true" tabindex="-1"></a>  complex_condition <span class="ot">&lt;-</span> <span class="cf">function</span>(input) {</span>
-<span id="annotated-cell-8-4"><a href="#annotated-cell-8-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Condition code here, e.g. check the values of multiple questions</span></span>
-<span id="annotated-cell-8-5"><a href="#annotated-cell-8-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Must return a logical value (TRUE or FALSE)</span></span>
-<span id="annotated-cell-8-6"><a href="#annotated-cell-8-6" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="annotated-cell-8-7"><a href="#annotated-cell-8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-8-8"><a href="#annotated-cell-8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_skip_if</span>(</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="1">1</button><span id="annotated-cell-8-9" class="code-annotation-target"><a href="#annotated-cell-8-9" aria-hidden="true" tabindex="-1"></a>    complex_condition <span class="sc">~</span> <span class="st">"screenout"</span></span>
-<span id="annotated-cell-8-10"><a href="#annotated-cell-8-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="annotated-cell-8-11"><a href="#annotated-cell-8-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-8-12"><a href="#annotated-cell-8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_server</span>(<span class="at">db =</span> db)</span>
-<span id="annotated-cell-8-13"><a href="#annotated-cell-8-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-8-14"><a href="#annotated-cell-8-14" aria-hidden="true" tabindex="-1"></a>}</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-annotation">
-<dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-8" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-8" data-code-lines="9" data-code-annotation="1">Note that here the <code>complex_condition</code> function is defined as the condition without <code>()</code> after it. This is because we are passing the function itself, not the result of the function.</span>
-</dd>
-</dl>
-</div>
-</div>
+<p>In the example above, <code>input$vehicle_ownership == "no"</code> is the condition, and <code>"screenout"</code> is the target page that the respondent will be sent to if the condition is met.</p>
 </section>
-<section id="server-options" class="level2">
-<h2 class="anchored" data-anchor-id="server-options">Server options</h2>
-<p>The <code>sd_server()</code> function called inside the <code>server()</code> function in the <code>app.R</code> file has several other arguments that you can use to customize the survey behavior.</p>
-<section id="required-questions" class="level3">
-<h3 class="anchored" data-anchor-id="required-questions">Required questions</h3>
-<p>By default, no questions are required. However, you can make questions required by providing a vector containing the <code>id</code> of the questions to be required to the <code>required_questions</code> argument in <code>sd_server()</code>, like</p>
+<section id="common-conditions" class="level2">
+<h2 class="anchored" data-anchor-id="common-conditions">Common conditions</h2>
+<section id="single-multiple-conditions" class="level3">
+<h3 class="anchored" data-anchor-id="single-multiple-conditions">Single &amp; Multiple conditions</h3>
+<p>Both the <code>sd_show_if()</code> and <code>sd_skip_if()</code> functions require a condition that returns a logical value (<code>TRUE</code> or <code>FALSE</code>). The condition can be defined in a number of ways. The <a href="https://github.com/surveydown-dev/demo-show-if">show_if</a> demo app provides a number of examples of how to use the <code>sd_show_if()</code> function with a variety of conditions, but the same principles apply to conditions used in the <code>sd_skip_if()</code> function. In this section, we’ll highlight some of the examples used in that demo.</p>
+<p>Probably the most common condition is checking the value of a single question or multiple questions, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-9-1"><a href="#annotated-cell-9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_server</span>(</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1">1</button><span id="annotated-cell-9-2" class="code-annotation-target"><a href="#annotated-cell-9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">required_questions =</span> <span class="fu">c</span>(<span class="st">"vehicle_ownership"</span>, <span class="st">"penguins_other"</span>)</span>
-<span id="annotated-cell-9-3"><a href="#annotated-cell-9-3" aria-hidden="true" tabindex="-1"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-annotation">
-<dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-9" data-code-lines="2" data-code-annotation="1">The <code>required_questions</code> argument takes a vector of question <code>id</code>s that you want to make required.</span>
-</dd>
-</dl>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_show_if</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># Simple condition based on single question choice</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a> input<span class="sc">$</span>penguins_simple <span class="sc">==</span> <span class="st">"other"</span> <span class="sc">~</span> <span class="st">"penguins_simple_other"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a> <span class="co"># Multiple condition based on multiple question choices</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a> input<span class="sc">$</span>penguins_complex <span class="sc">==</span> <span class="st">"other"</span> <span class="sc">&amp;</span> input<span class="sc">$</span>show_other <span class="sc">==</span> <span class="st">"show"</span> <span class="sc">~</span> <span class="st">"penguins_complex_other"</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>This will make the respondent unable to proceed until they have answered the required questions. It will also place a red asterisk (*) next to the question label to indicate that the question is required.</p>
-<p>You can also make all questions required by setting <code>all_questions_required = TRUE</code> like this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_server</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">all_questions_required =</span> <span class="cn">TRUE</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>In the first example, the <code>penguins_simple</code> question is checked to see if the respondent chose the <code>"other"</code> option. If they did, the <code>penguins_simple_other</code> question will be shown.</p>
+<p>In the second example, the <code>penguins_complex</code> question is checked to see if the respondent chose the <code>"other"</code> option, and the <code>show_other</code> question is checked to see if the respondent chose the <code>"show"</code> option. If both conditions are met, the <code>penguins_complex_other</code> question will be shown.</p>
 </section>
-<section id="starting-page" class="level3">
-<h3 class="anchored" data-anchor-id="starting-page">Starting page</h3>
-<p>When editing your survey, it can be helpful to start the survey at a specific page. You can define the starting page with the <code>start_page</code> argument in the <code>sd_server()</code> function, like this:</p>
+<section id="numeric-values" class="level3">
+<h3 class="anchored" data-anchor-id="numeric-values">Numeric values</h3>
+<p>Another common condition is checking the value of a numeric question. To do so, you need to wrap the <code>input$question_id</code> in the <code>as.numeric()</code> function because all question values are stored as strings:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_server</span>(</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">start_page =</span> <span class="st">"page_id"</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_show_if</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">as.numeric</span>(input<span class="sc">$</span>car_number) <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"ev_ownership"</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>In the example above, the <code>car_number</code> question is checked to see if the respondent chose a number greater than 1. If they did, the <code>ev_ownership</code> question will be shown.</p>
 </section>
-<section id="auto-scroll" class="level3">
-<h3 class="anchored" data-anchor-id="auto-scroll">Auto scroll</h3>
-<p>The auto scroll feature allows the page to automatically scroll according to the user’s working progress and is enabled by default.</p>
+<section id="multiple-response-questions" class="level3">
+<h3 class="anchored" data-anchor-id="multiple-response-questions">Multiple response questions</h3>
+<p>For multiple response question types (e.g.&nbsp;<a href="question-types.html#mc_multiple"><code>mc_multiple</code></a>), the value returned is a vector of strings. You can use this value to check for different conditions, such as <em>inclusion</em> using the <code>%in%</code> operator, or the <em>length</em> using the <code>length()</code> function, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_server</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">auto_scroll =</span> <span class="cn">TRUE</span> <span class="co"># Change to FALSE to switch it off.</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_show_if</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># Check if the respondent chose "apple" or "banana"</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a> input<span class="sc">$</span>fav_fruits <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"apple"</span>, <span class="st">"banana"</span>) <span class="sc">~</span> <span class="st">"apple_or_banana"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a> <span class="co"># Check if the respondent chose more than 3 fruits</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a> <span class="fu">length</span>(input<span class="sc">$</span>fav_fruits) <span class="sc">&gt;</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"fruit_number"</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>In the first example, the <code>fav_fruits</code> question is checked to see if the respondent chose <code>"apple"</code> or <code>"banana"</code>; if so, the <code>apple_or_banana</code> question will be shown.</p>
+<p>In the second example, the <code>fav_fruits</code> question is checked to see if the respondent chose more than 3 fruits; if so, the <code>fruit_number</code> question will be shown.</p>
 </section>
-<section id="admin-page" class="level3">
-<h3 class="anchored" data-anchor-id="admin-page">Admin page</h3>
-<div class="callout callout-style-default callout-important callout-titled">
+<section id="answering-status-condition" class="level3">
+<h3 class="anchored" data-anchor-id="answering-status-condition">Answering status condition</h3>
+<p>You may want to show a target question if the base question is answered. To do this, we’ve created an <code>sd_is_answered()</code> function to judge if a question is answered or not and returns <code>TRUE</code>/<code>FALSE</code> accordingly. For example, here is a question asking for your favorite fruit:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Base question</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">"mc"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">"fav_fruit"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Which is your favorite fruit?"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Apple"</span>  <span class="ot">=</span> <span class="st">"apple"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Banana"</span> <span class="ot">=</span> <span class="st">"banana"</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Orange"</span> <span class="ot">=</span> <span class="st">"orange"</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Grape"</span>  <span class="ot">=</span> <span class="st">"grape"</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Target question</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">"text"</span>,</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">"num_fruit"</span>, </span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"How many do you eat per day?"</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, say that we want to show the target question of <code>num_fruit</code> as long as the<code>fav_fruit</code> question is answered, in <code>server()</code> we can use <code>sd_is_answered("fav_fruit")</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_show_if</span>(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    sd_is_answered <span class="sc">==</span> <span class="st">"fav_fruit"</span> <span class="sc">~</span> <span class="st">"num_fruit"</span> </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_server</span>(<span class="at">db =</span> db)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This way, as long as the <code>fav_fruit</code> question is answered, no matter which option the user picks, the following <code>num_fruit</code> question will appear.</p>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Important
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The admin page is currently under development and has limited functionality.</p>
-</div>
-</div>
-<p>By default, the admin page is not created. But if you want one, set <code>admin_page</code> to <code>TRUE</code> inside the <code>sd_server()</code> function, like this:</p>
+<p>You can also use functions like <code>paste0()</code> or <code>glue::glue()</code>, combined with <code>sd_output()</code>, to conditionally show the question label based on user’s selection. For example you can write like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_server</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">admin_page =</span> <span class="cn">TRUE</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">"text"</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">"num_fruit"</span>, </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"How many {sd_output('fav_fruits', type = 'value')} do you eat in a day?"</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>When the admin page is enabled, you will be able to access the page by adding <code>?admin</code> to the end of the survey URL, e.g.&nbsp;<code>https://myname.shinyapps.io/?admin</code>. This will display a login page with a single “Password” parameter, which is the password set using <code>sd_set_password()</code>. See the <a href="./password.html">Password</a> page for details.</p>
-<p>The admin page has the following features:</p>
-<ul>
-<li><strong>Pause Survey</strong>: Once clicked, the Shiny app pauses all instances replacing questions with a placeholder page.</li>
-<li><strong>Pause DB</strong>: Once clicked, the all database uploads will be paused. You can still take the survey, but the data will not be updated in the database.</li>
-<li><strong>Download Data</strong>: Download the most recent table instance from the database as a .csv file.</li>
-<li><strong>Admin Logout and Return to Survey</strong>: Once clicked, the admin page will be logged out and the survey will be returned to the start page.</li>
-<li><strong>Survey Data Preview</strong>: View the latest instance of the database table.</li>
-</ul>
+</div>
+</div>
+<p>For question type of <code>"matrix"</code>, <code>sd_is_answered()</code> will be true only if all sub-questions in it are answered. For example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A matrix question</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type   =</span> <span class="st">"matrix"</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id     =</span> <span class="st">"car_preference"</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label  =</span> <span class="st">"Please indicate your agreement with the following statements."</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">row    =</span> <span class="fu">c</span>(</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"I'd like to buy a gasoline car."</span> <span class="ot">=</span> <span class="st">"buy_gasoline"</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"I'd like to buy an EV."</span> <span class="ot">=</span> <span class="st">"buy_ev"</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Disagree"</span> <span class="ot">=</span> <span class="st">"disagree"</span>,</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Neutral"</span>  <span class="ot">=</span> <span class="st">"neutral"</span>,</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Agree"</span>    <span class="ot">=</span> <span class="st">"agree"</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For the above matrix question, <code>sd_is_answered("car_preference)</code> will be <code>TRUE</code> only if all questions in this matrix are answered.</p>
 </section>
-<section id="rating-question" class="level3">
-<h3 class="anchored" data-anchor-id="rating-question">Rating question</h3>
-<p>You may want to add a rating question by the end of the survey to collect user reflections. Simply set <code>rate_survey</code> to <code>TRUE</code> (Default to <code>FALSE</code>):</p>
+</section>
+<section id="creating-custom-conditions" class="level2">
+<h2 class="anchored" data-anchor-id="creating-custom-conditions">Creating custom conditions</h2>
+<p>For situations where the conditional logic is more complex, we recommend defining a custom function that will return a logical value (<code>TRUE</code> or <code>FALSE</code>) indicating whether the target question should be displayed. You can then pass this function to the <code>sd_show_if()</code> or <code>sd_skip_if()</code> functions.</p>
+<p>For example, let’s say I had a <code>mc</code> type question where I asked how many cars the respondent owned, and I included numeric options for <code>1</code> through <code>5</code>, but then my last option was the string <code>"6 or more"</code>. Well, in this case I couldn’t simple use <code>as.numeric(input$question_id) &gt; 1</code>, because this would return <code>NA</code> if respondent chose <code>"6 or more"</code>. To address this, I could create a custom function that will handle this special condition so that it will always appropriately return <code>TRUE</code> or <code>FALSE</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_server</span>(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">rate_survey =</span> <span class="cn">TRUE</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  more_than_one_car <span class="ot">&lt;-</span> <span class="cf">function</span>(input) {</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    num_cars <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(input<span class="sc">$</span>car_number)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.na</span>(num_cars)) { <span class="fu">return</span>(<span class="cn">TRUE</span>) }</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(num_cars <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_show_if</span>(</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    more_than_one_car <span class="sc">~</span> <span class="st">"ev_ownership"</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_server</span>(<span class="at">db =</span> db)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Survey rating is triggered by the “Exit Survey” button by the end of the survey. If you want to implement the survey rating, make sure you define the Exit Button by the end of the survey using the <code>sd_close()</code> function, and then define <code>rate_survey = TRUE</code> in <code>sd_server()</code>.</p>
-<p>Below are the <code>TRUE</code> and <code>FALSE</code> cases for <code>rate_survey</code>:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true"><code>TRUE</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><code>FALSE</code></a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>If <code>rate_survey</code> is <code>TRUE</code>, a survey rating question will pop up:</p>
-<center>
-<img src="images/screenshots/rate_survey.gif" style="max-width: 550px; width: 100%;">
-</center>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p>If <code>rate_survey</code> is <code>FALSE</code>, a confirm exit dialog box will pop up:</p>
-<center>
-<img src="images/screenshots/confirm_exit.gif" style="max-width: 550px; width: 100%;">
-</center>
-</div>
-</div>
-</div>
+<p>Note that here the <code>more_than_one_car</code> function is defined in the condition without <code>()</code> after it. This is because we are passing the function itself, not the result of the function.</p>
 
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->

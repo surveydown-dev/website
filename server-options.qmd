@@ -3,28 +3,15 @@ title: "Server Options"
 code-annotations: hover
 ---
 
-All survey configuration settings are defined within the `server` function in the `app.R` file. The `server()` function is a standard Shiny server function that takes `input`, `output`, and `session` as arguments. 
+All survey configuration settings are defined within the `server` function in the `app.R` file. The `server()` function is a standard Shiny server function that takes `input`, `output`, and `session` as arguments.
 
-If you create a new survey using a [template](template.qmd), the `server()` function looks like this:
+{{< include chunks/server.qmd >}}
 
-```{r}
-server <- function(input, output, session) {
+The `sd_skip_if()` and `sd_show_if()` functions are used to define conditional skip and show logic for the survey (see the [Conditional Control](conditional-control.qmd) page for more details).
 
-  # Define conditional skip logic (skip to page if a condition is true)
-  sd_skip_if()
+The `sd_server()` function is used to run the survey. It handles the main logic, such as page navigation and managing the survey data. The `db = db` argument is required if you are using a database connection, which should be defined using the `sd_database()` function (see the [Store Data](store-data.qmd) page for more details). 
 
-  # Define conditional display logic (show a question if a condition is true)
-  sd_show_if()
-
-  # Main server to control the app
-  sd_server(db = db)
-
-}
-```
-
-The `sd_skip_if()` and `sd_show_if()` functions are used to define conditional skip and show logic for the survey (see the [Conditional Control](conditional-control.qmd) page for more details), and the `sd_server()` function is used to run the survey. 
-
-The `db = db` argument in `sd_server()` is required if you are using a database connection, which should be defined using the `sd_database()` function (see the [Store Data](store-data.qmd) page for more details). But this function also has many options arguments. This page details these options.
+The `sd_server()` function also has many other optional arguments that can be used to customize the survey behavior. This page details these options.
 
 ## Required questions
 

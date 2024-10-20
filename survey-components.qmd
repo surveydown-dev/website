@@ -252,13 +252,13 @@ The `sd_question()` function can be used to create a variety of question types, 
 
 The function has many other arguments for customizing the look and feel of the question, such as the `height` and `width` (see the [Formatting Questions](formatting.qmd) page).
 
-By default all questions are optional, but you can make questions required in the configuration options (see the [Configuration Options](config-options.qmd#required-responses) page for details).
+By default all questions are optional, but you can make questions required in the server options (see the [Server Options](server-options.qmd#required-questions) page for details).
 
 ### Ending the survey
 
 The simplest way to end a survey is to create a page with no `sd_next()` button on it. This will effectively serve as a ending page, because the respondent will not be able to navigate anywhere else once reaching a page with no next button.  
 
-For example, you may want to have a screen-out page that respondents are sent to if they answer a certain way on a question (e.g., see [basic skipping](config-options.qmd#basic-skipping). You can do this by creating a page with no `sd_next()` button on it, like this:
+For example, you may want to have a screen-out page that respondents are sent to if they answer a certain way on a question (e.g., see [conditional skipping](conditional-control.qmd#conditional-skipping). You can do this by creating a page with no `sd_next()` button on it, like this:
 
 ```{r}
 ::: {#screenout .sd-page}
@@ -346,22 +346,7 @@ The `db` object is used to store survey data - see the [Store Data](store-data.q
 
 The `server()` function is a standard Shiny server function that takes `input`, `output`, and `session` as arguments. It is where you can set custom control logic and other configuration options, such as [conditional display](conditional-control.qmd#conditional-display) logic with the `sd_show_if()` function, or [conditional skip](conditional-control.qmd#conditional-skipping) logic with the `sd_skip_if()` function.
 
-If you create a new survey using a [template](template.qmd), the `server()` function looks like this:
-
-```{r}
-server <- function(input, output, session) {
-
-  # Define conditional skip logic (skip to page if a condition is true)
-  sd_skip_if()
-
-  # Define conditional display logic (show a question if a condition is true)
-  sd_show_if()
-
-  # Main server to control the app
-  sd_server(db = db)
-
-}
-```
+{{< include chunks/server.qmd >}}
 
 The `sd_server()` function at the bottom makes everything run. It also includes some optional arguments that you can use to customize the survey. 
 

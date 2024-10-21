@@ -25,7 +25,7 @@ To implement this, you first need to define both the **conditional question** an
 ```{r}
 #| echo: fenced
 
-# Base question
+# Conditional question
 sd_question(
   type  = "mc",
   id    = "penguins",
@@ -124,51 +124,55 @@ In the example above, `input$vehicle_ownership == "no"` is the condition, and `"
 
 ## Common conditions
 
-### Single & Multiple conditions
+Both the `sd_show_if()` and `sd_skip_if()` functions require a condition that returns a logical value (`TRUE` or `FALSE`). The condition can be defined in a number of ways. In this section, we'll highlight some of the most common types of conditions you might need.
 
-Both the `sd_show_if()` and `sd_skip_if()` functions require a condition that returns a logical value (`TRUE` or `FALSE`). The condition can be defined in a number of ways. The [show_if](https://github.com/surveydown-dev/demo-show-if) demo app provides a number of examples of how to use the `sd_show_if()` function with a variety of conditions, but the same principles apply to conditions used in the `sd_skip_if()` function. In this section, we'll highlight some of the examples used in that demo.
+::: {.callout-note}
 
-Probably the most common condition is checking the value of a single question or multiple questions, like this:
+The [show_if](https://github.com/surveydown-dev/demo-show-if) demo showcases how to use the `sd_show_if()` function with a variety of different conditions, but the same principles apply to conditions used in the `sd_skip_if()` function.
+
+:::
+
+### Conditioning on question answers
+
+One of the most common situations is conditioning on the value of a single question or multiple questions, like this:
 
 ```{r}
 sd_show_if(
 
  # Simple condition based on single question choice
- input$penguins_simple == "other" ~ "penguins_simple_other",
+ input$penguins1 == "other" ~ "penguins1_other",
 
  # Multiple condition based on multiple question choices
- input$penguins_complex == "other" & input$show_other == "show" ~ "penguins_complex_other"
+ input$penguins2 == "other" & input$show_other == "show" ~ "penguins2_other"
 
 )
 ```
 
-In the first example, the `penguins_simple` question is checked to see if the respondent chose the `"other"` option. If they did, the `penguins_simple_other` question will be shown.
+In the first condition, the `penguins1` question is checked to see if the respondent chose the `"other"` option. If they did, the `penguins1_other` question will be shown.
 
-In the second example, the `penguins_complex` question is checked to see if the respondent chose the `"other"` option, and the `show_other` question is checked to see if the respondent chose the `"show"` option. If both conditions are met, the `penguins_complex_other` question will be shown.
+In the second condition, the `penguins2` question is checked to see if the respondent chose the `"other"` option, and the `show_other` question is checked to see if the respondent chose the `"show"` option. With this condition, the `penguins2_other` question will only be shown if both conditions are `TRUE`.
 
 ### Numeric values
 
-Another common condition is checking the value of a numeric question. To do so, you need to wrap the `input$question_id` in the `as.numeric()` function because all question values are stored as strings:
+Another common condition is checking the value of a numeric question. To do so, you need to wrap the `input$question_id` in the `as.numeric()` function because all question values are stored as strings, like this:
 
 ```{r}
 sd_show_if(
-
- as.numeric(input$car_number) > 1 ~ "ev_ownership"
-
+ as.numeric(input$car_number) > 1 ~ "car_ownership"
 )
 ```
 
-In the example above, the `car_number` question is checked to see if the respondent chose a number greater than 1. If they did, the `ev_ownership` question will be shown.
+In the condition above, the `car_number` question is checked to see if the respondent chose a number greater than 1. If they did, the `car_ownership` question will be shown.
 
 ### Multiple response questions
 
-For multiple response question types (e.g. [`mc_multiple`](question-types.html#mc_multiple)), the value returned is a vector of strings. You can use this value to check for different conditions, such as _inclusion_ using the `%in%` operator, or the _length_ using the `length()` function, like this:
+For multiple response question types (e.g. [`mc_multiple`](question-types.html#mc_multiple)), the question returns a vector storing all the chosen values. You can use this vector to check for different conditions, such as whether the chosen values are in some set of values using the `%in%` operator, or whether the respondent chose a number of options using the `length()` function, like this:
 
 ```{r}
 sd_show_if(
 
- # Check if the respondent chose "apple" or "banana"
- input$fav_fruits %in% c("apple", "banana") ~ "apple_or_banana",
+ # Check if the respondent chose "apple", "banana", or both
+ all(input$fav_fruits %in% c("apple", "banana")) ~ "apple_or_banana",
 
  # Check if the respondent chose more than 3 fruits
  length(input$fav_fruits) > 3 ~ "fruit_number"
@@ -176,92 +180,33 @@ sd_show_if(
 )
 ```
 
-In the first example, the `fav_fruits` question is checked to see if the respondent chose `"apple"` or `"banana"`; if so, the `apple_or_banana` question will be shown.
+In the first example, the `fav_fruits` question is checked to see if the respondent chose `"apple"`, `"banana"`, or both; if so, the `apple_or_banana` question will be shown.
 
 In the second example, the `fav_fruits` question is checked to see if the respondent chose more than 3 fruits; if so, the `fruit_number` question will be shown.
 
-### Answering status condition
+### Conditioning on answered status
 
-You may want to show a target question if the base question is answered. To do this, we've created an `sd_is_answered()` function to judge if a question is answered or not and returns `TRUE`/`FALSE` accordingly. For example, here is a question asking for your favorite fruit:
+You may want to show a target question if a question is answered at all or not. To do this, we created the `sd_is_answered()` function that returns `TRUE` if a question is answered and `FALSE` otherwise. 
+
+For example, let's say you had a multiple choice question `fav_fruit` that asked you to choose your favorite fruit from a list of options, and a target question `num_fruit` that asked how many fruit you eat per day. If we wanted to show the `num_fruit` question so long as the `fav_fruit` question is answered, we can use `sd_is_answered("fav_fruit")` in the `sd_show_if()` function, like this:
 
 ```{r}
-# Base question
-sd_question(
-  type  = "mc",
-  id    = "fav_fruit",
-  label = "Which is your favorite fruit?",
-  option = c(
-    "Apple"  = "apple",
-    "Banana" = "banana",
-    "Orange" = "orange",
-    "Grape"  = "grape"
-  )
-)
-
-# Target question
-sd_question(
-  type  = "text",
-  id    = "num_fruit", 
-  label = "How many do you eat per day?"
+sd_show_if(
+  sd_is_answered("fav_fruit") ~ "num_fruit" 
 )
 ```
 
-Then, say that we want to show the target question of `num_fruit` as long as the`fav_fruit` question is answered, in `server()` we can use `sd_is_answered("fav_fruit")`:
+This way, as long as the `fav_fruit` question is answered, no matter which option the user picks the `num_fruit` question will appear.
 
-```{r}
-server <- function(input, output, session) {
+For [`"matrix"`](question-types.qmd#matrix) type questions, `sd_is_answered()` will only be `TRUE` if all sub-questions (matrix rows)in it are answered. 
 
-  sd_show_if(
-    sd_is_answered == "fav_fruit" ~ "num_fruit" 
-  )
+## Conditions with custom functions
 
-  sd_server(db = db)
+For situations where the conditional logic is more complex, we recommend defining a custom function that will return a logical value (`TRUE` or `FALSE`). You can then pass this function to the `sd_show_if()` or `sd_skip_if()` functions as a condition. 
 
-}
+For example, let's say we had a `mc` type question where we asked how many cars the respondent owned, and we included numeric options `1` through `5` as well as a final option `"6 or more"`. If we wanted to set a condition that would return `TRUE` if the user had more than one car, we could not use `as.numeric(input$question_id) > 1` because this would return `NA` if the respondent chose the `"6 or more"` option. 
 
-```
-
-This way, as long as the `fav_fruit` question is answered, no matter which option the user picks, the following `num_fruit` question will appear.
-
-::: {.callout-note}
-You can also use functions like `paste0()` or `glue::glue()`, combined with `sd_output()`, to conditionally show the question label based on user's selection. For example you can write like this:
-
-```{r}
-sd_question(
-  type  = "text",
-  id    = "num_fruit", 
-  label = glue::glue("How many {sd_output('fav_fruits', type = 'value')} do you eat in a day?")
-)
-```
-:::
-
-For question type of `"matrix"`, `sd_is_answered()` will be true only if all sub-questions in it are answered. For example:
-
-```{r}
-# A matrix question
-sd_question(
-  type   = "matrix",
-  id     = "car_preference",
-  label  = "Please indicate your agreement with the following statements.",
-  row    = c(
-    "I'd like to buy a gasoline car." = "buy_gasoline",
-    "I'd like to buy an EV." = "buy_ev"
-  ),
-  option = c(
-    "Disagree" = "disagree",
-    "Neutral"  = "neutral",
-    "Agree"    = "agree"
-  )
-)
-```
-
-For the above matrix question, `sd_is_answered("car_preference)` will be `TRUE` only if all questions in this matrix are answered.
-
-## Creating custom conditions
-
-For situations where the conditional logic is more complex, we recommend defining a custom function that will return a logical value (`TRUE` or `FALSE`) indicating whether the target question should be displayed. You can then pass this function to the `sd_show_if()` or `sd_skip_if()` functions. 
-
-For example, let's say I had a `mc` type question where I asked how many cars the respondent owned, and I included numeric options for `1` through `5`, but then my last option was the string `"6 or more"`. Well, in this case I couldn't simple use `as.numeric(input$question_id) > 1`, because this would return `NA` if respondent chose `"6 or more"`. To address this, I could create a custom function that will handle this special condition so that it will always appropriately return `TRUE` or `FALSE`:
+To address this, we could create a custom function to handle this special condition:
 
 ```{r}
 server <- function(input, output, session) {
@@ -273,12 +218,14 @@ server <- function(input, output, session) {
   }
 
   sd_show_if(
-    more_than_one_car ~ "ev_ownership"
+    more_than_one_car(input) ~ "car_ownership"
   )
 
   sd_server(db = db)
 
 }
 ```
+
+In the `more_than_one_car()` function, we first obtain the numeric value of the `car_number` question using `as.numeric(input$car_number)`. If this value is `NA` it indicates that the respondent chose the `"6 or more"` option, in which case we return `TRUE`. If not, then we can be sure that `num_cars` is a number, and we can return the simple condition `num_cars > 1`.
 
 Note that here the `more_than_one_car` function is defined in the condition without `()` after it. This is because we are passing the function itself, not the result of the function.

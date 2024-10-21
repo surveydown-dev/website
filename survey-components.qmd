@@ -19,7 +19,7 @@ They typically look something like this:
 
 ## `survey.qmd` file
 
-````{qmd}
+````{r}
 ---
 format: html
 echo: false
@@ -93,6 +93,12 @@ shiny::shinyApp(ui = sd_ui(), server = server)
 ## The `survey.qmd` file
 
 The `survey.qmd` file is where you define the main survey content of your survey, such as pages, questions, and navigation buttons. It is a standard Quarto document, so you can use markdown (or the RStudio visual editor) to insert text, images, etc. just like you would in any Quarto document.
+
+::: {.callout-note}
+
+You do NOT need to render the `survey.qmd` file, and in fact we do not recommend doing so as the rendered output will not necessarily look like your final survey. Instead, to preview your survey you should [locally run your app](#locally-running-the-survey).
+
+:::
 
 ### YAML header
 
@@ -246,8 +252,6 @@ sd_question(
 )
 ```
 
-<br>
-
 The `sd_question()` function can be used to create a variety of question types, like text input, select drop down choices, and more by changing the `type` argument (see the [Questions Types](question-types.qmd) page).
 
 The function has many other arguments for customizing the look and feel of the question, such as the `height` and `width` (see the [Formatting Questions](formatting.qmd) page).
@@ -368,15 +372,17 @@ shiny::shinyApp(ui = sd_ui(), server = server)
 
 This code defines the Shiny app and should always be at the bottom of the `app.R` file.
 
-::: {.callout-tip}
+::: {.callout-note}
 
-**What's with the `sd_ui()` function?**
+**What's with the `sd_ui()` thing?**
 
 In a typical Shiny app, you have to define the UI and server functions separately. In a surveydown survey, the UI is a fixed structure that is defined by the `sd_ui()` function, so simply provide it to the `ui` argument in `shiny::shinyApp()` to run the survey.
 
 :::
 
-To run your survey, click the "Run App" button in RStudio. This will start a web server to run your survey locally. Typically, RStudio will launch the app in a new window, but you can also choose to have the app launch in a dedicated viewer pane, or in your external web browser. Make your selection by clicking the icon next to Run App:
+## Locally running the survey
+
+To preview your survey, you can run the Shiny app locally by clicking the "Run App" button in RStudio or in your R console run the code `shiny::runApp('app.R')`. Typically, RStudio will launch the app in a new window, but you can also choose to have the app launch in a dedicated viewer pane, or in your external web browser. Make your selection by clicking the icon next to Run App:
 
 <center>
 <img src="https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/images/launch-options.png" width=200>

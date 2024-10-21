@@ -6,18 +6,15 @@ title: "Deploying Your Survey"
 
 Before deploying your survey, make sure everything is working locally. You should have done the following:
 
-1. You have rendered your `survey.qmd` document and don't see any errors. 
-2. You have locally run your `app.R` file by clicking the "Run App" button in RStudio or in your R console running the `runApp()` command and don't see any errors.
-3. You have set up a database connection to store survey responses (e.g. using a {{< var supabase >}} project) and have already added the database parameters in the `sd_database()` function in your `app.R` file (see the [Store Data](store-data.qmd) page).
-4. You have set the password for your survey using `surveydown::sd_set_password("my_password")` using the password you set in the Supabase project (see the [Password](password.qmd) page).
+1. You have locally previewed your `app.R` file by clicking the "Run App" button in RStudio or in your R console running the code `shiny::runApp('app.R')`.
+2. You have set up a database connection to store survey responses (e.g. using {{< var supabase >}}) and have already added the database parameters in the `sd_database()` function in your `app.R` file (see the [Store Data](store-data.qmd) page).
+3. You have set the password for your survey using `surveydown::sd_set_password("my_password")` using the password you set in the Supabase project (see the [Password](password.qmd) page).
 
 With these steps completed, you are ready to deploy your survey online.
 
 ## Deploying to shinyapps.io
 
-Deploying your survey is pretty much the same as deploying any other Shiny app. 
-
-We recommend using {{< var shinyapps >}} to host your survey as it is designed to work with Shiny Apps, but you can also use other hosting services such as [RStudio Connect](https://docs.posit.co/connect/) or {{< var huggingface >}}. 
+Deploying your survey is pretty much the same as deploying any other Shiny app. We recommend using {{< var shinyapps >}} to host your survey as it is designed to work with Shiny Apps, but you can also use [other hosting services](#deploying-to-other-hosting-services).
 
 ::: {.callout-note}
 

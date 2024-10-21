@@ -278,14 +278,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./password.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Password</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./store-data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Store Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./password.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Password</span></a>
+  <a href="./fetch-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fetch Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -298,12 +304,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./performance.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Performance</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./fetch-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fetch Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -347,6 +347,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#server" id="toc-server" class="nav-link" data-scroll-target="#server">Server</a></li>
   <li><a href="#run-code" id="toc-run-code" class="nav-link" data-scroll-target="#run-code">Run code</a></li>
   </ul></li>
+  <li><a href="#locally-running-the-survey" id="toc-locally-running-the-survey" class="nav-link" data-scroll-target="#locally-running-the-survey">Locally running the survey</a></li>
   </ul>
 </nav>
     </div>
@@ -386,43 +387,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<pre class="qmd cell-code"><code>---
-format: html
-echo: false
-warning: false
----
-
-```{r}
-library(surveydown)
-```
-
-::: {#welcome .sd-page}
-
-# Welcome to our survey!
-
-```{r}
-sd_question(
-  type  = 'mc',
-  id    = 'penguins',
-  label = "Which type of penguin do you like the best?",
-  option = c(
-    'Adélie'    = 'adelie',
-    'Chinstrap' = 'chinstrap',
-    'Gentoo'    = 'gentoo'
-  )
-)
-
-sd_next(next_page = 'end')
-```
-
-:::
-
-::: {#end .sd-page}
-
-This it the last page in the survey
-
-:::
-</code></pre>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> html</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>echo<span class="sc">:</span> false</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>warning<span class="sc">:</span> false</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r}</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="at">library(surveydown)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span> {<span class="co">#welcome .sd-page}</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Welcome to our survey!</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r}</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="at">sd_question(</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="at">  type  = 'mc',</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="at">  id    = 'penguins',</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="at">  label = "Which type of penguin do you like the best?",</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="at">  option = c(</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="at">    'Adélie'    = 'adelie',</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="at">    'Chinstrap' = 'chinstrap',</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="at">    'Gentoo'    = 'gentoo'</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="at">  )</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="at">)</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="at">sd_next(next_page = 'end')</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="er">:::</span> {<span class="co">#end .sd-page}</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>This it the last page <span class="cf">in</span> the survey</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
@@ -459,6 +459,19 @@ This it the last page in the survey
 <section id="the-survey.qmd-file" class="level2">
 <h2 class="anchored" data-anchor-id="the-survey.qmd-file">The <code>survey.qmd</code> file</h2>
 <p>The <code>survey.qmd</code> file is where you define the main survey content of your survey, such as pages, questions, and navigation buttons. It is a standard Quarto document, so you can use markdown (or the RStudio visual editor) to insert text, images, etc. just like you would in any Quarto document.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You do NOT need to render the <code>survey.qmd</code> file, and in fact we do not recommend doing so as the rendered output will not necessarily look like your final survey. Instead, to preview your survey you should <a href="#locally-running-the-survey">locally run your app</a>.</p>
+</div>
+</div>
 <section id="yaml-header" class="level3">
 <h3 class="anchored" data-anchor-id="yaml-header">YAML header</h3>
 <p>The YAML header is at the top of the <code>survey.qmd</code> file. It contains some basic settings, like this:</p>
@@ -596,7 +609,6 @@ This it the last page in the survey
 </div>
 </div>
 </div>
-<p><br></p>
 <p>The <code>sd_question()</code> function can be used to create a variety of question types, like text input, select drop down choices, and more by changing the <code>type</code> argument (see the <a href="./question-types.html">Questions Types</a> page).</p>
 <p>The function has many other arguments for customizing the look and feel of the question, such as the <code>height</code> and <code>width</code> (see the <a href="formatting.qmd">Formatting Questions</a> page).</p>
 <p>By default all questions are optional, but you can make questions required in the server options (see the <a href="./server-options.html#required-questions">Server Options</a> page for details).</p>
@@ -717,27 +729,30 @@ Note
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">shinyApp</span>(<span class="at">ui =</span> <span class="fu">sd_ui</span>(), <span class="at">server =</span> server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This code defines the Shiny app and should always be at the bottom of the <code>app.R</code> file.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>What’s with the <code>sd_ui()</code> function?</strong></p>
+<p><strong>What’s with the <code>sd_ui()</code> thing?</strong></p>
 <p>In a typical Shiny app, you have to define the UI and server functions separately. In a surveydown survey, the UI is a fixed structure that is defined by the <code>sd_ui()</code> function, so simply provide it to the <code>ui</code> argument in <code>shiny::shinyApp()</code> to run the survey.</p>
 </div>
 </div>
-<p>To run your survey, click the “Run App” button in RStudio. This will start a web server to run your survey locally. Typically, RStudio will launch the app in a new window, but you can also choose to have the app launch in a dedicated viewer pane, or in your external web browser. Make your selection by clicking the icon next to Run App:</p>
+</section>
+</section>
+<section id="locally-running-the-survey" class="level2">
+<h2 class="anchored" data-anchor-id="locally-running-the-survey">Locally running the survey</h2>
+<p>To preview your survey, you can run the Shiny app locally by clicking the “Run App” button in RStudio or in your R console run the code <code>shiny::runApp('app.R')</code>. Typically, RStudio will launch the app in a new window, but you can also choose to have the app launch in a dedicated viewer pane, or in your external web browser. Make your selection by clicking the icon next to Run App:</p>
 <center>
 <img src="https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/images/launch-options.png" width="200">
 </center>
 
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->

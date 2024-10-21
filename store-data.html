@@ -278,14 +278,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./password.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Password</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./store-data.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Store Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./password.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Password</span></a>
+  <a href="./fetch-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fetch Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -298,12 +304,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./performance.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Performance</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./fetch-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fetch Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -452,8 +452,8 @@ Tip
 <p>While editing your survey, you may want to not connect to the database. This can be easily implemented by setting <code>ignore = TRUE</code> in <code>sd_database()</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">sd_database</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Previous parameters...</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ignore =</span> <span class="cn">TRUE</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Previous parameters...</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ignore =</span> <span class="cn">TRUE</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>With this setting, your connection parameters can remain set, but the survey will not attempt to connect to your database. Instead, a local <code>data.csv</code> file will be created in your project folder so you can preview the survey data.</p>
@@ -463,8 +463,8 @@ Tip
 <p>If you’ve set everything correctly but still encounter connection error, try to disable <code>gssencmode</code> like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">sd_database</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Previous parameters...</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">gssencmode =</span> <span class="st">"disable"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Previous parameters...</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">gssencmode =</span> <span class="st">"disable"</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>By default, <code>gssencmode</code> is set as <code>"prefer"</code>. It secures your connection with PostgreSQL, which is the SQL used by Supabase. We generally recommend that you <strong>DO NOT disable <code>gssencmode</code></strong>, but sometimes this is necessary, especially when you are working on a protected network, e.g.&nbsp;on a VPN.</p>

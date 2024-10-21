@@ -278,14 +278,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./password.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Password</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./store-data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Store Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./password.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Password</span></a>
+  <a href="./fetch-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fetch Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -298,12 +304,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./performance.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Performance</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./fetch-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fetch Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -362,17 +362,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="preparing-to-deploy">Preparing to deploy</h2>
 <p>Before deploying your survey, make sure everything is working locally. You should have done the following:</p>
 <ol type="1">
-<li>You have rendered your <code>survey.qmd</code> document and don’t see any errors.</li>
-<li>You have locally run your <code>app.R</code> file by clicking the “Run App” button in RStudio or in your R console running the <code>runApp()</code> command and don’t see any errors.</li>
-<li>You have set up a database connection to store survey responses (e.g.&nbsp;using a <a href="https://supabase.com/">Supabase</a> project) and have already added the database parameters in the <code>sd_database()</code> function in your <code>app.R</code> file (see the <a href="./store-data.html">Store Data</a> page).</li>
+<li>You have locally previewed your <code>app.R</code> file by clicking the “Run App” button in RStudio or in your R console running the code <code>shiny::runApp('app.R')</code>.</li>
+<li>You have set up a database connection to store survey responses (e.g.&nbsp;using <a href="https://supabase.com/">Supabase</a>) and have already added the database parameters in the <code>sd_database()</code> function in your <code>app.R</code> file (see the <a href="./store-data.html">Store Data</a> page).</li>
 <li>You have set the password for your survey using <code>surveydown::sd_set_password("my_password")</code> using the password you set in the Supabase project (see the <a href="./password.html">Password</a> page).</li>
 </ol>
 <p>With these steps completed, you are ready to deploy your survey online.</p>
 </section>
 <section id="deploying-to-shinyapps.io" class="level2">
 <h2 class="anchored" data-anchor-id="deploying-to-shinyapps.io">Deploying to shinyapps.io</h2>
-<p>Deploying your survey is pretty much the same as deploying any other Shiny app.</p>
-<p>We recommend using <a href="https://shinyapps.io/">shinyapps.io</a> to host your survey as it is designed to work with Shiny Apps, but you can also use other hosting services such as <a href="https://docs.posit.co/connect/">RStudio Connect</a> or <a href="https://huggingface.co/">HuggingFace</a>.</p>
+<p>Deploying your survey is pretty much the same as deploying any other Shiny app. We recommend using <a href="https://shinyapps.io/">shinyapps.io</a> to host your survey as it is designed to work with Shiny Apps, but you can also use <a href="#deploying-to-other-hosting-services">other hosting services</a>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

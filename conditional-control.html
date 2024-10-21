@@ -334,12 +334,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#conditional-skipping" id="toc-conditional-skipping" class="nav-link" data-scroll-target="#conditional-skipping">Conditional skipping</a></li>
   <li><a href="#common-conditions" id="toc-common-conditions" class="nav-link" data-scroll-target="#common-conditions">Common conditions</a>
   <ul class="collapse">
-  <li><a href="#single-multiple-conditions" id="toc-single-multiple-conditions" class="nav-link" data-scroll-target="#single-multiple-conditions">Single &amp; Multiple conditions</a></li>
+  <li><a href="#conditioning-on-question-answers" id="toc-conditioning-on-question-answers" class="nav-link" data-scroll-target="#conditioning-on-question-answers">Conditioning on question answers</a></li>
   <li><a href="#numeric-values" id="toc-numeric-values" class="nav-link" data-scroll-target="#numeric-values">Numeric values</a></li>
   <li><a href="#multiple-response-questions" id="toc-multiple-response-questions" class="nav-link" data-scroll-target="#multiple-response-questions">Multiple response questions</a></li>
-  <li><a href="#answering-status-condition" id="toc-answering-status-condition" class="nav-link" data-scroll-target="#answering-status-condition">Answering status condition</a></li>
+  <li><a href="#conditioning-on-answered-status" id="toc-conditioning-on-answered-status" class="nav-link" data-scroll-target="#conditioning-on-answered-status">Conditioning on answered status</a></li>
   </ul></li>
-  <li><a href="#creating-custom-conditions" id="toc-creating-custom-conditions" class="nav-link" data-scroll-target="#creating-custom-conditions">Creating custom conditions</a></li>
+  <li><a href="#conditions-with-custom-functions" id="toc-conditions-with-custom-functions" class="nav-link" data-scroll-target="#conditions-with-custom-functions">Conditions with custom functions</a></li>
   </ul>
 </nav>
     </div>
@@ -393,7 +393,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To implement this, you first need to define both the <strong>conditional question</strong> and the <strong>target question</strong> in the <code>survey.qmd</code> file, like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="in"># Base question</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="in"># Conditional question</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = "mc",</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = "penguins",</span></span>
@@ -490,90 +490,7 @@ Note
 </section>
 <section id="common-conditions" class="level2">
 <h2 class="anchored" data-anchor-id="common-conditions">Common conditions</h2>
-<section id="single-multiple-conditions" class="level3">
-<h3 class="anchored" data-anchor-id="single-multiple-conditions">Single &amp; Multiple conditions</h3>
-<p>Both the <code>sd_show_if()</code> and <code>sd_skip_if()</code> functions require a condition that returns a logical value (<code>TRUE</code> or <code>FALSE</code>). The condition can be defined in a number of ways. The <a href="https://github.com/surveydown-dev/demo-show-if">show_if</a> demo app provides a number of examples of how to use the <code>sd_show_if()</code> function with a variety of conditions, but the same principles apply to conditions used in the <code>sd_skip_if()</code> function. In this section, we’ll highlight some of the examples used in that demo.</p>
-<p>Probably the most common condition is checking the value of a single question or multiple questions, like this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_show_if</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># Simple condition based on single question choice</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a> input<span class="sc">$</span>penguins_simple <span class="sc">==</span> <span class="st">"other"</span> <span class="sc">~</span> <span class="st">"penguins_simple_other"</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a> <span class="co"># Multiple condition based on multiple question choices</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a> input<span class="sc">$</span>penguins_complex <span class="sc">==</span> <span class="st">"other"</span> <span class="sc">&amp;</span> input<span class="sc">$</span>show_other <span class="sc">==</span> <span class="st">"show"</span> <span class="sc">~</span> <span class="st">"penguins_complex_other"</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>In the first example, the <code>penguins_simple</code> question is checked to see if the respondent chose the <code>"other"</code> option. If they did, the <code>penguins_simple_other</code> question will be shown.</p>
-<p>In the second example, the <code>penguins_complex</code> question is checked to see if the respondent chose the <code>"other"</code> option, and the <code>show_other</code> question is checked to see if the respondent chose the <code>"show"</code> option. If both conditions are met, the <code>penguins_complex_other</code> question will be shown.</p>
-</section>
-<section id="numeric-values" class="level3">
-<h3 class="anchored" data-anchor-id="numeric-values">Numeric values</h3>
-<p>Another common condition is checking the value of a numeric question. To do so, you need to wrap the <code>input$question_id</code> in the <code>as.numeric()</code> function because all question values are stored as strings:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_show_if</span>(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">as.numeric</span>(input<span class="sc">$</span>car_number) <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"ev_ownership"</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>In the example above, the <code>car_number</code> question is checked to see if the respondent chose a number greater than 1. If they did, the <code>ev_ownership</code> question will be shown.</p>
-</section>
-<section id="multiple-response-questions" class="level3">
-<h3 class="anchored" data-anchor-id="multiple-response-questions">Multiple response questions</h3>
-<p>For multiple response question types (e.g.&nbsp;<a href="question-types.html#mc_multiple"><code>mc_multiple</code></a>), the value returned is a vector of strings. You can use this value to check for different conditions, such as <em>inclusion</em> using the <code>%in%</code> operator, or the <em>length</em> using the <code>length()</code> function, like this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_show_if</span>(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># Check if the respondent chose "apple" or "banana"</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a> input<span class="sc">$</span>fav_fruits <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"apple"</span>, <span class="st">"banana"</span>) <span class="sc">~</span> <span class="st">"apple_or_banana"</span>,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a> <span class="co"># Check if the respondent chose more than 3 fruits</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a> <span class="fu">length</span>(input<span class="sc">$</span>fav_fruits) <span class="sc">&gt;</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"fruit_number"</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>In the first example, the <code>fav_fruits</code> question is checked to see if the respondent chose <code>"apple"</code> or <code>"banana"</code>; if so, the <code>apple_or_banana</code> question will be shown.</p>
-<p>In the second example, the <code>fav_fruits</code> question is checked to see if the respondent chose more than 3 fruits; if so, the <code>fruit_number</code> question will be shown.</p>
-</section>
-<section id="answering-status-condition" class="level3">
-<h3 class="anchored" data-anchor-id="answering-status-condition">Answering status condition</h3>
-<p>You may want to show a target question if the base question is answered. To do this, we’ve created an <code>sd_is_answered()</code> function to judge if a question is answered or not and returns <code>TRUE</code>/<code>FALSE</code> accordingly. For example, here is a question asking for your favorite fruit:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Base question</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">"mc"</span>,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">"fav_fruit"</span>,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Which is your favorite fruit?"</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Apple"</span>  <span class="ot">=</span> <span class="st">"apple"</span>,</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Banana"</span> <span class="ot">=</span> <span class="st">"banana"</span>,</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Orange"</span> <span class="ot">=</span> <span class="st">"orange"</span>,</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Grape"</span>  <span class="ot">=</span> <span class="st">"grape"</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Target question</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">"text"</span>,</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">"num_fruit"</span>, </span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"How many do you eat per day?"</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Then, say that we want to show the target question of <code>num_fruit</code> as long as the<code>fav_fruit</code> question is answered, in <code>server()</code> we can use <code>sd_is_answered("fav_fruit")</code>:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_show_if</span>(</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    sd_is_answered <span class="sc">==</span> <span class="st">"fav_fruit"</span> <span class="sc">~</span> <span class="st">"num_fruit"</span> </span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_server</span>(<span class="at">db =</span> db)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This way, as long as the <code>fav_fruit</code> question is answered, no matter which option the user picks, the following <code>num_fruit</code> question will appear.</p>
+<p>Both the <code>sd_show_if()</code> and <code>sd_skip_if()</code> functions require a condition that returns a logical value (<code>TRUE</code> or <code>FALSE</code>). The condition can be defined in a number of ways. In this section, we’ll highlight some of the most common types of conditions you might need.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -584,58 +501,89 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You can also use functions like <code>paste0()</code> or <code>glue::glue()</code>, combined with <code>sd_output()</code>, to conditionally show the question label based on user’s selection. For example you can write like this:</p>
+<p>The <a href="https://github.com/surveydown-dev/demo-show-if">show_if</a> demo showcases how to use the <code>sd_show_if()</code> function with a variety of different conditions, but the same principles apply to conditions used in the <code>sd_skip_if()</code> function.</p>
+</div>
+</div>
+<section id="conditioning-on-question-answers" class="level3">
+<h3 class="anchored" data-anchor-id="conditioning-on-question-answers">Conditioning on question answers</h3>
+<p>One of the most common situations is conditioning on the value of a single question or multiple questions, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">"text"</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">"num_fruit"</span>, </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"How many {sd_output('fav_fruits', type = 'value')} do you eat in a day?"</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_show_if</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># Simple condition based on single question choice</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a> input<span class="sc">$</span>penguins1 <span class="sc">==</span> <span class="st">"other"</span> <span class="sc">~</span> <span class="st">"penguins1_other"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a> <span class="co"># Multiple condition based on multiple question choices</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a> input<span class="sc">$</span>penguins2 <span class="sc">==</span> <span class="st">"other"</span> <span class="sc">&amp;</span> input<span class="sc">$</span>show_other <span class="sc">==</span> <span class="st">"show"</span> <span class="sc">~</span> <span class="st">"penguins2_other"</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-<p>For question type of <code>"matrix"</code>, <code>sd_is_answered()</code> will be true only if all sub-questions in it are answered. For example:</p>
+<p>In the first condition, the <code>penguins1</code> question is checked to see if the respondent chose the <code>"other"</code> option. If they did, the <code>penguins1_other</code> question will be shown.</p>
+<p>In the second condition, the <code>penguins2</code> question is checked to see if the respondent chose the <code>"other"</code> option, and the <code>show_other</code> question is checked to see if the respondent chose the <code>"show"</code> option. With this condition, the <code>penguins2_other</code> question will only be shown if both conditions are <code>TRUE</code>.</p>
+</section>
+<section id="numeric-values" class="level3">
+<h3 class="anchored" data-anchor-id="numeric-values">Numeric values</h3>
+<p>Another common condition is checking the value of a numeric question. To do so, you need to wrap the <code>input$question_id</code> in the <code>as.numeric()</code> function because all question values are stored as strings, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A matrix question</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type   =</span> <span class="st">"matrix"</span>,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id     =</span> <span class="st">"car_preference"</span>,</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label  =</span> <span class="st">"Please indicate your agreement with the following statements."</span>,</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">row    =</span> <span class="fu">c</span>(</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"I'd like to buy a gasoline car."</span> <span class="ot">=</span> <span class="st">"buy_gasoline"</span>,</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"I'd like to buy an EV."</span> <span class="ot">=</span> <span class="st">"buy_ev"</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Disagree"</span> <span class="ot">=</span> <span class="st">"disagree"</span>,</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Neutral"</span>  <span class="ot">=</span> <span class="st">"neutral"</span>,</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Agree"</span>    <span class="ot">=</span> <span class="st">"agree"</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_show_if</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">as.numeric</span>(input<span class="sc">$</span>car_number) <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"car_ownership"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>For the above matrix question, <code>sd_is_answered("car_preference)</code> will be <code>TRUE</code> only if all questions in this matrix are answered.</p>
+<p>In the condition above, the <code>car_number</code> question is checked to see if the respondent chose a number greater than 1. If they did, the <code>car_ownership</code> question will be shown.</p>
+</section>
+<section id="multiple-response-questions" class="level3">
+<h3 class="anchored" data-anchor-id="multiple-response-questions">Multiple response questions</h3>
+<p>For multiple response question types (e.g.&nbsp;<a href="question-types.html#mc_multiple"><code>mc_multiple</code></a>), the question returns a vector storing all the chosen values. You can use this vector to check for different conditions, such as whether the chosen values are in some set of values using the <code>%in%</code> operator, or whether the respondent chose a number of options using the <code>length()</code> function, like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_show_if</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># Check if the respondent chose "apple", "banana", or both</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a> <span class="fu">all</span>(input<span class="sc">$</span>fav_fruits <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"apple"</span>, <span class="st">"banana"</span>)) <span class="sc">~</span> <span class="st">"apple_or_banana"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a> <span class="co"># Check if the respondent chose more than 3 fruits</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a> <span class="fu">length</span>(input<span class="sc">$</span>fav_fruits) <span class="sc">&gt;</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"fruit_number"</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the first example, the <code>fav_fruits</code> question is checked to see if the respondent chose <code>"apple"</code>, <code>"banana"</code>, or both; if so, the <code>apple_or_banana</code> question will be shown.</p>
+<p>In the second example, the <code>fav_fruits</code> question is checked to see if the respondent chose more than 3 fruits; if so, the <code>fruit_number</code> question will be shown.</p>
+</section>
+<section id="conditioning-on-answered-status" class="level3">
+<h3 class="anchored" data-anchor-id="conditioning-on-answered-status">Conditioning on answered status</h3>
+<p>You may want to show a target question if a question is answered at all or not. To do this, we created the <code>sd_is_answered()</code> function that returns <code>TRUE</code> if a question is answered and <code>FALSE</code> otherwise.</p>
+<p>For example, let’s say you had a multiple choice question <code>fav_fruit</code> that asked you to choose your favorite fruit from a list of options, and a target question <code>num_fruit</code> that asked how many fruit you eat per day. If we wanted to show the <code>num_fruit</code> question so long as the <code>fav_fruit</code> question is answered, we can use <code>sd_is_answered("fav_fruit")</code> in the <code>sd_show_if()</code> function, like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_show_if</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_is_answered</span>(<span class="st">"fav_fruit"</span>) <span class="sc">~</span> <span class="st">"num_fruit"</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This way, as long as the <code>fav_fruit</code> question is answered, no matter which option the user picks the <code>num_fruit</code> question will appear.</p>
+<p>For <a href="./question-types.html#matrix"><code>"matrix"</code></a> type questions, <code>sd_is_answered()</code> will only be <code>TRUE</code> if all sub-questions (matrix rows)in it are answered.</p>
 </section>
 </section>
-<section id="creating-custom-conditions" class="level2">
-<h2 class="anchored" data-anchor-id="creating-custom-conditions">Creating custom conditions</h2>
-<p>For situations where the conditional logic is more complex, we recommend defining a custom function that will return a logical value (<code>TRUE</code> or <code>FALSE</code>) indicating whether the target question should be displayed. You can then pass this function to the <code>sd_show_if()</code> or <code>sd_skip_if()</code> functions.</p>
-<p>For example, let’s say I had a <code>mc</code> type question where I asked how many cars the respondent owned, and I included numeric options for <code>1</code> through <code>5</code>, but then my last option was the string <code>"6 or more"</code>. Well, in this case I couldn’t simple use <code>as.numeric(input$question_id) &gt; 1</code>, because this would return <code>NA</code> if respondent chose <code>"6 or more"</code>. To address this, I could create a custom function that will handle this special condition so that it will always appropriately return <code>TRUE</code> or <code>FALSE</code>:</p>
+<section id="conditions-with-custom-functions" class="level2">
+<h2 class="anchored" data-anchor-id="conditions-with-custom-functions">Conditions with custom functions</h2>
+<p>For situations where the conditional logic is more complex, we recommend defining a custom function that will return a logical value (<code>TRUE</code> or <code>FALSE</code>). You can then pass this function to the <code>sd_show_if()</code> or <code>sd_skip_if()</code> functions as a condition.</p>
+<p>For example, let’s say we had a <code>mc</code> type question where we asked how many cars the respondent owned, and we included numeric options <code>1</code> through <code>5</code> as well as a final option <code>"6 or more"</code>. If we wanted to set a condition that would return <code>TRUE</code> if the user had more than one car, we could not use <code>as.numeric(input$question_id) &gt; 1</code> because this would return <code>NA</code> if the respondent chose the <code>"6 or more"</code> option.</p>
+<p>To address this, we could create a custom function to handle this special condition:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  more_than_one_car <span class="ot">&lt;-</span> <span class="cf">function</span>(input) {</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    num_cars <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(input<span class="sc">$</span>car_number)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.na</span>(num_cars)) { <span class="fu">return</span>(<span class="cn">TRUE</span>) }</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(num_cars <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_show_if</span>(</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    more_than_one_car <span class="sc">~</span> <span class="st">"ev_ownership"</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_server</span>(<span class="at">db =</span> db)</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  more_than_one_car <span class="ot">&lt;-</span> <span class="cf">function</span>(input) {</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    num_cars <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(input<span class="sc">$</span>car_number)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.na</span>(num_cars)) { <span class="fu">return</span>(<span class="cn">TRUE</span>) }</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(num_cars <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_show_if</span>(</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">more_than_one_car</span>(input) <span class="sc">~</span> <span class="st">"car_ownership"</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_server</span>(<span class="at">db =</span> db)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>In the <code>more_than_one_car()</code> function, we first obtain the numeric value of the <code>car_number</code> question using <code>as.numeric(input$car_number)</code>. If this value is <code>NA</code> it indicates that the respondent chose the <code>"6 or more"</code> option, in which case we return <code>TRUE</code>. If not, then we can be sure that <code>num_cars</code> is a number, and we can return the simple condition <code>num_cars &gt; 1</code>.</p>
 <p>Note that here the <code>more_than_one_car</code> function is defined in the condition without <code>()</code> after it. This is because we are passing the function itself, not the result of the function.</p>
 
 

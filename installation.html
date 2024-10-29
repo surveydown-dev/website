@@ -332,7 +332,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#install-r-quarto" id="toc-install-r-quarto" class="nav-link active" data-scroll-target="#install-r-quarto">Install R &amp; Quarto</a></li>
   <li><a href="#install-the-surveydown-r-package" id="toc-install-the-surveydown-r-package" class="nav-link" data-scroll-target="#install-the-surveydown-r-package">Install the {surveydown} R package</a></li>
-  <li><a href="#version-control" id="toc-version-control" class="nav-link" data-scroll-target="#version-control">Version Control</a></li>
   </ul>
 </nav>
     </div>
@@ -372,20 +371,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="install-the-surveydown-r-package">Install the {surveydown} R package</h2>
 <p>The {surveydown} R package is not yet on CRAN, but you can install the development version from GitHub with the following command in your R console:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("remotes")</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"surveydown-dev/surveydown"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("pak")</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">pak</span>(<span class="st">'surveydown-dev/surveydown'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="version-control" class="level2">
-<h2 class="anchored" data-anchor-id="version-control">Version Control</h2>
-<p>We made some R functions to make it easier to keep your R package.</p>
-<p>To <em>check</em> which version of the {surveydown} package you have installed, run:</p>
+<p>You can also check which version you have installed:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>surveydown<span class="sc">::</span><span class="fu">sd_version</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>To <em>update</em> to the latest version of the {surveydown} package, run:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>surveydown<span class="sc">::</span><span class="fu">sd_update</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

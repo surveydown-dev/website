@@ -359,127 +359,6 @@
     "text": "How to set a password for my surveydown project, and why do I need a password?\nIn Supabase (the database we use for surveydown), we need a password to access the database and establish connection. In surveydown, we’ve prepared a function for you: sd_set_password(). This function helps you set up your password that can be used to connect to Supabase. It is also the password for your admin page.\nBelow is what sd_set_password() exactly does:\nFor example, say your password is MyPassword. Then you define your password by:\n\nsd_set_password(\"MyPassword\")\n\nAfter you defined your password, restart your R session by clicking on “Session” on your menu and choose “Restart R”.\nThis will save your password into a newly created .Renviron file. The statement looks like this:\n\nSURVEYDOWN_PASSWORD=MyPassword\n\nThen, this function also adds the .Renviron file into your .gitignore file (if you want to store your project on GitHub), so that it won’t be pushed to your GitHub repo. Your password is always stored locally on your machine.\nYou need to make sure that this password you defined matches with your Supabase project (in this case, it should be MyPassword).\nThere is no defined sequence in these 2 above moves. You can define your Supabase project password first, and then define your local password using sd_set_password(), or you can do it inversely. The only thing that matters is when you attempt to connect to Supabase using your survey, these 2 passwords should match.\nFor more information about setting password, proceed to the password page."
   },
   {
-    "objectID": "server-options.html",
-    "href": "server-options.html",
-    "title": "Server Options",
-    "section": "",
-    "text": "All survey configuration settings are defined within the server function in the app.R file. The server() function is a standard Shiny server function that takes input, output, and session as arguments.\nIf you create a new survey using a template, the server() function looks like this:\nserver &lt;- function(input, output, session) {\n\n  # Define conditional skip logic (skip to page if a condition is true)\n  sd_skip_if()\n\n  # Define conditional display logic (show a question if a condition is true)\n  sd_show_if()\n\n  # Main server to control the app\n  sd_server(db = db)\n\n}\nThe sd_skip_if() and sd_show_if() functions are used to define conditional skip and show logic for the survey (see the Conditional Control page for more details).\nThe sd_server() function is used to run the survey. It handles the main logic, such as page navigation and managing the survey data. The db = db argument is required if you are using a database connection, which should be defined using the sd_database() function (see the Store Data page for more details).\nThe sd_server() function also has many other optional arguments that can be used to customize the survey behavior. This page details these options.",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "Server Options"
-    ]
-  },
-  {
-    "objectID": "server-options.html#required-questions",
-    "href": "server-options.html#required-questions",
-    "title": "Server Options",
-    "section": "Required questions",
-    "text": "Required questions\nBy default, no questions are required. However, you can make questions required by providing a vector containing the id of the questions to be required to the required_questions argument in sd_server(), like\n\nsd_server(\n1  required_questions = c(\"vehicle_ownership\", \"penguins_other\")\n)\n\n\n1\n\nThe required_questions argument takes a vector of question ids that you want to make required.\n\n\n\n\nThis will make the respondent unable to proceed until they have answered the required questions. It will also place a red asterisk (*) next to the question label to indicate that the question is required.\nYou can also make all questions required by setting all_questions_required = TRUE like this:\n\nsd_server(\n  all_questions_required = TRUE\n)",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "Server Options"
-    ]
-  },
-  {
-    "objectID": "server-options.html#starting-page",
-    "href": "server-options.html#starting-page",
-    "title": "Server Options",
-    "section": "Starting page",
-    "text": "Starting page\nWhen editing your survey, it can be helpful to start the survey at a specific page. You can define the starting page with the start_page argument in the sd_server() function, like this:\n\nsd_server(\n  start_page = \"page_id\"\n)",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "Server Options"
-    ]
-  },
-  {
-    "objectID": "server-options.html#auto-scroll",
-    "href": "server-options.html#auto-scroll",
-    "title": "Server Options",
-    "section": "Auto scroll",
-    "text": "Auto scroll\nThe auto scroll feature allows the page to automatically scroll according to the user’s working progress and is enabled by default.\n\nsd_server(\n  auto_scroll = TRUE # Change to FALSE to switch it off.\n)",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "Server Options"
-    ]
-  },
-  {
-    "objectID": "server-options.html#admin-page",
-    "href": "server-options.html#admin-page",
-    "title": "Server Options",
-    "section": "Admin page",
-    "text": "Admin page\n\n\n\n\n\n\nImportant\n\n\n\nThe admin page is currently under development and has limited functionality.\n\n\nBy default, the admin page is not created. But if you want one, set admin_page to TRUE inside the sd_server() function, like this:\n\nsd_server(\n  admin_page = TRUE\n)\n\nWhen the admin page is enabled, you will be able to access the page by adding ?admin to the end of the survey URL, e.g. https://myname.shinyapps.io/?admin. This will display a login page with a single “Password” parameter, which is the password set using sd_set_password(). See the Password page for details.\nThe admin page has the following features:\n\nPause Survey: Once clicked, the Shiny app pauses all instances replacing questions with a placeholder page.\nPause DB: Once clicked, the all database uploads will be paused. You can still take the survey, but the data will not be updated in the database.\nDownload Data: Download the most recent table instance from the database as a .csv file.\nAdmin Logout and Return to Survey: Once clicked, the admin page will be logged out and the survey will be returned to the start page.\nSurvey Data Preview: View the latest instance of the database table.",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "Server Options"
-    ]
-  },
-  {
-    "objectID": "server-options.html#rating-question",
-    "href": "server-options.html#rating-question",
-    "title": "Server Options",
-    "section": "Rating question",
-    "text": "Rating question\nYou may want to add a rating question by the end of the survey to collect user reflections. Simply set rate_survey to TRUE (Default to FALSE):\n\nsd_server(\n  rate_survey = TRUE\n)\n\nSurvey rating is triggered by the “Exit Survey” button by the end of the survey. If you want to implement the survey rating, make sure you define the Exit Button by the end of the survey using the sd_close() function, and then define rate_survey = TRUE in sd_server().\nBelow are the TRUE and FALSE cases for rate_survey:\n\nTRUEFALSE\n\n\nIf rate_survey is TRUE, a survey rating question will pop up:\n\n\n\n\n\nIf rate_survey is FALSE, a confirm exit dialog box will pop up:",
-    "crumbs": [
-      "Documentation",
-      "Reference Manuals",
-      "Server Options"
-    ]
-  },
-  {
-    "objectID": "blog/2024-09-18-new-app-design/index.html",
-    "href": "blog/2024-09-18-new-app-design/index.html",
-    "title": "New architecture in v0.3.0 (and loads of breaking changes)!",
-    "section": "",
-    "text": "The surveydown package is only a couple months old, and thanks to many early users we learned about some design flaws that needed to be fixed. As a result, with the release of {surveydown} 0.3.0, the package has undergone a major overhaul to improve security, modularity, and extensibility.\nWe introduced several major breaking changes in this release, so we felt we should make a blog post to both explain why we felt these changes were needed as well as introduce the new architecture we have adopted."
-  },
-  {
-    "objectID": "blog/2024-09-18-new-app-design/index.html#motivation",
-    "href": "blog/2024-09-18-new-app-design/index.html#motivation",
-    "title": "New architecture in v0.3.0 (and loads of breaking changes)!",
-    "section": "Motivation",
-    "text": "Motivation\nIn the original conception of surveydown, the entire survey was defined in a single Quarto shiny document that would render into a shiny app. While this was a rather parsimonious design, it also had some flaws that weren’t immediately apparent.\nPerhaps the largest issue was page security (see this issue). With Quarto shiny documents, the qmd file is first rendered into a static html page that is then used to define the elements of the user interface in the resulting shiny app. This meant that for us to introduce pages, we relied on a combination of JS and CSS to hide and show the page divs based on users clicking on next buttons. While this resulted in a nice user experience, under the hood the entire app was still just one big html page with all of the content available.\nThis design meant that anyone could still see the source code to any component of the survey they wanted. A user could simply right-click and open “Inspect” then manually change the CSS of a page div from style=\"display: none;\" to style=\"display: show;\" and boom - the “page” would appear!\nThis was obviously a major security issue as pages with things like completion codes or redirect buttons at the end could be easily shown without going through the whole survey. The only solution was an architectural overhaul that would only show the content on one page at a time."
-  },
-  {
-    "objectID": "blog/2024-09-18-new-app-design/index.html#new-architecture",
-    "href": "blog/2024-09-18-new-app-design/index.html#new-architecture",
-    "title": "New architecture in v0.3.0 (and loads of breaking changes)!",
-    "section": "New architecture",
-    "text": "New architecture\nThe new architecture employs a two-file design composed of a survey and an app that renders to a traditional Shiny app:\n\nsurvey.qmd: A Quarto document that contains the survey content (pages, questions, etc), which renders to an HTML file.\napp.R: An R script defining a Shiny app that contains the global settings (libraries, database configuration, etc.) and server configuration options (e.g., conditional skipping / display, etc.).\n\nThese files must be named survey.qmd and app.R.\nThey typically look something like this:\n\nsurvey.qmd fileapp.R file\n\n\n\n---\nformat: html\necho: false\nwarning: false\n---\n\n```{r}\nlibrary(surveydown)\n```\n\n::: {#welcome .sd-page}\n\n# Welcome to our survey!\n\n```{r}\nsd_question(\n  type  = 'mc',\n  id    = 'penguins',\n  label = \"Which type of penguin do you like the best?\",\n  option = c(\n    'Adélie'    = 'adelie',\n    'Chinstrap' = 'chinstrap',\n    'Gentoo'    = 'gentoo'\n  )\n)\n\nsd_next(next_page = 'end')\n```\n\n:::\n\n::: {#end .sd-page}\n\nThis it the last page in the survey\n\n:::\n\n\n\n\n\nlibrary(surveydown)\n\ndb &lt;- sd_database(\n  host   = \"\",\n  dbname = \"\",\n  port   = \"\",\n  user   = \"\",\n  table  = \"\",\n  ignore = TRUE\n)\n\nserver &lt;- function(input, output, session) {\n\n  # Define conditional skip logic here (skip to page if a condition is true)\n  sd_skip_if()\n\n  # Define  conditional display logic here (show a question if a condition is true)\n  sd_show_if()\n\n  # Main server to control the app\n  sd_server()\n}\n\nshiny::shinyApp(ui = sd_ui(), server = server)\n\n\n\n\nThis approach allows us to separate the survey content (in the survey.qmd file) from the survey logic (in the app.R file), which comes with a few benefits:\n\nSecurity: Since the rendered survey content is no longer directly embedded in the app as a single html page, it makes it much harder for users to tamper with the content. Only the content on one page at a time will be rendered by the server.\nClarity: With two files, it is now clearer where the survey content versus control logic should be defined. Before, all of the server logic was in a single server code chunk at the end of the survey.qmd file, which required the user to scroll up and down to edit the server logic versus the survey content. Now a user can have both files open in two tabs in an IDE and more easily edit the survey content and server content.\nSimplicity: The new design eliminates the need for a Quarto extension to render the survey. This allows us to ship all of the core functionality of surveydown as a single R package, which is installed globally on your system.\n\nThe updated documentation of the Survey Components page reflects this new design."
-  },
-  {
-    "objectID": "blog/2024-09-18-new-app-design/index.html#new-page-architecture",
-    "href": "blog/2024-09-18-new-app-design/index.html#new-page-architecture",
-    "title": "New architecture in v0.3.0 (and loads of breaking changes)!",
-    "section": "New page architecture",
-    "text": "New page architecture\nThe motivation to secure the page content led to a totally new approach to designing the survey pages. Our new approach actually renders the survey.qmd into a static html page and then parses it into a list of page objects. Each page object is itself a list of elements, including the page ID, question IDs, etc., as well as the rendered html content for that page.\nThe sd_server() function then uses this list of page objects to display one page at a time via a shiny::renderUI() function into a single “main” output. This approach allowed us to control what content is being served, eliminating the ability of survey respondents to see anything other than the content on the current page.\nThis approach also gave us the opportunity to overhaul how pagination works in general. Previously, users had to add a sd_next(next_page = \"page_id\") button at the end of each page, making sure to specify the next page to go to. This was a bit annoying as most of the time you just want to go to the next page, so specifying it felt redundant. Now users can simply add sd_next() at the bottom of each page and the server will go to the next page by default. If you want to direct the respondent to a different page, then you specify the target page using sd_next(next_page = \"page_id\")."
-  },
-  {
-    "objectID": "blog/2024-09-18-new-app-design/index.html#improved-conditional-show-and-skip-logic",
-    "href": "blog/2024-09-18-new-app-design/index.html#improved-conditional-show-and-skip-logic",
-    "title": "New architecture in v0.3.0 (and loads of breaking changes)!",
-    "section": "Improved conditional show and skip logic",
-    "text": "Improved conditional show and skip logic\nConditionally displaying questions or skipping to pages is a core logic that many surveys need. Our original approach was relatively clunky, so since we were already introducing many breaking designs, we figured we should overhaul the logic for conditional skipping and displaying.\nThe new approach uses just two functions: sd_skip_if() and sd_show_if(). These functions can be provided in the main server() function in the app.R file to define the conditions and targets for either conditional displaying a question or conditionally skipping to a page. The structure for each condition in these new functions is always as follows:\n\n&lt;condition&gt; ~ \"target_question_id\"\n\nAs an example, let’s say we want to show a question called \"penguins_other\" if the respondent chose the \"other\" option in a question called \"penguins\". We could do this with the following code in the app.R file:\n\nserver &lt;- function(input, output, session) {\n\n  sd_show_if(\n    input$penguins == \"other\" ~ \"penguins_other\"\n  )\n\n  sd_server(db = db)\n\n}\n\nYou can provide multiple conditions to the sd_show_if() function, each separated by a comma. The sd_skip_if() function works the same way, but it will skip to a target page instead of showing a target question. See the revised Configuration Options page for more details on the new changes."
-  },
-  {
-    "objectID": "blog/2024-09-18-new-app-design/index.html#no-more-sd_config-function",
-    "href": "blog/2024-09-18-new-app-design/index.html#no-more-sd_config-function",
-    "title": "New architecture in v0.3.0 (and loads of breaking changes)!",
-    "section": "No more sd_config() function",
-    "text": "No more sd_config() function\nOne more small change we made is that the sd_config() function is no longer needed. Since we moved the conditional skip and show logic into their own functions, we took the remaining arguments that used to be provided to sd_config() and added them to the sd_server() function as options. You can now simply pass these arguments to the sd_server() function in the app.R file."
-  },
-  {
-    "objectID": "blog/2024-09-18-new-app-design/index.html#our-apologies",
-    "href": "blog/2024-09-18-new-app-design/index.html#our-apologies",
-    "title": "New architecture in v0.3.0 (and loads of breaking changes)!",
-    "section": "Our apologies",
-    "text": "Our apologies\nThat’s about it for the changes with v0.3.0. We want to send our deepest apologies for anyone who has already begun a study using the orginal design. The most recent version prior to v0.3.0 was v0.2.4, so this is the version you should install if you want to stick with the old design.\nThat said, all development will now continue on this new design, so we strongly recommend updating to the new version and converting any existing surveys to the new design. The biggest change you’ll need to make is to move your server logic out of the survey.qmd file and into the app.R file. We’ve also updated all our demos to the new design, so you can refer to these for examples on how to convert your existing surveys."
-  },
-  {
     "objectID": "installation.html",
     "href": "installation.html",
     "title": "Installation",
@@ -506,10 +385,44 @@
     "href": "installation.html#install-the-surveydown-r-package",
     "title": "Installation",
     "section": "Install the {surveydown} R package",
-    "text": "Install the {surveydown} R package\nThe {surveydown} R package is not yet on CRAN, but you can install the development version from GitHub with the following command in your R console:\n\n# install.packages(\"pak\")\npak::pak('surveydown-dev/surveydown')\n\nYou can also check which version you have installed:\n\nsurveydown::sd_version()",
+    "text": "Install the {surveydown} R package\nYou can install {surveydown} from CRAN in your R console:\n\ninstall.packages(\"surveydown\")\n\nor you can install the development version from GitHub:\n\n# install.packages(\"pak\")\npak::pak('surveydown-dev/surveydown')\n\nLoad the package with:\n\nlibrary(surveydown)\n\nYou can also check which version you have installed:\n\nsurveydown::sd_version()",
     "crumbs": [
       "Documentation",
       "Installation"
+    ]
+  },
+  {
+    "objectID": "tips.html",
+    "href": "tips.html",
+    "title": "Tips",
+    "section": "",
+    "text": "This page has some helpful suggestions for working with surveydown surveys.",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Tips"
+    ]
+  },
+  {
+    "objectID": "tips.html#programmatically-generate-survey-questions",
+    "href": "tips.html#programmatically-generate-survey-questions",
+    "title": "Tips",
+    "section": "Programmatically generate survey questions",
+    "text": "Programmatically generate survey questions\nYou can use  code to programmatically generate survey questions in your survey.qmd file, which can be useful if you have a large number of questions that are similar to each other. One way to do this is to first create a data frame with the question parameters, and then use the sd_question() function to create the questions.\nHere’s an example using map() over the items data frame to generate a list of questions. Note that the list of questions is wrapped in shiny::tagList(), which is necessary for the survey to render properly since the map() function returns a list.\n\n\n\n\n\n\nNote\n\n\n\nThis approach inserts all the questions on the same page. We haven’t found a way to insert these questions on different pages, which would require more sophistication in the map() function.\n\n\n\nCode chunkOutput\n\n\n\n```{r}\n# Generate data frame of question parameters\nitems &lt;- tibble::tibble(\n  type = \"mc\",\n  id = as.character(1:3),\n  label = LETTERS[1:3],\n  option = list(c(\n    \"None\" = \"0\", \n    \"A Little\" = \"1\",\n    \"A lot\" = \"2\"\n  ))\n)\n\n# Generate questions\nshiny::tagList(\n  purrr::map(1:nrow(items), function(i) {\n    args &lt;- items[i, ]\n    sd_question(\n      id     = as.character(args$id),\n      type   = args$type,\n      label  = args$label,\n      option = unlist(args$option)\n    )\n  })\n)\n```\n\n\n\n\n\n\n\nA\n\n\n\n\n\nNone\n\n\n\n\n\nA Little\n\n\n\n\n\nA lot\n\n\n\n\n*\n\n\n\nB\n\n\n\n\n\nNone\n\n\n\n\n\nA Little\n\n\n\n\n\nA lot\n\n\n\n\n*\n\n\n\nC\n\n\n\n\n\nNone\n\n\n\n\n\nA Little\n\n\n\n\n\nA lot\n\n\n\n\n*",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Tips"
+    ]
+  },
+  {
+    "objectID": "documentation.html",
+    "href": "documentation.html",
+    "title": "surveydown.org",
+    "section": "",
+    "text": "Welcome to your first surveydown survey!\nWe recommend reading the Getting Started page to get a sense of how to use surveydown. The rest of the documentation covers more details on how to use surveydown.\n\nClick here to get started!\n\n\n\nFeatures\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Progress\n                Feature\n              \n        \n        \n        \n                \n                                       \n                  Wide variety of question types                                                          \n                \n                \n                                       \n                  Ability to use latest survey results in the survey itself                 \n                \n                \n                                       \n                  Pause database connection                                          \n                \n                \n                                       \n                  Conditionally display questions                                     \n                \n                \n                                       \n                  Conditionally skip to pages                                        \n                \n                \n                                       \n                  Start survey from a specific page (helpful when editing)                  \n                \n                \n                                       \n                  Show all pages at once (helpful for editing or printing out whole survey)\n                \n                \n                                       \n                  Require specific questions be answered                               \n                \n                \n                                       \n                  Require all questions be answered                                    \n                \n                \n                                       \n                  Create a random numeric completion code                     \n                \n                \n                                       \n                  Time stamps recorded for each question and page interaction                                                               \n                \n                \n                                       \n                  Auto scroll according to the answering progress                             \n                \n                \n                                       \n                  Progress bar bar that updates on each question interaction              \n                \n                \n                                       \n                  Customizable progress bar color                                         \n                \n                \n                                       \n                  Customizable progress bar position                                      \n                \n                \n                                       \n                  Markdown formatting for options and buttons                             \n                \n                \n                                       \n                  Support for bootstrap themes                              \n                \n                \n                                       \n                  Customizable scss theme file                              \n                \n                \n                                       \n                  Pass parameters through the url, e.g. to track user IDs                     \n                \n                \n                                       \n                  Redirect users to an external url                                                          \n                \n                \n                  \n                  Admin page with password login to preview / download data, pause survey, etc.\n                \n                \n                  \n                  Form validation (limit input based on question type)                                                                      \n                \n                \n                  \n                  Cookies to store user progress                                                                                            \n                \n        \n      \n    \n\n\n\n\n\n\n\n Back to top",
+    "crumbs": [
+      "Documentation"
     ]
   },
   {
@@ -889,37 +802,124 @@
     ]
   },
   {
-    "objectID": "documentation.html",
-    "href": "documentation.html",
-    "title": "surveydown.org",
+    "objectID": "blog/2024-09-18-new-app-design/index.html",
+    "href": "blog/2024-09-18-new-app-design/index.html",
+    "title": "New architecture in v0.3.0 (and loads of breaking changes)!",
     "section": "",
-    "text": "Welcome to your first surveydown survey!\nWe recommend reading the Getting Started page to get a sense of how to use surveydown. The rest of the documentation covers more details on how to use surveydown.\n\nClick here to get started!\n\n\n\nFeatures\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Progress\n                Feature\n              \n        \n        \n        \n                \n                                       \n                  Wide variety of question types                                                          \n                \n                \n                                       \n                  Ability to use latest survey results in the survey itself                 \n                \n                \n                                       \n                  Pause database connection                                          \n                \n                \n                                       \n                  Conditionally display questions                                     \n                \n                \n                                       \n                  Conditionally skip to pages                                        \n                \n                \n                                       \n                  Start survey from a specific page (helpful when editing)                  \n                \n                \n                                       \n                  Show all pages at once (helpful for editing or printing out whole survey)\n                \n                \n                                       \n                  Require specific questions be answered                               \n                \n                \n                                       \n                  Require all questions be answered                                    \n                \n                \n                                       \n                  Create a random numeric completion code                     \n                \n                \n                                       \n                  Time stamps recorded for each question and page interaction                                                               \n                \n                \n                                       \n                  Auto scroll according to the answering progress                             \n                \n                \n                                       \n                  Progress bar bar that updates on each question interaction              \n                \n                \n                                       \n                  Customizable progress bar color                                         \n                \n                \n                                       \n                  Customizable progress bar position                                      \n                \n                \n                                       \n                  Markdown formatting for options and buttons                             \n                \n                \n                                       \n                  Support for bootstrap themes                              \n                \n                \n                                       \n                  Customizable scss theme file                              \n                \n                \n                                       \n                  Pass parameters through the url, e.g. to track user IDs                     \n                \n                \n                                       \n                  Redirect users to an external url                                                          \n                \n                \n                  \n                  Admin page with password login to preview / download data, pause survey, etc.\n                \n                \n                  \n                  Form validation (limit input based on question type)                                                                      \n                \n                \n                  \n                  Cookies to store user progress                                                                                            \n                \n        \n      \n    \n\n\n\n\n\n\n\n Back to top",
-    "crumbs": [
-      "Documentation"
-    ]
+    "text": "The surveydown package is only a couple months old, and thanks to many early users we learned about some design flaws that needed to be fixed. As a result, with the release of {surveydown} 0.3.0, the package has undergone a major overhaul to improve security, modularity, and extensibility.\nWe introduced several major breaking changes in this release, so we felt we should make a blog post to both explain why we felt these changes were needed as well as introduce the new architecture we have adopted."
   },
   {
-    "objectID": "tips.html",
-    "href": "tips.html",
-    "title": "Tips",
+    "objectID": "blog/2024-09-18-new-app-design/index.html#motivation",
+    "href": "blog/2024-09-18-new-app-design/index.html#motivation",
+    "title": "New architecture in v0.3.0 (and loads of breaking changes)!",
+    "section": "Motivation",
+    "text": "Motivation\nIn the original conception of surveydown, the entire survey was defined in a single Quarto shiny document that would render into a shiny app. While this was a rather parsimonious design, it also had some flaws that weren’t immediately apparent.\nPerhaps the largest issue was page security (see this issue). With Quarto shiny documents, the qmd file is first rendered into a static html page that is then used to define the elements of the user interface in the resulting shiny app. This meant that for us to introduce pages, we relied on a combination of JS and CSS to hide and show the page divs based on users clicking on next buttons. While this resulted in a nice user experience, under the hood the entire app was still just one big html page with all of the content available.\nThis design meant that anyone could still see the source code to any component of the survey they wanted. A user could simply right-click and open “Inspect” then manually change the CSS of a page div from style=\"display: none;\" to style=\"display: show;\" and boom - the “page” would appear!\nThis was obviously a major security issue as pages with things like completion codes or redirect buttons at the end could be easily shown without going through the whole survey. The only solution was an architectural overhaul that would only show the content on one page at a time."
+  },
+  {
+    "objectID": "blog/2024-09-18-new-app-design/index.html#new-architecture",
+    "href": "blog/2024-09-18-new-app-design/index.html#new-architecture",
+    "title": "New architecture in v0.3.0 (and loads of breaking changes)!",
+    "section": "New architecture",
+    "text": "New architecture\nThe new architecture employs a two-file design composed of a survey and an app that renders to a traditional Shiny app:\n\nsurvey.qmd: A Quarto document that contains the survey content (pages, questions, etc), which renders to an HTML file.\napp.R: An R script defining a Shiny app that contains the global settings (libraries, database configuration, etc.) and server configuration options (e.g., conditional skipping / display, etc.).\n\nThese files must be named survey.qmd and app.R.\nThey typically look something like this:\n\nsurvey.qmd fileapp.R file\n\n\n\n---\nformat: html\necho: false\nwarning: false\n---\n\n```{r}\nlibrary(surveydown)\n```\n\n::: {#welcome .sd-page}\n\n# Welcome to our survey!\n\n```{r}\nsd_question(\n  type  = 'mc',\n  id    = 'penguins',\n  label = \"Which type of penguin do you like the best?\",\n  option = c(\n    'Adélie'    = 'adelie',\n    'Chinstrap' = 'chinstrap',\n    'Gentoo'    = 'gentoo'\n  )\n)\n\nsd_next(next_page = 'end')\n```\n\n:::\n\n::: {#end .sd-page}\n\nThis it the last page in the survey\n\n:::\n\n\n\n\n\nlibrary(surveydown)\n\ndb &lt;- sd_database(\n  host   = \"\",\n  dbname = \"\",\n  port   = \"\",\n  user   = \"\",\n  table  = \"\",\n  ignore = TRUE\n)\n\nserver &lt;- function(input, output, session) {\n\n  # Define conditional skip logic here (skip to page if a condition is true)\n  sd_skip_if()\n\n  # Define  conditional display logic here (show a question if a condition is true)\n  sd_show_if()\n\n  # Main server to control the app\n  sd_server()\n}\n\nshiny::shinyApp(ui = sd_ui(), server = server)\n\n\n\n\nThis approach allows us to separate the survey content (in the survey.qmd file) from the survey logic (in the app.R file), which comes with a few benefits:\n\nSecurity: Since the rendered survey content is no longer directly embedded in the app as a single html page, it makes it much harder for users to tamper with the content. Only the content on one page at a time will be rendered by the server.\nClarity: With two files, it is now clearer where the survey content versus control logic should be defined. Before, all of the server logic was in a single server code chunk at the end of the survey.qmd file, which required the user to scroll up and down to edit the server logic versus the survey content. Now a user can have both files open in two tabs in an IDE and more easily edit the survey content and server content.\nSimplicity: The new design eliminates the need for a Quarto extension to render the survey. This allows us to ship all of the core functionality of surveydown as a single R package, which is installed globally on your system.\n\nThe updated documentation of the Survey Components page reflects this new design."
+  },
+  {
+    "objectID": "blog/2024-09-18-new-app-design/index.html#new-page-architecture",
+    "href": "blog/2024-09-18-new-app-design/index.html#new-page-architecture",
+    "title": "New architecture in v0.3.0 (and loads of breaking changes)!",
+    "section": "New page architecture",
+    "text": "New page architecture\nThe motivation to secure the page content led to a totally new approach to designing the survey pages. Our new approach actually renders the survey.qmd into a static html page and then parses it into a list of page objects. Each page object is itself a list of elements, including the page ID, question IDs, etc., as well as the rendered html content for that page.\nThe sd_server() function then uses this list of page objects to display one page at a time via a shiny::renderUI() function into a single “main” output. This approach allowed us to control what content is being served, eliminating the ability of survey respondents to see anything other than the content on the current page.\nThis approach also gave us the opportunity to overhaul how pagination works in general. Previously, users had to add a sd_next(next_page = \"page_id\") button at the end of each page, making sure to specify the next page to go to. This was a bit annoying as most of the time you just want to go to the next page, so specifying it felt redundant. Now users can simply add sd_next() at the bottom of each page and the server will go to the next page by default. If you want to direct the respondent to a different page, then you specify the target page using sd_next(next_page = \"page_id\")."
+  },
+  {
+    "objectID": "blog/2024-09-18-new-app-design/index.html#improved-conditional-show-and-skip-logic",
+    "href": "blog/2024-09-18-new-app-design/index.html#improved-conditional-show-and-skip-logic",
+    "title": "New architecture in v0.3.0 (and loads of breaking changes)!",
+    "section": "Improved conditional show and skip logic",
+    "text": "Improved conditional show and skip logic\nConditionally displaying questions or skipping to pages is a core logic that many surveys need. Our original approach was relatively clunky, so since we were already introducing many breaking designs, we figured we should overhaul the logic for conditional skipping and displaying.\nThe new approach uses just two functions: sd_skip_if() and sd_show_if(). These functions can be provided in the main server() function in the app.R file to define the conditions and targets for either conditional displaying a question or conditionally skipping to a page. The structure for each condition in these new functions is always as follows:\n\n&lt;condition&gt; ~ \"target_question_id\"\n\nAs an example, let’s say we want to show a question called \"penguins_other\" if the respondent chose the \"other\" option in a question called \"penguins\". We could do this with the following code in the app.R file:\n\nserver &lt;- function(input, output, session) {\n\n  sd_show_if(\n    input$penguins == \"other\" ~ \"penguins_other\"\n  )\n\n  sd_server(db = db)\n\n}\n\nYou can provide multiple conditions to the sd_show_if() function, each separated by a comma. The sd_skip_if() function works the same way, but it will skip to a target page instead of showing a target question. See the revised Configuration Options page for more details on the new changes."
+  },
+  {
+    "objectID": "blog/2024-09-18-new-app-design/index.html#no-more-sd_config-function",
+    "href": "blog/2024-09-18-new-app-design/index.html#no-more-sd_config-function",
+    "title": "New architecture in v0.3.0 (and loads of breaking changes)!",
+    "section": "No more sd_config() function",
+    "text": "No more sd_config() function\nOne more small change we made is that the sd_config() function is no longer needed. Since we moved the conditional skip and show logic into their own functions, we took the remaining arguments that used to be provided to sd_config() and added them to the sd_server() function as options. You can now simply pass these arguments to the sd_server() function in the app.R file."
+  },
+  {
+    "objectID": "blog/2024-09-18-new-app-design/index.html#our-apologies",
+    "href": "blog/2024-09-18-new-app-design/index.html#our-apologies",
+    "title": "New architecture in v0.3.0 (and loads of breaking changes)!",
+    "section": "Our apologies",
+    "text": "Our apologies\nThat’s about it for the changes with v0.3.0. We want to send our deepest apologies for anyone who has already begun a study using the orginal design. The most recent version prior to v0.3.0 was v0.2.4, so this is the version you should install if you want to stick with the old design.\nThat said, all development will now continue on this new design, so we strongly recommend updating to the new version and converting any existing surveys to the new design. The biggest change you’ll need to make is to move your server logic out of the survey.qmd file and into the app.R file. We’ve also updated all our demos to the new design, so you can refer to these for examples on how to convert your existing surveys."
+  },
+  {
+    "objectID": "server-options.html",
+    "href": "server-options.html",
+    "title": "Server Options",
     "section": "",
-    "text": "This page has some helpful suggestions for working with surveydown surveys.",
+    "text": "All survey configuration settings are defined within the server function in the app.R file. The server() function is a standard Shiny server function that takes input, output, and session as arguments.\nIf you create a new survey using a template, the server() function looks like this:\nserver &lt;- function(input, output, session) {\n\n  # Define conditional skip logic (skip to page if a condition is true)\n  sd_skip_if()\n\n  # Define conditional display logic (show a question if a condition is true)\n  sd_show_if()\n\n  # Main server to control the app\n  sd_server(db = db)\n\n}\nThe sd_skip_if() and sd_show_if() functions are used to define conditional skip and show logic for the survey (see the Conditional Control page for more details).\nThe sd_server() function is used to run the survey. It handles the main logic, such as page navigation and managing the survey data. The db = db argument is required if you are using a database connection, which should be defined using the sd_database() function (see the Store Data page for more details).\nThe sd_server() function also has many other optional arguments that can be used to customize the survey behavior. This page details these options.",
     "crumbs": [
       "Documentation",
       "Reference Manuals",
-      "Tips"
+      "Server Options"
     ]
   },
   {
-    "objectID": "tips.html#programmatically-generate-survey-questions",
-    "href": "tips.html#programmatically-generate-survey-questions",
-    "title": "Tips",
-    "section": "Programmatically generate survey questions",
-    "text": "Programmatically generate survey questions\nYou can use  code to programmatically generate survey questions in your survey.qmd file, which can be useful if you have a large number of questions that are similar to each other. One way to do this is to first create a data frame with the question parameters, and then use the sd_question() function to create the questions.\nHere’s an example using map() over the items data frame to generate a list of questions. Note that the list of questions is wrapped in shiny::tagList(), which is necessary for the survey to render properly since the map() function returns a list.\n\n\n\n\n\n\nNote\n\n\n\nThis approach inserts all the questions on the same page. We haven’t found a way to insert these questions on different pages, which would require more sophistication in the map() function.\n\n\n\nCode chunkOutput\n\n\n\n```{r}\n# Generate data frame of question parameters\nitems &lt;- tibble::tibble(\n  type = \"mc\",\n  id = as.character(1:3),\n  label = LETTERS[1:3],\n  option = list(c(\n    \"None\" = \"0\", \n    \"A Little\" = \"1\",\n    \"A lot\" = \"2\"\n  ))\n)\n\n# Generate questions\nshiny::tagList(\n  purrr::map(1:nrow(items), function(i) {\n    args &lt;- items[i, ]\n    sd_question(\n      id     = as.character(args$id),\n      type   = args$type,\n      label  = args$label,\n      option = unlist(args$option)\n    )\n  })\n)\n```\n\n\n\n\n\n\n\nA\n\n\n\n\n\nNone\n\n\n\n\n\nA Little\n\n\n\n\n\nA lot\n\n\n\n\n*\n\n\n\nB\n\n\n\n\n\nNone\n\n\n\n\n\nA Little\n\n\n\n\n\nA lot\n\n\n\n\n*\n\n\n\nC\n\n\n\n\n\nNone\n\n\n\n\n\nA Little\n\n\n\n\n\nA lot\n\n\n\n\n*",
+    "objectID": "server-options.html#required-questions",
+    "href": "server-options.html#required-questions",
+    "title": "Server Options",
+    "section": "Required questions",
+    "text": "Required questions\nBy default, no questions are required. However, you can make questions required by providing a vector containing the id of the questions to be required to the required_questions argument in sd_server(), like\n\nsd_server(\n1  required_questions = c(\"vehicle_ownership\", \"penguins_other\")\n)\n\n\n1\n\nThe required_questions argument takes a vector of question ids that you want to make required.\n\n\n\n\nThis will make the respondent unable to proceed until they have answered the required questions. It will also place a red asterisk (*) next to the question label to indicate that the question is required.\nYou can also make all questions required by setting all_questions_required = TRUE like this:\n\nsd_server(\n  all_questions_required = TRUE\n)",
     "crumbs": [
       "Documentation",
       "Reference Manuals",
-      "Tips"
+      "Server Options"
+    ]
+  },
+  {
+    "objectID": "server-options.html#starting-page",
+    "href": "server-options.html#starting-page",
+    "title": "Server Options",
+    "section": "Starting page",
+    "text": "Starting page\nWhen editing your survey, it can be helpful to start the survey at a specific page. You can define the starting page with the start_page argument in the sd_server() function, like this:\n\nsd_server(\n  start_page = \"page_id\"\n)",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Server Options"
+    ]
+  },
+  {
+    "objectID": "server-options.html#auto-scroll",
+    "href": "server-options.html#auto-scroll",
+    "title": "Server Options",
+    "section": "Auto scroll",
+    "text": "Auto scroll\nThe auto scroll feature allows the page to automatically scroll according to the user’s working progress and is enabled by default.\n\nsd_server(\n  auto_scroll = TRUE # Change to FALSE to switch it off.\n)",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Server Options"
+    ]
+  },
+  {
+    "objectID": "server-options.html#admin-page",
+    "href": "server-options.html#admin-page",
+    "title": "Server Options",
+    "section": "Admin page",
+    "text": "Admin page\n\n\n\n\n\n\nImportant\n\n\n\nThe admin page is currently under development and has limited functionality.\n\n\nBy default, the admin page is not created. But if you want one, set admin_page to TRUE inside the sd_server() function, like this:\n\nsd_server(\n  admin_page = TRUE\n)\n\nWhen the admin page is enabled, you will be able to access the page by adding ?admin to the end of the survey URL, e.g. https://myname.shinyapps.io/?admin. This will display a login page with a single “Password” parameter, which is the password set using sd_set_password(). See the Password page for details.\nThe admin page has the following features:\n\nPause Survey: Once clicked, the Shiny app pauses all instances replacing questions with a placeholder page.\nPause DB: Once clicked, the all database uploads will be paused. You can still take the survey, but the data will not be updated in the database.\nDownload Data: Download the most recent table instance from the database as a .csv file.\nAdmin Logout and Return to Survey: Once clicked, the admin page will be logged out and the survey will be returned to the start page.\nSurvey Data Preview: View the latest instance of the database table.",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Server Options"
+    ]
+  },
+  {
+    "objectID": "server-options.html#rating-question",
+    "href": "server-options.html#rating-question",
+    "title": "Server Options",
+    "section": "Rating question",
+    "text": "Rating question\nYou may want to add a rating question by the end of the survey to collect user reflections. Simply set rate_survey to TRUE (Default to FALSE):\n\nsd_server(\n  rate_survey = TRUE\n)\n\nSurvey rating is triggered by the “Exit Survey” button by the end of the survey. If you want to implement the survey rating, make sure you define the Exit Button by the end of the survey using the sd_close() function, and then define rate_survey = TRUE in sd_server().\nBelow are the TRUE and FALSE cases for rate_survey:\n\nTRUEFALSE\n\n\nIf rate_survey is TRUE, a survey rating question will pop up:\n\n\n\n\n\nIf rate_survey is FALSE, a confirm exit dialog box will pop up:",
+    "crumbs": [
+      "Documentation",
+      "Reference Manuals",
+      "Server Options"
     ]
   },
   {

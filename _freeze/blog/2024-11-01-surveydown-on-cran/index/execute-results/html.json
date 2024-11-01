@@ -1,0 +1,15 @@
+{
+  "hash": "49cb6b206f3cd69184ea0487e35688ae",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: surveydown is on CRAN!\ndescription: |\n  With the release of v0.4.0, surveydown is now on CRAN 🎉!\ndate: '2024-11-01'\nimage: \"image.png\"\ntwitter-card:\n  creator: \"@johnhelveston\"\n  site: \"@johnhelveston\"\n  image: image.png\n  card-style: summary_large_image\n  image-width: 150\n  image-height: 150\ncategories:\n  - R\n  - CRAN\nformat: html\nexecute: \n  eval: false\ntoc: true\nlightbox: true\ndraft: true\n---\n\n\n\nWe have some exciting news to share! With the release of v0.4.0, surveydown is now on CRAN 🎉!\n\nYou can now install surveydown from CRAN using the usual `install.packages()` function:\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\ninstall.packages(\"surveydown\")\n```\n:::\n\n\n\nWhile this is a nice convenience, I also wanted to take the opportunity in this blog post to highlight some of the improvements and new features made in v0.4.0.\n\n## New functions / features\n\nWe added a whole bunch of new functions and features since v0.3.0. \n\nIn `sd_question()`, we added a new `type = \"matrix\"` to support matrix type questions. \n\nWe added a new `sd_is_answered()` function to check if a question is answered or not. This is useful for conditional reactive questions.\n\nWe added two new helper functions, `sd_add_question()` and `sd_add_page()`, to instantly create question and page templates. \n\nWe also added a new `sd_completion_code()` function to allow users to define a completion code for their surveys.\n\nWe also added a new `sd_close()` function to close the survey.\n\n## Performance improvements \n\nWe streamlined survey updating. Before you needed to render the `survey.qmd` file yourself, but now you don't ever need to render it. \n\nWe also improved the database updating to be much more efficient.\n\n## Our first community contributions!\n\nUpdated `sd_output()` to now be able to output the chosen question values, chosen question option label(s), and the question label itself. Addresses feature request #128.\n\n- Enhance: `sd_server()` now has a new parameter called `auto_scroll`. It's default to `TRUE`, which enables auto scrolling that tracks the user's input, can be turned off by changing to `FALSE`. Thanks to the contribution from [Zain Hoda](https://github.com/zainhoda1).\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

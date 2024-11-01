@@ -1,0 +1,59 @@
+---
+title: surveydown is on CRAN!
+description: |
+  With the release of v0.4.0, surveydown is now on CRAN 🎉!
+date: '2024-11-01'
+image: "image.png"
+twitter-card:
+  creator: "@johnhelveston"
+  site: "@johnhelveston"
+  image: image.png
+  card-style: summary_large_image
+  image-width: 150
+  image-height: 150
+categories:
+  - R
+  - CRAN
+format: html
+execute: 
+  eval: false
+toc: true
+lightbox: true
+draft: true
+---
+
+We have some exciting news to share! With the release of v0.4.0, surveydown is now on CRAN 🎉!
+
+You can now install surveydown from CRAN using the usual `install.packages()` function:
+
+```{r}
+install.packages("surveydown")
+```
+
+While this is a nice convenience, I also wanted to take the opportunity in this blog post to highlight some of the improvements and new features made in v0.4.0.
+
+## New functions / features
+
+We added a whole bunch of new functions and features since v0.3.0. 
+
+In `sd_question()`, we added a new `type = "matrix"` to support matrix type questions. 
+
+We added a new `sd_is_answered()` function to check if a question is answered or not. This is useful for conditional reactive questions.
+
+We added two new helper functions, `sd_add_question()` and `sd_add_page()`, to instantly create question and page templates. 
+
+We also added a new `sd_completion_code()` function to allow users to define a completion code for their surveys.
+
+We also added a new `sd_close()` function to close the survey.
+
+## Performance improvements 
+
+We streamlined survey updating. Before you needed to render the `survey.qmd` file yourself, but now you don't ever need to render it. 
+
+We also improved the database updating to be much more efficient.
+
+## Our first community contributions!
+
+Updated `sd_output()` to now be able to output the chosen question values, chosen question option label(s), and the question label itself. Addresses feature request #128.
+
+- Enhance: `sd_server()` now has a new parameter called `auto_scroll`. It's default to `TRUE`, which enables auto scrolling that tracks the user's input, can be turned off by changing to `FALSE`. Thanks to the contribution from [Zain Hoda](https://github.com/zainhoda1).

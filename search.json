@@ -331,6 +331,13 @@
     "text": "Note\n\n\n\nHave a question but don’t see an answer here? Feel free to make a post on GitHub:\n\nPost a bug report or documentation issue on the GitHub repo issues page.\nAsk a question, make a feature request, start a discussion, or show off your project on the discussion board."
   },
   {
+    "objectID": "faq.html#why-is-my-survey-app-so-slow-when-starting",
+    "href": "faq.html#why-is-my-survey-app-so-slow-when-starting",
+    "title": "Frequently Asked Questions",
+    "section": "Why is my survey app so slow when starting?",
+    "text": "Why is my survey app so slow when starting?\nWhen a {surveydown} survey first runs, it checks for files in a _survey folder that contain the rendered content from your survey.qmd file. If any of those files are missing or if there have been changed detected in either your survey.qmd or app.R files, it will re-render your survey, which can take a bit longer. But this only happens once, and afterwards so long as no further changes have been made to your survey it will use the saved files in the _survey folder to launch your app, which will load almost instantly. So if your app launches slowly, just launch it again.\nIt is also important that you run your survey locally at least once after making any changes to your survey.qmd or app.R files. This will render all your survey content into the _survey folder, making it much faster when your deploy it."
+  },
+  {
     "objectID": "faq.html#how-do-i-make-a-question-required",
     "href": "faq.html#how-do-i-make-a-question-required",
     "title": "Frequently Asked Questions",

@@ -188,7 +188,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Questions</h2>
    
   <ul>
-  <li><a href="#how-do-i-make-a-question-required" id="toc-how-do-i-make-a-question-required" class="nav-link active" data-scroll-target="#how-do-i-make-a-question-required">How do I make a question required?</a></li>
+  <li><a href="#why-is-my-survey-app-so-slow-when-starting" id="toc-why-is-my-survey-app-so-slow-when-starting" class="nav-link active" data-scroll-target="#why-is-my-survey-app-so-slow-when-starting">Why is my survey app so slow when starting?</a></li>
+  <li><a href="#how-do-i-make-a-question-required" id="toc-how-do-i-make-a-question-required" class="nav-link" data-scroll-target="#how-do-i-make-a-question-required">How do I make a question required?</a></li>
   <li><a href="#why-is-my-shinyapps-deployment-failing" id="toc-why-is-my-shinyapps-deployment-failing" class="nav-link" data-scroll-target="#why-is-my-shinyapps-deployment-failing">Why is my shinyapps deployment failing?</a></li>
   <li><a href="#why-cant-i-install-the-package" id="toc-why-cant-i-install-the-package" class="nav-link" data-scroll-target="#why-cant-i-install-the-package">Why can’t I install the package?</a></li>
   <li><a href="#how-to-set-a-password-for-my-surveydown-project-and-why-do-i-need-a-password" id="toc-how-to-set-a-password-for-my-surveydown-project-and-why-do-i-need-a-password" class="nav-link" data-scroll-target="#how-to-set-a-password-for-my-surveydown-project-and-why-do-i-need-a-password">How to set a password for my surveydown project, and why do I need a password?</a></li>
@@ -239,6 +240,11 @@ Note
 </ul>
 </div>
 </div>
+<section id="why-is-my-survey-app-so-slow-when-starting" class="level2">
+<h2 class="anchored" data-anchor-id="why-is-my-survey-app-so-slow-when-starting">Why is my survey app so slow when starting?</h2>
+<p>When a {surveydown} survey first runs, it checks for files in a <code>_survey</code> folder that contain the rendered content from your <code>survey.qmd</code> file. If any of those files are missing or if there have been changed detected in either your <code>survey.qmd</code> or <code>app.R</code> files, it will re-render your survey, which can take a bit longer. But this only happens once, and afterwards so long as no further changes have been made to your survey it will use the saved files in the <code>_survey</code> folder to launch your app, which will load almost instantly. So if your app launches slowly, just launch it again.</p>
+<p>It is also important that you run your survey locally at least once after making any changes to your <code>survey.qmd</code> or <code>app.R</code> files. This will render all your survey content into the <code>_survey</code> folder, making it much faster when your deploy it.</p>
+</section>
 <section id="how-do-i-make-a-question-required" class="level2">
 <h2 class="anchored" data-anchor-id="how-do-i-make-a-question-required">How do I make a question required?</h2>
 <p>Use the <code>required_questions</code> argument in <code>sd_server()</code> to control required responses (see the <a href="./server-options.html#required-questions">required questions</a> page for more details).</p>

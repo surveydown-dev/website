@@ -18,6 +18,12 @@ Have a question but don't see an answer here? Feel free to make a post on GitHub
 
 :::
 
+## Why is my survey app so slow when starting?
+
+When a {surveydown} survey first runs, it checks for files in a `_survey` folder that contain the rendered content from your `survey.qmd` file. If any of those files are missing or if there have been changed detected in either your `survey.qmd` or `app.R` files, it will re-render your survey, which can take a bit longer. But this only happens once, and afterwards so long as no further changes have been made to your survey it will use the saved files in the `_survey` folder to launch your app, which will load almost instantly. So if your app launches slowly, just launch it again.
+
+It is also important that you run your survey locally at least once after making any changes to your `survey.qmd` or `app.R` files. This will render all your survey content into the `_survey` folder, making it much faster when your deploy it.
+
 ## How do I make a question required?
 
 Use the `required_questions` argument in `sd_server()` to control required responses (see the [required questions](server-options.qmd#required-questions) page for more details).

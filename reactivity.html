@@ -416,11 +416,7 @@ How this works under the hood
 </div>
 <p>This will store the completion code in the survey data under the <code>completion_code</code> column.</p>
 <p>You can then display the completion code at the end of the survey using the <code>sd_output()</code> function in your <code>survey.qmd</code> file, like this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="in">Your code is: `r sd_output("completion_code", type = 'value')`</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<pre><code>Your code is: `&lt;span id="completion_code_value" class="shiny-text-output"&gt;&lt;/span&gt;`{=html}</code></pre>
 <p>This should render as something like this:</p>
 <blockquote class="blockquote">
 <p>Your code is: 7408931907</p>

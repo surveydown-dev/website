@@ -1,0 +1,126 @@
+---
+title: "System Translations"
+---
+
+Surveydown supports translations for system messages in multiple languages. This allows to customize the wording of system text elements such as button labels, and warnings, and to provide the language specific format for date type questions.
+
+The translation feature in surveydown allows you to customize your survey's system messages to better suit your audience's language preferences. Whether you use the built-in translations or provide your own custom system messages or translations, you can enhance the survey experience for your respondents.
+
+## Setting the Language
+
+To set the language of your survey, you can use the `language` argument in the `sd_server()` function in your `app.R` file. For example, to set the survey language to Spanish, you would write:
+
+```{r}
+server <- function(input, output, session) {
+  
+  sd_server(
+    language = "es"
+  )
+}
+```
+
+The `language` argument accepts any of the supported language codes. Surveydown comes with built-in translations for several languages:
+
+- English (`"en"`, default)
+- German (`"de"`)
+- Spanish (`"es"`)
+- French (`"fr"`)
+- Italian (`"it"`)
+
+These translations cover all system messages used in surveydown.
+
+## Custom Translations
+
+If you want to customize the system translations or provide translations in a language that is not supported by default, you can create a `translations.yml` file in the root folder of your survey project.
+
+In your root project directory, create a file named `translations.yml`. In this file, you can specify custom translations for any or all of the system messages in a specified language.
+
+The structure of the "translations.yml" file for all default English messages is as follows:
+
+```yaml
+en:
+  cancel: Cancel
+  confirm_exit: Confirm Exit
+  sure_exit: Are you sure you want to exit the survey?
+  submit_exit: Submit and Exit
+  warning: Warning
+  required: Please answer all required questions before proceeding.
+  rating_title: Before you go...
+  rating_text: 'Rate your survey experience:'
+  rating_scale: from 1-poor to 5-excellent
+  next: Next
+  exit: Exit Survey
+  close_tab: Please close this tab manually to exit the survey.
+  choose_option: Choose an option...
+  click: Click here
+  redirect: Redirecting in
+  seconds: seconds
+  new_tab: Opens in a new tab
+  redirect_error: 'Error: This text won''t trigger any redirection...'
+
+```
+
+You can include translations for nearly any language you prefer with the matching code. The keys represent the system message identifiers, and the values are the translated messages.
+
+### Using Custom Translations
+
+When you run your survey, surveydown will detect the `translations.yml` file in your root folder and use it to override the default translations. If you provide translations for a language not supported by default, you can use the `language` argument in `sd_server()` to set your custom language code.
+
+For example, suppose you added translations for Portuguese in your `translations.yml`:
+
+```yaml
+pt:
+  next: 'Próximo'
+  exit: 'Sair da Pesquisa'
+  # ... other messages
+```
+
+In your `app.R` file, set the language to Portuguese:
+
+```{r}
+server <- function(input, output, session) {
+  
+  sd_server(
+    language = "pt"
+  )
+}
+```
+
+It is also possible to have multiple translations for different translations in a single `translations.yml` file and simply select the required language one within the `sd_server()` function with the matching country code.
+
+### Overriding Specific Messages
+
+You don't have to provide translations for all messages. If you only want to change specific messages, you can provide translations only for those messages, and surveydown will use the default translations for any missing messages.
+
+For example, to customize only all "Next" button label in English:
+
+```yaml
+en:
+  next: 'Continue'
+```
+
+Since English is the default language, the language doesn't even have to be defined in the `sd_server()` function in this case.
+
+### Button Defaults
+
+The translations also apply to default labels in `sd_next()`, `sd_close()`, and `sd_redirect()`. For example, if you use `sd_next()` without specifying a `label`, it will use the translated label based on the chosen language.
+
+```{r}
+# In your survey.qmd file
+
+# This will display "Weiter" if language is set to "de"
+sd_next()
+```
+
+However, it is still possible to manually adjust the translations in the mentioned functions inside the `survey.qmd` file using the `label` argument for each case.
+
+## Notes
+
+- When providing custom translations, make sure the keys match exactly the expected message identifiers.
+- If you create the `translations.yml` file manually, please note that each text element containing a : character must be written in quotation marks and the last line must contain a line break.
+- If you provide an invalid language code in `language`, surveydown will fall back to English.
+- If a message is not translated in your `translations.yml` file, surveydown will use the default translation for that message.
+
+## Supported Language Codes
+
+Surveydown uses the languages supported by Shiny's `dateInput()` for date inputs. The full list of supported language codes can be found in the documentation for [`shiny::dateInput()`](https://shiny.posit.co/r/reference/shiny/1.7.0/dateinput). When setting the `language` argument, make sure to use a valid language code.

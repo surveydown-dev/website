@@ -3,7 +3,7 @@ on:
   push:
     branches: main
   schedule:
-    - cron: '0 5 * * *'  # Run every night
+    - cron: '0 5 * * *'
 jobs:
   build:
     runs-on: macos-latest
@@ -12,24 +12,25 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@v2
 
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
       - name: Install brew dependencies
         run: |
-          brew update
           brew install qpdf
-          brew install gfortran
+          brew install gcc
           brew install libgit2
 
       - uses: r-lib/actions/setup-r@v2
         with:
           r-version: '4.3.2'
           use-public-rspm: true
-          arch: 'x86_64'  # Explicitly set architecture
 
       - uses: quarto-dev/quarto-actions/setup@v2
 
       - name: Install required R packages
         run: |
-          install.packages(c("knitr", "rmarkdown", "htmltools", "markdown", "tinytable", "remotes"))
+          install.packages(c("knitr", "rmarkdown", "htmltools", "markdown", "tinytable", "remotes"), dependencies=TRUE)
         shell: Rscript {0}
 
       - name: Install custom package

@@ -352,59 +352,191 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>language</code> argument accepts any of the following <a href="#supported-language-codes">language codes</a>:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="st">"ar"</span>, <span class="st">"az"</span>, <span class="st">"bg"</span>, <span class="st">"bs"</span>, <span class="st">"ca"</span>, <span class="st">"cs"</span>, <span class="st">"cy"</span>, <span class="st">"da"</span>, <span class="st">"de"</span>, <span class="st">"el"</span>, <span class="st">"en"</span>,</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">"en-AU"</span>, <span class="st">"en-GB"</span>, <span class="st">"eo"</span>, <span class="st">"es"</span>, <span class="st">"et"</span>, <span class="st">"eu"</span>, <span class="st">"fa"</span>, <span class="st">"fi"</span>, <span class="st">"fo"</span>, <span class="st">"fr-CH"</span>,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">"fr"</span>, <span class="st">"gl"</span>, <span class="st">"he"</span>, <span class="st">"hr"</span>, <span class="st">"hu"</span>, <span class="st">"hy"</span>, <span class="st">"id"</span>, <span class="st">"is"</span>, <span class="st">"it-CH"</span>, <span class="st">"it"</span>, <span class="st">"ja"</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">"ka"</span>, <span class="st">"kh"</span>, <span class="st">"kk"</span>, <span class="st">"ko"</span>, <span class="st">"kr"</span>, <span class="st">"lt"</span>, <span class="st">"lv"</span>, <span class="st">"me"</span>, <span class="st">"mk"</span>, <span class="st">"mn"</span>, <span class="st">"ms"</span>, <span class="st">"nb"</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">"nl-BE"</span>, <span class="st">"nl"</span>, <span class="st">"no"</span>, <span class="st">"pl"</span>, <span class="st">"pt-BR"</span>, <span class="st">"pt"</span>, <span class="st">"ro"</span>, <span class="st">"rs-latin"</span>, <span class="st">"rs"</span>, <span class="st">"ru"</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">"sk"</span>, <span class="st">"sl"</span>, <span class="st">"sq"</span>, <span class="st">"sr-latin"</span>, <span class="st">"sr"</span>, <span class="st">"sv"</span>, <span class="st">"sw"</span>, <span class="st">"th"</span>, <span class="st">"tr"</span>, <span class="st">"uk"</span>, <span class="st">"vi"</span>,</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">"zh-CN"</span>, <span class="st">"zh-TW"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<ul>
+<li>
+<code>ar</code> - Arabic</li>
+<li>
+<code>az</code> - Azerbaijani</li>
+<li>
+<code>bg</code> - Bulgarian</li>
+<li>
+<code>bs</code> - Bosnian</li>
+<li>
+<code>ca</code> - Catalan</li>
+<li>
+<code>cs</code> - Czech</li>
+<li>
+<code>cy</code> - Welsh</li>
+<li>
+<code>da</code> - Danish</li>
+<li>
+<code>de</code> - German</li>
+<li>
+<code>el</code> - Greek</li>
+<li>
+<code>en</code> - English (Default)</li>
+<li>
+<code>en-AU</code> - English (Australia)</li>
+<li>
+<code>en-GB</code> - English (UK)</li>
+<li>
+<code>eo</code> - Esperanto</li>
+<li>
+<code>es</code> - Spanish</li>
+<li>
+<code>et</code> - Estonian</li>
+<li>
+<code>eu</code> - Basque</li>
+<li>
+<code>fa</code> - Persian</li>
+<li>
+<code>fi</code> - Finnish</li>
+<li>
+<code>fo</code> - Faroese</li>
+<li>
+<code>fr</code> - French</li>
+<li>
+<code>fr-CH</code> - French (Switzerland)</li>
+<li>
+<code>gl</code> - Galician</li>
+<li>
+<code>he</code> - Hebrew</li>
+<li>
+<code>hr</code> - Croatian</li>
+<li>
+<code>hu</code> - Hungarian</li>
+<li>
+<code>hy</code> - Armenian</li>
+<li>
+<code>id</code> - Indonesian</li>
+<li>
+<code>is</code> - Icelandic</li>
+<li>
+<code>it</code> - Italian</li>
+<li>
+<code>it-CH</code> - Italian (Switzerland)</li>
+<li>
+<code>ja</code> - Japanese</li>
+<li>
+<code>ka</code> - Georgian</li>
+<li>
+<code>kh</code> - Khmer</li>
+<li>
+<code>kk</code> - Kazakh</li>
+<li>
+<code>ko</code> - Korean</li>
+<li>
+<code>kr</code> - Korean</li>
+<li>
+<code>lt</code> - Lithuanian</li>
+<li>
+<code>lv</code> - Latvian</li>
+<li>
+<code>me</code> - Montenegrin</li>
+<li>
+<code>mk</code> - Macedonian</li>
+<li>
+<code>mn</code> - Mongolian</li>
+<li>
+<code>ms</code> - Malay</li>
+<li>
+<code>nb</code> - Norwegian Bokmål</li>
+<li>
+<code>nl</code> - Dutch</li>
+<li>
+<code>nl-BE</code> - Dutch (Belgium)</li>
+<li>
+<code>no</code> - Norwegian</li>
+<li>
+<code>pl</code> - Polish</li>
+<li>
+<code>pt</code> - Portuguese</li>
+<li>
+<code>pt-BR</code> - Portuguese (Brazil)</li>
+<li>
+<code>ro</code> - Romanian</li>
+<li>
+<code>rs</code> - Serbian</li>
+<li>
+<code>rs-latin</code> - Serbian (Latin)</li>
+<li>
+<code>ru</code> - Russian</li>
+<li>
+<code>sk</code> - Slovak</li>
+<li>
+<code>sl</code> - Slovenian</li>
+<li>
+<code>sq</code> - Albanian</li>
+<li>
+<code>sr</code> - Serbian</li>
+<li>
+<code>sr-latin</code> - Serbian (Latin)</li>
+<li>
+<code>sv</code> - Swedish</li>
+<li>
+<code>sw</code> - Swahili</li>
+<li>
+<code>th</code> - Thai</li>
+<li>
+<code>tr</code> - Turkish</li>
+<li>
+<code>uk</code> - Ukrainian</li>
+<li>
+<code>vi</code> - Vietnamese</li>
+<li>
+<code>zh-CN</code> - Chinese (Simplified)</li>
+<li>
+<code>zh-TW</code> - Chinese (Traditional)</li>
+</ul>
 <p>In addition, {surveydown} comes with built-in translations for the following languages:</p>
 <ul>
-<li>English (<code>"en"</code>, default)</li>
-<li>German (<code>"de"</code>)</li>
-<li>Spanish (<code>"es"</code>)</li>
-<li>French (<code>"fr"</code>)</li>
-<li>Italian (<code>"it"</code>)</li>
+<li>
+<code>en</code> - English (Default)</li>
+<li>
+<code>de</code> - German</li>
+<li>
+<code>es</code> - Spanish</li>
+<li>
+<code>fr</code> - French</li>
+<li>
+<code>it</code> - Italian</li>
 </ul>
 <p>These translations cover all system messages used in surveydown.</p>
 </section><section id="custom-messages" class="level2"><h2 class="anchored" data-anchor-id="custom-messages">Custom Messages</h2>
 <p>If you want to customize the system translations or provide translations in a language that is not yet supported, you can create a <code>translations.yml</code> file in the root folder of your survey project using the following function:</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">surveydown</span><span class="fu">::</span><span class="fu">sd_create_translations</span><span class="op">(</span>language <span class="op">=</span> <span class="st">'en'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">surveydown</span><span class="fu">::</span><span class="fu">sd_create_translations</span><span class="op">(</span>language <span class="op">=</span> <span class="st">'en'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This will create a file named <code>translations.yml</code> in your root project directory with the language set to whatever you provided as the <code>language</code> argument. You can modify any of the system messages in this file to be used in your survey.</p>
 <p>Below is an example of the <code>translations.yml</code> file for all default English messages. The keys represent the system message identifiers, and the values are the translated messages:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">en</span><span class="kw">:</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cancel</span><span class="kw">:</span><span class="at"> Cancel</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">confirm_exit</span><span class="kw">:</span><span class="at"> Confirm Exit</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">sure_exit</span><span class="kw">:</span><span class="at"> Are you sure you want to exit the survey?</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">submit_exit</span><span class="kw">:</span><span class="at"> Submit and Exit</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> Warning</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">required</span><span class="kw">:</span><span class="at"> Please answer all required questions before proceeding.</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rating_title</span><span class="kw">:</span><span class="at"> Before you go...</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rating_text</span><span class="kw">:</span><span class="at"> </span><span class="st">'Rate your survey experience:'</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rating_scale</span><span class="kw">:</span><span class="at"> from 1-poor to 5-excellent</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">next</span><span class="kw">:</span><span class="at"> Next</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">exit</span><span class="kw">:</span><span class="at"> Exit Survey</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">close_tab</span><span class="kw">:</span><span class="at"> Please close this tab manually to exit the survey.</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">choose_option</span><span class="kw">:</span><span class="at"> Choose an option...</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">click</span><span class="kw">:</span><span class="at"> Click here</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">redirect</span><span class="kw">:</span><span class="at"> Redirecting in</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">seconds</span><span class="kw">:</span><span class="at"> seconds</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">new_tab</span><span class="kw">:</span><span class="at"> Opens in a new tab</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">redirect_error</span><span class="kw">:</span><span class="at"> </span><span class="st">'Error: This text won</span><span class="sc">''</span><span class="st">t trigger any redirection...'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">en</span><span class="kw">:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cancel</span><span class="kw">:</span><span class="at"> Cancel</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">confirm_exit</span><span class="kw">:</span><span class="at"> Confirm Exit</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">sure_exit</span><span class="kw">:</span><span class="at"> Are you sure you want to exit the survey?</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">submit_exit</span><span class="kw">:</span><span class="at"> Submit and Exit</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> Warning</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">required</span><span class="kw">:</span><span class="at"> Please answer all required questions before proceeding.</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rating_title</span><span class="kw">:</span><span class="at"> Before you go...</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rating_text</span><span class="kw">:</span><span class="at"> </span><span class="st">'Rate your survey experience:'</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rating_scale</span><span class="kw">:</span><span class="at"> from 1-poor to 5-excellent</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">next</span><span class="kw">:</span><span class="at"> Next</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">exit</span><span class="kw">:</span><span class="at"> Exit Survey</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">close_tab</span><span class="kw">:</span><span class="at"> Please close this tab manually to exit the survey.</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">choose_option</span><span class="kw">:</span><span class="at"> Choose an option...</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">click</span><span class="kw">:</span><span class="at"> Click here</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">redirect</span><span class="kw">:</span><span class="at"> Redirecting in</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">seconds</span><span class="kw">:</span><span class="at"> seconds</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">new_tab</span><span class="kw">:</span><span class="at"> Opens in a new tab</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">redirect_error</span><span class="kw">:</span><span class="at"> </span><span class="st">'Error: This text won</span><span class="sc">''</span><span class="st">t trigger any redirection...'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>When you run your survey, {surveydown} will detect the <code>translations.yml</code> file in your root folder and use it to override the default translations. If you provide translations for a language not supported by default, you can use the <code>language</code> argument in <code>sd_server()</code> to set your custom language code.</p>
 <p>For example, suppose you added translations for Portuguese in your <code>translations.yml</code>:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span><span class="kw">:</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">next</span><span class="kw">:</span><span class="at"> </span><span class="st">'Próximo'</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">exit</span><span class="kw">:</span><span class="at"> </span><span class="st">'Sair da Pesquisa'</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">  # ... other messages</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span><span class="kw">:</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">next</span><span class="kw">:</span><span class="at"> </span><span class="st">'Próximo'</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">exit</span><span class="kw">:</span><span class="at"> </span><span class="st">'Sair da Pesquisa'</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">  # ... other messages</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In your <code>app.R</code> file, set the language to Portuguese:</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu">sd_server</span><span class="op">(</span></span>
 <span>    language <span class="op">=</span> <span class="st">"pt"</span></span>
 <span>  <span class="op">)</span></span>
@@ -414,13 +546,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="overriding-specific-messages" class="level2"><h2 class="anchored" data-anchor-id="overriding-specific-messages">Overriding Specific Messages</h2>
 <p>You don’t have to provide translations for all messages. If you only want to change specific messages, you can provide translations only for those messages, and {surveydown} will use the default translations for any missing messages.</p>
 <p>For example, to customize only all “Next” button label in English, you could include the following in your <code>translations.yml</code> file:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">en</span><span class="kw">:</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">next</span><span class="kw">:</span><span class="at"> </span><span class="st">'Continue'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">en</span><span class="kw">:</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">next</span><span class="kw">:</span><span class="at"> </span><span class="st">'Continue'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Since English is the default language, the language doesn’t even have to be defined in the <code>sd_server()</code> function in this case.</p>
 </section><section id="button-defaults" class="level2"><h2 class="anchored" data-anchor-id="button-defaults">Button Defaults</h2>
 <p>The translations also apply to default labels in <code>sd_next()</code>, <code>sd_close()</code>, and <code>sd_redirect()</code>. For example, if you use <code>sd_next()</code> without specifying a <code>label</code>, it will use the translated label based on the chosen language.</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># In your survey.qmd file</span></span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># In your survey.qmd file</span></span>
 <span></span>
 <span><span class="co"># This will display "Weiter" if language is set to "de"</span></span>
 <span><span class="fu">sd_next</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

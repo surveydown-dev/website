@@ -7,7 +7,7 @@ on:
     - cron: '0 5 * * *'
 jobs:
   build:
-    runs-on: macos-13
+    runs-on: macos-12
     steps:
       - uses: actions/checkout@v4
       - uses: r-lib/actions/setup-pandoc@v2
@@ -21,6 +21,7 @@ jobs:
         with:
           r-version: '4.3.2'
           use-public-rspm: true
+          arch: 'x86_64'
       - uses: quarto-dev/quarto-actions/setup@v2
       - name: Query dependencies
         run: |

@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
-
+<meta name="generator" content="quarto-1.4.550">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="John Paul Helveston">
 <meta name="dcterms.date" content="2024-08-28">
 <meta name="description" content="A how-to guide for using R to design and implement choice-based conjoint surveys using the surveydown R package">
-
-<title>Choice-based conjoint surveys in R with surveydown – surveydown.org</title>
+<title>surveydown.org - Choice-based conjoint surveys in R with surveydown</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -36,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -59,7 +56,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
@@ -80,8 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
-<script id="quarto-search-options" type="application/json">{
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -107,21 +102,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-<style>html{ scroll-behavior: smooth; }</style>
-<script src="../../site_libs/sw-buttons-group-0.8.7/buttons-group.js"></script>
-<script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-
-
-<meta property="og:title" content="Choice-based conjoint surveys in R with surveydown – surveydown.org">
+}</script><style>html{ scroll-behavior: smooth; }</style>
+<script src="../../site_libs/sw-buttons-group-0.8.7/buttons-group.js"></script><script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script><link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<meta property="og:title" content="surveydown.org - Choice-based conjoint surveys in R with surveydown">
 <meta property="og:description" content="A how-to guide for using R to design and implement choice-based conjoint surveys using the surveydown R package">
 <meta property="og:image" content="https://www.surveydown.org/blog/2024-08-28-choice-based-conjoint-surveys-with-surveydown/images/example.png">
 <meta property="og:site_name" content="https://surveydown.org">
 <meta property="og:locale" content="es_ES">
 <meta property="og:image:height" content="454">
 <meta property="og:image:width" content="1122">
-<meta name="twitter:title" content="Choice-based conjoint surveys in R with surveydown – surveydown.org">
+<meta name="twitter:title" content="surveydown.org - Choice-based conjoint surveys in R with surveydown">
 <meta name="twitter:description" content="A how-to guide for using R to design and implement choice-based conjoint surveys using the surveydown R package">
 <meta name="twitter:image" content="https://www.surveydown.org/blog/2024-08-28-choice-based-conjoint-surveys-with-surveydown/images/example.png">
 <meta name="twitter:creator" content="@johnhelveston">
@@ -130,25 +120,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="twitter:image-height" content="454">
 <meta name="twitter:image-width" content="1122">
 </head>
-
 <body class="docked nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">surveydown.org</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
@@ -165,8 +152,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text"><i class="fa-brands fa-r-project" aria-label="r-project"></i> Package</span></a>
   </li>  
 </ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item">
     <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
@@ -180,48 +167,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+</div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Contents</h2>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+<li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting started</a></li>
   <li><a href="#content-in-the-survey-body" id="toc-content-in-the-survey-body" class="nav-link" data-scroll-target="#content-in-the-survey-body">Content in the survey body</a></li>
   <li><a href="#defining-the-choice-questions" id="toc-defining-the-choice-questions" class="nav-link" data-scroll-target="#defining-the-choice-questions">Defining the choice questions</a></li>
-  <li><a href="#implementing-the-choice-questions" id="toc-implementing-the-choice-questions" class="nav-link" data-scroll-target="#implementing-the-choice-questions">Implementing the choice questions</a>
+  <li>
+<a href="#implementing-the-choice-questions" id="toc-implementing-the-choice-questions" class="nav-link" data-scroll-target="#implementing-the-choice-questions">Implementing the choice questions</a>
   <ul class="collapse">
-  <li><a href="#read-in-the-design-file" id="toc-read-in-the-design-file" class="nav-link" data-scroll-target="#read-in-the-design-file">1. Read in the design file</a></li>
+<li><a href="#read-in-the-design-file" id="toc-read-in-the-design-file" class="nav-link" data-scroll-target="#read-in-the-design-file">1. Read in the design file</a></li>
   <li><a href="#sample-and-store-a-random-respondent-id" id="toc-sample-and-store-a-random-respondent-id" class="nav-link" data-scroll-target="#sample-and-store-a-random-respondent-id">2. Sample and store a random respondent ID</a></li>
   <li><a href="#filter-the-design-for-the-respondentid" id="toc-filter-the-design-for-the-respondentid" class="nav-link" data-scroll-target="#filter-the-design-for-the-respondentid">3. Filter the design for the respondentID</a></li>
   <li><a href="#define-a-function-to-create-question-options" id="toc-define-a-function-to-create-question-options" class="nav-link" data-scroll-target="#define-a-function-to-create-question-options">4. Define a function to create question options</a></li>
   <li><a href="#create-the-options-for-each-choice-question" id="toc-create-the-options-for-each-choice-question" class="nav-link" data-scroll-target="#create-the-options-for-each-choice-question">5. Create the options for each choice question</a></li>
   <li><a href="#create-each-choice-question-6-in-total" id="toc-create-each-choice-question-6-in-total" class="nav-link" data-scroll-target="#create-each-choice-question-6-in-total">6. Create each choice question (6 in total)</a></li>
-  </ul></li>
+  </ul>
+</li>
   <li><a href="#preview-and-check" id="toc-preview-and-check" class="nav-link" data-scroll-target="#preview-and-check">Preview and check</a></li>
   <li><a href="#getting-the-data" id="toc-getting-the-data" class="nav-link" data-scroll-target="#getting-the-data">Getting the data</a></li>
-  </ul>
-</nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+  </ul></nav>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">Choice-based conjoint surveys in R with surveydown</h1>
   <div class="quarto-categories">
     <div class="quarto-category">R</div>
@@ -258,10 +237,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header>
-
-
-<div class="callout callout-style-default callout-important callout-titled">
+</header><div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -291,24 +267,22 @@ Note
 <p>The key component of a choice-based conjoint survey is asking repsondents to make choices from randomized sets of choice questions. So the hard part is figuring out a way to show each respondent a different set of randomized questions. This post shows how you can achieve this in surveydown.</p>
 <p>Throughout this post, I will use a demo survey about people’s preferences for apples with three attributes: <code>type</code>, <code>price</code>, and <code>freshness</code>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p>You can view the live demo survey <a href="https://surveydown.shinyapps.io/conjoint/">here</a>, and all files used to create the survey are on <a href="https://github.com/surveydown-dev/demo-choice-based-conjoint">this GitHub repo</a>.</p>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>If you’ve never used surveydown before, take a look at the <a href="https://surveydown.org/getting-started.html">Getting Started</a> page to get a quick introduction to the package and how to use it to make a survey.</p>
 <p>The basic concept is this:</p>
 <ol type="1">
 <li>Design your survey as a <a href="{{< url_quarto  >}}">Quarto</a> document using markdown and R code.</li>
 <li>Convert your survey into a <a href="{{< url_shiny  >}}">Shiny</a> app that can be hosted online and sent to respondents.</li>
 <li>Store your survey responses in a <a href="{{< url_supabase  >}}">Supabase</a> database.</li>
-</ol>
-</section>
-<section id="getting-started" class="level2">
-<h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
+</ol></section><section id="getting-started" class="level2"><h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
 <p>If you want to start from a blank slate, take a look at the <a href="https://surveydown.org/getting-started">Getting Started</a> documentation page.</p>
 <p>For this post, we recommend starting from the demo survey available at <a href="https://github.com/surveydown-dev/demo-choice-based-conjoint">this GitHub repo</a>. It provides an already working survey that you can modify to the needs of your conjoint survey.</p>
 <p>The demo repo has a lot of files in it, but the main files defining the survey itself are:</p>
 <ul>
-<li><code>survey.qmd</code>: The main body of the survey.</li>
-<li><code>app.R</code>: The app file containing the server logic implemented in the survey, including randomizing questions, connecting to a database, etc.</li>
+<li>
+<code>survey.qmd</code>: The main body of the survey.</li>
+<li>
+<code>app.R</code>: The app file containing the server logic implemented in the survey, including randomizing questions, connecting to a database, etc.</li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -323,120 +297,103 @@ Note
 <p>We recommend opening the <code>survey.Rproj</code> if you’re working in RStudio to make sure RStudio opens to the correct project folder.</p>
 </div>
 </div>
-</section>
-<section id="content-in-the-survey-body" class="level2">
-<h2 class="anchored" data-anchor-id="content-in-the-survey-body">Content in the survey body</h2>
-<p>After the setup code chunk where we load the surveydown package, we have a series of pages (defined with <code>:::</code> fences) that include markdown-formatted text and survey questions (defined with <code>sd_question()</code>). You can modify any of this content as you wish to suit the needs of your survey.</p>
-<p>In this demo, we have a few other examples included, like a conditionally displayed question (the <code>fav_fruit</code> question will not display if you choose “No” on the first question about liking fruit) as well as a question that skips people to the end (if you choose “blue” and not “red” on the <code>screening</code> page). The logic controlling the conditional display and skipping is defined with the <code>sd_skip_if()</code> function in the <code>app.R</code> file.</p>
+</section><section id="content-in-the-survey-body" class="level2"><h2 class="anchored" data-anchor-id="content-in-the-survey-body">Content in the survey body</h2>
+<p>After the setup code chunk where we load the surveydown package, we have a series of pages (defined with <code>:::</code> fences) that include markdown-formatted text and survey questions (defined with <code><a href="https://pkg.surveydown.org/reference/sd_question.html">sd_question()</a></code>). You can modify any of this content as you wish to suit the needs of your survey.</p>
+<p>In this demo, we have a few other examples included, like a conditionally displayed question (the <code>fav_fruit</code> question will not display if you choose “No” on the first question about liking fruit) as well as a question that skips people to the end (if you choose “blue” and not “red” on the <code>screening</code> page). The logic controlling the conditional display and skipping is defined with the <code><a href="https://pkg.surveydown.org/reference/sd_skip_if.html">sd_skip_if()</a></code> function in the <code>app.R</code> file.</p>
 <p>None of this is necessary for a conjoint survey, but often times these are features that you may want to include, such as screening people out of the survey if they don’t qualify to take it, so we include it for demonstration purposes.</p>
-</section>
-<section id="defining-the-choice-questions" class="level2">
-<h2 class="anchored" data-anchor-id="defining-the-choice-questions">Defining the choice questions</h2>
+</section><section id="defining-the-choice-questions" class="level2"><h2 class="anchored" data-anchor-id="defining-the-choice-questions">Defining the choice questions</h2>
 <p>The central component of every conjoint survey is the set of randomized choice questions. To implement these in surveydown, we pre-define our choice questions in a design file that we later use in the survey to select randomized sets of choice questions to display each respondent.</p>
 <p>We use the <a href="https://jhelvy.github.io/cbcTools/">cbcTools</a> package to create the pre-defined design file. The code to create the choice questions for this demo survey is in the <a href="https://github.com/surveydown-dev/demo-choice-based-conjoint/blob/main/make_choice_questions.R"><code>make_choice_questions.R</code></a> file in the demo repo. This code generates a data frame of randomized choice questions that we then save in the project directory as <code>choice_questions.csv</code>.</p>
-</section>
-<section id="implementing-the-choice-questions" class="level2">
-<h2 class="anchored" data-anchor-id="implementing-the-choice-questions">Implementing the choice questions</h2>
+</section><section id="implementing-the-choice-questions" class="level2"><h2 class="anchored" data-anchor-id="implementing-the-choice-questions">Implementing the choice questions</h2>
 <p>The choice questions are implemented at the top of the <code>server()</code> function in the <code>app.R</code> file in the demo repo. This code does the following steps:</p>
-<section id="read-in-the-design-file" class="level3">
-<h3 class="anchored" data-anchor-id="read-in-the-design-file">1. Read in the design file</h3>
+<section id="read-in-the-design-file" class="level3"><h3 class="anchored" data-anchor-id="read-in-the-design-file">1. Read in the design file</h3>
 <p>Pretty straightforward - this is one line to read in the <code>choice_questions.csv</code> design file that we saved in the project folder.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>design <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"choice_questions.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">design</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"choice_questions.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="sample-and-store-a-random-respondent-id" class="level3">
-<h3 class="anchored" data-anchor-id="sample-and-store-a-random-respondent-id">2. Sample and store a random respondent ID</h3>
+</section><section id="sample-and-store-a-random-respondent-id" class="level3"><h3 class="anchored" data-anchor-id="sample-and-store-a-random-respondent-id">2. Sample and store a random respondent ID</h3>
 <p>Since we want each respondent to see a different set of choice questions, we randomly sample a respondent ID from the set of all respondent IDs in the design file. We also need to keep track of this and store it in our response data so that later we can know what each respondent was actually shown.</p>
-<p>Since this is a value that we generated in the server (and not a value from a survey question to a respondent), we have to manually add it to the survey response data using <code>sd_store_value()</code>. Here we modified the name so that in the resulting survey data the column name will be <code>"respID"</code>.</p>
+<p>Since this is a value that we generated in the server (and not a value from a survey question to a respondent), we have to manually add it to the survey response data using <code><a href="https://pkg.surveydown.org/reference/sd_store_value.html">sd_store_value()</a></code>. Here we modified the name so that in the resulting survey data the column name will be <code>"respID"</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample a random respondentID</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>respondentID <span class="ot">&lt;-</span> <span class="fu">sample</span>(design<span class="sc">$</span>respID, <span class="dv">1</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Store the respondentID</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_store_value</span>(respondentID, <span class="st">"respID"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Sample a random respondentID</span></span>
+<span><span class="va">respondentID</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">design</span><span class="op">$</span><span class="va">respID</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Store the respondentID</span></span>
+<span><span class="fu">sd_store_value</span><span class="op">(</span><span class="va">respondentID</span>, <span class="st">"respID"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="filter-the-design-for-the-respondentid" class="level3">
-<h3 class="anchored" data-anchor-id="filter-the-design-for-the-respondentid">3. Filter the design for the respondentID</h3>
+</section><section id="filter-the-design-for-the-respondentid" class="level3"><h3 class="anchored" data-anchor-id="filter-the-design-for-the-respondentid">3. Filter the design for the respondentID</h3>
 <p>We create a subset dataframe called <code>df</code> that stores only the rows for the randomly chosen respondent ID. We also append the <code>"images/"</code> string onto the values in the <code>image</code> column as this will create the relative path to the images in our survey, e.g.&nbsp;<code>"images/fuji.jpg"</code> (all the images we show are in the <code>"images"</code> folder in the repo).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for the rows for the chosen respondentID</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> design <span class="sc">%&gt;%</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(respID <span class="sc">==</span> respondentID) <span class="sc">%&gt;%</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">image =</span> <span class="fu">paste0</span>(<span class="st">"images/"</span>, image))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Filter for the rows for the chosen respondentID</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">design</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">respID</span> <span class="op">==</span> <span class="va">respondentID</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>image <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"images/"</span>, <span class="va">image</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="define-a-function-to-create-question-options" class="level3">
-<h3 class="anchored" data-anchor-id="define-a-function-to-create-question-options">4. Define a function to create question options</h3>
+</section><section id="define-a-function-to-create-question-options" class="level3"><h3 class="anchored" data-anchor-id="define-a-function-to-create-question-options">4. Define a function to create question options</h3>
 <p>This is the most complex component in the server logic. Here we created a function that takes a dataframe and returns a named vector defining the options to show in each choice question. In this case, we only have 3 options per choice question, so each time we call this function we will use a small dataframe that has just 3 rows defining the 3 choice alternatives in a single choice question.</p>
 <p>The function does several things. First, it extracts three single-row data frames that store the values of each of the 3 alternatives (<code>alt1</code>, <code>alt2</code>, and <code>alt3</code>). It then creates an <code>options</code> vector that has just 3 values: <code>"option_1"</code>, <code>"option_2"</code>, and <code>"option_3"</code>. Then we have to define the names of each of those options. Remember that the <em>values</em> in the <code>options</code> vector are what gets stored in our resulting survey data based on what the respondent chooses, but the <em>names</em> are what respondents see. So in the context of a choice survey like this, we need to embed all of the attributes and their levels in the names of the <code>options</code> vector.</p>
-<p>We use the <code>glue()</code> function to easily inject the values stored in <code>alt1</code>, <code>alt2</code>, and <code>alt3</code> into our labels. The <code>glue()</code> function is similar to <code>paste()</code> in that is just concatenates object values into a string, but it has an easier syntax to work with. Anything inside <code>{}</code> brackets is evaluated, and the resulting value is inserted into the string. So for example, the line <code>glue("1 plus 1 equals {1+1}")</code> would produce the string <code>"1 plus 1 equals 2"</code>.</p>
+<p>We use the <code>glue()</code> function to easily inject the values stored in <code>alt1</code>, <code>alt2</code>, and <code>alt3</code> into our labels. The <code>glue()</code> function is similar to <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> in that is just concatenates object values into a string, but it has an easier syntax to work with. Anything inside <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code> brackets is evaluated, and the resulting value is inserted into the string. So for example, the line <code>glue("1 plus 1 equals {1+1}")</code> would produce the string <code>"1 plus 1 equals 2"</code>.</p>
 <p>In our case, we’re including some html code to insert an image of the apple type (<code>&lt;img src='{alt1$image}' width=100&gt;</code>), the apply type itself (<code>**Type**: {alt1$type}</code>), and the apple price (<code>**Price**: $ {alt1$price} / lb</code>).</p>
 <p>Notice also that we’re mixing markdown (e.g.&nbsp;<code>**Option 1**</code>) and html (e.g.&nbsp;<code>&lt;br&gt;</code>), which will all get rendered into proper html in the resulting shiny app. The full function looks like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to create the labels for a choice question</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># based on the values in df</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>make_cbc_options <span class="ot">&lt;-</span> <span class="cf">function</span>(df) {</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  alt1 <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span> <span class="fu">filter</span>(altID <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  alt2 <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span> <span class="fu">filter</span>(altID <span class="sc">==</span> <span class="dv">2</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  alt3 <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span> <span class="fu">filter</span>(altID <span class="sc">==</span> <span class="dv">3</span>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  options <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"option_1"</span>, <span class="st">"option_2"</span>, <span class="st">"option_3"</span>)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(options) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">glue</span>(<span class="st">"</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="st">      **Option 1**&lt;br&gt;</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;img src='{alt1$image}' width=100&gt;&lt;br&gt;</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="st">      **Type**: {alt1$type}&lt;br&gt;</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="st">      **Price**: $ {alt1$price} / lb</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="st">    "</span>),</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">glue</span>(<span class="st">"</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="st">      **Option 2**&lt;br&gt;</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;img src='{alt2$image}' width=100&gt;&lt;br&gt;</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="st">      **Type**: {alt2$type}&lt;br&gt;</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="st">      **Price**: $ {alt2$price} / lb</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="st">    "</span>),</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">glue</span>(<span class="st">"</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="st">      **Option 3**&lt;br&gt;</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;img src='{alt3$image}' width=100&gt;&lt;br&gt;</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="st">      **Type**: {alt3$type}&lt;br&gt;</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="st">      **Price**: $ {alt3$price} / lb</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="st">    "</span>)</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(options)</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Function to create the labels for a choice question</span></span>
+<span><span class="co"># based on the values in df</span></span>
+<span></span>
+<span><span class="va">make_cbc_options</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">alt1</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">altID</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="va">alt2</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">altID</span> <span class="op">==</span> <span class="fl">2</span><span class="op">)</span></span>
+<span>  <span class="va">alt3</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">altID</span> <span class="op">==</span> <span class="fl">3</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">options</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"option_1"</span>, <span class="st">"option_2"</span>, <span class="st">"option_3"</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">options</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="fu">glue</span><span class="op">(</span><span class="st">"</span></span>
+<span><span class="st">      **Option 1**&lt;br&gt;</span></span>
+<span><span class="st">      &lt;img src='{alt1$image}' width=100&gt;&lt;br&gt;</span></span>
+<span><span class="st">      **Type**: {alt1$type}&lt;br&gt;</span></span>
+<span><span class="st">      **Price**: $ {alt1$price} / lb</span></span>
+<span><span class="st">    "</span><span class="op">)</span>,</span>
+<span>    <span class="fu">glue</span><span class="op">(</span><span class="st">"</span></span>
+<span><span class="st">      **Option 2**&lt;br&gt;</span></span>
+<span><span class="st">      &lt;img src='{alt2$image}' width=100&gt;&lt;br&gt;</span></span>
+<span><span class="st">      **Type**: {alt2$type}&lt;br&gt;</span></span>
+<span><span class="st">      **Price**: $ {alt2$price} / lb</span></span>
+<span><span class="st">    "</span><span class="op">)</span>,</span>
+<span>    <span class="fu">glue</span><span class="op">(</span><span class="st">"</span></span>
+<span><span class="st">      **Option 3**&lt;br&gt;</span></span>
+<span><span class="st">      &lt;img src='{alt3$image}' width=100&gt;&lt;br&gt;</span></span>
+<span><span class="st">      **Type**: {alt3$type}&lt;br&gt;</span></span>
+<span><span class="st">      **Price**: $ {alt3$price} / lb</span></span>
+<span><span class="st">    "</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">options</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="create-the-options-for-each-choice-question" class="level3">
-<h3 class="anchored" data-anchor-id="create-the-options-for-each-choice-question">5. Create the options for each choice question</h3>
+</section><section id="create-the-options-for-each-choice-question" class="level3"><h3 class="anchored" data-anchor-id="create-the-options-for-each-choice-question">5. Create the options for each choice question</h3>
 <p>One of the benefits of making the function the way we did in the previous step is that we can now easily call it to generate the option vector for each of the 6 choice questions in <code>df</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the options for each choice question</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>cbc1_options <span class="ot">&lt;-</span> <span class="fu">make_cbc_options</span>(df <span class="sc">|&gt;</span> <span class="fu">filter</span>(qID <span class="sc">==</span> <span class="dv">1</span>))</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>cbc2_options <span class="ot">&lt;-</span> <span class="fu">make_cbc_options</span>(df <span class="sc">|&gt;</span> <span class="fu">filter</span>(qID <span class="sc">==</span> <span class="dv">2</span>))</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>cbc3_options <span class="ot">&lt;-</span> <span class="fu">make_cbc_options</span>(df <span class="sc">|&gt;</span> <span class="fu">filter</span>(qID <span class="sc">==</span> <span class="dv">3</span>))</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>cbc4_options <span class="ot">&lt;-</span> <span class="fu">make_cbc_options</span>(df <span class="sc">|&gt;</span> <span class="fu">filter</span>(qID <span class="sc">==</span> <span class="dv">4</span>))</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>cbc5_options <span class="ot">&lt;-</span> <span class="fu">make_cbc_options</span>(df <span class="sc">|&gt;</span> <span class="fu">filter</span>(qID <span class="sc">==</span> <span class="dv">5</span>))</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>cbc6_options <span class="ot">&lt;-</span> <span class="fu">make_cbc_options</span>(df <span class="sc">|&gt;</span> <span class="fu">filter</span>(qID <span class="sc">==</span> <span class="dv">6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create the options for each choice question</span></span>
+<span></span>
+<span><span class="va">cbc1_options</span> <span class="op">&lt;-</span> <span class="fu">make_cbc_options</span><span class="op">(</span><span class="va">df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">qID</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">cbc2_options</span> <span class="op">&lt;-</span> <span class="fu">make_cbc_options</span><span class="op">(</span><span class="va">df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">qID</span> <span class="op">==</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">cbc3_options</span> <span class="op">&lt;-</span> <span class="fu">make_cbc_options</span><span class="op">(</span><span class="va">df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">qID</span> <span class="op">==</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">cbc4_options</span> <span class="op">&lt;-</span> <span class="fu">make_cbc_options</span><span class="op">(</span><span class="va">df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">qID</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">cbc5_options</span> <span class="op">&lt;-</span> <span class="fu">make_cbc_options</span><span class="op">(</span><span class="va">df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">qID</span> <span class="op">==</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">cbc6_options</span> <span class="op">&lt;-</span> <span class="fu">make_cbc_options</span><span class="op">(</span><span class="va">df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">qID</span> <span class="op">==</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="create-each-choice-question-6-in-total" class="level3">
-<h3 class="anchored" data-anchor-id="create-each-choice-question-6-in-total">6. Create each choice question (6 in total)</h3>
+</section><section id="create-each-choice-question-6-in-total" class="level3"><h3 class="anchored" data-anchor-id="create-each-choice-question-6-in-total">6. Create each choice question (6 in total)</h3>
 <p>Finally, we now have everything we need to generate each choice question. Here we’re using the <code>mc_buttons</code> question type so that the labels we generated will be displayed on a large button, which looks good both on a computer and phone. We give the question a unique <code>id</code> (e.g.&nbsp;<code>cbc_q1</code>), and a label, and then set the <code>option</code> to the corresponding option vector we defined above.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type   =</span> <span class="st">'mc_buttons'</span>,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id     =</span> <span class="st">'cbc_q1'</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label  =</span> <span class="st">"(1 of 6) If these were your only options, which would you choose?"</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> cbc1_options</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ...and 5 more questions like this</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sd_question</span><span class="op">(</span></span>
+<span>  type   <span class="op">=</span> <span class="st">'mc_buttons'</span>,</span>
+<span>  id     <span class="op">=</span> <span class="st">'cbc_q1'</span>,</span>
+<span>  label  <span class="op">=</span> <span class="st">"(1 of 6) If these were your only options, which would you choose?"</span>,</span>
+<span>  option <span class="op">=</span> <span class="va">cbc1_options</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># ...and 5 more questions like this</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Remember that since the labels in the options are being <em>dynamically</em> generated on each new session (each respondent), they have to be created in the server, not in the main survey body. As a result, the <code>sd_question()</code> function must also be created in the server code (if you put this code in the main body, only one random set of choice options will be generated, and they’ll be the same for everyone).</p>
+<p>Remember that since the labels in the options are being <em>dynamically</em> generated on each new session (each respondent), they have to be created in the server, not in the main survey body. As a result, the <code><a href="https://pkg.surveydown.org/reference/sd_question.html">sd_question()</a></code> function must also be created in the server code (if you put this code in the main body, only one random set of choice options will be generated, and they’ll be the same for everyone).</p>
 <p>To display each question in the survey body, we use <code>sd_output("id", type = "question")</code>, changing <code>id</code> to each corresponding choice question we created. In the demo <code>survey.qmd</code> file, you’ll see that there are 6 choice questions displayed in the main survey body (each on their own page), and each of those 6 questions are defined in the <code>server()</code> function in the <code>app.R</code> file.</p>
 <p>When rendered, a choice question will look like this, with the values matching whatever alternative was chosen in the design file:</p>
 <div class="cell">
@@ -445,25 +402,21 @@ Note
 <div class="form-group shiny-input-container shiny-input-radiogroup shiny-input-container-inline" style="width:100%;">
 <label class="control-label" id="cbc_q1-label" for="cbc_q1"><p>(1 of 6) If these were your only options, which would you choose? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
 </label>
-<br>
-<div id="cbc_q1" class="radio-group-buttons">
+<br><div id="cbc_q1" class="radio-group-buttons">
 <div aria-labelledby="cbc_q1-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
 <div class="btn-group btn-group-toggle" role="group">
 <button class="btn radiobtn btn-default">
-<input type="radio" autocomplete="off" name="cbc_q1" value="option_1">
-<strong>Option 1</strong><br><img src="images/honeycrisp.jpg" width="100"><br><strong>Type</strong>: Honeycrisp<br><strong>Price</strong>: $ 1 / lb
+<input type="radio" autocomplete="off" name="cbc_q1" value="option_1"><strong>Option 1</strong><br><img src="images/honeycrisp.jpg" width="100"><br><strong>Type</strong>: Honeycrisp<br><strong>Price</strong>: $ 1 / lb
 </button>
 </div>
 <div class="btn-group btn-group-toggle" role="group">
 <button class="btn radiobtn btn-default">
-<input type="radio" autocomplete="off" name="cbc_q1" value="option_2">
-<strong>Option 2</strong><br><img src="images/fuji.jpg" width="100"><br><strong>Type</strong>: Fuji<br><strong>Price</strong>: $ 3 / lb
+<input type="radio" autocomplete="off" name="cbc_q1" value="option_2"><strong>Option 2</strong><br><img src="images/fuji.jpg" width="100"><br><strong>Type</strong>: Fuji<br><strong>Price</strong>: $ 3 / lb
 </button>
 </div>
 <div class="btn-group btn-group-toggle" role="group">
 <button class="btn radiobtn btn-default">
-<input type="radio" autocomplete="off" name="cbc_q1" value="option_3">
-<strong>Option 3</strong><br><img src="images/redDelicious.jpg" width="100"><br><strong>Type</strong>: Red Delicious<br><strong>Price</strong>: $ 2.5 / lb
+<input type="radio" autocomplete="off" name="cbc_q1" value="option_3"><strong>Option 3</strong><br><img src="images/redDelicious.jpg" width="100"><br><strong>Type</strong>: Red Delicious<br><strong>Price</strong>: $ 2.5 / lb
 </button>
 </div>
 </div>
@@ -479,6 +432,7 @@ Note
 </div>
 <p><br></p>
 <p>And that’s it! You now have 6 randomized choice questions!</p>
+<div>
 <!-- 
 ## Buttons versus tables 
 
@@ -525,7 +479,7 @@ kable(t(alts1), escape = FALSE) |>
 
 `````{=html}
 
-<table class="table table-striped table-hover table-condensed caption-top" data-quarto-postprocess="true" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table table-striped table-hover table-condensed" data-quarto-postprocess="true" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Option:</td>
@@ -637,44 +591,34 @@ Option 3
 </center>
 
  -->
-</section>
-</section>
-<section id="preview-and-check" class="level2">
-<h2 class="anchored" data-anchor-id="preview-and-check">Preview and check</h2>
-<p>The rest of the <code>server()</code> function in the <code>app.R</code> file has the remaining components we need, like any conditional display or skip logic. This is all standard features of any surveydown survey, so we won’t cover them in detail here and instead direct you to the <a href="https://surveydown.org/documentation">documentation</a> for details.</p>
-<p>But before you go live, it’s a good idea to do some quick testing. You can test your survey even without having it connected to a database by setting <code>ignore = TRUE</code> in the <code>sd_database()</code> function. Of course, you probably should also test it after connecting it to a database to ensure that responses are being properly stored.</p>
-<p>When testing, you might get an error - don’t panic! Read the terminal output carefully and debug. There’s a good chance you may have missed a bug somewhere in your server code. Look in your <code>app.R</code> file to see if you can spot the error.</p>
-</section>
-<section id="getting-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="getting-the-data">Getting the data</h2>
-<p>Once your survey is live and you start collecting responses, you can easily access your data with the <code>sd_get_data()</code> function. This is typically done in a separate R file, which might look something like this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(surveydown)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">sd_database</span>(</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">user   =</span> <span class="st">'postgres.axzkymswaxcasjdflkurrj'</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">host   =</span> <span class="st">'aws-0-us-east-1.pooler.supabase.com'</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">port   =</span> <span class="dv">5678</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">db_name =</span> <span class="st">'postgres'</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">table_name =</span> <span class="st">'my_table'</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">sd_get_data</span>(db)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Obviously your settings in <code>sd_database()</code> would need to match those of your Supabase database that you created for your survey.</p>
+</section></section><section id="preview-and-check" class="level2"><h2 class="anchored" data-anchor-id="preview-and-check">Preview and check</h2>
+<p>The rest of the <code>server()</code> function in the <code>app.R</code> file has the remaining components we need, like any conditional display or skip logic. This is all standard features of any surveydown survey, so we won’t cover them in detail here and instead direct you to the <a href="https://surveydown.org/documentation">documentation</a> for details.</p>
+<p>But before you go live, it’s a good idea to do some quick testing. You can test your survey even without having it connected to a database by setting <code>ignore = TRUE</code> in the <code><a href="https://pkg.surveydown.org/reference/sd_database.html">sd_database()</a></code> function. Of course, you probably should also test it after connecting it to a database to ensure that responses are being properly stored.</p>
+<p>When testing, you might get an error - don’t panic! Read the terminal output carefully and debug. There’s a good chance you may have missed a bug somewhere in your server code. Look in your <code>app.R</code> file to see if you can spot the error.</p>
+</section><section id="getting-the-data" class="level2"><h2 class="anchored" data-anchor-id="getting-the-data">Getting the data</h2>
+<p>Once your survey is live and you start collecting responses, you can easily access your data with the <code><a href="https://pkg.surveydown.org/reference/sd_get_data.html">sd_get_data()</a></code> function. This is typically done in a separate R file, which might look something like this:</p>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://pkg.surveydown.org">surveydown</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_database.html">sd_database</a></span><span class="op">(</span></span>
+<span>  user   <span class="op">=</span> <span class="st">'postgres.axzkymswaxcasjdflkurrj'</span>,</span>
+<span>  host   <span class="op">=</span> <span class="st">'aws-0-us-east-1.pooler.supabase.com'</span>,</span>
+<span>  port   <span class="op">=</span> <span class="fl">5678</span>,</span>
+<span>  db_name <span class="op">=</span> <span class="st">'postgres'</span>,</span>
+<span>  table_name <span class="op">=</span> <span class="st">'my_table'</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_get_data.html">sd_get_data</a></span><span class="op">(</span><span class="va">db</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Obviously your settings in <code><a href="https://pkg.surveydown.org/reference/sd_database.html">sd_database()</a></code> would need to match those of your Supabase database that you created for your survey.</p>
 <p>And that’s it! We hope this post was helpful, and do go check out the <a href="https://github.com/surveydown-dev/demo-choice-based-conjoint">this GitHub repo</a> to try out the demo yourself.</p>
 
 
-</section>
-
-
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 <ol>
 <li id="fn1"><p>Yes, people have <a href="https://www.emerald.com/insight/content/doi/10.1108/00070709610150879/full/html">actually done conjoint surveys on fruit</a> before.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</ol></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -853,7 +797,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -885,29 +840,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/www\.surveydown\.org");
@@ -915,15 +848,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
           // target, if specified
           link.setAttribute("target", "_blank");
           if (link.getAttribute("rel") === null) {
@@ -965,11 +893,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
+      return note.innerHTML;
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1244,25 +1168,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
-    <li class="nav-item">
+<li class="nav-item">
  Site made with <i class="bi bi-heart-fill"></i>, <a href="https://github.com/jhelvy/jhelvy_quarto" target="_blank"><i class="bi bi-git"></i></a>, and <a href="https://quarto.org/" target="_blank"><img src="https://quarto.org/favicon.png" width="12"> quarto</a>
   </li>  
 </ul>
-    </div>
+</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
-
-
 
 
 <script src="../../site_libs/quarto-html/zenscroll-min.js"></script>

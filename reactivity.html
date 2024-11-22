@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
-
+<meta name="generator" content="quarto-1.4.550">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
-<title>Reactivity – surveydown.org</title>
+<title>surveydown.org - Reactivity</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +30,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -56,7 +53,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -77,8 +73,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -104,16 +99,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-<style>html{ scroll-behavior: smooth; }</style>
-
-
-<meta property="og:title" content="Reactivity – surveydown.org">
+}</script><style>html{ scroll-behavior: smooth; }</style>
+<meta property="og:title" content="surveydown.org - Reactivity">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://www.surveydown.org/images/logo.ico">
 <meta property="og:site_name" content="https://surveydown.org">
 <meta property="og:locale" content="es_ES">
-<meta name="twitter:title" content="Reactivity – surveydown.org">
+<meta name="twitter:title" content="surveydown.org - Reactivity">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://www.surveydown.org/images/logo.png">
 <meta name="twitter:creator" content="@johnhelveston">
@@ -122,25 +114,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="twitter:image-height" content="1564">
 <meta name="twitter:image-width" content="1564">
 </head>
-
 <body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">surveydown.org</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
@@ -157,8 +146,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text"><i class="fa-brands fa-r-project" aria-label="r-project"></i> Package</span></a>
   </li>  
 </ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item">
     <a class="nav-link" href="./blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
@@ -172,30 +161,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+</div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./template.html">Reference Manuals</a></li><li class="breadcrumb-item"><a href="./reactivity.html">Reactivity</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="sidebar-menu-container"> 
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./documentation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Documentation</span></a>
@@ -215,14 +198,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
  <span class="menu-text">Reference Manuals</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./template.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Start with a Template</span></a>
@@ -250,6 +233,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./server-options.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Server Options</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./system-translations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">System Translations</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -319,34 +308,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#displaying-question-values-in-the-survey" id="toc-displaying-question-values-in-the-survey" class="nav-link active" data-scroll-target="#displaying-question-values-in-the-survey">Displaying question values in the survey</a></li>
+<li><a href="#displaying-question-values-in-the-survey" id="toc-displaying-question-values-in-the-survey" class="nav-link active" data-scroll-target="#displaying-question-values-in-the-survey">Displaying question values in the survey</a></li>
   <li><a href="#displaying-stored-values-e.g.-a-completion-code" id="toc-displaying-stored-values-e.g.-a-completion-code" class="nav-link" data-scroll-target="#displaying-stored-values-e.g.-a-completion-code">Displaying stored values (e.g.&nbsp;a completion code)</a></li>
   <li><a href="#displaying-the-same-value-in-multiple-places" id="toc-displaying-the-same-value-in-multiple-places" class="nav-link" data-scroll-target="#displaying-the-same-value-in-multiple-places">Displaying the same value in multiple places</a></li>
   <li><a href="#defining-questions-in-the-server-function" id="toc-defining-questions-in-the-server-function" class="nav-link" data-scroll-target="#defining-questions-in-the-server-function">Defining questions in the server function</a></li>
-  <li><a href="#randomizing-question-labels" id="toc-randomizing-question-labels" class="nav-link" data-scroll-target="#randomizing-question-labels">Randomizing question labels</a>
+  <li>
+<a href="#randomizing-question-labels" id="toc-randomizing-question-labels" class="nav-link" data-scroll-target="#randomizing-question-labels">Randomizing question labels</a>
   <ul class="collapse">
-  <li><a href="#live-randomization" id="toc-live-randomization" class="nav-link" data-scroll-target="#live-randomization">Live randomization</a></li>
+<li><a href="#live-randomization" id="toc-live-randomization" class="nav-link" data-scroll-target="#live-randomization">Live randomization</a></li>
   <li><a href="#pre-defined-randomization" id="toc-pre-defined-randomization" class="nav-link" data-scroll-target="#pre-defined-randomization">Pre-defined randomization</a></li>
-  </ul></li>
   </ul>
-</nav>
+</li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./template.html">Reference Manuals</a></li><li class="breadcrumb-item"><a href="./reactivity.html">Reactivity</a></li></ol></nav>
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./template.html">Reference Manuals</a></li><li class="breadcrumb-item"><a href="./reactivity.html">Reactivity</a></li></ol></nav><div class="quarto-title">
 <h1 class="title">Reactivity</h1>
 </div>
 
@@ -361,21 +346,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header>
-
-
-<p>Because surveydown renders to a Shiny app, it can take advantage of Shiny’s <a href="https://shiny.posit.co/r/articles/build/reactivity-overview/">reactivity</a> features. This means you can create reactive expressions and reactive values that update the survey in response to user input or other events.</p>
+</header><p>Because surveydown renders to a Shiny app, it can take advantage of Shiny’s <a href="https://shiny.posit.co/r/articles/build/reactivity-overview/">reactivity</a> features. This means you can create reactive expressions and reactive values that update the survey in response to user input or other events.</p>
 <p>This page demonstrates some common use cases for reactive programming in surveydown.</p>
-<section id="displaying-question-values-in-the-survey" class="level2">
-<h2 class="anchored" data-anchor-id="displaying-question-values-in-the-survey">Displaying question values in the survey</h2>
+<section id="displaying-question-values-in-the-survey" class="level2"><h2 class="anchored" data-anchor-id="displaying-question-values-in-the-survey">Displaying question values in the survey</h2>
 <p>A simple example of using a reactive value is displaying a question value somewhere else in the survey.</p>
 <p>For example, you might ask the respondent’s name in a question and then display their name somewhere else in the survey, like in a greeting message. First, you would ask the respondent’s name in a question in your <code>survey.qmd</code> file:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">"text"</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">"name"</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"What is your name?"</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sd_question</span><span class="op">(</span></span>
+<span>  type  <span class="op">=</span> <span class="st">"text"</span>,</span>
+<span>  id    <span class="op">=</span> <span class="st">"name"</span>,</span>
+<span>  label <span class="op">=</span> <span class="st">"What is your name?"</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then you can use the <code>sd_output()</code> function to display the value of the <code>"name"</code> question elsewhere in the survey. For example, you could display the name in a greeting message:</p>
 <div class="cell">
@@ -397,22 +378,20 @@ How this works under the hood
 </div>
 <div class="callout-body-container callout-body">
 <p>Every question has it’s own <code>id</code>. To access the <em>value</em> that a respondent chose, we can’t use the same <code>id</code>. To address this, whenever you create a question we automatically create an object stored as <code>id_value</code> to store the value chosen by the respondent.</p>
-<p>For example, if the question <code>id</code> was <code>"name"</code>, then the value would be stored as <code>"name_value"</code>. In the <code>sd_output()</code> function, when you use <code>type = "value"</code>, the function automatically appends this <code>_value</code> to the <code>id</code> to get the question <em>value</em> we want to display, then uses an appropriate <code>shiny</code> output function to display it, e.g.&nbsp;<code>shiny::textOutput()</code>.</p>
+<p>For example, if the question <code>id</code> was <code>"name"</code>, then the value would be stored as <code>"name_value"</code>. In the <code>sd_output()</code> function, when you use <code>type = "value"</code>, the function automatically appends this <code>_value</code> to the <code>id</code> to get the question <em>value</em> we want to display, then uses an appropriate <code>shiny</code> output function to display it, e.g.&nbsp;<code><a href="https://rdrr.io/pkg/shiny/man/textOutput.html">shiny::textOutput()</a></code>.</p>
 <p>You can also use <code>type = "question"</code> to display questions that are defined in the <code>server()</code> function in your <code>app.R</code> file (for example, see the <a href="#randomizing-question-labels">randomizing question labels section</a> below).</p>
 </div>
 </div>
-</section>
-<section id="displaying-stored-values-e.g.-a-completion-code" class="level2">
-<h2 class="anchored" data-anchor-id="displaying-stored-values-e.g.-a-completion-code">Displaying stored values (e.g.&nbsp;a completion code)</h2>
+</section><section id="displaying-stored-values-e.g.-a-completion-code" class="level2"><h2 class="anchored" data-anchor-id="displaying-stored-values-e.g.-a-completion-code">Displaying stored values (e.g.&nbsp;a completion code)</h2>
 <p>You can use <code>sd_output()</code> with <code>type = "value"</code> to display values that you stored in the <code>server()</code> function.</p>
 <p>For example, you might want to display a completion code at the end of the survey. You can do this by defining a completion code in the <code>server()</code> function and then storing it in the survey data using the <code>sd_store_value()</code> function.</p>
 <p>Since completion codes are often needed, we made a simple <code>sd_completion_code()</code> function that returns a random numeric completion code as a string. Here’s an example of how to use it:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a 10-digit random number completion code</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>completion_code <span class="ot">&lt;-</span> <span class="fu">sd_completion_code</span>(<span class="dv">10</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Store the completion code in the survey data</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_store_value</span>(completion_code)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Make a 10-digit random number completion code</span></span>
+<span><span class="va">completion_code</span> <span class="op">&lt;-</span> <span class="fu">sd_completion_code</span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Store the completion code in the survey data</span></span>
+<span><span class="fu">sd_store_value</span><span class="op">(</span><span class="va">completion_code</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This will store the completion code in the survey data under the <code>completion_code</code> column.</p>
 <p>You can then display the completion code at the end of the survey using the <code>sd_output()</code> function in your <code>survey.qmd</code> file, like this:</p>
@@ -423,14 +402,12 @@ How this works under the hood
 <blockquote class="blockquote">
 <p>Your code is: 7408931907</p>
 </blockquote>
-</section>
-<section id="displaying-the-same-value-in-multiple-places" class="level2">
-<h2 class="anchored" data-anchor-id="displaying-the-same-value-in-multiple-places">Displaying the same value in multiple places</h2>
+</section><section id="displaying-the-same-value-in-multiple-places" class="level2"><h2 class="anchored" data-anchor-id="displaying-the-same-value-in-multiple-places">Displaying the same value in multiple places</h2>
 <p>The <code>sd_output()</code> function can only be used once per each unique question <code>id</code> because the <code>id</code> gets used in the rendered HTML divs, and HTML with more than one element with the same id is invalid HTML. This is a general issue for Shiny - outputs can only be used once per each unique <code>id</code> (see <a href="https://github.com/rstudio/shiny/issues/743">this GitHub issue</a> on the topic).</p>
 <p>The solution that we use is to simply make a copy of the value and then display the copy (this is also the <a href="https://github.com/rstudio/shiny/issues/743#issuecomment-652397537">solution</a> on the GitHub issue linked above).</p>
 <p>To do so, in the server function in the <code>app.R</code> file use the <code>sd_copy_value()</code> function to create a copy of the value, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_copy_value</span>(<span class="at">id =</span> <span class="st">"name"</span>, <span class="at">id_copy =</span> <span class="st">"name_copy"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sd_copy_value</span><span class="op">(</span>id <span class="op">=</span> <span class="st">"name"</span>, id_copy <span class="op">=</span> <span class="st">"name_copy"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can then use the <code>sd_output()</code> function in your <code>survey.qmd</code> file to display both the original and copied values. For example:</p>
 <div class="cell">
@@ -456,43 +433,41 @@ Note
 <p>If you find this annoying, we agree! This is a bit of a hack and we are working on a better solution, but it is a limitation of Shiny that we have to live with, at least for now.</p>
 </div>
 </div>
-</section>
-<section id="defining-questions-in-the-server-function" class="level2">
-<h2 class="anchored" data-anchor-id="defining-questions-in-the-server-function">Defining questions in the server function</h2>
+</section><section id="defining-questions-in-the-server-function" class="level2"><h2 class="anchored" data-anchor-id="defining-questions-in-the-server-function">Defining questions in the server function</h2>
 <p>Often you will want to define questions where the label or options change based on the respondent’s answers to other questions. You can do this by defining the question in the server function and then displaying it in the <code>survey.qmd</code> file using the <code>sd_output()</code> function.</p>
 <p>For example, let’s say you want to ask a follow-up question based on the respondent’s answer to a previous question. To do this, you would define the first question in the <code>survey.qmd</code> file as usual, e.g.:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id     =</span> <span class="st">"pet_type"</span>,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type   =</span> <span class="st">"mc"</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label  =</span> <span class="st">"Which do you like more, dogs or cats?"</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(<span class="st">"Dogs"</span> <span class="ot">=</span> <span class="st">"dog"</span>, <span class="st">"Cats"</span> <span class="ot">=</span> <span class="st">"cat"</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sd_question</span><span class="op">(</span></span>
+<span>  id     <span class="op">=</span> <span class="st">"pet_type"</span>,</span>
+<span>  type   <span class="op">=</span> <span class="st">"mc"</span>,</span>
+<span>  label  <span class="op">=</span> <span class="st">"Which do you like more, dogs or cats?"</span>,</span>
+<span>  option <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Dogs"</span> <span class="op">=</span> <span class="st">"dog"</span>, <span class="st">"Cats"</span> <span class="op">=</span> <span class="st">"cat"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>My follow-up question is whether or not the respondent has a pet of the type they chose above. To do this, you would define the follow-up question in the <code>app.R</code> file’s <code>server()</code> function like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">observe</span>({</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    pet_type <span class="ot">&lt;-</span> input<span class="sc">$</span>pet_type</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Make the question label and options</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    label <span class="ot">&lt;-</span>glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"Are you a {pet_type} owner?"</span>)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    options <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'yes'</span>, <span class="st">'no'</span>)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(options)[<span class="dv">1</span>] <span class="ot">&lt;-</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"Yes, am a {pet_type} owner"</span>)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(options)[<span class="dv">2</span>] <span class="ot">&lt;-</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"No, I am not a {pet_type} owner"</span>)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Make the question</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd_question</span>(</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">type   =</span> <span class="st">"mc"</span>,</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">id     =</span> <span class="st">"pet_owner"</span>,</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">label  =</span> label,</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">option =</span> options</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_server</span>()</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<span></span>
+<span>  <span class="fu">observe</span><span class="op">(</span><span class="op">{</span></span>
+<span>    <span class="va">pet_type</span> <span class="op">&lt;-</span> <span class="va">input</span><span class="op">$</span><span class="va">pet_type</span></span>
+<span></span>
+<span>    <span class="co"># Make the question label and options</span></span>
+<span>    <span class="va">label</span> <span class="op">&lt;-</span><span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"Are you a {pet_type} owner?"</span><span class="op">)</span></span>
+<span>    <span class="va">options</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'yes'</span>, <span class="st">'no'</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">options</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"Yes, am a {pet_type} owner"</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">options</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"No, I am not a {pet_type} owner"</span><span class="op">)</span></span>
+<span></span>
+<span>    <span class="co"># Make the question</span></span>
+<span>    <span class="fu">sd_question</span><span class="op">(</span></span>
+<span>      type   <span class="op">=</span> <span class="st">"mc"</span>,</span>
+<span>      id     <span class="op">=</span> <span class="st">"pet_owner"</span>,</span>
+<span>      label  <span class="op">=</span> <span class="va">label</span>,</span>
+<span>      option <span class="op">=</span> <span class="va">options</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="fu">sd_server</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>pet_owner</code> question is a reactive question where the label and options will change based on the respondent’s answer to the <code>pet_type</code> question.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -515,24 +490,21 @@ Note
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_output(id = "pet_owner", type = "question")</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="randomizing-question-labels" class="level2">
-<h2 class="anchored" data-anchor-id="randomizing-question-labels">Randomizing question labels</h2>
+</section><section id="randomizing-question-labels" class="level2"><h2 class="anchored" data-anchor-id="randomizing-question-labels">Randomizing question labels</h2>
 <p>Showing a question with randomized labels is a common use case for reactive programming. There are at least two ways to achieve this.</p>
-<section id="live-randomization" class="level3">
-<h3 class="anchored" data-anchor-id="live-randomization">Live randomization</h3>
+<section id="live-randomization" class="level3"><h3 class="anchored" data-anchor-id="live-randomization">Live randomization</h3>
 <p>One approach is to generate the random labels in the server function “live”, meaning that the labels will be generated when the survey is first loaded. For example, let’s say in my server function I generate three random numbers between 1 and 100 and use them to create the option labels for a multiple choice question:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a vector of options</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>q1_options <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'option 1'</span>, <span class="st">'option 2'</span>, <span class="st">'option 3'</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Randomly sample 3 labels from 1 to 100</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>q1_labels <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">seq</span>(<span class="dv">100</span>), <span class="dv">3</span>) </span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign the labels to the options</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(q1_options) <span class="ot">&lt;-</span> q1_labels </span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>q1_options</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a vector of options</span></span>
+<span><span class="va">q1_options</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'option 1'</span>, <span class="st">'option 2'</span>, <span class="st">'option 3'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Randomly sample 3 labels from 1 to 100</span></span>
+<span><span class="va">q1_labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="co"># Assign the labels to the options</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">q1_options</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">q1_labels</span> </span>
+<span></span>
+<span><span class="va">q1_options</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt;        100         89         37 
 #&gt; "option 1" "option 2" "option 3"</code></pre>
@@ -541,12 +513,12 @@ Note
 <p>Remember that the names of the vector are the labels, so the respondents will see the numbers in the names of the above vector, and the values (<code>'option1'</code>, etc.) will be stored in the resulting survey data.</p>
 <p>To then use these options in a multiple choice question, you would use the <code>sd_question()</code> function also in the server function (<strong>not</strong> in the <code>survey.qmd</code> file) like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">"q1"</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"mc"</span>,  </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Which of these numbers is the largest?"</span>,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> q1_options</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sd_question</span><span class="op">(</span></span>
+<span>  id <span class="op">=</span> <span class="st">"q1"</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"mc"</span>,  </span>
+<span>  label <span class="op">=</span> <span class="st">"Which of these numbers is the largest?"</span>,</span>
+<span>  option <span class="op">=</span> <span class="va">q1_options</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>By defining this question inside the server function, the question will be created as a reactive question that can then be displayed in the <code>survey.qmd</code> file using the <code>sd_output()</code> function, like this:</p>
 <div class="cell">
@@ -556,27 +528,25 @@ Note
 </div>
 <p>One important caveat to this approach is that the random numbers that are generated are not automatically stored in the survey data (because they are generated live). If you needed to store the random numbers, you can use the <code>sd_store_value()</code> function, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_store_value</span>(q1_labels, <span class="at">id =</span> <span class="st">"q1_labels"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sd_store_value</span><span class="op">(</span><span class="va">q1_labels</span>, id <span class="op">=</span> <span class="st">"q1_labels"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This would store the numbers in the <code>q1_labels</code> column of the survey data, which would be concatenated into the single string: 100, 89, 37.</p>
 <p>You could alternatively use the <code>sd_store_value()</code> function to store each of the random numbers in separate columns, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_store_value</span>(q1_labels[<span class="dv">1</span>], <span class="at">id =</span> <span class="st">"q1_label_1"</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_store_value</span>(q1_labels[<span class="dv">2</span>], <span class="at">id =</span> <span class="st">"q1_label_2"</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_store_value</span>(q1_labels[<span class="dv">3</span>], <span class="at">id =</span> <span class="st">"q1_label_3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sd_store_value</span><span class="op">(</span><span class="va">q1_labels</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, id <span class="op">=</span> <span class="st">"q1_label_1"</span><span class="op">)</span></span>
+<span><span class="fu">sd_store_value</span><span class="op">(</span><span class="va">q1_labels</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, id <span class="op">=</span> <span class="st">"q1_label_2"</span><span class="op">)</span></span>
+<span><span class="fu">sd_store_value</span><span class="op">(</span><span class="va">q1_labels</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>, id <span class="op">=</span> <span class="st">"q1_label_3"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="pre-defined-randomization" class="level3">
-<h3 class="anchored" data-anchor-id="pre-defined-randomization">Pre-defined randomization</h3>
+</section><section id="pre-defined-randomization" class="level3"><h3 class="anchored" data-anchor-id="pre-defined-randomization">Pre-defined randomization</h3>
 <p>An alternative approach is to pre-define the randomized labels and store them in a separate design file, and then randomly select a set of labels for each respondent from the design file.</p>
 <p>For example, let’s generate 10 sets of 3 random numbers between 1 and 100 and store them in a data frame:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>design <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">each =</span> <span class="dv">3</span>),</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">numbers =</span> <span class="fu">unlist</span>(<span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="cf">function</span>(x) <span class="fu">sample</span>(<span class="fu">seq</span>(<span class="dv">100</span>), <span class="dv">3</span>)))</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(design)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">design</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, each <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,</span>
+<span>  numbers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">design</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt;   id numbers
 #&gt; 1  1      20
@@ -589,35 +559,35 @@ Note
 </div>
 <p>Now we can write this design to a csv file:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">write_csv</span>(design, <span class="st">"design.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv</a></span><span class="op">(</span><span class="va">design</span>, <span class="st">"design.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then in your server function in the <code>app.R</code> file, you could read in the design file and use it to randomize the labels for each question. Here the only thing you would need to keep track of the randomly chosen row id:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the design file</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>design <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"design.csv"</span>)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Randomly choose a row id</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>q1_id <span class="ot">&lt;-</span> <span class="fu">sample</span>(design<span class="sc">$</span>id, <span class="dv">1</span>)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Store the chosen row id in the survey data (here q1_id will be the column name)</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_store_value</span>(q1_id) </span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the design to get the chosen row</span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> design <span class="sc">|&gt;</span> </span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(id <span class="sc">==</span> q1_id) <span class="sc">|&gt;</span> </span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(numbers)</span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the options</span></span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>q1_options <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'option 1'</span>, <span class="st">'option 2'</span>, <span class="st">'option 3'</span>)</span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(q1_options) <span class="ot">&lt;-</span> numbers</span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the reactive question</span></span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">"q1"</span>,</span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"mc"</span>,  </span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Which of these numbers is the largest?"</span>,</span>
-<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> q1_options</span>
-<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Read in the design file</span></span>
+<span><span class="va">design</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"design.csv"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Randomly choose a row id</span></span>
+<span><span class="va">q1_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">design</span><span class="op">$</span><span class="va">id</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Store the chosen row id in the survey data (here q1_id will be the column name)</span></span>
+<span><span class="fu">sd_store_value</span><span class="op">(</span><span class="va">q1_id</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="co"># Filter the design to get the chosen row</span></span>
+<span><span class="va">numbers</span> <span class="op">&lt;-</span> <span class="va">design</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">id</span> <span class="op">==</span> <span class="va">q1_id</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">pull</span><span class="op">(</span><span class="va">numbers</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Create the options</span></span>
+<span><span class="va">q1_options</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'option 1'</span>, <span class="st">'option 2'</span>, <span class="st">'option 3'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">q1_options</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">numbers</span></span>
+<span></span>
+<span><span class="co"># Create the reactive question</span></span>
+<span><span class="fu">sd_question</span><span class="op">(</span></span>
+<span>  id <span class="op">=</span> <span class="st">"q1"</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"mc"</span>,  </span>
+<span>  label <span class="op">=</span> <span class="st">"Which of these numbers is the largest?"</span>,</span>
+<span>  option <span class="op">=</span> <span class="va">q1_options</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Once again, you would be able to then display this question in the <code>survey.qmd</code> file using the <code>sd_output()</code> function:</p>
 <div class="cell">
@@ -627,11 +597,7 @@ Note
 </div>
 
 
-</section>
-</section>
-
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -810,7 +776,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -842,29 +819,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/www\.surveydown\.org");
@@ -872,15 +827,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
           // target, if specified
           link.setAttribute("target", "_blank");
           if (link.getAttribute("rel") === null) {
@@ -922,11 +872,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
+      return note.innerHTML;
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1201,25 +1147,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
-    <li class="nav-item">
+<li class="nav-item">
  Site made with <i class="bi bi-heart-fill"></i>, <a href="https://github.com/jhelvy/jhelvy_quarto" target="_blank"><i class="bi bi-git"></i></a>, and <a href="https://quarto.org/" target="_blank"><img src="https://quarto.org/favicon.png" width="12"> quarto</a>
   </li>  
 </ul>
-    </div>
+</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
-
-
 
 
 <script src="site_libs/quarto-html/zenscroll-min.js"></script>

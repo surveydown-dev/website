@@ -322,7 +322,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#overriding-specific-messages" id="toc-overriding-specific-messages" class="nav-link" data-scroll-target="#overriding-specific-messages">Overriding Specific Messages</a></li>
   <li><a href="#button-defaults" id="toc-button-defaults" class="nav-link" data-scroll-target="#button-defaults">Button Defaults</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a></li>
-  <li><a href="#supported-language-codes" id="toc-supported-language-codes" class="nav-link" data-scroll-target="#supported-language-codes">Supported Language Codes</a></li>
+  <li><a href="#full-language-code-list" id="toc-full-language-code-list" class="nav-link" data-scroll-target="#full-language-code-list">Full Language Code List</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -341,7 +341,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>As of v0.4.2, {surveydown} supports the ability to set the system language for all system messages (i.e.&nbsp;text elements such as button labels and warnings) and to provide the language specific format for <a href="./question-types.html#date">date type questions</a>. You can also customize the system messages by providing a <code>translations.yml</code> file in your root project directory.</p>
+</header><p>As of v0.4.2, {surveydown} supports the ability to set the system language for all system messages (i.e.&nbsp;text elements such as button labels and warnings) and to provide the language specific format for <a href="./question-types.html#date">date type questions</a>. You can also <a href="./system-translations.html#custom-messages">customize</a> the system messages by providing a <code>translations.yml</code> file in your root project directory.</p>
 <section id="setting-the-language" class="level2"><h2 class="anchored" data-anchor-id="setting-the-language">Setting the Language</h2>
 <p>To set the language of your survey, you can use the <code>language</code> argument in the <code>sd_server()</code> function in your <code>app.R</code> file. For example, to set the survey language to Spanish, you would write:</p>
 <div class="cell">
@@ -351,7 +351,100 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="op">)</span></span>
 <span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The <code>language</code> argument accepts any of the following <a href="#supported-language-codes">language codes</a>:</p>
+<p>When setting the <code>language</code> argument, make sure to use a valid language code. The list of supported language codes is the same as those supported by Shiny’s <code>dateInput()</code> (a <a href="./system-translations.html#full-language-code-list">full list</a> of codes is provided at the bottom of this page).</p>
+<p>For now, {surveydown} comes with built-in translations for the following languages:</p>
+<ul>
+<li>
+<code>en</code> - English (Default)</li>
+<li>
+<code>de</code> - German</li>
+<li>
+<code>es</code> - Spanish</li>
+<li>
+<code>fr</code> - French</li>
+<li>
+<code>it</code> - Italian</li>
+<li>
+<code>zh-CN</code> - Chinese (Simplified)</li>
+</ul>
+<p>These translations cover all system messages, meaning you can simply set the language and all default messages should be in the chosen language.</p>
+</section><section id="custom-messages" class="level2"><h2 class="anchored" data-anchor-id="custom-messages">Custom Messages</h2>
+<p>If you want to customize the system translations or provide translations in a language that is not yet supported, you can create a <code>translations.yml</code> file in the root folder of your survey project using the following function:</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">surveydown</span><span class="fu">::</span><span class="fu">sd_create_translations</span><span class="op">(</span>language <span class="op">=</span> <span class="st">'en'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This will create a file named <code>translations.yml</code> in your root project directory with the language set to whatever you provided as the <code>language</code> argument. You can modify any of the system messages in this file to be used in your survey.</p>
+<p>Below is an example of the <code>translations.yml</code> file for all default English messages. The keys represent the system message identifiers, and the values are the translated messages:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">en</span><span class="kw">:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cancel</span><span class="kw">:</span><span class="at"> Cancel</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">confirm_exit</span><span class="kw">:</span><span class="at"> Confirm Exit</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">sure_exit</span><span class="kw">:</span><span class="at"> Are you sure you want to exit the survey?</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">submit_exit</span><span class="kw">:</span><span class="at"> Submit and Exit</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> Warning</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">required</span><span class="kw">:</span><span class="at"> Please answer all required questions before proceeding.</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rating_title</span><span class="kw">:</span><span class="at"> Before you go...</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rating_text</span><span class="kw">:</span><span class="at"> </span><span class="st">'Rate your survey experience:'</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rating_scale</span><span class="kw">:</span><span class="at"> from 1-poor to 5-excellent</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">next</span><span class="kw">:</span><span class="at"> Next</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">exit</span><span class="kw">:</span><span class="at"> Exit Survey</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">close_tab</span><span class="kw">:</span><span class="at"> Please close this tab manually to exit the survey.</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">choose_option</span><span class="kw">:</span><span class="at"> Choose an option...</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">click</span><span class="kw">:</span><span class="at"> Click here</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">redirect</span><span class="kw">:</span><span class="at"> Redirecting in</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">seconds</span><span class="kw">:</span><span class="at"> seconds</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">new_tab</span><span class="kw">:</span><span class="at"> Opens in a new tab</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">redirect_error</span><span class="kw">:</span><span class="at"> </span><span class="st">'Error: This text won</span><span class="sc">''</span><span class="st">t trigger any redirection...'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When you run your survey, {surveydown} will detect the <code>translations.yml</code> file in your root folder and use it to override the default translations. If you provide translations for a language not supported by default, you can use the <code>language</code> argument in <code>sd_server()</code> to set your custom language code. Note that the chosen <code>language</code> still must be from the current <a href="./system-translations.html#full-language-code-list">list of supported languages</a>.</p>
+<p>For example, suppose you added translations for Portuguese in your <code>translations.yml</code>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span><span class="kw">:</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">next</span><span class="kw">:</span><span class="at"> </span><span class="st">'Próximo'</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">exit</span><span class="kw">:</span><span class="at"> </span><span class="st">'Sair da Pesquisa'</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">  # ... other messages</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In your <code>app.R</code> file, set the language to Portuguese:</p>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu">sd_server</span><span class="op">(</span></span>
+<span>    language <span class="op">=</span> <span class="st">"pt"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>It is also possible to have multiple translations for different translations in a single <code>translations.yml</code> file and simply select the required language one within the <code>sd_server()</code> function with the matching country code.</p>
+</section><section id="overriding-specific-messages" class="level2"><h2 class="anchored" data-anchor-id="overriding-specific-messages">Overriding Specific Messages</h2>
+<p>You don’t have to provide translations for <em>all</em> system messages. If you only want to change specific messages, you can provide translations only for those messages, and {surveydown} will use the default translations for any missing messages.</p>
+<p>For example, to customize only all “Next” button label in English, you could include the following in your <code>translations.yml</code> file:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">en</span><span class="kw">:</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">next</span><span class="kw">:</span><span class="at"> </span><span class="st">'Continue'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Since English is the default language, the language doesn’t even have to be defined in the <code>sd_server()</code> function in this case.</p>
+</section><section id="button-defaults" class="level2"><h2 class="anchored" data-anchor-id="button-defaults">Button Defaults</h2>
+<p>The translations also apply to default labels in <code>sd_next()</code>, <code>sd_close()</code>, and <code>sd_redirect()</code>. For example, if you use <code>sd_next()</code> without specifying a <code>label</code>, it will use the translated label based on the chosen language.</p>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># In your survey.qmd file</span></span>
+<span></span>
+<span><span class="co"># This will display "Weiter" if language is set to "de" in your app.R file</span></span>
+<span><span class="fu">sd_next</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>However, it is still possible to manually adjust the translations in the mentioned functions inside the <code>survey.qmd</code> file using the <code>label</code> argument for each case.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you separately render your <code>survey.qmd</code> file before running your <code>app.R</code> file, these buttons messages may appear in English in the rendered <code>survey.html</code> file in your root project folder. This is because the survey file doesn’t “know” the language setting until you locally run your <code>app.R</code> at least once. But don’t worry - just run the <code>app.R</code> file once and the language will then be set. Also, the language setting will always be used when the app is run regardless of what the local <code>survey.html</code> file looks like.</p>
+</div>
+</div>
+</section><section id="notes" class="level2"><h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li>When providing custom translations, make sure the keys match exactly the expected message identifiers.</li>
+<li>If you create the <code>translations.yml</code> file manually, please note that each text element containing a <code>:</code> character must be written in quotation marks and the last line must contain a line break.</li>
+<li>If you provide an invalid language code in <code>language</code>, {surveydown} will fall back to English.</li>
+<li>If a message is not translated in your <code>translations.yml</code> file, {surveydown} will use the default translation for that message.</li>
+</ul></section><section id="full-language-code-list" class="level2"><h2 class="anchored" data-anchor-id="full-language-code-list">Full Language Code List</h2>
+<p>The full list of supported language codes can be found in the documentation for <a href="https://shiny.posit.co/r/reference/shiny/1.7.0/dateinput"><code>shiny::dateInput()</code></a>. We list them here as a quick reference:</p>
 <ul>
 <li>
 <code>ar</code> - Arabic</li>
@@ -488,84 +581,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>
 <code>zh-TW</code> - Chinese (Traditional)</li>
 </ul>
-<p>In addition, {surveydown} comes with built-in translations for the following languages:</p>
-<ul>
-<li>
-<code>en</code> - English (Default)</li>
-<li>
-<code>de</code> - German</li>
-<li>
-<code>es</code> - Spanish</li>
-<li>
-<code>fr</code> - French</li>
-<li>
-<code>it</code> - Italian</li>
-</ul>
-<p>These translations cover all system messages used in surveydown.</p>
-</section><section id="custom-messages" class="level2"><h2 class="anchored" data-anchor-id="custom-messages">Custom Messages</h2>
-<p>If you want to customize the system translations or provide translations in a language that is not yet supported, you can create a <code>translations.yml</code> file in the root folder of your survey project using the following function:</p>
-<div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">surveydown</span><span class="fu">::</span><span class="fu">sd_create_translations</span><span class="op">(</span>language <span class="op">=</span> <span class="st">'en'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This will create a file named <code>translations.yml</code> in your root project directory with the language set to whatever you provided as the <code>language</code> argument. You can modify any of the system messages in this file to be used in your survey.</p>
-<p>Below is an example of the <code>translations.yml</code> file for all default English messages. The keys represent the system message identifiers, and the values are the translated messages:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">en</span><span class="kw">:</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cancel</span><span class="kw">:</span><span class="at"> Cancel</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">confirm_exit</span><span class="kw">:</span><span class="at"> Confirm Exit</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">sure_exit</span><span class="kw">:</span><span class="at"> Are you sure you want to exit the survey?</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">submit_exit</span><span class="kw">:</span><span class="at"> Submit and Exit</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> Warning</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">required</span><span class="kw">:</span><span class="at"> Please answer all required questions before proceeding.</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rating_title</span><span class="kw">:</span><span class="at"> Before you go...</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rating_text</span><span class="kw">:</span><span class="at"> </span><span class="st">'Rate your survey experience:'</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rating_scale</span><span class="kw">:</span><span class="at"> from 1-poor to 5-excellent</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">next</span><span class="kw">:</span><span class="at"> Next</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">exit</span><span class="kw">:</span><span class="at"> Exit Survey</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">close_tab</span><span class="kw">:</span><span class="at"> Please close this tab manually to exit the survey.</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">choose_option</span><span class="kw">:</span><span class="at"> Choose an option...</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">click</span><span class="kw">:</span><span class="at"> Click here</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">redirect</span><span class="kw">:</span><span class="at"> Redirecting in</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">seconds</span><span class="kw">:</span><span class="at"> seconds</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">new_tab</span><span class="kw">:</span><span class="at"> Opens in a new tab</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">redirect_error</span><span class="kw">:</span><span class="at"> </span><span class="st">'Error: This text won</span><span class="sc">''</span><span class="st">t trigger any redirection...'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>When you run your survey, {surveydown} will detect the <code>translations.yml</code> file in your root folder and use it to override the default translations. If you provide translations for a language not supported by default, you can use the <code>language</code> argument in <code>sd_server()</code> to set your custom language code.</p>
-<p>For example, suppose you added translations for Portuguese in your <code>translations.yml</code>:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span><span class="kw">:</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">next</span><span class="kw">:</span><span class="at"> </span><span class="st">'Próximo'</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">exit</span><span class="kw">:</span><span class="at"> </span><span class="st">'Sair da Pesquisa'</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">  # ... other messages</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In your <code>app.R</code> file, set the language to Portuguese:</p>
-<div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu">sd_server</span><span class="op">(</span></span>
-<span>    language <span class="op">=</span> <span class="st">"pt"</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>It is also possible to have multiple translations for different translations in a single <code>translations.yml</code> file and simply select the required language one within the <code>sd_server()</code> function with the matching country code.</p>
-</section><section id="overriding-specific-messages" class="level2"><h2 class="anchored" data-anchor-id="overriding-specific-messages">Overriding Specific Messages</h2>
-<p>You don’t have to provide translations for all messages. If you only want to change specific messages, you can provide translations only for those messages, and {surveydown} will use the default translations for any missing messages.</p>
-<p>For example, to customize only all “Next” button label in English, you could include the following in your <code>translations.yml</code> file:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">en</span><span class="kw">:</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">next</span><span class="kw">:</span><span class="at"> </span><span class="st">'Continue'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Since English is the default language, the language doesn’t even have to be defined in the <code>sd_server()</code> function in this case.</p>
-</section><section id="button-defaults" class="level2"><h2 class="anchored" data-anchor-id="button-defaults">Button Defaults</h2>
-<p>The translations also apply to default labels in <code>sd_next()</code>, <code>sd_close()</code>, and <code>sd_redirect()</code>. For example, if you use <code>sd_next()</code> without specifying a <code>label</code>, it will use the translated label based on the chosen language.</p>
-<div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># In your survey.qmd file</span></span>
-<span></span>
-<span><span class="co"># This will display "Weiter" if language is set to "de"</span></span>
-<span><span class="fu">sd_next</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>However, it is still possible to manually adjust the translations in the mentioned functions inside the <code>survey.qmd</code> file using the <code>label</code> argument for each case.</p>
-</section><section id="notes" class="level2"><h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<ul>
-<li>When providing custom translations, make sure the keys match exactly the expected message identifiers.</li>
-<li>If you create the <code>translations.yml</code> file manually, please note that each text element containing a <code>:</code> character must be written in quotation marks and the last line must contain a line break.</li>
-<li>If you provide an invalid language code in <code>language</code>, {surveydown} will fall back to English.</li>
-<li>If a message is not translated in your <code>translations.yml</code> file, {surveydown} will use the default translation for that message.</li>
-</ul></section><section id="supported-language-codes" class="level2"><h2 class="anchored" data-anchor-id="supported-language-codes">Supported Language Codes</h2>
-<p>Surveydown uses the languages supported by Shiny’s <code>dateInput()</code> for date inputs. The full list of supported language codes can be found in the documentation for <a href="https://shiny.posit.co/r/reference/shiny/1.7.0/dateinput"><code>shiny::dateInput()</code></a>. When setting the <code>language</code> argument, make sure to use a valid language code.</p>
 
 
 </section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

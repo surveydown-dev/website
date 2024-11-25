@@ -20,9 +20,9 @@ Have a question but don't see an answer here? Feel free to make a post on GitHub
 
 ## Why is my survey app so slow when starting?
 
-When a {surveydown} survey first runs, it checks for files in a `_survey` folder that contain the rendered content from your `survey.qmd` file. If any of those files are missing or if there have been changed detected in either your `survey.qmd` or `app.R` files, it will re-render your survey, which can take a bit longer. But this only happens once, and afterwards so long as no further changes have been made to your survey it will use the saved files in the `_survey` folder to launch your app, which will load almost instantly. So if your app launches slowly, just launch it again.
+When a {surveydown} survey first runs, it checks for files in a `_survey` folder that contain the rendered content from your `survey.qmd` file. If any of those files are missing or if changes have been detected in your `survey.qmd` or `app.R` files, it will re-render your survey, which can take a bit longer. But this only happens once, and afterwards so long as no further changes have been made to your survey files the app will use the saved content in the `_survey` folder to launch, which should load almost instantly. So if your app launches slowly, just close it and launch it again and you should immediately load. If you still see a slow launch, consider [posting an issue](https://github.com/surveydown-dev/surveydown/issues) to let us know that something might be wrong. 
 
-It is also important that you run your survey locally at least once after making any changes to your `survey.qmd` or `app.R` files. This will render all your survey content into the `_survey` folder, making it much faster when your deploy it.
+Also, it is important that you run your survey locally **at least once** before deploying it live. This will render all your survey content into the `_survey` folder, which will also get uploaded when you deploy it.
 
 ## How do I make a question required?
 
@@ -34,65 +34,43 @@ First, make sure everything is correctly defined, including your Supabase projec
 
 If you still encounter an error (e.g., the page shows the app failed to start, or you see the page but it doesn't run properly), try clearing your cache. The simplest way to do so is to **reboot your computer**. It may also help if you delete previously generated files, such as the `survey.html` file if you rendered it and the `rsconnect` folder. After re-rendering, you should be able to deploy the app without error.
 
-## Why can't I install the package?
+## How should I install the {surveydown} package?
 
-**1. Install from the repo (recommended)**
+You can install the {surveydown} package from [CRAN](https://cran.r-project.org/web/packages/surveydown/index.html) or the [GitHub repo](https://github.com/surveydown-dev/surveydown/) of the package source code. Follow [these instructions](installation.qmd#install-the-surveydown-r-package) for either approach.
 
-Usually, we install a package by the `install.packages()` function. For example:
-
-```{r}
-#| eval: false
-install.packages("tidyverse")
-```
-
-However, this function is only effective for packages on [CRAN ](https://cran.r-project.org), a database that stores the R packages. Since `surveydown` is still under construction, it's not available on CRAN yet (but it will be).
-
-Now the recommended way of installing `surveydown` is to install it directly from its GitHub repo:
-
-```{r}
-#| eval: false
-remotes::install_github("surveydown-dev/surveydown", force = TRUE)
-```
-
-**2. Download the source code and install locally (alternative)**
-
-If you still cannot have your package installed, it could be because that your path was managed by some package managing system like [Anaconda](https://www.anaconda.com). An alternative is to download the zip file of `surveydown` and install it locally.
+Sometimes neither of these approaches work, often because your path is managed by some package managing system like [Anaconda](https://www.anaconda.com). In this case, a third alternative is to download the zip file of the package source code and then install it locally.
 
 To download the zip file, go the the [surveydown repo](https://github.com/surveydown-dev/surveydown), click on the green "Code" button and click on "Download Zip", or simplify click on [this link](https://github.com/surveydown-dev/surveydown/archive/refs/heads/main.zip).
 
-Unzip this repo, and open the `surveydown.Rproj` file. In your R Console panel, run this code to install:
+Unzip this repo, then open the `surveydown.Rproj` file. In your R Console panel, run this code to install:
 
 ```{r}
-#| eval: false
+# install.packages('devtools') 
 devtools::install(force = TRUE)
 ```
 
-## How to set a password for my surveydown project, and why do I need a password?
+## How should I set a password for my surveydown project / why can't I see my password?
 
-In [Supabase](https://supabase.com) (the database we use for surveydown), we need a password to access the database and establish connection. In surveydown, we've prepared a function for you: `sd_set_password()`. This function helps you set up your password that can be used to connect to Supabase. It is also the password for your admin page.
+With [Supabase](https://supabase.com) (the database we use to store survey responses), you need a password to access the database (see the [Password](password.qmd) page for details). 
 
-**Below is what `sd_set_password()` exactly does:**
-
-For example, say your password is `MyPassword`. Then you define your password by:
+To connect to this database in a {surveydown} survey, you have to locally store this password in a secure location by running this function in your console:
 
 ```{r}
-#| eval: false
 sd_set_password("MyPassword")
 ```
 
-After you defined your password, **restart** your R session by clicking on "Session" on your menu and choose "Restart R".
-
-This will save your password into a newly created `.Renviron` file. The statement looks like this:
+This will store your password in a local `.Renviron` file and will look like this if you open it:
 
 ```{r}
-#| eval: false
 SURVEYDOWN_PASSWORD=MyPassword
 ```
 
-Then, this function also adds the `.Renviron` file into your `.gitignore` file (if you want to store your project on GitHub), so that it won't be pushed to your GitHub repo. Your password is always stored locally on your machine.
+::: {.callout-warning}
 
-You need to make sure that this password you defined matches with your Supabase project (in this case, it should be `MyPassword`).
+**DO NOT** edit this file. The {surveydown} package will search for it to find your Supabase password.
 
-There is no defined sequence in these 2 above moves. You can define your Supabase project password first, and then define your local password using `sd_set_password()`, or you can do it inversely. The only thing that matters is when you attempt to connect to Supabase using your survey, these 2 passwords should match.
+:::
 
-For more information about setting password, proceed to the [password](password.qmd) page.
+Also, you will need to **restart your R session** after running `sd_set_password()`. This is because the `.Renviron` file gets read when the R session launches, so if you create or modify your password using `sd_set_password()`, you will need to restart your R session for R to be able to "see" the `.Renviron` file containing your password.
+
+There is no defined sequence in setting your password on Supabase or for {surveydown} - you can define your Supabase project password first and then define your local password using `sd_set_password()`, or you can do it in the opposite order. The only thing that matters is when you attempt to connect to Supabase using your survey, these 2 passwords should match.

@@ -293,8 +293,8 @@ ul.task-list li input[type="checkbox"] {
 
     <script>
 
-      function styleCell_1a676yrx2i80ei1lercm(i, j, css_id) {
-          var table = document.getElementById("tinytable_1a676yrx2i80ei1lercm");
+      function styleCell_2ukuxovzfdb6m6umd6ii(i, j, css_id) {
+          var table = document.getElementById("tinytable_2ukuxovzfdb6m6umd6ii");
           var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
           if (cell) {
               console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
@@ -304,7 +304,7 @@ ul.task-list li input[type="checkbox"] {
           }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_1a676yrx2i80ei1lercm');
+        var table = document.getElementById('tinytable_2ukuxovzfdb6m6umd6ii');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -312,8 +312,8 @@ ul.task-list li input[type="checkbox"] {
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_1a676yrx2i80ei1lercm(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_1a676yrx2i80ei1lercm");
+      function spanCell_2ukuxovzfdb6m6umd6ii(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_2ukuxovzfdb6m6umd6ii");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -343,36 +343,36 @@ ul.task-list li input[type="checkbox"] {
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_vvg3nj6yizd7xbak2k2j',}, 
-          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_va5mg1t334v1pd2682xl',}, 
-          { positions: [ { i: 1, j: 0 }, { i: 15, j: 0 }, { i: 3, j: 0 }, { i: 17, j: 0 }, { i: 5, j: 0 }, { i: 19, j: 0 }, { i: 7, j: 0 }, { i: 21, j: 0 }, { i: 9, j: 0 }, { i: 11, j: 0 }, { i: 13, j: 0 },  ], css_id: 'tinytable_css_tgcazdcy6a337ux55zx2',}, 
-          { positions: [ { i: 23, j: 0 },  ], css_id: 'tinytable_css_rpwecp4k7jf3zn06iyd7',}, 
-          { positions: [ { i: 1, j: 1 }, { i: 15, j: 1 }, { i: 3, j: 1 }, { i: 17, j: 1 }, { i: 5, j: 1 }, { i: 19, j: 1 }, { i: 7, j: 1 }, { i: 21, j: 1 }, { i: 9, j: 1 }, { i: 11, j: 1 }, { i: 13, j: 1 },  ], css_id: 'tinytable_css_jkdtctef5v8012i91gx9',}, 
-          { positions: [ { i: 10, j: 1 }, { i: 12, j: 1 }, { i: 14, j: 1 }, { i: 2, j: 1 }, { i: 16, j: 1 }, { i: 4, j: 1 }, { i: 18, j: 1 }, { i: 6, j: 1 }, { i: 20, j: 1 }, { i: 8, j: 1 }, { i: 22, j: 1 },  ], css_id: 'tinytable_css_i2g4j8794pexituthswy',}, 
-          { positions: [ { i: 10, j: 0 }, { i: 12, j: 0 }, { i: 14, j: 0 }, { i: 2, j: 0 }, { i: 16, j: 0 }, { i: 4, j: 0 }, { i: 18, j: 0 }, { i: 6, j: 0 }, { i: 20, j: 0 }, { i: 8, j: 0 }, { i: 22, j: 0 },  ], css_id: 'tinytable_css_6vqd27c7pi7z8omuq6mg',}, 
-          { positions: [ { i: 23, j: 1 },  ], css_id: 'tinytable_css_0vv5wni7592ger4he3qv',}, 
+          { positions: [ { i: 10, j: 1 }, { i: 12, j: 1 }, { i: 14, j: 1 }, { i: 2, j: 1 }, { i: 16, j: 1 }, { i: 4, j: 1 }, { i: 18, j: 1 }, { i: 6, j: 1 }, { i: 20, j: 1 }, { i: 8, j: 1 }, { i: 22, j: 1 },  ], css_id: 'tinytable_css_yiqt7ytdje2fs52by25s',}, 
+          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_sxn9vdmz1tpm4ha8sv24',}, 
+          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_s7e8gj508zarn6dd0md4',}, 
+          { positions: [ { i: 23, j: 0 },  ], css_id: 'tinytable_css_j51bajl558o6wq7j9zh1',}, 
+          { positions: [ { i: 1, j: 0 }, { i: 15, j: 0 }, { i: 3, j: 0 }, { i: 17, j: 0 }, { i: 5, j: 0 }, { i: 19, j: 0 }, { i: 7, j: 0 }, { i: 21, j: 0 }, { i: 9, j: 0 }, { i: 11, j: 0 }, { i: 13, j: 0 },  ], css_id: 'tinytable_css_bdde8ypwy6cy0qftk1jw',}, 
+          { positions: [ { i: 23, j: 1 },  ], css_id: 'tinytable_css_a7prnv736ifvmvxaet6n',}, 
+          { positions: [ { i: 10, j: 0 }, { i: 12, j: 0 }, { i: 14, j: 0 }, { i: 2, j: 0 }, { i: 16, j: 0 }, { i: 4, j: 0 }, { i: 18, j: 0 }, { i: 6, j: 0 }, { i: 20, j: 0 }, { i: 8, j: 0 }, { i: 22, j: 0 },  ], css_id: 'tinytable_css_50dmj9t4m690929g3rn2',}, 
+          { positions: [ { i: 1, j: 1 }, { i: 15, j: 1 }, { i: 3, j: 1 }, { i: 17, j: 1 }, { i: 5, j: 1 }, { i: 19, j: 1 }, { i: 7, j: 1 }, { i: 21, j: 1 }, { i: 9, j: 1 }, { i: 11, j: 1 }, { i: 13, j: 1 },  ], css_id: 'tinytable_css_3swxhsc77njo6es0re6e',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  styleCell_1a676yrx2i80ei1lercm(cell.i, cell.j, group.css_id);
+                  styleCell_2ukuxovzfdb6m6umd6ii(cell.i, cell.j, group.css_id);
               });
           });
       });
     </script><style>
       /* tinytable css entries after */
-      .table td.tinytable_css_vvg3nj6yizd7xbak2k2j, .table th.tinytable_css_vvg3nj6yizd7xbak2k2j { font-size: 0.9em; text-align: center; border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_va5mg1t334v1pd2682xl, .table th.tinytable_css_va5mg1t334v1pd2682xl { font-size: 0.9em; border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_tgcazdcy6a337ux55zx2, .table th.tinytable_css_tgcazdcy6a337ux55zx2 { font-size: 0.9em; text-align: center; background-color: #ededed; }
-      .table td.tinytable_css_rpwecp4k7jf3zn06iyd7, .table th.tinytable_css_rpwecp4k7jf3zn06iyd7 { font-size: 0.9em; text-align: center; background-color: #ededed; border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_jkdtctef5v8012i91gx9, .table th.tinytable_css_jkdtctef5v8012i91gx9 { font-size: 0.9em; background-color: #ededed; }
-      .table td.tinytable_css_i2g4j8794pexituthswy, .table th.tinytable_css_i2g4j8794pexituthswy { font-size: 0.9em; }
-      .table td.tinytable_css_6vqd27c7pi7z8omuq6mg, .table th.tinytable_css_6vqd27c7pi7z8omuq6mg { font-size: 0.9em; text-align: center; }
-      .table td.tinytable_css_0vv5wni7592ger4he3qv, .table th.tinytable_css_0vv5wni7592ger4he3qv { font-size: 0.9em; background-color: #ededed; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_yiqt7ytdje2fs52by25s, .table th.tinytable_css_yiqt7ytdje2fs52by25s { font-size: 0.9em; }
+      .table td.tinytable_css_sxn9vdmz1tpm4ha8sv24, .table th.tinytable_css_sxn9vdmz1tpm4ha8sv24 { font-size: 0.9em; text-align: center; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_s7e8gj508zarn6dd0md4, .table th.tinytable_css_s7e8gj508zarn6dd0md4 { font-size: 0.9em; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_j51bajl558o6wq7j9zh1, .table th.tinytable_css_j51bajl558o6wq7j9zh1 { font-size: 0.9em; text-align: center; background-color: #ededed; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_bdde8ypwy6cy0qftk1jw, .table th.tinytable_css_bdde8ypwy6cy0qftk1jw { font-size: 0.9em; text-align: center; background-color: #ededed; }
+      .table td.tinytable_css_a7prnv736ifvmvxaet6n, .table th.tinytable_css_a7prnv736ifvmvxaet6n { font-size: 0.9em; background-color: #ededed; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_50dmj9t4m690929g3rn2, .table th.tinytable_css_50dmj9t4m690929g3rn2 { font-size: 0.9em; text-align: center; }
+      .table td.tinytable_css_3swxhsc77njo6es0re6e, .table th.tinytable_css_3swxhsc77njo6es0re6e { font-size: 0.9em; background-color: #ededed; }
     </style>
 <div class="container">
-      <table class="table table-striped" id="tinytable_1a676yrx2i80ei1lercm" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-striped" id="tinytable_2ukuxovzfdb6m6umd6ii" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
 <thead><tr>
 <th scope="col">Progress</th>
                 <th scope="col">Feature</th>
@@ -472,6 +472,10 @@ ul.task-list li input[type="checkbox"] {
 <a href="redirection.html">Redirect</a> users to an external url                                                          </td>
                 </tr>
 <tr>
+<td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
+                  <td>Store session ID in browser cookies to store user progress if they refresh the page                                       </td>
+                </tr>
+<tr>
 <td><img src="images/screwdriver-wrench.svg" alt="Screwdriver wrench" width="20" height="20"></td>
                   <td>
 <a href="config-options.html#admin-page">Admin page</a> with password login to preview / download data, pause survey, etc.</td>
@@ -479,10 +483,6 @@ ul.task-list li input[type="checkbox"] {
 <tr>
 <td><img src="images/screwdriver-wrench.svg" alt="Screwdriver wrench" width="20" height="20"></td>
                   <td>Form validation (limit input based on question type)                                                                      </td>
-                </tr>
-<tr>
-<td><img src="images/screwdriver-wrench.svg" alt="Screwdriver wrench" width="20" height="20"></td>
-                  <td>Cookies to store user progress                                                                                            </td>
                 </tr>
 </tbody>
 </table>

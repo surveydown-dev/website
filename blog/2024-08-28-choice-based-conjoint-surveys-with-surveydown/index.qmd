@@ -51,7 +51,7 @@ The key component of a choice-based conjoint survey is asking repsondents to mak
 
 Throughout this post, I will use a demo survey about people's preferences for apples with three attributes: `type`, `price`, and `freshness`.^[Yes, people have [actually done conjoint surveys on fruit](https://www.emerald.com/insight/content/doi/10.1108/00070709610150879/full/html) before.] 
 
-You can view the live demo survey [here](https://surveydown.shinyapps.io/conjoint/), and all files used to create the survey are on [this GitHub repo](https://github.com/surveydown-dev/demo-choice-based-conjoint).
+You can view the live demo survey [here](https://surveydown.shinyapps.io/conjoint/), and all files used to create the survey are on [this GitHub repo](https://github.com/surveydown-dev/demos/tree/main/conjoint-buttons).
 
 ## Introduction
 
@@ -67,7 +67,7 @@ The basic concept is this:
 
 If you want to start from a blank slate, take a look at the [Getting Started](https://surveydown.org/getting-started) documentation page. 
 
-For this post, we recommend starting from the demo survey available at [this GitHub repo](https://github.com/surveydown-dev/demo-choice-based-conjoint). It provides an already working survey that you can modify to the needs of your conjoint survey.
+For this post, we recommend starting from the demo survey available at [this GitHub repo](https://github.com/surveydown-dev/demos/tree/main/conjoint-buttons). It provides an already working survey that you can modify to the needs of your conjoint survey.
 
 The demo repo has a lot of files in it, but the main files defining the survey itself are:
 
@@ -92,7 +92,7 @@ None of this is necessary for a conjoint survey, but often times these are featu
 
 The central component of every conjoint survey is the set of randomized choice questions. To implement these in surveydown, we pre-define our choice questions in a design file that we later use in the survey to select randomized sets of choice questions to display each respondent.
 
-We use the [cbcTools](https://jhelvy.github.io/cbcTools/) package to create the pre-defined design file. The code to create the choice questions for this demo survey is in the [`make_choice_questions.R`](https://github.com/surveydown-dev/demo-choice-based-conjoint/blob/main/make_choice_questions.R) file in the demo repo. This code generates a data frame of randomized choice questions that we then save in the project directory as `choice_questions.csv`.
+We use the [cbcTools](https://jhelvy.github.io/cbcTools/) package to create the pre-defined design file. The code to create the choice questions for this demo survey is in the [`1_make_choice_questions.R`](https://github.com/surveydown-dev/demos/blob/main/conjoint-buttons/code/1_make_choice_questions.R) file in the demo repo. This code generates a data frame of randomized choice questions that we then save in the project directory as `choice_questions.csv`.
 
 ## Implementing the choice questions
 
@@ -327,4 +327,4 @@ data <- sd_get_data(db)
 
 Obviously your settings in `sd_database()` would need to match those of your Supabase database that you created for your survey.
 
-And that's it! We hope this post was helpful, and do go check out the [this GitHub repo](https://github.com/surveydown-dev/demo-choice-based-conjoint) to try out the demo yourself.
+And that's it! We hope this post was helpful, and do go check out the [this GitHub repo](https://github.com/surveydown-dev/demos/blob/main/conjoint-buttons) to try out the demo yourself.

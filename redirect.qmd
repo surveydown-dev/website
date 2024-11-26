@@ -12,11 +12,7 @@ sd_setup()
 
 Like other operations, there are also two types of redirection: static and reactive. A **static** redirect provides a hard-coded URL, like [google.com](https://www.google.com), [apple.com](https://www.apple.com), etc. A **reactive** redirect grabs parameters from your survey URL and allows you to use them to construct a new redirect URL.
 
-We highly recommend you to watch the [video showcase](https://www.youtube.com/watch?v=Q4sQjkHm3do) and play with our [demo survey](https://github.com/surveydown-dev/demo-external-redirect), so that you can have a full understanding of how this works:
-
-<center>
-<a href="https://www.youtube.com/watch?v=Q4sQjkHm3do" class="btn btn-primary" role="button"> Video Showcase </a> <a href="https://github.com/surveydown-dev/demo-external-redirect" class="btn btn-primary" role="button"> Demo Survey </a>
-</center>
+We recommend you try out our [demo survey](https://github.com/surveydown-dev/demos/tree/main/external-redirect) that showcases both static and reactive redirects so that you can have a full understanding of how this works:
 
 ## Static Redirect
 
@@ -58,7 +54,7 @@ sd_redirect(
 
 Reactive redirect is essentially useful if you deploy your survey on survey panels like [Prolific](https://www.prolific.com) or [Dynata](https://www.dynata.com). These survey panels usually use different IDs to identify survey respondents.
 
-To make reactive redirect work, you need to edit both in your **server chunk**, and your **survey body**. We'll use an example to explain the process. This is the same example in our [demo survey](https://github.com/surveydown-dev/demo-external-redirect).
+To make reactive redirect work, you need to edit both in your **server chunk**, and your **survey body**. We'll use an example to explain the process. This is the same example in our [demo survey](https://github.com/surveydown-dev/demos/tree/main/external-redirect).
 
 **Firstly**, in your **server chunk**, define `url_normal`. It is an [reactive expression](https://shiny.posit.co/r/getstarted/shiny-basics/lesson6/) in Shiny apps. You'll use the `sd_get_url_pars()` function to retrieve all the parameters in your survey URL, and concatenate with customized texts including id names, status values, etc. In this example, we defined 3 IDs: `id_a`, `id_b`, and `id_c`, which should be grabbed from your survey link.
 
@@ -69,10 +65,11 @@ url_normal <- reactive({
   id_a <- params["id_a"]
   id_b <- params["id_b"]
   id_c <- params["id_c"]
-  return(paste0("https://www.google.com?id_a=", id_a,
-                "id_b=", id_b,
-                "id_c=", id_c,
-                "&status=0")) # status of 0 indicates normal ending
+  return(paste0(
+    "https://www.google.com?id_a=", id_a,
+    "&id_b=", id_b,
+    "&id_c=", id_c,
+    "&status=0" # status of 0 indicates normal ending
 })
 ```
 

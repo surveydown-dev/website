@@ -338,10 +338,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 </header><p>Like other operations, there are also two types of redirection: static and reactive. A <strong>static</strong> redirect provides a hard-coded URL, like <a href="https://www.google.com">google.com</a>, <a href="https://www.apple.com">apple.com</a>, etc. A <strong>reactive</strong> redirect grabs parameters from your survey URL and allows you to use them to construct a new redirect URL.</p>
-<p>We highly recommend you to watch the <a href="https://www.youtube.com/watch?v=Q4sQjkHm3do">video showcase</a> and play with our <a href="https://github.com/surveydown-dev/demo-external-redirect">demo survey</a>, so that you can have a full understanding of how this works:</p>
-<center>
-<a href="https://www.youtube.com/watch?v=Q4sQjkHm3do" class="btn btn-primary" role="button"> Video Showcase </a> <a href="https://github.com/surveydown-dev/demo-external-redirect" class="btn btn-primary" role="button"> Demo Survey </a>
-</center>
+<p>We recommend you try out our <a href="https://github.com/surveydown-dev/demos/tree/main/external-redirect">demo survey</a> that showcases both static and reactive redirects so that you can have a full understanding of how this works:</p>
 <section id="static-redirect" class="level2"><h2 class="anchored" data-anchor-id="static-redirect">Static Redirect</h2>
 <p>In your <strong>survey body</strong>, use the <code>sd_redirect()</code> function and define your parameters. Below is an example of a redirect button that goes to <a href="https://www.google.com">google.com</a>.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
@@ -377,20 +374,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="reactive-redirect" class="level2"><h2 class="anchored" data-anchor-id="reactive-redirect">Reactive Redirect</h2>
 <p>Reactive redirect is essentially useful if you deploy your survey on survey panels like <a href="https://www.prolific.com">Prolific</a> or <a href="https://www.dynata.com">Dynata</a>. These survey panels usually use different IDs to identify survey respondents.</p>
-<p>To make reactive redirect work, you need to edit both in your <strong>server chunk</strong>, and your <strong>survey body</strong>. We’ll use an example to explain the process. This is the same example in our <a href="https://github.com/surveydown-dev/demo-external-redirect">demo survey</a>.</p>
+<p>To make reactive redirect work, you need to edit both in your <strong>server chunk</strong>, and your <strong>survey body</strong>. We’ll use an example to explain the process. This is the same example in our <a href="https://github.com/surveydown-dev/demos/tree/main/external-redirect">demo survey</a>.</p>
 <p><strong>Firstly</strong>, in your <strong>server chunk</strong>, define <code>url_normal</code>. It is an <a href="https://shiny.posit.co/r/getstarted/shiny-basics/lesson6/">reactive expression</a> in Shiny apps. You’ll use the <code>sd_get_url_pars()</code> function to retrieve all the parameters in your survey URL, and concatenate with customized texts including id names, status values, etc. In this example, we defined 3 IDs: <code>id_a</code>, <code>id_b</code>, and <code>id_c</code>, which should be grabbed from your survey link.</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Reactive expression that generates a url for a normal ending</span></span>
-<span><span class="va">url_normal</span> <span class="op">&lt;-</span> <span class="fu">reactive</span><span class="op">(</span><span class="op">{</span></span>
-<span>  <span class="va">params</span> <span class="op">&lt;-</span> <span class="fu">sd_get_url_pars</span><span class="op">(</span><span class="op">)</span></span>
-<span>  <span class="va">id_a</span> <span class="op">&lt;-</span> <span class="va">params</span><span class="op">[</span><span class="st">"id_a"</span><span class="op">]</span></span>
-<span>  <span class="va">id_b</span> <span class="op">&lt;-</span> <span class="va">params</span><span class="op">[</span><span class="st">"id_b"</span><span class="op">]</span></span>
-<span>  <span class="va">id_c</span> <span class="op">&lt;-</span> <span class="va">params</span><span class="op">[</span><span class="st">"id_c"</span><span class="op">]</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"https://www.google.com?id_a="</span>, <span class="va">id_a</span>,</span>
-<span>                <span class="st">"id_b="</span>, <span class="va">id_b</span>,</span>
-<span>                <span class="st">"id_c="</span>, <span class="va">id_c</span>,</span>
-<span>                <span class="st">"&amp;status=0"</span><span class="op">)</span><span class="op">)</span> <span class="co"># status of 0 indicates normal ending</span></span>
-<span><span class="op">}</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reactive expression that generates a url for a normal ending</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>url_normal <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  params <span class="ot">&lt;-</span> <span class="fu">sd_get_url_pars</span>()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  id_a <span class="ot">&lt;-</span> params[<span class="st">"id_a"</span>]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  id_b <span class="ot">&lt;-</span> params[<span class="st">"id_b"</span>]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  id_c <span class="ot">&lt;-</span> params[<span class="st">"id_c"</span>]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">paste0</span>(</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://www.google.com?id_a="</span>, id_a,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&amp;id_b="</span>, id_b,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&amp;id_c="</span>, id_c,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&amp;status=0"</span> <span class="co"># status of 0 indicates normal ending</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="er">}</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Secondly</strong>, also in your <strong>server chunk</strong>, create the redirect button using <code>sd_redirect()</code>. Note that we passed <code>url_normal()</code> value, with a pair of <strong>parentheses</strong>, to the <code>url</code> parameter.</p>
 <div class="cell">

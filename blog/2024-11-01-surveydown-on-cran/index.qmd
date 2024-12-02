@@ -22,7 +22,7 @@ lightbox: true
 draft: true
 ---
 
-We have some exciting news to share! With the release of v0.4.0, surveydown is now on CRAN 🎉!
+We have some exciting news to share - surveydown is on CRAN 🎉!
 
 You can now install surveydown from CRAN using the usual `install.packages()` function:
 
@@ -30,30 +30,37 @@ You can now install surveydown from CRAN using the usual `install.packages()` fu
 install.packages("surveydown")
 ```
 
-While this is a nice convenience, I also wanted to take the opportunity in this blog post to highlight some of the improvements and new features made in v0.4.0.
+Actually, surveydown has been on CRAN since v0.4.0, but we've been making so many updates that we're now already on v0.6.0 before I could even make a post about being on CRAN!
+
+So it seems about time we highlight some of the improvements and new features we've added recently.
 
 ## New functions / features
 
-We added a whole bunch of new functions and features since v0.3.0. 
+We added a whole bunch of new functions and features since v0.3.0, which was a major architectural change to the package. But the changes we made in v0.3.0 made it lot easier to support more features. Some quick highlights:
 
-In `sd_question()`, we added a new `type = "matrix"` to support matrix type questions. 
+- In `sd_question()`, we added a new `type = "matrix"` to support matrix type questions.
+- We added a new `sd_is_answered()` function to check if a question is answered or not. This is useful for conditional reactive questions defined in the server.
+- We added a new `sd_completion_code()` function that generates a random completion code for your survey.
+- We added a new `sd_close()` function to make a button that closes the survey.
+- [Stefan Munnes](https://github.com/StefanMunnes) [added](https://github.com/surveydown-dev/surveydown/pull/138) a translation feature that allows you to customize the system messages in the app to any language you want.
+- We modified how data handling is done so that each respondent's state in the survey can be restored if they refresh the browser window or close and re-open the window. Before, respondents would be sent back to the start of the survey and a new entry in the database would be created, so this features allows respondents to pause and come back to the survey without that happening.
+- We added two new helper functions, `sd_add_question()` and `sd_add_page()`, that make it easier to quickly create template questions and pages. They work like this:
 
-We added a new `sd_is_answered()` function to check if a question is answered or not. This is useful for conditional reactive questions.
-
-We added two new helper functions, `sd_add_question()` and `sd_add_page()`, to instantly create question and page templates. 
-
-We also added a new `sd_completion_code()` function to allow users to define a completion code for their surveys.
-
-We also added a new `sd_close()` function to close the survey.
+<center>
+<img src="sd_add.gif" width=700>
+</center>
 
 ## Performance improvements 
 
-We streamlined survey updating. Before you needed to render the `survey.qmd` file yourself, but now you don't ever need to render it. 
+One major improvement we've made is to streamline how the `survey.qmd` file is  updating. Before you needed to render the `survey.qmd` file yourself before running the `app.R` file, but now you actually never need to render it. All rendering is handled when you run the shiny app via the `app.R` file. And this rendering is "smart" too - it renders the `survey.qmd` file into an html file, then it parses that file for all of the content needed for the survey and stores each piece in a `_survey` folder. This folder is then what the shiny app uses to load the survey. If no changes are detected in the `survey.qmd` file or any of the components in the `_survey` folder, then the app will always load content from the pre-rendered content in the `_survey` folder, which will load nearly instantaneously! Only if you make a change to your survey will it be re-rendered, and again once that rendering is done once it won't run again until another change is detected. This results in
 
-We also improved the database updating to be much more efficient.
+We also improved the database updating to be much more efficient. It used to run a write operation to the database on every single question ineraction, but that slowed down the app significantly. Now the data is only written to the database on each page turn and when the survey is closed. This is a reasonable compromise that makes the app feel snappy while still ensuring that the data is saved even if the respondent accidentally closes the window.
 
 ## Our first community contributions!
 
-Updated `sd_output()` to now be able to output the chosen question values, chosen question option label(s), and the question label itself. Addresses feature request #128.
+Over the past few months, we've been getting a lot of contributions from the community! We've been able to merge a few pull requests that add some new features and fix some bugs. Here are some of the highlights:
 
-- Enhance: `sd_server()` now has a new parameter called `auto_scroll`. It's default to `TRUE`, which enables auto scrolling that tracks the user's input, can be turned off by changing to `FALSE`. Thanks to the contribution from [Zain Hoda](https://github.com/zainhoda1).
+- [Stefan Munnes](https://github.com/StefanMunnes) added a new translation feature that allows you to customize the system messages in the app to any language you want. He also helped us update `sd_output()` to be able to output the chosen question values, chosen question option label(s), and the question label itself. This addresses [feature request #128](https://github.com/orgs/surveydown-dev/discussions/128).
+- [Zain Hoda](https://github.com/zainhoda1) contributed a new `auto_scroll` parameter to the `sd_server()` function that allows you to turn off auto scrolling. This is useful if you have a lot of questions and want to make sure the respondent can see the entire question.
+
+We're excited to see what the community will build with surveydown! If you build something with surveydown, please let us know on the [GitHub Discussions](https://github.com/orgs/surveydown-dev/discussions) so we can highlight your work!

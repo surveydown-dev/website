@@ -293,15 +293,15 @@ ul.task-list li input[type="checkbox"] {
 <div class="text-center">
 <p><a href="./getting-started.html"><button type="button" class="btn btn-primary btn-lg">Click here to get started!</button></a></p>
 </div>
-</section><section id="features" class="level3"><h3 class="anchored" data-anchor-id="features">Features</h3>
+</section><section id="features-to-do" class="level3"><h3 class="anchored" data-anchor-id="features-to-do">Features &amp; To-Do</h3>
 <div class="cell">
 <div class="cell-output-display">
 <!-- preamble start -->
 
     <script>
 
-      function styleCell_zjp8hose67cmue1eiuhk(i, j, css_id) {
-          var table = document.getElementById("tinytable_zjp8hose67cmue1eiuhk");
+      function styleCell_tojbrqycu91x7s19zijd(i, j, css_id) {
+          var table = document.getElementById("tinytable_tojbrqycu91x7s19zijd");
           var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
           if (cell) {
               console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
@@ -311,7 +311,7 @@ ul.task-list li input[type="checkbox"] {
           }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_zjp8hose67cmue1eiuhk');
+        var table = document.getElementById('tinytable_tojbrqycu91x7s19zijd');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -319,8 +319,8 @@ ul.task-list li input[type="checkbox"] {
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_zjp8hose67cmue1eiuhk(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_zjp8hose67cmue1eiuhk");
+      function spanCell_tojbrqycu91x7s19zijd(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_tojbrqycu91x7s19zijd");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -350,125 +350,238 @@ ul.task-list li input[type="checkbox"] {
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: 0, j: 0 }, { i: 20, j: 0 },  ], css_id: 'tinytable_css_uztbx8y4zgsz89se3o6o',}, 
-          { positions: [ { i: 10, j: 0 }, { i: 8, j: 0 }, { i: 14, j: 0 }, { i: 2, j: 0 }, { i: 12, j: 0 }, { i: 4, j: 0 }, { i: 18, j: 0 }, { i: 6, j: 0 }, { i: 16, j: 0 },  ], css_id: 'tinytable_css_soysqhisuzkizk9rkxav',}, 
-          { positions: [ { i: 10, j: 1 }, { i: 8, j: 1 }, { i: 14, j: 1 }, { i: 2, j: 1 }, { i: 12, j: 1 }, { i: 4, j: 1 }, { i: 18, j: 1 }, { i: 6, j: 1 }, { i: 16, j: 1 },  ], css_id: 'tinytable_css_li13ayxkvcst7zk89mia',}, 
-          { positions: [ { i: 1, j: 1 }, { i: 15, j: 1 }, { i: 17, j: 1 }, { i: 5, j: 1 }, { i: 19, j: 1 }, { i: 3, j: 1 }, { i: 7, j: 1 }, { i: 9, j: 1 }, { i: 11, j: 1 }, { i: 13, j: 1 },  ], css_id: 'tinytable_css_bykmi2q1e8v7evk2vw9c',}, 
-          { positions: [ { i: 0, j: 1 }, { i: 20, j: 1 },  ], css_id: 'tinytable_css_5arxjaqck15btirq7u16',}, 
-          { positions: [ { i: 1, j: 0 }, { i: 15, j: 0 }, { i: 17, j: 0 }, { i: 5, j: 0 }, { i: 19, j: 0 }, { i: 3, j: 0 }, { i: 7, j: 0 }, { i: 9, j: 0 }, { i: 11, j: 0 }, { i: 13, j: 0 },  ], css_id: 'tinytable_css_475jq6xvjqbteqmmpfdz',}, 
+          { positions: [ { i: 15, j: 1 }, { i: 11, j: 1 }, { i: 23, j: 1 }, { i: 1, j: 1 }, { i: 25, j: 1 }, { i: 13, j: 1 }, { i: 27, j: 1 }, { i: 19, j: 1 }, { i: 5, j: 1 }, { i: 17, j: 1 }, { i: 3, j: 1 }, { i: 9, j: 1 }, { i: 21, j: 1 }, { i: 7, j: 1 },  ], css_id: 'tinytable_css_zs7hoi62cwlqrfpebw2l',}, 
+          { positions: [ { i: 29, j: 2 }, { i: 29, j: 3 }, { i: 29, j: 0 },  ], css_id: 'tinytable_css_zaixn7gmswi70swb6poq',}, 
+          { positions: [ { i: 1, j: 0 }, { i: 17, j: 0 }, { i: 5, j: 0 }, { i: 15, j: 0 }, { i: 3, j: 0 }, { i: 21, j: 0 }, { i: 9, j: 0 }, { i: 19, j: 0 }, { i: 11, j: 0 }, { i: 25, j: 0 }, { i: 13, j: 0 }, { i: 27, j: 0 }, { i: 21, j: 2 }, { i: 9, j: 2 }, { i: 23, j: 2 }, { i: 11, j: 2 }, { i: 25, j: 2 }, { i: 7, j: 0 }, { i: 27, j: 2 }, { i: 15, j: 2 }, { i: 23, j: 0 }, { i: 17, j: 2 }, { i: 1, j: 3 }, { i: 19, j: 2 }, { i: 3, j: 3 }, { i: 7, j: 2 }, { i: 5, j: 3 }, { i: 19, j: 3 }, { i: 7, j: 3 }, { i: 21, j: 3 }, { i: 13, j: 2 }, { i: 23, j: 3 }, { i: 1, j: 2 }, { i: 25, j: 3 }, { i: 3, j: 2 }, { i: 27, j: 3 }, { i: 5, j: 2 }, { i: 15, j: 3 }, { i: 11, j: 3 }, { i: 17, j: 3 }, { i: 13, j: 3 }, { i: 9, j: 3 },  ], css_id: 'tinytable_css_qp0m520edom1d182v4d7',}, 
+          { positions: [ { i: 18, j: 0 }, { i: 2, j: 0 }, { i: 4, j: 0 }, { i: 22, j: 0 }, { i: 6, j: 0 }, { i: 24, j: 0 }, { i: 8, j: 0 }, { i: 26, j: 0 }, { i: 14, j: 0 }, { i: 28, j: 0 }, { i: 16, j: 0 }, { i: 10, j: 2 }, { i: 24, j: 2 }, { i: 12, j: 2 }, { i: 26, j: 2 }, { i: 14, j: 2 }, { i: 28, j: 2 }, { i: 16, j: 2 }, { i: 10, j: 0 }, { i: 12, j: 0 }, { i: 2, j: 3 }, { i: 20, j: 2 }, { i: 4, j: 3 }, { i: 22, j: 2 }, { i: 6, j: 3 }, { i: 20, j: 3 }, { i: 8, j: 3 }, { i: 22, j: 3 }, { i: 20, j: 0 }, { i: 24, j: 3 }, { i: 2, j: 2 }, { i: 26, j: 3 }, { i: 18, j: 2 }, { i: 28, j: 3 }, { i: 6, j: 2 }, { i: 16, j: 3 }, { i: 8, j: 2 }, { i: 18, j: 3 }, { i: 10, j: 3 }, { i: 12, j: 3 }, { i: 4, j: 2 }, { i: 14, j: 3 },  ], css_id: 'tinytable_css_qfrajyymksehhrqaqtyk',}, 
+          { positions: [ { i: 29, j: 1 },  ], css_id: 'tinytable_css_laakx0usyriuwl4p4ujt',}, 
+          { positions: [ { i: 2, j: 1 }, { i: 16, j: 1 }, { i: 20, j: 1 }, { i: 12, j: 1 }, { i: 18, j: 1 }, { i: 14, j: 1 }, { i: 24, j: 1 }, { i: 6, j: 1 }, { i: 22, j: 1 }, { i: 4, j: 1 }, { i: 28, j: 1 }, { i: 26, j: 1 }, { i: 8, j: 1 }, { i: 10, j: 1 },  ], css_id: 'tinytable_css_kirrg5ki4xwdgxhbhaxc',}, 
+          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_aeabfsy2lwy7hflewrpk',}, 
+          { positions: [ { i: 0, j: 0 }, { i: 0, j: 3 }, { i: 0, j: 2 },  ], css_id: 'tinytable_css_0yot40hjoy4y4v71bazu',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  styleCell_zjp8hose67cmue1eiuhk(cell.i, cell.j, group.css_id);
+                  styleCell_tojbrqycu91x7s19zijd(cell.i, cell.j, group.css_id);
               });
           });
       });
     </script><style>
       /* tinytable css entries after */
-      .table td.tinytable_css_uztbx8y4zgsz89se3o6o, .table th.tinytable_css_uztbx8y4zgsz89se3o6o { font-size: 0.9em; text-align: center; border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_soysqhisuzkizk9rkxav, .table th.tinytable_css_soysqhisuzkizk9rkxav { font-size: 0.9em; text-align: center; }
-      .table td.tinytable_css_li13ayxkvcst7zk89mia, .table th.tinytable_css_li13ayxkvcst7zk89mia { font-size: 0.9em; }
-      .table td.tinytable_css_bykmi2q1e8v7evk2vw9c, .table th.tinytable_css_bykmi2q1e8v7evk2vw9c { font-size: 0.9em; background-color: #ededed; }
-      .table td.tinytable_css_5arxjaqck15btirq7u16, .table th.tinytable_css_5arxjaqck15btirq7u16 { font-size: 0.9em; border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_475jq6xvjqbteqmmpfdz, .table th.tinytable_css_475jq6xvjqbteqmmpfdz { font-size: 0.9em; text-align: center; background-color: #ededed; }
+      .table td.tinytable_css_zs7hoi62cwlqrfpebw2l, .table th.tinytable_css_zs7hoi62cwlqrfpebw2l { font-size: 0.9em; background-color: #ededed; }
+      .table td.tinytable_css_zaixn7gmswi70swb6poq, .table th.tinytable_css_zaixn7gmswi70swb6poq { font-size: 0.9em; text-align: center; background-color: #ededed; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_qp0m520edom1d182v4d7, .table th.tinytable_css_qp0m520edom1d182v4d7 { font-size: 0.9em; text-align: center; background-color: #ededed; }
+      .table td.tinytable_css_qfrajyymksehhrqaqtyk, .table th.tinytable_css_qfrajyymksehhrqaqtyk { font-size: 0.9em; text-align: center; }
+      .table td.tinytable_css_laakx0usyriuwl4p4ujt, .table th.tinytable_css_laakx0usyriuwl4p4ujt { font-size: 0.9em; background-color: #ededed; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_kirrg5ki4xwdgxhbhaxc, .table th.tinytable_css_kirrg5ki4xwdgxhbhaxc { font-size: 0.9em; }
+      .table td.tinytable_css_aeabfsy2lwy7hflewrpk, .table th.tinytable_css_aeabfsy2lwy7hflewrpk { font-size: 0.9em; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_0yot40hjoy4y4v71bazu, .table th.tinytable_css_0yot40hjoy4y4v71bazu { font-size: 0.9em; text-align: center; border-bottom: solid #d3d8dc 0.1em; }
     </style>
 <div class="container">
-      <table class="table table-striped" id="tinytable_zjp8hose67cmue1eiuhk" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-striped" id="tinytable_tojbrqycu91x7s19zijd" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
 <thead><tr>
 <th scope="col">Progress</th>
                 <th scope="col">Feature</th>
+                <th scope="col">Docs</th>
+                <th scope="col">Version</th>
               </tr></thead>
 <tbody>
 <tr>
 <td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
-                  <td>Wide variety of <a href="question-types.html">question types</a>                                                       </td>
-                </tr>
-<tr>
-<td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
-                  <td>Ability to <a href="fetch-data.html#reactive-fetching">use latest survey results</a> in the survey itself              </td>
-                </tr>
-<tr>
-<td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
-                  <td>Ability to <a href="store-data#ignoring-the-supabase-connection">Ignore the database connection</a>                    </td>
-                </tr>
-<tr>
-<td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
-                  <td>Ability to <a href="conditional-control#conditional-display">conditionally display questions</a>                       </td>
-                </tr>
-<tr>
-<td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
-                  <td>Ability to <a href="conditional-control#conditional-skipping">conditionally skip to pages</a>                          </td>
-                </tr>
-<tr>
-<td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
-                  <td>Start the survey from a <a href="server-options#starting-page">specific page</a> (helpful when editing survey)         </td>
-                </tr>
-<tr>
-<td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
+                  <td>Wide variety of question types                                                       </td>
                   <td>
-<a href="server-options#required-questions">Require</a> specific questions or all questions be answered                </td>
+<a href="https://surveydown.org/question-types">Question Types</a>                                                     </td>
+                  <td>v0.0.1</td>
                 </tr>
 <tr>
 <td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
-                  <td>Create a random numeric <a href="reactivity.html#displaying-stored-values-e.g.-a-completion-code">completion code</a>  </td>
-                </tr>
-<tr>
-<td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
-                  <td>Time stamps recorded for each question and page interaction                                                            </td>
-                </tr>
-<tr>
-<td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
+                  <td>Ability to use latest survey results in the survey itself                            </td>
                   <td>
-<a href="server-options#auto-scroll">Auto scroll</a>  according to the answering progress                              </td>
+<a href="https://surveydown.org/fetch-data#reactive-fetching">Fetching Data</a>                                        </td>
+                  <td>v0.1.1</td>
                 </tr>
 <tr>
 <td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
+                  <td>Ability to Ignore the database connection                                            </td>
                   <td>
-<a href="survey-components.html#progress-bar">Progress bar</a> bar that updates on each question interaction           </td>
+<a href="https://surveydown.org/store-data#ignoring-the-supabase-connection">Supabase Ignore</a>                       </td>
+                  <td>v0.0.8</td>
                 </tr>
 <tr>
 <td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
-                  <td>Customizable <a href="survey-components.html#progress-bar">progress bar</a> color and position on page                 </td>
-                </tr>
-<tr>
-<td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
+                  <td>Ability to conditionally display questions                                           </td>
                   <td>
-<a href="question-formatting#markdown-formatting">Markdown formatting</a> for options and buttons                      </td>
+<a href="https://surveydown.org/conditional-control#conditional-display">Conditional Display</a>                       </td>
+                  <td>v0.0.1</td>
                 </tr>
 <tr>
 <td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
+                  <td>Ability to conditionally skip to pages                                               </td>
                   <td>
-<a href="survey-components.html#changing-the-look-and-feel">Support for bootstrap themes</a>                           </td>
+<a href="https://surveydown.org/conditional-control#conditional-skipping">Conditional Skipping</a>                     </td>
+                  <td>v0.0.1</td>
                 </tr>
 <tr>
 <td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
+                  <td>Start the survey from a specific page (helpful when editing survey)                  </td>
                   <td>
-<a href="survey-components.html#changing-the-look-and-feel">Customizable scss theme file</a>                           </td>
+<a href="https://surveydown.org/server-options#starting-page">Starting Page</a>                                        </td>
+                  <td>v0.3.0</td>
                 </tr>
 <tr>
 <td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
+                  <td>Require specific questions or all questions be answered                              </td>
                   <td>
-<a href="redirect.html#reactive-redirect">Pass parameters</a> through the url, e.g. to track user IDs                  </td>
+<a href="https://surveydown.org/server-options#required-questions">Required Questions</a>                              </td>
+                  <td>v0.0.2</td>
                 </tr>
 <tr>
 <td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
+                  <td>Create a random numeric completion code                                              </td>
                   <td>
-<a href="redirect.html">Redirect</a> users to an external url                                                          </td>
+<a href="https://surveydown.org/reactivity#displaying-stored-values-e.g.-a-completion-code">Completion Code</a>        </td>
+                  <td>v0.3.2</td>
                 </tr>
 <tr>
 <td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
-                  <td>Store session ID in <a href="server-options#cookie">browser cookies</a> to store user progress if they refresh the page</td>
+                  <td>Time stamps recorded for each question and page interaction                          </td>
+                  <td>NA                                                                                                                     </td>
+                  <td>v0.0.9</td>
+                </tr>
+<tr>
+<td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
+                  <td>Auto scroll according to the answering progress                                      </td>
+                  <td>
+<a href="https://surveydown.org/server-options#auto-scroll">Auto Scroll</a>                                            </td>
+                  <td>v0.3.3</td>
+                </tr>
+<tr>
+<td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
+                  <td>Progress bar that updates on each question interaction                               </td>
+                  <td>
+<a href="https://surveydown.org/survey-components#progress-bar">Progress Bar</a>                                       </td>
+                  <td>v0.0.9</td>
+                </tr>
+<tr>
+<td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
+                  <td>Customizable progress bar color and position on page                                 </td>
+                  <td>
+<a href="https://surveydown.org/survey-components#progress-bar">Progress Bar</a>                                       </td>
+                  <td>v0.0.9</td>
+                </tr>
+<tr>
+<td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
+                  <td>Markdown formatting for options and buttons                                          </td>
+                  <td>
+<a href="https://surveydown.org/question-formatting#markdown-formatting">Markdown Formatting</a>                       </td>
+                  <td>v0.0.1</td>
+                </tr>
+<tr>
+<td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
+                  <td>Support for bootstrap themes                                                         </td>
+                  <td>
+<a href="https://surveydown.org/survey-components#changing-the-look-and-feel">Themes</a>                               </td>
+                  <td>v0.0.4</td>
+                </tr>
+<tr>
+<td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
+                  <td>Customizable scss theme file                                                         </td>
+                  <td>
+<a href="https://surveydown.org/survey-components#changing-the-look-and-feel">Themes</a>                               </td>
+                  <td>v0.0.4</td>
+                </tr>
+<tr>
+<td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
+                  <td>Pass parameters through the url e.g. to track user IDs                               </td>
+                  <td>
+<a href="https://surveydown.org/redirect#reactive-redirect">Reactive Redirect</a>                                      </td>
+                  <td>v0.2.2</td>
+                </tr>
+<tr>
+<td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
+                  <td>Redirect users to an external url                                                    </td>
+                  <td>
+<a href="https://surveydown.org/redirect">External Redirect</a>                                                        </td>
+                  <td>v0.2.2</td>
+                </tr>
+<tr>
+<td><img src="images/check.svg" alt="Check mark" width="20" height="20"></td>
+                  <td>Store session ID in browser cookies to store user progress if they refresh the page  </td>
+                  <td>
+<a href="https://surveydown.org/server-options#cookie">Cookies</a>                                                     </td>
+                  <td>v0.6.0</td>
                 </tr>
 <tr>
 <td><img src="images/screwdriver-wrench.svg" alt="Screwdriver wrench" width="20" height="20"></td>
+                  <td>Admin page with password login to preview / download data pause survey etc.          </td>
                   <td>
-<a href="server-options#admin-page">Admin page</a> with password login to preview / download data, pause survey, etc.  </td>
+<a href="https://surveydown.org/server-options#admin-page">Admin Page</a>                                              </td>
+                  <td>v0.0.8</td>
                 </tr>
 <tr>
 <td><img src="images/screwdriver-wrench.svg" alt="Screwdriver wrench" width="20" height="20"></td>
-                  <td>Form validation (limit input based on question type)                                                                   </td>
+                  <td>Form validation (limit input based on question type)                                 </td>
+                  <td>NA                                                                                                                     </td>
+                  <td>v0.2.1</td>
+                </tr>
+<tr>
+<td><img src="images/screwdriver-wrench.svg" alt="Screwdriver wrench" width="20" height="20"></td>
+                  <td>Question type - Best worst                                                           </td>
+                  <td>
+<a href="https://github.com/orgs/surveydown-dev/discussions/127">Best-worst Discussion</a>                             </td>
+                  <td>      </td>
+                </tr>
+<tr>
+<td><img src="images/screwdriver-wrench.svg" alt="Screwdriver wrench" width="20" height="20"></td>
+                  <td>Question type - Single checkbox with on and off toggle switches                      </td>
+                  <td><a href="https://github.com/dreamRs/shinyWidgets?tab=readme-ov-file#single-checkbox">shinyWidgets - Single Checkbox</a></td>
+                  <td>      </td>
+                </tr>
+<tr>
+<td><img src="images/screwdriver-wrench.svg" alt="Screwdriver wrench" width="20" height="20"></td>
+                  <td>Question type - Tree inputs                                                          </td>
+                  <td>
+<a href="https://github.com/dreamRs/shinyWidgets?tab=readme-ov-file#tree">shinyWidgets - Tree</a>                      </td>
+                  <td>      </td>
+                </tr>
+<tr>
+<td><img src="images/screwdriver-wrench.svg" alt="Screwdriver wrench" width="20" height="20"></td>
+                  <td>Question type of select menu - Dropdown select type with multiple selections         </td>
+                  <td>
+<a href="https://github.com/dreamRs/shinyWidgets?tab=readme-ov-file#select-menu">shinyWidgets - Select Menu</a>        </td>
+                  <td>      </td>
+                </tr>
+<tr>
+<td><img src="images/screwdriver-wrench.svg" alt="Screwdriver wrench" width="20" height="20"></td>
+                  <td>Header / footer of every survey page                                                 </td>
+                  <td>NA                                                                                                                     </td>
+                  <td>      </td>
+                </tr>
+<tr>
+<td><img src="images/screwdriver-wrench.svg" alt="Screwdriver wrench" width="20" height="20"></td>
+                  <td>sd_store_data() function - store the data generated after survey lunches in to the db</td>
+                  <td>NA                                                                                                                     </td>
+                  <td>      </td>
+                </tr>
+<tr>
+<td><img src="images/screwdriver-wrench.svg" alt="Screwdriver wrench" width="20" height="20"></td>
+                  <td>sd_server(print_mode = TRUE) - Trigger the print feature                             </td>
+                  <td>
+<a href="https://github.com/jhelvy/renderthis/blob/main/R/pdf.R">Refer to {renderthis}</a>                             </td>
+                  <td>      </td>
+                </tr>
+<tr>
+<td><img src="images/screwdriver-wrench.svg" alt="Screwdriver wrench" width="20" height="20"></td>
+                  <td>Clipboard problem - quarto-html-after-body div in quarto                             </td>
+                  <td>NA                                                                                                                     </td>
+                  <td>      </td>
+                </tr>
+<tr>
+<td><img src="images/screwdriver-wrench.svg" alt="Screwdriver wrench" width="20" height="20"></td>
+                  <td>Enter key JS bug - not working if a conditional problem is shown                     </td>
+                  <td>NA                                                                                                                     </td>
+                  <td>      </td>
                 </tr>
 </tbody>
 </table>

@@ -1,0 +1,47 @@
+---
+title: "Custom Questions"
+toc-expand: true
+---
+
+## Basic Syntax
+
+Use the `sd_question_custom()` function to create custom questions. The function requires the following arguments:
+
+- `id`: A unique identifier for the question, which will be used as the variable name in the resulting survey data.
+- `label`: The label that will be displayed on the question in the survey.
+- `output`: The output widget like `leafletOutput()`, `plotOutput()`, etc.
+- `value`: The value to be returned by the question.
+- `height` (optional): The height of the question in pixels, defaults to 400.
+
+Below is the basic syntax for creating a custom question:
+
+```r
+sd_question_custom(
+  id     = "some_id",
+  label  = "Some Label",
+  output = "some_output_widget",
+  value  = "some_value"
+)
+```
+In coorperation with `sd_question_custom()`, we also need to define the `output` and the observer function, along with some helpful values, UIs, etc.
+
+## Example of `leaflet`
+
+See the [demo survey](https://github.com/surveydown-dev/demos/tree/main/leaflet-map) of a leaflet map utilizing the `sd_question_custom` function.
+
+The map question looks like this:
+
+<center>
+<img src="images/screenshots/leaflet.png" style="max-width: 800px; width: 100%;">
+</center>
+
+## Example of `plotly`
+
+See the [demo survey](https://github.com/surveydown-dev/demos/tree/main/plotly) of a plotly question utilizing the `sd_question_custom` function.
+
+The plotly question looks like this:
+
+<center>
+<img src="images/screenshots/plotly.png" style="max-width: 800px; width: 100%;">
+</center>
+

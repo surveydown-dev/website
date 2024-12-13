@@ -3,15 +3,31 @@ title: "Custom Questions"
 toc-expand: true
 ---
 
+```{r}
+#| eval: true
+#| include: false
+
+library(leaflet)
+library(plotly)
+
+# Load state data from tigris - we do this outside of the server
+# because we only need to do it once across all sessions
+states <- tigris::states(cb = TRUE, resolution = "20m") |>
+  dplyr::filter(STUSPS %in% state.abb) |>
+  sf::st_transform(4326)
+```
+
+If you have an html widget that isn't yet directly supported by surveydown, you can still use it by defining it in the server and using the `sd_question_custom()` function to store the value in the resulting survey data.
+
 ## Basic Syntax
 
 Use the `sd_question_custom()` function to create custom questions. The function requires the following arguments:
 
-- `id`: A unique identifier for the question, which will be used as the variable name in the resulting survey data.
+- `id`: A unique identifier for the question, which will be used as the variable name in the resulting survey data (just like the `id` in `sd_question()`).
 - `label`: The label that will be displayed on the question in the survey.
-- `output`: The output widget like `leafletOutput()`, `plotOutput()`, etc.
-- `value`: The value to be returned by the question.
-- `height` (optional): The height of the question in pixels, defaults to 400.
+- `output`: The output widget. This needs to be an output function designed for shiny, e.g. `leafletOutput()`, `plotOutput()`, etc.
+- `value`: The value to be returned by the question. This must be a reactive value that updates based on user interaction with the `output` widget (e.g. selecting a state on a leaflet map).
+- `height` (optional): The height of the widget in pixels, defaults to 400.
 
 Below is the basic syntax for creating a custom question:
 
@@ -20,28 +36,87 @@ sd_question_custom(
   id     = "some_id",
   label  = "Some Label",
   output = "some_output_widget",
-  value  = "some_value"
+  value  = "some_reactive_value"
 )
 ```
-In coorperation with `sd_question_custom()`, we also need to define the `output` and the observer function, along with some helpful values, UIs, etc.
 
-## Example of `leaflet`
+To make `sd_question_custom()` work, you need to define the UI and functionality you want in the `server()` function in the `app.R` file. We have two examples that show how to set this up: an interactive map using leaflet, and an interactive plot using plotly.
 
-See the [demo survey](https://github.com/surveydown-dev/demos/tree/main/leaflet-map) of a leaflet map utilizing the `sd_question_custom` function.
+## `leaflet` map example
 
-The map question looks like this:
+See the [demo survey](https://github.com/surveydown-dev/demos/tree/main/leaflet-map) of a leaflet map with the `sd_question_custom` function.
 
-<center>
-<img src="images/screenshots/leaflet.png" style="max-width: 800px; width: 100%;">
-</center>
+The demo has a leaflet map that looks like the map below. When a user clicks on the map, it turns orange and stores the selected state in the resulting survey response data:
+
+> Which state do you live in?
+
+```{r}
+#| eval: true
+#| echo: false
+#| message: false
+
+# Helper function for modifying the leaflet map layout
+map_layout <- function(map, states, selected_state = NULL) {
+
+    # Set the state fill colors
+    color <- "lightblue"
+    if (!is.null(selected_state)) {
+      color <- ifelse(states$NAME == selected_state, "orange", "lightblue")
+    }
+
+    # Update the polygons
+    addPolygons(
+      map,
+      data = states,
+      fillColor = color,
+      weight = 2,
+      opacity = 1,
+      color = "white",
+      fillOpacity = 0.7,
+      layerId = states$NAME,
+      highlight = highlightOptions(
+        weight = 3,
+        color = "#666",
+        fillOpacity = 0.7,
+        bringToFront = TRUE
+      ),
+      label = ~NAME,
+      labelOptions = labelOptions(
+        style = list(
+          padding = "3px 8px",
+          "background-color" = "rgba(255,255,255,0.8)"
+        ),
+        textsize = "15px"
+      )
+    )
+}
+
+# Create the main leaflet map widget
+leaflet(options = leafletOptions(preferCanvas = TRUE)) |>
+  addTiles() |>
+  setView(lng = -98.5795, lat = 39.8283, zoom = 4) |>
+  map_layout(states)
+```
 
 ## Example of `plotly`
 
 See the [demo survey](https://github.com/surveydown-dev/demos/tree/main/plotly) of a plotly question utilizing the `sd_question_custom` function.
 
-The plotly question looks like this:
+The demo has a plotly scatterplot map that looks like the chart below. When a user clicks on one of the points, it displays the point value and stores the point in the resulting survey response data:
 
-<center>
-<img src="images/screenshots/plotly.png" style="max-width: 800px; width: 100%;">
-</center>
+> Click on a point to select it:
+
+```{r}
+#| eval: true
+#| echo: false
+#| message: false
+
+plot_ly(
+    mtcars, x = ~wt, y = ~mpg,
+    type = "scatter",
+    mode = "markers",
+    source = "scatter_plot"
+) %>%  # Add source identifier
+    layout(dragmode = "select")   # Enable point selection
+```
 

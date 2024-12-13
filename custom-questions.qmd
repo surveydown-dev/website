@@ -10,11 +10,13 @@ toc-expand: true
 library(leaflet)
 library(plotly)
 
-# Load state data from tigris - we do this outside of the server
-# because we only need to do it once across all sessions
-states <- tigris::states(cb = TRUE, resolution = "20m") |>
-  dplyr::filter(STUSPS %in% state.abb) |>
-  sf::st_transform(4326)
+# # Load state data from tigris 
+# states <- tigris::states(cb = TRUE, resolution = "20m") |>
+#   dplyr::filter(STUSPS %in% state.abb) |>
+#   sf::st_transform(4326)
+# saveRDS(states, file.path('files', 'states.rds'))
+
+states <- readRDS(file.path('files', 'states.rds'))
 ```
 
 If you have an html widget that isn't yet directly supported by surveydown, you can still use it by defining it in the server and using the `sd_question_custom()` function to store the value in the resulting survey data.

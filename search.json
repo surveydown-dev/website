@@ -635,7 +635,7 @@
     "href": "custom-questions.html",
     "title": "Custom Questions",
     "section": "",
-    "text": "Use the sd_question_custom() function to create custom questions. The function requires the following arguments:\n\nid: A unique identifier for the question, which will be used as the variable name in the resulting survey data.\nlabel: The label that will be displayed on the question in the survey.\noutput: The output widget like leafletOutput(), plotOutput(), etc.\nvalue: The value to be returned by the question.\nheight (optional): The height of the question in pixels, defaults to 400.\n\nBelow is the basic syntax for creating a custom question:\nsd_question_custom(\n  id     = \"some_id\",\n  label  = \"Some Label\",\n  output = \"some_output_widget\",\n  value  = \"some_value\"\n)\nIn coorperation with sd_question_custom(), we also need to define the output and the observer function, along with some helpful values, UIs, etc.",
+    "text": "If you have an html widget that isn’t yet directly supported by surveydown, you can still use it by defining it in the server and using the sd_question_custom() function to store the value in the resulting survey data.",
     "crumbs": [
       "Documentation",
       "Reference Manuals",
@@ -646,8 +646,8 @@
     "objectID": "custom-questions.html#basic-syntax",
     "href": "custom-questions.html#basic-syntax",
     "title": "Custom Questions",
-    "section": "",
-    "text": "Use the sd_question_custom() function to create custom questions. The function requires the following arguments:\n\nid: A unique identifier for the question, which will be used as the variable name in the resulting survey data.\nlabel: The label that will be displayed on the question in the survey.\noutput: The output widget like leafletOutput(), plotOutput(), etc.\nvalue: The value to be returned by the question.\nheight (optional): The height of the question in pixels, defaults to 400.\n\nBelow is the basic syntax for creating a custom question:\nsd_question_custom(\n  id     = \"some_id\",\n  label  = \"Some Label\",\n  output = \"some_output_widget\",\n  value  = \"some_value\"\n)\nIn coorperation with sd_question_custom(), we also need to define the output and the observer function, along with some helpful values, UIs, etc.",
+    "section": "Basic Syntax",
+    "text": "Basic Syntax\nUse the sd_question_custom() function to create custom questions. The function requires the following arguments:\n\n\nid: A unique identifier for the question, which will be used as the variable name in the resulting survey data (just like the id in sd_question()).\n\nlabel: The label that will be displayed on the question in the survey.\n\noutput: The output widget. This needs to be an output function designed for shiny, e.g. leafletOutput(), plotOutput(), etc.\n\nvalue: The value to be returned by the question. This must be a reactive value that updates based on user interaction with the output widget (e.g. selecting a state on a leaflet map).\n\nheight (optional): The height of the widget in pixels, defaults to 400.\n\nBelow is the basic syntax for creating a custom question:\nsd_question_custom(\n  id     = \"some_id\",\n  label  = \"Some Label\",\n  output = \"some_output_widget\",\n  value  = \"some_reactive_value\"\n)\nTo make sd_question_custom() work, you need to define the UI and functionality you want in the server() function in the app.R file. We have two examples that show how to set this up: an interactive map using leaflet, and an interactive plot using plotly.",
     "crumbs": [
       "Documentation",
       "Reference Manuals",
@@ -655,11 +655,11 @@
     ]
   },
   {
-    "objectID": "custom-questions.html#example-of-leaflet",
-    "href": "custom-questions.html#example-of-leaflet",
+    "objectID": "custom-questions.html#leaflet-map-example",
+    "href": "custom-questions.html#leaflet-map-example",
     "title": "Custom Questions",
-    "section": "Example of leaflet",
-    "text": "Example of leaflet\nSee the demo survey of a leaflet map utilizing the sd_question_custom function.\nThe map question looks like this:",
+    "section": "\nleaflet map example",
+    "text": "leaflet map example\nSee the demo survey of a leaflet map with the sd_question_custom function.\nThe demo has a leaflet map that looks like the map below. When a user clicks on the map, it turns orange and stores the selected state in the resulting survey response data:\n\nWhich state do you live in?",
     "crumbs": [
       "Documentation",
       "Reference Manuals",
@@ -670,8 +670,8 @@
     "objectID": "custom-questions.html#example-of-plotly",
     "href": "custom-questions.html#example-of-plotly",
     "title": "Custom Questions",
-    "section": "Example of plotly",
-    "text": "Example of plotly\nSee the demo survey of a plotly question utilizing the sd_question_custom function.\nThe plotly question looks like this:",
+    "section": "Example of plotly\n",
+    "text": "Example of plotly\n\nSee the demo survey of a plotly question utilizing the sd_question_custom function.\nThe demo has a plotly scatterplot map that looks like the chart below. When a user clicks on one of the points, it displays the point value and stores the point in the resulting survey response data:\n\nClick on a point to select it:",
     "crumbs": [
       "Documentation",
       "Reference Manuals",

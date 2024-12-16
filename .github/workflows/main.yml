@@ -47,8 +47,9 @@ jobs:
 
       - name: Install R dependencies
         run: |
+          install.packages(c('sf', 'leaflet', 'plotly'), dependencies=TRUE, repos='https://cloud.r-project.org/')
           remotes::install_deps(dependencies = TRUE)
-          install.packages("pkgdown")  # Removed "type = binary" as we're on Ubuntu
+          install.packages("pkgdown")
         shell: Rscript {0}
 
       - name: Set up Quarto

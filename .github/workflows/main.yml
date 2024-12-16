@@ -24,8 +24,10 @@ jobs:
 
       - name: Install system dependencies
         run: |
+          # Add UbuntuGIS unstable PPA for latest PROJ/GDAL
           sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
           sudo apt-get update
+          # Install all required system dependencies
           sudo apt-get install -y --no-install-recommends \
             libcurl4-openssl-dev \
             libharfbuzz-dev \
@@ -36,8 +38,8 @@ jobs:
             libproj-dev \
             proj-data \
             proj-bin \
-            libproj22 \
-            libtiff5-dev \
+            libproj25 \
+            libtiff-dev \
             libicu-dev \
             libjpeg-dev \
             libxml2-dev \
@@ -45,9 +47,9 @@ jobs:
             libcairo2-dev \
             libpng-dev \
             libfreetype6-dev \
-            libfontconfig1-dev \
-            libtiff5
+            libfontconfig1-dev
 
+      # Verify PROJ is installed correctly
       - name: Verify PROJ installation
         run: |
           ldconfig -p | grep libproj
@@ -67,6 +69,7 @@ jobs:
           key: ${{ runner.os }}-${{ env.R_VERSION }}-1-${{ hashFiles('.github/depends.Rds') }}
           restore-keys: ${{ runner.os }}-${{ env.R_VERSION }}-1-
 
+      # Install sf first to ensure PROJ linkage is correct
       - name: Install sf dependencies first
         run: |
           install.packages("sf", type="source")

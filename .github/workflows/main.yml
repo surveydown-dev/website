@@ -11,7 +11,7 @@ on:
 
 jobs:
   build-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -29,7 +29,9 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev libudunits2-dev libgdal-dev libgeos-dev libproj-dev proj-bin proj-data libproj22
+          sudo add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
+          sudo apt-get update
+          sudo apt-get install -y libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev libudunits2-dev libgdal-dev libgeos-dev libproj-dev proj-bin proj-data
 
       - name: Query R package dependencies
         run: |

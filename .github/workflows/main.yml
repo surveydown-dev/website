@@ -36,12 +36,22 @@ jobs:
             libproj-dev \
             proj-data \
             proj-bin \
+            libproj22 \
             libtiff5-dev \
             libicu-dev \
             libjpeg-dev \
             libxml2-dev \
             pandoc \
-            libcairo2-dev
+            libcairo2-dev \
+            libpng-dev \
+            libfreetype6-dev \
+            libfontconfig1-dev \
+            libtiff5
+
+      - name: Verify PROJ installation
+        run: |
+          ldconfig -p | grep libproj
+          proj
 
       - name: Query R package dependencies
         run: |
@@ -56,6 +66,11 @@ jobs:
           path: ${{ env.R_LIBS_USER }}
           key: ${{ runner.os }}-${{ env.R_VERSION }}-1-${{ hashFiles('.github/depends.Rds') }}
           restore-keys: ${{ runner.os }}-${{ env.R_VERSION }}-1-
+
+      - name: Install sf dependencies first
+        run: |
+          install.packages("sf", type="source")
+        shell: Rscript {0}
 
       - name: Install R dependencies
         run: |

@@ -1,17 +1,25 @@
 ---
 title: "Installation"
+execute: 
+  eval: true
+  echo: true
+  message: false
 ---
+
+```{r}
+#| include: false
+
+source('_common.R')
+```
 
 ## Install R & Quarto
 
-You need both: 
+```{r}
+#| results: asis
+#| echo: false
 
-- Install {{< var rproject >}}
-- Install {{< var quarto >}}
-
-We also recommend working with an IDE that has good support for R, Quarto, and Shiny.
-
-{{< var rstudio_ide >}} is great, and we also like {{< var vscode >}} and {{< var positron >}}.
+print_chunk("https://raw.githubusercontent.com/surveydown-dev/surveydown/refs/heads/main/man/rmdchunks/install_R_Quarto.Rmd")
+```
 
 ## Install the {surveydown} R package
 

@@ -1,41 +1,37 @@
 ---
 execute: 
+  eval: true
   echo: false
   message: false
-  warning: false
 ---
 
-# Overview
+```{r}
+source('_common.R')
+```
 
-{{< include chunks/description.qmd >}}
+## What is surveydown?
 
-<br>
-<center>
-<img src="images/technologies.png" style="max-width: 550px; width: 100%;">
-</center>
-<br>
+```{r}
+#| results: asis
 
-The basic concept is:
+print_chunk("https://raw.githubusercontent.com/surveydown-dev/surveydown/refs/heads/main/man/rmdchunks/concept.Rmd")
+```
 
-1. Design your survey as a {{< var quarto >}} document using markdown and R code.
-2. Convert your survey into a {{< var shiny >}} app that can be hosted online and sent to respondents.
-3. Store your survey responses in a {{< var supabase >}} database (or any PostgreSQL database).
+## Why surveydown?
 
-The {surveydown} R package provides functions to bring this all together.
+```{r}
+#| results: asis
 
-{{< include chunks/start.qmd >}}
-
-# Background & Motivation
-
-Most survey platforms (e.g., Google forms, Qualtrics, etc.) use drag-and-drop interfaces to design surveys, making version control and collaboration with others difficult. They're also not reproducible (others cannot easily reproduce a survey made on these platforms), and many require a paid subscription or license to use.
-
-The surveydown package was designed to address these problems. As an open-source, markdown-based platform, all survey content is defined with plain text (markdown and R code) in a `survey.qmd` file and an `app.R` file that renders your survey into a Shiny app that can be hosted online. This makes your survey easy to reproduce, share, and version control with common tools like Git. The survey data collected is also owned by the survey designer in a separate PostgreSQL database (we recommend Supabase as a free and open-source database provider).
-
-If you're curious where this whole idea came from, check out this [blog post](https://www.jhelvy.com/blog/2023-04-06-markdown-surveys/), which outlines more on the general idea and the motivation for it. The post is now outdated in terms of the overall package design, but it provides something of an origin story and some of the motivation for developing this project.
+print_chunk("https://raw.githubusercontent.com/surveydown-dev/surveydown/refs/heads/main/man/rmdchunks/motivation.Rmd")
+```
 
 # Authors
 
-The surveydown project is led by professor [John Paul Helveston](https://www.jhelvy.com/) at George Washington University. The development team consists of the following members:
+The surveydown project is led by professor [John Paul Helveston](https://www.jhelvy.com/) at George Washington University and was originally developed in collaboration with his students [Pingfan Hu](https://pingfanhu.com) and [Bogdan Bunea](https://www.linkedin.com/in/bogdanbt/). 
+
+As an open-source package, surveydown now has many more contributors who have added features and improved the project over time. See the [**Contributors' Page**](https://github.com/surveydown-dev/surveydown/graphs/contributors) for details.
+
+<br>
 
 ::: {style="display: flex; flex-wrap: wrap; gap: 2%;"}
 
@@ -90,5 +86,3 @@ The surveydown project is led by professor [John Paul Helveston](https://www.jhe
 :::
 
 :::
-
-Since surveydown is an open-source package, it is also contributed by a lot of active GitHub users. See the [**Contributors' Page**](https://github.com/surveydown-dev/surveydown/graphs/contributors) for details.

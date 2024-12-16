@@ -436,7 +436,7 @@
     "href": "installation.html",
     "title": "Installation",
     "section": "",
-    "text": "You need both:\n\nInstall \n\nInstall Quarto\n\n\nWe also recommend working with an IDE that has good support for R, Quarto, and Shiny.\nRStudio is great, and we also like VSCode and Positron.",
+    "text": "You need both:\n\nInstall R\n\nInstall Quarto\n\n\nWe also recommend working with an IDE that has good support for R, Quarto, and Shiny.\nRStudio is great, and we also like VSCode and Positron.",
     "crumbs": [
       "Documentation",
       "Installation"
@@ -447,7 +447,7 @@
     "href": "installation.html#install-r-quarto",
     "title": "Installation",
     "section": "",
-    "text": "You need both:\n\nInstall \n\nInstall Quarto\n\n\nWe also recommend working with an IDE that has good support for R, Quarto, and Shiny.\nRStudio is great, and we also like VSCode and Positron.",
+    "text": "You need both:\n\nInstall R\n\nInstall Quarto\n\n\nWe also recommend working with an IDE that has good support for R, Quarto, and Shiny.\nRStudio is great, and we also like VSCode and Positron.",
     "crumbs": [
       "Documentation",
       "Installation"
@@ -923,9 +923,30 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "Overview",
+    "title": "surveydown.org",
     "section": "",
-    "text": "Overview\nsurveydown is a flexible, open-source platform for making surveys with , Quarto, Shiny, and Supabase.\n\n\n\n\n\nThe basic concept is:\n\nDesign your survey as a Quarto document using markdown and R code.\nConvert your survey into a Shiny app that can be hosted online and sent to respondents.\nStore your survey responses in a Supabase database (or any PostgreSQL database).\n\nThe {surveydown} R package provides functions to bring this all together.\nWe recommend reading the Getting Started page to get a sense of how to use surveydown. The rest of the documentation covers more details on how to use surveydown.\n\nClick here to get started!\n\n\n\nBackground & Motivation\nMost survey platforms (e.g., Google forms, Qualtrics, etc.) use drag-and-drop interfaces to design surveys, making version control and collaboration with others difficult. They’re also not reproducible (others cannot easily reproduce a survey made on these platforms), and many require a paid subscription or license to use.\nThe surveydown package was designed to address these problems. As an open-source, markdown-based platform, all survey content is defined with plain text (markdown and R code) in a survey.qmd file and an app.R file that renders your survey into a Shiny app that can be hosted online. This makes your survey easy to reproduce, share, and version control with common tools like Git. The survey data collected is also owned by the survey designer in a separate PostgreSQL database (we recommend Supabase as a free and open-source database provider).\nIf you’re curious where this whole idea came from, check out this blog post, which outlines more on the general idea and the motivation for it. The post is now outdated in terms of the overall package design, but it provides something of an origin story and some of the motivation for developing this project.\n\n\nAuthors\nThe surveydown project is led by professor John Paul Helveston at George Washington University. The development team consists of the following members:\n\n\n\n\n\nJohn Paul Helveston, Ph.D.\nJohn Paul Helveston is an Assistant Professor in the Department of Engineering Management and Systems Engineering at George Washington University. Professor Helveston is the core designer and developer, and maintainer of both the surveydown project and this documentation website.\n\n\n\n\n\n\n\nPingfan Hu\nPingfan Hu is a Ph.D. student in Systems Engineering at George Washington University, supervised by professor Helveston. Pingfan is mainly responsible for UI design, user interactions, and website maintenance.\n\n\n\n\n\n\n\nBogdan Bunea\nBogdan Bunea is an undergraduate student majoring in Systems Engineering and minoring in Computer Science at George Washington University. Bogdan is mainly responsible for database connection and data management.\n\n\nSince surveydown is an open-source package, it is also contributed by a lot of active GitHub users. See the Contributors’ Page for details.\n\n\n\n\n Back to top"
+    "text": "surveydown is a flexible, open-source platform for making surveys with R, Quarto, Shiny, and Supabase.\n\n\n\n\nHere’s how it works:\n\nDesign your survey as a Quarto document using markdown and R code.\nRender your survey into a shiny app that can be hosted online and sent to respondents.\nStore survey responses in a PostgreSQL database - we recommend Supabase as a free, secure, and easy to use option.\n\nThe {surveydown} R package provides functions to bring this all together.\nSee the complete documentation to get started making your own surveydown survey!"
+  },
+  {
+    "objectID": "about.html#what-is-surveydown",
+    "href": "about.html#what-is-surveydown",
+    "title": "surveydown.org",
+    "section": "",
+    "text": "surveydown is a flexible, open-source platform for making surveys with R, Quarto, Shiny, and Supabase.\n\n\n\n\nHere’s how it works:\n\nDesign your survey as a Quarto document using markdown and R code.\nRender your survey into a shiny app that can be hosted online and sent to respondents.\nStore survey responses in a PostgreSQL database - we recommend Supabase as a free, secure, and easy to use option.\n\nThe {surveydown} R package provides functions to bring this all together.\nSee the complete documentation to get started making your own surveydown survey!"
+  },
+  {
+    "objectID": "about.html#why-surveydown",
+    "href": "about.html#why-surveydown",
+    "title": "surveydown.org",
+    "section": "Why surveydown?",
+    "text": "Why surveydown?\nMost survey platforms (e.g., Google forms, Qualtrics, etc.) use graphic interfaces or spreadsheets to define survey content, making version control, collaboration, and reproducibility difficult or impossible. The surveydown package was designed to address these problems. As an open-source, markdown-based platform, all survey content is defined using plain text (markdown and R code) in two files:\n\nsurvey.qmd: A Quarto document that contains the survey content (pages, questions, etc).\napp.R: An R script defining a shiny app that contains global settings (libraries, database configuration, etc.) and server configuration options (e.g., conditional skipping / display, etc.).\n\nThis approach makes your survey easy to reproduce, share, and version control with common tools like Git. And since all survey data is stored in a PostgreSQL database, you have total control over where your survey data lives. We provide direct support for Supabase as a free, secure, and easy to use option.\nIn case you’re interested in the background behind the project, this blog post provides something of an origin story. Note that the design discussed in the post is now quite outdated with what ultimately became surveydown."
+  },
+  {
+    "objectID": "about.html#authors",
+    "href": "about.html#authors",
+    "title": "surveydown.org",
+    "section": "Authors",
+    "text": "Authors\nThe surveydown project is led by professor John Paul Helveston at George Washington University and was originally developed in collaboration with his students Pingfan Hu and Bogdan Bunea.\nAs an open-source package, surveydown now has many more contributors who have added features and improved the project over time. See the Contributors’ Page for details.\n\n\n\n\n\n\nJohn Paul Helveston, Ph.D.\nJohn Paul Helveston is an Assistant Professor in the Department of Engineering Management and Systems Engineering at George Washington University. Professor Helveston is the core designer and developer, and maintainer of both the surveydown project and this documentation website.\n\n\n\n\n\n\n\nPingfan Hu\nPingfan Hu is a Ph.D. student in Systems Engineering at George Washington University, supervised by professor Helveston. Pingfan is mainly responsible for UI design, user interactions, and website maintenance.\n\n\n\n\n\n\n\nBogdan Bunea\nBogdan Bunea is an undergraduate student majoring in Systems Engineering and minoring in Computer Science at George Washington University. Bogdan is mainly responsible for database connection and data management."
   },
   {
     "objectID": "blog/index.html",

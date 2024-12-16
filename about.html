@@ -40,8 +40,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f1a50c0c5e8d08a76565bb8a23410462.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-984123cbbfe11bfc38f2f6ef07ac8380.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-4f624d04eb1fcb150bc37ef520d4bda9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-1d5014020adf890638a27bcc3e80a690.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -79,6 +79,7 @@ ul.task-list li input[type="checkbox"] {
 <meta property="og:image" content="https://www.surveydown.org/images/technologies.png">
 <meta property="og:site_name" content="https://surveydown.org">
 <meta property="og:locale" content="es_ES">
+<meta property="og:image:alt" content="image showing the three technologies used in the surveydown platform along with their logos: quarto (for designing surveys), shiny (for rendering the survey), and supabase (for storing data)">
 <meta property="og:image:height" content="1821">
 <meta property="og:image:width" content="2423">
 <meta name="twitter:title" content="surveydown.org">
@@ -160,8 +161,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#background-motivation" id="toc-background-motivation" class="nav-link" data-scroll-target="#background-motivation">Background &amp; Motivation</a></li>
+  <li><a href="#what-is-surveydown" id="toc-what-is-surveydown" class="nav-link active" data-scroll-target="#what-is-surveydown">What is surveydown?</a></li>
+  <li><a href="#why-surveydown" id="toc-why-surveydown" class="nav-link" data-scroll-target="#why-surveydown">Why surveydown?</a></li>
   <li><a href="#authors" id="toc-authors" class="nav-link" data-scroll-target="#authors">Authors</a></li>
   </ul>
 </nav>
@@ -172,35 +173,37 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="overview" class="level1">
-<h1>Overview</h1>
-<p><strong>surveydown</strong> is a flexible, open-source platform for making surveys with <a href="https://CRAN.R-project.org/"><i class="fa-brands fa-r-project" aria-label="r-project"></i></a>, <a href="https://quarto.org/">Quarto</a>, <a href="https://shiny.posit.co/">Shiny</a>, and <a href="https://supabase.com/">Supabase</a>.</p>
-<br>
+<section id="what-is-surveydown" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-surveydown">What is surveydown?</h2>
+<p><strong>surveydown</strong> is a flexible, open-source platform for making surveys with <a href="https://www.r-project.org/">R</a>, <a href="https://quarto.org/">Quarto</a>, <a href="https://shiny.posit.co/">Shiny</a>, and <a href="https://supabase.com/">Supabase</a>.</p>
 <center>
-<img src="images/technologies.png" style="max-width: 550px; width: 100%;">
+<img src="images/technologies.png" width="550px" alt="image showing the three technologies used in the surveydown platform along with their logos: quarto (for designing surveys), shiny (for rendering the survey), and supabase (for storing data)">
 </center>
 <p><br></p>
-<p>The basic concept is:</p>
+<p>Here’s how it works:</p>
 <ol type="1">
 <li>Design your survey as a <a href="https://quarto.org/">Quarto</a> document using markdown and R code.</li>
-<li>Convert your survey into a <a href="https://shiny.posit.co/">Shiny</a> app that can be hosted online and sent to respondents.</li>
-<li>Store your survey responses in a <a href="https://supabase.com/">Supabase</a> database (or any PostgreSQL database).</li>
+<li>Render your survey into a <a href="https://shiny.posit.co/">shiny</a> app that can be hosted online and sent to respondents.</li>
+<li>Store survey responses in a PostgreSQL database - we recommend <a href="https://supabase.com/">Supabase</a> as a free, secure, and easy to use option.</li>
 </ol>
 <p>The {surveydown} R package provides functions to bring this all together.</p>
-<p>We recommend reading the <a href="./getting-started.html">Getting Started</a> page to get a sense of how to use surveydown. The rest of the documentation covers more details on how to use surveydown.</p>
-<div class="text-center">
-<p><a href="./getting-started.html"><button type="button" class="btn btn-primary btn-lg">Click here to get started!</button></a></p>
-</div>
+<p><strong>See the <a href="https://surveydown.org">complete documentation</a> to get started making your own surveydown survey!</strong></p>
 </section>
-<section id="background-motivation" class="level1">
-<h1>Background &amp; Motivation</h1>
-<p>Most survey platforms (e.g., Google forms, Qualtrics, etc.) use drag-and-drop interfaces to design surveys, making version control and collaboration with others difficult. They’re also not reproducible (others cannot easily reproduce a survey made on these platforms), and many require a paid subscription or license to use.</p>
-<p>The surveydown package was designed to address these problems. As an open-source, markdown-based platform, all survey content is defined with plain text (markdown and R code) in a <code>survey.qmd</code> file and an <code>app.R</code> file that renders your survey into a Shiny app that can be hosted online. This makes your survey easy to reproduce, share, and version control with common tools like Git. The survey data collected is also owned by the survey designer in a separate PostgreSQL database (we recommend Supabase as a free and open-source database provider).</p>
-<p>If you’re curious where this whole idea came from, check out this <a href="https://www.jhelvy.com/blog/2023-04-06-markdown-surveys/">blog post</a>, which outlines more on the general idea and the motivation for it. The post is now outdated in terms of the overall package design, but it provides something of an origin story and some of the motivation for developing this project.</p>
+<section id="why-surveydown" class="level2">
+<h2 class="anchored" data-anchor-id="why-surveydown">Why surveydown?</h2>
+<p>Most survey platforms (e.g., Google forms, Qualtrics, etc.) use graphic interfaces or spreadsheets to define survey content, making version control, collaboration, and reproducibility difficult or impossible. The surveydown package was designed to address these problems. As an open-source, markdown-based platform, all survey content is defined using <strong>plain text</strong> (markdown and R code) in two files:</p>
+<ul>
+<li><code>survey.qmd</code>: A Quarto document that contains the survey content (pages, questions, etc).</li>
+<li><code>app.R</code>: An R script defining a shiny app that contains global settings (libraries, database configuration, etc.) and server configuration options (e.g., conditional skipping / display, etc.).</li>
+</ul>
+<p>This approach makes your survey easy to reproduce, share, and version control with common tools like Git. And since all survey data is stored in a PostgreSQL database, you have total control over where your survey data lives. We provide direct support for <a href="https://supabase.com/">Supabase</a> as a free, secure, and easy to use option.</p>
+<p>In case you’re interested in the background behind the project, this <a href="https://www.jhelvy.com/blog/2023-04-06-markdown-surveys/">blog post</a> provides something of an origin story. Note that the design discussed in the post is now quite outdated with what ultimately became surveydown.</p>
 </section>
-<section id="authors" class="level1">
-<h1>Authors</h1>
-<p>The surveydown project is led by professor <a href="https://www.jhelvy.com/">John Paul Helveston</a> at George Washington University. The development team consists of the following members:</p>
+<section id="authors" class="level2">
+<h2 class="anchored" data-anchor-id="authors">Authors</h2>
+<p>The surveydown project is led by professor <a href="https://www.jhelvy.com/">John Paul Helveston</a> at George Washington University and was originally developed in collaboration with his students <a href="https://pingfanhu.com">Pingfan Hu</a> and <a href="https://www.linkedin.com/in/bogdanbt/">Bogdan Bunea</a>.</p>
+<p>As an open-source package, surveydown now has many more contributors who have added features and improved the project over time. See the <a href="https://github.com/surveydown-dev/surveydown/graphs/contributors"><strong>Contributors’ Page</strong></a> for details.</p>
+<p><br></p>
 <div style="display: flex; flex-wrap: wrap; gap: 2%;">
 <div style="width: 22%;">
 <p><img src="./images/authors/john_helveston_square.png" class="img-fluid" style="width: 200px; border-radius: 50%;"></p>
@@ -228,7 +231,6 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="https://www.linkedin.com/in/bogdanbt/">Bogdan Bunea</a> is an undergraduate student majoring in Systems Engineering and minoring in Computer Science at George Washington University. Bogdan is mainly responsible for database connection and data management.</p>
 </div>
 </div>
-<p>Since surveydown is an open-source package, it is also contributed by a lot of active GitHub users. See the <a href="https://github.com/surveydown-dev/surveydown/graphs/contributors"><strong>Contributors’ Page</strong></a> for details.</p>
 
 
 </section>

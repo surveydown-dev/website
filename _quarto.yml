@@ -13,6 +13,11 @@ project:
     - "conditional-control.qmd"
     - "custom-questions.qmd"
     - "deployment.qmd"
+    - "demos/question-types.qmd"
+    - "demos/show-if.qmd"
+    - "demos/skip-if.qmd"
+    - "demos/conjoint-buttons.qmd"
+    - "demos/random-labels.qmd"
     - "demos.qmd"
     - "documentation.qmd"
     - "external-resources.qmd"
@@ -129,12 +134,28 @@ website:
               href: security.qmd
             - text: "Tips"
               href: tips.qmd
+    - title: "Demos"
+      style: "docked"
+      background: light
+      contents:
+        - text: "Demos"
+          href: demos.qmd
+        - text: "Question Types"
+          href: demos/question-types.qmd
+        - text: "Conditional Display"
+          href: demos/show-if.qmd
+        - text: "Conditional Skip"
+          href: demos/skip-if.qmd
+        - text: "Conjoint Buttons"
+          href: demos/conjoint-buttons.qmd
+        - text: "Random Labels"
+          href: demos/random-labels.qmd
 
 format:
   html:
     theme:
-      light: [flatly, theme.scss]
-      dark: [darkly, theme.scss]
+      light: [flatly, css/theme.scss]
+      dark: [darkly, css/theme.scss]
     anchor-sections: true
     smooth-scroll: true
     link-external-newwindow: true

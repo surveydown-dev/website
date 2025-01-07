@@ -1,5 +1,6 @@
 ---
 title: "Tips"
+css: ../css/surveydown.css
 ---
 
 ```{r}
@@ -8,7 +9,7 @@ title: "Tips"
 #| echo: false
 
 library(surveydown)
-sd_setup()
+shiny::shinyOptions(bootstrapTheme = bslib::bs_theme(version = 5L))
 ```
 
 This page has some helpful suggestions for working with surveydown surveys.

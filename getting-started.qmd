@@ -1,5 +1,6 @@
 ---
 title: "Getting Started"
+css: ../css/surveydown.css
 ---
 
 ```{r}
@@ -7,6 +8,7 @@ title: "Getting Started"
 #| eval: true
 
 library(surveydown)
+shiny::shinyOptions(bootstrapTheme = bslib::bs_theme(version = 5L))
 ```
 
 ## Overview
@@ -20,8 +22,8 @@ The platform is based on some basic principles:
 - Add content to your `survey.qmd` file using markdown text (or in RStudio use the visual editor).
 - Define survey questions in R code chunks with the `sd_question()` function.
 - Define pages using fences (`:::`), with navigation buttons handled using the `sd_next()` function.
-- Add rich functionality to your survey using a variety of [server options](server-options.qmd) and [conditional control logic](conditional-control.qmd) in the `server()` function in the `app.R` file.
-- Store your respondent data in a database (see [Store Data](store-data.qmd)).
+- Add rich functionality to your survey using a variety of [server options](manuals/server-options.qmd) and [conditional control logic](manuals/conditional-control.qmd) in the `server()` function in the `app.R` file.
+- Store your respondent data in a database (see [Store Data](manuals/store-data.qmd)).
 
 This approach ensures a flexible survey platform that is fully reproducible and easy to customize.
 
@@ -33,11 +35,11 @@ See the [Installation](installation.qmd) page.
 
 ## 2. Start with a template
 
-See the [Template](template.qmd) page.
+See the [Template](manuals/template.qmd) page.
 
 ## 3. Add survey content in your `survey.qmd` file
 
-See the [Survey Components](survey-components.qmd) page for details on the main components in a surveydown survey. For a quick overview, here's how you add pages and questions:
+See the [Survey Components](manuals/survey-components.qmd) page for details on the main components in a surveydown survey. For a quick overview, here's how you add pages and questions:
 
 - Add pages with fences, like this:
 
@@ -49,7 +51,7 @@ Page 1 content here
 :::
 ```
 
-- Add questions with the `sd_question()` function in code chunks (see the [Question Types](question-types.qmd) page for more on the types of questions supported). For example, here's a multiple choice question:
+- Add questions with the `sd_question()` function in code chunks (see the [Question Types](manuals/question-types.qmd) page for more on the types of questions supported). For example, here's a multiple choice question:
 
 ::: {.panel-tabset}
 
@@ -92,11 +94,11 @@ sd_question(
 
 ## 4. Add control options
 
-In the `server()` function in the `app.R` file, add rich functionality to your survey using a variety of [server options](server-options.qmd) and [conditional control logic](conditional-control.qmd).
+In the `server()` function in the `app.R` file, add rich functionality to your survey using a variety of [server options](manuals/server-options.qmd) and [conditional control logic](manuals/conditional-control.qmd).
 
 ## 5. Setup your database
 
-In the global settings at the top of the `app.R` file, setup your database with the `sd_database()` function. You can also leave it blank to preview / edit your survey without database connected, or set `ignore = TRUE` to run the survey without storing data. See the [Store Data](store-data.qmd) page for more details.
+In the global settings at the top of the `app.R` file, setup your database with the `sd_database()` function. You can also leave it blank to preview / edit your survey without database connected, or set `ignore = TRUE` to run the survey without storing data. See the [Store Data](manuals/store-data.qmd) page for more details.
 
 ## 6. Locally preview
 
@@ -104,4 +106,4 @@ Preview your survey by clicking the "Run App" button in RStudio or in your R con
 
 ## 7. Deploy
 
-Deploy your survey by hosting it on your favorite server, like {{< var shinyapps >}}, {{< var huggingface >}}, [Posit Connect Cloud](https://connect.posit.cloud/), [Heroku](https://www.heroku.com/), etc. See the [Deployment](deployment.qmd) page for more details.
+Deploy your survey by hosting it on your favorite server, like {{< var shinyapps >}}, {{< var huggingface >}}, [Posit Connect Cloud](https://connect.posit.cloud/), [Heroku](https://www.heroku.com/), etc. See the [Deployment](manuals/deployment.qmd) page for more details.

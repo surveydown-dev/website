@@ -5,7 +5,7 @@ code-annotations: hover
 
 All survey configuration settings are defined within the `server` function in the `app.R` file. The `server()` function is a standard Shiny server function that takes `input`, `output`, and `session` as arguments.
 
-{{< include chunks/server.qmd >}}
+{{< include ../chunks/server.qmd >}}
 
 The `sd_skip_if()` and `sd_show_if()` functions are used to define conditional skip and show logic for the survey (see the [Conditional Control](conditional-control.qmd) page for more details).
 
@@ -102,7 +102,7 @@ Below are the `TRUE` and `FALSE` cases for `rate_survey`:
 If `rate_survey` is `TRUE`, a survey rating question will pop up:
 
 <center>
-<img src="images/screenshots/rate_survey.gif" style="max-width: 550px; width: 100%;">
+<img src="../images/screenshots/rate_survey.gif" style="max-width: 550px; width: 100%;">
 </center>
 
 ## `FALSE`
@@ -110,7 +110,7 @@ If `rate_survey` is `TRUE`, a survey rating question will pop up:
 If `rate_survey` is `FALSE`, a confirm exit dialog box will pop up:
 
 <center>
-<img src="images/screenshots/confirm_exit.gif" style="max-width: 550px; width: 100%;">
+<img src="../images/screenshots/confirm_exit.gif" style="max-width: 550px; width: 100%;">
 </center>
 
 :::
@@ -129,7 +129,7 @@ sd_server(
 
 Five languages are supported by default, but you can customize the messages to any language (or any message) you want. See the [System Translations](system-translations.qmd) page for more details.
 
-## Cookie
+## Cookies
 
 Cookies are used to store user sessions, including their session ID, survey data storage (backend), and their survey progress (frontend).
 

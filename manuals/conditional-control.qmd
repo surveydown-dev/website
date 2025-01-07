@@ -5,7 +5,7 @@ code-annotations: hover
 
 All survey configuration settings are defined within the `server` function in the `app.R` file. The `server()` function is a standard Shiny server function that takes `input`, `output`, and `session` as arguments.
 
-{{< include chunks/server.qmd >}}
+{{< include ../chunks/server.qmd >}}
 
 The `sd_skip_if()` and `sd_show_if()` functions are used to define conditional skip and show logic for the survey. This page details how to use each of these functions to control many aspects of the survey flow logic.
 
@@ -16,7 +16,7 @@ It is often useful to have a question display based on some condition, such as t
 For example, let's say we have a choice question about people's favorite penguin type, and the last option is "other". If the respondent chose it, you may want a second question to display that allows them to specify the "other" penguin type, like this:
 
 <center>
-<img src="images/screenshots/show_if.gif" style="max-width: 600px; width: 100%;">
+<img src="../images/screenshots/show_if.gif" style="max-width: 600px; width: 100%;">
 </center>
 <br>
 
@@ -128,7 +128,7 @@ Both the `sd_show_if()` and `sd_skip_if()` functions require a condition that re
 
 ::: {.callout-note}
 
-The [show_if demo](https://github.com/surveydown-dev/demos/tree/main/show-if) showcases how to use the `sd_show_if()` function with a variety of different conditions, but the same principles apply to conditions used in the `sd_skip_if()` function.
+The [Demo of Conditional Display](../demos/show-if.qmd) showcases how to use the `sd_show_if()` function with a variety of different conditions, but the same principles apply to conditions used in the `sd_skip_if()` function.
 
 :::
 

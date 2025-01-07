@@ -11,7 +11,7 @@ library(surveydown)
 
 ## Overview
 
-{{< include chunks/files.qmd >}}
+{{< include ../chunks/files.qmd >}}
 
 They typically look something like this:
 
@@ -254,7 +254,7 @@ sd_question(
 
 The `sd_question()` function can be used to create a variety of question types, like text input, select drop down choices, and more by changing the `type` argument (see the [Questions Types](question-types.qmd) page).
 
-The function has many other arguments for customizing the look and feel of the question, such as the `height` and `width` (see the [Formatting Questions](formatting.qmd) page).
+The function has many other arguments for customizing the look and feel of the question, such as the `height` and `width` (see the [Question Formatting](question-formatting.qmd) page).
 
 By default all questions are optional, but you can make questions required in the server options (see the [Server Options](server-options.qmd#required-questions) page for details).
 
@@ -350,7 +350,7 @@ The `db` object is used to store survey data - see the [Store Data](store-data.q
 
 The `server()` function is a standard Shiny server function that takes `input`, `output`, and `session` as arguments. It is where you can set custom control logic and other configuration options, such as [conditional display](conditional-control.qmd#conditional-display) logic with the `sd_show_if()` function, or [conditional skip](conditional-control.qmd#conditional-skipping) logic with the `sd_skip_if()` function.
 
-{{< include chunks/server.qmd >}}
+{{< include ../chunks/server.qmd >}}
 
 The `sd_server()` function at the bottom makes everything run. It also includes some optional arguments that you can use to customize the survey. 
 

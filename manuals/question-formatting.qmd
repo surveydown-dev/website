@@ -1,5 +1,6 @@
 ---
 title: "Question Formatting"
+css: ../css/surveydown.css
 ---
 
 ```{r}
@@ -7,7 +8,7 @@ title: "Question Formatting"
 #| include: false
 
 library(surveydown)
-sd_setup()
+shiny::shinyOptions(bootstrapTheme = bslib::bs_theme(version = 5L))
 ```
 
 The `sd_question()` function has many optional arguments for modifying the appearance and behavior of questions. This page demonstrates some of the formatting options.

@@ -16,7 +16,7 @@ library(plotly)
 #   sf::st_transform(4326)
 # saveRDS(states, file.path('files', 'states.rds'))
 
-states <- readRDS(file.path('files', 'states.rds'))
+states <- readRDS(file.path('..', 'files', 'states.rds'))
 ```
 
 If you have an html widget that isn't yet directly supported by surveydown, you can still use it by defining it in the server and using the `sd_question_custom()` function to store the value in the resulting survey data.
@@ -44,9 +44,9 @@ sd_question_custom(
 
 To make `sd_question_custom()` work, you need to define the UI and functionality you want in the `server()` function in the `app.R` file. We have two examples that show how to set this up: an interactive map using leaflet, and an interactive plot using plotly.
 
-## `leaflet` map example
+## Example of a `leaflet` map
 
-See the [demo survey](https://github.com/surveydown-dev/demos/tree/main/leaflet-map) of a leaflet map with the `sd_question_custom` function.
+See the [Demo of a Leaflet Map](../demos/leaflet-map.qmd) with the `sd_question_custom()` function.
 
 The demo has a leaflet map that looks like the map below. When a user clicks on the map, it turns orange and stores the selected state in the resulting survey response data:
 
@@ -102,7 +102,7 @@ leaflet(options = leafletOptions(preferCanvas = TRUE)) |>
 
 ## Example of `plotly`
 
-See the [demo survey](https://github.com/surveydown-dev/demos/tree/main/plotly) of a plotly question utilizing the `sd_question_custom` function.
+See the [Demo of a Plotly Chart](../demos/plotly.qmd) with the `sd_question_custom()` function.
 
 The demo has a plotly scatterplot map that looks like the chart below. When a user clicks on one of the points, it displays the point value and stores the point in the resulting survey response data:
 

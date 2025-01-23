@@ -173,9 +173,15 @@ library(surveydown)
 # Server Setup
 server <- function(input, output, session) {
 
-  observeEvent(c(input$first_number, input$second_number), {
-      product <- as.numeric(input$first_number) * as.numeric(input$second_number)
-      sd_store_value(product)
+  # Option 1
+  observe({
+    product <- as.numeric(input$first_number) * as.numeric(input$second_number)
+    sd_store_value(product)
+  })
+
+  # Option 2
+  observe({
+    output$product <- renderUI(as.numeric(input$first_number) * as.numeric(input$second_number))
   })
 
   sd_server(
@@ -192,7 +198,10 @@ shiny::shinyApp(ui = sd_ui(), server = server)
 
 In this case, `first_number` and `second_number`, defined in `survey.qmd`, are the results from the `sd_question()` that is filled by the user. Then, the `product` is defined in `app.R` since it should observe the usesr input.
 
-Since there are 2 values to be observed, we used `c(input$first_number, input$second_number)` to concatenate them. If there is only one, no concatenation is needed.
+For `app.R`:
+
+- In **option 1**, we use the `observe()` function to capture the user inputs, in which `sd_store_value()` is used to make `product` accessible in our `survey.qmd`.
+- In **option 2**, upon using `observe()`, we use `output$` in front of `product`, along with `renderUI()` to make it directly accessible in `survey.qmd` without necessity of `sd_store_value()`.
 
 ## Defining questions in the server function
 

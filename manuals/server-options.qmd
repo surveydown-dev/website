@@ -55,32 +55,6 @@ sd_server(
 )
 ```
 
-## Admin page
-
-::: {.callout-important}
-
-The admin page is currently under development and has limited functionality.
-
-:::
-
-By default, the admin page is not created. But if you want one, set `admin_page` to `TRUE` inside the `sd_server()` function, like this:
-
-```{r}
-sd_server(
-  admin_page = TRUE
-)
-```
-
-When the admin page is enabled, you will be able to access the page by adding `?admin` to the end of the survey URL, e.g. `https://myname.shinyapps.io/?admin`. This will display a login page with a single "Password" parameter, which is the password set using `sd_set_password()`. See the [Password](password.qmd) page for details.
-
-The admin page has the following features:
-
-- **Pause Survey**: Once clicked, the Shiny app pauses all instances replacing questions with a placeholder page.
-- **Pause DB**: Once clicked, the all database uploads will be paused. You can still take the survey, but the data will not be updated in the database.
-- **Download Data**: Download the most recent table instance from the database as a .csv file. 
-- **Admin Logout and Return to Survey**: Once clicked, the admin page will be logged out and the survey will be returned to the start page.
-- **Survey Data Preview**: View the latest instance of the database table.
-
 ## Rating question
 
 You may want to add a rating question by the end of the survey to collect user reflections. Simply set `rate_survey` to `TRUE` (Default to `FALSE`):

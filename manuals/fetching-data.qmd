@@ -4,27 +4,21 @@ title: "Fetching Data"
 
 ## Static Fetching
 
-Once you have your database properly set up and your survey is live, you can fetch the data using the `sd_get_data()` function. All you have to do is pass in the `db` object you created with `sd_database()` to the `sd_get_data()` function. 
+Once you have your database properly set up and your survey is live, you can fetch the data using the `sd_get_data()` function. 
 
-For example, if you have a table called `my_table` in your Supabase database:
+To do so, you have to first create a database connection using the `sd_db_connect()` function:
 
 ```{r}
-db <- sd_database(
-  host   = "my_host",
-  dbname = "my_dbname",
-  port   = "my_port",
-  user   = "my_user",
-  table  = "my_table"
-)
+db <- sd_db_connect()
 ```
 
-You can fetch the data like this:
+Once you have created a successful database connection, you need to use the connection to fetch the data, like this:
 
 ```{r}
 data <- sd_get_data(db)
 ```
 
-Here the `data` object will be a data.frame with the data from your database.
+Here the `data` object will be a data.frame with the data from your database table.
 
 ## Reactive Fetching
 

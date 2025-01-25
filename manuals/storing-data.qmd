@@ -1,0 +1,106 @@
+---
+title: "Storing Data"
+---
+
+Data storage is a crucial part of any survey. The surveydown package is designed to work with a PostgreSQL database. You can use a database that you set up yourself, or a cloud-based service like {{< var supabase >}}. If you're not familiar with PostgreSQL, {{< var supabase >}} is a good choice as it is easy to set up and free (you can pay for more performance).
+
+In this guide, we'll walk you through the steps for setting up a Supabase project and connecting your surveydown survey to it.
+
+## Setting up a Supabase project
+
+First, navigate to the {{< var supabase >}} website and create an account.
+
+Once you are logged in, the page will prompt you to create a project (it's a green button). Click on it and select your organization. A dialog box will pop up like this:
+
+<center>
+<img src="../images/screenshots/supabase-project.png" style="max-width: 600px; width: 100%;">
+</center>
+<br>
+
+::: {.callout-important}
+
+One Supabase project can support multiple surveydown surveys if you wish, but we recommend that you have only one survey per project to avoid potential mistakes.
+
+:::
+
+Fill in the project name and give it a strong password. Choose a region that is close to you (or close to your survey audience). All settings can be modified at any time.
+
+## Getting your Supabase credentials
+
+Once your Supabase project is ready, click on the "connect" button at the top, it should look like this:
+
+<center>
+<img src="../images/screenshots/supabase-connect.png" width=400>
+</center>
+
+<br>
+
+On the connection page, scroll down to the "Transaction pooler" section. There you can click on the "View parameters" drop down to see your connection parameters. It should look somethinglike this:
+
+<center>
+<img src="../images/screenshots/supabase-connection.png" style="max-width: 600px; width: 100%;">
+</center>
+
+These are the parameters you need to connect to your database in surveydown (along with your password that you set earlier when creating the Supabase project).
+
+## Storing your databasecredentials
+
+Before connecting to your database, you need to figure store your credentials. You can do this by running the following code in your R console:
+
+```{r}
+surveydown::sd_db_config()
+```
+
+The `sd_db_config()` function will prompt you to enter your database credentials as well as your password, one by one. It will look like this:
+
+<br>
+
+<center>
+<img src="../images/screenshots/sd-db-config.png" style="max-width: 600px; width: 80%;">
+</center>
+
+<br>
+
+The dialog box will show you the current parameters in square brackets, and you can enter / modify them in the console. 
+
+Once you have entered your credentials, the function will store them in a `.env` file in your project folder. We strongly recommend that you do not manually edit this file or share it with others.
+
+## Connecting to your database in surveydown
+
+Now that you have set your credentials, you can connect to your database in surveydown by running the following code in your `app.R` file:
+
+```{r}
+db <- sd_db_connect()
+```
+
+When you run this line, a success message should appear in the console that says "✔ Successfully connected to the database." 
+
+
+
+## Tips
+
+### Ignoring the Supabase connection
+
+While editing your survey, you may want to not connect to the database. This can be easily implemented by setting `ignore = TRUE` in `sd_database()`:
+
+```{r}
+db <- sd_database(
+  # Previous parameters...
+  ignore = TRUE
+)
+```
+
+With this setting, your connection parameters can remain set, but the survey will not attempt to connect to your database. Instead, a local `preview_data.csv` file will be created in your project folder so you can preview the survey data.
+
+### Disabling `gssencmode`
+
+If you've set everything correctly but still encounter connection error, try to disable `gssencmode` like this:
+
+```{r}
+db <- sd_database(
+  # Previous parameters...
+  gssencmode = "disable"
+)
+```
+
+By default, `gssencmode` is set as `"prefer"`. It secures your connection with PostgreSQL, which is the SQL used by Supabase. We generally recommend that you **DO NOT disable `gssencmode`**, but sometimes this is necessary, especially when you are working on a protected network, e.g. on a VPN. 

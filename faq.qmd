@@ -30,7 +30,7 @@ surveydown might be a good fit for you today if…
 surveydown might not be a good fit for you today if…
 
 - you need stable, polished software that is mature and completely bug-free.
-- you need a product with a guaranteed security level, such as HIPAA compliance (see our [security page](security.qmd) for more details).
+- you need a product with a guaranteed security level, such as HIPAA compliance (see our [security page](manuals/security.qmd) for more details).
 - you prefer a platform that uses a graphic interface to define survey content.
 
 ## Why is my survey app so slow when starting?
@@ -41,17 +41,17 @@ Also, it is important that you run your survey locally **at least once** before 
 
 ## How do I make a question required?
 
-Use the `required_questions` argument in `sd_server()` to control required responses (see the [required questions](server-options.qmd#required-questions) page for more details).
+Use the `required_questions` argument in `sd_server()` to control required responses (see the [required questions](manuals/server-options.qmd#required-questions) page for more details).
 
 ## Why is my shinyapps deployment failing?
 
-First, make sure everything is correctly defined, including your Supabase project settings and password settings. The password in your project folder should be the same as your Supabase project password (see [here](password.qmd) for how to set the password). Then, make sure your survey runs on your local machine and can successfully link with your Supabase project table. With these confirmed, your shinyapps deployment should work without problem.
+First, make sure your Suppabase credentials are correctly defined, including your Supabase project settings and password settings. The password defined by `sd_db_config()` should be the same as your Supabase project password. Access the [Storing Data](manuals/storing-data.qmd) page for how to set all Supabase credentials. Then, make sure your survey runs on your local machine and can successfully link with your Supabase project table. With these confirmed, your shinyapps deployment should work without problem.
 
 If you still encounter an error (e.g., the page shows the app failed to start, or you see the page but it doesn't run properly), try clearing your cache. The simplest way to do so is to **reboot your computer**. It may also help if you delete previously generated files, such as the `survey.html` file if you rendered it and the `rsconnect` folder. After re-rendering, you should be able to deploy the app without error.
 
 ## How should I install the {surveydown} package?
 
-You can install the {surveydown} package from [CRAN](https://cran.r-project.org/web/packages/surveydown/index.html) or the [GitHub repo](https://github.com/surveydown-dev/surveydown/) of the package source code. Follow [these instructions](installation.qmd#install-the-surveydown-r-package) for either approach.
+You can install the {surveydown} package from [CRAN](https://cran.r-project.org/web/packages/surveydown/index.html) or the [GitHub repo](https://github.com/surveydown-dev/surveydown/) of the package source code. Follow [these instructions](manuals/installation.qmd#install-the-surveydown-r-package) for either approach.
 
 Sometimes neither of these approaches work, often because your path is managed by some package managing system like [Anaconda](https://www.anaconda.com). In this case, a third alternative is to download the zip file of the package source code and then install it locally.
 
@@ -64,28 +64,3 @@ Unzip this repo, then open the `surveydown.Rproj` file. In your R Console panel,
 devtools::install(force = TRUE)
 ```
 
-## How should I set a password for my surveydown project / why can't I see my password?
-
-With [Supabase](https://supabase.com) (the database we use to store survey responses), you need a password to access the database (see the [Password](password.qmd) page for details). 
-
-To connect to this database in a {surveydown} survey, you have to locally store this password in a secure location by running this function in your console:
-
-```{r}
-sd_set_password("MyPassword")
-```
-
-This will store your password in a local `.Renviron` file and will look like this if you open it:
-
-```{r}
-SURVEYDOWN_PASSWORD=MyPassword
-```
-
-::: {.callout-warning}
-
-**DO NOT** edit this file. The {surveydown} package will search for it to find your Supabase password.
-
-:::
-
-Also, you will need to **restart your R session** after running `sd_set_password()`. This is because the `.Renviron` file gets read when the R session launches, so if you create or modify your password using `sd_set_password()`, you will need to restart your R session for R to be able to "see" the `.Renviron` file containing your password.
-
-There is no defined sequence in setting your password on Supabase or for {surveydown} - you can define your Supabase project password first and then define your local password using `sd_set_password()`, or you can do it in the opposite order. The only thing that matters is when you attempt to connect to Supabase using your survey, these 2 passwords should match.

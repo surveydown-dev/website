@@ -153,8 +153,8 @@ ul.task-list li input[type="checkbox"] {
 
     <script>
 
-      function styleCell_2o2rnve1ulukrzq29fvx(i, j, css_id) {
-          var table = document.getElementById("tinytable_2o2rnve1ulukrzq29fvx");
+      function styleCell_lktgijv2qoj5boti6egx(i, j, css_id) {
+          var table = document.getElementById("tinytable_lktgijv2qoj5boti6egx");
           var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
           if (cell) {
               console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
@@ -164,7 +164,7 @@ ul.task-list li input[type="checkbox"] {
           }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_2o2rnve1ulukrzq29fvx');
+        var table = document.getElementById('tinytable_lktgijv2qoj5boti6egx');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -172,8 +172,8 @@ ul.task-list li input[type="checkbox"] {
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_2o2rnve1ulukrzq29fvx(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_2o2rnve1ulukrzq29fvx");
+      function spanCell_lktgijv2qoj5boti6egx(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_lktgijv2qoj5boti6egx");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -203,25 +203,25 @@ ul.task-list li input[type="checkbox"] {
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: 1, j: 0 }, { i: 2, j: 0 }, { i: 5, j: 0 }, { i: 6, j: 0 }, { i: 4, j: 0 }, { i: 9, j: 0 }, { i: 10, j: 0 }, { i: 7, j: 0 }, { i: 12, j: 0 }, { i: 13, j: 0 }, { i: 14, j: 0 }, { i: 15, j: 0 }, { i: 3, j: 0 }, { i: 17, j: 0 }, { i: 18, j: 0 }, { i: 19, j: 0 }, { i: 20, j: 0 }, { i: 8, j: 0 }, { i: 1, j: 1 }, { i: 2, j: 1 }, { i: 11, j: 0 }, { i: 4, j: 1 }, { i: 5, j: 1 }, { i: 6, j: 1 }, { i: 7, j: 1 }, { i: 16, j: 0 }, { i: 9, j: 1 }, { i: 10, j: 1 }, { i: 11, j: 1 }, { i: 12, j: 1 }, { i: 13, j: 1 }, { i: 14, j: 1 }, { i: 15, j: 1 }, { i: 3, j: 1 }, { i: 17, j: 1 }, { i: 18, j: 1 }, { i: 19, j: 1 }, { i: 20, j: 1 }, { i: 8, j: 1 }, { i: 1, j: 2 }, { i: 2, j: 2 }, { i: 3, j: 2 }, { i: 4, j: 2 }, { i: 5, j: 2 }, { i: 6, j: 2 }, { i: 7, j: 2 }, { i: 16, j: 1 }, { i: 9, j: 2 }, { i: 10, j: 2 }, { i: 11, j: 2 }, { i: 12, j: 2 }, { i: 13, j: 2 }, { i: 14, j: 2 }, { i: 15, j: 2 }, { i: 16, j: 2 }, { i: 17, j: 2 }, { i: 18, j: 2 }, { i: 19, j: 2 }, { i: 20, j: 2 }, { i: 8, j: 2 }, { i: 1, j: 3 }, { i: 2, j: 3 }, { i: 3, j: 3 }, { i: 4, j: 3 }, { i: 5, j: 3 }, { i: 6, j: 3 }, { i: 7, j: 3 }, { i: 8, j: 3 }, { i: 9, j: 3 }, { i: 10, j: 3 }, { i: 11, j: 3 }, { i: 12, j: 3 }, { i: 13, j: 3 }, { i: 14, j: 3 }, { i: 15, j: 3 }, { i: 16, j: 3 }, { i: 17, j: 3 }, { i: 18, j: 3 }, { i: 19, j: 3 }, { i: 20, j: 3 },  ], css_id: 'tinytable_css_y9xsrmaqgqrzmc5n4qrs',}, 
-          { positions: [ { i: 0, j: 0 }, { i: 0, j: 2 }, { i: 0, j: 1 }, { i: 0, j: 3 },  ], css_id: 'tinytable_css_rbvpbieekedjd84n2nc1',}, 
+          { positions: [ { i: 0, j: 0 }, { i: 0, j: 1 }, { i: 0, j: 2 }, { i: 0, j: 3 },  ], css_id: 'tinytable_css_tlp91qutsivamp6kz954',}, 
+          { positions: [ { i: 1, j: 0 }, { i: 5, j: 0 }, { i: 2, j: 0 }, { i: 3, j: 0 }, { i: 8, j: 0 }, { i: 9, j: 0 }, { i: 6, j: 0 }, { i: 11, j: 0 }, { i: 12, j: 0 }, { i: 13, j: 0 }, { i: 14, j: 0 }, { i: 15, j: 0 }, { i: 16, j: 0 }, { i: 4, j: 0 }, { i: 18, j: 0 }, { i: 19, j: 0 }, { i: 7, j: 0 }, { i: 21, j: 0 }, { i: 22, j: 0 }, { i: 10, j: 0 }, { i: 1, j: 1 }, { i: 2, j: 1 }, { i: 3, j: 1 }, { i: 4, j: 1 }, { i: 5, j: 1 }, { i: 6, j: 1 }, { i: 17, j: 0 }, { i: 8, j: 1 }, { i: 9, j: 1 }, { i: 20, j: 0 }, { i: 11, j: 1 }, { i: 12, j: 1 }, { i: 13, j: 1 }, { i: 14, j: 1 }, { i: 15, j: 1 }, { i: 16, j: 1 }, { i: 17, j: 1 }, { i: 18, j: 1 }, { i: 19, j: 1 }, { i: 7, j: 1 }, { i: 21, j: 1 }, { i: 22, j: 1 }, { i: 10, j: 1 }, { i: 1, j: 2 }, { i: 2, j: 2 }, { i: 3, j: 2 }, { i: 4, j: 2 }, { i: 5, j: 2 }, { i: 6, j: 2 }, { i: 7, j: 2 }, { i: 8, j: 2 }, { i: 9, j: 2 }, { i: 20, j: 1 }, { i: 11, j: 2 }, { i: 12, j: 2 }, { i: 13, j: 2 }, { i: 14, j: 2 }, { i: 15, j: 2 }, { i: 16, j: 2 }, { i: 17, j: 2 }, { i: 18, j: 2 }, { i: 19, j: 2 }, { i: 20, j: 2 }, { i: 21, j: 2 }, { i: 22, j: 2 }, { i: 10, j: 2 }, { i: 1, j: 3 }, { i: 2, j: 3 }, { i: 3, j: 3 }, { i: 4, j: 3 }, { i: 5, j: 3 }, { i: 6, j: 3 }, { i: 7, j: 3 }, { i: 8, j: 3 }, { i: 9, j: 3 }, { i: 10, j: 3 }, { i: 11, j: 3 }, { i: 12, j: 3 }, { i: 13, j: 3 }, { i: 14, j: 3 }, { i: 15, j: 3 }, { i: 16, j: 3 }, { i: 17, j: 3 }, { i: 18, j: 3 }, { i: 19, j: 3 }, { i: 20, j: 3 }, { i: 21, j: 3 }, { i: 22, j: 3 },  ], css_id: 'tinytable_css_ncgpw56d25cy5jtnm71f',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  styleCell_2o2rnve1ulukrzq29fvx(cell.i, cell.j, group.css_id);
+                  styleCell_lktgijv2qoj5boti6egx(cell.i, cell.j, group.css_id);
               });
           });
       });
     </script><style>
       /* tinytable css entries after */
-      .table td.tinytable_css_y9xsrmaqgqrzmc5n4qrs, .table th.tinytable_css_y9xsrmaqgqrzmc5n4qrs { font-size: 0.9em; text-align: center; }
-      .table td.tinytable_css_rbvpbieekedjd84n2nc1, .table th.tinytable_css_rbvpbieekedjd84n2nc1 { font-size: 0.9em; text-align: center; text-align: center; }
+      .table td.tinytable_css_tlp91qutsivamp6kz954, .table th.tinytable_css_tlp91qutsivamp6kz954 { font-size: 0.9em; text-align: center; text-align: center; }
+      .table td.tinytable_css_ncgpw56d25cy5jtnm71f, .table th.tinytable_css_ncgpw56d25cy5jtnm71f { font-size: 0.9em; text-align: center; }
     </style>
 <div class="container">
       
-<table id="tinytable_2o2rnve1ulukrzq29fvx" class="table table-bordered caption-top table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false">
+<table id="tinytable_lktgijv2qoj5boti6egx" class="table table-bordered caption-top table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false">
 <thead><tr class="header">
 <th data-quarto-table-cell-role="th" scope="col">Feature</th>
 <th data-quarto-table-cell-role="th" scope="col">Docs</th>
@@ -231,7 +231,7 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 <tr class="odd">
 <td>Wide variety of question types</td>
-<td><a href="https://surveydown.org/question-types">Question Types</a></td>
+<td><a href="https://surveydown.org/manuals/question-types">Question Types</a></td>
 <td>v0.0.1</td>
 <td>
 <a href="https://github.com/orgs/surveydown-dev/discussions/105">105</a>, <a href="https://github.com/orgs/surveydown-dev/discussions/109">109</a>
@@ -239,43 +239,43 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="even">
 <td>Ability to conditionally display questions</td>
-<td><a href="https://surveydown.org/conditional-control#conditional-display">Conditional Display</a></td>
+<td><a href="https://surveydown.org/manuals/conditional-control#conditional-display">Conditional Display</a></td>
 <td>v0.0.1</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>Ability to conditionally skip to pages</td>
-<td><a href="https://surveydown.org/conditional-control#conditional-skipping">Conditional Skipping</a></td>
+<td><a href="https://surveydown.org/manuals/conditional-control#conditional-skipping">Conditional Skipping</a></td>
 <td>v0.0.1</td>
 <td></td>
 </tr>
 <tr class="even">
 <td>Markdown formatting for options and buttons</td>
-<td><a href="https://surveydown.org/question-formatting#markdown-formatting">Markdown Formatting</a></td>
+<td><a href="https://surveydown.org/manuals/question-formatting#markdown-formatting">Markdown Formatting</a></td>
 <td>v0.0.1</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>Require specific questions or all questions be answered</td>
-<td><a href="https://surveydown.org/server-options#required-questions">Required Questions</a></td>
+<td><a href="https://surveydown.org/manuals/server-options#required-questions">Required Questions</a></td>
 <td>v0.0.2</td>
 <td></td>
 </tr>
 <tr class="even">
 <td>Support for bootstrap themes</td>
-<td><a href="https://surveydown.org/survey-components#changing-the-look-and-feel">Themes</a></td>
+<td><a href="https://surveydown.org/manuals/survey-components#changing-the-look-and-feel">Themes</a></td>
 <td>v0.0.4</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>Customizable scss theme file</td>
-<td><a href="https://surveydown.org/survey-components#changing-the-look-and-feel">Themes</a></td>
+<td><a href="https://surveydown.org/manuals/survey-components#changing-the-look-and-feel">Themes</a></td>
 <td>v0.0.4</td>
 <td></td>
 </tr>
 <tr class="even">
 <td>Ability to Ignore the database connection</td>
-<td><a href="https://surveydown.org/store-data#ignoring-the-supabase-connection">Supabase Ignore</a></td>
+<td><a href="https://surveydown.org/manuals/store-data#ignoring-the-supabase-connection">Supabase Ignore</a></td>
 <td>v0.0.8</td>
 <td></td>
 </tr>
@@ -287,69 +287,81 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="even">
 <td>Progress bar that updates on each question interaction</td>
-<td><a href="https://surveydown.org/survey-components#progress-bar">Progress Bar</a></td>
+<td><a href="https://surveydown.org/manuals/survey-components#progress-bar">Progress Bar</a></td>
 <td>v0.0.9</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>Customizable progress bar color and position on page</td>
-<td><a href="https://surveydown.org/survey-components#progress-bar">Progress Bar</a></td>
+<td><a href="https://surveydown.org/manuals/survey-components#progress-bar">Progress Bar</a></td>
 <td>v0.0.9</td>
 <td></td>
 </tr>
 <tr class="even">
 <td>Ability to use latest survey results in the survey itself</td>
-<td><a href="https://surveydown.org/fetch-data#reactive-fetching">Fetching Data</a></td>
+<td><a href="https://surveydown.org/manuals/fetch-data#reactive-fetching">Fetching Data</a></td>
 <td>v0.1.1</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>Pass parameters through the url e.g.&nbsp;to track user IDs</td>
-<td><a href="https://surveydown.org/redirect#reactive-redirect">Reactive Redirect</a></td>
+<td><a href="https://surveydown.org/manuals/redirect#reactive-redirect">Reactive Redirect</a></td>
 <td>v0.2.2</td>
 <td><a href="https://github.com/orgs/surveydown-dev/discussions/92">92</a></td>
 </tr>
 <tr class="even">
 <td>Redirect users to an external url</td>
-<td><a href="https://surveydown.org/redirect">External Redirect</a></td>
+<td><a href="https://surveydown.org/manuals/redirect">External Redirect</a></td>
 <td>v0.2.2</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>Start the survey from a specific page (helpful when editing survey)</td>
-<td><a href="https://surveydown.org/server-options#starting-page">Starting Page</a></td>
+<td><a href="https://surveydown.org/manuals/server-options#starting-page">Starting Page</a></td>
 <td>v0.3.0</td>
 <td></td>
 </tr>
 <tr class="even">
 <td>Create a random numeric completion code</td>
-<td><a href="https://surveydown.org/reactivity#displaying-stored-values-e.g.-a-completion-code">Completion Code</a></td>
+<td><a href="https://surveydown.org/manuals/reactivity#displaying-stored-values-e.g.-a-completion-code">Completion Code</a></td>
 <td>v0.3.2</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>Auto scroll according to the answering progress</td>
-<td><a href="https://surveydown.org/server-options#auto-scroll">Auto Scroll</a></td>
+<td><a href="https://surveydown.org/manuals/server-options#auto-scroll">Auto Scroll</a></td>
 <td>v0.3.3</td>
 <td><a href="https://github.com/surveydown-dev/surveydown/issues/104">104</a></td>
 </tr>
 <tr class="even">
 <td>Custom languages / messages for system messages</td>
-<td><a href="https://surveydown.org/system-translations">System Translations</a></td>
+<td><a href="https://surveydown.org/manuals/system-translations">System Translations</a></td>
 <td>v0.4.2</td>
 <td><a href="https://github.com/orgs/surveydown-dev/discussions/134">134</a></td>
 </tr>
 <tr class="odd">
 <td>Store session ID in browser cookies to store user progress if they refresh the page</td>
-<td><a href="https://surveydown.org/server-options#cookie">Cookies</a></td>
+<td><a href="https://surveydown.org/manuals/server-options#cookie">Cookies</a></td>
 <td>v0.6.0</td>
 <td></td>
 </tr>
 <tr class="even">
 <td>Custom question type to enable custom html widgets</td>
-<td><a href="https://surveydown.org/custom-questions">Custom Questions</a></td>
+<td><a href="https://surveydown.org/manuals/custom-questions">Custom Questions</a></td>
 <td>v0.7.2</td>
 <td><a href="https://github.com/orgs/surveydown-dev/discussions/111">111</a></td>
+</tr>
+<tr class="odd">
+<td>Dashboard page with password login to preview / download data / pause survey, etc.</td>
+<td><a href="https://surveydown.org/manuals/dashboard">Dashboard</a></td>
+<td>v0.8.0</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Footer on every survey page</td>
+<td></td>
+<td>v0.8.0</td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -364,8 +376,8 @@ ul.task-list li input[type="checkbox"] {
 
     <script>
 
-      function styleCell_jyu69k3s65rklkmjd97d(i, j, css_id) {
-          var table = document.getElementById("tinytable_jyu69k3s65rklkmjd97d");
+      function styleCell_nrklfw6kewy8apnma547(i, j, css_id) {
+          var table = document.getElementById("tinytable_nrklfw6kewy8apnma547");
           var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
           if (cell) {
               console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
@@ -375,7 +387,7 @@ ul.task-list li input[type="checkbox"] {
           }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_jyu69k3s65rklkmjd97d');
+        var table = document.getElementById('tinytable_nrklfw6kewy8apnma547');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -383,8 +395,8 @@ ul.task-list li input[type="checkbox"] {
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_jyu69k3s65rklkmjd97d(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_jyu69k3s65rklkmjd97d");
+      function spanCell_nrklfw6kewy8apnma547(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_nrklfw6kewy8apnma547");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -414,25 +426,25 @@ ul.task-list li input[type="checkbox"] {
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: 4, j: 0 }, { i: 5, j: 0 }, { i: 6, j: 0 }, { i: 7, j: 0 }, { i: 8, j: 0 }, { i: 9, j: 0 }, { i: 10, j: 0 }, { i: 11, j: 0 }, { i: 12, j: 0 }, { i: 13, j: 0 }, { i: 1, j: 0 }, { i: 2, j: 0 }, { i: 3, j: 0 }, { i: 3, j: 1 }, { i: 4, j: 1 }, { i: 5, j: 1 }, { i: 6, j: 1 }, { i: 7, j: 1 }, { i: 8, j: 1 }, { i: 9, j: 1 }, { i: 10, j: 1 }, { i: 11, j: 1 }, { i: 12, j: 1 }, { i: 13, j: 1 }, { i: 1, j: 1 }, { i: 2, j: 1 }, { i: 2, j: 2 }, { i: 3, j: 2 }, { i: 4, j: 2 }, { i: 5, j: 2 }, { i: 6, j: 2 }, { i: 7, j: 2 }, { i: 8, j: 2 }, { i: 9, j: 2 }, { i: 10, j: 2 }, { i: 11, j: 2 }, { i: 12, j: 2 }, { i: 13, j: 2 }, { i: 1, j: 2 }, { i: 1, j: 3 }, { i: 2, j: 3 }, { i: 3, j: 3 }, { i: 4, j: 3 }, { i: 5, j: 3 }, { i: 6, j: 3 }, { i: 7, j: 3 }, { i: 8, j: 3 }, { i: 9, j: 3 }, { i: 10, j: 3 }, { i: 11, j: 3 }, { i: 12, j: 3 }, { i: 13, j: 3 },  ], css_id: 'tinytable_css_zmu5f05ig0i973jjt9tf',}, 
-          { positions: [ { i: 0, j: 0 }, { i: 0, j: 1 }, { i: 0, j: 2 }, { i: 0, j: 3 },  ], css_id: 'tinytable_css_cwpdz6jja1d2ii49l9fm',}, 
+          { positions: [ { i: 0, j: 0 }, { i: 0, j: 3 }, { i: 0, j: 2 }, { i: 0, j: 1 },  ], css_id: 'tinytable_css_qkw63zoegnczczt4upq2',}, 
+          { positions: [ { i: 1, j: 0 }, { i: 5, j: 0 }, { i: 2, j: 0 }, { i: 3, j: 0 }, { i: 4, j: 0 }, { i: 9, j: 0 }, { i: 6, j: 0 }, { i: 7, j: 0 }, { i: 8, j: 0 }, { i: 1, j: 1 }, { i: 2, j: 1 }, { i: 3, j: 1 }, { i: 4, j: 1 }, { i: 5, j: 1 }, { i: 6, j: 1 }, { i: 7, j: 1 }, { i: 8, j: 1 }, { i: 9, j: 1 }, { i: 10, j: 1 }, { i: 10, j: 0 }, { i: 11, j: 0 }, { i: 1, j: 2 }, { i: 2, j: 2 }, { i: 3, j: 2 }, { i: 4, j: 2 }, { i: 5, j: 2 }, { i: 6, j: 2 }, { i: 7, j: 2 }, { i: 8, j: 2 }, { i: 9, j: 2 }, { i: 10, j: 2 }, { i: 11, j: 2 }, { i: 11, j: 1 }, { i: 1, j: 3 }, { i: 2, j: 3 }, { i: 3, j: 3 }, { i: 4, j: 3 }, { i: 5, j: 3 }, { i: 6, j: 3 }, { i: 7, j: 3 }, { i: 8, j: 3 }, { i: 9, j: 3 }, { i: 10, j: 3 }, { i: 11, j: 3 },  ], css_id: 'tinytable_css_22o93wqqwh39979fvjfz',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  styleCell_jyu69k3s65rklkmjd97d(cell.i, cell.j, group.css_id);
+                  styleCell_nrklfw6kewy8apnma547(cell.i, cell.j, group.css_id);
               });
           });
       });
     </script><style>
       /* tinytable css entries after */
-      .table td.tinytable_css_zmu5f05ig0i973jjt9tf, .table th.tinytable_css_zmu5f05ig0i973jjt9tf { font-size: 0.9em; text-align: center; }
-      .table td.tinytable_css_cwpdz6jja1d2ii49l9fm, .table th.tinytable_css_cwpdz6jja1d2ii49l9fm { font-size: 0.9em; text-align: center; text-align: center; }
+      .table td.tinytable_css_qkw63zoegnczczt4upq2, .table th.tinytable_css_qkw63zoegnczczt4upq2 { font-size: 0.9em; text-align: center; text-align: center; }
+      .table td.tinytable_css_22o93wqqwh39979fvjfz, .table th.tinytable_css_22o93wqqwh39979fvjfz { font-size: 0.9em; text-align: center; }
     </style>
 <div class="container">
       
-<table id="tinytable_jyu69k3s65rklkmjd97d" class="table table-bordered caption-top table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false">
+<table id="tinytable_nrklfw6kewy8apnma547" class="table table-bordered caption-top table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false">
 <thead><tr class="header">
 <th data-quarto-table-cell-role="th" scope="col">Feature</th>
 <th data-quarto-table-cell-role="th" scope="col">Docs</th>
@@ -441,52 +453,40 @@ ul.task-list li input[type="checkbox"] {
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>Admin page with password login to preview / download data pause survey etc.</td>
-<td><a href="https://surveydown.org/server-options#admin-page">Admin Page</a></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>Form validation (limit input based on question type)</td>
+<td>Form validation (limit input based on question type, limit value range for numeric type)</td>
 <td></td>
 <td></td>
 <td><a href="https://github.com/orgs/surveydown-dev/discussions/125">125</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Question type - Best worst</td>
 <td><a href="https://github.com/orgs/surveydown-dev/discussions/127">Best-worst Discussion</a></td>
 <td></td>
 <td><a href="https://github.com/orgs/surveydown-dev/discussions/127">127</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Question type - Single checkbox with on and off toggle switches</td>
 <td><a href="https://github.com/dreamRs/shinyWidgets?tab=readme-ov-file#single-checkbox">shinyWidgets - Single Checkbox</a></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Question type - Tree inputs</td>
 <td><a href="https://github.com/dreamRs/shinyWidgets?tab=readme-ov-file#tree">shinyWidgets - Tree</a></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Question type of select menu - Dropdown select type with multiple selections</td>
 <td><a href="https://github.com/dreamRs/shinyWidgets?tab=readme-ov-file#select-menu">shinyWidgets - Select Menu</a></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Define questions using an external <code>yml</code> file</td>
 <td></td>
 <td></td>
 <td><a href="https://github.com/orgs/surveydown-dev/discussions/132">132</a></td>
-</tr>
-<tr class="even">
-<td>Header / footer on every survey page</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr class="odd">
 <td>

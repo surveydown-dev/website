@@ -182,7 +182,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#how-do-i-make-a-question-required" id="toc-how-do-i-make-a-question-required" class="nav-link" data-scroll-target="#how-do-i-make-a-question-required">How do I make a question required?</a></li>
   <li><a href="#why-is-my-shinyapps-deployment-failing" id="toc-why-is-my-shinyapps-deployment-failing" class="nav-link" data-scroll-target="#why-is-my-shinyapps-deployment-failing">Why is my shinyapps deployment failing?</a></li>
   <li><a href="#how-should-i-install-the-surveydown-package" id="toc-how-should-i-install-the-surveydown-package" class="nav-link" data-scroll-target="#how-should-i-install-the-surveydown-package">How should I install the {surveydown} package?</a></li>
-  <li><a href="#how-should-i-set-a-password-for-my-surveydown-project-why-cant-i-see-my-password" id="toc-how-should-i-set-a-password-for-my-surveydown-project-why-cant-i-see-my-password" class="nav-link" data-scroll-target="#how-should-i-set-a-password-for-my-surveydown-project-why-cant-i-see-my-password">How should I set a password for my surveydown project / why can’t I see my password?</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -234,18 +233,18 @@ Note
 <p>surveydown might not be a good fit for you today if…</p>
 <ul>
 <li>you need stable, polished software that is mature and completely bug-free.</li>
-<li>you need a product with a guaranteed security level, such as HIPAA compliance (see our <a href="security.qmd">security page</a> for more details).</li>
+<li>you need a product with a guaranteed security level, such as HIPAA compliance (see our <a href="./manuals/security.html">security page</a> for more details).</li>
 <li>you prefer a platform that uses a graphic interface to define survey content.</li>
 </ul></section><section id="why-is-my-survey-app-so-slow-when-starting" class="level2"><h2 class="anchored" data-anchor-id="why-is-my-survey-app-so-slow-when-starting">Why is my survey app so slow when starting?</h2>
 <p>When a {surveydown} survey first runs, it checks for files in a <code>_survey</code> folder that contain the rendered content from your <code>survey.qmd</code> file. If any of those files are missing or if changes have been detected in your <code>survey.qmd</code> or <code>app.R</code> files, it will re-render your survey, which can take a bit longer. But this only happens once, and afterwards so long as no further changes have been made to your survey files the app will use the saved content in the <code>_survey</code> folder to launch, which should load almost instantly. So if your app launches slowly, just close it and launch it again and you should immediately load. If you still see a slow launch, consider <a href="https://github.com/surveydown-dev/surveydown/issues">posting an issue</a> to let us know that something might be wrong.</p>
 <p>Also, it is important that you run your survey locally <strong>at least once</strong> before deploying it live. This will render all your survey content into the <code>_survey</code> folder, which will also get uploaded when you deploy it.</p>
 </section><section id="how-do-i-make-a-question-required" class="level2"><h2 class="anchored" data-anchor-id="how-do-i-make-a-question-required">How do I make a question required?</h2>
-<p>Use the <code>required_questions</code> argument in <code>sd_server()</code> to control required responses (see the <a href="server-options.qmd#required-questions">required questions</a> page for more details).</p>
+<p>Use the <code>required_questions</code> argument in <code>sd_server()</code> to control required responses (see the <a href="./manuals/server-options.html#required-questions">required questions</a> page for more details).</p>
 </section><section id="why-is-my-shinyapps-deployment-failing" class="level2"><h2 class="anchored" data-anchor-id="why-is-my-shinyapps-deployment-failing">Why is my shinyapps deployment failing?</h2>
-<p>First, make sure everything is correctly defined, including your Supabase project settings and password settings. The password in your project folder should be the same as your Supabase project password (see <a href="password.qmd">here</a> for how to set the password). Then, make sure your survey runs on your local machine and can successfully link with your Supabase project table. With these confirmed, your shinyapps deployment should work without problem.</p>
+<p>First, make sure your Suppabase credentials are correctly defined, including your Supabase project settings and password settings. The password defined by <code>sd_db_config()</code> should be the same as your Supabase project password. Access the <a href="./manuals/storing-data.html">Storing Data</a> page for how to set all Supabase credentials. Then, make sure your survey runs on your local machine and can successfully link with your Supabase project table. With these confirmed, your shinyapps deployment should work without problem.</p>
 <p>If you still encounter an error (e.g., the page shows the app failed to start, or you see the page but it doesn’t run properly), try clearing your cache. The simplest way to do so is to <strong>reboot your computer</strong>. It may also help if you delete previously generated files, such as the <code>survey.html</code> file if you rendered it and the <code>rsconnect</code> folder. After re-rendering, you should be able to deploy the app without error.</p>
 </section><section id="how-should-i-install-the-surveydown-package" class="level2"><h2 class="anchored" data-anchor-id="how-should-i-install-the-surveydown-package">How should I install the {surveydown} package?</h2>
-<p>You can install the {surveydown} package from <a href="https://cran.r-project.org/web/packages/surveydown/index.html">CRAN</a> or the <a href="https://github.com/surveydown-dev/surveydown/">GitHub repo</a> of the package source code. Follow <a href="installation.qmd#install-the-surveydown-r-package">these instructions</a> for either approach.</p>
+<p>You can install the {surveydown} package from <a href="https://cran.r-project.org/web/packages/surveydown/index.html">CRAN</a> or the <a href="https://github.com/surveydown-dev/surveydown/">GitHub repo</a> of the package source code. Follow <a href="./manuals/installation.html#install-the-surveydown-r-package">these instructions</a> for either approach.</p>
 <p>Sometimes neither of these approaches work, often because your path is managed by some package managing system like <a href="https://www.anaconda.com">Anaconda</a>. In this case, a third alternative is to download the zip file of the package source code and then install it locally.</p>
 <p>To download the zip file, go the the <a href="https://github.com/surveydown-dev/surveydown">surveydown repo</a>, click on the green “Code” button and click on “Download Zip”, or simplify click on <a href="https://github.com/surveydown-dev/surveydown/archive/refs/heads/main.zip">this link</a>.</p>
 <p>Unzip this repo, then open the <code>surveydown.Rproj</code> file. In your R Console panel, run this code to install:</p>
@@ -253,31 +252,6 @@ Note
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># install.packages('devtools') </span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install</span><span class="op">(</span>force <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="how-should-i-set-a-password-for-my-surveydown-project-why-cant-i-see-my-password" class="level2"><h2 class="anchored" data-anchor-id="how-should-i-set-a-password-for-my-surveydown-project-why-cant-i-see-my-password">How should I set a password for my surveydown project / why can’t I see my password?</h2>
-<p>With <a href="https://supabase.com">Supabase</a> (the database we use to store survey responses), you need a password to access the database (see the <a href="password.qmd">Password</a> page for details).</p>
-<p>To connect to this database in a {surveydown} survey, you have to locally store this password in a secure location by running this function in your console:</p>
-<div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sd_set_password</span><span class="op">(</span><span class="st">"MyPassword"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This will store your password in a local <code>.Renviron</code> file and will look like this if you open it:</p>
-<div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">SURVEYDOWN_PASSWORD</span><span class="op">=</span><span class="va">MyPassword</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>DO NOT</strong> edit this file. The {surveydown} package will search for it to find your Supabase password.</p>
-</div>
-</div>
-<p>Also, you will need to <strong>restart your R session</strong> after running <code>sd_set_password()</code>. This is because the <code>.Renviron</code> file gets read when the R session launches, so if you create or modify your password using <code>sd_set_password()</code>, you will need to restart your R session for R to be able to “see” the <code>.Renviron</code> file containing your password.</p>
-<p>There is no defined sequence in setting your password on Supabase or for {surveydown} - you can define your Supabase project password first and then define your local password using <code>sd_set_password()</code>, or you can do it in the opposite order. The only thing that matters is when you attempt to connect to Supabase using your survey, these 2 passwords should match.</p>
 
 
 </section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

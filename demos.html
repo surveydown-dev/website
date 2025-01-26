@@ -89,7 +89,7 @@ ul.task-list li input[type="checkbox"] {
 <meta name="twitter:image-width" content="1564">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-sidebar docked nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -148,10 +148,87 @@ ul.task-list li input[type="checkbox"] {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./demos.html">Demos</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./demos.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Demos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./demos/question-types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Question Types</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./demos/show-if.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conditional Display</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./demos/skip-if.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conditional Skip</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./demos/conjoint-buttons.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conjoint Buttons</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./demos/conjoint-table.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conjoint Table</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./demos/random-labels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Random Labels</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./demos/random-labels-preset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Random Labels Preset</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./demos/leaflet-map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Leaflet Map</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./demos/plotly.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Plotly Widget</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
@@ -212,18 +289,18 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="odd">
 <td><i class="fa fa-balance-scale" aria-hidden="true"></i></td>
-<td>conjoint-table</td>
+<td>conjoint-table<br><a href="https://surveydown2.shinyapps.io/conjoint2/">Access Demo</a></td>
 <td>A demo of a choice-based conjoint survey using a table layout for the choice questions.</td>
 </tr>
 <tr class="even">
 <td><i class="fa fa-random" aria-hidden="true"></i></td>
-<td>randomized-question-labels<br><a href="https://surveydown.shinyapps.io/random/">Access Demo</a></td>
-<td>A demo of how to implement <a href="reactivity.html#randomizing-question-labels">randomized question labels</a>.</td>
+<td>random-labels<br><a href="https://surveydown.shinyapps.io/random/">Access Demo</a></td>
+<td>A demo of how to implement <a href="reactivity.html#randomizing-question-labels">random labels</a>.</td>
 </tr>
 <tr class="odd">
 <td><i class="fa fa-shuffle" aria-hidden="true"></i></td>
-<td>randomized-question-labels-predefined</td>
-<td>A demo of how to implement randomized question labels using <a href="reactivity.html#pre-defined-randomization">predefined random labels</a>.</td>
+<td>random-labels-preset<br><a href="https://surveydown2.shinyapps.io/random2/">Access Demo</a></td>
+<td>A demo of how to implement <a href="reactivity.html#pre-defined-randomization">predefined random labels</a>.</td>
 </tr>
 <tr class="even">
 <td><i class="fa fa-chart-line" aria-hidden="true"></i></td>
@@ -237,12 +314,12 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="even">
 <td><i class="fa fa-map-location-dot" aria-hidden="true"></i></td>
-<td>leaflet-map</td>
+<td>leaflet-map<br><a href="https://surveydown2.shinyapps.io/leaflet/">Access Demo</a></td>
 <td>A demo of how to implement a leaflet map in your survey using the <a href="custom-questions.html"><code>sd_question_custom()</code></a> function.</td>
 </tr>
 <tr class="odd">
 <td><i class="fa fa-chart-line" aria-hidden="true"></i></td>
-<td>plotly</td>
+<td>plotly<br><a href="https://surveydown2.shinyapps.io/plotly/">Access Demo</a></td>
 <td>A demo of how to implement a plotly chart in your survey using the <a href="custom-questions.html"><code>sd_question_custom()</code></a> function.</td>
 </tr>
 </tbody>

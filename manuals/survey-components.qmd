@@ -64,14 +64,8 @@ This is the last page of the survey.
 ```{r}
 library(surveydown)
 
-db <- sd_database(
-  host   = "",
-  dbname = "",
-  port   = "",
-  user   = "",
-  table  = "",
-  ignore = TRUE
-)
+# sd_db_config()
+db <- sd_db_connect()
 
 server <- function(input, output, session) {
 
@@ -82,7 +76,7 @@ server <- function(input, output, session) {
   sd_show_if()
 
   # Main server to control the app
-  sd_server()
+  sd_server(db)
 }
 
 shiny::shinyApp(ui = sd_ui(), server = server)
@@ -335,16 +329,11 @@ The global settings are at the top of the `app.R` file. At a minimum, you need t
 ```{r}
 library(surveydown)
 
-db <- sd_database(
-  host   = "",
-  dbname = "",
-  port   = "",
-  user   = "",
-  table  = ""
-)
+# sd_db_config()
+db <- sd_db_connect()
 ```
 
-The `db` object is used to store survey data - see the [Store Data](storing-data.qmd) page for details on how to set up the database connection.
+The `db` object is used to store survey data - see the [Storing Data](storing-data.qmd) page for details on how to set up the database connection.
 
 ### Server 
 

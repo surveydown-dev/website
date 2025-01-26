@@ -1,5 +1,6 @@
 ---
 title: "External Redirect"
+css: ../css/surveydown.css
 ---
 
 ```{r}
@@ -7,7 +8,7 @@ title: "External Redirect"
 #| include: false
 
 library(surveydown)
-sd_setup()
+shiny::shinyOptions(bootstrapTheme = bslib::bs_theme(version = 5L))
 ```
 
 Like other operations, there are also two types of redirection: static and reactive. A **static** redirect provides a hard-coded URL, like [google.com](https://www.google.com), [apple.com](https://www.apple.com), etc. A **reactive** redirect grabs parameters from your survey URL and allows you to use them to construct a new redirect URL.

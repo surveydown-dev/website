@@ -110,6 +110,90 @@ If you find this annoying, we agree! This is a bit of a hack and we are working 
 
 :::
 
+## Displaying calculated values
+
+The `sd_output()` function with `type = "value"` only returns a Shiny UI element, which is not intended to be used for calculations. However, we have a solution for that. Please see this simple example below:
+
+::: {.panel-tabset}
+
+## `survey.qmd` file
+
+````{r}
+---
+format: html
+echo: false
+warning: false
+---
+
+```{r}
+library(surveydown)
+```
+
+::: {#page1 .sd-page}
+
+# Demo - Calculation
+
+```{r}
+sd_question(
+  type  = 'numeric',
+  id    = 'first_number',
+  label = "Type in your first number:"
+)
+
+sd_question(
+  type  = 'numeric',
+  id    = 'second_number',
+  label = "Type in your second number:"
+)
+```
+
+Your first number is: `r sd_output("first_number", type = "value")`.
+
+Your second number is: `r sd_output("second_number", type = "value")`.
+
+The product of these 2 numbers is: `r sd_output("product", type = "value")`.
+
+```{r}
+sd_close()
+```
+
+:::
+
+````
+
+## `app.R` file
+
+```{r}
+library(surveydown)
+
+# Database Setup
+# sd_db_config
+# db <- sd_db_connect()
+
+# Server Setup
+server <- function(input, output, session) {
+
+  observe({
+    product <- as.numeric(input$first_number) * as.numeric(input$second_number)
+    sd_store_value(product)
+  })
+
+  sd_server(
+    db = NULL
+  )
+
+}
+
+# Launch Survey
+shiny::shinyApp(ui = sd_ui(), server = server)
+```
+
+:::
+
+In this case, `first_number` and `second_number`, defined in `survey.qmd`, are the results from the `sd_question()` that is filled by the user. Then, the `product` is defined in `app.R` since it should observe the usesr input.
+
+In `app.R`, we use the `observe()` function to capture the user inputs, in which `sd_store_value()` is used to make `product` accessible in our `survey.qmd`.
+
 ## Defining questions in the server function
 
 Often you will want to define questions where the label or options change based on the respondent's answers to other questions. You can do this by defining the question in the server function and then displaying it in the `survey.qmd` file using the `sd_output()` function.

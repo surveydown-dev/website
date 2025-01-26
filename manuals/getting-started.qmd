@@ -1,5 +1,6 @@
 ---
 title: "Getting Started"
+css: ../css/surveydown.css
 ---
 
 ```{r}
@@ -7,11 +8,12 @@ title: "Getting Started"
 #| eval: true
 
 library(surveydown)
+shiny::shinyOptions(bootstrapTheme = bslib::bs_theme(version = 5L))
 ```
 
 ## Overview
 
-{{< include chunks/files.qmd >}}
+{{< include ../chunks/files.qmd >}}
 
 The [{surveydown}]({{< var url_package >}}) R package provides a set of functions for defining the survey content and configuration options. Each function starts with `sd_` to make them easy to identify.
 
@@ -21,7 +23,7 @@ The platform is based on some basic principles:
 - Define survey questions in R code chunks with the `sd_question()` function.
 - Define pages using fences (`:::`), with navigation buttons handled using the `sd_next()` function.
 - Add rich functionality to your survey using a variety of [server options](server-options.qmd) and [conditional control logic](conditional-control.qmd) in the `server()` function in the `app.R` file.
-- Store your respondent data in a database (see [Store Data](store-data.qmd)).
+- Store your respondent data in a database (see [Storing Data](storing-data.qmd)).
 
 This approach ensures a flexible survey platform that is fully reproducible and easy to customize.
 
@@ -33,7 +35,25 @@ See the [Installation](installation.qmd) page.
 
 ## 2. Start with a template
 
-See the [Template](template.qmd) page.
+::: {.callout-important}
+
+Every survey created with {surveydown} should be in its own separate project folder.
+
+:::
+
+We recommend starting with a template to build your surveydown survey.
+
+In the R console, run the following to to setup a template survey:
+
+```{r}
+surveydown::sd_create_survey("path/to/folder")
+```
+
+This will create a folder located at `"path/to/folder"` with the following files:
+
+- `survey.qmd`: a template survey where you define your survey content (text, questions, images, etc.).
+- `app.R`: a template app file where you define your database connection, survey configuration options, and any other server logic.
+- `survey.Rproj`: An RStudio project file (helpful if you're working in RStudio).
 
 ## 3. Add survey content in your `survey.qmd` file
 
@@ -92,11 +112,11 @@ sd_question(
 
 ## 4. Add control options
 
-In the `server()` function in the `app.R` file, add rich functionality to your survey using a variety of [server options](server-options.qmd) and [conditional control logic](conditional-control.qmd).
+In the `server()` function in the `app.R` file, add rich functionality to your survey using a variety of [server options](/server-options.qmd) and [conditional control logic](conditional-control.qmd).
 
 ## 5. Setup your database
 
-In the global settings at the top of the `app.R` file, setup your database with the `sd_database()` function. You can also leave it blank to preview / edit your survey without database connected, or set `ignore = TRUE` to run the survey without storing data. See the [Store Data](store-data.qmd) page for more details.
+In the global settings at the top of the `app.R` file, setup your database with the `sd_database()` function. You can also leave it blank to preview / edit your survey without database connected, or set `ignore = TRUE` to run the survey without storing data. See the [Storing Data](storing-data.qmd) page for more details.
 
 ## 6. Locally preview
 

@@ -10,31 +10,15 @@ project:
     - "about.qmd"
     - "blog/index.qmd"
     - "blog/**/*.qmd"
-    - "conditional-control.qmd"
-    - "custom-questions.qmd"
-    - "deployment.qmd"
+    - "demos/**/*.qmd"
     - "demos.qmd"
     - "documentation.qmd"
-    - "external-resources.qmd"
     - "faq.qmd"
     - "features.qmd"
-    - "fetch-data.qmd"
-    - "question-formatting.qmd"
     - "getting-started.qmd"
     - "index.qmd"
     - "installation.qmd"
-    - "template.qmd"
-    - "password.qmd"
-    - "performance.qmd"
-    - "question-types.qmd"
-    - "reactivity.qmd"
-    - "redirect.qmd"
-    - "security.qmd"
-    - "server-options.qmd"
-    - "system-translations.qmd"
-    - "store-data.qmd"
-    - "survey-components.qmd"
-    - "tips.qmd"
+    - "manuals/**/*.qmd"
 
 website:
   title: surveydown.org
@@ -88,53 +72,81 @@ website:
         - text: "Documentation"
           href: documentation.qmd
         - text: "Getting Started"
-          href: getting-started.qmd
+          href: manuals/getting-started.qmd
         - text: "Installation"
-          href: installation.qmd
-        - section: "Reference Manuals"
-          contents: 
-            - text: "Start with a Template"
-              href: template.qmd
-            - text: "Survey Components"
-              href: survey-components.qmd
+          href: manuals/installation.qmd
+        - text: "Survey Components"
+          href: manuals/survey-components.qmd
+        - section: "Survey Content"
+          contents:
             - text: "Question Types"
-              href: question-types.qmd
+              href: manuals/question-types.qmd
             - text: "Question Formatting"
-              href: question-formatting.qmd
-            - text: "Custom Questions"
-              href: custom-questions.qmd
-            - text: "Server Options"
-              href: server-options.qmd
+              href: manuals/question-formatting.qmd
             - text: "System Translations"
-              href: system-translations.qmd
-            - text: "Conditional Control"
-              href: conditional-control.qmd
+              href: manuals/system-translations.qmd
             - text: "External Resources"
-              href: external-resources.qmd
+              href: manuals/external-resources.qmd
+        - section: "Server Content"
+          contents:
+            - text: "Server Options"
+              href: manuals/server-options.qmd
+            - text: "Conditional Control"
+              href: manuals/conditional-control.qmd
             - text: "Reactivity"
-              href: reactivity.qmd
+              href: manuals/reactivity.qmd
+            - text: "Custom Questions"
+              href: manuals/custom-questions.qmd
             - text: "Redirect"
-              href: redirect.qmd
-            - text: "Password"
-              href: password.qmd
-            - text: "Store Data"
-              href: store-data.qmd
-            - text: "Fetch Data"
-              href: fetch-data.qmd
+              href: manuals/redirect.qmd
+        - section: "Database"
+          contents:
+            - text: "Storing Data"
+              href: manuals/storing-data.qmd
+            - text: "Fetching Data"
+              href: manuals/fetching-data.qmd
+            - text: "Dashboard"
+              href: manuals/dashboard.qmd
+        - section: "Other"
+          contents:
             - text: "Deployment"
-              href: deployment.qmd
+              href: manuals/deployment.qmd
             - text: "Performance"
-              href: performance.qmd
+              href: manuals/performance.qmd
             - text: "Security"
-              href: security.qmd
+              href: manuals/security.qmd
             - text: "Tips"
-              href: tips.qmd
+              href: manuals/tips.qmd
+    - title: "Demos"
+      style: "docked"
+      background: light
+      contents:
+        - text: "Demos"
+          href: demos.qmd
+        - text: "Question Types"
+          href: demos/question-types.qmd
+        - text: "Conditional Display"
+          href: demos/show-if.qmd
+        - text: "Conditional Skip"
+          href: demos/skip-if.qmd
+        - text: "Conjoint Buttons"
+          href: demos/conjoint-buttons.qmd
+        - text: "Conjoint Table"
+          href: demos/conjoint-table.qmd
+        - text: "Random Labels"
+          href: demos/random-labels.qmd
+        - text: "Random Labels Preset"
+          href: demos/random-labels-preset.qmd
+        - text: "Leaflet Map"
+          href: demos/leaflet-map.qmd
+        - text: "Plotly Widget"
+          href: demos/plotly.qmd
 
 format:
   html:
     theme:
-      light: [flatly, theme.scss]
-      dark: [darkly, theme.scss]
+      light: [flatly, css/theme.scss]
+      dark: [darkly, css/theme.scss]
     anchor-sections: true
     smooth-scroll: true
     link-external-newwindow: true

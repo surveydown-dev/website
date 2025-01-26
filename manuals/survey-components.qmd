@@ -11,7 +11,7 @@ library(surveydown)
 
 ## Overview
 
-{{< include chunks/files.qmd >}}
+{{< include ../chunks/files.qmd >}}
 
 They typically look something like this:
 
@@ -53,7 +53,7 @@ sd_next(next_page = 'end')
 
 ::: {#end .sd-page}
 
-This it the last page in the survey
+This is the last page of the survey.
 
 :::
 
@@ -64,14 +64,8 @@ This it the last page in the survey
 ```{r}
 library(surveydown)
 
-db <- sd_database(
-  host   = "",
-  dbname = "",
-  port   = "",
-  user   = "",
-  table  = "",
-  ignore = TRUE
-)
+# sd_db_config()
+db <- sd_db_connect()
 
 server <- function(input, output, session) {
 
@@ -82,7 +76,7 @@ server <- function(input, output, session) {
   sd_show_if()
 
   # Main server to control the app
-  sd_server()
+  sd_server(db)
 }
 
 shiny::shinyApp(ui = sd_ui(), server = server)
@@ -254,7 +248,7 @@ sd_question(
 
 The `sd_question()` function can be used to create a variety of question types, like text input, select drop down choices, and more by changing the `type` argument (see the [Questions Types](question-types.qmd) page).
 
-The function has many other arguments for customizing the look and feel of the question, such as the `height` and `width` (see the [Formatting Questions](formatting.qmd) page).
+The function has many other arguments for customizing the look and feel of the question, such as the `height` and `width` (see the [Question Formatting](question-formatting.qmd) page).
 
 By default all questions are optional, but you can make questions required in the server options (see the [Server Options](server-options.qmd#required-questions) page for details).
 
@@ -335,22 +329,17 @@ The global settings are at the top of the `app.R` file. At a minimum, you need t
 ```{r}
 library(surveydown)
 
-db <- sd_database(
-  host   = "",
-  dbname = "",
-  port   = "",
-  user   = "",
-  table  = ""
-)
+# sd_db_config()
+db <- sd_db_connect()
 ```
 
-The `db` object is used to store survey data - see the [Store Data](store-data.qmd) page for details on how to set up the database connection.
+The `db` object is used to store survey data - see the [Storing Data](storing-data.qmd) page for details on how to set up the database connection.
 
 ### Server 
 
 The `server()` function is a standard Shiny server function that takes `input`, `output`, and `session` as arguments. It is where you can set custom control logic and other configuration options, such as [conditional display](conditional-control.qmd#conditional-display) logic with the `sd_show_if()` function, or [conditional skip](conditional-control.qmd#conditional-skipping) logic with the `sd_skip_if()` function.
 
-{{< include chunks/server.qmd >}}
+{{< include ../chunks/server.qmd >}}
 
 The `sd_server()` function at the bottom makes everything run. It also includes some optional arguments that you can use to customize the survey. 
 
@@ -358,7 +347,7 @@ See the [Server Options](server-options.qmd) page for details on the different o
 
 ::: {.callout-note}
 
-The `db = db` argument in `sd_server()` is required if you are using a database connection, which should be defined using the `sd_database()` function as mentioned above in the [Global Settings](#global-settings) section. See the [Store Data](store-data.qmd) page for more details.
+The `db = db` argument in `sd_server()` is required if you are using a database connection, which should be defined using the `sd_database()` function as mentioned above in the [Global Settings](#global-settings) section. See the [Store Data](storing-data.qmd) page for more details.
 
 :::
 

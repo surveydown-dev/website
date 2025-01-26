@@ -5,11 +5,11 @@ code-annotations: hover
 
 All survey configuration settings are defined within the `server` function in the `app.R` file. The `server()` function is a standard Shiny server function that takes `input`, `output`, and `session` as arguments.
 
-{{< include chunks/server.qmd >}}
+{{< include ../chunks/server.qmd >}}
 
 The `sd_skip_if()` and `sd_show_if()` functions are used to define conditional skip and show logic for the survey (see the [Conditional Control](conditional-control.qmd) page for more details).
 
-The `sd_server()` function is used to run the survey. It handles the main logic, such as page navigation and managing the survey data. The `db = db` argument is required if you are using a database connection, which should be defined using the `sd_database()` function (see the [Store Data](store-data.qmd) page for more details). 
+The `sd_server()` function is used to run the survey. It handles the main logic, such as page navigation and managing the survey data. The `db = db` argument is required if you are using a database connection, which should be defined using the `sd_database()` function (see the [Store Data](storing-data.qmd) page for more details).
 
 The `sd_server()` function also has many other optional arguments that can be used to customize the survey behavior. This page details these options.
 
@@ -55,32 +55,6 @@ sd_server(
 )
 ```
 
-## Admin page
-
-::: {.callout-important}
-
-The admin page is currently under development and has limited functionality.
-
-:::
-
-By default, the admin page is not created. But if you want one, set `admin_page` to `TRUE` inside the `sd_server()` function, like this:
-
-```{r}
-sd_server(
-  admin_page = TRUE
-)
-```
-
-When the admin page is enabled, you will be able to access the page by adding `?admin` to the end of the survey URL, e.g. `https://myname.shinyapps.io/?admin`. This will display a login page with a single "Password" parameter, which is the password set using `sd_set_password()`. See the [Password](password.qmd) page for details.
-
-The admin page has the following features:
-
-- **Pause Survey**: Once clicked, the Shiny app pauses all instances replacing questions with a placeholder page.
-- **Pause DB**: Once clicked, the all database uploads will be paused. You can still take the survey, but the data will not be updated in the database.
-- **Download Data**: Download the most recent table instance from the database as a .csv file. 
-- **Admin Logout and Return to Survey**: Once clicked, the admin page will be logged out and the survey will be returned to the start page.
-- **Survey Data Preview**: View the latest instance of the database table.
-
 ## Rating question
 
 You may want to add a rating question by the end of the survey to collect user reflections. Simply set `rate_survey` to `TRUE` (Default to `FALSE`):
@@ -102,7 +76,7 @@ Below are the `TRUE` and `FALSE` cases for `rate_survey`:
 If `rate_survey` is `TRUE`, a survey rating question will pop up:
 
 <center>
-<img src="images/screenshots/rate_survey.gif" style="max-width: 550px; width: 100%;">
+<img src="../images/screenshots/rate_survey.gif" style="max-width: 550px; width: 100%;">
 </center>
 
 ## `FALSE`
@@ -110,7 +84,7 @@ If `rate_survey` is `TRUE`, a survey rating question will pop up:
 If `rate_survey` is `FALSE`, a confirm exit dialog box will pop up:
 
 <center>
-<img src="images/screenshots/confirm_exit.gif" style="max-width: 550px; width: 100%;">
+<img src="../images/screenshots/confirm_exit.gif" style="max-width: 550px; width: 100%;">
 </center>
 
 :::
@@ -129,7 +103,7 @@ sd_server(
 
 Five languages are supported by default, but you can customize the messages to any language (or any message) you want. See the [System Translations](system-translations.qmd) page for more details.
 
-## Cookie
+## Cookies
 
 Cookies are used to store user sessions, including their session ID, survey data storage (backend), and their survey progress (frontend).
 

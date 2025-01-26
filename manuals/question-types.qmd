@@ -1,7 +1,7 @@
 ---
 title: "Question Types"
 toc-expand: true
-css: surveydown.css
+css: ../css/surveydown.css
 ---
 
 ```{r}
@@ -494,14 +494,14 @@ sd_question(
 
 ## `slider` 
 
-{{< include chunks/question-screenshot-note.qmd >}}
+{{< include ../chunks/question-screenshot-note.qmd >}}
 
 ::: {.panel-tabset}
 
 ## Output
 
 <center>
-<img src="images/screenshots/slider.png" width=500>
+<img src="../images/screenshots/slider.png" width=500>
 </center>
 
 ## Code chunk
@@ -529,14 +529,14 @@ sd_question(
 
 Use `type = 'date'` to specify a date input type. The date value will be today's date by default. Upon clicking on the text box, you are provided with a date dialog box to choose date from.
 
-{{< include chunks/question-screenshot-note.qmd >}}
+{{< include ../chunks/question-screenshot-note.qmd >}}
 
 ::: {.panel-tabset}
 
 ## Output
 
 <center>
-<img src="images/screenshots/date.png" width=500>
+<img src="../images/screenshots/date.png" width=500>
 </center>
 
 ## Code
@@ -557,14 +557,14 @@ sd_question(
 
 Use `type = 'daterange'` to specify a date range input type.
 
-{{< include chunks/question-screenshot-note.qmd >}}
+{{< include ../chunks/question-screenshot-note.qmd >}}
 
 ::: {.panel-tabset}
 
 ## Output
 
 <center>
-<img src="images/screenshots/daterange.png" width=500>
+<img src="../images/screenshots/daterange.png" width=500>
 </center>
 
 ## Code
@@ -598,15 +598,14 @@ sd_question(
   id     = "car_preference",
   label  = "Please indicate your agreement with the following statements.",
   row    = c(
-    "buy_gasoline" = "I'd like to buy a gasoline car.",
-    "buy_ev"       = "I'd like to buy an EV."
+    "I would buy a gasoline car." = "buy_gasoline",
+    "I would buy an EV."          = "buy_ev"
   ),
   option = c(
     "Disagree" = "disagree",
     "Neutral"  = "neutral",
     "Agree"    = "agree"
-  ), 
-  width = "50%"
+  )
 )
 ```
 
@@ -620,8 +619,8 @@ sd_question(
   id     = "car_preference",
   label  = "Please indicate your agreement with the following statements.",
   row    = c(
-    "buy_gasoline" = "I'd like to buy a gasoline car.",
-    "buy_ev"       = "I'd like to buy an EV."
+    "I would buy a gasoline car." = "buy_gasoline",
+    "I would buy an EV."          = "buy_ev"
   ),
   option = c(
     "Disagree" = "disagree",

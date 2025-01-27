@@ -357,9 +357,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="#setting-up-a-supabase-project" id="toc-setting-up-a-supabase-project" class="nav-link active" data-scroll-target="#setting-up-a-supabase-project">Setting up a Supabase project</a></li>
   <li><a href="#getting-your-supabase-credentials" id="toc-getting-your-supabase-credentials" class="nav-link" data-scroll-target="#getting-your-supabase-credentials">Getting your Supabase credentials</a></li>
   <li><a href="#storing-your-database-credentials" id="toc-storing-your-database-credentials" class="nav-link" data-scroll-target="#storing-your-database-credentials">Storing your database credentials</a></li>
+  <li><a href="#modifying-credentials" id="toc-modifying-credentials" class="nav-link" data-scroll-target="#modifying-credentials">Modifying credentials</a></li>
   <li><a href="#connecting-to-your-database-in-surveydown" id="toc-connecting-to-your-database-in-surveydown" class="nav-link" data-scroll-target="#connecting-to-your-database-in-surveydown">Connecting to your database in surveydown</a></li>
   <li><a href="#disabling-gssencmode" id="toc-disabling-gssencmode" class="nav-link" data-scroll-target="#disabling-gssencmode">Disabling <code>gssencmode</code></a></li>
-  <li><a href="#modifying-credentials-in-the-dashboard" id="toc-modifying-credentials-in-the-dashboard" class="nav-link" data-scroll-target="#modifying-credentials-in-the-dashboard">Modifying credentials in the dashboard</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -420,32 +420,39 @@ Note
 </div>
 <p>This function will prompt you to enter your database credentials and password, one by one. The current credential values will be shown in square brackets. When done it should look like this:</p>
 <br><center>
-<img src="../images/screenshots/sd-db-config.png" style="max-width: 600px; width: 80%;">
+<img src="../images/screenshots/sd-db-config.png" width="60%">
 </center>
 <p><br></p>
 <p>Once you have entered your credentials, the function will store them in a <code>.env</code> file in your project folder. <strong>We strongly recommend that you do not manually edit this file or share it with others as it stores all of your database credentials, including your password.</strong></p>
+</section><section id="modifying-credentials" class="level2"><h2 class="anchored" data-anchor-id="modifying-credentials">Modifying credentials</h2>
+<p>If you want to modify your credentials stored in the <code>.env</code> file, you can just run <code>sd_db_config()</code> again and press ‘Enter’ on any parameter you want to leave unchanged while modifying the ones you want to change.</p>
+<p>You can also pass any of the parameters as arguments to <code>sd_db_config()</code> to change them. For example, if you wanted to only change the table name, you could do this:</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sd_db_config</span><span class="op">(</span>table <span class="op">=</span> <span class="st">'mytable'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once run in the R console, a message will print out confirming that the stored <code>table</code> parameter will now be <code>mytable</code>.</p>
+<p>You can pass any of the following as arguments: <code>host</code>, <code>dbname</code>, <code>port</code>, <code>user</code>, <code>table</code>, <code>password</code>, and <code>gssencmode</code></p>
+<p>Finally, you can also view / modify your database credentials in the surveydown dashboard app. To do this, launch the dashboard by running this command in the R console:</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">surveydown</span><span class="fu">::</span><span class="fu">sd_dashboard</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This will open a new browser window where you can navigate to the dashboard for your project. Click on the “Connection Settings” tab to see and edit your database credentials. Once you have made changes, click on the “Test Connection” button to save your updated credentials.</p>
+<p>See the <a href="../manuals/dashboard.html">dashboard</a> page for more information.</p>
 </section><section id="connecting-to-your-database-in-surveydown" class="level2"><h2 class="anchored" data-anchor-id="connecting-to-your-database-in-surveydown">Connecting to your database in surveydown</h2>
 <p>Now that you have set your credentials stored, you can connect to your database in surveydown by running the following code in your <code>app.R</code> file:</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu">sd_db_connect</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu">sd_db_connect</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You do not need to specify any arguments to this function as it will automatically use the credentials stored in your <code>.env</code> file. If the connection is successful, you should see a message in the console that says “✔ Successfully connected to the database.”</p>
 <p>You can also ignore the database connection by setting <code>ignore = TRUE</code> in <code>sd_db_connect()</code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu">sd_db_connect</span><span class="op">(</span>ignore <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu">sd_db_connect</span><span class="op">(</span>ignore <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>With this setting, no database connection will be attempted, and the <code>db</code> object will store the value <code>NULL</code>. Instead, data will be stored in a local <code>preview_data.csv</code> file for previewing purposes only. This is useful when you are still editing your survey and do not want to store any data in your database yet.</p>
 </section><section id="disabling-gssencmode" class="level2"><h2 class="anchored" data-anchor-id="disabling-gssencmode">Disabling <code>gssencmode</code>
 </h2>
 <p>If you have set all of your credentials correctly but are still encountering connection errors, try setting the <code>gssencmode</code> parameter to <code>"disable"</code> when running <code>sd_db_config()</code>.</p>
 <p>By default, <code>gssencmode</code> is set as <code>"prefer"</code>. It secures your connection with PostgreSQL. We generally recommend that you <strong>DO NOT disable <code>gssencmode</code></strong>, but sometimes this is necessary, especially when you are working on a protected network, such as a VPN.</p>
-</section><section id="modifying-credentials-in-the-dashboard" class="level2"><h2 class="anchored" data-anchor-id="modifying-credentials-in-the-dashboard">Modifying credentials in the dashboard</h2>
-<p>You can also view / modify your database credentials in the surveydown dashboard app. To do this, run the following in your R console to launch the dashboard:</p>
-<div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">surveydown</span><span class="fu">::</span><span class="fu">sd_dashboard</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This will open a new browser window where you can navigate to the dashboard for your project. Click on the “Connection Settings” tab to see and edit your database credentials. Once you have made changes, click on the “Test Connection” button to save your updated credentials.</p>
-<p>See the <a href="../manuals/dashboard.html">dashboard</a> page for more information.</p>
 
 
 </section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

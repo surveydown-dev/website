@@ -1453,6 +1453,18 @@
     ]
   },
   {
+    "objectID": "manuals/storing-data.html#modifying-credentials",
+    "href": "manuals/storing-data.html#modifying-credentials",
+    "title": "Storing Data",
+    "section": "Modifying credentials",
+    "text": "Modifying credentials\nIf you want to modify your credentials stored in the .env file, you can just run sd_db_config() again and press ‘Enter’ on any parameter you want to leave unchanged while modifying the ones you want to change.\nYou can also pass any of the parameters as arguments to sd_db_config() to change them. For example, if you wanted to only change the table name, you could do this:\n\nsd_db_config(table = 'mytable')\n\nOnce run in the R console, a message will print out confirming that the stored table parameter will now be mytable.\nYou can pass any of the following as arguments: host, dbname, port, user, table, password, and gssencmode\nFinally, you can also view / modify your database credentials in the surveydown dashboard app. To do this, launch the dashboard by running this command in the R console:\n\nsurveydown::sd_dashboard()\n\nThis will open a new browser window where you can navigate to the dashboard for your project. Click on the “Connection Settings” tab to see and edit your database credentials. Once you have made changes, click on the “Test Connection” button to save your updated credentials.\nSee the dashboard page for more information.",
+    "crumbs": [
+      "Documentation",
+      "Database",
+      "Storing Data"
+    ]
+  },
+  {
     "objectID": "manuals/storing-data.html#connecting-to-your-database-in-surveydown",
     "href": "manuals/storing-data.html#connecting-to-your-database-in-surveydown",
     "title": "Storing Data",
@@ -1470,18 +1482,6 @@
     "title": "Storing Data",
     "section": "Disabling gssencmode\n",
     "text": "Disabling gssencmode\n\nIf you have set all of your credentials correctly but are still encountering connection errors, try setting the gssencmode parameter to \"disable\" when running sd_db_config().\nBy default, gssencmode is set as \"prefer\". It secures your connection with PostgreSQL. We generally recommend that you DO NOT disable gssencmode, but sometimes this is necessary, especially when you are working on a protected network, such as a VPN.",
-    "crumbs": [
-      "Documentation",
-      "Database",
-      "Storing Data"
-    ]
-  },
-  {
-    "objectID": "manuals/storing-data.html#modifying-credentials-in-the-dashboard",
-    "href": "manuals/storing-data.html#modifying-credentials-in-the-dashboard",
-    "title": "Storing Data",
-    "section": "Modifying credentials in the dashboard",
-    "text": "Modifying credentials in the dashboard\nYou can also view / modify your database credentials in the surveydown dashboard app. To do this, run the following in your R console to launch the dashboard:\n\nsurveydown::sd_dashboard()\n\nThis will open a new browser window where you can navigate to the dashboard for your project. Click on the “Connection Settings” tab to see and edit your database credentials. Once you have made changes, click on the “Test Connection” button to save your updated credentials.\nSee the dashboard page for more information.",
     "crumbs": [
       "Documentation",
       "Database",

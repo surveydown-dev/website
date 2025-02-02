@@ -416,7 +416,7 @@ Note
 </section><section id="storing-your-database-credentials" class="level2"><h2 class="anchored" data-anchor-id="storing-your-database-credentials">Storing your database credentials</h2>
 <p>Before connecting to your database, you need to store your credentials. You can do this by running the following code in your R console:</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">surveydown</span><span class="fu">::</span><span class="fu">sd_db_config</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">surveydown</span><span class="fu">::</span><span class="fu"><a href="https://pkg.surveydown.org/reference/sd_db_config.html">sd_db_config</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This function will prompt you to enter your database credentials and password, one by one. The current credential values will be shown in square brackets. When done it should look like this:</p>
 <br><center>
@@ -434,7 +434,7 @@ Note
 <p>You can pass any of the following as arguments: <code>host</code>, <code>dbname</code>, <code>port</code>, <code>user</code>, <code>table</code>, <code>password</code>, and <code>gssencmode</code></p>
 <p>Finally, you can also view / modify your database credentials in the surveydown dashboard app. To do this, launch the dashboard by running this command in the R console:</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">surveydown</span><span class="fu">::</span><span class="fu">sd_dashboard</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">surveydown</span><span class="fu">::</span><span class="fu"><a href="https://pkg.surveydown.org/reference/sd_dashboard.html">sd_dashboard</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This will open a new browser window where you can navigate to the dashboard for your project. Click on the “Connection Settings” tab to see and edit your database credentials. Once you have made changes, click on the “Test Connection” button to save your updated credentials.</p>
 <p>See the <a href="../manuals/dashboard.html">dashboard</a> page for more information.</p>

@@ -70,8 +70,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-df2ff1830c6388ec0a14e9f880a580e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-7c71bb14a874d26aa066461115d265c2.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-b05a400ad78a160cece52cac47cc8563.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-2f53fc79fcf10d5f37b0364616965826.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -268,6 +268,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../manuals/randomization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Randomization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../manuals/custom-questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Custom Questions</span></a>
   </div>
@@ -357,13 +363,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#displaying-the-same-value-in-multiple-places" id="toc-displaying-the-same-value-in-multiple-places" class="nav-link" data-scroll-target="#displaying-the-same-value-in-multiple-places">Displaying the same value in multiple places</a></li>
   <li><a href="#displaying-calculated-values" id="toc-displaying-calculated-values" class="nav-link" data-scroll-target="#displaying-calculated-values">Displaying calculated values</a></li>
   <li><a href="#defining-questions-in-the-server-function" id="toc-defining-questions-in-the-server-function" class="nav-link" data-scroll-target="#defining-questions-in-the-server-function">Defining questions in the server function</a></li>
-  <li>
-<a href="#randomizing-question-labels" id="toc-randomizing-question-labels" class="nav-link" data-scroll-target="#randomizing-question-labels">Randomizing question labels</a>
-  <ul class="collapse">
-<li><a href="#live-randomization" id="toc-live-randomization" class="nav-link" data-scroll-target="#live-randomization">Live randomization</a></li>
-  <li><a href="#pre-defined-randomization" id="toc-pre-defined-randomization" class="nav-link" data-scroll-target="#pre-defined-randomization">Pre-defined randomization</a></li>
-  </ul>
-</li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -415,7 +414,7 @@ How this works under the hood
 <div class="callout-body-container callout-body">
 <p>Every question has it’s own <code>id</code>. To access the <em>value</em> that a respondent chose, we can’t use the same <code>id</code>. To address this, whenever you create a question we automatically create an object stored as <code>id_value</code> to store the value chosen by the respondent.</p>
 <p>For example, if the question <code>id</code> was <code>"name"</code>, then the value would be stored as <code>"name_value"</code>. In the <code><a href="https://pkg.surveydown.org/reference/sd_output.html">sd_output()</a></code> function, when you use <code>type = "value"</code>, the function automatically appends this <code>_value</code> to the <code>id</code> to get the question <em>value</em> we want to display, then uses an appropriate <code>shiny</code> output function to display it, e.g.&nbsp;<code><a href="https://rdrr.io/pkg/shiny/man/textOutput.html">shiny::textOutput()</a></code>.</p>
-<p>You can also use <code>type = "question"</code> to display questions that are defined in the <code>server()</code> function in your <code>app.R</code> file (for example, see the <a href="#randomizing-question-labels">randomizing question labels section</a> below).</p>
+<p>You can also use <code>type = "question"</code> to display questions that are defined in the <code>server()</code> function in your <code>app.R</code> file (see the <a href="#defining-questions-in-the-server-function">defining questions in the server function section</a> below).</p>
 </div>
 </div>
 </section><section id="displaying-stored-values-e.g.-a-completion-code" class="level2"><h2 class="anchored" data-anchor-id="displaying-stored-values-e.g.-a-completion-code">Displaying stored values (e.g.&nbsp;a completion code)</h2>
@@ -607,114 +606,9 @@ Note
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_output(id = "pet_owner", type = "question")</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="randomizing-question-labels" class="level2"><h2 class="anchored" data-anchor-id="randomizing-question-labels">Randomizing question labels</h2>
-<p>Showing a question with randomized labels is a common use case for reactive programming. There are at least two ways to achieve this.</p>
-<section id="live-randomization" class="level3"><h3 class="anchored" data-anchor-id="live-randomization">Live randomization</h3>
-<p>One approach is to generate the random labels in the server function “live”, meaning that the labels will be generated when the survey is first loaded. For example, let’s say in my server function I generate three random numbers between 1 and 100 and use them to create the option labels for a multiple choice question:</p>
-<div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a vector of options</span></span>
-<span><span class="va">q1_options</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'option 1'</span>, <span class="st">'option 2'</span>, <span class="st">'option 3'</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Randomly sample 3 labels from 1 to 100</span></span>
-<span><span class="va">q1_labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span> </span>
-<span></span>
-<span><span class="co"># Assign the labels to the options</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">q1_options</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">q1_labels</span> </span>
-<span></span>
-<span><span class="va">q1_options</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt;        100         89         37 
-#&gt; "option 1" "option 2" "option 3"</code></pre>
-</div>
-</div>
-<p>Remember that the names of the vector are the labels, so the respondents will see the numbers in the names of the above vector, and the values (<code>'option1'</code>, etc.) will be stored in the resulting survey data.</p>
-<p>To then use these options in a multiple choice question, you would use the <code><a href="https://pkg.surveydown.org/reference/sd_question.html">sd_question()</a></code> function also in the server function (<strong>not</strong> in the <code>survey.qmd</code> file) like this:</p>
-<div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pkg.surveydown.org/reference/sd_question.html">sd_question</a></span><span class="op">(</span></span>
-<span>  id <span class="op">=</span> <span class="st">"q1"</span>,</span>
-<span>  type <span class="op">=</span> <span class="st">"mc"</span>,  </span>
-<span>  label <span class="op">=</span> <span class="st">"Which of these numbers is the largest?"</span>,</span>
-<span>  option <span class="op">=</span> <span class="va">q1_options</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>By defining this question inside the server function, the question will be created as a reactive question that can then be displayed in the <code>survey.qmd</code> file using the <code><a href="https://pkg.surveydown.org/reference/sd_output.html">sd_output()</a></code> function, like this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_output(id = "q1", type = "question")</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>One important caveat to this approach is that the random numbers that are generated are not automatically stored in the survey data (because they are generated live). If you needed to store the random numbers, you can use the <code><a href="https://pkg.surveydown.org/reference/sd_store_value.html">sd_store_value()</a></code> function, like this:</p>
-<div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pkg.surveydown.org/reference/sd_store_value.html">sd_store_value</a></span><span class="op">(</span><span class="va">q1_labels</span>, id <span class="op">=</span> <span class="st">"q1_labels"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This would store the numbers in the <code>q1_labels</code> column of the survey data, which would be concatenated into the single string: 100, 89, 37.</p>
-<p>You could alternatively use the <code><a href="https://pkg.surveydown.org/reference/sd_store_value.html">sd_store_value()</a></code> function to store each of the random numbers in separate columns, like this:</p>
-<div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pkg.surveydown.org/reference/sd_store_value.html">sd_store_value</a></span><span class="op">(</span><span class="va">q1_labels</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, id <span class="op">=</span> <span class="st">"q1_label_1"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://pkg.surveydown.org/reference/sd_store_value.html">sd_store_value</a></span><span class="op">(</span><span class="va">q1_labels</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, id <span class="op">=</span> <span class="st">"q1_label_2"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://pkg.surveydown.org/reference/sd_store_value.html">sd_store_value</a></span><span class="op">(</span><span class="va">q1_labels</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>, id <span class="op">=</span> <span class="st">"q1_label_3"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section><section id="pre-defined-randomization" class="level3"><h3 class="anchored" data-anchor-id="pre-defined-randomization">Pre-defined randomization</h3>
-<p>An alternative approach is to pre-define the randomized labels and store them in a separate design file, and then randomly select a set of labels for each respondent from the design file.</p>
-<p>For example, let’s generate 10 sets of 3 random numbers between 1 and 100 and store them in a data frame:</p>
-<div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">design</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>  id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, each <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,</span>
-<span>  numbers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">design</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt;   id numbers
-#&gt; 1  1      20
-#&gt; 2  1      26
-#&gt; 3  1       3
-#&gt; 4  2      41
-#&gt; 5  2      89
-#&gt; 6  2      27</code></pre>
-</div>
-</div>
-<p>Now we can write this design to a csv file:</p>
-<div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">readr</span><span class="fu">::</span><span class="fu">write_csv</span><span class="op">(</span><span class="va">design</span>, <span class="st">"design.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Then in your server function in the <code>app.R</code> file, you could read in the design file and use it to randomize the labels for each question. Here the only thing you would need to keep track of the randomly chosen row id:</p>
-<div class="cell">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Read in the design file</span></span>
-<span><span class="va">design</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu">read_csv</span><span class="op">(</span><span class="st">"design.csv"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Randomly choose a row id</span></span>
-<span><span class="va">q1_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">design</span><span class="op">$</span><span class="va">id</span>, <span class="fl">1</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Store the chosen row id in the survey data (here q1_id will be the column name)</span></span>
-<span><span class="fu"><a href="https://pkg.surveydown.org/reference/sd_store_value.html">sd_store_value</a></span><span class="op">(</span><span class="va">q1_id</span><span class="op">)</span> </span>
-<span></span>
-<span><span class="co"># Filter the design to get the chosen row</span></span>
-<span><span class="va">numbers</span> <span class="op">&lt;-</span> <span class="va">design</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">id</span> <span class="op">==</span> <span class="va">q1_id</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">pull</span><span class="op">(</span><span class="va">numbers</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Create the options</span></span>
-<span><span class="va">q1_options</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'option 1'</span>, <span class="st">'option 2'</span>, <span class="st">'option 3'</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">q1_options</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">numbers</span></span>
-<span></span>
-<span><span class="co"># Create the reactive question</span></span>
-<span><span class="fu"><a href="https://pkg.surveydown.org/reference/sd_question.html">sd_question</a></span><span class="op">(</span></span>
-<span>  id <span class="op">=</span> <span class="st">"q1"</span>,</span>
-<span>  type <span class="op">=</span> <span class="st">"mc"</span>,  </span>
-<span>  label <span class="op">=</span> <span class="st">"Which of these numbers is the largest?"</span>,</span>
-<span>  option <span class="op">=</span> <span class="va">q1_options</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Once again, you would be able to then display this question in the <code>survey.qmd</code> file using the <code><a href="https://pkg.surveydown.org/reference/sd_output.html">sd_output()</a></code> function:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_output(id = "q1", type = "question")</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 
 
-</section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

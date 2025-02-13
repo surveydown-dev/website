@@ -126,7 +126,7 @@ Reproducibility is something we had in mind from the start with this project, an
 
 ## Getting started 
 
-After getting everything [installed](https://surveydown.org/installation), we recommend starting with a template survey project. To do so, run the following in the R console:
+After getting everything [installed](https://surveydown.org/manuals/installation), we recommend starting with a template survey project. To do so, run the following in the R console:
 
 ```{r}
 surveydown::sd_create_survey("path/to/folder")
@@ -136,7 +136,7 @@ This will create a folder with the following files:
 
 - `example.qmd`: a template survey you should edit.
 - `example.Rproj`: An RStudio project file (helpful if you're working in RStudio)
-- `_extensions`: A folder with the [surveydown Quarto extension](https://github.com/surveydown-dev/surveydown-ext) needed to make everything work (don't modify this).
+- `_extensions`: A folder with the surveydown Quarto extension needed to make everything work (don't modify this).
 
 If you have the example open in RStudio, you can click the "Run document" button, or in your terminal run `quarto serve example.qmd`. Either approach should render the example survey into a shiny app that you can preview in a browser. Don't worry just yet about setting up your database or making the survey live - for now, we're going to focus on designing the survey and running it locally to preview it. The example survey should look like this:
 
@@ -238,7 +238,7 @@ sd_question(
 
 <br>
 
-The `sd_question()` function can be used to create a variety of [question types](https://surveydown.org/questions), like text input, select drop down choices, and more by changing the `type` argument.
+The `sd_question()` function can be used to create a variety of [question types](https://surveydown.org/manuals/questions), like text input, select drop down choices, and more by changing the `type` argument.
 
 The function has many other arguments for customizing the look and feel of the question (e.g., `height` and `width`, etc.).
 
@@ -271,7 +271,7 @@ The middle part (the `sd_config()` function) is where you can define custom cont
 
 ## Going live!
 
-Once you are happy with your survey, you can deploy it live to any server of your choice. Since it's a shiny app, you can [deploy it to shinyapps.io](https://surveydown.org/deployment) for free! 
+Once you are happy with your survey, you can deploy it live to any server of your choice. Since it's a shiny app, you can [deploy it to shinyapps.io](https://surveydown.org/manuals/deployment) for free!
 
 # Features
 

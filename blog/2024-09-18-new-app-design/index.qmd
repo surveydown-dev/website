@@ -134,7 +134,7 @@ This approach allows us to separate the _survey content_ (in the `survey.qmd` fi
 2. **Clarity**: With two files, it is now clearer where the survey content versus control logic should be defined. Before, all of the server logic was in a single server code chunk at the end of the `survey.qmd` file, which required the user to scroll up and down to edit the server logic versus the survey content. Now a user can have both files open in two tabs in an IDE and more easily edit the survey content and server content.
 3. **Simplicity**: The new design eliminates the need for a Quarto extension to render the survey. This allows us to ship all of the core functionality of surveydown as a single R package, which is installed globally on your system.
 
-The updated documentation of the [Survey Components](https://surveydown.org/survey-components.html) page reflects this new design.
+The updated documentation of the [Survey Components](https://surveydown.org/manuals/survey-components) page reflects this new design.
 
 ## New page architecture
 
@@ -166,7 +166,7 @@ server <- function(input, output, session) {
 }
 ```
 
-You can provide multiple conditions to the `sd_show_if()` function, each separated by a comma. The `sd_skip_if()` function works the same way, but it will skip to a target page instead of showing a target question. See the revised [Configuration Options](https://surveydown.org/config-options) page for more details on the new changes.
+You can provide multiple conditions to the `sd_show_if()` function, each separated by a comma. The `sd_skip_if()` function works the same way, but it will skip to a target page instead of showing a target question. See the revised [Conditional Control](https://surveydown.org/manuals/conditional-control) page for more details on the new changes.
 
 ## No more `sd_config()` function
 

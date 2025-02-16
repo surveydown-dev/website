@@ -1,0 +1,53 @@
+---
+title: "Performance"
+lightbox: true
+---
+
+Our goal in designing surveydown was to create a package that was both performant and easy to use. While we've worked to ensure that the package is efficient, the ultimate performance of your survey in the field will depend on the services you use to host your app, store your data, and field your survey.
+
+::: {.callout-warning}
+
+We strongly recommend stress testing your deployed app before fielding your survey to ensure that your expected number of concurrent respondents does not overload your hosting service or database service.
+
+:::
+
+## Hosting
+
+We recommend using {{< var shinyapps >}} to host your survey as it is designed to work with Shiny Apps. The platform offers a free tier that should work well for most simple surveys. However, more complex surveys may require paid plans to achieve better performance.
+
+One thing you can do to improve the performance is to **max out the memory** settings for your app in the "settings" tab in your app dashboard. It should look something like this:
+
+<center>
+<img src="../images/shinyapps-ram.png" width=100%>
+</center>
+<br>
+
+The free tier allows for 1 GB of memory, and paid plans can go up much higher (this screenhot is from an earlier period when the free tier memory limits were larger).
+
+The other thing to consider is the **number of active hours** (the free tier allows for 25 active hours per month).     
+
+Depending on your needs, a paid plan may be worth the investment during your actual survey fielding to ensure a smooth user experience. And of course, you can consider [other hosting services](deployment.html#deploying-to-other-hosting-services) that might have better options.
+
+## Database
+
+The surveydown package is designed to work with any PostgreSQL database, but we recommend using {{< var supabase >}} to store your survey responses as it is a fast, reliable, and scalable PostgreSQL database. Like {{< var shinyapps >}}, {{< var supabase >}} offers a free tier that should work well for most simple surveys, but a paid plan may be needed if you expect to have a large number of concurrent respondents. 
+
+The free tier allows for 20 concurrent database connections, but since surveydown uses a pooled connection to the database, this limit not directly translate to a hard limit of 20 concurrent respondents. 
+
+## Fielding Options
+
+Many researchers use panel providers like [Prolific](https://www.prolific.co/) to recruit respondents for their surveys. Given the large number of potential concurrent respondents, you may want to place a limit on the number of people who can complete your survey at once to avoid overloading your app. On prolific, for example, you can set a quota in your study settings, which looks something like this:
+
+<center>
+<img src="../images/prolific-limit.png" width=700>
+</center>
+<br>
+
+Another option to consider is what types of devices your respondents will be completing your survey on. You may want to test how your survey renders on phones versus computers to see if there are siginificant differences. Some panel providers have options to limit which devices respondents can use to take the survey. On prolific this looks like this:
+
+<center>
+<img src="../images/prolific-types.png" width=400>
+</center>
+<br>
+
+Many panel providers offer these kinds of fielding options, and we recommend checking with your panel provider to help prevent overloading your app.

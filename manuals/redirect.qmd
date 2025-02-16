@@ -1,0 +1,131 @@
+---
+title: "External Redirect"
+css: ../css/surveydown.css
+---
+
+```{r}
+#| eval: true
+#| include: false
+
+library(surveydown)
+shiny::shinyOptions(bootstrapTheme = bslib::bs_theme(version = 5L))
+```
+
+Like other operations, there are also two types of redirection: static and reactive. A **static** redirect provides a hard-coded URL, like [google.com](https://www.google.com), [apple.com](https://www.apple.com), etc. A **reactive** redirect grabs parameters from your survey URL and allows you to use them to construct a new redirect URL.
+
+We recommend you try out our [demo survey](https://github.com/surveydown-dev/demos/tree/main/external-redirect) that showcases both static and reactive redirects so that you can have a full understanding of how this works:
+
+## Static Redirect
+
+In your **survey body**, use the `sd_redirect()` function and define your parameters. Below is an example of a redirect button that goes to [google.com](https://www.google.com).
+
+::: {.panel-tabset}
+
+## Code chunk
+
+```{r}
+# Static redirect
+sd_redirect(
+  id     = "redirect",
+  url    = "https://www.google.com",
+  label  = "Redirect to Google",
+  button = TRUE,
+  newtab = TRUE
+)
+```
+
+## Output
+
+```{r}
+#| eval: true
+#| echo: false
+
+sd_redirect(
+  id     = "redirect",
+  url    = "https://www.google.com",
+  label  = "Redirect to Google",
+  button = TRUE,
+  newtab = TRUE
+)
+```
+
+:::
+
+## Reactive Redirect
+
+Reactive redirect is essentially useful if you deploy your survey on survey panels like [Prolific](https://www.prolific.com) or [Dynata](https://www.dynata.com). These survey panels usually use different IDs to identify survey respondents.
+
+To make reactive redirect work, you need to edit both in your **server chunk**, and your **survey body**. We'll use an example to explain the process. This is the same example in our [demo survey](https://github.com/surveydown-dev/demos/tree/main/external-redirect).
+
+**Firstly**, in your **server chunk**, define `url_normal`. It is an [reactive expression](https://shiny.posit.co/r/getstarted/shiny-basics/lesson6/) in Shiny apps. You'll use the `sd_get_url_pars()` function to retrieve all the parameters in your survey URL, and concatenate with customized texts including id names, status values, etc. In this example, we defined 3 IDs: `id_a`, `id_b`, and `id_c`, which should be grabbed from your survey link.
+
+```{r}
+# Reactive expression that generates a url for a normal ending
+url_normal <- reactive({
+  params <- sd_get_url_pars()
+  id_a <- params["id_a"]
+  id_b <- params["id_b"]
+  id_c <- params["id_c"]
+  return(paste0(
+    "https://www.google.com?id_a=", id_a,
+    "&id_b=", id_b,
+    "&id_c=", id_c,
+    "&status=0" # status of 0 indicates normal ending
+})
+```
+
+**Secondly**, also in your **server chunk**, create the redirect button using `sd_redirect()`. Note that we passed `url_normal()` value, with a pair of **parentheses**, to the `url` parameter.
+
+```{r}
+# Create the redirect button for normal ending
+sd_redirect(
+  id = "redirect_normal",
+  url = url_normal(),
+  button = TRUE,
+  label = "Redirect with Normal Status"
+)
+```
+
+::: {.callout-tip}
+You may have noticed that we created `url_normal`, and then passed `url_normal()` to `sd_redirect()`. This is how Shiny app deals with reactivity. Here `url_normal` is created by `reactive()` and is called "reactive expression". `url_normal()` is a string value containing the concatenated URL. In other words, the `url_normal()` value is the result of the `url_normal` expression.
+:::
+
+**Finally**, in your **survey body**, output this `redirect_normal` URL using the `sd_output()` function:
+
+```{r}
+# Put this in the desired place of your survey body
+sd_output("redirect_normal")
+```
+
+After all these are done, your `sd_output()` function will generate a button that redirects you to this link:
+
+```{r}
+#| echo: true
+#| eval: false
+https://www.google.com/?id_a=a123id_b=b234id_c=c345&status=0
+```
+
+::: {.callout-tip}
+
+Count-down delay (only applies for **static** redirect):
+
+```{r}
+# count-down of 10 seconds
+sd_redirect(
+  # previous parameters...
+  delay  = 10
+)
+```
+
+Open at a new tab (applies for both **static** and **reactive**):
+
+```{r}
+sd_redirect(
+  # previous parameters...
+  newtab  = TRUE
+)
+```
+
+If `newtab` is used together with `delay`, the new tab opened after count-down might be blocked by the browser. We've tested it with Safari and Edge. It worked fine on Safari, but Edge blocks it with a pop-up notice.
+:::
+

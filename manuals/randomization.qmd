@@ -1,0 +1,133 @@
+---
+title: "Randomization"
+---
+
+```{r}
+#| eval: true
+#| include: false
+
+set.seed(42)
+library(surveydown)
+```
+
+This page explains how to show a question with randomized labels (unique labels for each respondent). While this is not the only use case for randomization, it illustrates in general how to implement something where each respondent sees something unique to their survey. 
+
+**The key is to define anything random in the server (`app.R` file), not the survey (`survey.R` file).** If you define a value or question in the `survey.qmd` file, it will be the same for every respondent.
+
+Before reading this, we suggest you first read the [reactivity](reactivity.qmd) manual to get a general understanding of how reactivity works in surveydown.
+
+## Live randomization
+
+One approach is to generate the random labels in the server function "live", meaning that the labels will be generated when the survey is first loaded. For example, let's say in my server function I generate three random numbers between 1 and 100 and use them to create the option labels for a multiple choice question:
+
+```{r}
+#| eval: true
+
+# Create a vector of options
+q1_options <- c('option 1', 'option 2', 'option 3')
+
+# Randomly sample 3 labels from 1 to 100
+q1_labels <- sample(seq(100), 3) 
+
+# Assign the labels to the options
+names(q1_options) <- q1_labels 
+
+q1_options
+```
+
+Remember that the names of the vector are the labels, so the respondents will see the numbers in the names of the above vector, and the values (`'option1'`, etc.) will be stored in the resulting survey data.
+
+To then use these options in a multiple choice question, you would use the `sd_question()` function also in the server function (**not** in the `survey.qmd` file) like this:
+
+```{r}
+sd_question(
+  id = "q1",
+  type = "mc",  
+  label = "Which of these numbers is the largest?",
+  option = q1_options
+)
+```
+
+By defining this question inside the server function, the question will be created as a reactive question that can then be displayed in the `survey.qmd` file using the `sd_output()` function, like this:
+
+```{r}
+#| echo: fenced
+
+sd_output(id = "q1", type = "question")
+```
+
+One important caveat to this approach is that the random numbers that are generated are not automatically stored in the survey data (because they are generated live). If you needed to store the random numbers, you can use the `sd_store_value()` function, like this:
+
+```{r}
+sd_store_value(q1_labels, id = "q1_labels")
+```
+
+This would store the numbers in the `q1_labels` column of the survey data, which would be concatenated into the single string: `r paste(q1_labels, collapse = ", ")`.
+
+You could alternatively use the `sd_store_value()` function to store each of the random numbers in separate columns, like this:
+
+```{r}
+sd_store_value(q1_labels[1], id = "q1_label_1")
+sd_store_value(q1_labels[2], id = "q1_label_2")
+sd_store_value(q1_labels[3], id = "q1_label_3")
+```
+
+## Pre-defined randomization
+
+An alternative approach is to pre-define the randomized labels and store them in a separate design file, and then randomly select a set of labels for each respondent from the design file.
+
+For example, let's generate 10 sets of 3 random numbers between 1 and 100 and store them in a data frame:
+
+```{r}
+#| eval: true
+design <- data.frame(
+  id = rep(1:10, each = 3),
+  numbers = unlist(lapply(1:10, function(x) sample(seq(100), 3)))
+)
+
+head(design)
+```
+
+Now we can write this design to a csv file:
+
+```{r}
+readr::write_csv(design, "design.csv")
+```
+
+Then in your server function in the `app.R` file, you could read in the design file and use it to randomize the labels for each question. Here the only thing you would need to keep track of the randomly chosen row id:
+
+```{r}
+# Read in the design file
+design <- readr::read_csv("design.csv")
+
+# Randomly choose a row id
+q1_id <- sample(design$id, 1)
+
+# Store the chosen row id in the survey data (here q1_id will be the column name)
+sd_store_value(q1_id) 
+
+# Filter the design to get the chosen row
+numbers <- design |> 
+  filter(id == q1_id) |> 
+  pull(numbers)
+
+# Create the options
+q1_options <- c('option 1', 'option 2', 'option 3')
+names(q1_options) <- numbers
+
+# Create the reactive question
+sd_question(
+  id = "q1",
+  type = "mc",  
+  label = "Which of these numbers is the largest?",
+  option = q1_options
+)
+```
+
+Once again, you would be able to then display this question in the `survey.qmd` file using the `sd_output()` function:
+
+```{r}
+#| echo: fenced
+
+sd_output(id = "q1", type = "question")
+```

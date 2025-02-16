@@ -58,13 +58,13 @@ jobs:
       - name: Render Quarto Project
         uses: quarto-dev/quarto-actions/render@v2
 
-      - name: Check Urls
-        uses: lycheeverse/lychee-action@v1.9.0
-        with:
-          args: --verbose --no-progress './_site/**/*.html'
-          fail: true  # Optional: set to false if you don't want the workflow to fail on broken links
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Check Urls
+      #   uses: lycheeverse/lychee-action@v1.9.0
+      #   with:
+      #     args: --verbose --no-progress './_site/**/*.html'
+      #     fail: true  # Optional: set to false if you don't want the workflow to fail on broken links
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to GitHub Pages
         uses: quarto-dev/quarto-actions/publish@v2

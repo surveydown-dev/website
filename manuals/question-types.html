@@ -758,24 +758,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
 <div class="cell">
 <div class="cell-output-display">
-<div id="container-fruit" data-question-id="fruit" class="question-container" style="width: 50%;" oninput="Shiny.setInputValue('fruit_interacted', true, {priority: 'event'});" onclick="Shiny.setInputValue('fruit_interacted', true, {priority: 'event'});">
+<div id="container-fruit_vertical" data-question-id="fruit_vertical" class="question-container" style="width: 50%;" oninput="Shiny.setInputValue('fruit_vertical_interacted', true, {priority: 'event'});" onclick="Shiny.setInputValue('fruit_vertical_interacted', true, {priority: 'event'});">
 <div class="form-group shiny-input-container shiny-input-radiogroup shiny-input-container-inline">
-<label class="control-label" id="fruit-label" for="fruit"><p>Which fruit do you prefer most from this list?</p>
+<label class="control-label" id="fruit_vertical-label" for="fruit_vertical"><p>Which fruit do you prefer most from this list?</p>
 </label>
-<br><div id="fruit" class="radio-group-buttons">
-<div aria-labelledby="fruit-label" class="btn-group-vertical btn-group-container-sw" data-toggle="buttons" role="group">
-<input type="radio" autocomplete="off" id="fruit1" name="fruit" value="apple" class="btn-check"><label class="btn radiobtn btn-outline-primary" for="fruit1">Apple</label>
-<input type="radio" autocomplete="off" id="fruit2" name="fruit" value="banana" class="btn-check"><label class="btn radiobtn btn-outline-primary" for="fruit2">Banana</label>
-<input type="radio" autocomplete="off" id="fruit3" name="fruit" value="pear" class="btn-check"><label class="btn radiobtn btn-outline-primary" for="fruit3">Pear</label>
-<input type="radio" autocomplete="off" id="fruit4" name="fruit" value="strawberry" class="btn-check"><label class="btn radiobtn btn-outline-primary" for="fruit4">Strawberry</label>
-<input type="radio" autocomplete="off" id="fruit5" name="fruit" value="grape" class="btn-check"><label class="btn radiobtn btn-outline-primary" for="fruit5">Grape</label>
-<input type="radio" autocomplete="off" id="fruit6" name="fruit" value="mango" class="btn-check"><label class="btn radiobtn btn-outline-primary" for="fruit6">Mango</label>
-<input type="radio" autocomplete="off" id="fruit7" name="fruit" value="watermelon" class="btn-check"><label class="btn radiobtn btn-outline-primary" for="fruit7">Watermelon</label>
+<br><div id="fruit_vertical" class="radio-group-buttons">
+<div aria-labelledby="fruit_vertical-label" class="btn-group-vertical btn-group-container-sw" data-toggle="buttons" role="group">
+<input type="radio" autocomplete="off" id="fruit_vertical1" name="fruit_vertical" value="apple" class="btn-check"><label class="btn radiobtn btn-outline-primary" for="fruit_vertical1">Apple</label>
+<input type="radio" autocomplete="off" id="fruit_vertical2" name="fruit_vertical" value="banana" class="btn-check"><label class="btn radiobtn btn-outline-primary" for="fruit_vertical2">Banana</label>
+<input type="radio" autocomplete="off" id="fruit_vertical3" name="fruit_vertical" value="pear" class="btn-check"><label class="btn radiobtn btn-outline-primary" for="fruit_vertical3">Pear</label>
+<input type="radio" autocomplete="off" id="fruit_vertical4" name="fruit_vertical" value="strawberry" class="btn-check"><label class="btn radiobtn btn-outline-primary" for="fruit_vertical4">Strawberry</label>
+<input type="radio" autocomplete="off" id="fruit_vertical5" name="fruit_vertical" value="grape" class="btn-check"><label class="btn radiobtn btn-outline-primary" for="fruit_vertical5">Grape</label>
+<input type="radio" autocomplete="off" id="fruit_vertical6" name="fruit_vertical" value="mango" class="btn-check"><label class="btn radiobtn btn-outline-primary" for="fruit_vertical6">Mango</label>
+<input type="radio" autocomplete="off" id="fruit_vertical7" name="fruit_vertical" value="watermelon" class="btn-check"><label class="btn radiobtn btn-outline-primary" for="fruit_vertical7">Watermelon</label>
 </div>
 </div>
 <script>
-            $(document).on('click', '#fruit .btn', function() {
-                Shiny.setInputValue('fruit_interacted', true, {priority: 'event'});
+            $(document).on('click', '#fruit_vertical .btn', function() {
+                Shiny.setInputValue('fruit_vertical_interacted', true, {priority: 'event'});
             });
         </script>
 </div>
@@ -789,7 +789,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type   = 'mc_buttons',</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id     = 'fruit',</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id     = 'fruit_vertical',</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label  = "Which fruit do you prefer most from this list?",</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="in">  option = c(</span></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="in">    "Apple"      = "apple",</span></span>
@@ -878,25 +878,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
 <div class="cell">
 <div class="cell-output-display">
-<div id="container-michael_jackson" data-question-id="michael_jackson" class="question-container" style="width: 50%;" oninput="Shiny.setInputValue('michael_jackson_interacted', true, {priority: 'event'});" onclick="Shiny.setInputValue('michael_jackson_interacted', true, {priority: 'event'});">
+<div id="container-michael_jackson_vertical" data-question-id="michael_jackson_vertical" class="question-container" style="width: 50%;" oninput="Shiny.setInputValue('michael_jackson_vertical_interacted', true, {priority: 'event'});" onclick="Shiny.setInputValue('michael_jackson_vertical_interacted', true, {priority: 'event'});">
 <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
-<label class="control-label" id="michael_jackson-label" for="michael_jackson"><p>Which are your favorite Michael Jackson songs (select all that apply)?</p>
+<label class="control-label" id="michael_jackson_vertical-label" for="michael_jackson_vertical"><p>Which are your favorite Michael Jackson songs (select all that apply)?</p>
 </label>
-<br><div id="michael_jackson" class="checkbox-group-buttons">
-<div aria-labelledby="michael_jackson-label" class=" btn-group-container-sw" data-toggle="buttons" role="group">
-<input type="checkbox" autocomplete="off" id="michael_jackson1" name="michael_jackson" value="thriller" class="btn-check"><label class="btn checkbtn btn-outline-primary" for="michael_jackson1">Thriller (1982)</label>
-<input type="checkbox" autocomplete="off" id="michael_jackson2" name="michael_jackson" value="billie_jean" class="btn-check"><label class="btn checkbtn btn-outline-primary" for="michael_jackson2">Billie Jean (1982)</label>
-<input type="checkbox" autocomplete="off" id="michael_jackson3" name="michael_jackson" value="beat_it" class="btn-check"><label class="btn checkbtn btn-outline-primary" for="michael_jackson3">Beat It (1982)</label>
-<input type="checkbox" autocomplete="off" id="michael_jackson4" name="michael_jackson" value="man_in_the_mirror" class="btn-check"><label class="btn checkbtn btn-outline-primary" for="michael_jackson4">Man in the Mirror (1987)</label>
-<input type="checkbox" autocomplete="off" id="michael_jackson5" name="michael_jackson" value="smooth_criminal" class="btn-check"><label class="btn checkbtn btn-outline-primary" for="michael_jackson5">Smooth Criminal (1987)</label>
-<input type="checkbox" autocomplete="off" id="michael_jackson6" name="michael_jackson" value="black_or_white" class="btn-check"><label class="btn checkbtn btn-outline-primary" for="michael_jackson6">Black or White (1991)</label>
-<input type="checkbox" autocomplete="off" id="michael_jackson7" name="michael_jackson" value="bad" class="btn-check"><label class="btn checkbtn btn-outline-primary" for="michael_jackson7">Bad (1987)</label>
-<input type="checkbox" autocomplete="off" id="michael_jackson8" name="michael_jackson" value="human_nature" class="btn-check"><label class="btn checkbtn btn-outline-primary" for="michael_jackson8">Human Nature (1982)</label>
+<br><div id="michael_jackson_vertical" class="checkbox-group-buttons">
+<div aria-labelledby="michael_jackson_vertical-label" class=" btn-group-container-sw" data-toggle="buttons" role="group">
+<input type="checkbox" autocomplete="off" id="michael_jackson_vertical1" name="michael_jackson_vertical" value="thriller" class="btn-check"><label class="btn checkbtn btn-outline-primary" for="michael_jackson_vertical1">Thriller (1982)</label>
+<input type="checkbox" autocomplete="off" id="michael_jackson_vertical2" name="michael_jackson_vertical" value="billie_jean" class="btn-check"><label class="btn checkbtn btn-outline-primary" for="michael_jackson_vertical2">Billie Jean (1982)</label>
+<input type="checkbox" autocomplete="off" id="michael_jackson_vertical3" name="michael_jackson_vertical" value="beat_it" class="btn-check"><label class="btn checkbtn btn-outline-primary" for="michael_jackson_vertical3">Beat It (1982)</label>
+<input type="checkbox" autocomplete="off" id="michael_jackson_vertical4" name="michael_jackson_vertical" value="man_in_the_mirror" class="btn-check"><label class="btn checkbtn btn-outline-primary" for="michael_jackson_vertical4">Man in the Mirror (1987)</label>
+<input type="checkbox" autocomplete="off" id="michael_jackson_vertical5" name="michael_jackson_vertical" value="smooth_criminal" class="btn-check"><label class="btn checkbtn btn-outline-primary" for="michael_jackson_vertical5">Smooth Criminal (1987)</label>
+<input type="checkbox" autocomplete="off" id="michael_jackson_vertical6" name="michael_jackson_vertical" value="black_or_white" class="btn-check"><label class="btn checkbtn btn-outline-primary" for="michael_jackson_vertical6">Black or White (1991)</label>
+<input type="checkbox" autocomplete="off" id="michael_jackson_vertical7" name="michael_jackson_vertical" value="bad" class="btn-check"><label class="btn checkbtn btn-outline-primary" for="michael_jackson_vertical7">Bad (1987)</label>
+<input type="checkbox" autocomplete="off" id="michael_jackson_vertical8" name="michael_jackson_vertical" value="human_nature" class="btn-check"><label class="btn checkbtn btn-outline-primary" for="michael_jackson_vertical8">Human Nature (1982)</label>
 </div>
 </div>
 <script>
-            $(document).on('click', '#michael_jackson .btn', function() {
-                Shiny.setInputValue('michael_jackson_interacted', true, {priority: 'event'});
+            $(document).on('click', '#michael_jackson_vertical .btn', function() {
+                Shiny.setInputValue('michael_jackson_vertical_interacted', true, {priority: 'event'});
             });
         </script>
 </div>
@@ -910,7 +910,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = 'mc_multiple_buttons',</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = 'michael_jackson',</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = 'michael_jackson_vertical',</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "Which are your favorite Michael Jackson songs (select all that apply)?",</span></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="in">  option = c(</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="in">    "Thriller (1982)"          = "thriller",</span></span>

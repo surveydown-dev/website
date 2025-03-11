@@ -1295,6 +1295,18 @@
     ]
   },
   {
+    "objectID": "manuals/question-types.html#slider_numeric",
+    "href": "manuals/question-types.html#slider_numeric",
+    "title": "Question Types",
+    "section": "slider_numeric",
+    "text": "slider_numeric\n\n\n\n\n\n\nNote\n\n\n\nThis widget only renders well in a Shiny environment, so we just show a screenshot here.\n\n\nIf your slider uses numeric inputs, use the slider_numeric question type. This type of slider can be used for either single sliders or dual sliders that define a range of values.\nSingle slider:\n\n\nOutput\nCode chunk\n\n\n\n\n\n\n\n\n\n```{r}\nsd_question(\n  type = \"slider_numeric\", \n  id = 'slider_single_val',  \n  label = 'Single value example', \n  option = seq(0, 10, 1)\n)\n```\n\n\n\n\nRange slider:\n\n\nOutput\nCode chunk\n\n\n\n\n\n\n\n\n\n```{r}\nsd_question(\n  type = \"slider_numeric\", \n  id = 'slider_range',  \n  label = 'Range example', \n  option = seq(0, 10, 1), \n  default = c(3, 5)\n)\n```",
+    "crumbs": [
+      "Documentation",
+      "Survey Content",
+      "Question Types"
+    ]
+  },
+  {
     "objectID": "manuals/question-types.html#date",
     "href": "manuals/question-types.html#date",
     "title": "Question Types",

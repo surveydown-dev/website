@@ -525,6 +525,63 @@ sd_question(
 
 :::
 
+## `slider_numeric` 
+
+{{< include ../chunks/question-screenshot-note.qmd >}}
+
+If your slider uses numeric inputs, use the `slider_numeric` question type. This type of slider can be used for either single sliders or dual sliders that define a range of values.
+
+**Single slider**:
+
+::: {.panel-tabset}
+
+## Output
+
+<center>
+<img src="../images/screenshots/slider_numeric_single.png" width=500>
+</center>
+
+## Code chunk
+
+```{r}
+#| echo: fenced
+
+sd_question(
+  type = "slider_numeric", 
+  id = 'slider_single_val',  
+  label = 'Single value example', 
+  option = seq(0, 10, 1)
+)
+```
+
+:::
+
+**Range slider**:
+
+::: {.panel-tabset}
+
+## Output
+
+<center>
+<img src="../images/screenshots/slider_numeric_range.png" width=500>
+</center>
+
+## Code chunk
+
+```{r}
+#| echo: fenced
+
+sd_question(
+  type = "slider_numeric", 
+  id = 'slider_range',  
+  label = 'Range example', 
+  option = seq(0, 10, 1), 
+  default = c(3, 5)
+)
+```
+
+:::
+
 ## `date`
 
 Use `type = 'date'` to specify a date input type. The date value will be today's date by default. Upon clicking on the text box, you are provided with a date dialog box to choose date from.

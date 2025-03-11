@@ -363,7 +363,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="#displaying-question-values-in-the-survey" id="toc-displaying-question-values-in-the-survey" class="nav-link active" data-scroll-target="#displaying-question-values-in-the-survey">Displaying question values in the survey</a></li>
   <li><a href="#displaying-stored-values-e.g.-a-completion-code" id="toc-displaying-stored-values-e.g.-a-completion-code" class="nav-link" data-scroll-target="#displaying-stored-values-e.g.-a-completion-code">Displaying stored values (e.g.&nbsp;a completion code)</a></li>
   <li><a href="#displaying-the-same-value-in-multiple-places" id="toc-displaying-the-same-value-in-multiple-places" class="nav-link" data-scroll-target="#displaying-the-same-value-in-multiple-places">Displaying the same value in multiple places</a></li>
-  <li><a href="#displaying-calculated-values" id="toc-displaying-calculated-values" class="nav-link" data-scroll-target="#displaying-calculated-values">Displaying calculated values</a></li>
+  <li><a href="#working-with-calculated-values" id="toc-working-with-calculated-values" class="nav-link" data-scroll-target="#working-with-calculated-values">Working with calculated values</a></li>
   <li><a href="#defining-questions-in-the-server-function" id="toc-defining-questions-in-the-server-function" class="nav-link" data-scroll-target="#defining-questions-in-the-server-function">Defining questions in the server function</a></li>
   </ul></nav>
     </div>
@@ -470,92 +470,90 @@ Note
 <p>If you find this annoying, we agree! This is a bit of a hack and we are working on a better solution, but it is a limitation of Shiny that we have to live with, at least for now.</p>
 </div>
 </div>
-</section><section id="displaying-calculated-values" class="level2"><h2 class="anchored" data-anchor-id="displaying-calculated-values">Displaying calculated values</h2>
-<p>The <code><a href="https://pkg.surveydown.org/reference/sd_output.html">sd_output()</a></code> function with <code>type = "value"</code> only returns a Shiny UI element, which is not intended to be used for calculations. However, we have a solution for that. Please see this simple example below:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true"><code>survey.qmd</code> file</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><code>app.R</code> file</a></li>
-</ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+</section><section id="working-with-calculated-values" class="level2"><h2 class="anchored" data-anchor-id="working-with-calculated-values">Working with calculated values</h2>
+<p>Often times you’ll need to create intermediate objects in your server that depend on question responses. In this situation, the intermediate objects won’t be generated when the survey launches since the question response(s) needed to calculate them are not yet answered. Instead, they’ll need to be <em>reactively</em> created once the respondent answers the questions.</p>
+<p>To provide a concrete example, suppose you have a page in your <code>survey.qmd</code> file like the one below. In this page, the questions <code>first_number</code> and <code>second_number</code> define two numeric values. Below these questions, we have several lines that print out the following:</p>
+<ol type="1">
+<li>The values themselves</li>
+<li>Two computed values based on the two input numbers (<code>product</code> and <code>sum</code>).</li>
+<li>A <code>summary</code> sentence that prints a summary of everything above, which is created in the server.</li>
+</ol>
+<p><strong>Example page in <code>survey.qmd</code> file</strong>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> html</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>echo<span class="sc">:</span> false</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>warning<span class="sc">:</span> false</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r}</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="at">library(surveydown)</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span> {<span class="co">#page1 .sd-page}</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Demo - Calculation</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r}</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="at">sd_question(</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="at">  type  = 'numeric',</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="at">  id    = 'first_number',</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="at">  label = "Type in your first number:"</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="at">)</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="at">sd_question(</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="at">  type  = 'numeric',</span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="at">  id    = 'second_number',</span></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="at">  label = "Type in your second number:"</span></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="at">)</span></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span> {<span class="co">#page1 .sd-page}</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Demo - Calculation</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r}</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="at">sd_question(</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="at">  type  = 'numeric',</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="at">  id    = 'first_number',</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="at">  label = "Type in your first number:"</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="at">)</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="at">sd_question(</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="at">  type  = 'numeric',</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="at">  id    = 'second_number',</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="at">  label = "Type in your second number:"</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="at">)</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>Your first number is<span class="sc">:</span> <span class="st">`</span><span class="at">r sd_output("first_number", type = "value")</span><span class="st">`</span>.</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>Your second number is<span class="sc">:</span> <span class="st">`</span><span class="at">r sd_output("second_number", type = "value")</span><span class="st">`</span>.</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>The product of these <span class="dv">2</span> numbers is<span class="sc">:</span> <span class="st">`</span><span class="at">r sd_output("product", type = "value")</span><span class="st">`</span>.</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>The sum of these <span class="dv">2</span> numbers is<span class="sc">:</span> <span class="st">`</span><span class="at">r sd_output("sum", type = "value")</span><span class="st">`</span>.</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">r sd_output("summary")</span><span class="st">`</span></span>
 <span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>Your first number is<span class="sc">:</span> <span class="st">`</span><span class="at">r sd_output("first_number", type = "value")</span><span class="st">`</span>.</span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>Your second number is<span class="sc">:</span> <span class="st">`</span><span class="at">r sd_output("second_number", type = "value")</span><span class="st">`</span>.</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r}</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="at">sd_next()</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span>
 <span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>The product of these <span class="dv">2</span> numbers is<span class="sc">:</span> <span class="st">`</span><span class="at">r sd_output("product", type = "value")</span><span class="st">`</span>.</span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r}</span></span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="at">sd_close()</span></span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>To make these values display properly, you can create reactive values with the <code>sd_reactive()</code> function in the server, which reactively updates as the user changes any of the question values. Here is an example of how you might create the <code>product</code> value:</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://pkg.surveydown.org">surveydown</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">product</span> <span class="op">&lt;-</span> <span class="fu">sd_reactive</span><span class="op">(</span><span class="st">"product"</span>, <span class="op">{</span></span>
+<span>  <span class="va">input</span><span class="op">$</span><span class="va">first_number</span> <span class="op">*</span> <span class="va">input</span><span class="op">$</span><span class="va">second_number</span></span>
+<span><span class="op">}</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>sd_reactive()</code> function takes an <code>id</code> (in this case <code>"product"</code>), which is the name that will be used in the resulting survey response data to store the returned value. The created object (in this case named <code>product</code>) is a reactive expression that can also be used anywhere else in the server using the <code>()</code> symbols, e.g.&nbsp;<code>product()</code>. Inside the function can be any expression that returns a value. In this case, we’re just multiplying together the two input numbers.</p>
+<p>To create all of the objects in the example page above, our server would look like this:</p>
+<p><strong>app.R file</strong>:</p>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://pkg.surveydown.org">surveydown</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Database Setup</span></span>
-<span><span class="co"># sd_db_config</span></span>
-<span><span class="co"># db &lt;- sd_db_connect()</span></span>
-<span></span>
-<span><span class="co"># Server Setup</span></span>
 <span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
 <span></span>
-<span>  <span class="fu">observe</span><span class="op">(</span><span class="op">{</span></span>
-<span>    <span class="va">product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">first_number</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">second_number</span><span class="op">)</span></span>
-<span>    <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_store_value.html">sd_store_value</a></span><span class="op">(</span><span class="va">product</span><span class="op">)</span></span>
+<span>  <span class="co"># Create reactive values for 'product' and 'sum'</span></span>
+<span>  <span class="va">product</span> <span class="op">&lt;-</span> <span class="fu">sd_reactive</span><span class="op">(</span><span class="st">"product"</span>, <span class="op">{</span></span>
+<span>    <span class="va">input</span><span class="op">$</span><span class="va">first_number</span> <span class="op">*</span> <span class="va">input</span><span class="op">$</span><span class="va">second_number</span></span>
 <span>  <span class="op">}</span><span class="op">)</span></span>
 <span></span>
-<span>  <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_server.html">sd_server</a></span><span class="op">(</span></span>
-<span>    db <span class="op">=</span> <span class="cn">NULL</span></span>
-<span>  <span class="op">)</span></span>
+<span>  <span class="va">sum</span> <span class="op">&lt;-</span> <span class="fu">sd_reactive</span><span class="op">(</span><span class="st">"sum"</span>, <span class="op">{</span></span>
+<span>    <span class="va">input</span><span class="op">$</span><span class="va">first_number</span> <span class="op">+</span> <span class="va">input</span><span class="op">$</span><span class="va">second_number</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
 <span></span>
+<span>  <span class="co"># Use the reactive values to create an additional 'summary' output</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">summary</span> <span class="op">&lt;-</span> <span class="fu">renderText</span><span class="op">(</span><span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"The product is:"</span>, <span class="fu">product</span><span class="op">(</span><span class="op">)</span>, <span class="st">"and the sum is:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_server.html">sd_server</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="co"># Launch Survey</span></span>
 <span><span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_ui.html">sd_ui</a></span><span class="op">(</span><span class="op">)</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-</div>
-<p>In this case, <code>first_number</code> and <code>second_number</code>, defined in <code>survey.qmd</code>, are the results from the <code><a href="https://pkg.surveydown.org/reference/sd_question.html">sd_question()</a></code> that is filled by the user. Then, the <code>product</code> is defined in <code>app.R</code> since it should observe the usesr input.</p>
-<p>In <code>app.R</code>, we use the <code>observe()</code> function to capture the user inputs, in which <code><a href="https://pkg.surveydown.org/reference/sd_store_value.html">sd_store_value()</a></code> is used to make <code>product</code> accessible in our <code>survey.qmd</code>.</p>
+<p>In this server, we create two reactive values, <code>product</code> and <code>sum</code>, which get stored in our survey data under those respective names. We also use <code>product()</code> and <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> to create the <code>output$summary</code> object, which is just some rendered text to display on the survey page.</p>
 </section><section id="defining-questions-in-the-server-function" class="level2"><h2 class="anchored" data-anchor-id="defining-questions-in-the-server-function">Defining questions in the server function</h2>
 <p>Often you will want to define questions where the label or options change based on the respondent’s answers to other questions. You can do this by defining the question in the server function and then displaying it in the <code>survey.qmd</code> file using the <code><a href="https://pkg.surveydown.org/reference/sd_output.html">sd_output()</a></code> function.</p>
 <p>For example, let’s say you want to ask a follow-up question based on the respondent’s answer to a previous question. To do this, you would define the first question in the <code>survey.qmd</code> file as usual, e.g.:</p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pkg.surveydown.org/reference/sd_question.html">sd_question</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pkg.surveydown.org/reference/sd_question.html">sd_question</a></span><span class="op">(</span></span>
 <span>  id     <span class="op">=</span> <span class="st">"pet_type"</span>,</span>
 <span>  type   <span class="op">=</span> <span class="st">"mc"</span>,</span>
 <span>  label  <span class="op">=</span> <span class="st">"Which do you like more, dogs or cats?"</span>,</span>
@@ -564,7 +562,7 @@ Note
 </div>
 <p>My follow-up question is whether or not the respondent has a pet of the type they chose above. To do this, you would define the follow-up question in the <code>app.R</code> file’s <code>server()</code> function like this:</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
 <span></span>
 <span>  <span class="fu">observe</span><span class="op">(</span><span class="op">{</span></span>
 <span>    <span class="va">pet_type</span> <span class="op">&lt;-</span> <span class="va">input</span><span class="op">$</span><span class="va">pet_type</span></span>
@@ -604,9 +602,9 @@ Note
 </div>
 <p>Finally, you can display the <code>pet_owner</code> question in the <code>survey.qmd</code> file using the <code><a href="https://pkg.surveydown.org/reference/sd_output.html">sd_output()</a></code> function, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_output(id = "pet_owner", type = "question")</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_output(id = "pet_owner", type = "question")</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

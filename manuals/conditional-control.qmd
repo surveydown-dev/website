@@ -200,7 +200,7 @@ This way, as long as the `fav_fruit` question is answered, no matter which optio
 
 For [`"matrix"`](question-types.qmd#matrix) type questions, `sd_is_answered()` will only be `TRUE` if all sub-questions (matrix rows)in it are answered. 
 
-## Conditions with custom functions
+### Conditioning with custom functions
 
 For situations where the conditional logic is more complex, we recommend defining a custom function that will return a logical value (`TRUE` or `FALSE`). You can then pass this function to the `sd_show_if()` or `sd_skip_if()` functions as a condition. 
 
@@ -229,3 +229,103 @@ server <- function(input, output, session) {
 In the `more_than_one_car()` function, we first obtain the numeric value of the `car_number` question using `as.numeric(input$car_number)`. If this value is `NA` it indicates that the respondent chose the `"6 or more"` option, in which case we return `TRUE`. If not, then we can be sure that `num_cars` is a number, and we can return the simple condition `num_cars > 1`.
 
 Note that here the `more_than_one_car` function is defined in the condition without `()` after it. This is because we are passing the function itself, not the result of the function.
+
+### Conditioning on custom values
+
+Sometimes you'll want to condition on values that aren't directly related to question responses. For example, you might want to randomly assign respondents to different survey versions or experimental conditions.
+
+Let's say you have two versions of a page, e.g. `page2a` and `page2b`, and you want half of your respondents to see page 2a and the other half to see page 2b. You can accomplish this by:
+
+1. Generating a random condition value
+2. Storing that value for later use
+3. Using `sd_skip_if()` to direct respondents to the appropriate page
+
+Here's how to implement this:
+
+```{r}
+server <- function(input, output, session) {
+  
+  # Generate random condition
+  a_or_b <- sample(c('a', 'b'), 1)
+  
+  # Store the condition value for later use if needed
+  sd_store_value(a_or_b)
+  
+  # Use skip_if to direct to either page2a or page2b based on condition
+  sd_skip_if(
+    a_or_b == 'a' ~ 'page2a',
+    a_or_b == 'b' ~ 'page2b'
+  )
+  
+  sd_server()
+  
+}
+```
+
+In this example, `sample(c('a', 'b'), 1)` randomly selects either `'a'` or `'b'`. The `sd_store_value()` function saves this value to the database, making it available for later analysis. Then, `sd_skip_if()` uses this value to determine which page version the respondent should see.
+
+This approach can be also be used for `sd_show_if()`. For example, here is how you could randomly assign a question to be hidden or shown:
+
+```{r}
+server <- function(input, output, session) {
+  # Create a static value to control question visibility
+  show_condition <- sample(c(TRUE, FALSE), 1)
+
+  # Store the static value for display in the UI
+  sd_store_value(show_condition, "show_condition")
+
+  # Show the conditional question based on the static value
+  sd_show_if(
+    show_condition ~ "conditional_question"
+  )
+
+  sd_server()
+}
+```
+
+### Conditioning on reactive expressions
+
+The same behavior as the above example for [conditioning on custom values](conditional-control.html#conditioning-on-custom-values) can also be achieved using reactive expressions, using the `sd_reactive()` function. In this example, we define a reactive expressions, `a_or_b`, and then use it to control the conditional page skipping. 
+
+Note here that the conditions must be defined using `a_or_b()` instead of `a_or_b` - this is because in this example this object is a reactive expression rather than a static value and must be evaluated like a function call. 
+
+Note also that we don't have to explicitly store the value in our data with a call to `sd_store_value()`. This is because the `sd_reactive()` function automatically stores the value in the data and will save it according to the specified `id` (in this case, `"a_or_b"`).
+
+```{r}
+server <- function(input, output, session) {
+
+  a_or_b <- sd_reactive("a_or_b", {
+    sample(c('a', 'b'), 1)
+  })
+
+  # Use skip_if to direct to either page2a or page2b based on condition
+  sd_skip_if(
+    a_or_b() == 'a' ~ 'page2a',
+    a_or_b() == 'b' ~ 'page2b'
+  )
+
+  sd_server()
+
+}
+
+shiny::shinyApp(ui = sd_ui(), server = server)
+```
+
+Likewise, the same concept can be applied to conditionally displaying a question based on a reactive expression:
+
+```{r}
+server <- function(input, output, session) {
+
+  # Create a reactive value that will control question visibility
+  show_condition <- sd_reactive("show_condition", {
+    sample(c(TRUE, FALSE), 1) # Randomly choose TRUE or FALSE
+  })
+
+  # Show the conditional question based on the reactive value
+  sd_show_if(
+    show_condition() ~ "conditional_question"
+  )
+
+  sd_server()
+}
+```

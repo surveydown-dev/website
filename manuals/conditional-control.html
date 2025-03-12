@@ -369,9 +369,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#numeric-values" id="toc-numeric-values" class="nav-link" data-scroll-target="#numeric-values">Numeric values</a></li>
   <li><a href="#multiple-response-questions" id="toc-multiple-response-questions" class="nav-link" data-scroll-target="#multiple-response-questions">Multiple response questions</a></li>
   <li><a href="#conditioning-on-answered-status" id="toc-conditioning-on-answered-status" class="nav-link" data-scroll-target="#conditioning-on-answered-status">Conditioning on answered status</a></li>
+  <li><a href="#conditioning-with-custom-functions" id="toc-conditioning-with-custom-functions" class="nav-link" data-scroll-target="#conditioning-with-custom-functions">Conditioning with custom functions</a></li>
+  <li><a href="#conditioning-on-custom-values" id="toc-conditioning-on-custom-values" class="nav-link" data-scroll-target="#conditioning-on-custom-values">Conditioning on custom values</a></li>
+  <li><a href="#conditioning-on-reactive-expressions" id="toc-conditioning-on-reactive-expressions" class="nav-link" data-scroll-target="#conditioning-on-reactive-expressions">Conditioning on reactive expressions</a></li>
   </ul>
 </li>
-  <li><a href="#conditions-with-custom-functions" id="toc-conditions-with-custom-functions" class="nav-link" data-scroll-target="#conditions-with-custom-functions">Conditions with custom functions</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -572,7 +574,7 @@ Note
 </div>
 <p>This way, as long as the <code>fav_fruit</code> question is answered, no matter which option the user picks the <code>num_fruit</code> question will appear.</p>
 <p>For <a href="../manuals/question-types.html#matrix"><code>"matrix"</code></a> type questions, <code>sd_is_answered()</code> will only be <code>TRUE</code> if all sub-questions (matrix rows)in it are answered.</p>
-</section></section><section id="conditions-with-custom-functions" class="level2"><h2 class="anchored" data-anchor-id="conditions-with-custom-functions">Conditions with custom functions</h2>
+</section><section id="conditioning-with-custom-functions" class="level3"><h3 class="anchored" data-anchor-id="conditioning-with-custom-functions">Conditioning with custom functions</h3>
 <p>For situations where the conditional logic is more complex, we recommend defining a custom function that will return a logical value (<code>TRUE</code> or <code>FALSE</code>). You can then pass this function to the <code>sd_show_if()</code> or <code>sd_skip_if()</code> functions as a condition.</p>
 <p>For example, let’s say we had a <code>mc</code> type question where we asked how many cars the respondent owned, and we included numeric options <code>1</code> through <code>5</code> as well as a final option <code>"6 or more"</code>. If we wanted to set a condition that would return <code>TRUE</code> if the user had more than one car, we could not use <code>as.numeric(input$question_id) &gt; 1</code> because this would return <code>NA</code> if the respondent chose the <code>"6 or more"</code> option.</p>
 <p>To address this, we could create a custom function to handle this special condition:</p>
@@ -595,9 +597,95 @@ Note
 </div>
 <p>In the <code>more_than_one_car()</code> function, we first obtain the numeric value of the <code>car_number</code> question using <code>as.numeric(input$car_number)</code>. If this value is <code>NA</code> it indicates that the respondent chose the <code>"6 or more"</code> option, in which case we return <code>TRUE</code>. If not, then we can be sure that <code>num_cars</code> is a number, and we can return the simple condition <code>num_cars &gt; 1</code>.</p>
 <p>Note that here the <code>more_than_one_car</code> function is defined in the condition without <code>()</code> after it. This is because we are passing the function itself, not the result of the function.</p>
+</section><section id="conditioning-on-custom-values" class="level3"><h3 class="anchored" data-anchor-id="conditioning-on-custom-values">Conditioning on custom values</h3>
+<p>Sometimes you’ll want to condition on values that aren’t directly related to question responses. For example, you might want to randomly assign respondents to different survey versions or experimental conditions.</p>
+<p>Let’s say you have two versions of a page, e.g.&nbsp;<code>page2a</code> and <code>page2b</code>, and you want half of your respondents to see page 2a and the other half to see page 2b. You can accomplish this by:</p>
+<ol type="1">
+<li>Generating a random condition value</li>
+<li>Storing that value for later use</li>
+<li>Using <code>sd_skip_if()</code> to direct respondents to the appropriate page</li>
+</ol>
+<p>Here’s how to implement this:</p>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  </span>
+<span>  <span class="co"># Generate random condition</span></span>
+<span>  <span class="va">a_or_b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'a'</span>, <span class="st">'b'</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># Store the condition value for later use if needed</span></span>
+<span>  <span class="fu">sd_store_value</span><span class="op">(</span><span class="va">a_or_b</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># Use skip_if to direct to either page2a or page2b based on condition</span></span>
+<span>  <span class="fu">sd_skip_if</span><span class="op">(</span></span>
+<span>    <span class="va">a_or_b</span> <span class="op">==</span> <span class="st">'a'</span> <span class="op">~</span> <span class="st">'page2a'</span>,</span>
+<span>    <span class="va">a_or_b</span> <span class="op">==</span> <span class="st">'b'</span> <span class="op">~</span> <span class="st">'page2b'</span></span>
+<span>  <span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="fu">sd_server</span><span class="op">(</span><span class="op">)</span></span>
+<span>  </span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In this example, <code>sample(c('a', 'b'), 1)</code> randomly selects either <code>'a'</code> or <code>'b'</code>. The <code>sd_store_value()</code> function saves this value to the database, making it available for later analysis. Then, <code>sd_skip_if()</code> uses this value to determine which page version the respondent should see.</p>
+<p>This approach can be also be used for <code>sd_show_if()</code>. For example, here is how you could randomly assign a question to be hidden or shown:</p>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="co"># Create a static value to control question visibility</span></span>
+<span>  <span class="va">show_condition</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="co"># Store the static value for display in the UI</span></span>
+<span>  <span class="fu">sd_store_value</span><span class="op">(</span><span class="va">show_condition</span>, <span class="st">"show_condition"</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="co"># Show the conditional question based on the static value</span></span>
+<span>  <span class="fu">sd_show_if</span><span class="op">(</span></span>
+<span>    <span class="va">show_condition</span> <span class="op">~</span> <span class="st">"conditional_question"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span>  <span class="fu">sd_server</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="conditioning-on-reactive-expressions" class="level3"><h3 class="anchored" data-anchor-id="conditioning-on-reactive-expressions">Conditioning on reactive expressions</h3>
+<p>The same behavior as the above example for <a href="conditional-control.html#conditioning-on-custom-values">conditioning on custom values</a> can also be achieved using reactive expressions, using the <code>sd_reactive()</code> function. In this example, we define a reactive expressions, <code>a_or_b</code>, and then use it to control the conditional page skipping.</p>
+<p>Note here that the conditions must be defined using <code>a_or_b()</code> instead of <code>a_or_b</code> - this is because in this example this object is a reactive expression rather than a static value and must be evaluated like a function call.</p>
+<p>Note also that we don’t have to explicitly store the value in our data with a call to <code>sd_store_value()</code>. This is because the <code>sd_reactive()</code> function automatically stores the value in the data and will save it according to the specified <code>id</code> (in this case, <code>"a_or_b"</code>).</p>
+<div class="cell">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<span></span>
+<span>  <span class="va">a_or_b</span> <span class="op">&lt;-</span> <span class="fu">sd_reactive</span><span class="op">(</span><span class="st">"a_or_b"</span>, <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'a'</span>, <span class="st">'b'</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="co"># Use skip_if to direct to either page2a or page2b based on condition</span></span>
+<span>  <span class="fu">sd_skip_if</span><span class="op">(</span></span>
+<span>    <span class="fu">a_or_b</span><span class="op">(</span><span class="op">)</span> <span class="op">==</span> <span class="st">'a'</span> <span class="op">~</span> <span class="st">'page2a'</span>,</span>
+<span>    <span class="fu">a_or_b</span><span class="op">(</span><span class="op">)</span> <span class="op">==</span> <span class="st">'b'</span> <span class="op">~</span> <span class="st">'page2b'</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span>  <span class="fu">sd_server</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="fu">sd_ui</span><span class="op">(</span><span class="op">)</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Likewise, the same concept can be applied to conditionally displaying a question based on a reactive expression:</p>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<span></span>
+<span>  <span class="co"># Create a reactive value that will control question visibility</span></span>
+<span>  <span class="va">show_condition</span> <span class="op">&lt;-</span> <span class="fu">sd_reactive</span><span class="op">(</span><span class="st">"show_condition"</span>, <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span> <span class="co"># Randomly choose TRUE or FALSE</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="co"># Show the conditional question based on the reactive value</span></span>
+<span>  <span class="fu">sd_show_if</span><span class="op">(</span></span>
+<span>    <span class="fu">show_condition</span><span class="op">(</span><span class="op">)</span> <span class="op">~</span> <span class="st">"conditional_question"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span>  <span class="fu">sd_server</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
-</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

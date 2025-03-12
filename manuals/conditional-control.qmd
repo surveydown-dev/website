@@ -204,7 +204,7 @@ For [`"matrix"`](question-types.qmd#matrix) type questions, `sd_is_answered()` w
 
 For situations where the conditional logic is more complex, we recommend defining a custom function that will return a logical value (`TRUE` or `FALSE`). You can then pass this function to the `sd_show_if()` or `sd_skip_if()` functions as a condition. 
 
-For example, let's say we had a `mc` type question where we asked how many cars the respondent owned, and we included numeric options `1` through `5` as well as a final option `"6 or more"`. If we wanted to set a condition that would return `TRUE` if the user had more than one car, we could not use `as.numeric(input$question_id) > 1` because this would return `NA` if the respondent chose the `"6 or more"` option. 
+For example, let's say we had a `mc` type question where we asked how many cars the respondent owned, and we included numeric options `1` through `5` as well as a final option `"6 or more"`. If we wanted to set a condition that would return `TRUE` if the user had more than one car, using `as.numeric(input$question_id) > 1` as the condition would be problematic, because this would return `NA` if the respondent chose the `"6 or more"` option.
 
 To address this, we could create a custom function to handle this special condition:
 
@@ -212,8 +212,13 @@ To address this, we could create a custom function to handle this special condit
 server <- function(input, output, session) {
 
   more_than_one_car <- function(input) {
-    num_cars <- as.numeric(input$car_number)
-    if (is.na(num_cars)) { return(TRUE) }
+    if (is.null(input$car_number)) {
+      return(FALSE)
+    }
+    num_cars <- suppressWarnings(as.numeric(input$car_number))
+    if (is.na(num_cars)) {
+      return(TRUE)
+    }
     return(num_cars > 1)
   }
 
@@ -226,9 +231,7 @@ server <- function(input, output, session) {
 }
 ```
 
-In the `more_than_one_car()` function, we first obtain the numeric value of the `car_number` question using `as.numeric(input$car_number)`. If this value is `NA` it indicates that the respondent chose the `"6 or more"` option, in which case we return `TRUE`. If not, then we can be sure that `num_cars` is a number, and we can return the simple condition `num_cars > 1`.
-
-Note that here the `more_than_one_car` function is defined in the condition without `()` after it. This is because we are passing the function itself, not the result of the function.
+In the `more_than_one_car()` function, we first return `FALSE` if the question is not yet answered (that's the `if (is.null(input$car_number))` part). Then we obtain the numeric value of the `car_number` question using `as.numeric(input$car_number)`. We included a `suppressWarnings()` call here only because R will warn you if the result is `NA` by coercion. This will only happen if the respondent chose the `"6 or more"` option, in which case we return `TRUE`. If not, then we return the simple condition `num_cars > 1` since we can safely know that the value of `num_cars` is a number.
 
 ### Conditioning on custom values
 

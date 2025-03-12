@@ -1,0 +1,90 @@
+---
+title: "Survey Components Overview"
+---
+
+```{r}
+#| eval: true
+#| echo: false
+
+library(surveydown)
+```
+
+## Overview
+
+Every surveydown survey is composed of a _survey_ and an _app_, defined in two separate files:
+
+- `survey.qmd`: This file is where you define the main survey content of your survey, such as pages, questions, and navigation buttons. It is a standard Quarto document, so you can use markdown (or the RStudio visual editor) to insert text, images, etc. just like you would in any Quarto document. See the [Survey File](survey-file.qmd) page for more details.
+- `app.R`: This file is where you define the global settings (libraries, database configuration, etc.) and server logic (e.g., conditional page skipping / question display, etc.) for your survey. It defines a Shiny app, so if you are familiar with Shiny you should feel right at home. See the [App File](app-file.qmd) page for more details.
+
+**These files must be named `survey.qmd` and `app.R`**.
+ 
+They typically look something like this:
+
+::: {.panel-tabset}
+
+## `survey.qmd` file
+
+````{r}
+---
+format: html
+echo: false
+warning: false
+---
+
+```{r}
+library(surveydown)
+```
+
+::: {#welcome .sd-page}
+
+# Welcome to our survey!
+
+```{r}
+sd_question(
+  type  = 'mc',
+  id    = 'penguins',
+  label = "Which type of penguin do you like the best?",
+  option = c(
+    'Adélie'    = 'adelie',
+    'Chinstrap' = 'chinstrap',
+    'Gentoo'    = 'gentoo'
+  )
+)
+
+sd_next(next_page = 'end')
+```
+
+:::
+
+::: {#end .sd-page}
+
+This is the last page of the survey.
+
+:::
+
+````
+
+## `app.R` file
+
+```{r}
+library(surveydown)
+
+# sd_db_config()
+db <- sd_db_connect()
+
+server <- function(input, output, session) {
+
+  # Conditional skip logic here (skip to page if a condition is TRUE)
+  sd_skip_forward()
+
+  # Conditional display logic here (show a question if a condition is TRUE)
+  sd_show_if()
+
+  # Main server to control the app
+  sd_server(db)
+}
+
+shiny::shinyApp(ui = sd_ui(), server = server)
+```
+
+:::

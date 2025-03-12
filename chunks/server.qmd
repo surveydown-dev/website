@@ -3,10 +3,10 @@ If you create a new survey using a [template](getting-started.html#start-with-a-
 ```{r}
 server <- function(input, output, session) {
 
-  # Define conditional skip logic (skip to page if a condition is true)
-  sd_skip_if()
+  # Define conditional skip logic (skip forward to page if a condition is TRUE)
+  sd_skip_forward()
 
-  # Define conditional display logic (show a question if a condition is true)
+  # Define conditional display logic (show a question if a condition is TRUE)
   sd_show_if()
 
   # Main server to control the app

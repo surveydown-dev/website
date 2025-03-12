@@ -22,7 +22,8 @@ The platform is based on some basic principles:
 - Add content to your `survey.qmd` file using markdown text (or in RStudio use the visual editor).
 - Define survey questions in R code chunks with the `sd_question()` function.
 - Define pages using fences (`:::`), with navigation buttons handled using the `sd_next()` function.
-- Add rich functionality to your survey using a variety of [server options](server-options.qmd) and [conditional control logic](conditional-control.qmd) in the `server()` function in the `app.R` file.
+- Add rich functionality to your survey using a variety of [server options](server-options.qmd) in the `server()` function in the `app.R` file.
+- Conditionally control [question display](conditional-question-display.qmd) or [survey flow](conditional-survey-flow.qmd).
 - Store your respondent data in a database (see [Storing Data](storing-data.qmd)).
 
 This approach ensures a flexible survey platform that is fully reproducible and easy to customize.
@@ -112,7 +113,7 @@ sd_question(
 
 ## 4. Add control options
 
-In the `server()` function in the `app.R` file, add rich functionality to your survey using a variety of [server options](server-options.qmd) and [conditional control logic](conditional-control.qmd).
+In the `server()` function in the `app.R` file, add rich functionality to your survey using a variety of [server options](server-options.qmd), or conditionally control [question display](conditional-question-display.qmd) or [survey flow](conditional-survey-flow.qmd).
 
 ## 5. Setup your database
 

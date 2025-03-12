@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.42">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
-<title>Security – surveydown.org</title>
+<title>Conditional Survey Flow (Page Skipping) – surveydown.org</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,8 +17,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
-
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
@@ -43,8 +73,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/bootstrap/bootstrap-e1e7f83eaa619f82e9751ce546fef09f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-d10f5fbe2dde1ff756688d246c03f6e7.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
-<script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -70,16 +99,13 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-<style>html{ scroll-behavior: smooth; }</style>
-
-
-<meta property="og:title" content="Security – surveydown.org">
+}</script><style>html{ scroll-behavior: smooth; }</style>
+<meta property="og:title" content="Conditional Survey Flow (Page Skipping) – surveydown.org">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://www.surveydown.org/manuals/images/logo.ico">
 <meta property="og:site_name" content="https://surveydown.org">
 <meta property="og:locale" content="es_ES">
-<meta name="twitter:title" content="Security – surveydown.org">
+<meta name="twitter:title" content="Conditional Survey Flow (Page Skipping) – surveydown.org">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://www.surveydown.org/manuals/images/logo.png">
 <meta name="twitter:creator" content="@johnhelveston">
@@ -88,13 +114,10 @@ ul.task-list li input[type="checkbox"] {
 <meta name="twitter:image-height" content="1564">
 <meta name="twitter:image-width" content="1564">
 </head>
-
 <body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">surveydown.org</span>
@@ -106,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
@@ -127,8 +150,8 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text"><i class="fa-brands fa-r-project" aria-label="r-project"></i> Package</span></a>
   </li>  
 </ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item">
     <a class="nav-link" href="../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
@@ -142,30 +165,24 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../manuals/deployment.html">Other</a></li><li class="breadcrumb-item"><a href="../manuals/security.html">Security</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../manuals/server-options.html">Server Content</a></li><li class="breadcrumb-item"><a href="../manuals/conditional-survey-flow.html">Conditional Survey Flow (Page Skipping)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="sidebar-menu-container"> 
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../documentation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Documentation</span></a>
@@ -197,8 +214,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../manuals/question-types.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Question Types</span></a>
@@ -223,7 +240,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
@@ -232,8 +249,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../manuals/server-options.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Server Options</span></a>
@@ -247,7 +264,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../manuals/conditional-survey-flow.html" class="sidebar-item-text sidebar-link">
+  <a href="../manuals/conditional-survey-flow.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Conditional Survey Flow (Page Skipping)</span></a>
   </div>
 </li>
@@ -282,7 +299,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
@@ -291,8 +308,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../manuals/storing-data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Storing Data</span></a>
@@ -311,7 +328,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
@@ -320,8 +337,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../manuals/deployment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deployment</span></a>
@@ -335,7 +352,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../manuals/security.html" class="sidebar-item-text sidebar-link active">
+  <a href="../manuals/security.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Security</span></a>
   </div>
 </li>
@@ -346,33 +363,17 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#the-surveydown-application-code" id="toc-the-surveydown-application-code" class="nav-link active" data-scroll-target="#the-surveydown-application-code">The surveydown application code</a></li>
-  <li><a href="#the-hosting-environment" id="toc-the-hosting-environment" class="nav-link" data-scroll-target="#the-hosting-environment">The hosting environment</a>
-  <ul class="collapse">
-  <li><a href="#shinyapps.io" id="toc-shinyapps.io" class="nav-link" data-scroll-target="#shinyapps.io">Shinyapps.io</a></li>
-  <li><a href="#other-hosting-services" id="toc-other-hosting-services" class="nav-link" data-scroll-target="#other-hosting-services">Other Hosting Services</a></li>
-  </ul></li>
-  <li><a href="#the-data-storage-environment" id="toc-the-data-storage-environment" class="nav-link" data-scroll-target="#the-data-storage-environment">The data storage environment</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../manuals/deployment.html">Other</a></li><li class="breadcrumb-item"><a href="../manuals/security.html">Security</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Security</h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../manuals/server-options.html">Server Content</a></li><li class="breadcrumb-item"><a href="../manuals/conditional-survey-flow.html">Conditional Survey Flow (Page Skipping)</a></li></ol></nav><div class="quarto-title">
+<h1 class="title">Conditional Survey Flow (Page Skipping)</h1>
 </div>
 
 
@@ -386,54 +387,64 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header>
-
-
-<p>There are three main security considerations when working with a surveydown survey:</p>
-<ol type="1">
-<li>The surveydown application code</li>
-<li>The hosting environment</li>
-<li>The data storage environment</li>
-</ol>
-<p>While we have worked to make our application code secure, it is ultimately up to you to choose appropriate host and data storage environments that are also secure for your needs.</p>
-<section id="the-surveydown-application-code" class="level2">
-<h2 class="anchored" data-anchor-id="the-surveydown-application-code">The surveydown application code</h2>
-<p>The application code refers to the resulting Shiny app generated from a surveydown survey. Since surveydown users will be collecting potentially sensitive data from survey respondents, we have tried to develop the platform with data security in mind. We have taken care to follow many <a href="https://mastering-shiny.org/scaling-security.html">best practices</a>, such as using <a href="https://shiny.posit.co/r/articles/build/sql-injections/">SQL injection prevention</a> strategies in how we store the survey response data, and ensuring that users store their database credentials as a <code>.env</code> file that is also added to a <code>.gitignore</code> file. We also adopted an architecture where all content on any page in the survey is served entirely from the shiny server, meaning that respondents taking the survey cannot see the underlying html source code for any of the content being displayed in the survey. This is important so respondents cannot see content on other pages (e.g., completion codes) before getting there from the survey navigation buttons.</p>
-<p>Despite our efforts, however, we do not (yet) have any form of security compliance certificate that we can provide. <strong>This means we cannot guarantee the application code is compliant with common security protocols, such as SOC2 Type 2 or HIPPA</strong>. This is an eventual goal, but for now this is a limitation for using this package for some domains that require certain certifications.</p>
-</section>
-<section id="the-hosting-environment" class="level2">
-<h2 class="anchored" data-anchor-id="the-hosting-environment">The hosting environment</h2>
-<section id="shinyapps.io" class="level3">
-<h3 class="anchored" data-anchor-id="shinyapps.io">Shinyapps.io</h3>
-<p>The free service we use for hosting a surveydown survey is <a href="https://shinyapps.io/">shinyapps.io</a>, which <strong>is not HIPPA compliant</strong>. According to the <a href="https://docs.posit.co/shinyapps.io/guide/security_and_compliance/index.html">Posit Documentation on Security and Compliance</a> for <a href="https://shinyapps.io/">shinyapps.io</a>:</p>
+</header><p>Often times you’ll want to send respondents to different parts of the survey based on some condition, such as the respondent choosing a particular value in a multiple choice question.</p>
+<p>For example, let’s say you want to screen out people who do not own a vehicle. To do this, you would first define a question in your <code>survey.qmd</code> file about their vehicle ownership, e.g.:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="in">sd_question(</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="in">  type  = 'mc',</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="in">  id    = 'vehicle_ownership',</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="in">  label = "Do you own your vehicle?",</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="in">  option = c(</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">    'Yes' = 'yes',</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="in">    'No'  = 'no'</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You would also need to define a screenout page to send respondents to, like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span> {<span class="co">#screenout .sd-page}</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Sorry, but you are not qualified to take our survey.</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then in the server function in the <code>app.R</code> file, you can use the <code>sd_skip_forward()</code> function to define the condition under which the respondent will be sent to the target <code>screenout</code> page, like this:</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<span></span>
+<span>  <span class="fu">sd_skip_forward</span><span class="op">(</span></span>
+<span>    <span class="va">input</span><span class="op">$</span><span class="va">vehicle_ownership</span> <span class="op">==</span> <span class="st">"no"</span> <span class="op">~</span> <span class="st">"screenout"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span>  <span class="fu">sd_server</span><span class="op">(</span>db <span class="op">=</span> <span class="va">db</span><span class="op">)</span></span>
+<span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Just like the <code>sd_show_if()</code> function, you can provide multiple conditions to the <code>sd_skip_forward()</code> function, each separated by a comma. The structure for each condition in sd_skip_forward <code>sd_skip_forward()</code> function is always:</p>
 <blockquote class="blockquote">
-<p>shinyapps.io is currently hosted on Amazon’s Web Services (AWS) infrastructure in the us-east-1 region. The infrastructure used is not the HIPAA-compliant stack, so if you need to be in a HIPAA-compliant environment, we recommend deploying and operating your own Posit Connect or Shiny Server Open Source instance.</p>
+<p><code>&lt;condition&gt; ~ "target_page_id"</code></p>
 </blockquote>
-<p>This means that if you require a HIPPA compliant hosting service, we recommend that follow Posit’s guidelines and deploy your own instance of <a href="https://posit.co/products/enterprise/connect/">Posit Connect</a>.</p>
-</section>
-<section id="other-hosting-services" class="level3">
-<h3 class="anchored" data-anchor-id="other-hosting-services">Other Hosting Services</h3>
-<p>You can deploy shiny apps to other hosting services. Here are some guides for several other alternatives:</p>
-<ul>
-<li><a href="https://docs.posit.co/connect-cloud/how-to/r/shiny-r.html">Posit Connect Cloud</a></li>
-<li><a href="https://huggingface.co/docs/hub/spaces-sdks-docker-shiny#shiny-for-r">Hugging Face</a></li>
-<li><a href="https://medium.com/@gracemwendemicheni/deploy-r-shiny-app-to-heroku-31b48fb6eb39">Heroku</a></li>
-</ul>
-<p>You can also install <a href="https://posit.co/products/enterprise/connect/">Posit Connect</a> on your own server, which is the <a href="https://docs.posit.co/shinyapps.io/guide/security_and_compliance/index.html">recommended approach</a> for remaining compliant with any security protocols your organization requires.</p>
-<p>Whatever hosting service you choose, please read carefully about the security implications of the environment you choose.</p>
-</section>
-</section>
-<section id="the-data-storage-environment" class="level2">
-<h2 class="anchored" data-anchor-id="the-data-storage-environment">The data storage environment</h2>
-<p>We designed surveydown to be able to <a href="../manuals/storing-data.html">store data</a> on any PostgreSQL database. This gives you flexibility on where you choose to store your data, and it is up to you to find a suitable host.</p>
-<p>Fortunately, the default service we recommend using (<a href="https://supabase.com/">Supabase</a>) is actually <a href="https://supabase.com/security">SOC2 Type 2 and HIPPA compliant</a> 🎉</p>
-<p>As with the hosting service, please choose a data storage environment carefully and read about the security implications of the environment you choose.</p>
+<p>In the example above, <code>input$vehicle_ownership == "no"</code> is the condition, and <code>"screenout"</code> is the target page that the respondent will be sent to if the condition is met.</p>
+<p>Take a look at the <a href="../manuals/common-conditions.html">Common Conditions</a> page for examples of other types of supported conditions you can use to conditionally control the survey flow.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <code>input</code> object is a Shiny object that stores each question <code>id</code> defined by <code>sd_question()</code> in your <code>survey.qmd</code> file, so whenever referring to a question in a condition, you must use the format <code>input$question_id</code>.</p>
+</div>
+</div>
 
 
-</section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -940,25 +951,64 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         }
       };
     }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
           }
-        });
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
       }
   const findCites = (el) => {
     const parentEl = el.parentElement;
@@ -1000,25 +1050,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
-    <li class="nav-item">
+<li class="nav-item">
  Site made with <i class="bi bi-heart-fill"></i>, <a href="https://github.com/jhelvy/jhelvy_quarto" target="_blank"><i class="bi bi-git"></i></a>, and <a href="https://quarto.org/" target="_blank"><img src="https://quarto.org/favicon.png" width="12"> quarto</a>
   </li>  
 </ul>
-    </div>
+</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
-
-
 
 
 <script src="../site_libs/quarto-html/zenscroll-min.js"></script>

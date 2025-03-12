@@ -69,10 +69,10 @@ db <- sd_db_connect()
 
 server <- function(input, output, session) {
 
-  # Define conditional skip logic here (skip to page if a condition is true)
-  sd_skip_if()
+  # Conditional skip logic here (skip to page if a condition is TRUE)
+  sd_skip_forward()
 
-  # Define  conditional display logic here (show a question if a condition is true)
+  # Conditional display logic here (show a question if a condition is TRUE)
   sd_show_if()
 
   # Main server to control the app
@@ -256,7 +256,7 @@ By default all questions are optional, but you can make questions required in th
 
 The simplest way to end a survey is to create a page with no `sd_next()` button on it. This will effectively serve as a ending page, because the respondent will not be able to navigate anywhere else once reaching a page with no next button.  
 
-For example, you may want to have a screen-out page that respondents are sent to if they answer a certain way on a question (e.g., see [conditional skipping](conditional-control.qmd#conditional-skipping). You can do this by creating a page with no `sd_next()` button on it, like this:
+For example, you may want to have a screen-out page that respondents are sent to if they answer a certain way on a question (e.g., see [conditional survey flow](conditional-survey-flow.qmd). You can do this by creating a page with no `sd_next()` button on it, like this:
 
 ```{r}
 ::: {#screenout .sd-page}
@@ -320,7 +320,7 @@ This will create a button with the label "Redirect to Google" that the responden
 The `app.R` file is where you define the global settings and server logic for your survey. It defines a Shiny app, so if you are familiar with Shiny you should feel right at home. The main components of the `app.R` file are:
 
 - **Global settings**: where you load the surveydown package and define the database connection.
-- **Server**: where you define the logic of the survey (conditional skipping / display, etc.)
+- **Server**: where you define the logic of the survey (conditional question display / conditional survey flow, etc.)
 
 ### Global settings
 
@@ -337,7 +337,7 @@ The `db` object is used to store survey data - see the [Storing Data](storing-da
 
 ### Server 
 
-The `server()` function is a standard Shiny server function that takes `input`, `output`, and `session` as arguments. It is where you can set custom control logic and other configuration options, such as [conditional display](conditional-control.qmd#conditional-display) logic with the `sd_show_if()` function, or [conditional skip](conditional-control.qmd#conditional-skipping) logic with the `sd_skip_if()` function.
+The `server()` function is a standard Shiny server function that takes `input`, `output`, and `session` as arguments. It is where you can set custom control logic and other configuration options, such as [conditional question display](conditional-question-display.qmd) logic with the `sd_show_if()` function, or [conditional survey flow](conditional-survey-flow.qmd) logic with the `sd_skip_forward()` function.
 
 {{< include ../chunks/server.qmd >}}
 

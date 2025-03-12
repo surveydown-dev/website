@@ -275,8 +275,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../manuals/conditional-control.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Conditional Control</span></a>
+  <a href="../manuals/conditional-question-display.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conditional Question Display</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../manuals/conditional-survey-flow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conditional Survey Flow (Page Skipping)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../manuals/common-conditions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Common Conditions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -415,10 +427,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Define conditional skip logic (skip to page if a condition is true)</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_skip_if</span>()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Define conditional skip logic (skip forward to page if a condition is TRUE)</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_skip_forward</span>()</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Define conditional display logic (show a question if a condition is true)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Define conditional display logic (show a question if a condition is TRUE)</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_show_if</span>()</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Main server to control the app</span></span>
@@ -426,7 +438,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The <code>sd_skip_if()</code> and <code>sd_show_if()</code> functions are used to define conditional skip and show logic for the survey (see the <a href="../manuals/conditional-control.html">Conditional Control</a> page for more details).</p>
+<p>The <code>sd_skip_forward()</code> and <code>sd_show_if()</code> functions are used to define logic for <a href="../manuals/conditional-question-display.html">conditionally displaying questions</a> or <a href="../manuals/conditional-survey-flow.html">conditionally controlling survey flow</a>.</p>
 <p>The <code>sd_server()</code> function is used to run the survey. It handles the main logic, such as page navigation and managing the survey data. The <code>db = db</code> argument is required if you are using a database connection, which should be defined using the <code>sd_database()</code> function (see the <a href="../manuals/storing-data.html">Store Data</a> page for more details).</p>
 <p>The <code>sd_server()</code> function also has many other optional arguments that can be used to customize the survey behavior. This page details these options.</p>
 <section id="required-questions" class="level2">

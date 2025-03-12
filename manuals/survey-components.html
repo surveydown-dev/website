@@ -258,8 +258,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../manuals/conditional-control.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Conditional Control</span></a>
+  <a href="../manuals/conditional-question-display.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conditional Question Display</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../manuals/conditional-survey-flow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conditional Survey Flow (Page Skipping)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../manuals/common-conditions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Common Conditions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -465,10 +477,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span></span>
 <span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
 <span></span>
-<span>  <span class="co"># Define conditional skip logic here (skip to page if a condition is true)</span></span>
-<span>  <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_skip_if.html">sd_skip_if</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="co"># Conditional skip logic here (skip to page if a condition is TRUE)</span></span>
+<span>  <span class="fu">sd_skip_forward</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span>  <span class="co"># Define  conditional display logic here (show a question if a condition is true)</span></span>
+<span>  <span class="co"># Conditional display logic here (show a question if a condition is TRUE)</span></span>
 <span>  <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_show_if.html">sd_show_if</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span>  <span class="co"># Main server to control the app</span></span>
@@ -623,7 +635,7 @@ Note
 <p>By default all questions are optional, but you can make questions required in the server options (see the <a href="../manuals/server-options.html#required-questions">Server Options</a> page for details).</p>
 </section><section id="ending-the-survey" class="level3"><h3 class="anchored" data-anchor-id="ending-the-survey">Ending the survey</h3>
 <p>The simplest way to end a survey is to create a page with no <code><a href="https://pkg.surveydown.org/reference/sd_next.html">sd_next()</a></code> button on it. This will effectively serve as a ending page, because the respondent will not be able to navigate anywhere else once reaching a page with no next button.</p>
-<p>For example, you may want to have a screen-out page that respondents are sent to if they answer a certain way on a question (e.g., see <a href="../manuals/conditional-control.html#conditional-skipping">conditional skipping</a>. You can do this by creating a page with no <code><a href="https://pkg.surveydown.org/reference/sd_next.html">sd_next()</a></code> button on it, like this:</p>
+<p>For example, you may want to have a screen-out page that respondents are sent to if they answer a certain way on a question (e.g., see <a href="../manuals/conditional-survey-flow.html">conditional survey flow</a>. You can do this by creating a page with no <code><a href="https://pkg.surveydown.org/reference/sd_next.html">sd_next()</a></code> button on it, like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span> {<span class="co">#screenout .sd-page}</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -679,7 +691,7 @@ Note
 <li>
 <strong>Global settings</strong>: where you load the surveydown package and define the database connection.</li>
 <li>
-<strong>Server</strong>: where you define the logic of the survey (conditional skipping / display, etc.)</li>
+<strong>Server</strong>: where you define the logic of the survey (conditional question display / conditional survey flow, etc.)</li>
 </ul>
 <section id="global-settings" class="level3"><h3 class="anchored" data-anchor-id="global-settings">Global settings</h3>
 <p>The global settings are at the top of the <code>app.R</code> file. At a minimum, you need to load the <code>surveydown</code> package and define the database connection. You can also load other packages / global objects here if you need to. It typically looks like this:</p>
@@ -691,15 +703,15 @@ Note
 </div>
 <p>The <code>db</code> object is used to store survey data - see the <a href="../manuals/storing-data.html">Storing Data</a> page for details on how to set up the database connection.</p>
 </section><section id="server" class="level3"><h3 class="anchored" data-anchor-id="server">Server</h3>
-<p>The <code>server()</code> function is a standard Shiny server function that takes <code>input</code>, <code>output</code>, and <code>session</code> as arguments. It is where you can set custom control logic and other configuration options, such as <a href="../manuals/conditional-control.html#conditional-display">conditional display</a> logic with the <code><a href="https://pkg.surveydown.org/reference/sd_show_if.html">sd_show_if()</a></code> function, or <a href="../manuals/conditional-control.html#conditional-skipping">conditional skip</a> logic with the <code><a href="https://pkg.surveydown.org/reference/sd_skip_if.html">sd_skip_if()</a></code> function.</p>
+<p>The <code>server()</code> function is a standard Shiny server function that takes <code>input</code>, <code>output</code>, and <code>session</code> as arguments. It is where you can set custom control logic and other configuration options, such as <a href="../manuals/conditional-question-display.html">conditional question display</a> logic with the <code><a href="https://pkg.surveydown.org/reference/sd_show_if.html">sd_show_if()</a></code> function, or <a href="../manuals/conditional-survey-flow.html">conditional survey flow</a> logic with the <code>sd_skip_forward()</code> function.</p>
 <p>If you create a new survey using a <a href="getting-started.html#start-with-a-template">template</a>, the <code>server()</code> function looks like this:</p>
 <div class="cell">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
 <span></span>
-<span>  <span class="co"># Define conditional skip logic (skip to page if a condition is true)</span></span>
-<span>  <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_skip_if.html">sd_skip_if</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="co"># Define conditional skip logic (skip forward to page if a condition is TRUE)</span></span>
+<span>  <span class="fu">sd_skip_forward</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span>  <span class="co"># Define conditional display logic (show a question if a condition is true)</span></span>
+<span>  <span class="co"># Define conditional display logic (show a question if a condition is TRUE)</span></span>
 <span>  <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_show_if.html">sd_show_if</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span>  <span class="co"># Main server to control the app</span></span>

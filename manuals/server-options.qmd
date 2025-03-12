@@ -7,7 +7,7 @@ All survey configuration settings are defined within the `server` function in th
 
 {{< include ../chunks/server.qmd >}}
 
-The `sd_skip_if()` and `sd_show_if()` functions are used to define conditional skip and show logic for the survey (see the [Conditional Control](conditional-control.qmd) page for more details).
+The `sd_skip_forward()` and `sd_show_if()` functions are used to define logic for [conditionally displaying questions](conditional-question-display.qmd) or [conditionally controlling survey flow](conditional-survey-flow.qmd).
 
 The `sd_server()` function is used to run the survey. It handles the main logic, such as page navigation and managing the survey data. The `db = db` argument is required if you are using a database connection, which should be defined using the `sd_database()` function (see the [Store Data](storing-data.qmd) page for more details).
 

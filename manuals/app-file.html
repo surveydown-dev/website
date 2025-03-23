@@ -435,13 +435,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The <code>db</code> object is used to store survey data - see the <a href="../manuals/storing-data.html">Storing Data</a> page for details on how to set up the database connection.</p>
 </section><section id="server" class="level2"><h2 class="anchored" data-anchor-id="server">Server</h2>
-<p>The <code>server()</code> function is a standard Shiny server function that takes <code>input</code>, <code>output</code>, and <code>session</code> as arguments. It is where you can set custom control logic and other configuration options, such as <a href="../manuals/conditional-question-display.html">conditional question display</a> logic with the <code><a href="https://pkg.surveydown.org/reference/sd_show_if.html">sd_show_if()</a></code> function, or <a href="../manuals/conditional-survey-flow.html">conditional survey flow</a> logic with the <code>sd_skip_forward()</code> function.</p>
+<p>The <code>server()</code> function is a standard Shiny server function that takes <code>input</code>, <code>output</code>, and <code>session</code> as arguments. It is where you can set custom control logic and other configuration options, such as <a href="../manuals/conditional-question-display.html">conditional question display</a> logic with the <code><a href="https://pkg.surveydown.org/reference/sd_show_if.html">sd_show_if()</a></code> function, or <a href="../manuals/conditional-survey-flow.html">conditional survey flow</a> logic with the <code><a href="https://pkg.surveydown.org/reference/sd_skip_forward.html">sd_skip_forward()</a></code> function.</p>
 <p>If you create a new survey using a <a href="getting-started.html#start-with-a-template">template</a>, the <code>server()</code> function looks like this:</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
 <span></span>
 <span>  <span class="co"># Define conditional skip logic (skip forward to page if a condition is TRUE)</span></span>
-<span>  <span class="fu">sd_skip_forward</span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_skip_forward.html">sd_skip_forward</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span>  <span class="co"># Define conditional display logic (show a question if a condition is TRUE)</span></span>
 <span>  <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_show_if.html">sd_show_if</a></span><span class="op">(</span><span class="op">)</span></span>

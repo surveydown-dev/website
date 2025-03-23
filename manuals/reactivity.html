@@ -549,13 +549,13 @@ Note
 <span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>To make these values display properly, you can create reactive values with the <code>sd_reactive()</code> function in the server, which reactively updates as the user changes any of the question values. Here is an example of how you might create the <code>product</code> value:</p>
+<p>To make these values display properly, you can create reactive values with the <code><a href="https://pkg.surveydown.org/reference/sd_reactive.html">sd_reactive()</a></code> function in the server, which reactively updates as the user changes any of the question values. Here is an example of how you might create the <code>product</code> value:</p>
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">product</span> <span class="op">&lt;-</span> <span class="fu">sd_reactive</span><span class="op">(</span><span class="st">"product"</span>, <span class="op">{</span></span>
 <span>  <span class="va">input</span><span class="op">$</span><span class="va">first_number</span> <span class="op">*</span> <span class="va">input</span><span class="op">$</span><span class="va">second_number</span></span>
 <span><span class="op">}</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The <code>sd_reactive()</code> function takes an <code>id</code> (in this case <code>"product"</code>), which is the name that will be used in the resulting survey response data to store the returned value. The created object (in this case named <code>product</code>) is a reactive expression that can also be used anywhere else in the server using the <code>()</code> symbols, e.g.&nbsp;<code>product()</code>. Inside the function can be any expression that returns a value. In this case, we’re just multiplying together the two input numbers.</p>
+<p>The <code><a href="https://pkg.surveydown.org/reference/sd_reactive.html">sd_reactive()</a></code> function takes an <code>id</code> (in this case <code>"product"</code>), which is the name that will be used in the resulting survey response data to store the returned value. The created object (in this case named <code>product</code>) is a reactive expression that can also be used anywhere else in the server using the <code>()</code> symbols, e.g.&nbsp;<code>product()</code>. Inside the function can be any expression that returns a value. In this case, we’re just multiplying together the two input numbers.</p>
 <p>To create all of the objects in the example page above, our server would look like this:</p>
 <p><strong>app.R file</strong>:</p>
 <div class="cell">
@@ -564,11 +564,11 @@ Note
 <span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
 <span></span>
 <span>  <span class="co"># Create reactive values for 'product' and 'sum'</span></span>
-<span>  <span class="va">product</span> <span class="op">&lt;-</span> <span class="fu">sd_reactive</span><span class="op">(</span><span class="st">"product"</span>, <span class="op">{</span></span>
+<span>  <span class="va">product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_reactive.html">sd_reactive</a></span><span class="op">(</span><span class="st">"product"</span>, <span class="op">{</span></span>
 <span>    <span class="va">input</span><span class="op">$</span><span class="va">first_number</span> <span class="op">*</span> <span class="va">input</span><span class="op">$</span><span class="va">second_number</span></span>
 <span>  <span class="op">}</span><span class="op">)</span></span>
 <span></span>
-<span>  <span class="va">sum</span> <span class="op">&lt;-</span> <span class="fu">sd_reactive</span><span class="op">(</span><span class="st">"sum"</span>, <span class="op">{</span></span>
+<span>  <span class="va">sum</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_reactive.html">sd_reactive</a></span><span class="op">(</span><span class="st">"sum"</span>, <span class="op">{</span></span>
 <span>    <span class="va">input</span><span class="op">$</span><span class="va">first_number</span> <span class="op">+</span> <span class="va">input</span><span class="op">$</span><span class="va">second_number</span></span>
 <span>  <span class="op">}</span><span class="op">)</span></span>
 <span></span>

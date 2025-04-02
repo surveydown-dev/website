@@ -17,7 +17,6 @@ project:
     - "features.qmd"
     - "getting-started.qmd"
     - "index.qmd"
-    - "installation.qmd"
     - "manuals/**/*.qmd"
   resources:
     - "manuals/"
@@ -73,19 +72,16 @@ website:
       contents:
         - text: "Documentation"
           href: documentation.qmd
-        - text: "Getting Started"
-          href: manuals/getting-started.qmd
-        - text: "Installation"
-          href: manuals/installation.qmd
+
+        - section: "Survey Basics"
+          contents:
+            - text: "Getting Started"
+              href: manuals/getting-started.qmd
+            - text: "Basic Components"
+              href: manuals/basic-components.qmd
 
         - section: "Survey Design Concepts"
           contents:
-            - text: "Survey Basics"
-              href: manuals/survey-basics.qmd
-            - text: "Survey File"
-              href: manuals/survey-file.qmd
-            - text: "App File"
-              href: manuals/app-file.qmd
             - text: "Conditional Logic"
               href: manuals/conditional-logic.qmd
             - text: "External Resources"

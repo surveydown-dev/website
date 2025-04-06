@@ -70,8 +70,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-4379b0ccadffce622b03caf4c46266b3.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e1e7f83eaa619f82e9751ce546fef09f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-d10f5fbe2dde1ff756688d246c03f6e7.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-ea3a4c379b7c5679176458fe7669642f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-3d2ce5edb72a8646a728f2925410bdf9.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -134,16 +134,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./documentation.html"> 
+    <a class="nav-link" href="./docs.html"> 
 <span class="menu-text">Documentation</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./demos.html"> 
-<span class="menu-text">Demos</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./features.html"> 
-<span class="menu-text">Features</span></a>
+    <a class="nav-link" href="./templates.html"> 
+<span class="menu-text">Templates</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="https://pkg.surveydown.org/"> 
@@ -233,21 +229,21 @@ Note
 <p>surveydown might not be a good fit for you today if…</p>
 <ul>
 <li>you need stable, polished software that is mature and completely bug-free.</li>
-<li>you need a product with a guaranteed security level, such as HIPAA compliance (see our <a href="./manuals/security.html">security page</a> for more details).</li>
+<li>you need a product with a guaranteed security level, such as HIPAA compliance (see our <a href="docs/security.html">security page</a> for more details).</li>
 <li>you prefer a platform that uses a graphic interface to define survey content.</li>
 </ul></section><section id="why-is-my-survey-app-so-slow-when-starting" class="level2"><h2 class="anchored" data-anchor-id="why-is-my-survey-app-so-slow-when-starting">Why is my survey app so slow when starting?</h2>
-<p>When a {surveydown} survey first runs, it checks for files in a <code>_survey</code> folder that contain the rendered content from your <code>survey.qmd</code> file. If any of those files are missing or if changes have been detected in your <code>survey.qmd</code> or <code>app.R</code> files, it will re-render your survey, which can take a bit longer. But this only happens once, and afterwards so long as no further changes have been made to your survey files the app will use the saved content in the <code>_survey</code> folder to launch, which should load almost instantly. So if your app launches slowly, just close it and launch it again and you should immediately load. If you still see a slow launch, consider <a href="https://github.com/surveydown-dev/surveydown/issues">posting an issue</a> to let us know that something might be wrong.</p>
-<p>Also, it is important that you run your survey locally <strong>at least once</strong> before deploying it live. This will render all your survey content into the <code>_survey</code> folder, which will also get uploaded when you deploy it.</p>
+<p>When a {surveydown} survey first runs, it checks for files in a **_survey** folder that contain the rendered content from your <strong>survey.qmd</strong> file. If any of those files are missing or if changes have been detected in your <strong>survey.qmd</strong> or <strong>app.R</strong> files, it will re-render your survey, which can take a bit longer. But this only happens once, and afterwards so long as no further changes have been made to your survey files the app will use the saved content in the **_survey** folder to launch, which should load almost instantly. So if your app launches slowly, just close it and launch it again and you should immediately load. If you still see a slow launch, consider <a href="https://github.com/surveydown-dev/surveydown/issues">posting an issue</a> to let us know that something might be wrong.</p>
+<p>Also, it is important that you run your survey locally <strong>at least once</strong> before deploying it live. This will render all your survey content into the **_survey** folder, which will also get uploaded when you deploy it.</p>
 </section><section id="how-do-i-make-a-question-required" class="level2"><h2 class="anchored" data-anchor-id="how-do-i-make-a-question-required">How do I make a question required?</h2>
-<p>Use the <code>required_questions</code> argument in <code>sd_server()</code> to control required responses (see the <a href="./manuals/server-options.html#required-questions">required questions</a> page for more details).</p>
+<p>Use the <code>required_questions</code> argument in <code>sd_server()</code> to control required responses (see the <a href="docs/server-options.html#required-questions">required questions</a> page for more details).</p>
 </section><section id="why-is-my-shinyapps-deployment-failing" class="level2"><h2 class="anchored" data-anchor-id="why-is-my-shinyapps-deployment-failing">Why is my shinyapps deployment failing?</h2>
-<p>First, make sure your Suppabase credentials are correctly defined, including your Supabase project settings and password settings. The password defined by <code>sd_db_config()</code> should be the same as your Supabase project password. Access the <a href="./manuals/storing-data.html">Storing Data</a> page for how to set all Supabase credentials. Then, make sure your survey runs on your local machine and can successfully link with your Supabase project table. With these confirmed, your shinyapps deployment should work without problem.</p>
+<p>First, make sure your Suppabase credentials are correctly defined, including your Supabase project settings and password settings. The password defined by <code>sd_db_config()</code> should be the same as your Supabase project password. Access the <a href="docs/storing-data.html">Storing Data</a> page for how to set all Supabase credentials. Then, make sure your survey runs on your local machine and can successfully link with your Supabase project table. With these confirmed, your shinyapps deployment should work without problem.</p>
 <p>If you still encounter an error (e.g., the page shows the app failed to start, or you see the page but it doesn’t run properly), try clearing your cache. The simplest way to do so is to <strong>reboot your computer</strong>. It may also help if you delete previously generated files, such as the <code>survey.html</code> file if you rendered it and the <code>rsconnect</code> folder. After re-rendering, you should be able to deploy the app without error.</p>
 </section><section id="how-should-i-install-the-surveydown-package" class="level2"><h2 class="anchored" data-anchor-id="how-should-i-install-the-surveydown-package">How should I install the {surveydown} package?</h2>
-<p>You can install the {surveydown} package from <a href="https://cran.r-project.org/web/packages/surveydown/index.html">CRAN</a> or the <a href="https://github.com/surveydown-dev/surveydown/">GitHub repo</a> of the package source code. Follow <a href="./manuals/installation.html#install-the-surveydown-r-package">these instructions</a> for either approach.</p>
+<p>You can install the {surveydown} package from <a href="https://cran.r-project.org/web/packages/surveydown/index.html">CRAN</a> or the <a href="https://github.com/surveydown-dev/surveydown/">GitHub repo</a> of the package source code. Follow <a href="docs/getting-started.html#install">our installation instructions</a> for either approach.</p>
 <p>Sometimes neither of these approaches work, often because your path is managed by some package managing system like <a href="https://www.anaconda.com">Anaconda</a>. In this case, a third alternative is to download the zip file of the package source code and then install it locally.</p>
 <p>To download the zip file, go the the <a href="https://github.com/surveydown-dev/surveydown">surveydown repo</a>, click on the green “Code” button and click on “Download Zip”, or simplify click on <a href="https://github.com/surveydown-dev/surveydown/archive/refs/heads/main.zip">this link</a>.</p>
-<p>Unzip this repo, then open the <code>surveydown.Rproj</code> file. In your R Console panel, run this code to install:</p>
+<p>Unzip this repo, then open the <strong>surveydown.Rproj</strong> file. In your R Console panel, run this code to install:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># install.packages('devtools') </span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install</span><span class="op">(</span>force <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

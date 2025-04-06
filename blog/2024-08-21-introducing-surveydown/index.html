@@ -73,8 +73,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4379b0ccadffce622b03caf4c46266b3.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-e1e7f83eaa619f82e9751ce546fef09f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d10f5fbe2dde1ff756688d246c03f6e7.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-ea3a4c379b7c5679176458fe7669642f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-3d2ce5edb72a8646a728f2925410bdf9.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -139,16 +139,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../documentation.html"> 
+    <a class="nav-link" href="../../docs.html"> 
 <span class="menu-text">Documentation</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../demos.html"> 
-<span class="menu-text">Demos</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../features.html"> 
-<span class="menu-text">Features</span></a>
+    <a class="nav-link" href="../../templates.html"> 
+<span class="menu-text">Templates</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="https://pkg.surveydown.org/"> 
@@ -277,7 +273,7 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>This post was made just after launching surveydown. Much of the platform architecture has changed since then, so check the <a href="https://surveydown.org/documentation">documentation</a> for the latest correct information.</strong></p>
+<p><strong>This post was made just after launching surveydown. Much of the platform architecture has changed since then, so check the <a href="https://surveydown.org/docs.html">documentation</a> for the latest correct information.</strong></p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -309,7 +305,7 @@ Note
 </ol>
 <p>In surveydown, your entire survey is designed using markdown and R code in a single Quarto document. There is no GUI or drag-and-drop interface - simply write plain text (markdown and R code) and boom - you have a survey!</p>
 <p>The <a href="https://pkg.surveydown.org/">{surveydown} package</a> provides a set of functions for defining the survey content and control logic. Each function starts with <code>sd_</code> to make them easy to identify. You can add content to your survey using markdown formatting, or in RStudio you can edit with the visual editor. Survey questions are defined in R code chunks with the <code>sd_question()</code> function. Pages are defined using fences (<code>:::</code>), and navigation buttons handled with the <code>sd_next()</code> function. You can modify the control logic in the server code chunk (the last code chunk at the bottom of the .qmd file) with the <code>sd_config()</code> function, and you can configure the database with the <code>sd_database()</code>.</p>
-<p>The <a href="https://surveydown.org/documentation">documentation</a> has many more details on all of this, and later in this post I’ll give a quick overview of a few of these features. But first, let me tell you a little about <em>why</em> we decided to build surveydown.</p>
+<p>The <a href="https://surveydown.org/docs.html">documentation</a> has many more details on all of this, and later in this post I’ll give a quick overview of a few of these features. But first, let me tell you a little about <em>why</em> we decided to build surveydown.</p>
 </section><section id="why-did-we-build-surveydown" class="level1"><h1>Why did we build surveydown?</h1>
 <blockquote class="blockquote">
 <p>Do we really need another survey platform?</p>
@@ -337,7 +333,7 @@ Note
 <p>Reproducibility is something we had in mind from the start with this project, and we’ve tried to make it as easy as possible for your surveydown surveys to be fully reproducible.</p>
 </section></section><section id="introduction-to-surveydown" class="level1"><h1>Introduction to surveydown</h1>
 <section id="getting-started" class="level2"><h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
-<p>After getting everything <a href="https://surveydown.org/installation">installed</a>, we recommend starting with a template survey project. To do so, run the following in the R console:</p>
+<p>After getting everything <a href="https://surveydown.org//docs/getting-started.html#install">installed</a>, we recommend starting with a template survey project. To do so, run the following in the R console:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">surveydown</span><span class="fu">::</span><span class="fu"><a href="https://pkg.surveydown.org/reference/sd_create_survey.html">sd_create_survey</a></span><span class="op">(</span><span class="st">"path/to/folder"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -348,7 +344,7 @@ Note
 <li>
 <code>example.Rproj</code>: An RStudio project file (helpful if you’re working in RStudio)</li>
 <li>
-<code>_extensions</code>: A folder with the <a href="https://github.com/surveydown-dev/surveydown-ext">surveydown Quarto extension</a> needed to make everything work (don’t modify this).</li>
+<code>_extensions</code>: A folder with the surveydown Quarto extension needed to make everything work (don’t modify this).</li>
 </ul>
 <p>If you have the example open in RStudio, you can click the “Run document” button, or in your terminal run <code>quarto serve example.qmd</code>. Either approach should render the example survey into a shiny app that you can preview in a browser. Don’t worry just yet about setting up your database or making the survey live - for now, we’re going to focus on designing the survey and running it locally to preview it. The example survey should look like this:</p>
 <center>
@@ -381,22 +377,8 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 <div data-next-page="page2" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
-<button id="page_id_next" type="button" class="btn btn-default action-button" style="display: block; margin: auto;" onclick="Shiny.setInputValue('next_page', this.parentElement.getAttribute('data-next-page'));">Next</button>
+<button class="btn btn-default action-button sd-enter-button" id="page_id_next" onclick="Shiny.setInputValue('next_page', this.parentElement.getAttribute('data-next-page'));" style="display: block; margin: auto;" type="button">Next</button>
 </div>
-<script>
-    $(document).ready(function() {
-        var buttonId = 'page_id_next';
-        $(document).on('keydown', function(event) {
-            if (event.key === 'Enter' && !event.repeat) {
-                var $button = $('#' + buttonId);
-                if ($button.is(':visible')) {
-                    $button.click();
-                    event.preventDefault();
-                }
-            }
-        });
-    });
-    </script>
 </div>
 </div>
 <p>You would need to place the code chunk in between the <code>:::</code> fences of the <code>welcome</code> page in order to have a “Next” button that goes on to page 2. You can also send the user to other pages by just changing the <code>next_page</code> argument. Finally, you can also change the label of the button by changing the <code>label</code> argument, like this:</p>
@@ -408,22 +390,8 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 <div data-next-page="page2" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
-<button id="page_id_next" type="button" class="btn btn-default action-button" style="display: block; margin: auto;" onclick="Shiny.setInputValue('next_page', this.parentElement.getAttribute('data-next-page'));">Next page</button>
+<button class="btn btn-default action-button sd-enter-button" id="page_id_next" onclick="Shiny.setInputValue('next_page', this.parentElement.getAttribute('data-next-page'));" style="display: block; margin: auto;" type="button">Next page</button>
 </div>
-<script>
-    $(document).ready(function() {
-        var buttonId = 'page_id_next';
-        $(document).on('keydown', function(event) {
-            if (event.key === 'Enter' && !event.repeat) {
-                var $button = $('#' + buttonId);
-                if ($button.is(':visible')) {
-                    $button.click();
-                    event.preventDefault();
-                }
-            }
-        });
-    });
-    </script>
 </div>
 </div>
 </section><section id="adding-questions" class="level2"><h2 class="anchored" data-anchor-id="adding-questions">Adding questions</h2>
@@ -445,9 +413,9 @@ Note
 <p>The above code chunk will create a multiple choice question that looks like this:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="container-penguins" data-question-id="penguins" class="question-container" oninput="Shiny.setInputValue('penguins_interacted', true, {priority: 'event'});">
-<div id="penguins" style="width:500px;" class="form-group shiny-input-radiogroup shiny-input-container" role="radiogroup" aria-labelledby="penguins-label">
-<label class="control-label" id="penguins-label" for="penguins"><p>Which is your favorite type of penguin? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
+<div id="container-penguins" data-question-id="penguins" class="question-container" style="width: 500;" oninput="Shiny.setInputValue('penguins_interacted', true, {priority: 'event'});" onclick="Shiny.setInputValue('penguins_interacted', true, {priority: 'event'});">
+<div id="penguins" class="form-group shiny-input-radiogroup shiny-input-container" role="radiogroup" aria-labelledby="penguins-label">
+<label class="control-label" id="penguins-label" for="penguins"><p>Which is your favorite type of penguin?</p>
 </label>
 <div class="shiny-options-group">
 <div class="radio">
@@ -467,11 +435,12 @@ Note
 </div>
 </div>
 </div>
+<span class="hidden-asterisk">*</span>
 </div>
 </div>
 </div>
 <p><br></p>
-<p>The <code>sd_question()</code> function can be used to create a variety of <a href="https://surveydown.org/questions">question types</a>, like text input, select drop down choices, and more by changing the <code>type</code> argument.</p>
+<p>The <code>sd_question()</code> function can be used to create a variety of <a href="https://surveydown.org/docs/question-types.html">question types</a>, like text input, select drop down choices, and more by changing the <code>type</code> argument.</p>
 <p>The function has many other arguments for customizing the look and feel of the question (e.g., <code>height</code> and <code>width</code>, etc.).</p>
 </section><section id="the-server-chunk" class="level2"><h2 class="anchored" data-anchor-id="the-server-chunk">The server chunk</h2>
 <p>At the very bottom of the .qmd file is a special “server” code chunk (that’s the <code>#| context: server</code> bit) that defines the app server. This is where you can customize and control the survey flow logic as well as where you define the database that will store the survey response data. It looks like this:</p>
@@ -497,7 +466,7 @@ Note
 <p>The <code>sd_database()</code> function is where you set up your database. The <code>sd_server()</code> function makes everything run, which you can safely ignore - just don’t change it and all will be good!</p>
 <p>The middle part (the <code>sd_config()</code> function) is where you can define custom control logic for the survey, such as <a href="#conditional-display"><em>conditional display</em></a> (conditionally displaying a question based on responses to questions), or <a href="#conditional-skip"><em>conditional skip</em></a> (conditionally sending the respondent to a page based on responses to questions).</p>
 </section><section id="going-live" class="level2"><h2 class="anchored" data-anchor-id="going-live">Going live!</h2>
-<p>Once you are happy with your survey, you can deploy it live to any server of your choice. Since it’s a shiny app, you can <a href="https://surveydown.org/deployment">deploy it to shinyapps.io</a> for free!</p>
+<p>Once you are happy with your survey, you can deploy it live to any server of your choice. Since it’s a shiny app, you can <a href="https://surveydown.org/docs/deployment.html#deploying-to-shinyapps.io">deploy it to shinyapps.io</a> for free!</p>
 </section></section><section id="features" class="level1"><h1>Features</h1>
 <p>Since surveydown is built on top of Shiny, it provides tremendous flexibility in terms of what you can do with your survey. Below are a few examples of some commons things you may want to do with your survey.</p>
 <section id="conditional-display" class="level2"><h2 class="anchored" data-anchor-id="conditional-display">Conditional display</h2>
@@ -633,11 +602,11 @@ Note
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt;   respondent_id     brand
 #&gt; 1             1     Honda
-#&gt; 2             1     Tesla
-#&gt; 3             1    Nissan
-#&gt; 4             2     Tesla
-#&gt; 5             2      Ford
-#&gt; 6             2 Chevrolet</code></pre>
+#&gt; 2             1    Nissan
+#&gt; 3             1    Toyota
+#&gt; 4             2    Toyota
+#&gt; 5             2 Chevrolet
+#&gt; 6             2     Honda</code></pre>
 </div>
 </div>
 <p>Note that this would not be done in your survey.qmd file - it’s just a one-time thing to create the design (probably stored in an R file).</p>

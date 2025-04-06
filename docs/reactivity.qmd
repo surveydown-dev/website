@@ -18,7 +18,7 @@ This page demonstrates some common use cases for reactive programming in surveyd
 
 A simple example of using a reactive value is displaying a question value somewhere else in the survey. 
 
-For example, you might ask the respondent's name in a question and then display their name somewhere else in the survey, like in a greeting message. First, you would ask the respondent's name in a question in your `survey.qmd` file:
+For example, you might ask the respondent's name in a question and then display their name somewhere else in the survey, like in a greeting message. First, you would ask the respondent's name in a question in your **survey.qmd** file:
 
 ```{r}
 sd_question(
@@ -46,7 +46,7 @@ Every question has it's own `id`. To access the _value_ that a respondent chose,
 
 For example, if the question `id` was `"name"`, then the value would be stored as `"name_value"`. In the `sd_output()` function, when you use `type = "value"`, the function automatically appends this `_value` to the `id` to get the question _value_ we want to display, then uses an appropriate `shiny` output function to display it, e.g. `shiny::textOutput()`. 
 
-You can also use `type = "question"` to display questions that are defined in the `server()` function in your `app.R` file (see the [defining questions in the server function section](#defining-questions-in-the-server-function) below).
+You can also use `type = "question"` to display questions that are defined in the `server()` function in your **app.R** file (see the [defining questions in the server function section](#defining-questions-in-the-server-function) below).
 
 :::
 
@@ -68,7 +68,7 @@ sd_store_value(completion_code)
 
 This will store the completion code in the survey data under the `completion_code` column.
 
-You can then display the completion code at the end of the survey using the `sd_output()` function in your `survey.qmd` file, like this:
+You can then display the completion code at the end of the survey using the `sd_output()` function in your **survey.qmd** file, like this:
 
 ```{r}
 Your code is: `r sd_output("completion_code", type = 'value')`
@@ -84,13 +84,13 @@ The `sd_output()` function can only be used once per each unique question `id` b
 
 The solution that we use is to simply make a copy of the value and then display the copy (this is also the [solution](https://github.com/rstudio/shiny/issues/743#issuecomment-652397537) on the GitHub issue linked above). 
 
-To do so, in the server function in the `app.R` file use the `sd_copy_value()` function to create a copy of the value, like this:
+To do so, in the server function in the **app.R** file use the `sd_copy_value()` function to create a copy of the value, like this:
 
 ```{r}
 sd_copy_value(id = "name", id_copy = "name_copy")
 ```
 
-You can then use the `sd_output()` function in your `survey.qmd` file to display both the original and copied values. For example:
+You can then use the `sd_output()` function in your **survey.qmd** file to display both the original and copied values. For example:
 
 ```{r}
 Welcome, `r sd_output("name", type = "value")`!
@@ -114,13 +114,13 @@ If you find this annoying, we agree! This is a bit of a hack and we are working 
 
 Often times you'll need to create intermediate objects in your server that depend on question responses. In this situation, the intermediate objects won't be generated when the survey launches since the question response(s) needed to calculate them are not yet answered. Instead, they'll need to be _reactively_ created once the respondent answers the questions. 
 
-To provide a concrete example, suppose you have a page in your `survey.qmd` file like the one below. In this page, the questions `first_number` and `second_number` define two numeric values. Below these questions, we have several lines that print out the following:
+To provide a concrete example, suppose you have a page in your **survey.qmd** file like the one below. In this page, the questions `first_number` and `second_number` define two numeric values. Below these questions, we have several lines that print out the following:
 
 1. The values themselves
 2. Two computed values based on the two input numbers (`product` and `sum`).
 3. A `summary` sentence that prints a summary of everything above, which is created in the server.
 
-**Example page in `survey.qmd` file**:
+**Example page in **survey.qmd** file**:
 
 ````{r}
 ::: {#page1 .sd-page}
@@ -202,9 +202,9 @@ In this server, we create two reactive values, `product` and `sum`, which get st
 
 ## Defining questions in the server function
 
-Often you will want to define questions where the label or options change based on the respondent's answers to other questions. You can do this by defining the question in the server function and then displaying it in the `survey.qmd` file using the `sd_output()` function.
+Often you will want to define questions where the label or options change based on the respondent's answers to other questions. You can do this by defining the question in the server function and then displaying it in the **survey.qmd** file using the `sd_output()` function.
 
-For example, let's say you want to ask a follow-up question based on the respondent's answer to a previous question. To do this, you would define the first question in the `survey.qmd` file as usual, e.g.:
+For example, let's say you want to ask a follow-up question based on the respondent's answer to a previous question. To do this, you would define the first question in the **survey.qmd** file as usual, e.g.:
 
 ```{r}
 sd_question(
@@ -215,7 +215,7 @@ sd_question(
 )
 ```
 
-My follow-up question is whether or not the respondent has a pet of the type they chose above. To do this, you would define the follow-up question in the `app.R` file's `server()` function like this:
+My follow-up question is whether or not the respondent has a pet of the type they chose above. To do this, you would define the follow-up question in the **app.R** file's `server()` function like this:
 
 ```{r}
 server <- function(input, output, session) {
@@ -252,7 +252,7 @@ Also, in this example we use the [`glue` package](https://cran.r-project.org/web
 
 :::
 
-Finally, you can display the `pet_owner` question in the `survey.qmd` file using the `sd_output()` function, like this:
+Finally, you can display the `pet_owner` question in the **survey.qmd** file using the `sd_output()` function, like this:
 
 ```{r}
 #| echo: fenced

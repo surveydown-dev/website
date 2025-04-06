@@ -30,34 +30,34 @@ surveydown might be a good fit for you today if…
 surveydown might not be a good fit for you today if…
 
 - you need stable, polished software that is mature and completely bug-free.
-- you need a product with a guaranteed security level, such as HIPAA compliance (see our [security page](manuals/security.qmd) for more details).
+- you need a product with a guaranteed security level, such as HIPAA compliance (see our [security page](docs/security.html) for more details).
 - you prefer a platform that uses a graphic interface to define survey content.
 
 ## Why is my survey app so slow when starting?
 
-When a {surveydown} survey first runs, it checks for files in a `_survey` folder that contain the rendered content from your `survey.qmd` file. If any of those files are missing or if changes have been detected in your `survey.qmd` or `app.R` files, it will re-render your survey, which can take a bit longer. But this only happens once, and afterwards so long as no further changes have been made to your survey files the app will use the saved content in the `_survey` folder to launch, which should load almost instantly. So if your app launches slowly, just close it and launch it again and you should immediately load. If you still see a slow launch, consider [posting an issue](https://github.com/surveydown-dev/surveydown/issues) to let us know that something might be wrong. 
+When a {surveydown} survey first runs, it checks for files in a **_survey** folder that contain the rendered content from your **survey.qmd** file. If any of those files are missing or if changes have been detected in your **survey.qmd** or **app.R** files, it will re-render your survey, which can take a bit longer. But this only happens once, and afterwards so long as no further changes have been made to your survey files the app will use the saved content in the **_survey** folder to launch, which should load almost instantly. So if your app launches slowly, just close it and launch it again and you should immediately load. If you still see a slow launch, consider [posting an issue](https://github.com/surveydown-dev/surveydown/issues) to let us know that something might be wrong. 
 
-Also, it is important that you run your survey locally **at least once** before deploying it live. This will render all your survey content into the `_survey` folder, which will also get uploaded when you deploy it.
+Also, it is important that you run your survey locally **at least once** before deploying it live. This will render all your survey content into the **_survey** folder, which will also get uploaded when you deploy it.
 
 ## How do I make a question required?
 
-Use the `required_questions` argument in `sd_server()` to control required responses (see the [required questions](manuals/server-options.qmd#required-questions) page for more details).
+Use the `required_questions` argument in `sd_server()` to control required responses (see the [required questions](docs/server-options.html#required-questions) page for more details).
 
 ## Why is my shinyapps deployment failing?
 
-First, make sure your Suppabase credentials are correctly defined, including your Supabase project settings and password settings. The password defined by `sd_db_config()` should be the same as your Supabase project password. Access the [Storing Data](manuals/storing-data.qmd) page for how to set all Supabase credentials. Then, make sure your survey runs on your local machine and can successfully link with your Supabase project table. With these confirmed, your shinyapps deployment should work without problem.
+First, make sure your Suppabase credentials are correctly defined, including your Supabase project settings and password settings. The password defined by `sd_db_config()` should be the same as your Supabase project password. Access the [Storing Data](docs/storing-data.html) page for how to set all Supabase credentials. Then, make sure your survey runs on your local machine and can successfully link with your Supabase project table. With these confirmed, your shinyapps deployment should work without problem.
 
 If you still encounter an error (e.g., the page shows the app failed to start, or you see the page but it doesn't run properly), try clearing your cache. The simplest way to do so is to **reboot your computer**. It may also help if you delete previously generated files, such as the `survey.html` file if you rendered it and the `rsconnect` folder. After re-rendering, you should be able to deploy the app without error.
 
 ## How should I install the {surveydown} package?
 
-You can install the {surveydown} package from [CRAN](https://cran.r-project.org/web/packages/surveydown/index.html) or the [GitHub repo](https://github.com/surveydown-dev/surveydown/) of the package source code. Follow [these instructions](manuals/installation.qmd#install-the-surveydown-r-package) for either approach.
+You can install the {surveydown} package from [CRAN](https://cran.r-project.org/web/packages/surveydown/index.html) or the [GitHub repo](https://github.com/surveydown-dev/surveydown/) of the package source code. Follow [our installation instructions](docs/getting-started.html#install) for either approach.
 
 Sometimes neither of these approaches work, often because your path is managed by some package managing system like [Anaconda](https://www.anaconda.com). In this case, a third alternative is to download the zip file of the package source code and then install it locally.
 
 To download the zip file, go the the [surveydown repo](https://github.com/surveydown-dev/surveydown), click on the green "Code" button and click on "Download Zip", or simplify click on [this link](https://github.com/surveydown-dev/surveydown/archive/refs/heads/main.zip).
 
-Unzip this repo, then open the `surveydown.Rproj` file. In your R Console panel, run this code to install:
+Unzip this repo, then open the **surveydown.Rproj** file. In your R Console panel, run this code to install:
 
 ```{r}
 # install.packages('devtools') 

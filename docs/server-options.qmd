@@ -3,13 +3,13 @@ title: "Server Options"
 code-annotations: hover
 ---
 
-All survey configuration settings are defined within the `server` function in the `app.R` file. The `server()` function is a standard Shiny server function that takes `input`, `output`, and `session` as arguments.
+All survey configuration settings are defined within the `server` function in the **app.R** file. The `server()` function is a standard Shiny server function that takes `input`, `output`, and `session` as arguments.
 
 {{< include ../chunks/server.qmd >}}
 
-The `sd_skip_forward()` and `sd_show_if()` functions are used to define logic for [conditionally displaying questions](conditional-question-display.qmd) or [conditionally controlling survey flow](conditional-survey-flow.qmd).
+The `sd_skip_forward()` and `sd_show_if()` functions are used to define [Conditional Logic](conditional-logic.html), including [Conditional Question Display](conditional-logic.html#conditional-question-display) and [Conditional Page Navigation](conditional-logic.html#conditional-page-navigation).
 
-The `sd_server()` function is used to run the survey. It handles the main logic, such as page navigation and managing the survey data. The `db = db` argument is required if you are using a database connection, which should be defined using the `sd_database()` function (see the [Store Data](storing-data.qmd) page for more details).
+The `sd_server()` function is used to run the survey. It handles the main logic, such as page navigation and managing the survey data. The `db = db` argument is required if you are using a database connection, which should be defined using the `sd_database()` function (see the [Store Data](storing-data.html) page for more details).
 
 The `sd_server()` function also has many other optional arguments that can be used to customize the survey behavior. This page details these options.
 
@@ -23,7 +23,7 @@ sd_server(
 )
 ```
 
-1. The `required_questions` argument takes a vector of question `id`s that you want to make required.
+1. The `required_questions` argument takes a vector of question IDs that you want to make required.
 
 This will make the respondent unable to proceed until they have answered the required questions. It will also place a red asterisk (*) next to the question label to indicate that the question is required.
 
@@ -101,7 +101,7 @@ sd_server(
 )
 ```
 
-Five languages are supported by default, but you can customize the messages to any language (or any message) you want. See the [System Translations](system-translations.qmd) page for more details.
+Five languages are supported by default, but you can customize the messages to any language (or any message) you want. See the [System Translations](system-translations.html) page for more details.
 
 ## Cookies
 

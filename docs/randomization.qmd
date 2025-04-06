@@ -12,9 +12,9 @@ library(surveydown)
 
 This page explains how to show a question with randomized labels (unique labels for each respondent). While this is not the only use case for randomization, it illustrates in general how to implement something where each respondent sees something unique to their survey. 
 
-**The key is to define anything random in the server (`app.R` file), not the survey (`survey.R` file).** If you define a value or question in the `survey.qmd` file, it will be the same for every respondent.
+The **key** is to define anything random in the server (**app.R** file), not the survey (**survey.qmd** file). If you define a value or question in the **survey.qmd** file, it will be the same for every respondent.
 
-Before reading this, we suggest you first read the [reactivity](reactivity.qmd) manual to get a general understanding of how reactivity works in surveydown.
+Before reading this, we suggest you first read the [reactivity](reactivity.html) manual to get a general understanding of how reactivity works in surveydown.
 
 ## Live randomization
 
@@ -37,7 +37,7 @@ q1_options
 
 Remember that the names of the vector are the labels, so the respondents will see the numbers in the names of the above vector, and the values (`'option1'`, etc.) will be stored in the resulting survey data.
 
-To then use these options in a multiple choice question, you would use the `sd_question()` function also in the server function (**not** in the `survey.qmd` file) like this:
+To then use these options in a multiple choice question, you would use the `sd_question()` function also in the server function (**not** in the **survey.qmd** file) like this:
 
 ```{r}
 sd_question(
@@ -48,7 +48,7 @@ sd_question(
 )
 ```
 
-By defining this question inside the server function, the question will be created as a reactive question that can then be displayed in the `survey.qmd` file using the `sd_output()` function, like this:
+By defining this question inside the server function, the question will be created as a reactive question that can then be displayed in the **survey.qmd** file using the `sd_output()` function, like this:
 
 ```{r}
 #| echo: fenced
@@ -72,9 +72,9 @@ sd_store_value(q1_labels[2], id = "q1_label_2")
 sd_store_value(q1_labels[3], id = "q1_label_3")
 ```
 
-## Pre-defined randomization
+## Predefined randomization
 
-An alternative approach is to pre-define the randomized labels and store them in a separate design file, and then randomly select a set of labels for each respondent from the design file.
+An alternative approach is to predefine the randomized labels and store them in a separate design file, and then randomly select a set of labels for each respondent from the design file.
 
 For example, let's generate 10 sets of 3 random numbers between 1 and 100 and store them in a data frame:
 
@@ -94,7 +94,7 @@ Now we can write this design to a csv file:
 readr::write_csv(design, "design.csv")
 ```
 
-Then in your server function in the `app.R` file, you could read in the design file and use it to randomize the labels for each question. Here the only thing you would need to keep track of the randomly chosen row id:
+Then in your server function in the **app.R** file, you could read in the design file and use it to randomize the labels for each question. Here the only thing you would need to keep track of the randomly chosen row id:
 
 ```{r}
 # Read in the design file
@@ -124,7 +124,7 @@ sd_question(
 )
 ```
 
-Once again, you would be able to then display this question in the `survey.qmd` file using the `sd_output()` function:
+Once again, you would be able to then display this question in the **survey.qmd** file using the `sd_output()` function:
 
 ```{r}
 #| echo: fenced

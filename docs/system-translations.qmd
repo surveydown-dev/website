@@ -2,11 +2,11 @@
 title: "System Translations"
 ---
 
-As of v0.4.2, {surveydown} supports the ability to set the system language for all system messages (i.e. text elements such as button labels and warnings) and to provide the language specific format for [date type questions](question-types.qmd#date). You can also [customize](system-translations.qmd#custom-messages) the system messages by providing a `translations.yml` file in your root project directory.
+As of v0.4.2, {surveydown} supports the ability to set the system language for all system messages (i.e. text elements such as button labels and warnings) and to provide the language specific format for [date type questions](question-types.html#date). You can also [customize](#custom-messages) the system messages by providing a `translations.yml` file in your root project directory.
 
 ## Setting the Language
 
-To set the language of your survey, you can use the `language` argument in the `sd_server()` function in your `app.R` file. For example, to set the survey language to Spanish, you would write:
+To set the language of your survey, you can use the `language` argument in the `sd_server()` function in your **app.R** file. For example, to set the survey language to Spanish, you would write:
 
 ```{r}
 server <- function(input, output, session) {
@@ -16,7 +16,7 @@ server <- function(input, output, session) {
 }
 ```
 
-When setting the `language` argument, make sure to use a valid language code. The list of supported language codes is the same as those supported by Shiny's `dateInput()` (a [full list](system-translations.qmd#full-language-code-list) of codes is provided at the bottom of this page). 
+When setting the `language` argument, make sure to use a valid language code. The list of supported language codes is the same as those supported by Shiny's `dateInput()` (a [full list](#full-language-code-list) of codes is provided at the bottom of this page). 
 
 For now, {surveydown} comes with built-in translations for the following languages:
 
@@ -63,7 +63,7 @@ en:
   redirect_error: 'Error: This text won''t trigger any redirection...'
 ```
 
-When you run your survey, {surveydown} will detect the `translations.yml` file in your root folder and use it to override the default translations. If you provide translations for a language not supported by default, you can use the `language` argument in `sd_server()` to set your custom language code. Note that the chosen `language` still must be from the current [list of supported languages](system-translations.qmd#full-language-code-list).
+When you run your survey, {surveydown} will detect the `translations.yml` file in your root folder and use it to override the default translations. If you provide translations for a language not supported by default, you can use the `language` argument in `sd_server()` to set your custom language code. Note that the chosen `language` still must be from the current [list of supported languages](#full-language-code-list).
 
 For example, suppose you added translations for Portuguese in your `translations.yml`:
 
@@ -74,7 +74,7 @@ pt:
   # ... other messages
 ```
 
-In your `app.R` file, set the language to Portuguese:
+In your **app.R** file, set the language to Portuguese:
 
 ```{r}
 server <- function(input, output, session) {
@@ -110,11 +110,11 @@ The translations also apply to default labels in `sd_next()`, `sd_close()`, and 
 sd_next()
 ```
 
-However, it is still possible to manually adjust the translations in the mentioned functions inside the `survey.qmd` file using the `label` argument for each case.
+However, it is still possible to manually adjust the translations in the mentioned functions inside the **survey.qmd** file using the `label` argument for each case.
 
 ::: {.callout-note}
 
-If you separately render your `survey.qmd` file before running your `app.R` file, these buttons messages may appear in English in the rendered `survey.html` file in your root project folder. This is because the survey file doesn't "know" the language setting until you locally run your `app.R` at least once. But don't worry - just run the `app.R` file once and the language will then be set. Also, the language setting will always be used when the app is run regardless of what the local `survey.html` file looks like.
+If you separately render your **survey.qmd** file before running your **app.R** file, these buttons messages may appear in English in the rendered `survey.html` file in your root project folder. This is because the survey file doesn't "know" the language setting until you locally run your **app.R** at least once. But don't worry - just run the **app.R** file once and the language will then be set. Also, the language setting will always be used when the app is run regardless of what the local `survey.html` file looks like.
 
 :::
 

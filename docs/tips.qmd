@@ -16,7 +16,7 @@ This page has some helpful suggestions for working with surveydown surveys.
 
 ## Programmatically generate survey questions
 
-You can use {{< fa brands r-project >}} code to programmatically generate survey questions in your `survey.qmd` file, which can be useful if you have a large number of questions that are similar to each other. One way to do this is to first create a data frame with the question parameters, and then use the `sd_question()` function to create the questions.
+You can use {{< fa brands r-project >}} code to programmatically generate survey questions in your **survey.qmd** file, which can be useful if you have a large number of questions that are similar to each other. One way to do this is to first create a data frame with the question parameters, and then use the `sd_question()` function to create the questions.
 
 Here's an example using `map()` over the `items` data frame to generate a list of questions. Note that the list of questions is wrapped in `shiny::tagList()`, which is necessary for the survey to render properly since the `map()` function returns a list.
 

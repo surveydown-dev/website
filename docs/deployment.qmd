@@ -6,8 +6,8 @@ title: "Deploying Your Survey"
 
 Before deploying your survey, make sure everything is working locally. You should have done the following:
 
-1. You have locally previewed your `app.R` file by clicking the "Run App" button in RStudio or in your R console running the code `shiny::runApp('app.R')`.
-2. You have set up a database connection to store survey responses (e.g. using {{< var supabase >}}) and have already stored the database credentials using the `sd_db_config()` function (see the [Storing Data](storing-data.qmd) page for details).
+1. You have locally previewed your **app.R** file by clicking the "Run App" button in RStudio or in your R console running the code `shiny::runApp('app.R')`.
+2. You have set up a database connection to store survey responses (e.g. using {{< var supabase >}}) and have already stored the database credentials using the `sd_db_config()` function (see the [Storing Data](storing-data.html) page for details).
 
 With these steps completed, you are ready to deploy your survey online.
 
@@ -33,7 +33,7 @@ Then to deploy your survey, run:
 
 ```{r}
 # Define your app name with the appName parameter
-rsconnect::deployApp(appName = "My Survey")
+rsconnect::deployApp(appName = "my_survey")
 ```
 
 That's it! Now you should have your survey site deployed on **shinyapps.io**. Congratulations! 🎉

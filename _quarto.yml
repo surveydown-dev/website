@@ -6,21 +6,7 @@ project:
     browser: true
   render:
     - "!chunks/"
-    - "404.qmd"
-    - "about.qmd"
-    - "blog/index.qmd"
-    - "blog/**/*.qmd"
-    - "demos/**/*.qmd"
-    - "demos.qmd"
-    - "documentation.qmd"
-    - "faq.qmd"
-    - "features.qmd"
-    - "getting-started.qmd"
-    - "index.qmd"
-    - "installation.qmd"
-    - "manuals/**/*.qmd"
-  resources:
-    - "manuals/"
+    - "**/*.qmd"
 
 website:
   title: surveydown.org
@@ -51,11 +37,9 @@ website:
       - text: "About"
         href: about.qmd   
       - text: "Documentation"
-        href: documentation.qmd
-      - text: "Demos"
-        href: demos.qmd
-      - text: "Features"
-        href: features.qmd
+        href: docs.qmd
+      - text: "Templates"
+        href: templates.qmd
       - text: "{{< fa brands r-project >}} Package"
         href: https://pkg.surveydown.org/
     right:
@@ -72,93 +56,118 @@ website:
       background: light
       contents:
         - text: "Documentation"
-          href: documentation.qmd
-        - text: "Getting Started"
-          href: manuals/getting-started.qmd
-        - text: "Installation"
-          href: manuals/installation.qmd
-        - section: "Survey Components"
+          href: docs.qmd
+
+        - section: "Survey Basics"
           contents:
-            - text: "Survey Components Overview"
-              href: manuals/survey-components-overview.qmd
-            - text: "Survey File"
-              href: manuals/survey-file.qmd
-            - text: "App File"
-              href: manuals/app-file.qmd
-        - section: "Survey Content"
-          contents:
-            - text: "Question Types"
-              href: manuals/question-types.qmd
-            - text: "Question Formatting"
-              href: manuals/question-formatting.qmd
-            - text: "System Translations"
-              href: manuals/system-translations.qmd
-            - text: "External Resources"
-              href: manuals/external-resources.qmd
-        - section: "Server Content"
+            - text: "Getting Started"
+              href: docs/getting-started.qmd
+            - text: "Basic Components"
+              href: docs/basic-components.qmd
+            - text: "Feature Highlights"
+              href: docs/feature-highlights.qmd
+
+        - section: "Survey Design Concepts"
           contents:
             - text: "Server Options"
-              href: manuals/server-options.qmd
-            - text: "Conditional Question Display"
-              href: manuals/conditional-question-display.qmd
-            - text: "Conditional Survey Flow (Page Skipping)"
-              href: manuals/conditional-survey-flow.qmd
-            - text: "Common Conditions"
-              href: manuals/common-conditions.qmd
-            - text: "Reactivity"
-              href: manuals/reactivity.qmd
-            - text: "Randomization"
-              href: manuals/randomization.qmd
+              href: docs/server-options.qmd
+            - text: "Conditional Logic"
+              href: docs/conditional-logic.qmd
+            - text: "System Translations"
+              href: docs/system-translations.qmd
+            - text: "External Resources"
+              href: docs/external-resources.qmd
+            
+        - section: "Question Development"
+          contents:
+            - text: "Question Types"
+              href: docs/question-types.qmd
+            - text: "Question Formatting"
+              href: docs/question-formatting.qmd
             - text: "Custom Questions"
-              href: manuals/custom-questions.qmd
-            - text: "Redirect"
-              href: manuals/redirect.qmd
-        - section: "Database"
+              href: docs/custom-questions.qmd
+        
+        - section: "Interactivity"
+          contents:
+            - text: "Reactivity"
+              href: docs/reactivity.qmd
+            - text: "Randomization"
+              href: docs/randomization.qmd
+            - text: "External Redirect"
+              href: docs/external-redirect.qmd
+        
+        - section: "Data Management"
           contents:
             - text: "Storing Data"
-              href: manuals/storing-data.qmd
+              href: docs/storing-data.qmd
             - text: "Fetching Data"
-              href: manuals/fetching-data.qmd
-            - text: "Dashboard"
-              href: manuals/dashboard.qmd
-        - section: "Other"
+              href: docs/fetching-data.qmd
+            - text: "Local Dashboard"
+              href: docs/local-dashboard.qmd
+        
+        - section: "Deployment & Operations"
           contents:
             - text: "Deployment"
-              href: manuals/deployment.qmd
+              href: docs/deployment.qmd
             - text: "Performance"
-              href: manuals/performance.qmd
+              href: docs/performance.qmd
             - text: "Security"
-              href: manuals/security.qmd
+              href: docs/security.qmd
+        
+        - section: "Recipes & Patterns"
+          contents:
             - text: "Tips"
-              href: manuals/tips.qmd
-    - title: "Demos"
+              href: docs/tips.qmd
+
+    - title: "Templates"
       style: "docked"
       background: light
       contents:
-        - text: "Demos"
-          href: demos.qmd
-        - text: "Question Types"
-          href: demos/question-types.qmd
-        - text: "Conditional Display"
-          href: demos/conditional-display.qmd
-        - text: "Conditional Skipping"
-          href: demos/conditional-skipping.qmd
-        - text: "Conjoint Buttons"
-          href: demos/conjoint-buttons.qmd
-        - text: "Conjoint Tables"
-          href: demos/conjoint-tables.qmd
-        - text: "Random Labels"
-          href: demos/random-labels.qmd
-        - text: "Random Labels Preset"
-          href: demos/random-labels-preset.qmd
-        - text: "Reactive Question"
-          href: demos/reactive-question.qmd
-        - text: "Reactive drilldown"
-          href: demos/reactive-drilldown.qmd
-        - text: "Custom Leaflet Map"
-          href: demos/custom-leaflet-map.qmd
-        - text: "Custom Plotly Chart"
-          href: demos/custom-plotly-chart.qmd
+        - text: "Templates"
+          href: templates.qmd
+
+        - section: "Basic"
+          contents:
+            - text: "Plain Template"
+              href: templates/01_plain_template.qmd
+            - text: "Question Types"
+              href: templates/02_question_types.qmd
+            - text: "Conditional Display"
+              href: templates/03_conditional_display.qmd
+            - text: "Conditional Navigation"
+              href: templates/04_conditional_navigation.qmd
+
+        - section: "Randomization"
+          contents:
+            - text: "Random Options"
+              href: templates/05_random_options.qmd
+            - text: "Random Options Predefined"
+              href: templates/06_random_options_predefined.qmd
+
+        - section: "Reactivity"
+          contents:
+            - text: "Reactive Questions"
+              href: templates/07_reactive_questions.qmd
+            - text: "Reactive drilldown"
+              href: templates/08_reactive_drilldown.qmd
+            - text: "External Redirect"
+              href: templates/09_external_redirect.qmd
+            - text: "Live Polling"
+              href: templates/10_live_polling.qmd
+
+        - section: "Conjoint"
+          contents:
+            - text: "Conjoint Buttons"
+              href: templates/11_conjoint_buttons.qmd
+            - text: "Conjoint Tables"
+              href: templates/12_conjoint_tables.qmd
+
+        - section: "Custom"
+          contents:
+            - text: "Custom Leaflet Map"
+              href: templates/13_custom_leaflet_map.qmd
+            - text: "Custom Plotly Chart"
+              href: templates/14_custom_plotly_chart.qmd
 
 format:
   html:

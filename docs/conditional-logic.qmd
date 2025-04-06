@@ -1,0 +1,344 @@
+---
+title: "Conditional Logic"
+code-annotations: hover
+---
+
+This page talks about the `sd_show_if()` function for [Conditional Display of Questions](#conditional-display-of-questions), and the `sd_skip_forward()` function for [Conditional Navigation of Pages](#conditional-navigation-of-pages) in surveydown, followed by examples of [Common Conditions](#common-conditions) that you can use with these functions. These functions allow you to control the flow of your survey based on the respondent's answers.
+
+## Conditional Display of Questions
+
+It is often useful to have a question display based on some condition, such as the respondent choosing a particular value in a multiple choice question. This can be achieved by the `sd_show_if()` function.
+
+For example, let's say we have a choice question about people's favorite penguin type, and the last option is "other". If the respondent chose it, you may want a second question to display that allows them to specify the "other" penguin type, like this:
+
+<center>
+<img src="../images/screenshots/show_if.gif" style="max-width: 600px; width: 100%;">
+</center>
+<br>
+
+To implement this, you first need to define both the **conditional question** and the **target question** in the **survey.qmd** file, like this:
+
+```{r}
+#| echo: fenced
+
+# Conditional question
+sd_question(
+  type  = "mc",
+  id    = "penguins",
+  label = "Which is your favorite type of penguin?",
+  option = c(
+    "Adélie"    = "adelie",
+    "Chinstrap" = "chinstrap",
+    "Gentoo"    = "gentoo",
+    "Other"     = "other"
+  )
+)
+
+# Target question
+sd_question(
+  type  = "text",
+  id    = "penguins_other", 
+  label = "Please specify the other penguin type:"
+)
+```
+
+Then in the server function in the **app.R** file, you can use the `sd_show_if()` function to define that the `"penguins_other"` question would only be shown if the respondent chose the `"other"` option in the `"penguins"` question, like this:
+
+::: {.callout-note}
+
+The `input` object is a Shiny object that stores each question `id` defined by `sd_question()` in your **survey.qmd** file, so whenever referring to a question in a condition, you must use the format `input$question_id`.
+
+:::
+
+```{r}
+server <- function(input, output, session) {
+
+  sd_show_if(
+    input$penguins == "other" ~ "penguins_other" 
+  )
+
+  sd_server(db = db)
+
+}
+```
+
+The structure of the condition in the `sd_show_if()` function is always:
+
+> `<condition> ~ "target_question_id"`
+
+You can provide multiple conditions to the `sd_show_if()` function, each separated by a comma. 
+
+In the example above, `input$penguins == "other"` is the condition, and `"penguins_other"` is the target question that will be shown if the condition is met. The `~` symbol is used to separate the condition from the target question.
+
+Take a look at the [Common Conditions](#common-conditions) section for examples of other types of supported conditions you can use to conditionally display questions.
+
+## Conditional Navigation of Pages
+
+Basic page navigation is handled using the [`sd_next()` function in your survey file](basic-components.html#adding-navigation-buttons). But you can override this static navigation in your server function with the `sd_skip_forward()` function.
+
+For example, often times you'll want to send respondents to different parts of the survey based on some condition, such as the respondent choosing a particular value in a multiple choice question. A common example is the need to **screen out** people based on their response(s) to a question.
+
+Here's a concrete example. Let's say you need to screen out people who do not own a vehicle. To do this, you would first define a question in your **survey.qmd** file about their vehicle ownership, e.g.:
+
+```{r}
+#| echo: fenced
+
+sd_question(
+  type  = 'mc',
+  id    = 'vehicle_ownership',
+  label = "Do you own your vehicle?",
+  option = c(
+    'Yes' = 'yes',
+    'No'  = 'no'
+  )
+)
+```
+
+You would also need to define a screenout page to send respondents to, like this:
+
+```{r}
+::: {#screenout .sd-page}
+
+Sorry, but you are not qualified to take our survey.
+
+:::
+```
+
+Then in the server function in the **app.R** file, you can use the `sd_skip_forward()` function to define the condition under which the respondent will be sent to the target `screenout` page, like this:
+
+::: {.callout-note}
+
+Again, the `input` object is a Shiny object that stores each question `id` defined by `sd_question()` in your **survey.qmd** file, so whenever referring to a question in a condition, you must use the format `input$question_id`.
+
+:::
+
+```{r}
+server <- function(input, output, session) {
+
+  sd_skip_forward(
+    input$vehicle_ownership == "no" ~ "screenout"
+  )
+
+  sd_server(db = db)
+
+}
+```
+
+Just like the `sd_show_if()` function, you can provide multiple conditions to the `sd_skip_forward()` function, each separated by a comma. The structure for each condition in sd_skip_forward `sd_skip_forward()` function is always:
+
+> `<condition> ~ "target_page_id"`
+
+In the example above, `input$vehicle_ownership == "no"` is the condition, and `"screenout"` is the target page that the respondent will be sent to if the condition is met.
+
+Take a look at the [Common Conditions](#common-conditions) section for examples of other types of supported conditions you can use to conditionally control the survey flow.
+
+## Common Conditions
+
+This section highlights some of the most common types of conditions you might need.
+
+::: {.callout-note}
+
+While we use the `sd_show_if()` function in most of these examples, the same logic applies to conditions used in the `sd_skip_forward()` function.
+
+:::
+
+### Question responses
+
+One of the most common situations is conditioning on the response of a single question or multiple questions, like this:
+
+```{r}
+sd_show_if(
+
+ # Simple condition based on single question choice
+ input$penguins1 == "other" ~ "penguins1_other",
+
+ # Multiple condition based on multiple question choices
+ input$penguins2 == "other" & input$show_other == "show" ~ "penguins2_other"
+
+)
+```
+
+In the first condition, the `penguins1` question is checked to see if the respondent chose the `"other"` option. If they did, the `penguins1_other` question will be shown.
+
+In the second condition, the `penguins2` question is checked to see if the respondent chose the `"other"` option, and the `show_other` question is checked to see if the respondent chose the `"show"` option. With this condition, the `penguins2_other` question will only be shown if both conditions are `TRUE`.
+
+### Numeric values
+
+Another common condition is checking the value of a numeric question. To do so, you need to wrap the `input$question_id` in the `as.numeric()` function because all question values are stored as strings, like this:
+
+```{r}
+sd_show_if(
+ as.numeric(input$car_number) > 1 ~ "car_ownership"
+)
+```
+
+In the condition above, the `car_number` question is checked to see if the respondent chose a number greater than 1. If they did, the `car_ownership` question will be shown.
+
+### Multiple response questions
+
+For multiple response question types (e.g. [`mc_multiple`](question-types.html#mc_multiple)), the question returns a vector storing all the chosen values. You can use this vector to check for different conditions, such as whether the chosen values are in some set of values using the `%in%` operator, or whether the respondent chose a number of options using the `length()` function, like this:
+
+```{r}
+sd_show_if(
+
+ # Check if the respondent chose "apple", "banana", or both
+ all(input$fav_fruits %in% c("apple", "banana")) ~ "apple_or_banana",
+
+ # Check if the respondent chose more than 3 fruits
+ length(input$fav_fruits) > 3 ~ "fruit_number"
+
+)
+```
+
+In the first example, the `fav_fruits` question is checked to see if the respondent chose `"apple"`, `"banana"`, or both; if so, the `apple_or_banana` question will be shown.
+
+In the second example, the `fav_fruits` question is checked to see if the respondent chose more than 3 fruits; if so, the `fruit_number` question will be shown.
+
+### Answering status
+
+You may want to show a target question if a question is answered at all or not. To do this, we created the `sd_is_answered()` function that returns `TRUE` if a question is answered and `FALSE` otherwise. 
+
+For example, let's say you had a multiple choice question `fav_fruit` that asked you to choose your favorite fruit from a list of options, and a target question `num_fruit` that asked how many fruit you eat per day. If we wanted to show the `num_fruit` question so long as the `fav_fruit` question is answered, we can use `sd_is_answered("fav_fruit")` in the `sd_show_if()` function, like this:
+
+```{r}
+sd_show_if(
+  sd_is_answered("fav_fruit") ~ "num_fruit" 
+)
+```
+
+This way, as long as the `fav_fruit` question is answered, no matter which option the user picks the `num_fruit` question will appear.
+
+For [`"matrix"`](question-types.html#matrix) type questions, `sd_is_answered()` will only be `TRUE` if all sub-questions (matrix rows) in it are answered. 
+
+### Custom functions
+
+For situations where the conditional logic is more complex, we recommend defining a custom function that will return a logical value (`TRUE` or `FALSE`). You can then pass this function to the `sd_show_if()` or `sd_skip_forward()` functions as a condition. 
+
+For example, let's say we had a `mc` type question where we asked how many cars the respondent owned, and we included numeric options `1` through `5` as well as a final option `"6 or more"`. If we wanted to set a condition that would return `TRUE` if the user had more than one car, using `as.numeric(input$question_id) > 1` as the condition would be problematic, because this would return `NA` if the respondent chose the `"6 or more"` option.
+
+To address this, we could create a custom function to handle this special condition:
+
+```{r}
+server <- function(input, output, session) {
+
+  more_than_one_car <- function(input) {
+    if (is.null(input$car_number)) {
+      return(FALSE)
+    }
+    num_cars <- suppressWarnings(as.numeric(input$car_number))
+    if (is.na(num_cars)) {
+      return(TRUE)
+    }
+    return(num_cars > 1)
+  }
+
+  sd_show_if(
+    more_than_one_car(input) ~ "car_ownership"
+  )
+
+  sd_server(db = db)
+
+}
+```
+
+In the `more_than_one_car()` function, we first return `FALSE` if the question is not yet answered (that's the `if (is.null(input$car_number))` part). Then we obtain the numeric value of the `car_number` question using `as.numeric(input$car_number)`. We included a `suppressWarnings()` call here only because R will warn you if the result is `NA` by coercion. This will only happen if the respondent chose the `"6 or more"` option, in which case we return `TRUE`. If not, then we return the simple condition `num_cars > 1` since we can safely know that the value of `num_cars` is a number.
+
+### Custom values
+
+Sometimes you'll want to condition on values that aren't directly related to question responses. For example, you might want to randomly assign respondents to different survey versions or experimental conditions.
+
+Let's say you have two versions of a page, e.g. `page2a` and `page2b`, and you want half of your respondents to see page 2a and the other half to see page 2b. You can accomplish this by:
+
+1. Generating a random condition value
+2. Storing that value for later use
+3. Using `sd_skip_forward()` to direct respondents to the appropriate page
+
+Here's how to implement this:
+
+```{r}
+server <- function(input, output, session) {
+  
+  # Generate random condition
+  a_or_b <- sample(c('a', 'b'), 1)
+  
+  # Store the condition value for later use if needed
+  sd_store_value(a_or_b)
+  
+  # Use sd_skip_forward to direct to either page2a or page2b based on condition
+  sd_skip_forward(
+    a_or_b == 'a' ~ 'page2a',
+    a_or_b == 'b' ~ 'page2b'
+  )
+  
+  sd_server()
+  
+}
+```
+
+In this example, `sample(c('a', 'b'), 1)` randomly selects either `'a'` or `'b'`. The `sd_store_value()` function saves this value to the database, making it available for later analysis. Then, `sd_skip_forward()` uses this value to determine which page version the respondent should see.
+
+This approach can be also be used for `sd_show_if()`. For example, here is how you could randomly assign a question to be hidden or shown:
+
+```{r}
+server <- function(input, output, session) {
+  # Create a static value to control question visibility
+  show_condition <- sample(c(TRUE, FALSE), 1)
+
+  # Store the static value for display in the UI
+  sd_store_value(show_condition, "show_condition")
+
+  # Show the conditional question based on the static value
+  sd_show_if(
+    show_condition ~ "conditional_question"
+  )
+
+  sd_server()
+}
+```
+
+### Reactive expressions
+
+The same behavior as the above example for [custom values](#custom-values) can also be achieved using reactive expressions, using the `sd_reactive()` function. In this example, we define a reactive expressions, `a_or_b`, and then use it to control the conditional navigation. 
+
+Note here that the conditions must be defined using `a_or_b()` instead of `a_or_b` - this is because in this example this object is a reactive expression rather than a static value and must be evaluated like a function call. 
+
+Note also that we don't have to explicitly store the value in our data with a call to `sd_store_value()`. This is because the `sd_reactive()` function automatically stores the value in the data and will save it according to the specified `id` (in this case, `"a_or_b"`).
+
+```{r}
+server <- function(input, output, session) {
+
+  a_or_b <- sd_reactive("a_or_b", {
+    sample(c('a', 'b'), 1)
+  })
+
+  # Use sd_skip_forward to direct to either page2a or page2b based on condition
+  sd_skip_forward(
+    a_or_b() == 'a' ~ 'page2a',
+    a_or_b() == 'b' ~ 'page2b'
+  )
+
+  sd_server()
+
+}
+
+shiny::shinyApp(ui = sd_ui(), server = server)
+```
+
+Likewise, the same concept can be applied to conditionally displaying a question based on a reactive expression:
+
+```{r}
+server <- function(input, output, session) {
+
+  # Create a reactive value that will control question visibility
+  show_condition <- sd_reactive("show_condition", {
+    sample(c(TRUE, FALSE), 1) # Randomly choose TRUE or FALSE
+  })
+
+  # Show the conditional question based on the reactive value
+  sd_show_if(
+    show_condition() ~ "conditional_question"
+  )
+
+  sd_server()
+}
+```

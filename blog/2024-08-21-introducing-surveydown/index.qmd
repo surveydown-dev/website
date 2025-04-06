@@ -40,7 +40,7 @@ library(surveydown)
 
 ::: {.callout-important}
 
-**This post was made just after launching surveydown. Much of the platform architecture has changed since then, so check the [documentation](https://surveydown.org/documentation) for the latest correct information.**
+**This post was made just after launching surveydown. Much of the platform architecture has changed since then, so check the [documentation](https://surveydown.org/docs.html) for the latest correct information.**
 
 :::
 
@@ -80,7 +80,7 @@ In surveydown, your entire survey is designed using markdown and R code in a sin
 
 The [{surveydown} package](https://pkg.surveydown.org/) provides a set of functions for defining the survey content and control logic. Each function starts with `sd_` to make them easy to identify. You can add content to your survey using markdown formatting, or in RStudio you can edit with the visual editor. Survey questions are defined in R code chunks with the `sd_question()` function. Pages are defined using fences (`:::`), and navigation buttons handled with the `sd_next()` function. You can modify the control logic in the server code chunk (the last code chunk at the bottom of the .qmd file) with the `sd_config()` function, and you can configure the database with the `sd_database()`. 
 
-The [documentation](https://surveydown.org/documentation) has many more details on all of this, and later in this post I'll give a quick overview of a few of these features. But first, let me tell you a little about _why_ we decided to build surveydown.
+The [documentation](https://surveydown.org/docs.html) has many more details on all of this, and later in this post I'll give a quick overview of a few of these features. But first, let me tell you a little about _why_ we decided to build surveydown.
 
 # Why did we build surveydown?
 
@@ -126,7 +126,7 @@ Reproducibility is something we had in mind from the start with this project, an
 
 ## Getting started 
 
-After getting everything [installed](https://surveydown.org/manuals/installation), we recommend starting with a template survey project. To do so, run the following in the R console:
+After getting everything [installed](https://surveydown.org//docs/getting-started.html#install), we recommend starting with a template survey project. To do so, run the following in the R console:
 
 ```{r}
 surveydown::sd_create_survey("path/to/folder")
@@ -238,7 +238,7 @@ sd_question(
 
 <br>
 
-The `sd_question()` function can be used to create a variety of [question types](https://surveydown.org/manuals/questions), like text input, select drop down choices, and more by changing the `type` argument.
+The `sd_question()` function can be used to create a variety of [question types](https://surveydown.org/docs/question-types.html), like text input, select drop down choices, and more by changing the `type` argument.
 
 The function has many other arguments for customizing the look and feel of the question (e.g., `height` and `width`, etc.).
 
@@ -271,7 +271,7 @@ The middle part (the `sd_config()` function) is where you can define custom cont
 
 ## Going live!
 
-Once you are happy with your survey, you can deploy it live to any server of your choice. Since it's a shiny app, you can [deploy it to shinyapps.io](https://surveydown.org/manuals/deployment) for free!
+Once you are happy with your survey, you can deploy it live to any server of your choice. Since it's a shiny app, you can [deploy it to shinyapps.io](https://surveydown.org/docs/deployment.html#deploying-to-shinyapps.io) for free!
 
 # Features
 

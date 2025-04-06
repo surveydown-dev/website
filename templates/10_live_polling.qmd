@@ -1,0 +1,27 @@
+---
+title: "Live Polling"
+categories: [Reactivity]
+image: banners/10_live_polling.png
+description: "A [reactive](docs/reactivity.html) question template of live-polling with responses shown as a bar chart."
+---
+
+Call `sd_create_survey(format = "live_polling")` to create this template. Refer to the [Start with a template](/docs/getting-started.html#start-with-a-template) section for more details.
+
+<div class="button-container">
+  <a href="https://github.com/surveydown-dev/templates" class="template-button" target="_blank">
+    <i class="fab fa-github"></i> GitHub Repo
+  </a>
+</div>
+
+::: {.callout-note}
+
+1. The live-polling feature requires connection to database and cannot be demonstrated in the template preview. Therefore, a screenshot of bar chart resulted by live-polling is shown here instead.
+2. To make this template work, you should firstly define your credentials by calling `sd_db_config()`, and then delete the `ignore = TRUE` argument in the `sd_db_connect()` function call. Once your survey is up and running, try to go through the survey several times. You'll see the bar chart updating in real-time as new responses are submitted.
+
+:::
+
+<center>
+<img src='banners/10_live_polling.png' style="width: 100%; max-width: 1000px;" alt="a screenshot of bar chart resulted by live-polling"/>
+</center>
+
+In the screenshot above, the survey page shows the choice of the current session, as well as a bar chart of all responses from the database. The bar chart updates in real-time as new responses are submitted. This feature is useful for live polling or feedback sessions where you want to see how opinions change over time.

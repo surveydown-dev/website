@@ -1,0 +1,35 @@
+---
+title: "Local Dashboard"
+---
+
+The surveydown package has a dashboard app for viewing and modifying your database credentials as well as viewing your survey data. To launch the dashboard, run the following in your R console:
+
+```{r}
+surveydown::sd_dashboard()
+```
+
+This will open a new browser window where you can navigate to the dashboard for your project. It has two tabs: "Dashboard" and "DB Config".
+
+## Dashboard Tab
+
+The "Dashboard" tab looks like this:
+
+<br>
+<center>
+<img src="../images/screenshots/dashboard_1.png" width=100%>
+</center>
+<br>
+
+The "Dashboard" tab allows you to view your survey data in a user-friendly interface. It contains survey answering statistics and response summarization charts. On the lower part you can preview the survey data sheet. There is a download button for you to obtain the survey data in CSV format.
+
+## DB Config Tab
+
+The "DB Config" tab looks like this:
+
+<br>
+<center>
+<img src="../images/screenshots/dashboard_2.png" width=100%>
+</center>
+<br>
+
+In the "DB Config" tab, you can view and edit your database credentials. Therefore, you can either set up your credentials using the `sd_db_config()` function in your R console, or simply launch this dashboard app and modify them here.

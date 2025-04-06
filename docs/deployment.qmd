@@ -1,0 +1,43 @@
+---
+title: "Deploying Your Survey"
+---
+
+## Preparing to deploy
+
+Before deploying your survey, make sure everything is working locally. You should have done the following:
+
+1. You have locally previewed your **app.R** file by clicking the "Run App" button in RStudio or in your R console running the code `shiny::runApp('app.R')`.
+2. You have set up a database connection to store survey responses (e.g. using {{< var supabase >}}) and have already stored the database credentials using the `sd_db_config()` function (see the [Storing Data](storing-data.html) page for details).
+
+With these steps completed, you are ready to deploy your survey online.
+
+## Deploying to shinyapps.io
+
+Deploying your survey is pretty much the same as deploying any other Shiny app. We recommend using {{< var shinyapps >}} to host your survey as it is designed to work with Shiny Apps, but you can also use [other hosting services](#deploying-to-other-hosting-services).
+
+::: {.callout-note}
+
+You may have deployed other Quarto documents on [Quarto Pub](https://quartopub.com) before, but this site is only for static websites, so you **SHOULD NOT** use Quarto Pub for your survey deployment.
+
+:::
+
+To start using {{< var shinyapps >}}, you'll need to create an account and follow the basic instructions to set up your sub-domain and authorize your IDE. See more information [here](https://docs.posit.co/shinyapps.io/guide/getting_started/).
+
+Once you have your account and sub-domain ready, make sure you have the [rsconnect](https://rstudio.github.io/rsconnect/) package installed. You should have done this while authorizing your IDE, but in case you didn't, you can install it with:
+
+```{r}
+install.packages('rsconnect')
+```
+
+Then to deploy your survey, run:
+
+```{r}
+# Define your app name with the appName parameter
+rsconnect::deployApp(appName = "my_survey")
+```
+
+That's it! Now you should have your survey site deployed on **shinyapps.io**. Congratulations! 🎉
+
+## Deploying to Other Hosting Services
+
+{{< include ../chunks/deploy-alts.qmd >}}

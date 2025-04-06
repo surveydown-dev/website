@@ -54,7 +54,7 @@ You can view the live demo survey [here](https://surveydown.shinyapps.io/conjoin
 
 ## Introduction
 
-If you've never used surveydown before, take a look at the [Getting Started](https://surveydown.org/manuals/getting-started.html) page to get a quick introduction to the package and how to use it to make a survey.
+If you've never used surveydown before, take a look at the [Getting Started](https://surveydown.org/docs/getting-started.html) page to get a quick introduction to the package and how to use it to make a survey.
 
 The basic concept is this:
 
@@ -64,7 +64,7 @@ The basic concept is this:
 
 ## Getting started 
 
-If you want to start from a blank slate, take a look at the [Getting Started](https://surveydown.org/getting-started) documentation page. 
+If you want to start from a blank slate, take a look at the [Getting Started](https://surveydown.org/docs/getting-started.html) documentation page. 
 
 For this post, we recommend starting from the demo survey available at [this GitHub repo](https://github.com/surveydown-dev/demos/tree/main/conjoint-buttons). It provides an already working survey that you can modify to the needs of your conjoint survey.
 
@@ -300,7 +300,7 @@ sd_question(
 
 ## Preview and check
 
-The rest of the `server()` function in the `app.R` file has the remaining components we need, like any conditional display or skip logic. This is all standard features of any surveydown survey, so we won't cover them in detail here and instead direct you to the [documentation](https://surveydown.org/documentation) for details.
+The rest of the `server()` function in the `app.R` file has the remaining components we need, like any conditional display or skip logic. This is all standard features of any surveydown survey, so we won't cover them in detail here and instead direct you to the [documentation](https://surveydown.org/docs.html) for details.
 
 But before you go live, it's a good idea to do some quick testing. You can test your survey even without having it connected to a database by setting `ignore = TRUE` in the `sd_database()` function. Of course, you probably should also test it after connecting it to a database to ensure that responses are being properly stored. 
 

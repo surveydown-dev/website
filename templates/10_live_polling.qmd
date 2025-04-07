@@ -5,7 +5,16 @@ image: banners/10_live_polling.png
 description: "A [reactive](docs/reactivity.html) question template of live-polling with responses shown as a bar chart."
 ---
 
-Call `sd_create_survey(format = "live_polling")` to create this template. Refer to the [Start with a template](/docs/getting-started.html#start-with-a-template) section for more details.
+To create this template, run this command in your R console:
+
+```{r}
+surveydown::sd_create_survey(
+  #path = "path/to/survey",
+  template = "live_polling"
+)
+```
+
+Refer to the [Start with a template](/docs/getting-started.html#start-with-a-template) section for more details.
 
 <div class="button-container">
   <a href="https://github.com/surveydown-dev/templates" class="template-button" target="_blank">

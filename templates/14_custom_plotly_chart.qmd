@@ -5,7 +5,16 @@ image: banners/14_custom_plotly_chart.png
 description: "A template of [custom plotly chart](docs/custom-questions.html#plotly-chart-example) question using `sd_question_custom()`."
 ---
 
-Call `sd_create_survey(format = "custom_plotly_chart")` to create this template. Refer to the [Start with a template](/docs/getting-started.html#start-with-a-template) section for more details.
+To create this template, run this command in your R console:
+
+```{r}
+surveydown::sd_create_survey(
+  #path = "path/to/survey",
+  template = "custom_plotly_chart"
+)
+```
+
+Refer to the [Start with a template](/docs/getting-started.html#start-with-a-template) section for more details.
 
 <div class="button-container">
   <a href="https://surveydown3.shinyapps.io/custom_plotly_chart/" class="template-button" target="_blank">

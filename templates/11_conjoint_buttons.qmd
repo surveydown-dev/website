@@ -5,7 +5,16 @@ image: banners/11_conjoint_buttons.png
 description: "A conjoint survey template with options shown in buttons."
 ---
 
-Call `sd_create_survey(format = "conjoint_buttons")` to create this template. Refer to the [Start with a template](/docs/getting-started.html#start-with-a-template) section for more details.
+To create this template, run this command in your R console:
+
+```{r}
+surveydown::sd_create_survey(
+  #path = "path/to/survey",
+  template = "conjoint_buttons"
+)
+```
+
+Refer to the [Start with a template](/docs/getting-started.html#start-with-a-template) section for more details.
 
 <div class="button-container">
   <a href="https://surveydown3.shinyapps.io/conjoint_buttons/" class="template-button" target="_blank">

@@ -5,7 +5,16 @@ image: banners/12_conjoint_tables.png
 description: "A conjoint survey template, with option contents shown in a table."
 ---
 
-Call `sd_create_survey(format = "conjoint_tables")` to create this template. Refer to the [Start with a template](/docs/getting-started.html#start-with-a-template) section for more details.
+To create this template, run this command in your R console:
+
+```{r}
+surveydown::sd_create_survey(
+  #path = "path/to/survey",
+  template = "conjoint_tables"
+)
+```
+
+Refer to the [Start with a template](/docs/getting-started.html#start-with-a-template) section for more details.
 
 <div class="button-container">
   <a href="https://surveydown3.shinyapps.io/conjoint_tables/" class="template-button" target="_blank">

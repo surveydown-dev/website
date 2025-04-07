@@ -5,7 +5,16 @@ image: banners/03_conditional_display.png
 description: "A template for the [conditional display](docs/conditional-logic.html#conditional-display-of-questions) feature."
 ---
 
-Call `sd_create_survey(format = "conditional_display")` to create this template. Refer to the [Start with a template](/docs/getting-started.html#start-with-a-template) section for more details.
+To create this template, run this command in your R console:
+
+```{r}
+surveydown::sd_create_survey(
+  #path = "path/to/survey",
+  template = "conditional_display"
+)
+```
+
+Refer to the [Start with a template](/docs/getting-started.html#start-with-a-template) section for more details.
 
 <div class="button-container">
   <a href="https://surveydown.shinyapps.io/conditional_display/" class="template-button" target="_blank">

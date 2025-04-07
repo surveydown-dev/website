@@ -5,7 +5,16 @@ image: banners/04_conditional_navigation.png
 description: "A template for the [conditional navigation](docs/conditional-logic.html#conditional-navigation-of-pages) feature."
 ---
 
-Call `sd_create_survey(format = "conditional_navigation")` to create this template. Refer to the [Start with a template](/docs/getting-started.html#start-with-a-template) section for more details.
+To create this template, run this command in your R console:
+
+```{r}
+surveydown::sd_create_survey(
+  #path = "path/to/survey",
+  template = "conditional_navigation"
+)
+```
+
+Refer to the [Start with a template](/docs/getting-started.html#start-with-a-template) section for more details.
 
 <div class="button-container">
   <a href="https://surveydown.shinyapps.io/conditional_navigation/" class="template-button" target="_blank">

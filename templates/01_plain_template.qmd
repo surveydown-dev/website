@@ -5,7 +5,17 @@ image: banners/01_plain_template.png
 description: "A minimum template for starting from scratch."
 ---
 
-Call `sd_create_survey()` to create this template. Refer to the [Start with a template](/docs/getting-started.html#start-with-a-template) section for more details.
+To create this template, run this command in your R console:
+
+```{r}
+surveydown::sd_create_survey(
+  #path = "path/to/survey"
+)
+```
+
+There is a `template = "plain_template"` argument in the `sd_create_survey()` function, but it is set as default so no need to specify it.
+
+Refer to the [Start with a template](/docs/getting-started.html#start-with-a-template) section for more details.
 
 <div class="button-container">
   <a href="https://surveydown.shinyapps.io/plain_template/" class="template-button" target="_blank">

@@ -174,10 +174,6 @@ The rest of the content in the **survey.qmd** file is the content you want in yo
 
 ### Adding pages
 
-::: {.callout-note}
-We recommend using keyboard shortcuts on RStudio to add survey content. Proceed to the [surveydown Gadgets for Page and Question Creation](/blog/2025-04-08-surveydown-gadgets/) blog post for a detailed walkthrough.
-:::
-
 In surveydown, pages are defined using fences (`:::`), like this:
 
 ```{r}
@@ -196,7 +192,17 @@ Page 2 content here
 
 We use three colon symbols `:::`, called a "fence", to mark the start and end of pages. This notation is commonly used in Quarto for a variety of use cases, like defining [subfigures](https://quarto.org/docs/authoring/figures.html#subfigures) in images.
 
-In the starting fence, you need to define a page name (e.g. `welcome` and `page2` in the example above) and you need to define the class as `.sd_page`. Then anything you put between the page fences will appear on that page. 
+In the starting fence, you need to define a page name (e.g. `welcome` and `page2` in the example above) and you need to define the class as `.sd_page`. Then anything you put between the page fences will appear on that page.
+
+If you are using RStudio, you can also make use of the page gadget to create pages under the "Addins" dropdown menu. You can easily link the gadget with a keyboard shortcut from the "Tools" menu. We recommend using `Ctrl + Shift + P` to create a new page. Proceed to the [surveydown Gadgets for Page and Question Creation](/blog/2025-04-08-surveydown-gadgets/) blog post for a detailed walkthrough.
+
+Below is a showcase of the **Survey Page Gadget** in RStudio:
+
+<br>
+<center>
+<img src="/images/screenshots/gadget_of_page.gif" style="width: 100%; max-width: 1000px;">
+</center>
+<br>
 
 ### Adding navigation buttons
 
@@ -244,10 +250,6 @@ While the `sd_next()` function controls basic, static page navigation, you can c
 
 ### Adding questions
 
-::: {.callout-note}
-We recommend using keyboard shortcuts on RStudio to add survey content. Proceed to the [surveydown Gadgets for Page and Question Creation](/blog/2025-04-08-surveydown-gadgets/) blog post for a detailed walkthrough.
-:::
-
 Every survey question is created using the `sd_question()` function inside a code chunk. The question type is defined by the `type` argument. For example, to add a multiple choice question, you could insert the following code chunk:
 
 ```{r}
@@ -288,6 +290,16 @@ The `sd_question()` function can be used to create a variety of question types, 
 The function has many other arguments for customizing the look and feel of the question, such as the `height` and `width` (see the [Question Formatting](question-formatting.html) page).
 
 By default all questions are optional, but you can make questions required in the server options (see the [Server Options](server-options.html#required-questions) page for details).
+
+Similar to page creation, you can also make use of the question gadget to create questions under the "Addins" dropdown menu following similar operations. We recommend using `Ctrl + Shift + Q` to create a new question. Proceed to the [surveydown Gadgets for Page and Question Creation](/blog/2025-04-08-surveydown-gadgets/) blog post for a detailed walkthrough.
+
+Below is a showcase of the **Survey Question Gadget** in RStudio:
+
+<br>
+<center>
+<img src="/images/screenshots/gadget_of_question.gif" style="width: 100%; max-width: 1000px;">
+</center>
+<br>
 
 ### Ending the survey
 

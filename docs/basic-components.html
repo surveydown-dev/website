@@ -577,19 +577,6 @@ Note
 <p>The <code>barposition</code> key defines the position of the progress bar. It defaults to <code>top</code>, but can also be changed to <code>bottom</code> or <code>none</code> (to remove the bar). The progress bar updates on every <strong>question</strong> the user clicks on, not pages.</p>
 <p>The rest of the content in the <strong>survey.qmd</strong> file is the content you want in your survey, including <strong>pages</strong>, <strong>navigation buttons</strong>, and <strong>questions</strong>.</p>
 </section><section id="adding-pages" class="level3"><h3 class="anchored" data-anchor-id="adding-pages">Adding pages</h3>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>We recommend using keyboard shortcuts on RStudio to add survey content. Proceed to the <a href="../blog/2025-04-08-surveydown-gadgets/">surveydown Gadgets for Page and Question Creation</a> blog post for a detailed walkthrough.</p>
-</div>
-</div>
 <p>In surveydown, pages are defined using fences (<code>:::</code>), like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span> {.sd_page id<span class="ot">=</span>page1}</span>
@@ -606,6 +593,12 @@ Note
 </div>
 <p>We use three colon symbols <code>:::</code>, called a “fence”, to mark the start and end of pages. This notation is commonly used in Quarto for a variety of use cases, like defining <a href="https://quarto.org/docs/authoring/figures.html#subfigures">subfigures</a> in images.</p>
 <p>In the starting fence, you need to define a page name (e.g.&nbsp;<code>welcome</code> and <code>page2</code> in the example above) and you need to define the class as <code>.sd_page</code>. Then anything you put between the page fences will appear on that page.</p>
+<p>If you are using RStudio, you can also make use of the page gadget to create pages under the “Addins” dropdown menu. You can easily link the gadget with a keyboard shortcut from the “Tools” menu. We recommend using <code>Ctrl + Shift + P</code> to create a new page. Proceed to the <a href="../blog/2025-04-08-surveydown-gadgets/">surveydown Gadgets for Page and Question Creation</a> blog post for a detailed walkthrough.</p>
+<p>Below is a showcase of the <strong>Survey Page Gadget</strong> in RStudio:</p>
+<br><center>
+<img src="../images/screenshots/gadget_of_page.gif" style="width: 100%; max-width: 1000px;">
+</center>
+<p><br></p>
 </section><section id="adding-navigation-buttons" class="level3"><h3 class="anchored" data-anchor-id="adding-navigation-buttons">Adding navigation buttons</h3>
 <p>To navigate to the next page, you need to insert a <code><a href="https://pkg.surveydown.org/reference/sd_next.html">sd_next()</a></code> function call inside a code chunk, like this:</p>
 <div class="cell">
@@ -642,19 +635,6 @@ Note
 </div>
 <p>While the <code><a href="https://pkg.surveydown.org/reference/sd_next.html">sd_next()</a></code> function controls basic, static page navigation, you can conditionally override these controls using the <code><a href="https://pkg.surveydown.org/reference/sd_skip_forward.html">sd_skip_forward()</a></code> function in your server function. See the <a href="conditional-survey-flow.html">Conditional Survey Flow</a> page for more details.</p>
 </section><section id="adding-questions" class="level3"><h3 class="anchored" data-anchor-id="adding-questions">Adding questions</h3>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>We recommend using keyboard shortcuts on RStudio to add survey content. Proceed to the <a href="../blog/2025-04-08-surveydown-gadgets/">surveydown Gadgets for Page and Question Creation</a> blog post for a detailed walkthrough.</p>
-</div>
-</div>
 <p>Every survey question is created using the <code><a href="https://pkg.surveydown.org/reference/sd_question.html">sd_question()</a></code> function inside a code chunk. The question type is defined by the <code>type</code> argument. For example, to add a multiple choice question, you could insert the following code chunk:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
@@ -702,6 +682,12 @@ Note
 <p>The <code><a href="https://pkg.surveydown.org/reference/sd_question.html">sd_question()</a></code> function can be used to create a variety of question types, like text input, select drop down choices, and more by changing the <code>type</code> argument (see the <a href="question-types.html">Questions Types</a> page).</p>
 <p>The function has many other arguments for customizing the look and feel of the question, such as the <code>height</code> and <code>width</code> (see the <a href="question-formatting.html">Question Formatting</a> page).</p>
 <p>By default all questions are optional, but you can make questions required in the server options (see the <a href="server-options.html#required-questions">Server Options</a> page for details).</p>
+<p>Similar to page creation, you can also make use of the question gadget to create questions under the “Addins” dropdown menu following similar operations. We recommend using <code>Ctrl + Shift + Q</code> to create a new question. Proceed to the <a href="../blog/2025-04-08-surveydown-gadgets/">surveydown Gadgets for Page and Question Creation</a> blog post for a detailed walkthrough.</p>
+<p>Below is a showcase of the <strong>Survey Question Gadget</strong> in RStudio:</p>
+<br><center>
+<img src="../images/screenshots/gadget_of_question.gif" style="width: 100%; max-width: 1000px;">
+</center>
+<p><br></p>
 </section><section id="ending-the-survey" class="level3"><h3 class="anchored" data-anchor-id="ending-the-survey">Ending the survey</h3>
 <p>The simplest way to end a survey is to create a page with no <code><a href="https://pkg.surveydown.org/reference/sd_next.html">sd_next()</a></code> button on it. This will effectively serve as a ending page, because the respondent will not be able to navigate anywhere else once reaching a page with no next button.</p>
 <p>For example, you may want to have a screen-out page that respondents are sent to if they answer a certain way on a question (e.g., see <a href="conditional-survey-flow.html">Conditional Survey Flow</a>. You can do this by creating a page with no <code><a href="https://pkg.surveydown.org/reference/sd_next.html">sd_next()</a></code> button on it, like this:</p>

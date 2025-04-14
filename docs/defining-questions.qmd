@@ -1,0 +1,207 @@
+---
+title: "Defining Questions"
+number-sections: true
+---
+
+```{r}
+#| eval: true
+#| echo: false
+library(surveydown)
+```
+
+## Using `sd_question()`
+
+This is the basic way to define questions in your survey. You can use the `sd_question()` function directly in your `survey.qmd` file.
+
+The `sd_question()` function is used inside an R code chunk to create questions. The question type is defined by the `type` argument, and each question requires a unique `id` and a `label`.
+
+Here's a simple example of a **multiple-choice** question:
+
+::: {.panel-tabset}
+
+## Code
+
+```{r}
+#| eval: false
+#| echo: true
+sd_question(
+  id    = "favorite_penguin",
+  type  = "mc",
+  label = "Which type of penguin do you like the best?",
+  option = c(
+    "Adélie"    = "adelie",
+    "Chinstrap" = "chinstrap",
+    "Gentoo"    = "gentoo"
+  )
+)
+```
+
+## Output
+
+```{r}
+#| eval: true
+#| echo: false
+sd_question(
+  id    = 'penguins',
+  type  = 'mc',
+  label = "Which is your favorite type of penguin?",
+  option = c(
+    'Adélie'    = 'adelie',
+    'Chinstrap' = 'chinstrap',
+    'Gentoo'    = 'gentoo'
+  )
+)
+```
+
+:::
+
+Different question types require different arguments. For example, a **text input** question is much simpler:
+
+::: {.panel-tabset}
+
+## Code
+
+```{r}
+#| eval: false
+#| echo: true
+sd_question(
+  id    = "phone_brand",
+  type  = "text",
+  label = "What is the brand of your phone?"
+)
+```
+
+## Output
+
+```{r}
+#| eval: true
+#| echo: false
+sd_question(
+  id    = "phone_brand",
+  type  = "text",
+  label = "What is the brand of your phone?"
+)
+```
+
+:::
+
+You can find more question types and their specific parameters in the [Question Types](question-types.html) documentation.
+
+Other than the basic syntax of `sd_question()`, there are also 2 other ways to define your questions. If you are more code-oriented, we recommend that you use YAML files to help you define your questions. If otherwise you prefer GUI, you can use keyboard shortcuts on RStudio to support your question definition.
+
+## Using YAML to Define Questions
+
+By default we support a YAML file named `questions.yml` to define your survey questions. This further increases your survey reproducibility and allows you to keep your questions organized.
+
+Using YAML to define questions helps separate content from structure, making your surveys more maintainable, especially for larger projects.
+
+### Using Default `questions.yml`
+
+1. Create a file named `questions.yml` in your project root directory.
+2. Define your questions using the YAML format.
+3. Reference these questions in your `survey.qmd` file using the `id`.
+
+::: {.callout-note}
+You might have noticed that after you render any surveydown survey, there will be a **_survey/** folder created that stores all survey contents. In this folder, there is a `questions.yml` file created by default. Although this is a generated file, you can copy and paste it to your project root directory and modify it as needed.
+
+We recommend that you render the `question-types` template and grab the `questions.yml` file from there as a starting point. This file is also available in the `questions-yml` template.
+
+To expand, after you render any surveydown survey project, you can always copy the generated `questions.yml` file for future use.
+:::
+
+Here's a simple example of how a question is defined in `questions.yml`:
+
+```{yaml}
+favorite_penguin:
+  type: mc
+  label: Which type of penguin do you like the best?
+  options:
+    Adélie: adelie
+    Chinstrap: chinstrap
+    Gentoo: gentoo
+```
+
+Then in your `survey.qmd` file, you can simply reference this question by its id:
+
+```{r}
+#| eval: false
+#| echo: true
+sd_question("favorite_penguin")
+```
+
+### Using Custom YAML Files
+
+You can also specify a different YAML file using the `yml` parameter:
+
+```{r}
+#| eval: false
+#| echo: true
+sd_question(
+  id = "age",
+  yml = "questions/demographics.yml"
+)
+```
+
+In the above example, you can see the `"age"` question is grabbed from the `demographics.yml` file in the `questions/` directory.
+
+This flexibility allows you to organize questions into multiple files or directories for more complex surveys.
+
+## Using GUI in RStudio
+
+::: {.callout-note}
+There is a blog post explaining the GUI features in full details. You can access it [here](/blog/2025-04-08-surveydown-gadgets/).
+:::
+
+If you are GUI-oriented, the RStudio IDE provides a user-friendly interface to define your survey questions, and surveydown supports this with 2 gadgets. You can access this feature by clicking the "Add Question" button in the RStudio toolbar when editing your `survey.qmd` file.
+
+### Setting Up Keyboard Shortcuts
+
+1. Go to Tools → Addins → Browse Addins...
+
+  <br>
+  <center>
+  <img src="/images/screenshots/shortcut_1.png" style="width: 100%; max-width: 400px;">
+  </center>
+  <br>
+
+2. In the Addins popup window, click on the "Keyboard shortcuts..." button on the bottom left corner.
+
+  <br>
+  <center>
+  <img src="/images/screenshots/shortcut_2.png" style="width: 100%; max-width: 600px;">
+  </center>
+  <br>
+
+3. Input "survey" in the search box.
+
+  <br>
+  <center>
+  <img src="/images/screenshots/shortcut_3.png" style="width: 100%; max-width: 600px;">
+  </center>
+  <br>
+
+4. Assign the following shortcuts:
+    - `Ctrl+Shift+P` for the Survey Page Gadget
+    - `Ctrl+Shift+Q` for the Survey Question Gadget
+    
+    Or if you have other preferences, feel free to customize them.
+
+### Using the Question Gadget
+
+The Survey Question Gadget provides a simple form to create a new question:
+
+1. Press `Ctrl+Shift+Q` (or use the Addins menu)
+2. Fill in the following:
+   - **Question Type**: Select from the dropdown (default is "Multiple Choice")
+   - **Question ID**: Enter a unique identifier (no spaces)
+   - **Question Label**: Enter the actual question text
+3. Select whether you need the R chunk option
+4. Click "Create Question" or press Enter
+
+<br>
+<center>
+<img src="/images/screenshots/gadget_of_question.gif" style="width: 100%; max-width: 1000px;">
+</center>
+<br>
+
+The gadget will insert the properly formatted question code at your cursor position, which you can then customize further as needed.

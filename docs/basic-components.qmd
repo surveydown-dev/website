@@ -17,7 +17,6 @@ Every surveydown survey is composed of a _survey_ and an _app_, defined in two s
 - **app.R**: This file is where you define the global settings (libraries, database configuration, etc.) and server logic (e.g., conditional page skipping / question display, etc.) for your survey. It defines a Shiny app, so if you are familiar with Shiny you should feel right at home. See the [app.R](#app.r-1) section for details.
 
 ::: {.callout-note}
-
 1. You do NOT need to render the **survey.qmd** file, and in fact we do not recommend doing so as the rendered output will not necessarily look like your final survey. Instead, to preview your survey you should [locally run](#local-run) your survey.
 2. The survey is triggerred by **app.R**. It launches a Shiny app, so if you are familiar with Shiny you should feel right at home.
 3. These files must be named **survey.qmd** and **app.R**.
@@ -305,7 +304,7 @@ Below is a showcase of the **Survey Question Gadget** in RStudio:
 
 The simplest way to end a survey is to create a page with no `sd_next()` button on it. This will effectively serve as a ending page, because the respondent will not be able to navigate anywhere else once reaching a page with no next button.  
 
-For example, you may want to have a screen-out page that respondents are sent to if they answer a certain way on a question (e.g., see [Conditional Survey Flow](conditional-survey-flow.html). You can do this by creating a page with no `sd_next()` button on it, like this:
+For example, you may want to have a screen-out page that respondents are sent to if they answer a certain way on a question (e.g., see [Conditional Survey Flow](conditional-survey-flow.html)). You can do this by creating a page with no `sd_next()` button on it, like this:
 
 ```{r}
 ::: {.sd_page id=screenout}

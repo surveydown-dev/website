@@ -17,9 +17,9 @@ Every surveydown survey is composed of a _survey_ and an _app_, defined in two s
 - **app.R**: This file is where you define the global settings (libraries, database configuration, etc.) and server logic (e.g., conditional page skipping / question display, etc.) for your survey. It defines a Shiny app, so if you are familiar with Shiny you should feel right at home. See the [app.R](#app.r-1) section for details.
 
 ::: {.callout-note}
-1. You do NOT need to render the **survey.qmd** file, and in fact we do not recommend doing so as the rendered output will not necessarily look like your final survey. Instead, to preview your survey you should [locally run](#local-run) your survey.
-2. The survey is triggerred by **app.R**. It launches a Shiny app, so if you are familiar with Shiny you should feel right at home.
-3. These files must be named **survey.qmd** and **app.R**.
+
+You do NOT need to render the **survey.qmd** file, and in fact we do not recommend doing so as the rendered output will not necessarily look like your final survey. Instead, to preview your survey you should [locally run](#local-run) your survey by running the **app.R** file.
+
 :::
 
 They typically look something like this:
@@ -92,31 +92,6 @@ shiny::shinyApp(ui = ui, server = server)
 ```
 
 :::
-
-Other than the 2 files, there are also some important functions that you can call in the **R console**:
-
-- `sd_db_config()`: Call this function to define your database credentials. The prompts will walk you through.
-- `sd_dashboard()`: Call this function to summon the local survey dashboard (also a Shiny app). You can access survey statistics as well your database credentials. See [Local Dashboard](local-dashboard.html) for more details.
-
-## Architecture
-
-If you are interested in what is happening under the hood, here is a flow diagram that illustrates the overall architecture of a typical surveydown survey application:
-
-<br>
-<center>
-<img src='../images/architecture.svg' style="width: 100%; max-width: 800px;" alt="image showing the flow diagram of the surveydown architecture"/>
-</center>
-<br>
-
-Following this flow diagram, survey designers only need to edit **survey.qmd** and **app.R**. Since the survey is launched by **app.R**, which holds the core control logic of the survey, we've placed it at top left as starting point of the logic flows.
-
-In **app.R**, we have three logic flows:
-
-1. `sd_db_connect()`, as colored in <span style="color:#50AE73"><strong>green</strong></span>, creates database connection.
-2. `sd_ui()`, in <span style="color:#FF8C02"><strong>orange</strong></span>, serves two purposes: **1)** it renders the **survey.qmd** file into survey content in the "_survey" folder, and re-renders if changes detected; **2)** it initializes the user interface container for the survey app.
-3. `sd_server()`, in <span style="color:#057DFC"><strong>blue</strong></span>, also serves two purposes: **1)** it grabs the generated "_survey" folder and serves processed page content to the survey app; **2)** it updates database with responses.
-
-On the right most part of the flow diagram, we reach to the ending point of the logic flow. The survey app is what is presented to the survey participants, and the data in PostgreSQL is a collection of survey results for survey analysts to study for. As this flow diagram illustrates, the surveydown platform is the one product that streamlines the experience of survey designers, survey participants, and survey analysts.
 
 ## survey.qmd
 
@@ -199,7 +174,7 @@ Below is a showcase of the **Survey Page Gadget** in RStudio:
 
 <br>
 <center>
-<img src="/images/screenshots/gadget_of_page.gif" style="width: 100%; max-width: 1000px;">
+<img src="/images/screenshots/gadget_of_page.gif" style="width: 80%; max-width: 1000px;">
 </center>
 <br>
 
@@ -290,13 +265,11 @@ The function has many other arguments for customizing the look and feel of the q
 
 By default all questions are optional, but you can make questions required in the server options (see the [Server Options](server-options.html#required-questions) page for details).
 
-Similar to page creation, you can also make use of the question gadget to create questions under the "Addins" dropdown menu following similar operations. We recommend using `Ctrl + Shift + Q` to create a new question. Proceed to the [surveydown Gadgets for Page and Question Creation](/blog/2025-04-08-surveydown-gadgets/) blog post for a detailed walkthrough.
-
-Below is a showcase of the **Survey Question Gadget** in RStudio:
+Similar to page creation, you can also make use of the [question gadget](defining-questions.html#using-a-gui-in-rstudio) to create questions under the "Addins" dropdown menu following similar operations. Below is a showcase of the **Survey Question Gadget** in RStudio:
 
 <br>
 <center>
-<img src="/images/screenshots/gadget_of_question.gif" style="width: 100%; max-width: 1000px;">
+<img src="/images/screenshots/gadget_of_question.gif" style="width: 80%; max-width: 1000px;">
 </center>
 <br>
 
@@ -430,5 +403,25 @@ In a typical Shiny app, you have to define the UI and server functions separatel
 To preview your survey, you can run the Shiny app locally by clicking the "Run App" button in RStudio or in your R console run the code `shiny::runApp('app.R')`. Typically, RStudio will launch the app in a new window, but you can also choose to have the app launch in a dedicated viewer pane, or in your external web browser. Make your selection by clicking the icon next to Run App:
 
 <center>
-<img src='https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/images/launch-options.png' style="width: 100%; max-width: 200px;" alt="image showing the launch options of local run"/>
+<img src='https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/images/launch-options.png' style="width: 80%; max-width: 200px;" alt="image showing the launch options of local run"/>
 </center>
+
+## Architecture
+
+If you are interested in what is happening under the hood, here is a flow diagram that illustrates the overall architecture of a typical surveydown survey application:
+
+<br>
+<center>
+<img src='../images/architecture.svg' style="width: 100%; max-width: 800px;" alt="image showing the flow diagram of the surveydown architecture"/>
+</center>
+<br>
+
+Following this flow diagram, survey designers only need to edit **survey.qmd** and **app.R**. Since the survey is launched by **app.R**, which holds the core control logic of the survey, we've placed it at top left as starting point of the logic flows.
+
+In **app.R**, we have three logic flows:
+
+1. `sd_db_connect()`, as colored in <span style="color:#50AE73"><strong>green</strong></span>, creates database connection.
+2. `sd_ui()`, in <span style="color:#FF8C02"><strong>orange</strong></span>, serves two purposes: **1)** it renders the **survey.qmd** file into survey content in the "_survey" folder, and re-renders if changes detected; **2)** it initializes the user interface container for the survey app.
+3. `sd_server()`, in <span style="color:#057DFC"><strong>blue</strong></span>, also serves two purposes: **1)** it grabs the generated "_survey" folder and serves processed page content to the survey app; **2)** it updates database with responses.
+
+On the right most part of the flow diagram, we reach to the ending point of the logic flow. The survey app is what is presented to the survey participants, and the data in PostgreSQL is a collection of survey results for survey analysts to study for. As this flow diagram illustrates, the surveydown platform is the one product that streamlines the experience of survey designers, survey participants, and survey analysts.

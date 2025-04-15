@@ -12,15 +12,13 @@ library(surveydown)
 shiny::shinyOptions(bootstrapTheme = bslib::bs_theme(version = 5L))
 ```
 
-::: {.callout-note}
-This is a quick guide for surveydown setup. Proceed to [Basic Components](basic-components.html) to learn about the main components of your survey.
-:::
+This page covers everything you need to get started making a survey with surveydown. 
 
 ## Overview
 
 {{< include ../chunks/files.qmd >}}
 
-The [{surveydown}]({{< var url_package >}}) R package provides a set of functions for defining the survey content and configuration options. Each function starts with `sd_` to make them easy to identify.
+The [**surveydown**]({{< var url_package >}}) R package provides a set of functions for defining the survey content and configuration options. Each function starts with `sd_` to make them easy to identify.
 
 The platform is based on some basic principles:
 
@@ -28,7 +26,7 @@ The platform is based on some basic principles:
 - Define survey questions in R code chunks with the `sd_question()` function.
 - Define pages using fences (`:::`), with navigation buttons handled using the `sd_next()` function.
 - Add rich functionality to your survey using a variety of [Server Options](server-options.html) in the `server()` function in the **app.R** file.
-- Apply [conditional logic](conditional-logic.html) to question display with `sd_show_if()` or page navigation with `sd_skip_forward()`.
+- Apply [Conditional Logic](conditional-logic.html) to question display with `sd_show_if()` or page navigation with `sd_skip_forward()`.
 - Store your respondent data in a database (see [Storing Data](storing-data.html)).
 
 This approach ensures a flexible survey platform that is fully reproducible and easy to customize.
@@ -77,52 +75,32 @@ surveydown::sd_version()
 
 ## 2. Start with a template
 
-::: {.callout-important}
+::: {.callout-note}
 
-Every survey created with {surveydown} should be in its own separate project folder.
+Every survey created with surveydown should be in its own separate project folder.
 
 :::
 
-**Proceed to the [Templates](../templates.html) tab for a showcase of all available templates.**
-
-We recommend starting with a template to build your surveydown survey. In the R console, run the following to to setup a template survey:
+We recommend starting with a template to build your first surveydown survey. In the R console, run the following to to setup a generic template survey:
 
 ```{r}
-# Create a plain template under your working directory
 surveydown::sd_create_survey()
+```
 
-# Create a specified template uner your designated path
+You can also specify where you want the template survey to be created using the `path` argument, and you can also specify which template to use with the `template` argument, like this:
+
+```{r}
 surveydown::sd_create_survey(
   path     = "path/to/folder",
   template = "question_types"
 )
 ```
 
-The `sd_create_survey()` function accepts two arguments. The `path` argument specifies the directory where you want to create your survey project. If left it blank, it will be your current working directory.
-
-The `template` argument specifies which template to use. By default, it uses "plain_template", but you can specify other templates. Here is the list of available templates:
-
-- [`default`](../templates/default.html) (default): A minimal template for starting from scratch.
-- [`question_types`](../templates/question_types.html): A template showcasing all built-in [question types](/docs/question-types.html).
-- [`questions_yml`](../templates/questions_yml.html): A template showcasing questions defined using a YAML file.
-- [`conditional_display`](../templates/conditional_display.html): A template for the [conditional display](docs/conditional-logic.html#conditional-display-of-questions) feature.
-- [`conditional_navigation`](../templates/conditional_navigation.html): A template for the [conditional navigation](docs/conditional-logic.html#conditional-navigation-of-pages) feature.
-- [`random_options`](../templates/random_options.html): A template for creating [randomized](docs/randomization.html#live-randomization) survey options.
-- [`random_options_predefined`](../templates/random_options_predefined.html): A template for creating [predefined randomized](docs/randomization.html#predefined-randomization) survey options.
-- [`reactive_questions`](../templates/reactive_questions.html): A template for creating [reactive](docs/reactivity.html) survey questions.
-- [`reactive_drilldown`](../templates/reactive_drilldown.html): A [reactive](docs/reactivity.html) question template, with latter question options defined from former selection.
-- [`external_redirect`](../templates/external_redirect.html): A reactive question template with [redirectional](docs/external-redirect.html#reactive-redirect) links, accepting URL parameters.
-- [`live_polling`](../templates/live_polling.html): A [reactive](docs/reactivity.html) question template of live-polling with responses shown as a bar chart.
-- [`conjoint_buttons`](../templates/conjoint_buttons.html): A conjoint survey template with options shown in buttons.
-- [`conjoint_tables`](../templates/conjoint_tables.html): A conjoint survey template, with option contents shown in a table.
-- [`custom_leaflet_map`](../templates/custom_leaflet_map.html): A template of [custom leaflet map](docs/custom-questions.html#leaflet-map-example) question using `sd_question_custom()`.
-- [`custom_plotly_chart`](../templates/custom_plotly_chart.html): A template of [custom plotly chart](docs/custom-questions.html#plotly-chart-example) question using `sd_question_custom()`.
+The default is `template = "default"`, but you can specify other templates. See the [Templates](../templates.html) page for an overview of all currently available templates.
 
 ## 3. Add survey content
 
-Survey content is edited in the **survey.qmd** file. See the [survey.qmd](basic-components.html#survey.qmd-1) section in [Basic Components](basic-components.html) for details on the main components in a surveydown survey.
-
-Here's a basic structure of pages and questions:
+Survey content is edited in the **survey.qmd** file. See the [Basic Components](basic-components.qmd) page for more details on how to add more content to a surveydown survey. At a minimum, you can add pages and questions like this:
 
 - Add pages with fences, like this:
 
@@ -179,9 +157,9 @@ Here's a basic structure of pages and questions:
 
 In the `server()` function in the **app.R** file, add rich functionality to your survey using a variety of [Server Options](server-options.html) or [Conditional Logic](conditional-logic.html).
 
-## 5. Setup your database
+## 5. Setup your database connection
 
-In the global settings at the top of the **app.R** file, setup your database with the `sd_database()` function. You can also leave it blank to preview / edit your survey without database connected, or set `ignore = TRUE` to run the survey without storing data. See the [Storing Data](storing-data.html) page for more details.
+Setup your database connection using the `sd_db_config()` function. Once your configuration credentials are created (they get saved in a `.env` file), make a connection to your database using the `sd_db_connect()` function in the global settings at the top of the **app.R** file. You can also use `sd_db_connect(ignore = TRUE)` to run the survey without storing data. See the [Storing Data](storing-data.qmd) page for more details.
 
 ## 6. Locally preview
 

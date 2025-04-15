@@ -5,7 +5,7 @@ code-annotations: hover
 
 This page talks about the `sd_show_if()` function for [Conditional Display of Questions](#conditional-display-of-questions), and the `sd_skip_forward()` function for [Conditional Navigation of Pages](#conditional-navigation-of-pages) in surveydown, followed by examples of [Common Conditions](#common-conditions) that you can use with these functions. These functions allow you to control the flow of your survey based on the respondent's answers.
 
-## Conditional Display of Questions
+## Conditional Question Display
 
 It is often useful to have a question display based on some condition, such as the respondent choosing a particular value in a multiple choice question. This can be achieved by the `sd_show_if()` function.
 
@@ -72,65 +72,9 @@ In the example above, `input$penguins == "other"` is the condition, and `"pengui
 
 Take a look at the [Common Conditions](#common-conditions) section for examples of other types of supported conditions you can use to conditionally display questions.
 
-## Conditional Navigation of Pages
+## Conditional Forward Page Skipping
 
-Basic page navigation is handled using the [`sd_next()` function in your survey file](basic-components.html#adding-navigation-buttons). But you can override this static navigation in your server function with the `sd_skip_forward()` function.
-
-For example, often times you'll want to send respondents to different parts of the survey based on some condition, such as the respondent choosing a particular value in a multiple choice question. A common example is the need to **screen out** people based on their response(s) to a question.
-
-Here's a concrete example. Let's say you need to screen out people who do not own a vehicle. To do this, you would first define a question in your **survey.qmd** file about their vehicle ownership, e.g.:
-
-```{r}
-#| echo: fenced
-
-sd_question(
-  type  = 'mc',
-  id    = 'vehicle_ownership',
-  label = "Do you own your vehicle?",
-  option = c(
-    'Yes' = 'yes',
-    'No'  = 'no'
-  )
-)
-```
-
-You would also need to define a screenout page to send respondents to, like this:
-
-```{r}
-::: {#screenout .sd-page}
-
-Sorry, but you are not qualified to take our survey.
-
-:::
-```
-
-Then in the server function in the **app.R** file, you can use the `sd_skip_forward()` function to define the condition under which the respondent will be sent to the target `screenout` page, like this:
-
-::: {.callout-note}
-
-Again, the `input` object is a Shiny object that stores each question `id` defined by `sd_question()` in your **survey.qmd** file, so whenever referring to a question in a condition, you must use the format `input$question_id`.
-
-:::
-
-```{r}
-server <- function(input, output, session) {
-
-  sd_skip_forward(
-    input$vehicle_ownership == "no" ~ "screenout"
-  )
-
-  sd_server(db = db)
-
-}
-```
-
-Just like the `sd_show_if()` function, you can provide multiple conditions to the `sd_skip_forward()` function, each separated by a comma. The structure for each condition in sd_skip_forward `sd_skip_forward()` function is always:
-
-> `<condition> ~ "target_page_id"`
-
-In the example above, `input$vehicle_ownership == "no"` is the condition, and `"screenout"` is the target page that the respondent will be sent to if the condition is met.
-
-Take a look at the [Common Conditions](#common-conditions) section for examples of other types of supported conditions you can use to conditionally control the survey flow.
+{{< include ../chunks/skip-forward.qmd >}}
 
 ## Common Conditions
 

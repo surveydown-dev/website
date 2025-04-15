@@ -13,7 +13,7 @@ library(surveydown)
 
 Every surveydown survey is composed of a _survey_ and an _app_, defined in two separate files:
 
-- **survey.qmd**: This file is for main survey content, such as pages, questions, and navigation buttons. It is a standard Quarto document, so you can use markdown editors (we recommend {{< var rstudio_ide >}}) to insert text, images, etc. just like you would in any Quarto document. See the [survey.qmd](#survey.qmd-1) section for details.
+- **survey.qmd**: This file is where you define all of the main survey content, such as pages, questions, and navigation buttons. It is a standard Quarto document, so you can use any text editor or IDE to insert text, images, etc. just like you would in any Quarto document. See the [survey.qmd](#survey.qmd-1) section for details.
 - **app.R**: This file is where you define the global settings (libraries, database configuration, etc.) and server logic (e.g., conditional page skipping / question display, etc.) for your survey. It defines a Shiny app, so if you are familiar with Shiny you should feel right at home. See the [app.R](#app.r-1) section for details.
 
 ::: {.callout-note}
@@ -22,7 +22,7 @@ You do NOT need to render the **survey.qmd** file, and in fact we do not recomme
 
 :::
 
-They typically look something like this:
+Here is an example set of files for a basic survey:
 
 ::: {.panel-tabset}
 
@@ -95,6 +95,8 @@ shiny::shinyApp(ui = ui, server = server)
 
 ## survey.qmd
 
+The **survey.qmd** file is where you will define all of the main survey content, such as pages, questions, and navigation buttons.
+
 ### YAML header
 
 The YAML header is at the top of the **survey.qmd** file. It contains some basic settings, like this:
@@ -146,7 +148,7 @@ The `barposition` key defines the position of the progress bar. It defaults to `
 
 The rest of the content in the **survey.qmd** file is the content you want in your survey, including **pages**, **navigation buttons**, and **questions**.
 
-### Adding pages
+### Defining pages
 
 In surveydown, pages are defined using fences (`:::`), like this:
 
@@ -164,13 +166,7 @@ Page 2 content here
 :::
 ```
 
-We use three colon symbols `:::`, called a "fence", to mark the start and end of pages. This notation is commonly used in Quarto for a variety of use cases, like defining [subfigures](https://quarto.org/docs/authoring/figures.html#subfigures) in images.
-
-In the starting fence, you need to define a page name (e.g. `welcome` and `page2` in the example above) and you need to define the class as `.sd_page`. Then anything you put between the page fences will appear on that page.
-
-If you are using RStudio, you can also make use of the page gadget to create pages under the "Addins" dropdown menu. You can easily link the gadget with a keyboard shortcut from the "Tools" menu. We recommend using `Ctrl + Shift + P` to create a new page. Proceed to the [surveydown Gadgets for Page and Question Creation](/blog/2025-04-08-surveydown-gadgets/) blog post for a detailed walkthrough.
-
-Below is a showcase of the **Survey Page Gadget** in RStudio:
+We use three colon symbols `:::`, called a "fence", to mark the start and end of pages. In the starting fence, you need to define the class as `.sd_page` and provide a page id (e.g. `welcome` and `page2` in the example above). If you are using RStudio, you can also make use of the page gadget to create pages under the "Addins" dropdown menu. Here is what the **Survey Page Gadget** looks like in RStudio:
 
 <br>
 <center>
@@ -197,30 +193,22 @@ The above code chunk will create a "Next" button that goes on to the immediate n
 sd_next()
 ```
 
-You can also send the user to other pages by just changing the value assigned to the `next_page` argument. For example, to send the user to a page with the id `page3`, you can use:
+You can also provide an alternative label on the next page button using the `label` argument, and you can send the user to other pages by just changing the value assigned to the `next_page` argument. For example, to send the user to a page with the id `page3`, you can use:
 
 ```{r}
 #| echo: fenced
 
-sd_next(next_page = 'page3')
-```
-
-Finally, you can also change the label of the button by changing the `label` argument, like this:
-
-```{r}
-#| echo: fenced
-
-sd_next(label = 'Next page')
+sd_next(label = "Go to page 3", next_page = 'page3')
 ```
 
 ```{r}
 #| eval: true
 #| echo: false
 
-sd_next(label = 'Next page')
+sd_next(label = "Go to page 3", next_page = 'page3')
 ```
 
-While the `sd_next()` function controls basic, static page navigation, you can conditionally override these controls using the `sd_skip_forward()` function in your server function. See the [Conditional Survey Flow](conditional-survey-flow.html) page for more details.
+You can conditionally override these controls using the `sd_skip_forward()` function in your server function. See the [Conditional Survey Flow](conditional-survey-flow.html) page or [Page Navigation](page-navigation.qmd) page for more details.
 
 ### Adding questions
 

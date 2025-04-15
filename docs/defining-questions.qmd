@@ -1,0 +1,211 @@
+---
+title: "Defining Questions"
+number-sections: false
+---
+
+```{r}
+#| eval: true
+#| echo: false
+library(surveydown)
+```
+
+There are three different ways to define questions in a surveydown survey:
+
+1. **Using `sd_question()`**: Inside your `survey.qmd` file, add a code chunk, and use the `sd_question()` function.
+1. **Using a YAML File**: Define question content in a `questions.yml` file and refer to them in the `survey.qmd` file using `sd_question()`.
+1. **Using a GUI in RStudio**: In RStudio, `surveydown` include a simple GUI for creating questions.
+
+The sections below describes each approach in greater detail.
+
+## Using `sd_question()`
+
+The most typical approach to define survey questions is to use the `sd_question()` function inside code chunks in your `survey.qmd` file.
+
+The question type is defined by the `type` argument, and each question requires a unique `id` and a `label`.
+
+Here's a simple example of a **multiple-choice** question:
+
+::: {.panel-tabset}
+
+## Code
+
+```{r}
+#| eval: false
+#| echo: true
+sd_question(
+  id    = "favorite_penguin",
+  type  = "mc",
+  label = "Which type of penguin do you like the best?",
+  option = c(
+    "Adélie"    = "adelie",
+    "Chinstrap" = "chinstrap",
+    "Gentoo"    = "gentoo"
+  )
+)
+```
+
+## Output
+
+```{r}
+#| eval: true
+#| echo: false
+sd_question(
+  id    = 'penguins',
+  type  = 'mc',
+  label = "Which is your favorite type of penguin?",
+  option = c(
+    'Adélie'    = 'adelie',
+    'Chinstrap' = 'chinstrap',
+    'Gentoo'    = 'gentoo'
+  )
+)
+```
+
+:::
+
+Different question types require different arguments. For example, a **text input** question is much simpler:
+
+::: {.panel-tabset}
+
+## Code
+
+```{r}
+#| eval: false
+#| echo: true
+sd_question(
+  id    = "phone_brand",
+  type  = "text",
+  label = "What is the brand of your phone?"
+)
+```
+
+## Output
+
+```{r}
+#| eval: true
+#| echo: false
+sd_question(
+  id    = "phone_brand",
+  type  = "text",
+  label = "What is the brand of your phone?"
+)
+```
+
+:::
+
+You can find more question types and their specific parameters in the [Question Types](question-types.html) documentation.
+
+## Using a YAML File
+
+You can provide all of the question meta data (id, type, label, and option) inside a `questions.yml` to define your survey questions. 
+
+The purpose of using YAML files for question definition is to make it easier to re-use questions across surveys. When a surveydown survey is run, it renders all the survey content into a `_survey` folder. Inside that folder you will find a `questions.yml` file with all of the questions in the survey. This file will always get generated. You can then copy this file over to another survey to more easily re-use the questions.  
+
+### Using Default `questions.yml`
+
+1. Create a file named `questions.yml` in your project root directory (or copy it from another survey's `_survey` folder).
+2. Define any other questions you want using the YAML format.
+3. Insert questions in your `survey.qmd` file using `sd_question("id")` function, matching the `"id"` to each question you want to insert from the `questions.yml` file.
+
+Here's a simple example of how a question is defined in `questions.yml`:
+
+```{yaml}
+favorite_penguin:
+  type: mc
+  label: Which type of penguin do you like the best?
+  options:
+    Adélie: adelie
+    Chinstrap: chinstrap
+    Gentoo: gentoo
+```
+
+The first name is the `id` for the question. In your `survey.qmd` file, you can insert the question using `sd_question()` with this `id`, like this:
+
+```{r}
+#| eval: false
+#| echo: true
+
+sd_question("favorite_penguin")
+```
+
+This approach can make your `survey.qmd` file more streamlined in appearance as each question will be defined by one line of code calling `sd_question("id")`
+
+
+### Using Custom YAML Files
+
+You can also specify a different YAML file using the `yml` parameter:
+
+```{r}
+#| eval: false
+#| echo: true
+sd_question(
+  id = "age",
+  yml = "questions/demographics.yml"
+)
+```
+
+In the above example, you can see the `"age"` question is grabbed from the `demographics.yml` file in the `questions/` directory.
+
+This flexibility allows you to organize questions into multiple files or directories for more complex surveys.
+
+## Using a GUI in RStudio
+
+::: {.callout-note}
+
+We made a blog post explaining the GUI features in full detail [here](/blog/2025-04-08-surveydown-gadgets/).
+
+:::
+
+The `surveydown` package includes two gadgets inside the RStudio IDE to provide a user-friendly interface to define survey questions. You can access this feature by clicking the "Add Question" button in the RStudio toolbar when editing your `survey.qmd` file. There's another gadget for defining pages.
+
+### Using the Question Gadget
+
+The Survey Question Gadget provides a simple form to create a new question:
+
+1. Use the Addins menu to select "Add Question"
+2. Fill in the following:
+   - **Question Type**: Select from the dropdown (default is "Multiple Choice")
+   - **Question ID**: Enter a unique identifier (no spaces)
+   - **Question Label**: Enter the actual question text
+3. Select whether you need the R chunk option
+4. Click "Create Question" or press Enter
+
+The gadget will insert the properly formatted question code at your cursor position, which you can then customize further as needed.
+
+<br>
+<center>
+<img src="/images/screenshots/gadget_of_question.gif" style="width: 80%; max-width: 1000px;">
+</center>
+<br>
+
+### Setting Up Keyboard Shortcuts
+
+You can make it easier to trigger the gadget by binding it to a keyboard shortcut.
+
+1. Go to Tools → Addins → Browse Addins...
+
+  <br>
+  <center>
+  <img src="/images/screenshots/shortcut_1.png" style="width: 100%; max-width: 400px;">
+  </center>
+  <br>
+
+2. In the Addins popup window, click on the "Keyboard shortcuts..." button on the bottom left corner.
+
+  <br>
+  <center>
+  <img src="/images/screenshots/shortcut_2.png" style="width: 100%; max-width: 600px;">
+  </center>
+  <br>
+
+3. Input "survey" in the search box.
+
+  <br>
+  <center>
+  <img src="/images/screenshots/shortcut_3.png" style="width: 100%; max-width: 600px;">
+  </center>
+  <br>
+
+4. Assign whatever shortcuts you want, e.g.:
+    - `Ctrl+Shift+P` for the Survey Page Gadget
+    - `Ctrl+Shift+Q` for the Survey Question Gadget

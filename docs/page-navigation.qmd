@@ -1,0 +1,94 @@
+---
+title: "Page Navigation"
+---
+
+```{r}
+#| eval: true
+#| echo: false
+
+library(surveydown)
+```
+
+This page discusses how to create pages and navigate between them in a surveydown survey.
+
+## Defining pages
+
+In surveydown, pages are defined using fences (`:::`), like this:
+
+```{r}
+::: {.sd_page id=page1}
+
+Page 1 content here
+
+:::
+
+::: {.sd_page id=page2}
+
+Page 2 content here
+
+:::
+```
+
+We use three colon symbols `:::`, called a "fence", to mark the start and end of pages. This notation is commonly used in Quarto for a variety of use cases, like defining [subfigures](https://quarto.org/docs/authoring/figures.html#subfigures) in images.
+
+In the starting fence, you need to define the class as `.sd_page` and provide a page id (e.g. `welcome` and `page2` in the example above). Then anything you put between the page fences will appear on that page.
+
+If you are using RStudio, you can also make use of the page gadget to create pages under the "Addins" dropdown menu. You can easily link the gadget with a keyboard shortcut from the "Tools" menu. Check out [this blog post](/blog/2025-04-08-surveydown-gadgets/) for a detailed walkthrough.
+
+Here is what the **Survey Page Gadget** looks like in RStudio:
+
+<br>
+<center>
+<img src="/images/screenshots/gadget_of_page.gif" style="width: 80%; max-width: 1000px;">
+</center>
+<br>
+
+## Adding navigation buttons
+
+To navigate to the next page, you need to insert a `sd_next()` function call inside a code chunk, like this: 
+
+```{r}
+#| echo: fenced
+
+sd_next()
+```
+
+The above code chunk will create a "Next" button that goes on to the immediate next page. The button will look like this:
+
+```{r}
+#| eval: true
+#| echo: false
+
+sd_next()
+```
+
+You can also provide an alternative label on the next page button using the `label` argument, like this:
+
+```{r}
+#| echo: fenced
+
+sd_next(label = "Go to the next page")
+```
+
+```{r}
+#| eval: true
+#| echo: false
+
+sd_next(label = "Go to the next page")
+```
+
+## Skipping Forward
+
+### Direct Forward Skipping
+
+You can send the survey respondent to other forward pages by changing the value assigned to the `next_page` argument in the `sd_next()` function. For example, to send the user to a page with the id `page3`, you can use:
+
+```{r}
+#| echo: fenced
+
+sd_next(next_page = 'page3')
+```
+
+### Conditional Forward Skipping
+
+{{< include ../chunks/skip-forward.qmd >}}

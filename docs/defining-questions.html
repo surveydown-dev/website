@@ -4,8 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.43">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="description" content="A conjoint survey template with options shown in buttons.">
-<title>Choice-based-conjoint Survey with Buttons – surveydown.org</title>
+<title>Defining Questions – surveydown.org</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -101,22 +100,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script><style>html{ scroll-behavior: smooth; }</style>
-<link rel="stylesheet" href="../css/templates.css">
-<meta property="og:title" content="Choice-based-conjoint Survey with Buttons – surveydown.org">
-<meta property="og:description" content="A conjoint survey template with options shown in buttons.">
-<meta property="og:image" content="https://www.surveydown.org/templates/banners/11_conjoint_buttons.png">
+<meta property="og:title" content="Defining Questions – surveydown.org">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://www.surveydown.org/images/screenshots/gadget_of_question.gif">
 <meta property="og:site_name" content="https://surveydown.org">
 <meta property="og:locale" content="es_ES">
-<meta property="og:image:height" content="1536">
-<meta property="og:image:width" content="2048">
-<meta name="twitter:title" content="Choice-based-conjoint Survey with Buttons – surveydown.org">
-<meta name="twitter:description" content="A conjoint survey template with options shown in buttons.">
-<meta name="twitter:image" content="https://www.surveydown.org/templates/banners/11_conjoint_buttons.png">
+<meta name="twitter:title" content="Defining Questions – surveydown.org">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://www.surveydown.org/docs/images/logo.png">
 <meta name="twitter:creator" content="@johnhelveston">
 <meta name="twitter:site" content="@johnhelveston">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image-height" content="1536">
-<meta name="twitter:image-width" content="2048">
 </head>
 <body class="nav-sidebar docked nav-fixed">
 
@@ -138,11 +132,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../docs.html"> 
+    <a class="nav-link active" href="../docs.html" aria-current="page"> 
 <span class="menu-text">Documentation</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../templates.html" aria-current="page"> 
+    <a class="nav-link" href="../templates.html"> 
 <span class="menu-text">Templates</span></a>
   </li>  
   <li class="nav-item">
@@ -174,24 +168,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../templates/11_conjoint_buttons.html">Conjoint</a></li><li class="breadcrumb-item"><a href="../templates/11_conjoint_buttons.html">Conjoint Buttons</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/defining-questions.html">Question Development</a></li><li class="breadcrumb-item"><a href="../docs/defining-questions.html">Defining Questions</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../templates.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Templates</span></a>
+  <a href="../docs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Documentation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/features-roadmap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Features &amp; Roadmap</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Basic</span></a>
+ <span class="menu-text">Survey Basics</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -199,26 +199,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../templates/01_plain_template.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Plain Template</span></a>
+  <a href="../docs/getting-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting Started</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../templates/02_question_types.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Question Types</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../templates/03_conditional_display.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Conditional Display</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../templates/04_conditional_navigation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Conditional Navigation</span></a>
+  <a href="../docs/basic-components.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Basic Components</span></a>
   </div>
 </li>
       </ul>
@@ -226,7 +214,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Randomization</span></a>
+ <span class="menu-text">Question Development</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -234,14 +222,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../templates/05_random_options.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Random Options</span></a>
+  <a href="../docs/defining-questions.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Defining Questions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../templates/06_random_options_predefined.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Random Options Predefined</span></a>
+  <a href="../docs/question-types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Question Types</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/question-formatting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Question Formatting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/custom-questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Custom Questions</span></a>
   </div>
 </li>
       </ul>
@@ -249,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Reactivity</span></a>
+ <span class="menu-text">Survey Design Concepts</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -257,26 +257,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../templates/07_reactive_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Reactive Questions</span></a>
+  <a href="../docs/page-navigation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Page Navigation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../templates/08_reactive_drilldown.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Reactive drilldown</span></a>
+  <a href="../docs/server-options.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Server Options</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../templates/09_external_redirect.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">External Redirect</span></a>
+  <a href="../docs/conditional-logic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conditional Logic</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../templates/10_live_polling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Live Polling</span></a>
+  <a href="../docs/system-translations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">System Translations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/external-resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">External Resources</span></a>
   </div>
 </li>
       </ul>
@@ -284,7 +290,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Conjoint</span></a>
+ <span class="menu-text">Interactivity</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -292,14 +298,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../templates/11_conjoint_buttons.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Conjoint Buttons</span></a>
+  <a href="../docs/reactivity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reactivity</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../templates/12_conjoint_tables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Conjoint Tables</span></a>
+  <a href="../docs/randomization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Randomization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/external-redirect.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">External Redirect</span></a>
   </div>
 </li>
       </ul>
@@ -307,7 +319,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Custom</span></a>
+ <span class="menu-text">Data Management</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -315,14 +327,66 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../templates/13_custom_leaflet_map.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Custom Leaflet Map</span></a>
+  <a href="../docs/storing-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Storing Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../templates/14_custom_plotly_chart.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Custom Plotly Chart</span></a>
+  <a href="../docs/fetching-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fetching Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/local-dashboard.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Local Dashboard</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Deployment &amp; Operations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/deployment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deployment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/performance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Performance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/security.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Security</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Other</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/tips.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tips</span></a>
   </div>
 </li>
       </ul>
@@ -331,23 +395,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#using-sd_question" id="toc-using-sd_question" class="nav-link active" data-scroll-target="#using-sd_question">Using <code>sd_question()</code></a></li>
+  <li>
+<a href="#using-a-yaml-file" id="toc-using-a-yaml-file" class="nav-link" data-scroll-target="#using-a-yaml-file">Using a YAML File</a>
+  <ul class="collapse">
+<li><a href="#using-default-questions.yml" id="toc-using-default-questions.yml" class="nav-link" data-scroll-target="#using-default-questions.yml">Using Default <code>questions.yml</code></a></li>
+  <li><a href="#using-custom-yaml-files" id="toc-using-custom-yaml-files" class="nav-link" data-scroll-target="#using-custom-yaml-files">Using Custom YAML Files</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#using-a-gui-in-rstudio" id="toc-using-a-gui-in-rstudio" class="nav-link" data-scroll-target="#using-a-gui-in-rstudio">Using a GUI in RStudio</a>
+  <ul class="collapse">
+<li><a href="#using-the-question-gadget" id="toc-using-the-question-gadget" class="nav-link" data-scroll-target="#using-the-question-gadget">Using the Question Gadget</a></li>
+  <li><a href="#setting-up-keyboard-shortcuts" id="toc-setting-up-keyboard-shortcuts" class="nav-link" data-scroll-target="#setting-up-keyboard-shortcuts">Setting Up Keyboard Shortcuts</a></li>
+  </ul>
+</li>
+  </ul></nav>
+    </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../templates/11_conjoint_buttons.html">Conjoint</a></li><li class="breadcrumb-item"><a href="../templates/11_conjoint_buttons.html">Conjoint Buttons</a></li></ol></nav><div class="quarto-title">
-<h1 class="title">Choice-based-conjoint Survey with Buttons</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">Conjoint</div>
-  </div>
-  </div>
-
-<div>
-  <div class="description">
-    A conjoint survey template with options shown in buttons.
-  </div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/defining-questions.html">Question Development</a></li><li class="breadcrumb-item"><a href="../docs/defining-questions.html">Defining Questions</a></li></ol></nav><div class="quarto-title">
+<h1 class="title">Defining Questions</h1>
 </div>
 
 
-<div class="quarto-title-meta column-page-right">
+
+<div class="quarto-title-meta">
 
     
   
@@ -356,25 +432,214 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>To create this template, run this command in your R console:</p>
+</header><p>There are three different ways to define questions in a surveydown survey:</p>
+<ol type="1">
+<li>
+<strong>Using <code>sd_question()</code></strong>: Inside your <code>survey.qmd</code> file, add a code chunk, and use the <code>sd_question()</code> function.</li>
+<li>
+<strong>Using a YAML File</strong>: Define question content in a <code>questions.yml</code> file and refer to them in the <code>survey.qmd</code> file using <code>sd_question()</code>.</li>
+<li>
+<strong>Using a GUI in RStudio</strong>: In RStudio, <code>surveydown</code> include a simple GUI for creating questions.</li>
+</ol>
+<p>The sections below describes each approach in greater detail.</p>
+<section id="using-sd_question" class="level2"><h2 class="anchored" data-anchor-id="using-sd_question">Using <code>sd_question()</code>
+</h2>
+<p>The most typical approach to define survey questions is to use the <code>sd_question()</code> function inside code chunks in your <code>survey.qmd</code> file.</p>
+<p>The question type is defined by the <code>type</code> argument, and each question requires a unique <code>id</code> and a <code>label</code>.</p>
+<p>Here’s a simple example of a <strong>multiple-choice</strong> question:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Code</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Output</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">surveydown</span><span class="fu">::</span><span class="fu"><a href="https://pkg.surveydown.org/reference/sd_create_survey.html">sd_create_survey</a></span><span class="op">(</span></span>
-<span>  <span class="co">#path = "path/to/survey",</span></span>
-<span>  template <span class="op">=</span> <span class="st">"conjoint_buttons"</span></span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sd_question</span><span class="op">(</span></span>
+<span>  id    <span class="op">=</span> <span class="st">"favorite_penguin"</span>,</span>
+<span>  type  <span class="op">=</span> <span class="st">"mc"</span>,</span>
+<span>  label <span class="op">=</span> <span class="st">"Which type of penguin do you like the best?"</span>,</span>
+<span>  option <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"Adélie"</span>    <span class="op">=</span> <span class="st">"adelie"</span>,</span>
+<span>    <span class="st">"Chinstrap"</span> <span class="op">=</span> <span class="st">"chinstrap"</span>,</span>
+<span>    <span class="st">"Gentoo"</span>    <span class="op">=</span> <span class="st">"gentoo"</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Refer to the <a href="../docs/getting-started.html#start-with-a-template">Start with a template</a> section for more details.</p>
-<div class="button-container">
-<p><a href="https://surveydown3.shinyapps.io/conjoint_buttons/" class="template-button" target="_blank"> <i class="fas fa-external-link-alt"></i> Open in New Tab </a> <a href="https://github.com/surveydown-dev/templates" class="template-button" target="_blank"> <i class="fab fa-github"></i> GitHub Repo </a></p>
 </div>
-<div class="template-iframe-container">
-<iframe src="https://surveydown3.shinyapps.io/conjoint_buttons/" class="template-iframe">
-</iframe>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div id="container-penguins" data-question-id="penguins" class="question-container" style="width: 100%;" oninput="Shiny.setInputValue('penguins_interacted', true, {priority: 'event'});" onclick="Shiny.setInputValue('penguins_interacted', true, {priority: 'event'});">
+<div id="penguins" class="form-group shiny-input-radiogroup shiny-input-container" role="radiogroup" aria-labelledby="penguins-label">
+<label class="control-label" id="penguins-label" for="penguins"><p>Which is your favorite type of penguin?</p>
+</label>
+<div class="shiny-options-group">
+<div class="radio">
+<label>
+<input type="radio" name="penguins" value="adelie"><span>Adélie</span>
+</label>
 </div>
+<div class="radio">
+<label>
+<input type="radio" name="penguins" value="chinstrap"><span>Chinstrap</span>
+</label>
+</div>
+<div class="radio">
+<label>
+<input type="radio" name="penguins" value="gentoo"><span>Gentoo</span>
+</label>
+</div>
+</div>
+</div>
+<span class="hidden-asterisk">*</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Different question types require different arguments. For example, a <strong>text input</strong> question is much simpler:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Code</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Output</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sd_question</span><span class="op">(</span></span>
+<span>  id    <span class="op">=</span> <span class="st">"phone_brand"</span>,</span>
+<span>  type  <span class="op">=</span> <span class="st">"text"</span>,</span>
+<span>  label <span class="op">=</span> <span class="st">"What is the brand of your phone?"</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div id="container-phone_brand" data-question-id="phone_brand" class="question-container" style="width: 100%;" oninput="Shiny.setInputValue('phone_brand_interacted', true, {priority: 'event'});" onclick="Shiny.setInputValue('phone_brand_interacted', true, {priority: 'event'});">
+<div class="form-group shiny-input-container">
+<label class="control-label" id="phone_brand-label" for="phone_brand"><p>What is the brand of your phone?</p>
+</label>
+<input id="phone_brand" type="text" class="shiny-input-text form-control" value="">
+</div>
+<span class="hidden-asterisk">*</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>You can find more question types and their specific parameters in the <a href="question-types.html">Question Types</a> documentation.</p>
+</section><section id="using-a-yaml-file" class="level2"><h2 class="anchored" data-anchor-id="using-a-yaml-file">Using a YAML File</h2>
+<p>You can provide all of the question meta data (id, type, label, and option) inside a <code>questions.yml</code> to define your survey questions.</p>
+<p>The purpose of using YAML files for question definition is to make it easier to re-use questions across surveys. When a surveydown survey is run, it renders all the survey content into a <code>_survey</code> folder. Inside that folder you will find a <code>questions.yml</code> file with all of the questions in the survey. This file will always get generated. You can then copy this file over to another survey to more easily re-use the questions.</p>
+<section id="using-default-questions.yml" class="level3"><h3 class="anchored" data-anchor-id="using-default-questions.yml">Using Default <code>questions.yml</code>
+</h3>
+<ol type="1">
+<li>Create a file named <code>questions.yml</code> in your project root directory (or copy it from another survey’s <code>_survey</code> folder).</li>
+<li>Define any other questions you want using the YAML format.</li>
+<li>Insert questions in your <code>survey.qmd</code> file using <code>sd_question("id")</code> function, matching the <code>"id"</code> to each question you want to insert from the <code>questions.yml</code> file.</li>
+</ol>
+<p>Here’s a simple example of how a question is defined in <code>questions.yml</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favorite_penguin</span><span class="kw">:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> mc</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">label</span><span class="kw">:</span><span class="at"> Which type of penguin do you like the best?</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">options</span><span class="kw">:</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">Adélie</span><span class="kw">:</span><span class="at"> adelie</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">Chinstrap</span><span class="kw">:</span><span class="at"> chinstrap</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">Gentoo</span><span class="kw">:</span><span class="at"> gentoo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The first name is the <code>id</code> for the question. In your <code>survey.qmd</code> file, you can insert the question using <code>sd_question()</code> with this <code>id</code>, like this:</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sd_question</span><span class="op">(</span><span class="st">"favorite_penguin"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This approach can make your <code>survey.qmd</code> file more streamlined in appearance as each question will be defined by one line of code calling <code>sd_question("id")</code></p>
+</section><section id="using-custom-yaml-files" class="level3"><h3 class="anchored" data-anchor-id="using-custom-yaml-files">Using Custom YAML Files</h3>
+<p>You can also specify a different YAML file using the <code>yml</code> parameter:</p>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sd_question</span><span class="op">(</span></span>
+<span>  id <span class="op">=</span> <span class="st">"age"</span>,</span>
+<span>  yml <span class="op">=</span> <span class="st">"questions/demographics.yml"</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the above example, you can see the <code>"age"</code> question is grabbed from the <code>demographics.yml</code> file in the <code>questions/</code> directory.</p>
+<p>This flexibility allows you to organize questions into multiple files or directories for more complex surveys.</p>
+</section></section><section id="using-a-gui-in-rstudio" class="level2"><h2 class="anchored" data-anchor-id="using-a-gui-in-rstudio">Using a GUI in RStudio</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We made a blog post explaining the GUI features in full detail <a href="../blog/2025-04-08-surveydown-gadgets/">here</a>.</p>
+</div>
+</div>
+<p>The <code>surveydown</code> package includes two gadgets inside the RStudio IDE to provide a user-friendly interface to define survey questions. You can access this feature by clicking the “Add Question” button in the RStudio toolbar when editing your <code>survey.qmd</code> file. There’s another gadget for defining pages.</p>
+<section id="using-the-question-gadget" class="level3"><h3 class="anchored" data-anchor-id="using-the-question-gadget">Using the Question Gadget</h3>
+<p>The Survey Question Gadget provides a simple form to create a new question:</p>
+<ol type="1">
+<li>Use the Addins menu to select “Add Question”</li>
+<li>Fill in the following:
+<ul>
+<li>
+<strong>Question Type</strong>: Select from the dropdown (default is “Multiple Choice”)</li>
+<li>
+<strong>Question ID</strong>: Enter a unique identifier (no spaces)</li>
+<li>
+<strong>Question Label</strong>: Enter the actual question text</li>
+</ul>
+</li>
+<li>Select whether you need the R chunk option</li>
+<li>Click “Create Question” or press Enter</li>
+</ol>
+<p>The gadget will insert the properly formatted question code at your cursor position, which you can then customize further as needed.</p>
+<br><center>
+<img src="../images/screenshots/gadget_of_question.gif" style="width: 80%; max-width: 1000px;">
+</center>
+<p><br></p>
+</section><section id="setting-up-keyboard-shortcuts" class="level3"><h3 class="anchored" data-anchor-id="setting-up-keyboard-shortcuts">Setting Up Keyboard Shortcuts</h3>
+<p>You can make it easier to trigger the gadget by binding it to a keyboard shortcut.</p>
+<ol type="1">
+<li>Go to Tools → Addins → Browse Addins…</li>
+</ol>
+<br><center>
+<img src="../images/screenshots/shortcut_1.png" style="width: 100%; max-width: 400px;">
+</center>
+<p><br></p>
+<ol start="2" type="1">
+<li>In the Addins popup window, click on the “Keyboard shortcuts…” button on the bottom left corner.</li>
+</ol>
+<br><center>
+<img src="../images/screenshots/shortcut_2.png" style="width: 100%; max-width: 600px;">
+</center>
+<p><br></p>
+<ol start="3" type="1">
+<li>Input “survey” in the search box.</li>
+</ol>
+<br><center>
+<img src="../images/screenshots/shortcut_3.png" style="width: 100%; max-width: 600px;">
+</center>
+<p><br></p>
+<ol start="4" type="1">
+<li>Assign whatever shortcuts you want, e.g.:
+<ul>
+<li>
+<code>Ctrl+Shift+P</code> for the Survey Page Gadget</li>
+<li>
+<code>Ctrl+Shift+Q</code> for the Survey Question Gadget</li>
+</ul>
+</li>
+</ol>
 
 
-
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

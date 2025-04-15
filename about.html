@@ -173,13 +173,14 @@ ul.task-list li input[type="checkbox"] {
 <img src="images/technologies.svg" style="width: 100%; max-width: 550px;" alt="image showing the three technologies used in the surveydown platform along with their logos: quarto (for designing surveys), shiny (for rendering the survey), and supabase (for storing data)">
 </center>
 <p><br></p>
-<p><strong>surveydown</strong> is a flexible, open-source platform for making surveys with <a href="https://CRAN.R-project.org/"><i class="fa-brands fa-r-project" aria-label="r-project"></i></a>, <a href="https://quarto.org/">Quarto</a>, <a href="https://shiny.posit.co/">Shiny</a>, and <a href="https://www.postgresql.org/">PostgreSQL</a>. Here’s how it works:</p>
+<p><strong>surveydown</strong> is a flexible, open-source platform for making programmable, markdown-based surveys with <a href="https://CRAN.R-project.org/"><i class="fa-brands fa-r-project" aria-label="r-project"></i></a>, <a href="https://quarto.org/">Quarto</a>, <a href="https://shiny.posit.co/">Shiny</a>, and <a href="https://www.postgresql.org/">PostgreSQL</a>.</p>
+<p>Here’s how it works:</p>
 <ol type="1">
 <li>Design your survey as a <a href="https://quarto.org/">Quarto</a> document using markdown and R code.</li>
 <li>Render your survey into a <a href="https://shiny.posit.co/">Shiny</a> app that can be hosted online and sent to respondents.</li>
 <li>Store survey response data in a <a href="https://www.postgresql.org/">PostgreSQL</a> database. We recommend <a href="https://supabase.com/">Supabase</a> as a free, secure, and easy to use option.</li>
 </ol>
-<p>The {surveydown} R package provides functions to bring this all together.</p>
+<p>The <strong>surveydown</strong> <a href="https://CRAN.R-project.org/"><i class="fa-brands fa-r-project" aria-label="r-project"></i></a> package provides functions to bring this all together.</p>
 <p><br></p>
 <p>We recommend reading the <a href="./docs/getting-started.html">Getting Started</a> page to get a sense of how to use surveydown and perform your basic setups. The rest of the documentation covers more details on how to use surveydown.</p>
 <div class="text-center">
@@ -188,12 +189,12 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="why-surveydown" class="level2">
 <h2 class="anchored" data-anchor-id="why-surveydown">Why surveydown?</h2>
-<p>Most survey platforms (e.g., Google forms, Qualtrics, etc.) use graphic interfaces or spreadsheets to define survey content, making version control, collaboration, and reproducibility difficult or impossible. The surveydown package was designed to address these problems. As an open-source, markdown-based platform, all survey content is defined using <strong>plain text</strong> (markdown and R code) in two files:</p>
+<p>Most survey platforms use graphic interfaces or spreadsheets to define survey content, making version control, collaboration, and reproducibility difficult or impossible. Surveydown was designed to address these problems. As an open-source, markdown-based platform, all survey content is defined using <strong>plain text</strong> (markdown and R code) in two files:</p>
 <ul>
 <li><code>survey.qmd</code>: A <a href="https://quarto.org/">Quarto</a> document that contains the survey content (pages, questions, etc).</li>
 <li><code>app.R</code>: An R script defining a shiny app that contains global settings (libraries, database configuration, etc.) and server configuration options (e.g., conditional page skipping / conditional display, etc.).</li>
 </ul>
-<p>This approach makes your survey easy to reproduce, share, and version control with common tools like Git. And since all survey data is stored in a <a href="https://www.postgresql.org/">PostgreSQL</a> database, you have total control over where your survey data lives. We provide direct support for <a href="https://supabase.com/">Supabase</a> as a free, secure, and easy to use option.</p>
+<p>This approach makes it easy to reproduce, share, and version control your surveys with common tools like Git. And since all survey data is stored in a <a href="https://www.postgresql.org/">PostgreSQL</a> database, you have total control over where your survey data lives. We recommend <a href="https://supabase.com/">Supabase</a> as a free, secure, and easy to use option.</p>
 <p>In case you’re interested in the background behind the project, this <a href="https://www.jhelvy.com/blog/2023-04-06-markdown-surveys/">blog post</a> provides something of an origin story. Note that the design discussed in the post is now quite outdated with what ultimately became surveydown.</p>
 </section>
 <section id="authors" class="level2">

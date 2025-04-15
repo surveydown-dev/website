@@ -83,9 +83,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-description','listing-categories','listing-image',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-title","listing-author","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -136,7 +136,7 @@ window.Quarto = {
 
 <meta property="og:title" content="Templates – surveydown.org">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://www.surveydown.org/templates/banners/01_plain_template.png">
+<meta property="og:image" content="https://www.surveydown.org/templates/banners/default.png">
 <meta property="og:site_name" content="https://surveydown.org">
 <meta property="og:locale" content="es_ES">
 <meta property="og:image:height" content="1536">
@@ -240,25 +240,31 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./templates/01_plain_template.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Plain Template</span></a>
+  <a href="./templates/default.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Default Template</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./templates/02_question_types.html" class="sidebar-item-text sidebar-link">
+  <a href="./templates/question_types.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Question Types</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./templates/03_conditional_display.html" class="sidebar-item-text sidebar-link">
+  <a href="./templates/questions_yml.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Questions Defined with YAML</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./templates/conditional_display.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Conditional Display</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./templates/04_conditional_navigation.html" class="sidebar-item-text sidebar-link">
+  <a href="./templates/conditional_navigation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Conditional Navigation</span></a>
   </div>
 </li>
@@ -275,13 +281,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./templates/05_random_options.html" class="sidebar-item-text sidebar-link">
+  <a href="./templates/random_options.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Random Options</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./templates/06_random_options_predefined.html" class="sidebar-item-text sidebar-link">
+  <a href="./templates/random_options_predefined.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Random Options Predefined</span></a>
   </div>
 </li>
@@ -298,25 +304,25 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./templates/07_reactive_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="./templates/reactive_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reactive Questions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./templates/08_reactive_drilldown.html" class="sidebar-item-text sidebar-link">
+  <a href="./templates/reactive_drilldown.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reactive drilldown</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./templates/09_external_redirect.html" class="sidebar-item-text sidebar-link">
+  <a href="./templates/external_redirect.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">External Redirect</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./templates/10_live_polling.html" class="sidebar-item-text sidebar-link">
+  <a href="./templates/live_polling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Live Polling</span></a>
   </div>
 </li>
@@ -333,13 +339,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./templates/11_conjoint_buttons.html" class="sidebar-item-text sidebar-link">
+  <a href="./templates/conjoint_buttons.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Conjoint Buttons</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./templates/12_conjoint_tables.html" class="sidebar-item-text sidebar-link">
+  <a href="./templates/conjoint_tables.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Conjoint Tables</span></a>
   </div>
 </li>
@@ -356,13 +362,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./templates/13_custom_leaflet_map.html" class="sidebar-item-text sidebar-link">
+  <a href="./templates/custom_leaflet_map.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Custom Leaflet Map</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./templates/14_custom_plotly_chart.html" class="sidebar-item-text sidebar-link">
+  <a href="./templates/custom_plotly_chart.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Custom Plotly Chart</span></a>
   </div>
 </li>
@@ -375,7 +381,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(14)</span></div><div class="category" data-category="QmFzaWM=">Basic <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Q29uam9pbnQ=">Conjoint <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Q3VzdG9t">Custom <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UmFuZG9taXphdGlvbg==">Randomization <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UmVhY3Rpdml0eQ==">Reactivity <span class="quarto-category-count">(4)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(15)</span></div><div class="category" data-category="QmFzaWM=">Basic <span class="quarto-category-count">(5)</span></div><div class="category" data-category="Q29uam9pbnQ=">Conjoint <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Q3VzdG9t">Custom <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UmFuZG9taXphdGlvbg==">Randomization <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UmVhY3Rpdml0eQ==">Reactivity <span class="quarto-category-count">(4)</span></div></div></div>
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
@@ -410,15 +416,15 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="QmFzaWM=" data-listing-file-modified-sort="1744521909931" data-listing-reading-time-sort="1" data-listing-word-count-sort="83">
-<a href="./templates/01_plain_template.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="0" data-categories="QmFzaWM=" data-listing-date-sort="1735689600000" data-listing-file-modified-sort="1744724986289" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="83">
+<a href="./templates/default.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="./templates/banners/01_plain_template.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="./templates/banners/default.png" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
-Plain Template
+Default Template
 </h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('QmFzaWM='); return false;">
@@ -428,20 +434,37 @@ Basic
 <div class="card-text listing-description">
 A minimum template for starting from scratch.
 </div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
 </div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="QmFzaWM=" data-listing-date-sort="1735689600000" data-listing-file-modified-sort="1744724986289" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<a href="./templates/questions_yml.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./templates/banners/questions_yml.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Questions Defined with YAML
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('QmFzaWM='); return false;">
+Basic
+</div>
+</div>
+<div class="card-text listing-description">
+A template showcasing questions defined using a YAML file.
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="QmFzaWM=" data-listing-file-modified-sort="1744521909931" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
-<a href="./templates/02_question_types.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="2" data-categories="QmFzaWM=" data-listing-date-sort="1735776000000" data-listing-file-modified-sort="1744724986289" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<a href="./templates/question_types.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="./templates/banners/02_question_types.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="./templates/banners/question_types.png" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -455,20 +478,15 @@ Basic
 <div class="card-text listing-description">
 A template showcasing all built-in <span>question types</span>.
 </div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="2" data-categories="QmFzaWM=" data-listing-file-modified-sort="1744521909931" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
-<a href="./templates/03_conditional_display.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="3" data-categories="QmFzaWM=" data-listing-date-sort="1735862400000" data-listing-file-modified-sort="1744724986289" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<a href="./templates/conditional_display.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="./templates/banners/03_conditional_display.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="./templates/banners/conditional_display.png" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -482,20 +500,15 @@ Basic
 <div class="card-text listing-description">
 A template for the <span>conditional display</span> feature.
 </div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="3" data-categories="QmFzaWM=" data-listing-file-modified-sort="1744521909931" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
-<a href="./templates/04_conditional_navigation.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="4" data-categories="QmFzaWM=" data-listing-date-sort="1735948800000" data-listing-file-modified-sort="1744724986289" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<a href="./templates/conditional_navigation.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="./templates/banners/04_conditional_navigation.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="./templates/banners/conditional_navigation.png" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -509,20 +522,15 @@ Basic
 <div class="card-text listing-description">
 A template for the <span>conditional navigation</span> feature.
 </div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="4" data-categories="UmFuZG9taXphdGlvbg==" data-listing-file-modified-sort="1744521909931" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
-<a href="./templates/05_random_options.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="5" data-categories="UmFuZG9taXphdGlvbg==" data-listing-date-sort="1738368000000" data-listing-file-modified-sort="1744724986289" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<a href="./templates/random_options.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="./templates/banners/05_random_options.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="./templates/banners/random_options.png" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -536,20 +544,15 @@ Randomization
 <div class="card-text listing-description">
 A template for creating <span>randomized</span> survey options.
 </div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="5" data-categories="UmFuZG9taXphdGlvbg==" data-listing-file-modified-sort="1744521909931" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
-<a href="./templates/06_random_options_predefined.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="6" data-categories="UmFuZG9taXphdGlvbg==" data-listing-date-sort="1738454400000" data-listing-file-modified-sort="1744724986289" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<a href="./templates/random_options_predefined.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="./templates/banners/06_random_options_predefined.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="./templates/banners/random_options_predefined.png" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -563,20 +566,15 @@ Randomization
 <div class="card-text listing-description">
 A template for creating <span>predefined randomized</span> survey options.
 </div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="6" data-categories="UmVhY3Rpdml0eQ==" data-listing-file-modified-sort="1744521909931" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
-<a href="./templates/07_reactive_questions.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="7" data-categories="UmVhY3Rpdml0eQ==" data-listing-date-sort="1740787200000" data-listing-file-modified-sort="1744724986289" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<a href="./templates/reactive_questions.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="./templates/banners/07_reactive_questions.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="./templates/banners/reactive_questions.png" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -590,20 +588,15 @@ Reactivity
 <div class="card-text listing-description">
 A template for creating <span>reactive</span> survey questions.
 </div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="7" data-categories="UmVhY3Rpdml0eQ==" data-listing-file-modified-sort="1744521909931" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
-<a href="./templates/08_reactive_drilldown.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="8" data-categories="UmVhY3Rpdml0eQ==" data-listing-date-sort="1740873600000" data-listing-file-modified-sort="1744724986289" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<a href="./templates/reactive_drilldown.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="./templates/banners/08_reactive_drilldown.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="./templates/banners/reactive_drilldown.png" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -617,20 +610,15 @@ Reactivity
 <div class="card-text listing-description">
 A <span>reactive</span> question template, with latter question options defined from former selection.
 </div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="8" data-categories="UmVhY3Rpdml0eQ==" data-listing-file-modified-sort="1744521909931" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
-<a href="./templates/09_external_redirect.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="9" data-categories="UmVhY3Rpdml0eQ==" data-listing-date-sort="1740960000000" data-listing-file-modified-sort="1744724986289" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<a href="./templates/external_redirect.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="./templates/banners/09_external_redirect.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="./templates/banners/external_redirect.png" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -644,20 +632,15 @@ Reactivity
 <div class="card-text listing-description">
 A reactive question template with <span>redirectional</span> links, accepting URL parameters.
 </div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="9" data-categories="UmVhY3Rpdml0eQ==" data-listing-file-modified-sort="1744521909931" data-listing-reading-time-sort="1" data-listing-word-count-sort="198">
-<a href="./templates/10_live_polling.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="10" data-categories="UmVhY3Rpdml0eQ==" data-listing-date-sort="1741046400000" data-listing-file-modified-sort="1744724986289" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="198">
+<a href="./templates/live_polling.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="./templates/banners/10_live_polling.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="./templates/banners/live_polling.png" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -671,20 +654,15 @@ Reactivity
 <div class="card-text listing-description">
 A <span>reactive</span> question template of live-polling with responses shown as a bar chart.
 </div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="10" data-categories="Q29uam9pbnQ=" data-listing-file-modified-sort="1744521909931" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
-<a href="./templates/11_conjoint_buttons.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="11" data-categories="Q29uam9pbnQ=" data-listing-date-sort="1743465600000" data-listing-file-modified-sort="1744724986289" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<a href="./templates/conjoint_buttons.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="./templates/banners/11_conjoint_buttons.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="./templates/banners/conjoint_buttons.png" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -698,20 +676,15 @@ Conjoint
 <div class="card-text listing-description">
 A conjoint survey template with options shown in buttons.
 </div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="11" data-categories="Q29uam9pbnQ=" data-listing-file-modified-sort="1744521909931" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
-<a href="./templates/12_conjoint_tables.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="12" data-categories="Q29uam9pbnQ=" data-listing-date-sort="1743552000000" data-listing-file-modified-sort="1744724986289" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<a href="./templates/conjoint_tables.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="./templates/banners/12_conjoint_tables.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="./templates/banners/conjoint_tables.png" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -725,20 +698,15 @@ Conjoint
 <div class="card-text listing-description">
 A conjoint survey template, with option contents shown in a table.
 </div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="12" data-categories="Q3VzdG9t" data-listing-file-modified-sort="1744521909931" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
-<a href="./templates/13_custom_leaflet_map.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="13" data-categories="Q3VzdG9t" data-listing-date-sort="1746057600000" data-listing-file-modified-sort="1744724986289" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<a href="./templates/custom_leaflet_map.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="./templates/banners/13_custom_leaflet_map.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="./templates/banners/custom_leaflet_map.png" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -752,20 +720,15 @@ Custom
 <div class="card-text listing-description">
 A template of <span>custom leaflet map</span> question using <code>sd_question_custom()</code>.
 </div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="13" data-categories="Q3VzdG9t" data-listing-file-modified-sort="1744521909931" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
-<a href="./templates/14_custom_plotly_chart.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="14" data-categories="Q3VzdG9t" data-listing-date-sort="1746144000000" data-listing-file-modified-sort="1744724986289" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<a href="./templates/custom_plotly_chart.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="./templates/banners/14_custom_plotly_chart.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="./templates/banners/custom_plotly_chart.png" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -778,11 +741,6 @@ Custom
 </div>
 <div class="card-text listing-description">
 A template of <span>custom plotly chart</span> question using <code>sd_question_custom()</code>.
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
 </div>
 </div>
 </div>

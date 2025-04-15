@@ -1,6 +1,6 @@
 ---
 title: "Defining Questions"
-number-sections: true
+number-sections: false
 ---
 
 ```{r}
@@ -9,11 +9,19 @@ number-sections: true
 library(surveydown)
 ```
 
+There are three different ways to define questions in a surveydown survey:
+
+1. **Using `sd_question()`**: Inside your `survey.qmd` file, add a code chunk, and use the `sd_question()` function.
+1. **Using a YAML File**: Define question content in a `questions.yml` file and refer to them in the `survey.qmd` file using `sd_question()`.
+1. **Using a GUI in RStudio**: In RStudio, `surveydown` include a simple GUI for creating questions.
+
+The sections below describes each approach in greater detail.
+
 ## Using `sd_question()`
 
-This is the basic way to define questions in your survey. You can use the `sd_question()` function directly in your `survey.qmd` file.
+The most typical approach to define survey questions is to use the `sd_question()` function inside code chunks in your `survey.qmd` file.
 
-The `sd_question()` function is used inside an R code chunk to create questions. The question type is defined by the `type` argument, and each question requires a unique `id` and a `label`.
+The question type is defined by the `type` argument, and each question requires a unique `id` and a `label`.
 
 Here's a simple example of a **multiple-choice** question:
 
@@ -87,27 +95,17 @@ sd_question(
 
 You can find more question types and their specific parameters in the [Question Types](question-types.html) documentation.
 
-Other than the basic syntax of `sd_question()`, there are also 2 other ways to define your questions. If you are more code-oriented, we recommend that you use YAML files to help you define your questions. If otherwise you prefer GUI, you can use keyboard shortcuts on RStudio to support your question definition.
+## Using a YAML File
 
-## Using YAML to Define Questions
+You can provide all of the question meta data (id, type, label, and option) inside a `questions.yml` to define your survey questions. 
 
-By default we support a YAML file named `questions.yml` to define your survey questions. This further increases your survey reproducibility and allows you to keep your questions organized.
-
-Using YAML to define questions helps separate content from structure, making your surveys more maintainable, especially for larger projects.
+The purpose of using YAML files for question definition is to make it easier to re-use questions across surveys. When a surveydown survey is run, it renders all the survey content into a `_survey` folder. Inside that folder you will find a `questions.yml` file with all of the questions in the survey. This file will always get generated. You can then copy this file over to another survey to more easily re-use the questions.  
 
 ### Using Default `questions.yml`
 
-1. Create a file named `questions.yml` in your project root directory.
-2. Define your questions using the YAML format.
-3. Reference these questions in your `survey.qmd` file using the `id`.
-
-::: {.callout-note}
-You might have noticed that after you render any surveydown survey, there will be a **_survey/** folder created that stores all survey contents. In this folder, there is a `questions.yml` file created by default. Although this is a generated file, you can copy and paste it to your project root directory and modify it as needed.
-
-We recommend that you render the `question-types` template and grab the `questions.yml` file from there as a starting point. This file is also available in the `questions-yml` template.
-
-To expand, after you render any surveydown survey project, you can always copy the generated `questions.yml` file for future use.
-:::
+1. Create a file named `questions.yml` in your project root directory (or copy it from another survey's `_survey` folder).
+2. Define any other questions you want using the YAML format.
+3. Insert questions in your `survey.qmd` file using `sd_question("id")` function, matching the `"id"` to each question you want to insert from the `questions.yml` file.
 
 Here's a simple example of how a question is defined in `questions.yml`:
 
@@ -121,13 +119,17 @@ favorite_penguin:
     Gentoo: gentoo
 ```
 
-Then in your `survey.qmd` file, you can simply reference this question by its id:
+The first name is the `id` for the question. In your `survey.qmd` file, you can insert the question using `sd_question()` with this `id`, like this:
 
 ```{r}
 #| eval: false
 #| echo: true
+
 sd_question("favorite_penguin")
 ```
+
+This approach can make your `survey.qmd` file more streamlined in appearance as each question will be defined by one line of code calling `sd_question("id")`
+
 
 ### Using Custom YAML Files
 
@@ -146,15 +148,39 @@ In the above example, you can see the `"age"` question is grabbed from the `demo
 
 This flexibility allows you to organize questions into multiple files or directories for more complex surveys.
 
-## Using GUI in RStudio
+## Using a GUI in RStudio
 
 ::: {.callout-note}
-There is a blog post explaining the GUI features in full details. You can access it [here](/blog/2025-04-08-surveydown-gadgets/).
+
+We made a blog post explaining the GUI features in full detail [here](/blog/2025-04-08-surveydown-gadgets/).
+
 :::
 
-If you are GUI-oriented, the RStudio IDE provides a user-friendly interface to define your survey questions, and surveydown supports this with 2 gadgets. You can access this feature by clicking the "Add Question" button in the RStudio toolbar when editing your `survey.qmd` file.
+The `surveydown` package includes two gadgets inside the RStudio IDE to provide a user-friendly interface to define survey questions. You can access this feature by clicking the "Add Question" button in the RStudio toolbar when editing your `survey.qmd` file. There's another gadget for defining pages.
+
+### Using the Question Gadget
+
+The Survey Question Gadget provides a simple form to create a new question:
+
+1. Use the Addins menu to select "Add Question"
+2. Fill in the following:
+   - **Question Type**: Select from the dropdown (default is "Multiple Choice")
+   - **Question ID**: Enter a unique identifier (no spaces)
+   - **Question Label**: Enter the actual question text
+3. Select whether you need the R chunk option
+4. Click "Create Question" or press Enter
+
+The gadget will insert the properly formatted question code at your cursor position, which you can then customize further as needed.
+
+<br>
+<center>
+<img src="/images/screenshots/gadget_of_question.gif" style="width: 80%; max-width: 1000px;">
+</center>
+<br>
 
 ### Setting Up Keyboard Shortcuts
+
+You can make it easier to trigger the gadget by binding it to a keyboard shortcut.
 
 1. Go to Tools → Addins → Browse Addins...
 
@@ -180,28 +206,6 @@ If you are GUI-oriented, the RStudio IDE provides a user-friendly interface to d
   </center>
   <br>
 
-4. Assign the following shortcuts:
+4. Assign whatever shortcuts you want, e.g.:
     - `Ctrl+Shift+P` for the Survey Page Gadget
     - `Ctrl+Shift+Q` for the Survey Question Gadget
-    
-    Or if you have other preferences, feel free to customize them.
-
-### Using the Question Gadget
-
-The Survey Question Gadget provides a simple form to create a new question:
-
-1. Press `Ctrl+Shift+Q` (or use the Addins menu)
-2. Fill in the following:
-   - **Question Type**: Select from the dropdown (default is "Multiple Choice")
-   - **Question ID**: Enter a unique identifier (no spaces)
-   - **Question Label**: Enter the actual question text
-3. Select whether you need the R chunk option
-4. Click "Create Question" or press Enter
-
-<br>
-<center>
-<img src="/images/screenshots/gadget_of_question.gif" style="width: 100%; max-width: 1000px;">
-</center>
-<br>
-
-The gadget will insert the properly formatted question code at your cursor position, which you can then customize further as needed.

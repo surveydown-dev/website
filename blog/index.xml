@@ -1,0 +1,2452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>surveydown.org</title>
+<link>https://www.surveydown.org/blog/</link>
+<atom:link href="https://www.surveydown.org/blog/index.xml" rel="self" type="application/rss+xml"/>
+<description></description>
+<image>
+<url>https://www.surveydown.org/images/logo.ico</url>
+<title>surveydown.org</title>
+<link>https://www.surveydown.org/blog/</link>
+</image>
+<generator>quarto-1.7.30</generator>
+<lastBuildDate>Tue, 08 Apr 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>surveydown Gadgets for Page and Question Creation</title>
+  <dc:creator>John Paul Helveston</dc:creator>
+  <dc:creator>Pingfan Hu</dc:creator>
+  <link>https://www.surveydown.org/blog/2025-04-08-surveydown-gadgets/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>As of version 0.10.0, surveydown now has shiny gadgets to make it easier to insert pages and questions into your survey.qmd file. This post highlights how to use them in your survey building workflow.</p>
+<p>To view a full-course survey building workflow, proceed to the <a href="../../docs/basic-components.html">Basic Components</a> page.</p>
+</div>
+</div>
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
+<p>While surveydown works with various IDEs, the gadget features perform best in RStudio. These gadgets provide a user-friendly interface for creating survey elements without having to remember the exact syntax or function parameters.</p>
+<p>Two primary gadgets are offered by surveydown:</p>
+<ol type="1">
+<li><strong>Survey Page Gadget</strong> - Creates a new survey page</li>
+<li><strong>Survey Question Gadget</strong> - Creates a new survey question</li>
+</ol>
+<p>Here is a showcase of the <strong>Survey Page Gadget</strong> in RStudio:</p>
+<br>
+<center>
+<img src="https://www.surveydown.org/blog/2025-04-08-surveydown-gadgets/images/gadget_of_page.gif" style="width: 100%; max-width: 1000px;">
+</center>
+<p><br></p>
+<p>The <strong>Survey Question Gadget</strong>:</p>
+<br>
+<center>
+<img src="https://www.surveydown.org/blog/2025-04-08-surveydown-gadgets/images/gadget_of_question.gif" style="width: 100%; max-width: 1000px;">
+</center>
+<p><br></p>
+<p>As you can see, these gadgets simplify the process of adding survey components. This blog walks you through how to access and use these gadgets.</p>
+</section>
+<section id="accessing-the-gadgets" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="accessing-the-gadgets"><span class="header-section-number">2</span> Accessing the Gadgets</h2>
+<p>The gadgets are powered by the <code>sd_page_gadget()</code> and <code>sd_question_gadget()</code> functions, but you don’t need to call these functions directly.</p>
+<p>You can access these gadgets in RStudio in two ways:</p>
+<section id="using-the-addins-menu" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="using-the-addins-menu"><span class="header-section-number">2.1</span> Using the Addins Menu</h3>
+<ol type="1">
+<li>Click on the “Addins” dropdown menu in the RStudio toolbar</li>
+<li>Type “surveydown” in the search box</li>
+<li>Select either “Add Survey Page” or “Add Survey Question”</li>
+</ol>
+<p>Below is a screenshot of the Addins menu with surveydown gadgets:</p>
+<br>
+<center>
+<img src="https://www.surveydown.org/blog/2025-04-08-surveydown-gadgets/images/addins_menu.png" style="width: 100%; max-width: 400px;">
+</center>
+<p><br></p>
+</section>
+<section id="keyboard-shortcuts-recommended" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="keyboard-shortcuts-recommended"><span class="header-section-number">2.2</span> Keyboard Shortcuts (Recommended)</h3>
+<p>For more efficient workflow, set up keyboard shortcuts:</p>
+<ol type="1">
+<li>Go to Tools → Addins → Browse Addins…</li>
+</ol>
+<br>
+<center>
+<img src="https://www.surveydown.org/blog/2025-04-08-surveydown-gadgets/images/shortcut_1.png" style="width: 100%; max-width: 400px;">
+</center>
+<p><br></p>
+<ol start="2" type="1">
+<li>In the Addins popup window, click on the “Keyboard shortcuts…” button on the bottom left corner.</li>
+</ol>
+<br>
+<center>
+<img src="https://www.surveydown.org/blog/2025-04-08-surveydown-gadgets/images/shortcut_2.png" style="width: 100%; max-width: 600px;">
+</center>
+<p><br></p>
+<ol start="3" type="1">
+<li>Input “survey” in the search box.</li>
+</ol>
+<br>
+<center>
+<img src="https://www.surveydown.org/blog/2025-04-08-surveydown-gadgets/images/shortcut_3.png" style="width: 100%; max-width: 600px;">
+</center>
+<p><br></p>
+<ol start="4" type="1">
+<li>Assign the following shortcuts:
+<ul>
+<li><code>Ctrl+Shift+P</code> for the Survey Page Gadget</li>
+<li><code>Ctrl+Shift+Q</code> for the Survey Question Gadget</li>
+</ul>
+Or if you have other preferences, feel free to customize them.</li>
+</ol>
+</section>
+</section>
+<section id="using-the-gadgets" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="using-the-gadgets"><span class="header-section-number">3</span> Using the Gadgets</h2>
+<section id="survey-page-gadget" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="survey-page-gadget"><span class="header-section-number">3.1</span> Survey Page Gadget</h3>
+<br>
+<center>
+<img src="https://www.surveydown.org/blog/2025-04-08-surveydown-gadgets/images/gadget_of_page.png" style="width: 100%; max-width: 400px;">
+</center>
+<p><br></p>
+<p>The page gadget is straightforward:</p>
+<ol type="1">
+<li>Press <code>Ctrl+Shift+P</code> (or use the Addins menu)</li>
+<li>Enter a Page ID (no spaces allowed)</li>
+<li>Click “Create Page” or press Enter</li>
+</ol>
+<p>This will insert a properly formatted page block at your cursor position, including an R code chunk ready for adding questions.</p>
+</section>
+<section id="survey-question-gadget" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="survey-question-gadget"><span class="header-section-number">3.2</span> Survey Question Gadget</h3>
+<br>
+<center>
+<img src="https://www.surveydown.org/blog/2025-04-08-surveydown-gadgets/images/gadget_of_question.png" style="width: 100%; max-width: 400px;">
+</center>
+<p><br></p>
+<p>The question gadget offers more options:</p>
+<ol type="1">
+<li>Press <code>Ctrl+Shift+Q</code> (or use the Addins menu)</li>
+<li>Fill in the following:
+<ul>
+<li><strong>Question Type</strong>: Select from the dropdown (default is “Multiple Choice”)</li>
+<li><strong>Question ID</strong>: Enter a unique identifier (no spaces)</li>
+<li><strong>Question Label</strong>: Enter the actual question text</li>
+</ul></li>
+<li><strong>R Chunk Option</strong>: Check this box if you need the question to be inserted within an R code chunk</li>
+<li>Click “Create Question” or press Enter</li>
+</ol>
+<p>Note that if you created the question inside an existing page’s R chunk, you don’t need to check the “R Chunk Option”. If you’re adding a question elsewhere and need it to be in an R chunk, check that box.</p>
+</section>
+</section>
+<section id="example-workflow" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="example-workflow"><span class="header-section-number">4</span> Example Workflow</h2>
+<p>Here’s how a typical workflow might look:</p>
+<ol type="1">
+<li>Create a new page:
+<ul>
+<li>Press <code>Ctrl+Shift+P</code></li>
+<li>Key in your Page ID</li>
+<li>Press Enter</li>
+</ul></li>
+<li>Add a question:
+<ul>
+<li>Press <code>Ctrl+Shift+Q</code></li>
+<li>Select your desired question type</li>
+<li>Key in your Question ID</li>
+<li>Key in your Question Label</li>
+<li>Press Enter</li>
+<li>Modify your Question Options as needed</li>
+</ul></li>
+<li>Add more questions as needed by repeating step 2.</li>
+</ol>
+<p>By following these steps and using the gadgets, you’ll create well-structured surveys much faster than coding everything manually.</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>RStudio</category>
+  <category>Tutorial</category>
+  <guid>https://www.surveydown.org/blog/2025-04-08-surveydown-gadgets/</guid>
+  <pubDate>Tue, 08 Apr 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://www.surveydown.org/blog/2025-04-08-surveydown-gadgets/banner.png" medium="image" type="image/png" height="122" width="144"/>
+</item>
+<item>
+  <title>surveydown is on CRAN 🎉!</title>
+  <dc:creator>John Paul Helveston</dc:creator>
+  <link>https://www.surveydown.org/blog/2024-12-20-surveydown-on-cran/</link>
+  <description><![CDATA[ <p>We have some exciting news to share - surveydown is on CRAN 🎉!</p>
+<p>You can now install surveydown from CRAN using the usual <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> function:</p>
+<div class="cell">
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"surveydown"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+<p>Actually, surveydown has been on CRAN since v0.4.0, but we’ve been making so many updates that we’re now already on v0.7.2 before we could even make a post about being on CRAN!</p>
+<p>So it seems about time we highlight some of the improvements and new features we’ve added recently.</p>
+<section id="new-functions-features" class="level2"><h2 class="anchored" data-anchor-id="new-functions-features">New functions / features</h2>
+<p>We added a whole bunch of new functions and features since v0.3.0, which was a major architectural change to the package. But the changes we made in v0.3.0 made it lot easier to support more features. There have been a lot, so I’m probably missing some, but here are some quick highlights that are worth calling out:</p>
+<ul>
+<li>In <code>sd_question()</code>, we added a new <code>type = "matrix"</code> to support matrix type questions.</li>
+<li>We added a new <code>sd_is_answered()</code> function to check if a question is answered or not. This is useful for conditional reactive questions defined in the server.</li>
+<li>We added a new <code>sd_completion_code()</code> function that generates a random completion code for your survey.</li>
+<li>We added a new <code>sd_close()</code> function to make a button that closes the survey.</li>
+<li>
+<a href="https://github.com/StefanMunnes">Stefan Munnes</a> <a href="https://github.com/surveydown-dev/surveydown/pull/138">added</a> a translation feature that allows you to customize the system messages in the app to any language you want.</li>
+<li>We modified how data handling is done so that each respondent’s state in the survey can be restored via cookies if they refresh the browser window or close and re-open the window. Before, respondents would be sent back to the start of the survey and a new entry in the database would be created, so this features allows respondents to pause and come back to the survey without that happening.</li>
+<li>We added two new helper functions, <code>sd_add_question()</code> and <code>sd_add_page()</code>, that make it easier to quickly create template questions and pages. They work like this:</li>
+</ul>
+<center>
+<img src="https://www.surveydown.org/blog/2024-12-20-surveydown-on-cran/sd_add.gif" width="700">
+</center>
+</section><section id="performance-improvements" class="level2"><h2 class="anchored" data-anchor-id="performance-improvements">Performance improvements</h2>
+<p>One major improvement we’ve made is to streamline how the <code>survey.qmd</code> file is updating. Before you needed to render the <code>survey.qmd</code> file yourself before running the <code>app.R</code> file, but now you actually never need to render it. All rendering is handled when you run the shiny app via the <code>app.R</code> file.</p>
+<p>And this rendering is “smart” too - it renders the <code>survey.qmd</code> file into an html file, then it parses that file for all of the content needed for the survey and stores each piece in a <code>_survey</code> folder. This folder is then what the shiny app uses to load the survey. If no changes are detected in the <code>survey.qmd</code> file or any of the components in the <code>_survey</code> folder, then the app will always load content from the pre-rendered content in the <code>_survey</code> folder, which will load nearly instantaneously! Only if you make a change to your survey will it be re-rendered, and again once that rendering is done once it won’t run again until another change is detected. This results in a much more efficient app that loads nearly instantaneously.</p>
+<p>We also improved the database updating to be much more efficient. It used to run a write operation to the database on every single question ineraction, but that slowed down the app significantly. Now that we have cookies enabled, we do the immediate record keeping in the cookies and only write to the database when the respondent closes the survey or turns the page. This is a more reasonable compromise that makes the app feel snappy while still ensuring that the data is saved even if the respondent accidentally closes the window.</p>
+</section><section id="our-first-community-contributions" class="level2"><h2 class="anchored" data-anchor-id="our-first-community-contributions">Our first community contributions!</h2>
+<p>Over the past few months, we’ve been getting a lot of contributions from the community! We’ve been able to merge a few pull requests that add some new features and fix some bugs. Here are some of the highlights:</p>
+<ul>
+<li>
+<a href="https://github.com/StefanMunnes">Stefan Munnes</a> added a new translation feature that allows you to customize the system messages in the app to any language you want. He also helped us update <code>sd_output()</code> to be able to output the chosen question values, chosen question option label(s), and the question label itself. This addresses <a href="https://github.com/orgs/surveydown-dev/discussions/128">feature request #128</a>.</li>
+<li>
+<a href="https://github.com/zainhoda1">Zain Hoda</a> contributed a new <code>auto_scroll</code> parameter to the <code>sd_server()</code> function that allows you to turn off auto scrolling. This is useful if you have a lot of questions and want to make sure the respondent can see the entire question.</li>
+</ul>
+<p>We’re excited to see what the community will build with surveydown! If you build something with surveydown, please let us know on the <a href="https://github.com/orgs/surveydown-dev/discussions">GitHub Discussions</a> so we can highlight your work!</p>
+
+
+</section><a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>R</category>
+  <category>CRAN</category>
+  <guid>https://www.surveydown.org/blog/2024-12-20-surveydown-on-cran/</guid>
+  <pubDate>Fri, 20 Dec 2024 00:00:00 GMT</pubDate>
+  <media:content url="https://www.surveydown.org/blog/2024-12-20-surveydown-on-cran/image.png" medium="image" type="image/png" height="112" width="144"/>
+</item>
+<item>
+  <title>New architecture in v0.3.0 (and loads of breaking changes)!</title>
+  <dc:creator>John Paul Helveston</dc:creator>
+  <link>https://www.surveydown.org/blog/2024-09-18-new-app-design/</link>
+  <description><![CDATA[ <p>The surveydown package is only a couple months old, and thanks to many early users we learned about some design flaws that needed to be fixed. As a result, with the release of {surveydown} 0.3.0, the package has undergone a major overhaul to improve security, modularity, and extensibility.</p>
+<p>We introduced several major breaking changes in this release, so we felt we should make a blog post to both explain why we felt these changes were needed as well as introduce the new architecture we have adopted.</p>
+<section id="motivation" class="level2"><h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<p>In the original conception of surveydown, the entire survey was defined in a single Quarto shiny document that would render into a shiny app. While this was a rather parsimonious design, it also had some flaws that weren’t immediately apparent.</p>
+<p>Perhaps the largest issue was <strong>page security</strong> (see <a href="https://github.com/surveydown-dev/surveydown/issues/93">this issue</a>). With Quarto shiny documents, the qmd file is first rendered into a static html page that is then used to define the elements of the user interface in the resulting shiny app. This meant that for us to introduce <em>pages</em>, we relied on a combination of JS and CSS to hide and show the page divs based on users clicking on next buttons. While this resulted in a nice user experience, under the hood the entire app was still just one big html page with all of the content available.</p>
+<p>This design meant that anyone could still see the source code to any component of the survey they wanted. A user could simply right-click and open “Inspect” then manually change the CSS of a page div from <code>style="display: none;"</code> to <code>style="display: show;"</code> and boom - the “page” would appear!</p>
+<p>This was obviously a major security issue as pages with things like completion codes or redirect buttons at the end could be easily shown without going through the whole survey. The only solution was an architectural overhaul that would only show the content on one page at a time.</p>
+</section><section id="new-architecture" class="level2"><h2 class="anchored" data-anchor-id="new-architecture">New architecture</h2>
+<p>The new architecture employs a two-file design composed of a <em>survey</em> and an <em>app</em> that renders to a traditional Shiny app:</p>
+<ul>
+<li>
+<code>survey.qmd</code>: A Quarto document that contains the survey content (pages, questions, etc), which renders to an HTML file.</li>
+<li>
+<code>app.R</code>: An R script defining a Shiny app that contains the global settings (libraries, database configuration, etc.) and server configuration options (e.g., conditional skipping / display, etc.).</li>
+</ul>
+<p><strong>These files must be named <code>survey.qmd</code> and <code>app.R</code></strong>.</p>
+<p>They typically look something like this:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs">
+<li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true"><code>survey.qmd</code> file</a></li>
+<li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false"><code>app.R</code> file</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<pre class="qmd cell-code"><code>---
+format: html
+echo: false
+warning: false
+---
+
+```{r}
+library(surveydown)
+```
+
+::: {#welcome .sd-page}
+
+# Welcome to our survey!
+
+```{r}
+sd_question(
+  type  = 'mc',
+  id    = 'penguins',
+  label = "Which type of penguin do you like the best?",
+  option = c(
+    'Adélie'    = 'adelie',
+    'Chinstrap' = 'chinstrap',
+    'Gentoo'    = 'gentoo'
+  )
+)
+
+sd_next(next_page = 'end')
+```
+
+:::
+
+::: {#end .sd-page}
+
+This it the last page in the survey
+
+:::
+</code></pre>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;"><a href="https://pkg.surveydown.org">surveydown</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">db</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://pkg.surveydown.org/reference/sd_database.html">sd_database</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>  host   <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span>,</span>
+<span>  dbname <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span>,</span>
+<span>  port   <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span>,</span>
+<span>  user   <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span>,</span>
+<span>  table  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span>,</span>
+<span>  ignore <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span></span>
+<span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">server</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">input</span>, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">output</span>, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">session</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span></span>
+<span>  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Define conditional skip logic here (skip to page if a condition is true)</span></span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://pkg.surveydown.org/reference/sd_skip_if.html">sd_skip_if</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span>  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Define  conditional display logic here (show a question if a condition is true)</span></span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://pkg.surveydown.org/reference/sd_show_if.html">sd_show_if</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span>  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Main server to control the app</span></span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://pkg.surveydown.org/reference/sd_server.html">sd_server</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">shiny</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>ui <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://pkg.surveydown.org/reference/sd_ui.html">sd_ui</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span>, server <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">server</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>This approach allows us to separate the <em>survey content</em> (in the <code>survey.qmd</code> file) from the <em>survey logic</em> (in the <code>app.R</code> file), which comes with a few benefits:</p>
+<ol type="1">
+<li>
+<strong>Security</strong>: Since the rendered survey content is no longer directly embedded in the app as a single html page, it makes it much harder for users to tamper with the content. Only the content on one page at a time will be rendered by the server.</li>
+<li>
+<strong>Clarity</strong>: With two files, it is now clearer where the survey content versus control logic should be defined. Before, all of the server logic was in a single server code chunk at the end of the <code>survey.qmd</code> file, which required the user to scroll up and down to edit the server logic versus the survey content. Now a user can have both files open in two tabs in an IDE and more easily edit the survey content and server content.</li>
+<li>
+<strong>Simplicity</strong>: The new design eliminates the need for a Quarto extension to render the survey. This allows us to ship all of the core functionality of surveydown as a single R package, which is installed globally on your system.</li>
+</ol>
+<p>The updated documentation of the <a href="https://surveydown.org/survey-components.html">Survey Components</a> page reflects this new design.</p>
+</section><section id="new-page-architecture" class="level2"><h2 class="anchored" data-anchor-id="new-page-architecture">New page architecture</h2>
+<p>The motivation to secure the page content led to a totally new approach to designing the survey pages. Our new approach actually renders the <code>survey.qmd</code> into a static html page and then parses it into a list of page objects. Each page object is itself a list of elements, including the page ID, question IDs, etc., as well as the rendered html content for that page.</p>
+<p>The <code><a href="https://pkg.surveydown.org/reference/sd_server.html">sd_server()</a></code> function then uses this list of page objects to display one page at a time via a <code><a href="https://rdrr.io/pkg/shiny/man/renderUI.html">shiny::renderUI()</a></code> function into a single “main” output. This approach allowed us to control what content is being served, eliminating the ability of survey respondents to see anything other than the content on the current page.</p>
+<p>This approach also gave us the opportunity to overhaul how pagination works in general. Previously, users had to add a <code>sd_next(next_page = "page_id")</code> button at the end of each page, making sure to specify the next page to go to. This was a bit annoying as most of the time you just want to go to the next page, so specifying it felt redundant. Now users can simply add <code><a href="https://pkg.surveydown.org/reference/sd_next.html">sd_next()</a></code> at the bottom of each page and the server will go to the next page by default. If you want to direct the respondent to a different page, then you specify the target page using <code>sd_next(next_page = "page_id")</code>.</p>
+</section><section id="improved-conditional-show-and-skip-logic" class="level2"><h2 class="anchored" data-anchor-id="improved-conditional-show-and-skip-logic">Improved conditional show and skip logic</h2>
+<p>Conditionally displaying questions or skipping to pages is a core logic that many surveys need. Our original approach was relatively clunky, so since we were already introducing many breaking designs, we figured we should overhaul the logic for conditional skipping and displaying.</p>
+<p>The new approach uses just two functions: <code><a href="https://pkg.surveydown.org/reference/sd_skip_if.html">sd_skip_if()</a></code> and <code><a href="https://pkg.surveydown.org/reference/sd_show_if.html">sd_show_if()</a></code>. These functions can be provided in the main <code>server()</code> function in the <code>app.R</code> file to define the conditions and targets for either conditional displaying a question or conditionally skipping to a page. The structure for each condition in these new functions is always as follows:</p>
+<blockquote class="blockquote">
+<p><code>&lt;condition&gt; ~ "target_question_id"</code></p>
+</blockquote>
+<p>As an example, let’s say we want to show a question called <code>"penguins_other"</code> if the respondent chose the <code>"other"</code> option in a question called <code>"penguins"</code>. We could do this with the following code in the <code>app.R</code> file:</p>
+<div class="cell">
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">server</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">input</span>, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">output</span>, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">session</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span></span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://pkg.surveydown.org/reference/sd_show_if.html">sd_show_if</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>    <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">input</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">penguins</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"other"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"penguins_other"</span></span>
+<span>  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://pkg.surveydown.org/reference/sd_server.html">sd_server</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>db <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">db</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div>
+</div>
+<p>You can provide multiple conditions to the <code><a href="https://pkg.surveydown.org/reference/sd_show_if.html">sd_show_if()</a></code> function, each separated by a comma. The <code><a href="https://pkg.surveydown.org/reference/sd_skip_if.html">sd_skip_if()</a></code> function works the same way, but it will skip to a target page instead of showing a target question. See the revised <a href="https://surveydown.org/config-options">Configuration Options</a> page for more details on the new changes.</p>
+</section><section id="no-more-sd_config-function" class="level2"><h2 class="anchored" data-anchor-id="no-more-sd_config-function">No more <code>sd_config()</code> function</h2>
+<p>One more small change we made is that the <code>sd_config()</code> function is no longer needed. Since we moved the conditional skip and show logic into their own functions, we took the remaining arguments that used to be provided to <code>sd_config()</code> and added them to the <code><a href="https://pkg.surveydown.org/reference/sd_server.html">sd_server()</a></code> function as options. You can now simply pass these arguments to the <code><a href="https://pkg.surveydown.org/reference/sd_server.html">sd_server()</a></code> function in the <code>app.R</code> file.</p>
+</section><section id="our-apologies" class="level2"><h2 class="anchored" data-anchor-id="our-apologies">Our apologies</h2>
+<p>That’s about it for the changes with v0.3.0. We want to send our deepest apologies for anyone who has already begun a study using the orginal design. The most recent version prior to v0.3.0 was v0.2.4, so this is the version you should install if you want to stick with the old design.</p>
+<p>That said, all development will now continue on this new design, so we strongly recommend updating to the new version and converting any existing surveys to the new design. The biggest change you’ll need to make is to move your server logic out of the <code>survey.qmd</code> file and into the <code>app.R</code> file. We’ve also updated all our <a href="https://surveydown.org/demos">demos</a> to the new design, so you can refer to these for examples on how to convert your existing surveys.</p>
+
+
+</section><a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>R</category>
+  <guid>https://www.surveydown.org/blog/2024-09-18-new-app-design/</guid>
+  <pubDate>Wed, 18 Sep 2024 00:00:00 GMT</pubDate>
+  <media:content url="https://www.surveydown.org/blog/2024-09-18-new-app-design/image.png" medium="image" type="image/png" height="144" width="144"/>
+</item>
+<item>
+  <title>Choice-based conjoint surveys in R with surveydown</title>
+  <dc:creator>John Paul Helveston</dc:creator>
+  <link>https://www.surveydown.org/blog/2024-08-28-choice-based-conjoint-surveys-with-surveydown/</link>
+  <description><![CDATA[ <div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>This post was updated on 2024-09-23 to match the new architecture introduced in v0.3.0.</strong> See the <a href="https://surveydown.org/blog/2024-09-18-new-app-design/">blog post</a> on the v0.3.0 release for more details.</p>
+</div>
+</div>
+<p>Because <a href="https://surveydown.org/">surveydown</a> surveys run as a shiny app, you can include custom logic in the background by writing some <i class="fa-brands fa-r-project" aria-label="r-project"></i> code in your server. In this post, I’m going to show you one approach for using surveydown to create a particular type of complex survey: a <strong>choice-based conjoint survey</strong>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you’re unfamiliar with what a conjoint survey is, take a look at this <a href="https://sawtoothsoftware.com/conjoint-analysis/cbc">quick introduction</a>.</p>
+</div>
+</div>
+<p>The key component of a choice-based conjoint survey is asking repsondents to make choices from randomized sets of choice questions. So the hard part is figuring out a way to show each respondent a different set of randomized questions. This post shows how you can achieve this in surveydown.</p>
+<p>Throughout this post, I will use a demo survey about people’s preferences for apples with three attributes: <code>type</code>, <code>price</code>, and <code>freshness</code>.<sup>1</sup></p>
+<p>You can view the live demo survey <a href="https://surveydown.shinyapps.io/conjoint/">here</a>, and all files used to create the survey are on <a href="https://github.com/surveydown-dev/demo-choice-based-conjoint">this GitHub repo</a>.</p>
+<section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>If you’ve never used surveydown before, take a look at the <a href="https://surveydown.org/getting-started.html">Getting Started</a> page to get a quick introduction to the package and how to use it to make a survey.</p>
+<p>The basic concept is this:</p>
+<ol type="1">
+<li>Design your survey as a <a href="{{< url_quarto >}}">Quarto</a> document using markdown and R code.</li>
+<li>Convert your survey into a <a href="{{< url_shiny >}}">Shiny</a> app that can be hosted online and sent to respondents.</li>
+<li>Store your survey responses in a <a href="{{< url_supabase >}}">Supabase</a> database.</li>
+</ol></section><section id="getting-started" class="level2"><h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
+<p>If you want to start from a blank slate, take a look at the <a href="https://surveydown.org/getting-started">Getting Started</a> documentation page.</p>
+<p>For this post, we recommend starting from the demo survey available at <a href="https://github.com/surveydown-dev/demo-choice-based-conjoint">this GitHub repo</a>. It provides an already working survey that you can modify to the needs of your conjoint survey.</p>
+<p>The demo repo has a lot of files in it, but the main files defining the survey itself are:</p>
+<ul>
+<li>
+<code>survey.qmd</code>: The main body of the survey.</li>
+<li>
+<code>app.R</code>: The app file containing the server logic implemented in the survey, including randomizing questions, connecting to a database, etc.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We recommend opening the <code>survey.Rproj</code> if you’re working in RStudio to make sure RStudio opens to the correct project folder.</p>
+</div>
+</div>
+</section><section id="content-in-the-survey-body" class="level2"><h2 class="anchored" data-anchor-id="content-in-the-survey-body">Content in the survey body</h2>
+<p>After the setup code chunk where we load the surveydown package, we have a series of pages (defined with <code>:::</code> fences) that include markdown-formatted text and survey questions (defined with <code><a href="https://pkg.surveydown.org/reference/sd_question.html">sd_question()</a></code>). You can modify any of this content as you wish to suit the needs of your survey.</p>
+<p>In this demo, we have a few other examples included, like a conditionally displayed question (the <code>fav_fruit</code> question will not display if you choose “No” on the first question about liking fruit) as well as a question that skips people to the end (if you choose “blue” and not “red” on the <code>screening</code> page). The logic controlling the conditional display and skipping is defined with the <code><a href="https://pkg.surveydown.org/reference/sd_skip_if.html">sd_skip_if()</a></code> function in the <code>app.R</code> file.</p>
+<p>None of this is necessary for a conjoint survey, but often times these are features that you may want to include, such as screening people out of the survey if they don’t qualify to take it, so we include it for demonstration purposes.</p>
+</section><section id="defining-the-choice-questions" class="level2"><h2 class="anchored" data-anchor-id="defining-the-choice-questions">Defining the choice questions</h2>
+<p>The central component of every conjoint survey is the set of randomized choice questions. To implement these in surveydown, we pre-define our choice questions in a design file that we later use in the survey to select randomized sets of choice questions to display each respondent.</p>
+<p>We use the <a href="https://jhelvy.github.io/cbcTools/">cbcTools</a> package to create the pre-defined design file. The code to create the choice questions for this demo survey is in the <a href="https://github.com/surveydown-dev/demo-choice-based-conjoint/blob/main/make_choice_questions.R"><code>make_choice_questions.R</code></a> file in the demo repo. This code generates a data frame of randomized choice questions that we then save in the project directory as <code>choice_questions.csv</code>.</p>
+</section><section id="implementing-the-choice-questions" class="level2"><h2 class="anchored" data-anchor-id="implementing-the-choice-questions">Implementing the choice questions</h2>
+<p>The choice questions are implemented at the top of the <code>server()</code> function in the <code>app.R</code> file in the demo repo. This code does the following steps:</p>
+<section id="read-in-the-design-file" class="level3"><h3 class="anchored" data-anchor-id="read-in-the-design-file">1. Read in the design file</h3>
+<p>Pretty straightforward - this is one line to read in the <code>choice_questions.csv</code> design file that we saved in the project folder.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">design</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">readr</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"choice_questions.csv"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+</section><section id="sample-and-store-a-random-respondent-id" class="level3"><h3 class="anchored" data-anchor-id="sample-and-store-a-random-respondent-id">2. Sample and store a random respondent ID</h3>
+<p>Since we want each respondent to see a different set of choice questions, we randomly sample a respondent ID from the set of all respondent IDs in the design file. We also need to keep track of this and store it in our response data so that later we can know what each respondent was actually shown.</p>
+<p>Since this is a value that we generated in the server (and not a value from a survey question to a respondent), we have to manually add it to the survey response data using <code><a href="https://pkg.surveydown.org/reference/sd_store_value.html">sd_store_value()</a></code>. Here we modified the name so that in the resulting survey data the column name will be <code>"respID"</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Sample a random respondentID</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">respondentID</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">design</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">respID</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Store the respondentID</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd_store_value</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">respondentID</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"respID"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+</section><section id="filter-the-design-for-the-respondentid" class="level3"><h3 class="anchored" data-anchor-id="filter-the-design-for-the-respondentid">3. Filter the design for the respondentID</h3>
+<p>We create a subset dataframe called <code>df</code> that stores only the rows for the randomly chosen respondent ID. We also append the <code>"images/"</code> string onto the values in the <code>image</code> column as this will create the relative path to the images in our survey, e.g.&nbsp;<code>"images/fuji.jpg"</code> (all the images we show are in the <code>"images"</code> folder in the repo).</p>
+<div class="cell">
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Filter for the rows for the chosen respondentID</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">df</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">design</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">respID</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">respondentID</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>image <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"images/"</span>, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">image</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+</section><section id="define-a-function-to-create-question-options" class="level3"><h3 class="anchored" data-anchor-id="define-a-function-to-create-question-options">4. Define a function to create question options</h3>
+<p>This is the most complex component in the server logic. Here we created a function that takes a dataframe and returns a named vector defining the options to show in each choice question. In this case, we only have 3 options per choice question, so each time we call this function we will use a small dataframe that has just 3 rows defining the 3 choice alternatives in a single choice question.</p>
+<p>The function does several things. First, it extracts three single-row data frames that store the values of each of the 3 alternatives (<code>alt1</code>, <code>alt2</code>, and <code>alt3</code>). It then creates an <code>options</code> vector that has just 3 values: <code>"option_1"</code>, <code>"option_2"</code>, and <code>"option_3"</code>. Then we have to define the names of each of those options. Remember that the <em>values</em> in the <code>options</code> vector are what gets stored in our resulting survey data based on what the respondent chooses, but the <em>names</em> are what respondents see. So in the context of a choice survey like this, we need to embed all of the attributes and their levels in the names of the <code>options</code> vector.</p>
+<p>We use the <code>glue()</code> function to easily inject the values stored in <code>alt1</code>, <code>alt2</code>, and <code>alt3</code> into our labels. The <code>glue()</code> function is similar to <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> in that is just concatenates object values into a string, but it has an easier syntax to work with. Anything inside <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code> brackets is evaluated, and the resulting value is inserted into the string. So for example, the line <code>glue("1 plus 1 equals {1+1}")</code> would produce the string <code>"1 plus 1 equals 2"</code>.</p>
+<p>In our case, we’re including some html code to insert an image of the apple type (<code>&lt;img src='{alt1$image}' width=100&gt;</code>), the apply type itself (<code>**Type**: {alt1$type}</code>), and the apple price (<code>**Price**: $ {alt1$price} / lb</code>).</p>
+<p>Notice also that we’re mixing markdown (e.g.&nbsp;<code>**Option 1**</code>) and html (e.g.&nbsp;<code>&lt;br&gt;</code>), which will all get rendered into proper html in the resulting shiny app. The full function looks like this:</p>
+<div class="cell">
+<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Function to create the labels for a choice question</span></span>
+<span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># based on the values in df</span></span>
+<span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">make_cbc_options</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">df</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span>  <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">alt1</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">df</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">altID</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span>  <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">alt2</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">df</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">altID</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span>  <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">alt3</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">df</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">altID</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span>  <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">options</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"option_1"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"option_2"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"option_3"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">options</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">glue</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">      **Option 1**&lt;br&gt;</span></span>
+<span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">      &lt;img src='{alt1$image}' width=100&gt;&lt;br&gt;</span></span>
+<span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">      **Type**: {alt1$type}&lt;br&gt;</span></span>
+<span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">      **Price**: $ {alt1$price} / lb</span></span>
+<span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">    "</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span>,</span>
+<span>    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">glue</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">      **Option 2**&lt;br&gt;</span></span>
+<span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">      &lt;img src='{alt2$image}' width=100&gt;&lt;br&gt;</span></span>
+<span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">      **Type**: {alt2$type}&lt;br&gt;</span></span>
+<span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">      **Price**: $ {alt2$price} / lb</span></span>
+<span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">    "</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span>,</span>
+<span>    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">glue</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">      **Option 3**&lt;br&gt;</span></span>
+<span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">      &lt;img src='{alt3$image}' width=100&gt;&lt;br&gt;</span></span>
+<span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">      **Type**: {alt3$type}&lt;br&gt;</span></span>
+<span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">      **Price**: $ {alt3$price} / lb</span></span>
+<span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">    "</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span>  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span>  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">options</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div>
+</div>
+</section><section id="create-the-options-for-each-choice-question" class="level3"><h3 class="anchored" data-anchor-id="create-the-options-for-each-choice-question">5. Create the options for each choice question</h3>
+<p>One of the benefits of making the function the way we did in the previous step is that we can now easily call it to generate the option vector for each of the 6 choice questions in <code>df</code>:</p>
+<div class="cell">
+<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Create the options for each choice question</span></span>
+<span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">cbc1_options</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">make_cbc_options</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">df</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">qID</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">cbc2_options</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">make_cbc_options</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">df</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">qID</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">cbc3_options</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">make_cbc_options</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">df</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">qID</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">cbc4_options</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">make_cbc_options</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">df</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">qID</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">cbc5_options</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">make_cbc_options</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">df</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">qID</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">cbc6_options</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">make_cbc_options</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">df</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">qID</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+</section><section id="create-each-choice-question-6-in-total" class="level3"><h3 class="anchored" data-anchor-id="create-each-choice-question-6-in-total">6. Create each choice question (6 in total)</h3>
+<p>Finally, we now have everything we need to generate each choice question. Here we’re using the <code>mc_buttons</code> question type so that the labels we generated will be displayed on a large button, which looks good both on a computer and phone. We give the question a unique <code>id</code> (e.g.&nbsp;<code>cbc_q1</code>), and a label, and then set the <code>option</code> to the corresponding option vector we defined above.</p>
+<div class="cell">
+<div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd_question</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>  type   <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'mc_buttons'</span>,</span>
+<span>  id     <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'cbc_q1'</span>,</span>
+<span>  label  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"(1 of 6) If these were your only options, which would you choose?"</span>,</span>
+<span>  option <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">cbc1_options</span></span>
+<span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ...and 5 more questions like this</span></span></code></pre></div>
+</div>
+<p>Remember that since the labels in the options are being <em>dynamically</em> generated on each new session (each respondent), they have to be created in the server, not in the main survey body. As a result, the <code><a href="https://pkg.surveydown.org/reference/sd_question.html">sd_question()</a></code> function must also be created in the server code (if you put this code in the main body, only one random set of choice options will be generated, and they’ll be the same for everyone).</p>
+<p>To display each question in the survey body, we use <code>sd_output("id", type = "question")</code>, changing <code>id</code> to each corresponding choice question we created. In the demo <code>survey.qmd</code> file, you’ll see that there are 6 choice questions displayed in the main survey body (each on their own page), and each of those 6 questions are defined in the <code>server()</code> function in the <code>app.R</code> file.</p>
+<p>When rendered, a choice question will look like this, with the values matching whatever alternative was chosen in the design file:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="container-cbc_q1" data-question-id="cbc_q1" class="question-container" oninput="Shiny.setInputValue('cbc_q1_interacted', true, {priority: 'event'});">
+<div class="form-group shiny-input-container shiny-input-radiogroup shiny-input-container-inline" style="width:100%;">
+<label class="control-label" id="cbc_q1-label" for="cbc_q1"><p>(1 of 6) If these were your only options, which would you choose? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
+</label>
+<br><div id="cbc_q1" class="radio-group-buttons">
+<div aria-labelledby="cbc_q1-label" class="btn-group btn-group-container-sw" data-toggle="buttons">
+<div class="btn-group btn-group-toggle">
+<button class="btn radiobtn btn-default">
+<input type="radio" autocomplete="off" name="cbc_q1" value="option_1"><strong>Option 1</strong><br><img src="https://www.surveydown.org/blog/2024-08-28-choice-based-conjoint-surveys-with-surveydown/images/honeycrisp.jpg" width="100"><br><strong>Type</strong>: Honeycrisp<br><strong>Price</strong>: $ 1 / lb
+</button>
+</div>
+<div class="btn-group btn-group-toggle">
+<button class="btn radiobtn btn-default">
+<input type="radio" autocomplete="off" name="cbc_q1" value="option_2"><strong>Option 2</strong><br><img src="https://www.surveydown.org/blog/2024-08-28-choice-based-conjoint-surveys-with-surveydown/images/fuji.jpg" width="100"><br><strong>Type</strong>: Fuji<br><strong>Price</strong>: $ 3 / lb
+</button>
+</div>
+<div class="btn-group btn-group-toggle">
+<button class="btn radiobtn btn-default">
+<input type="radio" autocomplete="off" name="cbc_q1" value="option_3"><strong>Option 3</strong><br><img src="https://www.surveydown.org/blog/2024-08-28-choice-based-conjoint-surveys-with-surveydown/images/redDelicious.jpg" width="100"><br><strong>Type</strong>: Red Delicious<br><strong>Price</strong>: $ 2.5 / lb
+</button>
+</div>
+</div>
+</div>
+<script>
+            $(document).on('click', '#cbc_q1 .btn', function() {
+                Shiny.setInputValue('cbc_q1_interacted', true, {priority: 'event'});
+            });
+        </script>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<p>And that’s it! You now have 6 randomized choice questions!</p>
+<!-- 
+## Buttons versus tables 
+
+In the example above, the conjoint choice questions are displayed as "buttons" where all the information for each alternative is shown as a button. This works particularly well for mobile phone applications where the user may need to scroll vertically to see each option. 
+
+An alternative is to use a tabular layout where each column represents an alternative and the row names explain the attribute. This takes a little manipulation to get it right, but the key concept is to use `kable()` to display the transpose of the `df` data frame (the subset of rows for a particular respondent). We also use the wonderful [kableExtra](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html) package to modify some of the table stying. We don't explain this code in detail, but the gist of what we're doing here is creating a dataframe with our alternatives and displaying it as a table with `kable()`.
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
+library(dplyr)
+library(kableExtra)
+
+# Create dataframe of the alternatives for the first choice question
+alts1 <- df |>
+  filter(qID == 1) |>
+  mutate(
+    price = paste(scales::dollar(price), "/ lb"),
+    image = paste0('<img src="', image, '" width=100>')) |>
+  # Make nicer attribute labels
+  select(
+    `Option:` = altID, 
+    ` ` = image,
+    `Price:` = price, 
+    `Type:` = type, 
+    `Freshness:` = freshness
+  )
+
+# Drop row names
+row.names(alts1) <- NULL 
+
+# Display the table
+kable(t(alts1), escape = FALSE) |>
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed"), 
+    full_width = FALSE, 
+    position = "center"
+  )
+```
+
+::: {.cell-output-display}
+`````{=html}
+
+<table class="table table-striped table-hover table-condensed caption-top" data-quarto-postprocess="true" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Option:</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><img src="images/honeycrisp.jpg" class="img-fluid" width="100" /></td>
+<td style="text-align: left;"><img src="images/fuji.jpg" class="img-fluid" width="100" /></td>
+<td style="text-align: left;"><img src="images/redDelicious.jpg" class="img-fluid" width="100" /></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Price:</td>
+<td style="text-align: left;">$1.00 / lb</td>
+<td style="text-align: left;">$3.00 / lb</td>
+<td style="text-align: left;">$2.50 / lb</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Type:</td>
+<td style="text-align: left;">Honeycrisp</td>
+<td style="text-align: left;">Fuji</td>
+<td style="text-align: left;">Red Delicious</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Freshness:</td>
+<td style="text-align: left;">Average</td>
+<td style="text-align: left;">Excellent</td>
+<td style="text-align: left;">Average</td>
+</tr>
+</tbody>
+</table>
+
+
+`````
+:::
+:::
+
+
+
+Of course, the table is just showing the options, but it doesn't allow respondents to indicate their choice. So we still need to create a 
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
+cbc1_options <- c("option_1", "option_2", "option_3")
+names(cbc1_options) <- c("Option 1", "Option 2", "Option 3")
+
+sd_question(
+  type   = 'mc_buttons',
+  id     = 'cbc_q1',
+  label  = "(1 of 6) If the above options were your only options, which would you choose?",
+  option = cbc1_options
+)
+```
+
+::: {.cell-output-display}
+
+```{=html}
+<div id="container-cbc_q1" data-question-id="cbc_q1" class="question-container" oninput="Shiny.setInputValue(&#39;cbc_q1_interacted&#39;, true, {priority: &#39;event&#39;});">
+<div class="form-group shiny-input-container shiny-input-radiogroup shiny-input-container-inline" style="width:100%;">
+<label class="control-label" id="cbc_q1-label" for="cbc_q1"><p>(1 of 6) If the above options were your only options, which would you choose? <span class='required-asterisk' style='display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;'>*</span></p>
+</label>
+<br/>
+<div id="cbc_q1" class="radio-group-buttons">
+<div aria-labelledby="cbc_q1-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+<div class="btn-group btn-group-toggle" role="group">
+<button class="btn radiobtn btn-default">
+<input type="radio" autocomplete="off" name="cbc_q1" value="option_1"/>
+Option 1
+</button>
+</div>
+<div class="btn-group btn-group-toggle" role="group">
+<button class="btn radiobtn btn-default">
+<input type="radio" autocomplete="off" name="cbc_q1" value="option_2"/>
+Option 2
+</button>
+</div>
+<div class="btn-group btn-group-toggle" role="group">
+<button class="btn radiobtn btn-default">
+<input type="radio" autocomplete="off" name="cbc_q1" value="option_3"/>
+Option 3
+</button>
+</div>
+</div>
+</div>
+<script>
+            $(document).on('click', '#cbc_q1 .btn', function() {
+                Shiny.setInputValue('cbc_q1_interacted', true, {priority: 'event'});
+            });
+        </script>
+</div>
+</div>
+```
+
+:::
+:::
+
+
+
+<center>
+<img src="images/cbc_table.png" width=500>
+</center>
+
+ -->
+</section></section><section id="preview-and-check" class="level2"><h2 class="anchored" data-anchor-id="preview-and-check">Preview and check</h2>
+<p>The rest of the <code>server()</code> function in the <code>app.R</code> file has the remaining components we need, like any conditional display or skip logic. This is all standard features of any surveydown survey, so we won’t cover them in detail here and instead direct you to the <a href="https://surveydown.org/documentation">documentation</a> for details.</p>
+<p>But before you go live, it’s a good idea to do some quick testing. You can test your survey even without having it connected to a database by setting <code>ignore = TRUE</code> in the <code><a href="https://pkg.surveydown.org/reference/sd_database.html">sd_database()</a></code> function. Of course, you probably should also test it after connecting it to a database to ensure that responses are being properly stored.</p>
+<p>When testing, you might get an error - don’t panic! Read the terminal output carefully and debug. There’s a good chance you may have missed a bug somewhere in your server code. Look in your <code>app.R</code> file to see if you can spot the error.</p>
+</section><section id="getting-the-data" class="level2"><h2 class="anchored" data-anchor-id="getting-the-data">Getting the data</h2>
+<p>Once your survey is live and you start collecting responses, you can easily access your data with the <code><a href="https://pkg.surveydown.org/reference/sd_get_data.html">sd_get_data()</a></code> function. This is typically done in a separate R file, which might look something like this:</p>
+<div class="cell">
+<div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;"><a href="https://pkg.surveydown.org">surveydown</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">db</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://pkg.surveydown.org/reference/sd_database.html">sd_database</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>  user   <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'postgres.axzkymswaxcasjdflkurrj'</span>,</span>
+<span>  host   <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'aws-0-us-east-1.pooler.supabase.com'</span>,</span>
+<span>  port   <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5678</span>,</span>
+<span>  db_name <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'postgres'</span>,</span>
+<span>  table_name <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'my_table'</span></span>
+<span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">data</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://pkg.surveydown.org/reference/sd_get_data.html">sd_get_data</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">db</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+<p>Obviously your settings in <code><a href="https://pkg.surveydown.org/reference/sd_database.html">sd_database()</a></code> would need to match those of your Supabase database that you created for your survey.</p>
+<p>And that’s it! We hope this post was helpful, and do go check out the <a href="https://github.com/surveydown-dev/demo-choice-based-conjoint">this GitHub repo</a> to try out the demo yourself.</p>
+
+
+</section><a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<ol>
+<li id="fn1"><p>Yes, people have <a href="https://www.emerald.com/insight/content/doi/10.1108/00070709610150879/full/html">actually done conjoint surveys on fruit</a> before.↩︎</p></li>
+</ol></section></div> ]]></description>
+  <category>R</category>
+  <category>tutorial</category>
+  <category>conjoint</category>
+  <guid>https://www.surveydown.org/blog/2024-08-28-choice-based-conjoint-surveys-with-surveydown/</guid>
+  <pubDate>Wed, 28 Aug 2024 00:00:00 GMT</pubDate>
+  <media:content url="https://www.surveydown.org/blog/2024-08-28-choice-based-conjoint-surveys-with-surveydown/images/example.png" medium="image" type="image/png" height="58" width="144"/>
+</item>
+<item>
+  <title>Introducing surveydown: A markdown-based framework for generating surveys with Quarto and shiny</title>
+  <dc:creator>John Paul Helveston</dc:creator>
+  <link>https://www.surveydown.org/blog/2024-08-21-introducing-surveydown/</link>
+  <description><![CDATA[ <center>
+<img src="https://www.surveydown.org/blog/2024-08-21-introducing-surveydown/logo.png" style="max-width: 200px; width: 100%;">
+</center>
+<p><br></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>This post was made just after launching surveydown. Much of the platform architecture has changed since then, so check the <a href="https://surveydown.org/docs.html">documentation</a> for the latest correct information.</strong></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Note:</strong> This post is largely a copy of the <a href="https://www.jhelvy.com/blog/2024-08-10-introducing-surveydown/">a similar post</a> I made on my personal website, with some minor edits.</p>
+</div>
+</div>
+<p>This post introduces the {surveydown} R package, a new way to design surveys using markdown, R, Quarto, and shiny. The idea for this platform has been brewing for a while (see <a href="https://jhelvy.com/blog/2023-04-06-markdown-surveys/">this blog post</a> for more on the motivation for this project), but now the package is finally here!</p>
+<p>In this post, I’m going to show you a quick overview of the {surveydown} R package for making markdown-based surveys as well as a little about <em>why</em> we built surveydown.</p>
+<section id="a-new-way-to-design-surveys" class="level1"><h1>A new way to design surveys</h1>
+<p><a href="https://surveydown.org/">surveydown</a> is a flexible platform for making surveys in <i class="fa-brands fa-r-project" aria-label="r-project"></i> using three open source technologies: <a href="https://quarto.org/">Quarto</a>, <a href="https://shiny.posit.co/">shiny</a>, and <a href="https://supabase.com/">supabase</a>. The package is still in development, but you can already use it to create surveys.</p>
+<br><center>
+<img src="https://www.surveydown.org/blog/2024-08-21-introducing-surveydown/technologies.png" style="max-width: 600px; width: 100%;">
+</center>
+<p><br></p>
+<p>The basic concept is this:</p>
+<ol type="1">
+<li>Design your survey as a <a href="https://quarto.org/docs/dashboards/interactivity/shiny-r.html">Quarto shiny document</a> using markdown and R code.</li>
+<li>Render your doc into a <a href="https://shiny.posit.co/">shiny</a> app that can be hosted online and sent to respondents.</li>
+<li>Store your survey responses in a <a href="https://supabase.com/">supabase</a> database.</li>
+</ol>
+<p>In surveydown, your entire survey is designed using markdown and R code in a single Quarto document. There is no GUI or drag-and-drop interface - simply write plain text (markdown and R code) and boom - you have a survey!</p>
+<p>The <a href="https://pkg.surveydown.org/">{surveydown} package</a> provides a set of functions for defining the survey content and control logic. Each function starts with <code>sd_</code> to make them easy to identify. You can add content to your survey using markdown formatting, or in RStudio you can edit with the visual editor. Survey questions are defined in R code chunks with the <code>sd_question()</code> function. Pages are defined using fences (<code>:::</code>), and navigation buttons handled with the <code>sd_next()</code> function. You can modify the control logic in the server code chunk (the last code chunk at the bottom of the .qmd file) with the <code>sd_config()</code> function, and you can configure the database with the <code>sd_database()</code>.</p>
+<p>The <a href="https://surveydown.org/docs.html">documentation</a> has many more details on all of this, and later in this post I’ll give a quick overview of a few of these features. But first, let me tell you a little about <em>why</em> we decided to build surveydown.</p>
+</section><section id="why-did-we-build-surveydown" class="level1"><h1>Why did we build surveydown?</h1>
+<blockquote class="blockquote">
+<p>Do we really need another survey platform?</p>
+</blockquote>
+<p>Like many researchers who do a lot of survey work, I’ve been frustrated with most survey platforms available. Commerical platforms like Qualtrics and SurveyMonkey are great, but they are expensive and are difficult to version control, and collaboration with others is near impossible, especially if your collaborator doesn’t have a license of their own. They also don’t allow me to own my own survey data, meaning I always am at the mercy of the platform owner. And the features are often limited. It’s not easy to do more complex things like randomization, conditional display, etc.</p>
+<p>The only other open-source survey platform I have used is <a href="https://formr.org/">formr</a>, which is a very powerful platform, but it is rather clunky to use (you define your survey in Google sheet cells…there’s a learning curve), and it is not as easy to edit as a simple markdown file.</p>
+<p>What we’ve come up with is a survey platform that is flexible, <em>relatively</em> easy to use, and built entirely with open-source technologies. I think it solves a lot of problems, and hopefully someone out there will find it useful.</p>
+<section id="open-source" class="level2"><h2 class="anchored" data-anchor-id="open-source">Open source</h2>
+<p>surveydown is built entirely with open-source technologies, making it transparent and customizable. Best of all, no expensive licenses! Just install and use it!</p>
+</section><section id="own-your-data" class="level2"><h2 class="anchored" data-anchor-id="own-your-data">Own your data</h2>
+<p>With surveydown, you retain full ownership and control of your survey data. The responses are stored in your own Supabase database, ensuring that you have complete access to the data. This is particularly important for researchers dealing with sensitive information or those who need to comply with specific data protection regulations. We’re still working on enabling you to use your own hosted database, which will provide even more flexibility.</p>
+</section><section id="ease-of-editing" class="level2"><h2 class="anchored" data-anchor-id="ease-of-editing">Ease of editing</h2>
+<p>Designing a survey in surveydown is a pretty straightforward process. The markdown-based approach allows for quick modifications and easy navigation through your survey. And since it’s built on <a href="https://quarto.org/">Quarto</a>, you can use all of the features of Quarto to make your survey look great, like changing the theme, adding custom CSS, etc. You can also easily preview your survey as you edit it, and even run your survey locally to test it out before you deploy it, either with a button click in RStudio or with a <code>quarto serve</code> command in the terminal.</p>
+</section><section id="did-i-mention-you-can-run-r-code-in-your-survey" class="level2"><h2 class="anchored" data-anchor-id="did-i-mention-you-can-run-r-code-in-your-survey">Did I mention you can run R code in your survey?</h2>
+<p>Every surveydown survey uses R code chunks for questions. But you can also insert R code for all sorts of other things. For example, if you wanted to randomize the values shown in a question, you could write some R code for that. Want to insert a plot of something? Write a little ggplot code. You can also add interactive components to your surveys, such as showing a respondent how their responses compare to others in real time.</p>
+</section><section id="easy-version-control-and-collaboration" class="level2"><h2 class="anchored" data-anchor-id="easy-version-control-and-collaboration">Easy version control and collaboration</h2>
+<p>Because the entire survey is defined in a single plain text file, surveydown naturally integrates with version control systems like Git. This allows you to track changes over time, collaborate with team members, and maintain a clear history of your survey’s development.</p>
+</section><section id="reproducible" class="level2"><h2 class="anchored" data-anchor-id="reproducible">Reproducible</h2>
+<p>Surveydown promotes reproducible research by allowing you to define your entire survey in a single, self-contained plain text document. This has a ton of benefits:</p>
+<ul>
+<li>Want someone else to be able to reproduce your experiment? Just give them the .qmd file and any other files they need (e.g., images, data, etc.), and they can reproduce your survey on their own computer.</li>
+<li>Want to print out your survey for an appendix? Render the survey with all pages visible then print it to pdf.</li>
+<li>Want others to see your survey live? Just set the database into pause mode and your survey will function without recording any responses.</li>
+</ul>
+<p>Reproducibility is something we had in mind from the start with this project, and we’ve tried to make it as easy as possible for your surveydown surveys to be fully reproducible.</p>
+</section></section><section id="introduction-to-surveydown" class="level1"><h1>Introduction to surveydown</h1>
+<section id="getting-started" class="level2"><h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
+<p>After getting everything <a href="https://surveydown.org//docs/getting-started.html#install">installed</a>, we recommend starting with a template survey project. To do so, run the following in the R console:</p>
+<div class="cell">
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">surveydown</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://pkg.surveydown.org/reference/sd_create_survey.html">sd_create_survey</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"path/to/folder"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+<p>This will create a folder with the following files:</p>
+<ul>
+<li>
+<code>example.qmd</code>: a template survey you should edit.</li>
+<li>
+<code>example.Rproj</code>: An RStudio project file (helpful if you’re working in RStudio)</li>
+<li>
+<code>_extensions</code>: A folder with the surveydown Quarto extension needed to make everything work (don’t modify this).</li>
+</ul>
+<p>If you have the example open in RStudio, you can click the “Run document” button, or in your terminal run <code>quarto serve example.qmd</code>. Either approach should render the example survey into a shiny app that you can preview in a browser. Don’t worry just yet about setting up your database or making the survey live - for now, we’re going to focus on designing the survey and running it locally to preview it. The example survey should look like this:</p>
+<center>
+<img src="https://www.surveydown.org/blog/2024-08-21-introducing-surveydown/example.png" style="max-width: 700px; width: 100%;">
+</center>
+</section><section id="adding-pages" class="level2"><h2 class="anchored" data-anchor-id="adding-pages">Adding pages</h2>
+<p>In surveydown, pages are delineated using “fences”, like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:::</span> {<span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#welcome .sd-page}</span></span>
+<span id="cb2-2"></span>
+<span id="cb2-3">Page <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> content here</span>
+<span id="cb2-4"></span>
+<span id="cb2-5"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:::</span></span>
+<span id="cb2-6"></span>
+<span id="cb2-7"><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">:::</span> {<span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#page2 .sd-page}</span></span>
+<span id="cb2-8"></span>
+<span id="cb2-9">Page <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> content here</span>
+<span id="cb2-10"></span>
+<span id="cb2-11"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:::</span></span></code></pre></div>
+</div>
+<p>As you can see, we use three colon symbols <code>:::</code>, called a “fence”, to mark the start and end of pages. This notation is commonly used in Quarto for a variety of use cases, like defining <a href="https://quarto.org/docs/authoring/figures.html#subfigures">subfigures</a> in images.</p>
+<p>In the starting fence, you need to define a page name (e.g.&nbsp;<code>welcome</code> and <code>page2</code> in the example above) and you need to define the class as <code>.sd-page</code>. Then anything you put between the page fences will appear on that page.</p>
+<p>To navigate to the next page, you need to insert a <code>sd_next()</code> function call inside a code chunk, like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```{r}</span></span>
+<span id="cb3-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd_next</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">next_page =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'page2'</span>)</span>
+<span id="cb3-3"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```</span></span></code></pre></div>
+</div>
+<p>The above code chunk will create a “Next” button that goes on to page 2 that looks like this:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div data-next-page="page2" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+<button class="btn btn-default action-button sd-enter-button" id="page_id_next" onclick="Shiny.setInputValue('next_page', this.parentElement.getAttribute('data-next-page'));" style="display: block; margin: auto;" type="button">Next</button>
+</div>
+</div>
+</div>
+<p>You would need to place the code chunk in between the <code>:::</code> fences of the <code>welcome</code> page in order to have a “Next” button that goes on to page 2. You can also send the user to other pages by just changing the <code>next_page</code> argument. Finally, you can also change the label of the button by changing the <code>label</code> argument, like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```{r}</span></span>
+<span id="cb4-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd_next</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">next_page =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'page2'</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Next page'</span>)</span>
+<span id="cb4-3"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```</span></span></code></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div data-next-page="page2" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+<button class="btn btn-default action-button sd-enter-button" id="page_id_next" onclick="Shiny.setInputValue('next_page', this.parentElement.getAttribute('data-next-page'));" style="display: block; margin: auto;" type="button">Next page</button>
+</div>
+</div>
+</div>
+</section><section id="adding-questions" class="level2"><h2 class="anchored" data-anchor-id="adding-questions">Adding questions</h2>
+<p>Every survey question is created using the <code>sd_question()</code> function inside a code chunk. The question type is defined by the <code>type</code> argument. For example, to add a multiple choice question, you could insert the following code chunk:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```{r}</span></span>
+<span id="cb5-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd_question</span>(</span>
+<span id="cb5-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">type  =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'mc'</span>,</span>
+<span id="cb5-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">id    =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'penguins'</span>,</span>
+<span id="cb5-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Which is your favorite type of penguin?"</span>,</span>
+<span id="cb5-6">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">option =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(</span>
+<span id="cb5-7">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Adélie'</span>    <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'adelie'</span>,</span>
+<span id="cb5-8">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Chinstrap'</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'chinstrap'</span>,</span>
+<span id="cb5-9">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Gentoo'</span>    <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'gentoo'</span></span>
+<span id="cb5-10">  )</span>
+<span id="cb5-11">)</span>
+<span id="cb5-12"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```</span></span></code></pre></div>
+</div>
+<p>The above code chunk will create a multiple choice question that looks like this:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="container-penguins" data-question-id="penguins" class="question-container" style="width: 500;" oninput="Shiny.setInputValue('penguins_interacted', true, {priority: 'event'});" onclick="Shiny.setInputValue('penguins_interacted', true, {priority: 'event'});">
+<div id="penguins" class="form-group shiny-input-radiogroup shiny-input-container" aria-labelledby="penguins-label">
+<label class="control-label" id="penguins-label" for="penguins"><p>Which is your favorite type of penguin?</p>
+</label>
+<div class="shiny-options-group">
+<div class="radio">
+<label>
+<input type="radio" name="penguins" value="adelie"><span>Adélie</span>
+</label>
+</div>
+<div class="radio">
+<label>
+<input type="radio" name="penguins" value="chinstrap"><span>Chinstrap</span>
+</label>
+</div>
+<div class="radio">
+<label>
+<input type="radio" name="penguins" value="gentoo"><span>Gentoo</span>
+</label>
+</div>
+</div>
+</div>
+<span class="hidden-asterisk">*</span>
+</div>
+</div>
+</div>
+<p><br></p>
+<p>The <code>sd_question()</code> function can be used to create a variety of <a href="https://surveydown.org/docs/question-types.html">question types</a>, like text input, select drop down choices, and more by changing the <code>type</code> argument.</p>
+<p>The function has many other arguments for customizing the look and feel of the question (e.g., <code>height</code> and <code>width</code>, etc.).</p>
+</section><section id="the-server-chunk" class="level2"><h2 class="anchored" data-anchor-id="the-server-chunk">The server chunk</h2>
+<p>At the very bottom of the .qmd file is a special “server” code chunk (that’s the <code>#| context: server</code> bit) that defines the app server. This is where you can customize and control the survey flow logic as well as where you define the database that will store the survey response data. It looks like this:</p>
+<div class="cell" data-context="server">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```{r}</span></span>
+<span id="cb6-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#| context: server</span></span>
+<span id="cb6-3"></span>
+<span id="cb6-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Define the database settings</span></span>
+<span id="cb6-5">db <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd_database</span>()</span>
+<span id="cb6-6"></span>
+<span id="cb6-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Define the configuration settings</span></span>
+<span id="cb6-8">config <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd_config</span>()</span>
+<span id="cb6-9"></span>
+<span id="cb6-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># The sd_server() function initiates your survey - don't change this</span></span>
+<span id="cb6-11"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd_server</span>(</span>
+<span id="cb6-12">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">input   =</span> input,</span>
+<span id="cb6-13">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">session =</span> session,</span>
+<span id="cb6-14">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">config  =</span> config,</span>
+<span id="cb6-15">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">db      =</span> db</span>
+<span id="cb6-16">)</span>
+<span id="cb6-17"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```</span></span></code></pre></div>
+</div>
+<p>The <code>sd_database()</code> function is where you set up your database. The <code>sd_server()</code> function makes everything run, which you can safely ignore - just don’t change it and all will be good!</p>
+<p>The middle part (the <code>sd_config()</code> function) is where you can define custom control logic for the survey, such as <em>conditional display</em> (conditionally displaying a question based on responses to questions), or <em>conditional skip</em> (conditionally sending the respondent to a page based on responses to questions).</p>
+</section><section id="going-live" class="level2"><h2 class="anchored" data-anchor-id="going-live">Going live!</h2>
+<p>Once you are happy with your survey, you can deploy it live to any server of your choice. Since it’s a shiny app, you can <a href="https://surveydown.org/docs/deployment.html#deploying-to-shinyapps.io">deploy it to shinyapps.io</a> for free!</p>
+</section></section><section id="features" class="level1"><h1>Features</h1>
+<p>Since surveydown is built on top of Shiny, it provides tremendous flexibility in terms of what you can do with your survey. Below are a few examples of some commons things you may want to do with your survey.</p>
+<section id="conditional-display" class="level2"><h2 class="anchored" data-anchor-id="conditional-display">Conditional display</h2>
+<p>Let’s say we had a fourth option for “other” in our multiple choice question about penguins. If the respondent chose it, you may want a second question to popup that allows them to specify the other penguin type. To implement this, you would need to define both questions, e.g.:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```{r}</span></span>
+<span id="cb7-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd_question</span>(</span>
+<span id="cb7-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">type  =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'mc'</span>,</span>
+<span id="cb7-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">id    =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'penguins'</span>,</span>
+<span id="cb7-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Which is your favorite type of penguin?"</span>,</span>
+<span id="cb7-6">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">option =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(</span>
+<span id="cb7-7">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Adélie'</span>    <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'adelie'</span>,</span>
+<span id="cb7-8">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Chinstrap'</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'chinstrap'</span>,</span>
+<span id="cb7-9">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Gentoo'</span>    <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'gentoo'</span>,</span>
+<span id="cb7-10">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Other'</span>     <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'other'</span></span>
+<span id="cb7-11">  )</span>
+<span id="cb7-12">)</span>
+<span id="cb7-13"></span>
+<span id="cb7-14"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd_question</span>(</span>
+<span id="cb7-15">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">type  =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"text"</span>,</span>
+<span id="cb7-16">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">id    =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"penguins_other"</span>,</span>
+<span id="cb7-17">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Please specify the other penguin type:"</span></span>
+<span id="cb7-18">)</span>
+<span id="cb7-19"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```</span></span></code></pre></div>
+</div>
+<p>Then in the server code chunk, you could use the <code>show_if</code> argument to define that the <code>penguins_other</code> question would only be shown if the respondent chose the <code>other</code> option in the <code>penguins</code> question, like this:</p>
+<div class="cell">
+<div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">config</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd_config</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>  show_if <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tibble</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">question_id</span>,  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">question_value</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">target</span>,</span>
+<span>    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"penguins"</span>,    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"other"</span>,         <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"penguins_other"</span></span>
+<span>  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+<p>This will make the <code>penguins_other</code> question only appear if the respondent chose the <code>other</code> option in the <code>penguins</code> question, like this:</p>
+<center>
+<img src="https://www.surveydown.org/blog/2024-08-21-introducing-surveydown/show_if.gif" style="max-width: 600px; width: 100%; box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.3); border: 1px solid #000; border-radius: 5px;">
+</center>
+<p><br></p>
+<p>Here we’re using the <code><a href="https://tibble.tidyverse.org/reference/tribble.html">tibble::tribble()</a></code> function to define a data frame with three columns:</p>
+<ul>
+<li>
+<code>question_id</code>: The <code>id</code> of the triggering question.</li>
+<li>
+<code>question_value</code>: The triggering value.</li>
+<li>
+<code>target</code>: The <code>id</code> of the target question to display.</li>
+</ul>
+<p>You don’t have to use <code><a href="https://tibble.tidyverse.org/reference/tribble.html">tibble::tribble()</a></code>, and in fact if you have a lot of <code>show_if</code> conditions, then you could create a csv file with all of your conditions in it and read it in to set the <code>show_if</code> conditions (just make sure the header has the same three column names), e.g.:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">config <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd_config</span>(</span>
+<span id="cb9-2">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">show_if =</span> readr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'path/to/show_if_conditions.csv'</span>)</span>
+<span id="cb9-3">  )</span>
+<span id="cb9-4"><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+</section><section id="conditional-skip" class="level2"><h2 class="anchored" data-anchor-id="conditional-skip">Conditional skip</h2>
+<p>Often times you’ll want to screen people out of a survey based on responses to questions. For example, let’s say you only wanted to only include people who own a vehicle. On your first page (e.g., with page name <code>welcome</code>), you could screen out people who do <em>not</em> own a vehicle.</p>
+<p>First, define a question about their vehicle ownership, e.g.:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```{r}</span></span>
+<span id="cb10-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd_question</span>(</span>
+<span id="cb10-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">type  =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'mc'</span>,</span>
+<span id="cb10-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">id    =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'vehicle_ownership'</span>,</span>
+<span id="cb10-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Do you own your vehicle?"</span>,</span>
+<span id="cb10-6">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">option =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(</span>
+<span id="cb10-7">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Yes'</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'yes'</span>,</span>
+<span id="cb10-8">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'No'</span>  <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'no'</span></span>
+<span id="cb10-9">  )</span>
+<span id="cb10-10">)</span>
+<span id="cb10-11"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```</span></span></code></pre></div>
+</div>
+<p>Then in the server code chunk, you could use the <code>skip_if</code> argument in <code>sd_config()</code> to define the behavior of the next button on the <code>welcome</code> page, like this:</p>
+<div class="cell">
+<div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">config</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd_config</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>  skip_if <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tibble</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">question_id</span>,        <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">question_value</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">target</span>,</span>
+<span>    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"vehicle_ownership"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"no"</span>,            <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"screenout"</span></span>
+<span>  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+<p>This sets up a condition where if the respondent chooses <code>no</code> on the <code>vehicle_ownership</code> question, they will be sent to a page named <code>screenout</code>. You could put such a page at the end of the survey, something like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:::</span> {<span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#screenout .sd-page}</span></span>
+<span id="cb12-2"></span>
+<span id="cb12-3">Sorry, but you are not qualified to take our survey.</span>
+<span id="cb12-4"></span>
+<span id="cb12-5"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:::</span></span></code></pre></div>
+</div>
+<p>Notice that I don’t have a <code>sd_next()</code> on this screenout page. That is how you define an end point for the survey taker. If there’s no “Next” button, then they cannot navigate anywhere else, so the survey is over.</p>
+</section><section id="required-responses" class="level2"><h2 class="anchored" data-anchor-id="required-responses">Required responses</h2>
+<p>By default, no questions are required. However, you can make questions required by adding the question <code>id</code> to the <code>required</code> argument in <code>sd_config()</code>, like this:</p>
+<div class="cell">
+<div class="sourceCode" id="cb13" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">config</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd_config</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>  required_questions <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"vehicle_ownership"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"penguins_other"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+<p>This will make the respondent unable to proceed until they have answered the required questions. It will also place a red asterisk (*) next to the question label to indicate that the question is required.</p>
+<p>You can also make all questions required by setting <code>all_questions_required = TRUE</code> like this:</p>
+<div class="cell">
+<div class="sourceCode" id="cb14" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">config</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd_config</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>  all_questions_required <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span></span>
+<span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+</section><section id="reactivity" class="level2"><h2 class="anchored" data-anchor-id="reactivity">Reactivity</h2>
+<p>One other feature that is particularly powerful is the ability to use R code in your survey via Shiny’s reactive programming. This allows you to make your survey more interactive and to use the full power of R to create custom functionality.</p>
+<section id="demo-1-displaying-content-based-on-previous-responses" class="level3"><h3 class="anchored" data-anchor-id="demo-1-displaying-content-based-on-previous-responses">Demo 1: Displaying content based on previous responses</h3>
+<p>Let’s say you wanted to create a survey that asked the respondent’s name, and then displayed a personalized message based on their name. You could do this by first asking their name:</p>
+<div class="cell">
+<div class="sourceCode" id="cb15" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd_question</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>  type  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"text"</span>,</span>
+<span>  id    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"name"</span>,</span>
+<span>  label <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"What is your name?"</span></span>
+<span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+<p>Then you can use the <code>sd_display_value("name")</code> function to display the value of the <code>name</code> question in other parts of your survey. For example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1">Welcome, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">r sd_display_value("name")</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span></span></code></pre></div>
+</div>
+<p>Which would render as something like “Welcome, Dave!” (assuming the respondent entered “Dave” in the <code>name</code> question). This works because the <code>sd_display_value()</code> function is reactive, meaning it will update the display based on the respondent’s responses.</p>
+</section><section id="demo-2-displaying-randomized-question-labels" class="level3"><h3 class="anchored" data-anchor-id="demo-2-displaying-randomized-question-labels">Demo 2: Displaying randomized question labels</h3>
+<p>Let’s say you wanted to show a series of questions, but you wanted to randomize the labels shown for each question. You could do this by first defining a list of labels, and then using the <code>sd_question_reactive()</code> function to create a question that will display a random label from the list.</p>
+<p>For example, let’s ask the respondent to rate different car brands from a random set of brands. You could first pre-define the randomized sets of brands for each respondent and store it as a csv file, like this:</p>
+<div class="cell">
+<div class="sourceCode" id="cb17" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">brands</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Toyota"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Ford"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Chevrolet"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Honda"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Nissan"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Tesla"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">design</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>  respondent_id <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, each <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span>,</span>
+<span>  brand <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">x</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">brands</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>, replace <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">write_csv</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">design</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"design.csv"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+<p>This would make a design file that looks like this:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;   respondent_id     brand
+#&gt; 1             1     Honda
+#&gt; 2             1    Nissan
+#&gt; 3             1    Toyota
+#&gt; 4             2    Toyota
+#&gt; 5             2 Chevrolet
+#&gt; 6             2     Honda</code></pre>
+</div>
+</div>
+<p>Note that this would not be done in your survey.qmd file - it’s just a one-time thing to create the design (probably stored in an R file).</p>
+<p>Then in your server code chunk, you could read in the design file and use it to randomize the labels for each question based on a randomly chosen respondent:</p>
+<div class="cell">
+<div class="sourceCode" id="cb19" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">design</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"design.csv"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">resp_id</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">design</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">respondent_id</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">df_resp</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">design</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">respondent_id</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">resp_id</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">options</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">options</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">df_resp</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">brand</span></span>
+<span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd_question_reactive</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>  type  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"mc"</span>,</span>
+<span>  id    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"brands"</span>,</span>
+<span>  label <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Which of these brands do you like best?"</span>,</span>
+<span>  option <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">options</span></span>
+<span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+<p>Here the <code>sd_question_reactive()</code> function is used because the labels depend on the randomly chosen respondent. This means the labels will be different for each respondent.</p>
+<p>Since this is a reactive question, <strong>this code must be placed inside the server code chunk</strong>, not where you want it to appear in the survey. To define where in the survey the question should appear, you use the <code>sd_display_question()</code> function with the <code>id</code> set to the same value as the <code>id</code> in the <code>sd_question_reactive()</code> function, like this:</p>
+<div class="cell">
+<div class="sourceCode" id="cb20" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd_display_question</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>id <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"brands"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+<p>Now the <code>brands</code> question will be displayed in the survey where you put this code chunk.</p>
+<p>Note that all question responses are automatically saved to the database, but if you wanted to store some other value (e.g.&nbsp;the randomly chosen <code>respondent_id</code>), you could do that with the <code>sd_store_value()</code> function, like this:</p>
+<div class="cell">
+<div class="sourceCode" id="cb21" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd_store_value</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">resp_id</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+</section></section></section><section id="how-we-built-it" class="level1"><h1>How we built it</h1>
+<p>Before I wrap up, I just want to say that I am absolutely amazed at the time we live in. I have had this idea in mind for many years, but I’m not a web developer, and I never could come up with a way to make it happen. That was actually what motivated me to write my <a href="https://jhelvy.com/blog/2023-04-06-markdown-surveys/">previous blog post</a> - it was a call for help from others!</p>
+<p>But two things happened relatively recently that made it possible:</p>
+<ol type="1">
+<li>The rise of Quarto</li>
+<li>The rise of LLMs</li>
+</ol>
+<p>After I switched my website over from distill to Quarto, I began to learn more and more about how powerful Quarto really is for building things on the web. Then I saw the <a href="https://quarto.org/docs/dashboards/interactivity/shiny-r.html">Quarto shiny document</a> framework and I immediately thought that this just might be the missing piece I needed to make surveydown a reality. It does all the legwork of converting markdown and R code into a shiny app.</p>
+<p>Of course, implementing this idea was still really, really hard. There were many different ways to start, and I got some <a href="https://github.com/quarto-dev/quarto-cli/discussions/6975">excellent feedback</a> from people in the R / Quarto dev community. Garrick Aden-Buie in particular was the first to <a href="https://github.com/quarto-dev/quarto-cli/discussions/6975#discussioncomment-8828907">propose the idea of using fences</a> to denote page breaks, which was a big breakthrough early on.</p>
+<p>But the biggest breakthrough came when I started using GPT-4 to help me brainstorm many different ideas while developing the overall platform architecture. <a href="https://chatgpt.com/share/57fda3b1-2e76-4ab1-b7af-e53eac597986">This conversation</a> in particular was game changing. In it, I came to solutions for multiple complex problems, including the page navigation logic and which platform to use for the database (we originally started with using Googlesheets, but ultimately decided on Supabase because it is open-source and just far easier to use).</p>
+<p>Of course, the AI didn’t do everything. Two of my students, <a href="https://github.com/pingfan-hu">Pingfan Hu</a> and <a href="https://github.com/Buneabt">Bogdan Bunea</a> have been instrumental in helping implement many of the features the package now has, and they too have leveraged LLMs to accelerate their problem solving. Thank you guys for all of your hard work! 🙏</p>
+<p>It’s been amazing watching this project come together over such a short period of time. The original conversations I had with GPT-4 and others in the R / Quarto community were just in March and April of this year (2024). We really didn’t start developing in earnest until the summer, and really only late June / early July at that. In just a few months, we’ve gone from an idea to a fully functional survey platform.</p>
+<p>If you give surveydown a try, please let us know what you think! And if you find a bug or something you wished existed, please post an issue on <a href="https://github.com/surveydown-dev/surveydown/issues">github</a>.</p>
+<p>I’m so excited to see what you all will build with surveydown!</p>
+
+
+</section><a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>R</category>
+  <category>package</category>
+  <category>markdown</category>
+  <category>shiny</category>
+  <category>package</category>
+  <category>quarto</category>
+  <guid>https://www.surveydown.org/blog/2024-08-21-introducing-surveydown/</guid>
+  <pubDate>Wed, 21 Aug 2024 00:00:00 GMT</pubDate>
+  <media:content url="https://www.surveydown.org/blog/2024-08-21-introducing-surveydown/logo.png" medium="image" type="image/png" height="144" width="144"/>
+</item>
+</channel>
+</rss>

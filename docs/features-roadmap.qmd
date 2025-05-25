@@ -16,26 +16,38 @@ eval: true
 ```{r setup}
 library(tinytable)
 
-# Get todo list from todo repo
-todo_df <- read.csv(
-  "https://raw.githubusercontent.com/surveydown-dev/todo/refs/heads/main/todo.csv",
+# Get df from todo repo
+df <- read.csv(
+  "https://raw.githubusercontent.com/surveydown-dev/todo/refs/heads/main/df.csv",
   check.names = FALSE
 )
 
 # Separate incompletes
-incomplete_ids <- which(todo_df$Progress == 0)
-todo_df$Progress <- NULL
-incomplete <- todo_df[incomplete_ids,]
-todo_df <- todo_df[-incomplete_ids,]
-todo_df <- todo_df[order(todo_df$Version),]
+# Separate dataframes by Progress value
+feature_ids <- which(df$Progress == 1)
+todo_ids <- which(df$Progress == 2)
+feature_apps_ids <- which(df$Progress == 3)
+todo_apps_ids <- which(df$Progress == 4)
+
+# Remove Progress column
+df$Progress <- NULL
+
+# Create separate dataframes
+feature_df <- df[feature_ids,]
+todo_df <- df[todo_ids,]
+feature_apps_df <- df[feature_apps_ids,]
+todo_apps_df <- df[todo_apps_ids,]
+
+# Order feature dataframes by Version
+feature_df <- feature_df[order(feature_df$Version),]
+feature_apps_df <- feature_apps_df[order(feature_apps_df$Version),]
 ```
 
-### Supported Features
+### Features - surveydown
 
 ```{r}
 #| eval: true
-
-todo_df |> 
+feature_df |> 
   tt(theme = "grid", width = c(0.5, 0.2, 0.1, 0.1)) |>
   style_tt(fontsize = 1) |> 
   style_tt(j = c(1, 2), align = "l") |> 
@@ -44,12 +56,36 @@ todo_df |>
   format_tt(quarto = TRUE)
 ```
 
-### To Do / Roadmap
+### To Do - surveydown
 
 ```{r}
 #| eval: true
 
-incomplete |>
+todo_df |>
+  tt(theme = "grid", width = c(0.5, 0.2, 0.1, 0.1)) |>
+  style_tt(fontsize = 1) |> 
+  style_tt(j = c(1, 2), align = "l") |> 
+  style_tt(j = c(3, 4), align = "c") |> 
+  style_tt(i = 0, align = "c") |> 
+  format_tt(quarto = TRUE)
+```
+
+### Features - sdApps
+
+```{r}
+feature_apps_df |> 
+  tt(theme = "grid", width = c(0.5, 0.2, 0.1, 0.1)) |>
+  style_tt(fontsize = 1) |> 
+  style_tt(j = c(1, 2), align = "l") |> 
+  style_tt(j = c(3, 4), align = "c") |> 
+  style_tt(i = 0, align = "c") |> 
+  format_tt(quarto = TRUE)
+```
+
+### To Do - sdApps
+
+```{r}
+todo_apps_df |>
   tt(theme = "grid", width = c(0.5, 0.2, 0.1, 0.1)) |>
   style_tt(fontsize = 1) |> 
   style_tt(j = c(1, 2), align = "l") |> 

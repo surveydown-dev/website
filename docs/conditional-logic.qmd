@@ -146,7 +146,7 @@ server <- function(input, output, session) {
   # Store the condition value
   sd_store_value(rand_val)
 
-  # Use sd_show_if to direct to target page
+  # Use sd_show_if to show target pages
   sd_show_if(
     rand_val == 'a' ~ 'page2a',
     rand_val == 'b' ~ 'page2b'
@@ -297,7 +297,7 @@ server <- function(input, output, session) {
   # Store the condition value
   sd_store_value(rand_val)
 
-  # Use sd_show_if to direct to target page
+  # Use sd_show_if to show target pages
   sd_show_if(
     rand_val == 'a' ~ 'page2a',
     rand_val == 'b' ~ 'page2b'

@@ -103,63 +103,75 @@
     "text": "Welcome to surveydown.org!\nsurveydown is a flexible, open-source platform for making programmable, markdown-based surveys with , Quarto, Shiny, and PostgreSQL.\n\n\n\n\n\nAbout the package and the open-source technologies behind it.\n\n\nABOUT\n\n\n\n\n\n\n\n\nTemplates for an easy start.\n\n\nTEMPLATES\n\n\n\n\n\n\n\n\nComprehensive documentation for building surveys with surveydown.\n\n\nDOCUMENTATION\n\n\n\n\n\n\n\n\nFrequently asked questions.\n\n\nFAQ"
   },
   {
-    "objectID": "docs/troubleshoots.html",
-    "href": "docs/troubleshoots.html",
-    "title": "Troubleshoots",
+    "objectID": "docs/troubleshooting.html",
+    "href": "docs/troubleshooting.html",
+    "title": "Troubleshooting",
     "section": "",
     "text": "Note\n\n\n\nsurveydown requires some basic setups in order to get running. If you find glitches or failures, this page is for you.",
     "crumbs": [
       "Documentation",
       "Other",
-      "Troubleshoots"
+      "Troubleshooting"
     ]
   },
   {
-    "objectID": "docs/troubleshoots.html#r-rstudio",
-    "href": "docs/troubleshoots.html#r-rstudio",
-    "title": "Troubleshoots",
-    "section": "\n1 R & RStudio",
-    "text": "1 R & RStudio\nMake sure you have installed the up-to-date versions of R and RStudio. Both can be installed via this link.\nR is the coding language that supports surveydown, and RStudio is the IDE that runs R. Other than RStudio, you can also choose VS Code or Positron. These two IDEs are both open to multiple coding languages, with R included and high supported.",
+    "objectID": "docs/troubleshooting.html#r-rstudio",
+    "href": "docs/troubleshooting.html#r-rstudio",
+    "title": "Troubleshooting",
+    "section": "R & RStudio",
+    "text": "R & RStudio\nMake sure you have installed the up-to-date versions of R and RStudio. Both can be installed via this link.\nR is the coding language that supports surveydown, and RStudio is the IDE that runs R. Other than RStudio, you can also choose VS Code or Positron. These two IDEs are both open to multiple coding languages, with R included and highly supported.",
     "crumbs": [
       "Documentation",
       "Other",
-      "Troubleshoots"
+      "Troubleshooting"
     ]
   },
   {
-    "objectID": "docs/troubleshoots.html#quarto",
-    "href": "docs/troubleshoots.html#quarto",
-    "title": "Troubleshoots",
-    "section": "\n2 Quarto",
-    "text": "2 Quarto\nQuarto is a publication system that supports Markdown and code scripts. surveydown uses Quarto to turn scripts into nicely formatted survey pages.\nTo install Quarto, go to this page and click on the big download button.",
+    "objectID": "docs/troubleshooting.html#quarto",
+    "href": "docs/troubleshooting.html#quarto",
+    "title": "Troubleshooting",
+    "section": "Quarto",
+    "text": "Quarto\nQuarto is a publication system that supports Markdown and code scripts. surveydown uses Quarto to turn scripts into nicely formatted survey pages.\nSometimes, glitches of your quarto rendering can be simply solved by an update. To install or update Quarto, go to this page and click on the big download button.",
     "crumbs": [
       "Documentation",
       "Other",
-      "Troubleshoots"
+      "Troubleshooting"
     ]
   },
   {
-    "objectID": "docs/troubleshoots.html#r-packages",
-    "href": "docs/troubleshoots.html#r-packages",
-    "title": "Troubleshoots",
-    "section": "\n3 R Packages",
-    "text": "3 R Packages\nAfter you’ve installed all the above environments, it’s time to take care of the R packages. The function used to install R packages is install.packages(), and is thus used a lot in this section. You might want to re-run this function for these packages in order to get the most up-to-date version.\n\n3.1 Launch the R Console\nThe R Console is used to run R codes as well as installing R packages. It can be launched by one of the 2 ways:\n\n\nRStudio\nTerminal\n\n\n\nLaunch an RStudio session and you’ll find your R Console in it. It’s located at the bottom left by default.\n\n\n\n\n\nLaunch your Terminal and simply type “R” (capitalized) and then Enter.\n\n\n\n\n\n\n\n3.2 Shiny\nAll surveydown surveys are Shiny webapps, so Shiny is an essential component.\nIn your R Console, install Shiny:\n\ninstall.packages(\"shiny\")\n\n\n3.3 surveydown\nIn your R Console, install surveydown:\n\n# CRAN version - stable but might lack the latest features\ninstall.packages(\"surveydown\")\n\n# GitHub version - with the latest features\npak::pak(\"surveydown-dev/surveydown\", ask = FALSE)\n\nThe GitHub version installation requires the pak package. If you don’t have it, install it using:\n\ninstall.packages(\"pak\")\n\n\n\n\n\n\n\nNote\n\n\n\nSometimes neither of these approaches work, often because your path is managed by some package managing system like Anaconda. In this case, a third alternative is to download the zip file of the package source code and then install it locally.\nTo download the zip file, go the the surveydown repo, click on the green “Code” button and click on “Download Zip”, or simplify click on this link.\nUnzip this repo, then open the surveydown.Rproj file. In your R Console panel, run this code to install:\n\n# install.packages(\"pak\")\npak::local_install(ask = FALSE)\n\n\n\nSome useful links:\n\nsurveydown CRAN Page\nsurveydown GitHub repo\nsurveydown installation docs\n\n3.4 sdApps (Optional)\nsdApps is a companion R package with surveydown. It is intended for supportive webapps for surveydown. Now it has an sd_studio() function that launches the surveydown Studio, which supports GUI interface for survey construction, preview, and database management.\nIn your R Console, install sdApps:\n\n# GitHub version - sdApps is not on CRAN yet\npak::pak(\"surveydown-dev/sdApps\", ask = FALSE)\n\nCall sdApps::sd_studio() to launch the surveydown Studio:\n\nsdApps::sd_studio()\n\n\n\n\n\n3.5 Other R Packages\nYou might need some other R packages to get your survey running, for example, tidyverse, kableExtra, etc. Likewise, you can use the install.packages() function to install them:\n\ninstall.packages(\"tidyverse\")\ninstall.packages(\"kableExtra\")",
+    "objectID": "docs/troubleshooting.html#r-packages",
+    "href": "docs/troubleshooting.html#r-packages",
+    "title": "Troubleshooting",
+    "section": "R Packages",
+    "text": "R Packages\nAfter you’ve installed all the above environments, it’s time to take care of the R packages. The function we use to install R packages is install.packages(), and is thus used a lot in this section. You might want to re-run this function for these packages in order to get the most recent version.\nLaunch the R Console\nThe R Console is used to run R codes as well as install R packages. It can be launched by one of the 2 ways:\n\n\nRStudio\nTerminal\n\n\n\nLaunch an RStudio session and you’ll find your R Console in it. It’s located at the bottom left by default.\n\n\n\n\n\nLaunch your Terminal and simply type “R” (capitalized) and then Enter.\n\n\n\n\n\n\nShiny\nAll surveydown surveys are Shiny webapps, so Shiny is an essential component.\nIn your R Console, run this to install Shiny:\n\ninstall.packages(\"shiny\")\n\nsurveydown\nIn your R Console, run this to install surveydown:\n\n# CRAN version - stable but might lack the latest features\ninstall.packages(\"surveydown\")\n\n# GitHub version - with the latest features\npak::pak(\"surveydown-dev/surveydown\", ask = FALSE)\n\nThe GitHub version installation requires the pak package. If you don’t have it, install it using:\n\ninstall.packages(\"pak\")\n\n\n\n\n\n\n\nNote\n\n\n\nSometimes neither of these approaches work, often because your path is managed by some package managing system like Anaconda. In this case, a third alternative is to download the zip file of the package source code and then install it locally.\nTo download the zip file, go the the surveydown repo, click on the green “Code” button and click on “Download Zip”, or simplify click on this link.\nUnzip this repo, then open the surveydown.Rproj file. In your R Console panel, run this code to install:\n\n# install.packages(\"pak\")\npak::local_install(ask = FALSE)\n\n\n\nSome useful links:\n\nsurveydown CRAN Page\nsurveydown GitHub repo\nsurveydown installation docs\nsdApps (Optional)\nsdApps is a companion R package with surveydown. It is intended for supportive webapps for surveydown. Now it has an sd_studio() function that launches the surveydown Studio, which supports GUI interface for survey construction, preview, and database management.\nIn your R Console, run this to install sdApps:\n\n# GitHub version - sdApps is not on CRAN yet\npak::pak(\"surveydown-dev/sdApps\", ask = FALSE)\n\nCall sdApps::sd_studio() to launch the surveydown Studio:\n\nsdApps::sd_studio()\n\n\n\n\nOther R Packages\nYou might need some other R packages to get your survey running, for example, tidyverse, kableExtra, etc. Likewise, you can use the install.packages() function to install them:\n\ninstall.packages(\"tidyverse\")\ninstall.packages(\"kableExtra\")",
     "crumbs": [
       "Documentation",
       "Other",
-      "Troubleshoots"
+      "Troubleshooting"
     ]
   },
   {
-    "objectID": "docs/troubleshoots.html#database-connection",
-    "href": "docs/troubleshoots.html#database-connection",
-    "title": "Troubleshoots",
-    "section": "\n4 Database Connection",
-    "text": "4 Database Connection\n\n4.1 GSSAPI\n\n\n\n\n\n\nNote\n\n\n\nIf you encounter connection problem using surveydown with versions earlier than v0.12.5, this part might be helpful for you.\n\n\nYou might encounter connection problem caused by failure of GSSAPI (Generic Security Services Application Program Interface). It is a a protection layer for data security supported by PostgreSQL. In SQL management, it is controlled by the gssencmode argument.\nIn previous versions of surveydown (before v0.12.5), the sd_db_connect() and sd_dashboard() functions have a gssencmode default to \"prefer\", which enables GSSAPI, but may cause connection failuer under some network conditions (VPN, for example). Our previous solution is to manually change gssencmode from \"prefer\" to \"disable\", but it is less intuitive and causes more trouble than efficiency.\nTherefore, our current solution (versions after v0.12.5) is to remove the gssencmode argument from these functions, in which the GSSAPI is set to \"prefer\" by default, but if the connection errors due to network problem, it will auto-switch to \"disable\" and leave a message.\n\n4.2 Database Config\nIf your shinyapps deloyment fails, you should firstly make sure your Suppabase credentials are correctly defined, including your Supabase project settings and password settings. The password defined by sd_db_config() should be the same as your Supabase project password. Access the Storing Data page for how to set all Supabase credentials. Then, make sure your survey runs on your local machine and can successfully link with your Supabase project table. With these confirmed, your shinyapps deployment should work without problem.\nIf you still encounter an error (e.g., the page shows the app failed to start, or you see the page but it doesn’t run properly), try clearing your cache. The simplest way to do so is to reboot your computer. It may also help if you delete previously generated files, such as the survey.html file if you rendered it and the rsconnect folder. After re-rendering, you should be able to deploy the app without error.",
+    "objectID": "docs/troubleshooting.html#database-connection",
+    "href": "docs/troubleshooting.html#database-connection",
+    "title": "Troubleshooting",
+    "section": "Database Connection",
+    "text": "Database Connection\n\n\n\n\n\n\nNote\n\n\n\nIf you encounter connection problem using surveydown with versions earlier than v0.12.5, this part might be helpful for you.\n\n\nYou might encounter connection problem caused by failure of GSSAPI (Generic Security Services Application Program Interface). It is a a protection layer for data security supported by PostgreSQL. In SQL management, it is controlled by the gssencmode argument.\nIn previous versions of surveydown (before v0.12.5), the sd_db_connect() and sd_dashboard() functions have a gssencmode default to \"prefer\", which enables GSSAPI, but may cause connection failure under some network conditions (VPN, for example). Our previous solution is to manually change gssencmode from \"prefer\" to \"disable\", but it is less intuitive and causes more trouble than efficiency.\nTherefore, our current solution (versions after v0.12.5) is to remove the gssencmode argument from these functions, in which the GSSAPI is set to \"prefer\" by default, but if the connection errors due to network problem, it will auto-switch to \"disable\" and leave a message.",
     "crumbs": [
       "Documentation",
       "Other",
-      "Troubleshoots"
+      "Troubleshooting"
+    ]
+  },
+  {
+    "objectID": "docs/troubleshooting.html#still-cant-deploy",
+    "href": "docs/troubleshooting.html#still-cant-deploy",
+    "title": "Troubleshooting",
+    "section": "Still Can’t Deploy?",
+    "text": "Still Can’t Deploy?\nIf your shinyapps deployment fails, you should firstly make sure your Supabase credentials are correctly defined, including your Supabase project settings and password settings. The password defined by sd_db_config() should be the same as your Supabase project password. Access the Storing Data page for how to set all Supabase credentials. Then, make sure your survey runs on your local machine and can successfully link with your Supabase project table. With these confirmed, your shinyapps deployment should work without problem.\nIf you still encounter an error (e.g., the page shows the app failed to start, or you see the page but it doesn’t run properly), try clearing your cache. The simplest way to do so is to reboot your computer. It may also help if you delete previously generated files, such as the survey.html file if you rendered it and the rsconnect folder. After re-rendering, you should be able to deploy the app without error.",
+    "crumbs": [
+      "Documentation",
+      "Other",
+      "Troubleshooting"
     ]
   },
   {

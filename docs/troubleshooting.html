@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.32">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Troubleshoots – surveydown.org</title>
+<title>Troubleshooting – surveydown.org</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -104,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script><style>html{ scroll-behavior: smooth; }</style>
-<meta property="og:title" content="Troubleshoots – surveydown.org">
+<meta property="og:title" content="Troubleshooting – surveydown.org">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://www.surveydown.org/images/r_console_rstudio.png">
 <meta property="og:site_name" content="https://surveydown.org">
@@ -112,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta property="og:image:alt" content="R Console in RStudio">
 <meta property="og:image:height" content="1892">
 <meta property="og:image:width" content="2930">
-<meta name="twitter:title" content="Troubleshoots – surveydown.org">
+<meta name="twitter:title" content="Troubleshooting – surveydown.org">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://www.surveydown.org/docs/images/logo.png">
 <meta name="twitter:creator" content="@johnhelveston">
@@ -342,7 +342,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/tips.html">Other</a></li><li class="breadcrumb-item"><a href="../docs/troubleshoots.html">Troubleshoots</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/tips.html">Other</a></li><li class="breadcrumb-item"><a href="../docs/troubleshooting.html">Troubleshooting</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -565,8 +565,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/troubleshoots.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Troubleshoots</span></a>
+  <a href="../docs/troubleshooting.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Troubleshooting</span></a>
   </div>
 </li>
       </ul>
@@ -579,30 +579,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#r-rstudio" id="toc-r-rstudio" class="nav-link active" data-scroll-target="#r-rstudio"><span class="header-section-number">1</span> R &amp; RStudio</a></li>
-  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto"><span class="header-section-number">2</span> Quarto</a></li>
+<li><a href="#r-rstudio" id="toc-r-rstudio" class="nav-link active" data-scroll-target="#r-rstudio">R &amp; RStudio</a></li>
+  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto">Quarto</a></li>
   <li>
-<a href="#r-packages" id="toc-r-packages" class="nav-link" data-scroll-target="#r-packages"><span class="header-section-number">3</span> R Packages</a>
+<a href="#r-packages" id="toc-r-packages" class="nav-link" data-scroll-target="#r-packages">R Packages</a>
   <ul class="collapse">
-<li><a href="#launch-the-r-console" id="toc-launch-the-r-console" class="nav-link" data-scroll-target="#launch-the-r-console"><span class="header-section-number">3.1</span> Launch the R Console</a></li>
-  <li><a href="#shiny" id="toc-shiny" class="nav-link" data-scroll-target="#shiny"><span class="header-section-number">3.2</span> Shiny</a></li>
-  <li><a href="#surveydown" id="toc-surveydown" class="nav-link" data-scroll-target="#surveydown"><span class="header-section-number">3.3</span> surveydown</a></li>
-  <li><a href="#sdapps-optional" id="toc-sdapps-optional" class="nav-link" data-scroll-target="#sdapps-optional"><span class="header-section-number">3.4</span> sdApps (Optional)</a></li>
-  <li><a href="#other-r-packages" id="toc-other-r-packages" class="nav-link" data-scroll-target="#other-r-packages"><span class="header-section-number">3.5</span> Other R Packages</a></li>
+<li><a href="#launch-the-r-console" id="toc-launch-the-r-console" class="nav-link" data-scroll-target="#launch-the-r-console">Launch the R Console</a></li>
+  <li><a href="#shiny" id="toc-shiny" class="nav-link" data-scroll-target="#shiny">Shiny</a></li>
+  <li><a href="#surveydown" id="toc-surveydown" class="nav-link" data-scroll-target="#surveydown">surveydown</a></li>
+  <li><a href="#sdapps-optional" id="toc-sdapps-optional" class="nav-link" data-scroll-target="#sdapps-optional">sdApps (Optional)</a></li>
+  <li><a href="#other-r-packages" id="toc-other-r-packages" class="nav-link" data-scroll-target="#other-r-packages">Other R Packages</a></li>
   </ul>
 </li>
-  <li>
-<a href="#database-connection" id="toc-database-connection" class="nav-link" data-scroll-target="#database-connection"><span class="header-section-number">4</span> Database Connection</a>
-  <ul class="collapse">
-<li><a href="#gssapi" id="toc-gssapi" class="nav-link" data-scroll-target="#gssapi"><span class="header-section-number">4.1</span> GSSAPI</a></li>
-  <li><a href="#database-config" id="toc-database-config" class="nav-link" data-scroll-target="#database-config"><span class="header-section-number">4.2</span> Database Config</a></li>
-  </ul>
-</li>
+  <li><a href="#database-connection" id="toc-database-connection" class="nav-link" data-scroll-target="#database-connection">Database Connection</a></li>
+  <li><a href="#still-cant-deploy" id="toc-still-cant-deploy" class="nav-link" data-scroll-target="#still-cant-deploy">Still Can’t Deploy?</a></li>
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/tips.html">Other</a></li><li class="breadcrumb-item"><a href="../docs/troubleshoots.html">Troubleshoots</a></li></ol></nav><div class="quarto-title">
-<h1 class="title">Troubleshoots</h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/tips.html">Other</a></li><li class="breadcrumb-item"><a href="../docs/troubleshooting.html">Troubleshooting</a></li></ol></nav><div class="quarto-title">
+<h1 class="title">Troubleshooting</h1>
 </div>
 
 
@@ -629,20 +624,16 @@ Note
 <p><strong>surveydown</strong> requires some basic setups in order to get running. If you find glitches or failures, this page is for you.</p>
 </div>
 </div>
-<section id="r-rstudio" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="r-rstudio">
-<span class="header-section-number">1</span> R &amp; RStudio</h2>
+<section id="r-rstudio" class="level2"><h2 class="anchored" data-anchor-id="r-rstudio">R &amp; RStudio</h2>
 <p>Make sure you have installed the up-to-date versions of <strong>R</strong> and <strong>RStudio</strong>. Both can be installed via <a href="https://posit.co/download/rstudio-desktop/"><strong>this link</strong></a>.</p>
-<p><strong>R</strong> is the coding language that supports <strong>surveydown</strong>, and <strong>RStudio</strong> is the IDE that runs <strong>R</strong>. Other than <strong>RStudio</strong>, you can also choose <a href="https://code.visualstudio.com">VS Code</a> or <a href="https://positron.posit.co">Positron</a>. These two IDEs are both open to multiple coding languages, with <strong>R</strong> included and high supported.</p>
-</section><section id="quarto" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="quarto">
-<span class="header-section-number">2</span> Quarto</h2>
+<p><strong>R</strong> is the coding language that supports <strong>surveydown</strong>, and <strong>RStudio</strong> is the IDE that runs <strong>R</strong>. Other than <strong>RStudio</strong>, you can also choose <a href="https://code.visualstudio.com">VS Code</a> or <a href="https://positron.posit.co">Positron</a>. These two IDEs are both open to multiple coding languages, with <strong>R</strong> included and highly supported.</p>
+</section><section id="quarto" class="level2"><h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
 <p><a href="https://quarto.org"><strong>Quarto</strong></a> is a publication system that supports Markdown and code scripts. <strong>surveydown</strong> uses Quarto to turn scripts into nicely formatted survey pages.</p>
-<p>To install Quarto, go to <a href="https://quarto.org/docs/get-started/"><strong>this page</strong></a> and click on the big download button.</p>
-</section><section id="r-packages" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="r-packages">
-<span class="header-section-number">3</span> R Packages</h2>
-<p>After you’ve installed all the above environments, it’s time to take care of the R packages. The function used to install R packages is <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code>, and is thus used a lot in this section. You might want to re-run this function for these packages in order to get the most up-to-date version.</p>
-<section id="launch-the-r-console" class="level3" data-number="3.1"><h3 data-number="3.1" class="anchored" data-anchor-id="launch-the-r-console">
-<span class="header-section-number">3.1</span> Launch the R Console</h3>
-<p>The <strong>R Console</strong> is used to run R codes as well as installing R packages. It can be launched by one of the <strong>2 ways</strong>:</p>
+<p>Sometimes, glitches of your quarto rendering can be simply solved by an update. To install or update Quarto, go to <a href="https://quarto.org/docs/get-started/"><strong>this page</strong></a> and click on the big download button.</p>
+</section><section id="r-packages" class="level2"><h2 class="anchored" data-anchor-id="r-packages">R Packages</h2>
+<p>After you’ve installed all the above environments, it’s time to take care of the R packages. The function we use to install R packages is <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code>, and is thus used a lot in this section. You might want to re-run this function for these packages in order to get the most recent version.</p>
+<section id="launch-the-r-console" class="level3"><h3 class="anchored" data-anchor-id="launch-the-r-console">Launch the R Console</h3>
+<p>The <strong>R Console</strong> is used to run R codes as well as install R packages. It can be launched by one of the <strong>2 ways</strong>:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
 <li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">RStudio</a></li>
@@ -663,16 +654,14 @@ Note
 </div>
 </div>
 </div>
-</section><section id="shiny" class="level3" data-number="3.2"><h3 data-number="3.2" class="anchored" data-anchor-id="shiny">
-<span class="header-section-number">3.2</span> Shiny</h3>
+</section><section id="shiny" class="level3"><h3 class="anchored" data-anchor-id="shiny">Shiny</h3>
 <p>All surveydown surveys are <a href="https://shiny.posit.co"><strong>Shiny</strong></a> webapps, so Shiny is an essential component.</p>
-<p>In your R Console, install <strong>Shiny</strong>:</p>
+<p>In your R Console, run this to install <strong>Shiny</strong>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"shiny"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="surveydown" class="level3" data-number="3.3"><h3 data-number="3.3" class="anchored" data-anchor-id="surveydown">
-<span class="header-section-number">3.3</span> surveydown</h3>
-<p>In your R Console, install <strong>surveydown</strong>:</p>
+</section><section id="surveydown" class="level3"><h3 class="anchored" data-anchor-id="surveydown">surveydown</h3>
+<p>In your R Console, run this to install <strong>surveydown</strong>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># CRAN version - stable but might lack the latest features</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"surveydown"</span><span class="op">)</span></span>
@@ -708,10 +697,9 @@ Note
 <li><a href="https://cran.r-project.org/web/packages/surveydown/index.html">surveydown CRAN Page</a></li>
 <li><a href="https://github.com/surveydown-dev/surveydown/">surveydown GitHub repo</a></li>
 <li><a href="docs/getting-started.html#install">surveydown installation docs</a></li>
-</ul></section><section id="sdapps-optional" class="level3" data-number="3.4"><h3 data-number="3.4" class="anchored" data-anchor-id="sdapps-optional">
-<span class="header-section-number">3.4</span> sdApps (Optional)</h3>
+</ul></section><section id="sdapps-optional" class="level3"><h3 class="anchored" data-anchor-id="sdapps-optional">sdApps (Optional)</h3>
 <p><strong>sdApps</strong> is a companion R package with <strong>surveydown</strong>. It is intended for supportive webapps for surveydown. Now it has an <code>sd_studio()</code> function that launches the <strong>surveydown Studio</strong>, which supports GUI interface for survey construction, preview, and database management.</p>
-<p>In your R Console, install <strong>sdApps</strong>:</p>
+<p>In your R Console, run this to install <strong>sdApps</strong>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># GitHub version - sdApps is not on CRAN yet</span></span>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu">pak</span><span class="op">(</span><span class="st">"surveydown-dev/sdApps"</span>, ask <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -723,17 +711,13 @@ Note
 <center>
 <img src="../images/sd_studio.gif" style="width: 100%; max-width: 1000px;" alt="surveydown Studio">
 </center>
-</section><section id="other-r-packages" class="level3" data-number="3.5"><h3 data-number="3.5" class="anchored" data-anchor-id="other-r-packages">
-<span class="header-section-number">3.5</span> Other R Packages</h3>
+</section><section id="other-r-packages" class="level3"><h3 class="anchored" data-anchor-id="other-r-packages">Other R Packages</h3>
 <p>You might need some other R packages to get your survey running, for example, <code>tidyverse</code>, <code>kableExtra</code>, etc. Likewise, you can use the <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> function to install them:</p>
 <div class="cell">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"kableExtra"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="database-connection" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="database-connection">
-<span class="header-section-number">4</span> Database Connection</h2>
-<section id="gssapi" class="level3" data-number="4.1"><h3 data-number="4.1" class="anchored" data-anchor-id="gssapi">
-<span class="header-section-number">4.1</span> GSSAPI</h3>
+</section></section><section id="database-connection" class="level2"><h2 class="anchored" data-anchor-id="database-connection">Database Connection</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -748,15 +732,14 @@ Note
 </div>
 </div>
 <p>You might encounter connection problem caused by failure of GSSAPI (Generic Security Services Application Program Interface). It is a a protection layer for data security supported by PostgreSQL. In SQL management, it is controlled by the <code>gssencmode</code> argument.</p>
-<p>In previous versions of <strong>surveydown</strong> (before <code>v0.12.5</code>), the <code>sd_db_connect()</code> and <code>sd_dashboard()</code> functions have a <code>gssencmode</code> default to <code>"prefer"</code>, which enables GSSAPI, but may cause connection failuer under some network conditions (VPN, for example). Our previous solution is to manually change <code>gssencmode</code> from <code>"prefer"</code> to <code>"disable"</code>, but it is less intuitive and causes more trouble than efficiency.</p>
+<p>In previous versions of <strong>surveydown</strong> (before <code>v0.12.5</code>), the <code>sd_db_connect()</code> and <code>sd_dashboard()</code> functions have a <code>gssencmode</code> default to <code>"prefer"</code>, which enables GSSAPI, but may cause connection failure under some network conditions (VPN, for example). Our previous solution is to manually change <code>gssencmode</code> from <code>"prefer"</code> to <code>"disable"</code>, but it is less intuitive and causes more trouble than efficiency.</p>
 <p>Therefore, our current solution (versions after <code>v0.12.5</code>) is to remove the <code>gssencmode</code> argument from these functions, in which the GSSAPI is set to <code>"prefer"</code> by default, but if the connection errors due to network problem, it will auto-switch to <code>"disable"</code> and leave a message.</p>
-</section><section id="database-config" class="level3" data-number="4.2"><h3 data-number="4.2" class="anchored" data-anchor-id="database-config">
-<span class="header-section-number">4.2</span> Database Config</h3>
-<p>If your shinyapps deloyment fails, you should firstly make sure your Suppabase credentials are correctly defined, including your Supabase project settings and password settings. The password defined by <code>sd_db_config()</code> should be the same as your Supabase project password. Access the <a href="docs/storing-data.html">Storing Data</a> page for how to set all Supabase credentials. Then, make sure your survey runs on your local machine and can successfully link with your Supabase project table. With these confirmed, your shinyapps deployment should work without problem.</p>
+</section><section id="still-cant-deploy" class="level2"><h2 class="anchored" data-anchor-id="still-cant-deploy">Still Can’t Deploy?</h2>
+<p>If your shinyapps deployment fails, you should firstly make sure your Supabase credentials are correctly defined, including your Supabase project settings and password settings. The password defined by <code>sd_db_config()</code> should be the same as your Supabase project password. Access the <a href="docs/storing-data.html">Storing Data</a> page for how to set all Supabase credentials. Then, make sure your survey runs on your local machine and can successfully link with your Supabase project table. With these confirmed, your shinyapps deployment should work without problem.</p>
 <p>If you still encounter an error (e.g., the page shows the app failed to start, or you see the page but it doesn’t run properly), try clearing your cache. The simplest way to do so is to <strong>reboot your computer</strong>. It may also help if you delete previously generated files, such as the <code>survey.html</code> file if you rendered it and the <code>rsconnect</code> folder. After re-rendering, you should be able to deploy the app without error.</p>
 
 
-</section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {

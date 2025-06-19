@@ -42,25 +42,3 @@ Also, it is important that you run your survey locally **at least once** before 
 ## How do I make a question required?
 
 Use the `required_questions` argument in `sd_server()` to control required responses (see the [required questions](docs/server-options.html#required-questions) page for more details).
-
-## Why is my shinyapps deployment failing?
-
-First, make sure your Suppabase credentials are correctly defined, including your Supabase project settings and password settings. The password defined by `sd_db_config()` should be the same as your Supabase project password. Access the [Storing Data](docs/storing-data.html) page for how to set all Supabase credentials. Then, make sure your survey runs on your local machine and can successfully link with your Supabase project table. With these confirmed, your shinyapps deployment should work without problem.
-
-If you still encounter an error (e.g., the page shows the app failed to start, or you see the page but it doesn't run properly), try clearing your cache. The simplest way to do so is to **reboot your computer**. It may also help if you delete previously generated files, such as the `survey.html` file if you rendered it and the `rsconnect` folder. After re-rendering, you should be able to deploy the app without error.
-
-## How should I install the {surveydown} package?
-
-You can install the {surveydown} package from [CRAN](https://cran.r-project.org/web/packages/surveydown/index.html) or the [GitHub repo](https://github.com/surveydown-dev/surveydown/) of the package source code. Follow [our installation instructions](docs/getting-started.html#install) for either approach.
-
-Sometimes neither of these approaches work, often because your path is managed by some package managing system like [Anaconda](https://www.anaconda.com). In this case, a third alternative is to download the zip file of the package source code and then install it locally.
-
-To download the zip file, go the the [surveydown repo](https://github.com/surveydown-dev/surveydown), click on the green "Code" button and click on "Download Zip", or simplify click on [this link](https://github.com/surveydown-dev/surveydown/archive/refs/heads/main.zip).
-
-Unzip this repo, then open the **surveydown.Rproj** file. In your R Console panel, run this code to install:
-
-```{r}
-# install.packages('devtools') 
-devtools::install(force = TRUE)
-```
-

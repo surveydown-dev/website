@@ -578,12 +578,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#setting-up-a-supabase-project" id="toc-setting-up-a-supabase-project" class="nav-link active" data-scroll-target="#setting-up-a-supabase-project">Setting up a Supabase project</a></li>
+<li><a href="#local-data-preview" id="toc-local-data-preview" class="nav-link active" data-scroll-target="#local-data-preview">Local data preview</a></li>
+  <li><a href="#setting-up-a-supabase-project" id="toc-setting-up-a-supabase-project" class="nav-link" data-scroll-target="#setting-up-a-supabase-project">Setting up a Supabase project</a></li>
   <li><a href="#getting-your-supabase-credentials" id="toc-getting-your-supabase-credentials" class="nav-link" data-scroll-target="#getting-your-supabase-credentials">Getting your Supabase credentials</a></li>
   <li><a href="#storing-your-database-credentials" id="toc-storing-your-database-credentials" class="nav-link" data-scroll-target="#storing-your-database-credentials">Storing your database credentials</a></li>
   <li><a href="#modifying-credentials" id="toc-modifying-credentials" class="nav-link" data-scroll-target="#modifying-credentials">Modifying credentials</a></li>
   <li><a href="#connecting-to-your-database-in-surveydown" id="toc-connecting-to-your-database-in-surveydown" class="nav-link" data-scroll-target="#connecting-to-your-database-in-surveydown">Connecting to your database in surveydown</a></li>
-  <li><a href="#disabling-gssencmode" id="toc-disabling-gssencmode" class="nav-link" data-scroll-target="#disabling-gssencmode">Disabling <code>gssencmode</code></a></li>
+  <li><a href="#table-creation-and-data-operations" id="toc-table-creation-and-data-operations" class="nav-link" data-scroll-target="#table-creation-and-data-operations">Table creation and data operations</a></li>
+  <li><a href="#cookies" id="toc-cookies" class="nav-link" data-scroll-target="#cookies">Cookies</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -602,9 +604,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>Survey response data is stored in a PostgreSQL database. We recommend using <a href="https://supabase.com/">Supabase</a> as it is free and open-source, though you can use any service you want.</p>
-<p>In this guide, we’ll walk you through the steps for setting up a Supabase project and connecting your surveydown survey to it.</p>
-<section id="setting-up-a-supabase-project" class="level2"><h2 class="anchored" data-anchor-id="setting-up-a-supabase-project">Setting up a Supabase project</h2>
+</header><p>Survey response data is stored in a PostgreSQL database. We recommend using <a href="https://supabase.com/">Supabase</a> as a free and open-source option, though you can use any service you want. In this guide, we’ll walk you through the steps for setting up a Supabase project and connecting your surveydown survey to it.</p>
+<section id="local-data-preview" class="level2"><h2 class="anchored" data-anchor-id="local-data-preview">Local data preview</h2>
+<p>When you run a survey without a database connection, response data will be locally stored in a <code>preview_data.csv</code> file. As the name suggests, this is for preview purposes only. It is there to help you understand what the actual survey response data will look like once you get your database connection properly configured.</p>
+<p>This file is <strong>not</strong> where your actual survey response data will be saved. If you deploy your survey live without a database connection, no responses will be saved.</p>
+</section><section id="setting-up-a-supabase-project" class="level2"><h2 class="anchored" data-anchor-id="setting-up-a-supabase-project">Setting up a Supabase project</h2>
 <p>First, navigate to the <a href="https://supabase.com/">Supabase</a> website and create an account.</p>
 <p>Once you are logged in, the page will prompt you to create a project (it’s a green button). Click on it and select your organization. A dialog box will pop up like this:</p>
 <br><center>
@@ -655,7 +659,7 @@ Note
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sd_db_config</span><span class="op">(</span>table <span class="op">=</span> <span class="st">'mytable'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Once run in the R console, a message will print out confirming that the stored <code>table</code> parameter will now be <code>mytable</code>.</p>
-<p>You can pass any of the following as arguments: <code>host</code>, <code>dbname</code>, <code>port</code>, <code>user</code>, <code>table</code>, <code>password</code>, and <code>gssencmode</code></p>
+<p>You can pass any of the following as arguments to update them: <code>host</code>, <code>dbname</code>, <code>port</code>, <code>user</code>, <code>table</code>, and <code>password</code>.</p>
 <p>Finally, you can also view / modify your database credentials in the surveydown dashboard app. To do this, launch the dashboard by running this command in the R console:</p>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">surveydown</span><span class="fu">::</span><span class="fu"><a href="https://pkg.surveydown.org/reference/sd_dashboard.html">sd_dashboard</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -673,10 +677,12 @@ Note
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu">sd_db_connect</span><span class="op">(</span>ignore <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>With this setting, no database connection will be attempted, and the <code>db</code> object will store the value <code>NULL</code>. Instead, data will be stored in a local <code>preview_data.csv</code> file for previewing purposes only. This is useful when you are still editing your survey and do not want to store any data in your database yet.</p>
-</section><section id="disabling-gssencmode" class="level2"><h2 class="anchored" data-anchor-id="disabling-gssencmode">Disabling <code>gssencmode</code>
-</h2>
-<p>If you have set all of your credentials correctly but are still encountering connection errors, try setting the <code>gssencmode</code> parameter to <code>"disable"</code> when running <code>sd_db_config()</code>.</p>
-<p>By default, <code>gssencmode</code> is set as <code>"prefer"</code>. It secures your connection with PostgreSQL. We generally recommend that you <strong>DO NOT disable <code>gssencmode</code></strong>, but sometimes this is necessary, especially when you are working on a protected network, such as a VPN.</p>
+</section><section id="table-creation-and-data-operations" class="level2"><h2 class="anchored" data-anchor-id="table-creation-and-data-operations">Table creation and data operations</h2>
+<p>You never need to manually create a table in the database - it gets automatically created after you first run the survey. After you first set up the config and a <code>.env</code> file is properly created, run your survey locally and click past the first page, then you should see the table get created in the database. You can view it directly on supabase (if you’re using supabase), or you can see the table using the dashboard by running <code>sd_dashboard()</code>.</p>
+<p>The data gets updated in the database on every page turn (each time you push a next button) and after you close the browser, which is usually at the end of the survey, but just in case you close it early it will write to the database then too. This is why you usually have to click past the first page after initial configuration to see the table in the database.</p>
+</section><section id="cookies" class="level2"><h2 class="anchored" data-anchor-id="cookies">Cookies</h2>
+<p>By default, the data on each page will be locally stored in the browser cookies, though you can turn this feature off if you wish (see <a href="docs/server-options.html#cookies">here</a>).</p>
+<p>This is done so that the session state can be restored should a respondent lose an internet connection or close the browser on accident, etc. The responses on each page will not be written to the database until the respondent clicks the next button or if they close the browser.</p>
 
 
 </section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

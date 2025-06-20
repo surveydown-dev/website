@@ -1684,7 +1684,19 @@
     "href": "docs/storing-data.html",
     "title": "Storing Data",
     "section": "",
-    "text": "Survey response data is stored in a PostgreSQL database. We recommend using Supabase as it is free and open-source, though you can use any service you want.\nIn this guide, we’ll walk you through the steps for setting up a Supabase project and connecting your surveydown survey to it.",
+    "text": "Survey response data is stored in a PostgreSQL database. We recommend using Supabase as a free and open-source option, though you can use any service you want. In this guide, we’ll walk you through the steps for setting up a Supabase project and connecting your surveydown survey to it.",
+    "crumbs": [
+      "Documentation",
+      "Data Management",
+      "Storing Data"
+    ]
+  },
+  {
+    "objectID": "docs/storing-data.html#local-data-preview",
+    "href": "docs/storing-data.html#local-data-preview",
+    "title": "Storing Data",
+    "section": "Local data preview",
+    "text": "Local data preview\nWhen you run a survey without a database connection, response data will be locally stored in a preview_data.csv file. As the name suggests, this is for preview purposes only. It is there to help you understand what the actual survey response data will look like once you get your database connection properly configured.\nThis file is not where your actual survey response data will be saved. If you deploy your survey live without a database connection, no responses will be saved.",
     "crumbs": [
       "Documentation",
       "Data Management",
@@ -1732,7 +1744,7 @@
     "href": "docs/storing-data.html#modifying-credentials",
     "title": "Storing Data",
     "section": "Modifying credentials",
-    "text": "Modifying credentials\nIf you want to modify your credentials stored in the .env file, you can just run sd_db_config() again and press ‘Enter’ on any parameter you want to leave unchanged while modifying the ones you want to change.\nYou can also pass any of the parameters as arguments to sd_db_config() to change them. For example, if you wanted to only change the table name, you could do this:\n\nsd_db_config(table = 'mytable')\n\nOnce run in the R console, a message will print out confirming that the stored table parameter will now be mytable.\nYou can pass any of the following as arguments: host, dbname, port, user, table, password, and gssencmode\nFinally, you can also view / modify your database credentials in the surveydown dashboard app. To do this, launch the dashboard by running this command in the R console:\n\nsurveydown::sd_dashboard()\n\nThis will open a new browser window where you can navigate to the dashboard for your project. Click on the “Connection Settings” tab to see and edit your database credentials. Once you have made changes, click on the “Test Connection” button to save your updated credentials.\nSee the Local Dashboard page for more information.",
+    "text": "Modifying credentials\nIf you want to modify your credentials stored in the .env file, you can just run sd_db_config() again and press ‘Enter’ on any parameter you want to leave unchanged while modifying the ones you want to change.\nYou can also pass any of the parameters as arguments to sd_db_config() to change them. For example, if you wanted to only change the table name, you could do this:\n\nsd_db_config(table = 'mytable')\n\nOnce run in the R console, a message will print out confirming that the stored table parameter will now be mytable.\nYou can pass any of the following as arguments to update them: host, dbname, port, user, table, and password.\nFinally, you can also view / modify your database credentials in the surveydown dashboard app. To do this, launch the dashboard by running this command in the R console:\n\nsurveydown::sd_dashboard()\n\nThis will open a new browser window where you can navigate to the dashboard for your project. Click on the “Connection Settings” tab to see and edit your database credentials. Once you have made changes, click on the “Test Connection” button to save your updated credentials.\nSee the Local Dashboard page for more information.",
     "crumbs": [
       "Documentation",
       "Data Management",
@@ -1752,11 +1764,23 @@
     ]
   },
   {
-    "objectID": "docs/storing-data.html#disabling-gssencmode",
-    "href": "docs/storing-data.html#disabling-gssencmode",
+    "objectID": "docs/storing-data.html#table-creation-and-data-operations",
+    "href": "docs/storing-data.html#table-creation-and-data-operations",
     "title": "Storing Data",
-    "section": "Disabling gssencmode\n",
-    "text": "Disabling gssencmode\n\nIf you have set all of your credentials correctly but are still encountering connection errors, try setting the gssencmode parameter to \"disable\" when running sd_db_config().\nBy default, gssencmode is set as \"prefer\". It secures your connection with PostgreSQL. We generally recommend that you DO NOT disable gssencmode, but sometimes this is necessary, especially when you are working on a protected network, such as a VPN.",
+    "section": "Table creation and data operations",
+    "text": "Table creation and data operations\nYou never need to manually create a table in the database - it gets automatically created after you first run the survey. After you first set up the config and a .env file is properly created, run your survey locally and click past the first page, then you should see the table get created in the database. You can view it directly on supabase (if you’re using supabase), or you can see the table using the dashboard by running sd_dashboard().\nThe data gets updated in the database on every page turn (each time you push a next button) and after you close the browser, which is usually at the end of the survey, but just in case you close it early it will write to the database then too. This is why you usually have to click past the first page after initial configuration to see the table in the database.",
+    "crumbs": [
+      "Documentation",
+      "Data Management",
+      "Storing Data"
+    ]
+  },
+  {
+    "objectID": "docs/storing-data.html#cookies",
+    "href": "docs/storing-data.html#cookies",
+    "title": "Storing Data",
+    "section": "Cookies",
+    "text": "Cookies\nBy default, the data on each page will be locally stored in the browser cookies, though you can turn this feature off if you wish (see here).\nThis is done so that the session state can be restored should a respondent lose an internet connection or close the browser on accident, etc. The responses on each page will not be written to the database until the respondent clicks the next button or if they close the browser.",
     "crumbs": [
       "Documentation",
       "Data Management",

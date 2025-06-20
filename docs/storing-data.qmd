@@ -2,9 +2,13 @@
 title: "Storing Data"
 ---
 
-Survey response data is stored in a PostgreSQL database. We recommend using {{< var supabase >}} as it is free and open-source, though you can use any service you want.
+Survey response data is stored in a PostgreSQL database. We recommend using {{< var supabase >}} as a free and open-source option, though you can use any service you want. In this guide, we'll walk you through the steps for setting up a Supabase project and connecting your surveydown survey to it.
 
-In this guide, we'll walk you through the steps for setting up a Supabase project and connecting your surveydown survey to it.
+## Local data preview 
+
+When you run a survey without a database connection, response data will be locally stored in a `preview_data.csv` file. As the name suggests, this is for preview purposes only. It is there to help you understand what the actual survey response data will look like once you get your database connection properly configured.
+
+This file is **not** where your actual survey response data will be saved. If you deploy your survey live without a database connection, no responses will be saved. 
 
 ## Setting up a Supabase project
 
@@ -76,7 +80,7 @@ sd_db_config(table = 'mytable')
 
 Once run in the R console, a message will print out confirming that the stored `table` parameter will now be `mytable`.
 
-You can pass any of the following as arguments: `host`, `dbname`, `port`, `user`, `table`, `password`, and `gssencmode`
+You can pass any of the following as arguments to update them: `host`, `dbname`, `port`, `user`, `table`, and `password`.
 
 Finally, you can also view / modify your database credentials in the surveydown dashboard app. To do this, launch the dashboard by running this command in the R console:
 
@@ -106,8 +110,15 @@ db <- sd_db_connect(ignore = TRUE)
 
 With this setting, no database connection will be attempted, and the `db` object will store the value `NULL`. Instead, data will be stored in a local `preview_data.csv` file for previewing purposes only. This is useful when you are still editing your survey and do not want to store any data in your database yet.
 
-## Disabling `gssencmode`
+## Table creation and data operations
 
-If you have set all of your credentials correctly but are still encountering connection errors, try setting the `gssencmode` parameter to `"disable"` when running `sd_db_config()`.
+You never need to manually create a table in the database - it gets automatically created after you first run the survey. After you first set up the config and a `.env` file is properly created, run your survey locally and click past the first page, then you should see the table get created in the database. You can view it directly on supabase (if you're using supabase), or you can see the table using the dashboard by running `sd_dashboard()`. 
 
-By default, `gssencmode` is set as `"prefer"`. It secures your connection with PostgreSQL. We generally recommend that you **DO NOT disable `gssencmode`**, but sometimes this is necessary, especially when you are working on a protected network, such as a VPN. 
+The data gets updated in the database on every page turn (each time you push a next button) and after you close the browser, which is usually at the end of the survey, but just in case you close it early it will write to the database then too. This is why you usually have to click past the first page after initial configuration to see the table in the database. 
+
+## Cookies 
+
+By default, the data on each page will be locally stored in the browser cookies, though you can turn this feature off if you wish (see [here](docs/server-options.html#cookies)). 
+
+This is done so that the session state can be restored should a respondent lose an internet connection or close the browser on accident, etc. The responses on each page will not be written to the database until the respondent clicks the next button or if they close the browser.
+

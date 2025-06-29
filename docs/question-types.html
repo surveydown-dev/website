@@ -638,7 +638,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="form-group shiny-input-container">
 <label class="control-label" id="word-label" for="word"><p>Write a word:</p>
 </label>
-<input id="word" type="text" class="shiny-input-text form-control" value="">
+<input id="word" type="text" class="shiny-input-text form-control" value="" data-update-on="change">
 </div>
 <span class="hidden-asterisk">*</span>
 </div>
@@ -670,10 +670,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 <div id="container-paragraph" data-question-id="paragraph" class="question-container" style="width: 100%;" oninput="Shiny.setInputValue('paragraph_interacted', true, {priority: 'event'});" onclick="Shiny.setInputValue('paragraph_interacted', true, {priority: 'event'});">
-<div class="form-group shiny-input-container">
+<div class="shiny-input-textarea form-group shiny-input-container">
 <label class="control-label" id="paragraph-label" for="paragraph"><p>Write a paragraph:</p>
 </label>
-<textarea id="paragraph" class="shiny-input-textarea form-control" style="height:100px;" rows="6" cols="80"></textarea>
+<textarea id="paragraph" class="form-control" style="height:100px;" rows="6" cols="80" data-update-on="change"></textarea>
 </div>
 <span class="hidden-asterisk">*</span>
 </div>
@@ -708,7 +708,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="form-group shiny-input-container">
 <label class="control-label" id="age-label" for="age"><p>What’s your age?</p>
 </label>
-<input id="age" type="number" class="shiny-input-number form-control">
+<input id="age" type="number" class="shiny-input-number form-control" data-update-on="change">
 </div>
 <span class="hidden-asterisk">*</span>
 </div>

@@ -3,7 +3,7 @@ title: sdstudio - Companion GUI for surveydown
 author:
   - name: Pingfan Hu
 description: |
-  A brief walkthrough of the sdstudio R Package, a companion GUI for surveydown.
+  A brief walkthrough of the **sdstudio** R Package, a companion GUI for **surveydown**.
 date: '2025-06-29'
 image: "banner.png"
 number-sections: true
@@ -17,11 +17,9 @@ toc: true
 lightbox: true
 ---
 
-## Introduction
+## Introduction <a href='https://sdstudio.surveydown.org'><img src='images/sdstudio.png' align="right" style="height:139px;"/></a>
 
-Creating surveys has traditionally been a code-intensive process, requiring researchers and analysts to write complex markup, manage database connections, and manually handle data collection workflows. **sdstudio** changes this paradigm by providing a comprehensive graphical user interface that transforms survey creation from a programming task into an intuitive, visual experience.
-
-As a companion package to the [surveydown](https://surveydown.org/) platform, **sdstudio** bridges the gap between powerful survey functionality and user-friendly design. Whether you're a researcher conducting academic studies, a business analyst gathering customer feedback, or a data scientist running experiments, sdstudio provides the tools you need without requiring extensive programming knowledge.
+As a companion package to the [surveydown](https://surveydown.org/) platform, **sdstudio** serves as a comprehensive GUI for survey construction, preview, and data management, without requiring extensive programming knowledge.
 
 <!-- **PLACEHOLDER: 5-minute full introduction video**
    Description: Place your comprehensive intro video here showing the overall sdstudio interface, 
@@ -32,23 +30,32 @@ As a companion package to the [surveydown](https://surveydown.org/) platform, **
 
 ### Installation
 
-The sdstudio package is currently in development and can be installed directly from GitHub:
+The **sdstudio** package is currently in development and can be installed directly from GitHub:
 
 ```r
-# Install the development version
+# Development version
 pak::pak("surveydown-dev/sdstudio", ask = FALSE)
+```
+
+Since **sdstudio** is a companion package of **surveydown**, make sure to install **surveydown** as well:
+
+```r
+# Development version
+pak::pak("surveydown-dev/surveydown", ask = FALSE)
+
+# CRAN version
+install.packages("surveydown")
 ```
 
 ### Launching the Studio
 
-Getting started with sdstudio is as simple as running a single command:
+Launch the studio using this function:
 
 ```r
-# Launch the sdstudio application
 sdstudio::launch()
 ```
 
-This opens your default web browser with the sdstudio interface, providing immediate access to all survey creation and management tools.
+This opens your default web browser with the **sdstudio** interface, providing immediate access to all survey creation and management tools.
 
 <!-- **PLACEHOLDER: Screenshot of the sdstudio launch process**
    Description: Show the R console command and the resulting browser window opening 
@@ -56,7 +63,7 @@ This opens your default web browser with the sdstudio interface, providing immed
 
 ### Interface Overview
 
-The sdstudio interface is organized into three main tabs that follow the natural survey workflow:
+The **sdstudio** interface is organized into three main tabs that follow the natural survey workflow:
 
 - **🏗️ Build**: Visual survey creation with templates and drag-and-drop functionality
 - **👁️ Preview**: Real-time survey testing and responsive design preview
@@ -70,7 +77,7 @@ The Build tab is where the magic happens. This is your visual survey constructio
 
 ### Template Gallery
 
-One of sdstudio's standout features is its comprehensive template library. With 15 professionally designed templates, you can start with a solid foundation rather than building from scratch:
+One of **sdstudio**'s standout features is its comprehensive template library. With 15 professionally designed templates, you can start with a solid foundation rather than building from scratch:
 
 **Basic Templates:**
 - Default survey structure
@@ -123,7 +130,7 @@ The synchronization between these panes is seamless - changes in the visual buil
 
 ### Question Types and Functionality
 
-sdstudio supports 12 different question types, each optimized for specific data collection needs:
+**sdstudio** supports 12 different question types, each optimized for specific data collection needs:
 
 - **Multiple Choice**: Single and multiple selection options
 - **Text Input**: Short and long-form text responses
@@ -205,11 +212,11 @@ This interactive testing capability ensures your survey works perfectly before d
 
 ## Responses Tab - Data Management & Analytics
 
-The Responses tab transforms sdstudio from a survey creation tool into a comprehensive data management platform. This is where your survey data comes to life through analytics, visualizations, and export capabilities.
+The Responses tab transforms **sdstudio** from a survey creation tool into a comprehensive data management platform. This is where your survey data comes to life through analytics, visualizations, and export capabilities.
 
 ### Database Integration
 
-sdstudio provides enterprise-grade database connectivity through PostgreSQL integration:
+**sdstudio** provides enterprise-grade database connectivity through PostgreSQL integration:
 
 **GSSAPI Encryption:**
 - Automatic encryption detection and configuration
@@ -313,7 +320,7 @@ The Responses tab provides comprehensive connection monitoring:
 
 ### Environment Variables
 
-sdstudio supports flexible configuration through environment variables, making it easy to manage different deployment environments:
+**sdstudio** supports flexible configuration through environment variables, making it easy to manage different deployment environments:
 
 ```r
 # Configuration options
@@ -365,13 +372,13 @@ sdstudio::launch(gssencmode = "disable")
 
 ## Conclusion
 
-sdstudio represents a significant advancement in survey creation technology, transforming what was once a complex, code-intensive process into an intuitive, visual experience. By combining the power of the surveydown platform with an accessible graphical interface, sdstudio makes professional survey creation available to researchers, analysts, and organizations regardless of their programming expertise.
+**sdstudio** represents a significant advancement in survey creation technology, transforming what was once a complex, code-intensive process into an intuitive, visual experience. By combining the power of the surveydown platform with an accessible graphical interface, **sdstudio** makes professional survey creation available to researchers, analysts, and organizations regardless of their programming expertise.
 
-The three-tab workflow - Build, Preview, and Responses - provides a comprehensive solution that covers the entire survey lifecycle. From initial design through data collection and analysis, sdstudio streamlines every step while maintaining the flexibility and power that advanced users require.
+The three-tab workflow - Build, Preview, and Responses - provides a comprehensive solution that covers the entire survey lifecycle. From initial design through data collection and analysis, **sdstudio** streamlines every step while maintaining the flexibility and power that advanced users require.
 
-Whether you're conducting academic research, gathering customer feedback, running marketing surveys, or performing data analysis, sdstudio provides the tools you need to create, deploy, and manage surveys with confidence and efficiency.
+Whether you're conducting academic research, gathering customer feedback, running marketing surveys, or performing data analysis, **sdstudio** provides the tools you need to create, deploy, and manage surveys with confidence and efficiency.
 
-Ready to get started? Install sdstudio today and experience the future of survey creation.
+Ready to get started? Install **sdstudio** today and experience the future of survey creation.
 
 ```r
 # Get started with sdstudio

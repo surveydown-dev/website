@@ -15,11 +15,389 @@
 <link>https://www.surveydown.org/blog/</link>
 </image>
 <generator>quarto-1.7.32</generator>
-<lastBuildDate>Tue, 08 Apr 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 29 Jun 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>sdstudio - Companion GUI for surveydown</title>
+  <dc:creator>John Paul Helveston</dc:creator>
+  <dc:creator>[Pingfan Hu](https://pingfanhu.com)</dc:creator>
+  <link>https://www.surveydown.org/blog/2025-06-29-sdstudio/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
+<p>As a companion package to the <a href="https://surveydown.org/">surveydown</a> platform, <strong>sdstudio</strong> serves as a comprehensive GUI for survey construction, preview, and data management, without requiring extensive programming knowledge.</p>
+<!-- **PLACEHOLDER: 5-minute full introduction video**
+   Description: Place your comprehensive intro video here showing the overall sdstudio interface, 
+   launching the application, and a quick tour of all three tabs. This should give viewers 
+   a complete overview before diving into the detailed sections below. -->
+<p>The <strong>sdstudio</strong> package is currently in development and can be installed directly from GitHub:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Development version</span></span>
+<span id="cb1-2">pak<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pak</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"surveydown-dev/sdstudio"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ask =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>)</span></code></pre></div>
+<p>Since <strong>sdstudio</strong> is a companion package of <strong>surveydown</strong>, make sure to install <strong>surveydown</strong> as well:</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Development version</span></span>
+<span id="cb2-2">pak<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pak</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"surveydown-dev/surveydown"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ask =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>)</span>
+<span id="cb2-3"></span>
+<span id="cb2-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># CRAN version</span></span>
+<span id="cb2-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">install.packages</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"surveydown"</span>)</span></code></pre></div>
+<p>Launch the studio in your browser using this function:</p>
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">sdstudio<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">launch</span>()</span></code></pre></div>
+<!-- **PLACEHOLDER: Screenshot of the sdstudio launch process**
+   Description: Show the R console command and the resulting browser window opening 
+   with the sdstudio interface. Capture the clean, modern Bootstrap 5 design. -->
+<p>The <strong>sdstudio</strong> interface is organized into three main tabs that follow the natural survey workflow:</p>
+<ul>
+<li><strong>🏗️ Build</strong>: Visual survey creation with side-by-side structure and scripts</li>
+<li><strong>👁️ Preview</strong>: Real-time survey testing</li>
+<li><strong>📊 Responses</strong>: Data collection, analytics, and export capabilities</li>
+</ul>
+</section>
+<section id="the-build-tab" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="the-build-tab"><span class="header-section-number">2</span> The “Build” Tab</h2>
+<section id="start-from-a-template" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="start-from-a-template"><span class="header-section-number">2.1</span> Start from a Template</h3>
+<p>The “Build” tab is your workspace of survey construction. You can either start from a prepared template or continue with your own survey files. The “Directory” will show your current working directory, but you can change it to any directory where your survey files are stored.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There are 15 templates available. The <strong><em>default</em></strong> template contains a minimum basic structure for a clean start. You might also try the <strong><em>question_type</em></strong> template for a showcase of all question types, or try some advanced features with <strong><em>conditional_display</em></strong>, <strong><em>conditional_navigation</em></strong>, etc.</p>
+<p>For a full list of templates, see the <a href="https://github.com/surveydown-dev/templates">templates repo</a> on GitHub.</p>
+</div>
+</div>
+<br>
+<center>
+<img src="https://www.surveydown.org/blog/2025-06-29-sdstudio/images/build_tab_1.png" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
+<p style="color: gray; font-weight: bold;">
+<em>Start from a Template in the Build Tab</em>
+</p>
+</center>
+<p><br></p>
+</section>
+<section id="build-your-survey" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="build-your-survey"><span class="header-section-number">2.2</span> Build Your Survey</h3>
+<p>After you’ve selected your template, or if you already have an existing survey, you’ll see the dual panel of survey constructions on the “Build” tab. The “Structure” section on the left shows the page-content structure of your survey. The “Code” section on the right displays the survey scripts in a code editor.</p>
+<br>
+<center>
+<img src="https://www.surveydown.org/blog/2025-06-29-sdstudio/images/build_tab_2.png" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
+<p style="color: gray; font-weight: bold;">
+<em>Dual Panel of the Build Tab</em>
+</p>
+</center>
+<p><br></p>
+<section id="the-structure-section" class="level4" data-number="2.2.1">
+<h4 data-number="2.2.1" class="anchored" data-anchor-id="the-structure-section"><span class="header-section-number">2.2.1</span> The Structure Section</h4>
+<p>The <strong>“Structure”</strong> section on the left gives you 2 hierarchies: page and content. The pages can be toggled on to show the content, or toggled off. There are two types of content: questions and texts, with labels of “Q” and “T”, respectively.</p>
+<p>There are buttons on each page and content which self-explain their capabilities. The “Add A New Page” button at the bottom allows you to create a new page.</p>
+<p>The <em>question</em> content shows question ID, question type, and question label. You can review the full question details with the edit button, or view the full question definition code on the code section. The <em>text</em> content shows the first 5 words of the full piece of text.</p>
+<br>
+<center>
+<img src="https://www.surveydown.org/blog/2025-06-29-sdstudio/images/build_tab_3.png" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
+<p style="color: gray; font-weight: bold;">
+<em>Click on the +T/+Q button to add a text/question</em>
+</p>
+</center>
+<p><br></p>
+<p>All elements support drag-n-drop operations. After each operation, the structure will refresh and update the code editor on the right. If you move two test elements together, they will merge in to one text element.</p>
+<br>
+<center>
+<img src="https://www.surveydown.org/blog/2025-06-29-sdstudio/images/build_tab_4.gif" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
+<p style="color: gray; font-weight: bold;">
+<em>Dragging two texts together will merge them</em>
+</p>
+</center>
+<p><br></p>
+</section>
+<section id="the-code-section" class="level4" data-number="2.2.2">
+<h4 data-number="2.2.2" class="anchored" data-anchor-id="the-code-section"><span class="header-section-number">2.2.2</span> The Code Section</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For now the surveydown Studio has powerful support to <strong>survey.qmd</strong> because it is meant to be the main file for survey construction. However, even though <strong>app.R</strong> is directly editable, we still recommend that you edit it using your IDE or other text editors. All our templates have the <strong>app.R</strong> file ready to run, which can be a good starting point.</p>
+</div>
+</div>
+<p>The <strong>“Code”</strong> section on the right is an integrated code editor that allows you to edit the survey scripts directly, with the <strong>survey.qmd</strong> file opened by default. It also reflects any operation you’ve done on the “Structure” section. The other file, <strong>app.R</strong>, is available for direct editing as well.</p>
+</section>
+</section>
+</section>
+<section id="the-preview-tab" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="the-preview-tab"><span class="header-section-number">3</span> The “Preview” Tab</h2>
+<p>The “Preview” tab is where your survey comes to life. It provides a real-time, interactive preview of your survey as you build it, allowing you to see exactly how respondents will experience your survey.</p>
+<section id="live-rendering" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="live-rendering"><span class="header-section-number">3.1</span> Live Rendering</h3>
+<p>Every time you make changes in the Build tab, the survey is live-rendered and revealed in the Preview tab. It takes a couple of seconds to render, so if you switch to the Preview tab too early, you’ll see message of survey being rendered. After rendering is done, the survey will be available.</p>
+<br>
+<center>
+<img src="https://www.surveydown.org/blog/2025-06-29-sdstudio/images/preview_tab_1.gif" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
+<p style="color: gray; font-weight: bold;">
+<em>The survey preview is live and interactive</em>
+</p>
+</center>
+<p><br></p>
+</section>
+<section id="desktop-and-mobile-views" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="desktop-and-mobile-views"><span class="header-section-number">3.2</span> Desktop and Mobile Views</h3>
+<p>You can toggle between “Desktop View” and “Mobile View” using the pair of buttons at the top right corner:</p>
+<br>
+<center>
+<img src="https://www.surveydown.org/blog/2025-06-29-sdstudio/images/preview_tab_2.gif" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
+<p style="color: gray; font-weight: bold;">
+<em>Toggling between desktop and mobile views</em>
+</p>
+</center>
+<p><br></p>
+</section>
+<section id="new-sessions" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="new-sessions"><span class="header-section-number">3.3</span> New Sessions</h3>
+<p>You might have noticed there is a green refresh button on the top right as well. This is for you to manually refresh the preview if you want to restart a session:</p>
+<br>
+<center>
+<img src="https://www.surveydown.org/blog/2025-06-29-sdstudio/images/preview_tab_3.gif" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
+<p style="color: gray; font-weight: bold;">
+<em>Restart a new session using the refresh button</em>
+</p>
+</center>
+<p><br></p>
+</section>
+</section>
+<section id="the-responses-tab" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="the-responses-tab"><span class="header-section-number">4</span> The “Responses” Tab</h2>
+<p><strong>surveydown Studio</strong> serves two purposes: survey construction and data management. They form a stream-lined process, but the data management part can also function on its own. Therefore, the “Responses” tab has 3 use cases:</p>
+<ol type="1">
+<li>Local Mode: After survey creation and test runs, you can locally view survey responses without connecting to database.</li>
+<li>DB Mode for Live-view: After survey creation and test runs, you can live-view the responses with database connection.</li>
+<li>DB Mode used alone: Without creating any survey, you can come to “Responses” directly, input your database credentials, and obtain all your stored survey responses.</li>
+</ol>
+<p>Lets go through all these use cases in details.</p>
+<section id="local-mode---local-view-of-responses" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="local-mode---local-view-of-responses"><span class="header-section-number">4.1</span> Local Mode - Local View of Responses</h3>
+<p>All our templates have <strong>Local Mode</strong> enabled by default, because we recommend you to start from local testing. To start with your local testing, you can simply go through all 3 tabs in order: <strong>Build</strong>, <strong>Preview</strong>, and then <strong>Responses</strong>.</p>
+<p>Below is a brief walkthrough of the process:</p>
+<br>
+<center>
+<img src="https://www.surveydown.org/blog/2025-06-29-sdstudio/images/responses_tab_1.gif" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
+<p style="color: gray; font-weight: bold;">
+<em>Build, Preview, and Responses in Sequence</em>
+</p>
+</center>
+<p><br></p>
+</section>
+<section id="db-mode---live-view-the-test-responses" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="db-mode---live-view-the-test-responses"><span class="header-section-number">4.2</span> DB Mode - Live-view the Test Responses</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For instructions on how to obtain your database credentials, proceed to the <a href="https://surveydown.org/docs/storing-data.html#getting-your-supabase-credentials">Storing Data</a> documentation page.</p>
+</div>
+</div>
+<p>You might also want to test the database connection. To do so, you need to firstly switch to <strong>DB Mode</strong> by clicking the “DB Mode” button on the top right corner. This is available in all 3 tabs. Then, in your “Responses” tab, you’ll see a “Database Connection” section on the top. Toggle on the “Settings” button and fill in your database credentials. You can test the connection by clicking the “Test Connection” button.</p>
+<p>In order to have a clean start, we recommend you to name a new table in the “Table” field of “Database Connection”. Upon clicking “Test Connection”, this table will only be a placeholder, and the database will create such table once you start your first survey run.</p>
+<br>
+<center>
+<img src="https://www.surveydown.org/blog/2025-06-29-sdstudio/images/responses_tab_2.png" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
+<p style="color: gray; font-weight: bold;">
+<em>Input your credentials and create a new table</em>
+</p>
+</center>
+<p><br></p>
+<p>If the connection is successful, you will see a “Connected” status message in green. The “Choose a table to view” section will show the new table you just created, but all fields will be empty. They will be filled in once you run your survey in the <strong>Preview</strong> tab.</p>
+<p>After you’ve taken care of the database connection, you can go back to the <strong>Build</strong> tab and proceed with your survey construction, following the exact same steps. The only difference is that now, when you run the survey in the <strong>Preview</strong> tab, your responses will be stored in the database table you just created.</p>
+</section>
+<section id="db-mode---standalone-usage" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="db-mode---standalone-usage"><span class="header-section-number">4.3</span> DB Mode - Standalone Usage</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In order to access the online database, the studio needs to be on “DB Mode”, which is the default mode as we launch it.</p>
+<p>For instructions on how to obtain your database credentials, proceed to the <a href="https://surveydown.org/docs/storing-data.html#getting-your-supabase-credentials">Storing Data</a> documentation page.</p>
+</div>
+</div>
+<p>As you launch the studio using <code>sdstudio::launch()</code>, you can jump over all the other tabs and directly go to the “Responses” tab. Click on the “Settings” button of the “Database Connection” section on the top of the tab and fill in your database credentials. If you don’t know which table to view, leave it blank, but the rest credentials are required.</p>
+<br>
+<center>
+<img src="https://www.surveydown.org/blog/2025-06-29-sdstudio/images/responses_tab_3.png" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
+<p style="color: gray; font-weight: bold;">
+<em>Input your database credentials</em>
+</p>
+</center>
+<p><br></p>
+<p>If the connection is successful, you will see a “Connected” status message in green. You can choose your desired response table from the dropdown menu, review its progress and details, and download the csv file if needed:</p>
+<br>
+<center>
+<img src="https://www.surveydown.org/blog/2025-06-29-sdstudio/images/responses_tab_4.gif" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
+<p style="color: gray; font-weight: bold;">
+<em>Fill in your database credentials and click on the “Test Connection” button</em>
+</p>
+</center>
+<p><br></p>
+</section>
+</section>
+<section id="data-security" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="data-security"><span class="header-section-number">5</span> Data Security</h2>
+<section id="the-.env-file" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="the-.env-file"><span class="header-section-number">5.1</span> The <code>.env</code> File</h3>
+<p>In fact, inputting your database credentials in the “Responses” tab creates an <code>.env</code> file in your current working directory. It’s by default hidden. This file is used to store environment variables securely. Along with this file, there will be a <code>.gitignore</code> file created to prevent it from being pushed to your git repository. This is a good practice to keep your credentials safe.</p>
+<p>In this <code>.env</code> file, you will find the following variables:</p>
+<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Database connection settings for surveydown</span></span>
+<span id="cb4-2">SD_HOST<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"your-database-host"</span></span>
+<span id="cb4-3">SD_PORT<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"your-database-port"</span></span>
+<span id="cb4-4">SD_DBNAME<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"your-database-name"</span></span>
+<span id="cb4-5">SD_USER<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"your-database-username"</span></span>
+<span id="cb4-6">SD_PASSWORD<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"your-database-password"</span></span>
+<span id="cb4-7">SD_TABLE<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"your-database-table"</span></span></code></pre></div>
+<p>The editing of this file is bi-directional, so you can either edit on this file, or use the surveydown Studio interface.</p>
+</section>
+<section id="gssapi-encryption" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="gssapi-encryption"><span class="header-section-number">5.2</span> GSSAPI Encryption</h3>
+<p>The <code>sdstudio::launch()</code> function allows the <code>gssencmode</code> argument. It controls the encryption mode for database connections. This is crucial for ensuring secure communication with your database, especially when handling sensitive survey data.</p>
+<p>By default, we set <code>gssencmode = "auto"</code>, which attempts to use GSSAPI encryption if available, falling back to a plain connection if not. This is the recommended mode for most users. The connection status will show a green “Connected (GSSAPI enabled)” message if GSSAPI is successfully enabled, or a yellow “Connected (GSSAPI disabled)” message if it falls back to plain connection:</p>
+<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Auto mode (recommended) - tries GSSAPI first, falls back if needed</span></span>
+<span id="cb5-2">sdstudio<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">launch</span>()</span></code></pre></div>
+<p>However, if you want to explicitly control the encryption mode, you can set <code>gssencmode</code> to one of the following values:</p>
+<div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Prefer mode - only use GSSAPI</span></span>
+<span id="cb6-2">sdstudio<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">launch</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">gssencmode =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"prefer"</span>)</span>
+<span id="cb6-3"></span>
+<span id="cb6-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Disable mode - forces plain connection (useful for VPN environments)</span></span>
+<span id="cb6-5">sdstudio<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">launch</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">gssencmode =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"disable"</span>)</span></code></pre></div>
+</section>
+</section>
+<section id="conclusion" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">6</span> Conclusion</h2>
+<p>As a companion GUI for the <strong>surveydown</strong> platform, <strong>sdstudio</strong> significantly simplifies the survey creation process. It allows users to build, preview, and manage surveys through an intuitive interface, without requiring extensive programming skills. The three-tab workflow - Build, Preview, and Responses - provides a comprehensive solution that covers the entire survey lifecycle.</p>
+<p>Whether you’re conducting academic research, gathering customer feedback, running marketing surveys, or performing data analysis, <strong>sdstudio</strong> provides the tools you need to create, deploy, and manage surveys with confidence and efficiency.</p>
+<hr>
+<p><em>For more information, visit the <a href="https://sdstudio.surveydown.org">sdstudio documentation</a> or explore the <a href="https://surveydown.org">surveydown platform</a>.</em></p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>Tutorial</category>
+  <category>GUI</category>
+  <guid>https://www.surveydown.org/blog/2025-06-29-sdstudio/</guid>
+  <pubDate>Sun, 29 Jun 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://www.surveydown.org/blog/2025-06-29-sdstudio/banner.png" medium="image" type="image/png" height="96" width="144"/>
+</item>
 <item>
   <title>surveydown Gadgets for Page and Question Creation</title>
   <dc:creator>John Paul Helveston</dc:creator>
-  <dc:creator>Pingfan Hu</dc:creator>
+  <dc:creator>[Pingfan Hu](https://pingfanhu.com)</dc:creator>
   <link>https://www.surveydown.org/blog/2025-04-08-surveydown-gadgets/</link>
   <description><![CDATA[ 
 

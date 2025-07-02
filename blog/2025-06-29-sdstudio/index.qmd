@@ -1,9 +1,9 @@
 ---
 title: sdstudio - Companion GUI for surveydown
 author:
-  - name: Pingfan Hu
+  - name: "[Pingfan Hu](https://pingfanhu.com)"
 description: |
-  A brief walkthrough of the **sdstudio** R Package, a companion GUI for **surveydown**.
+  A brief walkthrough of the **sdstudio** R Package, a companion GUI for **surveydown**. <a href='https://sdstudio.surveydown.org'><img src='/blog/2025-06-29-sdstudio/images/sdstudio.png' align="right" style="height:139px;"/></a>
 date: '2025-06-29'
 image: "banner.png"
 number-sections: true
@@ -17,7 +17,7 @@ toc: true
 lightbox: true
 ---
 
-## Introduction <a href='https://sdstudio.surveydown.org'><img src='images/sdstudio.png' align="right" style="height:139px;"/></a>
+## Introduction
 
 As a companion package to the [surveydown](https://surveydown.org/) platform, **sdstudio** serves as a comprehensive GUI for survey construction, preview, and data management, without requiring extensive programming knowledge.
 
@@ -25,10 +25,6 @@ As a companion package to the [surveydown](https://surveydown.org/) platform, **
    Description: Place your comprehensive intro video here showing the overall sdstudio interface, 
    launching the application, and a quick tour of all three tabs. This should give viewers 
    a complete overview before diving into the detailed sections below. -->
-
-## Getting Started
-
-### Installation
 
 The **sdstudio** package is currently in development and can be installed directly from GitHub:
 
@@ -47,350 +43,239 @@ pak::pak("surveydown-dev/surveydown", ask = FALSE)
 install.packages("surveydown")
 ```
 
-### Launching the Studio
-
-Launch the studio using this function:
+Launch the studio in your browser using this function:
 
 ```r
 sdstudio::launch()
 ```
-
-This opens your default web browser with the **sdstudio** interface, providing immediate access to all survey creation and management tools.
 
 <!-- **PLACEHOLDER: Screenshot of the sdstudio launch process**
    Description: Show the R console command and the resulting browser window opening 
    with the sdstudio interface. Capture the clean, modern Bootstrap 5 design. -->
 
-### Interface Overview
-
 The **sdstudio** interface is organized into three main tabs that follow the natural survey workflow:
 
-- **🏗️ Build**: Visual survey creation with templates and drag-and-drop functionality
-- **👁️ Preview**: Real-time survey testing and responsive design preview
+- **🏗️ Build**: Visual survey creation with side-by-side structure and scripts
+- **👁️ Preview**: Real-time survey testing
 - **📊 Responses**: Data collection, analytics, and export capabilities
 
-Each tab is designed to be intuitive while providing access to advanced features when needed.
+## The "Build" Tab
 
-## Build Tab - Visual Survey Creation
+### Start from a Template
 
-The Build tab is where the magic happens. This is your visual survey construction workspace, designed to make survey creation as intuitive as using a word processor while maintaining the power and flexibility of code-based approaches.
+The "Build" tab is your workspace of survey construction. You can either start from a prepared template or continue with your own survey files. The "Directory" will show your current working directory, but you can change it to any directory where your survey files are stored.
 
-### Template Gallery
+::: {.callout-note}
+There are 15 templates available. The ***default*** template contains a minimum basic structure for a clean start. You might also try the ***question_type*** template for a showcase of all question types, or try some advanced features with ***conditional_display***, ***conditional_navigation***, etc.
 
-One of **sdstudio**'s standout features is its comprehensive template library. With 15 professionally designed templates, you can start with a solid foundation rather than building from scratch:
+For a full list of templates, see the [templates repo](https://github.com/surveydown-dev/templates) on GitHub.
+:::
 
-**Basic Templates:**
-- Default survey structure
-- Question type demonstrations
-- YAML-based configurations
+<br>
+<center>
+<img src="images/build_tab_1.png" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
+<p style="color: gray; font-weight: bold;"><em>Start from a Template in the Build Tab</em></p>
+</center>
+<br>
 
-**Advanced Templates:**
-- Conditional logic examples
-- Randomized option presentations
-- Reactive question flows
+### Build Your Survey
 
-**Specialized Templates:**
-- Conjoint experiments
-- Interactive maps
-- Live polling systems
+After you've selected your template, or if you already have an existing survey, you'll see the dual panel of survey constructions on the "Build" tab. The "Structure" section on the left shows the page-content structure of your survey. The "Code" section on the right displays the survey scripts in a code editor.
 
-<!-- **PLACEHOLDER: Screenshot of the template selection interface**
-   Description: Show the template gallery with thumbnail previews of different 
-   survey types. Highlight the visual diversity and professional appearance 
-   of the templates. -->
+<br>
+<center>
+<img src="images/build_tab_2.png" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
+<p style="color: gray; font-weight: bold;"><em>Dual Panel of the Build Tab</em></p>
+</center>
+<br>
 
-### Dual-Pane Editor
 
-The heart of the Build tab is the dual-pane editor system that provides the best of both worlds:
+#### The Structure Section
 
-**Visual Builder (Left Pane):**
-- Drag-and-drop interface for question arrangement
-- Point-and-click question creation and editing
-- Visual preview of survey flow
-- Intuitive question type selection
+The **"Structure"** section on the left gives you 2 hierarchies: page and content. The pages can be toggled on to show the content, or toggled off. There are two types of content: questions and texts, with labels of "Q" and "T", respectively.
 
-**Code Editor (Right Pane):**
-- Full ACE editor integration with syntax highlighting
-- Real-time code synchronization
-- Direct code editing for advanced users
-- Immediate validation and error detection
+There are buttons on each page and content which self-explain their capabilities. The "Add A New Page" button at the bottom allows you to create a new page.
 
-The synchronization between these panes is seamless - changes in the visual builder instantly update the code, and code modifications immediately reflect in the visual interface.
+The *question* content shows question ID, question type, and question label. You can review the full question details with the edit button, or view the full question definition code on the code section. The *text* content shows the first 5 words of the full piece of text.
 
-<!-- **PLACEHOLDER: Screenshot of the dual-pane editor**
-   Description: Show both panes side-by-side with a sample survey. Demonstrate 
-   the visual builder on the left and the corresponding code on the right. 
-   Highlight the clean, professional interface design. -->
+<br>
+<center>
+<img src="images/build_tab_3.png" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
+<p style="color: gray; font-weight: bold;"><em>Click on the +T/+Q button to add a text/question</em></p>
+</center>
+<br>
 
-<!-- **PLACEHOLDER: GIF of real-time synchronization**
-   Description: Create a short GIF showing a user making changes in the visual 
-   builder and the code automatically updating in real-time, then making a 
-   code edit and seeing the visual interface update. This demonstrates the 
-   bidirectional synchronization. -->
+All elements support drag-n-drop operations. After each operation, the structure will refresh and update the code editor on the right. If you move two test elements together, they will merge in to one text element.
 
-### Question Types and Functionality
+<br>
+<center>
+<img src="images/build_tab_4.gif" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
+<p style="color: gray; font-weight: bold;"><em>Dragging two texts together will merge them</em></p>
+</center>
+<br>
 
-**sdstudio** supports 12 different question types, each optimized for specific data collection needs:
+#### The Code Section
 
-- **Multiple Choice**: Single and multiple selection options
-- **Text Input**: Short and long-form text responses
-- **Numeric Input**: Integer and decimal number collection
-- **Sliders**: Visual rating scales and range selections
-- **Date/Time**: Comprehensive date and time picking
-- **Likert Scales**: Standard rating scale presentations
-- **Matrix Questions**: Efficient multi-item ratings
-- **File Uploads**: Document and media collection
-- **Ranking**: Priority ordering interfaces
-- **Signature**: Digital signature capture
-- **Location**: Geographic coordinate collection
-- **Custom HTML**: Advanced interactive elements
+::: {.callout-note}
+For now the surveydown Studio has powerful support to **survey.qmd** because it is meant to be the main file for survey construction. However, even though **app.R** is directly editable, we still recommend that you edit it using your IDE or other text editors. All our templates have the **app.R** file ready to run, which can be a good starting point.
+:::
 
-### Advanced Features
+The **"Code"** section on the right is an integrated code editor that allows you to edit the survey scripts directly, with the **survey.qmd** file opened by default. It also reflects any operation you've done on the "Structure" section. The other file, **app.R**, is available for direct editing as well.
 
-**Undo/Redo System:**
-Every action in the Build tab is tracked, allowing you to experiment freely knowing you can always revert changes. The undo/redo system works across both visual and code editing modes.
+## The "Preview" Tab
 
-**Local/DB Mode Switching:**
-Toggle between local testing mode (for development) and database mode (for live data collection) with a single click. This feature streamlines the development-to-deployment workflow.
+The "Preview" tab is where your survey comes to life. It provides a real-time, interactive preview of your survey as you build it, allowing you to see exactly how respondents will experience your survey.
 
-<!-- **PLACEHOLDER: Screenshot of question type selection**
-   Description: Show the question type picker interface with icons and 
-   descriptions for each question type. Highlight the variety and 
-   professional iconography. -->
 
-## Preview Tab - Live Survey Testing
+### Live Rendering
 
-The Preview tab transforms your survey from code into a living, interactive experience. This is where you test, refine, and perfect your survey before sharing it with respondents.
+Every time you make changes in the Build tab, the survey is live-rendered and revealed in the Preview tab. It takes a couple of seconds to render, so if you switch to the Preview tab too early, you'll see message of survey being rendered. After rendering is done, the survey will be available.
 
-### Real-Time Preview
+<br>
+<center>
+<img src="images/preview_tab_1.gif" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
+<p style="color: gray; font-weight: bold;"><em>The survey preview is live and interactive</em></p>
+</center>
+<br>
 
-As you make changes in the Build tab, the Preview tab automatically updates to reflect your modifications. This real-time preview system eliminates the traditional develop-deploy-test cycle, allowing for immediate feedback and iteration.
+### Desktop and Mobile Views
 
-### Responsive Design Testing
+You can toggle between "Desktop View" and "Mobile View" using the pair of buttons at the top right corner:
 
-Modern surveys must work across all devices. The Preview tab provides two essential viewing modes:
+<br>
+<center>
+<img src="images/preview_tab_2.gif" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
+<p style="color: gray; font-weight: bold;"><em>Toggling between desktop and mobile views</em></p>
+</center>
+<br>
 
-**Desktop Mode (Widescreen):**
-- Full-width layout optimization
-- Multiple column support
-- Enhanced visual elements
-- Comprehensive question displays
+### New Sessions
 
-**Mobile Mode (375px):**
-- Smartphone-optimized layouts
-- Touch-friendly interfaces
-- Simplified navigation
-- Responsive question adaptation
+You might have noticed there is a green refresh button on the top right as well. This is for you to manually refresh the preview if you want to restart a session:
 
-The responsive preview ensures your survey provides an optimal experience regardless of how respondents access it.
-
-<!-- **PLACEHOLDER: Screenshot of desktop preview mode**
-   Description: Show a survey in desktop preview mode with full-width layout 
-   and multiple questions visible. Highlight the clean, professional appearance 
-   and Bootstrap 5 styling. -->
-
-<!-- **PLACEHOLDER: Screenshot of mobile preview mode**
-   Description: Show the same survey in mobile preview mode at 375px width. 
-   Demonstrate how the layout adapts for mobile devices with touch-friendly 
-   buttons and simplified navigation. -->
-
-<!-- **PLACEHOLDER: GIF of responsive mode switching**
-   Description: Create a GIF showing the transition between desktop and mobile 
-   preview modes, demonstrating the responsive design adaptation in real-time. -->
-
-### Interactive Testing Environment
-
-The Preview tab isn't just for viewing - it's a fully functional testing environment. You can:
-
-- Complete surveys as a respondent would
-- Test conditional logic and question flows
-- Verify data validation rules
-- Check question skip patterns
-- Validate survey timing and flow
-
-This interactive testing capability ensures your survey works perfectly before deployment.
-
-## Responses Tab - Data Management & Analytics
-
-The Responses tab transforms **sdstudio** from a survey creation tool into a comprehensive data management platform. This is where your survey data comes to life through analytics, visualizations, and export capabilities.
-
-### Database Integration
-
-**sdstudio** provides enterprise-grade database connectivity through PostgreSQL integration:
-
-**GSSAPI Encryption:**
-- Automatic encryption detection and configuration
-- Fallback options for various network environments
-- Enterprise security compliance
-- Transparent connection management
+<br>
+<center>
+<img src="images/preview_tab_3.gif" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
+<p style="color: gray; font-weight: bold;"><em>Restart a new session using the refresh button</em></p>
+</center>
+<br>
 
-**Connection Pooling:**
-- Optimized database performance
-- Automatic connection management
-- Scalable concurrent access
-- Resource optimization
+## The "Responses" Tab
 
-**Configuration Flexibility:**
-- Environment variable support
-- Built-in settings interface
-- Multiple connection modes (auto/prefer/disable)
-- VPN and proxy compatibility
+**surveydown Studio** serves two purposes: survey construction and data management. They form a stream-lined process, but the data management part can also function on its own. Therefore, the "Responses" tab has 3 use cases:
 
-<!-- **PLACEHOLDER: Screenshot of database connection interface**
-   Description: Show the database connection settings with fields for host, 
-   database, username, etc. Include connection status indicators and 
-   encryption mode options. -->
+1. Local Mode: After survey creation and test runs, you can locally view survey responses without connecting to database.
+2. DB Mode for Live-view: After survey creation and test runs, you can live-view the responses with database connection.
+2. DB Mode used alone: Without creating any survey, you can come to "Responses" directly, input your database credentials, and obtain all your stored survey responses.
 
-### Real-Time Analytics Dashboard
+Lets go through all these use cases in details.
 
-The analytics dashboard provides immediate insights into your survey performance:
+### Local Mode - Local View of Responses
 
-**Response Metrics:**
-- Total response count with trend indicators
-- Daily response averages and patterns
-- Completion rate tracking and analysis
-- Response time analytics
+All our templates have **Local Mode** enabled by default, because we recommend you to start from local testing. To start with your local testing, you can simply go through all 3 tabs in order: **Build**, **Preview**, and then **Responses**.
 
-**Visual Analytics:**
-- Interactive charts showing response trends
-- Cumulative response graphs
-- Daily activity patterns
-- Completion funnel analysis
+Below is a brief walkthrough of the process:
 
-**Performance Indicators:**
-- Real-time response monitoring
-- Survey engagement metrics
-- Completion rate optimization insights
-- Respondent behavior patterns
+<br>
+<center>
+<img src="images/responses_tab_1.gif" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
+<p style="color: gray; font-weight: bold;"><em>Build, Preview, and Responses in Sequence</em></p>
+</center>
+<br>
 
-<!-- **PLACEHOLDER: Screenshot of the analytics dashboard**
-   Description: Show the main analytics interface with charts, metrics, and 
-   performance indicators. Highlight the clean, data-focused design and 
-   interactive charts. -->
+### DB Mode - Live-view the Test Responses
 
-### Interactive Data Management
+::: {.callout-note}
+For instructions on how to obtain your database credentials, proceed to the [Storing Data](https://surveydown.org/docs/storing-data.html#getting-your-supabase-credentials) documentation page.
+:::
 
-The data management interface provides comprehensive tools for handling survey responses:
+You might also want to test the database connection. To do so, you need to firstly switch to **DB Mode** by clicking the "DB Mode" button on the top right corner. This is available in all 3 tabs. Then, in your "Responses" tab, you'll see a "Database Connection" section on the top. Toggle on the "Settings" button and fill in your database credentials. You can test the connection by clicking the "Test Connection" button.
 
-**Advanced Data Table:**
-- Search and filter capabilities across all response fields
-- Column sorting and arrangement
-- Pagination for large datasets
-- Real-time data updates
+In order to have a clean start, we recommend you to name a new table in the "Table" field of "Database Connection". Upon clicking "Test Connection", this table will only be a placeholder, and the database will create such table once you start your first survey run.
 
-**Export Functionality:**
-- CSV export with customizable field selection
-- Data formatting options
-- Bulk export capabilities
-- Scheduled export options (future feature)
+<br>
+<center>
+<img src="images/responses_tab_2.png" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
+<p style="color: gray; font-weight: bold;"><em>Input your credentials and create a new table</em></p>
+</center>
+<br>
 
-**Data Quality Tools:**
-- Response validation indicators
-- Incomplete response identification
-- Data integrity checking
-- Quality score calculations
+If the connection is successful, you will see a "Connected" status message in green. The "Choose a table to view" section will show the new table you just created, but all fields will be empty. They will be filled in once you run your survey in the **Preview** tab.
 
-<!-- **PLACEHOLDER: Screenshot of the data table interface**
-   Description: Show the interactive data table with search, filter, and sort 
-   controls. Display sample survey response data with clear column headers 
-   and formatting. -->
+After you've taken care of the database connection, you can go back to the **Build** tab and proceed with your survey construction, following the exact same steps. The only difference is that now, when you run the survey in the **Preview** tab, your responses will be stored in the database table you just created.
 
-<!-- **PLACEHOLDER: GIF of data interaction**
-   Description: Create a GIF showing the data table in action - searching, 
-   filtering, sorting, and exporting data. Demonstrate the smooth, responsive 
-   interface interactions. -->
+### DB Mode - Standalone Usage
 
-### Connection Status and Monitoring
+::: {.callout-note}
+In order to access the online database, the studio needs to be on "DB Mode", which is the default mode as we launch it.
 
-The Responses tab provides comprehensive connection monitoring:
+For instructions on how to obtain your database credentials, proceed to the [Storing Data](https://surveydown.org/docs/storing-data.html#getting-your-supabase-credentials) documentation page.
+:::
 
-**Visual Status Indicators:**
-- Real-time connection status display
-- Encryption status verification
-- Database health monitoring
-- Error reporting and diagnostics
+As you launch the studio using `sdstudio::launch()`, you can jump over all the other tabs and directly go to the "Responses" tab. Click on the "Settings" button of the "Database Connection" section on the top of the tab and fill in your database credentials. If you don't know which table to view, leave it blank, but the rest credentials are required.
 
-**Automatic Reconnection:**
-- Intelligent reconnection logic
-- Failover handling
-- Connection recovery processes
-- Minimal data loss protection
+<br>
+<center>
+<img src="images/responses_tab_3.png" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
+<p style="color: gray; font-weight: bold;"><em>Input your database credentials</em></p>
+</center>
+<br>
 
-## Advanced Configuration
+If the connection is successful, you will see a "Connected" status message in green. You can choose your desired response table from the dropdown menu, review its progress and details, and download the csv file if needed:
 
-### Environment Variables
+<br>
+<center>
+<img src="images/responses_tab_4.gif" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
+<p style="color: gray; font-weight: bold;"><em>Fill in your database credentials and click on the "Test Connection" button</em></p>
+</center>
+<br>
 
-**sdstudio** supports flexible configuration through environment variables, making it easy to manage different deployment environments:
+## Data Security
+
+### The `.env` File
+
+In fact, inputting your database credentials in the "Responses" tab creates an `.env` file in your current working directory. It's by default hidden. This file is used to store environment variables securely. Along with this file, there will be a `.gitignore` file created to prevent it from being pushed to your git repository. This is a good practice to keep your credentials safe.
+
+In this `.env` file, you will find the following variables:
 
 ```r
-# Configuration options
-DB_HOST="your-database-host"
-DB_NAME="survey_database"
-DB_USER="username"
-DB_PASSWORD="password"
-DB_PORT=5432
+# Database connection settings for surveydown
+SD_HOST="your-database-host"
+SD_PORT="your-database-port"
+SD_DBNAME="your-database-name"
+SD_USER="your-database-username"
+SD_PASSWORD="your-database-password"
+SD_TABLE="your-database-table"
 ```
 
-### Encryption Modes
+The editing of this file is bi-directional, so you can either edit on this file, or use the surveydown Studio interface.
 
-Database connections can be configured with different encryption modes to accommodate various network environments:
+### GSSAPI Encryption
+
+The `sdstudio::launch()` function allows the `gssencmode` argument. It controls the encryption mode for database connections. This is crucial for ensuring secure communication with your database, especially when handling sensitive survey data.
+
+By default, we set `gssencmode = "auto"`, which attempts to use GSSAPI encryption if available, falling back to a plain connection if not. This is the recommended mode for most users. The connection status will show a green "Connected (GSSAPI enabled)" message if GSSAPI is successfully enabled, or a yellow "Connected (GSSAPI disabled)" message if it falls back to plain connection:
 
 ```r
 # Auto mode (recommended) - tries GSSAPI first, falls back if needed
 sdstudio::launch()
+```
 
-# Prefer mode - uses GSSAPI if available, plain connection if not  
+However, if you want to explicitly control the encryption mode, you can set `gssencmode` to one of the following values:
+
+```r
+# Prefer mode - only use GSSAPI
 sdstudio::launch(gssencmode = "prefer")
 
 # Disable mode - forces plain connection (useful for VPN environments)
 sdstudio::launch(gssencmode = "disable")
 ```
 
-## Best Practices and Tips
-
-### Survey Design Best Practices
-
-1. **Start with Templates**: Use the template gallery to establish a solid foundation
-2. **Test Early and Often**: Use the Preview tab throughout your design process
-3. **Mobile-First Design**: Always check mobile preview to ensure accessibility
-4. **Logical Flow**: Utilize conditional logic to create engaging, relevant surveys
-5. **Data Validation**: Implement proper validation rules in the Build tab
-
-### Performance Optimization
-
-1. **Database Connections**: Use connection pooling for high-traffic surveys
-2. **Question Complexity**: Balance visual appeal with loading performance
-3. **Media Assets**: Optimize images and videos for web delivery
-4. **Response Handling**: Monitor database performance through the Responses tab
-
-### Security Considerations
-
-1. **Encryption**: Always use GSSAPI encryption for sensitive data
-2. **Environment Variables**: Store credentials securely, never in code
-3. **Access Control**: Implement proper database user permissions
-4. **Data Privacy**: Follow GDPR and other privacy regulations
-
 ## Conclusion
 
-**sdstudio** represents a significant advancement in survey creation technology, transforming what was once a complex, code-intensive process into an intuitive, visual experience. By combining the power of the surveydown platform with an accessible graphical interface, **sdstudio** makes professional survey creation available to researchers, analysts, and organizations regardless of their programming expertise.
-
-The three-tab workflow - Build, Preview, and Responses - provides a comprehensive solution that covers the entire survey lifecycle. From initial design through data collection and analysis, **sdstudio** streamlines every step while maintaining the flexibility and power that advanced users require.
+As a companion GUI for the **surveydown** platform, **sdstudio** significantly simplifies the survey creation process. It allows users to build, preview, and manage surveys through an intuitive interface, without requiring extensive programming skills. The three-tab workflow - Build, Preview, and Responses - provides a comprehensive solution that covers the entire survey lifecycle.
 
 Whether you're conducting academic research, gathering customer feedback, running marketing surveys, or performing data analysis, **sdstudio** provides the tools you need to create, deploy, and manage surveys with confidence and efficiency.
-
-Ready to get started? Install **sdstudio** today and experience the future of survey creation.
-
-```r
-# Get started with sdstudio
-pak::pak("surveydown-dev/sdstudio", ask = FALSE)
-sdstudio::launch()
-```
-
-<!-- **PLACEHOLDER: Final screenshot of successful survey deployment**
-   Description: Show a completed survey with active responses in the Responses 
-   tab, demonstrating the end-to-end workflow from creation to data collection. 
-   This should be an inspiring "success" image that motivates readers to try 
-   the tool. -->
 
 ---
 

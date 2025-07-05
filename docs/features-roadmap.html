@@ -576,9 +576,9 @@ ul.task-list li input[type="checkbox"] {
 
     <script>
 
-      function styleCell_aqjd7kdh280mz9zapg7e(i, j, css_id) {
-          var table = document.getElementById("tinytable_aqjd7kdh280mz9zapg7e");
-          var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
+      function styleCell_rxm2rmsogio0ipzva6be(i, j, css_id) {
+          var table = document.getElementById("tinytable_rxm2rmsogio0ipzva6be");
+          var cell = table.querySelector(`[data-row="${i}"][data-col="${j}"]`);
           if (cell) {
               console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
               cell.classList.add(css_id);
@@ -587,225 +587,230 @@ ul.task-list li input[type="checkbox"] {
           }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_aqjd7kdh280mz9zapg7e');
-        var newRow = table.insertRow(i);
+        var table = document.getElementById('tinytable_rxm2rmsogio0ipzva6be');
+        // Find the row with data-row attribute matching i
+        var targetRow = table.querySelector(`tr [data-row="${i}"]`).closest('tr');
+        var newRow = table.insertRow(targetRow.rowIndex);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
+        newCell.setAttribute("data-col", "0");
+        newCell.setAttribute("data-row", i - 1);
         // newCell.innerText = content;
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_aqjd7kdh280mz9zapg7e(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_aqjd7kdh280mz9zapg7e");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
+      function spanCell_rxm2rmsogio0ipzva6be(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_rxm2rmsogio0ipzva6be");
+        const targetCell = table.querySelector(`[data-row="${i}"][data-col="${j}"]`);
+        if (!targetCell) {
+          console.warn(`Cell at (${i}, ${j}) not found.`);
+        }
+
+        // Get all cells that need to be removed
+        const cellsToRemove = [];
         for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
+          for (let c = 0; c < colspan; c++) {
+            if (r === 0 && c === 0) continue; // Skip the target cell
+            const cell = table.querySelector(`[data-row="${i + r}"][data-col="${j + c}"]`);
+            if (cell) {
+              cellsToRemove.push(cell);
             }
           }
         }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
+
+        // Remove all cells
+        cellsToRemove.forEach(cell => cell.remove());
+
+        // Set rowspan and colspan of the target cell if it exists
+        if (targetCell) {
+          targetCell.rowSpan = rowspan;
+          targetCell.colSpan = colspan;
+        }
       }
       // tinytable span after
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: 1, j: 2 }, { i: 2, j: 2 }, { i: 3, j: 2 }, { i: 5, j: 2 }, { i: 6, j: 2 }, { i: 7, j: 2 }, { i: 4, j: 2 }, { i: 9, j: 2 }, { i: 10, j: 2 }, { i: 11, j: 2 }, { i: 8, j: 2 }, { i: 13, j: 2 }, { i: 14, j: 2 }, { i: 15, j: 2 }, { i: 16, j: 2 }, { i: 17, j: 2 }, { i: 18, j: 2 }, { i: 19, j: 2 }, { i: 20, j: 2 }, { i: 21, j: 2 }, { i: 22, j: 2 }, { i: 23, j: 2 }, { i: 24, j: 2 }, { i: 12, j: 2 }, { i: 1, j: 3 }, { i: 2, j: 3 }, { i: 3, j: 3 }, { i: 4, j: 3 }, { i: 5, j: 3 }, { i: 6, j: 3 }, { i: 7, j: 3 }, { i: 8, j: 3 }, { i: 9, j: 3 }, { i: 10, j: 3 }, { i: 11, j: 3 }, { i: 12, j: 3 }, { i: 13, j: 3 }, { i: 14, j: 3 }, { i: 15, j: 3 }, { i: 16, j: 3 }, { i: 17, j: 3 }, { i: 18, j: 3 }, { i: 19, j: 3 }, { i: 20, j: 3 }, { i: 21, j: 3 }, { i: 22, j: 3 }, { i: 23, j: 3 }, { i: 24, j: 3 },  ], css_id: 'tinytable_css_pfs9ah9xa9vqfl2x9uzl',}, 
-          { positions: [ { i: 0, j: 2 }, { i: 0, j: 3 },  ], css_id: 'tinytable_css_7oshzocmw2f1ie7fuy4c',}, 
-          { positions: [ { i: 1, j: 1 }, { i: 2, j: 1 }, { i: 3, j: 1 }, { i: 4, j: 1 }, { i: 5, j: 1 }, { i: 6, j: 1 }, { i: 7, j: 1 }, { i: 8, j: 1 }, { i: 9, j: 1 }, { i: 10, j: 1 }, { i: 11, j: 1 }, { i: 12, j: 1 }, { i: 13, j: 1 }, { i: 14, j: 1 }, { i: 15, j: 1 }, { i: 16, j: 1 }, { i: 17, j: 1 }, { i: 18, j: 1 }, { i: 19, j: 1 }, { i: 20, j: 1 }, { i: 21, j: 1 }, { i: 22, j: 1 }, { i: 23, j: 1 }, { i: 24, j: 1 },  ], css_id: 'tinytable_css_qweahanax8wc6eath58p',}, 
-          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_tekyg5ralnegd6frov3f',}, 
-          { positions: [ { i: 1, j: 0 }, { i: 2, j: 0 }, { i: 3, j: 0 }, { i: 4, j: 0 }, { i: 5, j: 0 }, { i: 6, j: 0 }, { i: 7, j: 0 }, { i: 8, j: 0 }, { i: 9, j: 0 }, { i: 10, j: 0 }, { i: 11, j: 0 }, { i: 12, j: 0 }, { i: 13, j: 0 }, { i: 14, j: 0 }, { i: 15, j: 0 }, { i: 16, j: 0 }, { i: 17, j: 0 }, { i: 18, j: 0 }, { i: 19, j: 0 }, { i: 20, j: 0 }, { i: 21, j: 0 }, { i: 22, j: 0 }, { i: 23, j: 0 }, { i: 24, j: 0 },  ], css_id: 'tinytable_css_i6032p0jd11mm2jlbtvb',}, 
-          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_9tglz1vopl86uqy8d197',}, 
+          { positions: [ { i: '1', j: 2 }, { i: '2', j: 2 }, { i: '3', j: 2 }, { i: '5', j: 2 }, { i: '6', j: 2 }, { i: '7', j: 2 }, { i: '4', j: 2 }, { i: '9', j: 2 }, { i: '10', j: 2 }, { i: '11', j: 2 }, { i: '8', j: 2 }, { i: '13', j: 2 }, { i: '14', j: 2 }, { i: '15', j: 2 }, { i: '16', j: 2 }, { i: '17', j: 2 }, { i: '18', j: 2 }, { i: '19', j: 2 }, { i: '20', j: 2 }, { i: '21', j: 2 }, { i: '22', j: 2 }, { i: '23', j: 2 }, { i: '24', j: 2 }, { i: '12', j: 2 }, { i: '1', j: 3 }, { i: '2', j: 3 }, { i: '3', j: 3 }, { i: '4', j: 3 }, { i: '5', j: 3 }, { i: '6', j: 3 }, { i: '7', j: 3 }, { i: '8', j: 3 }, { i: '9', j: 3 }, { i: '10', j: 3 }, { i: '11', j: 3 }, { i: '12', j: 3 }, { i: '13', j: 3 }, { i: '14', j: 3 }, { i: '15', j: 3 }, { i: '16', j: 3 }, { i: '17', j: 3 }, { i: '18', j: 3 }, { i: '19', j: 3 }, { i: '20', j: 3 }, { i: '21', j: 3 }, { i: '22', j: 3 }, { i: '23', j: 3 }, { i: '24', j: 3 },  ], css_id: 'tinytable_css_z6hupsb9c0yj9a2t4eb1',}, 
+          { positions: [ { i: '0', j: 2 }, { i: '0', j: 3 },  ], css_id: 'tinytable_css_r4qkb81rt8gfa03zo5fn',}, 
+          { positions: [ { i: '1', j: 1 }, { i: '2', j: 1 }, { i: '3', j: 1 }, { i: '4', j: 1 }, { i: '5', j: 1 }, { i: '6', j: 1 }, { i: '7', j: 1 }, { i: '8', j: 1 }, { i: '9', j: 1 }, { i: '10', j: 1 }, { i: '11', j: 1 }, { i: '12', j: 1 }, { i: '13', j: 1 }, { i: '14', j: 1 }, { i: '15', j: 1 }, { i: '16', j: 1 }, { i: '17', j: 1 }, { i: '18', j: 1 }, { i: '19', j: 1 }, { i: '20', j: 1 }, { i: '21', j: 1 }, { i: '22', j: 1 }, { i: '23', j: 1 }, { i: '24', j: 1 },  ], css_id: 'tinytable_css_9tphsjgny2f6ce4k9nwr',}, 
+          { positions: [ { i: '0', j: 1 },  ], css_id: 'tinytable_css_zx5z5tc57ze2srsjtnw9',}, 
+          { positions: [ { i: '1', j: 0 }, { i: '2', j: 0 }, { i: '3', j: 0 }, { i: '4', j: 0 }, { i: '5', j: 0 }, { i: '6', j: 0 }, { i: '7', j: 0 }, { i: '8', j: 0 }, { i: '9', j: 0 }, { i: '10', j: 0 }, { i: '11', j: 0 }, { i: '12', j: 0 }, { i: '13', j: 0 }, { i: '14', j: 0 }, { i: '15', j: 0 }, { i: '16', j: 0 }, { i: '17', j: 0 }, { i: '18', j: 0 }, { i: '19', j: 0 }, { i: '20', j: 0 }, { i: '21', j: 0 }, { i: '22', j: 0 }, { i: '23', j: 0 }, { i: '24', j: 0 },  ], css_id: 'tinytable_css_k63qhldtwnej9crppj0e',}, 
+          { positions: [ { i: '0', j: 0 },  ], css_id: 'tinytable_css_cdfl2aelqpmdkzdkoxa3',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  styleCell_aqjd7kdh280mz9zapg7e(cell.i, cell.j, group.css_id);
+                  styleCell_rxm2rmsogio0ipzva6be(cell.i, cell.j, group.css_id);
               });
           });
       });
     </script><style>
       /* tinytable css entries after */
-      .table td.tinytable_css_pfs9ah9xa9vqfl2x9uzl, .table th.tinytable_css_pfs9ah9xa9vqfl2x9uzl { font-size: 1em; text-align: center; width: 11.1111111111111%; }
-      .table td.tinytable_css_7oshzocmw2f1ie7fuy4c, .table th.tinytable_css_7oshzocmw2f1ie7fuy4c { font-size: 1em; text-align: center; text-align: center; width: 11.1111111111111%; }
-      .table td.tinytable_css_qweahanax8wc6eath58p, .table th.tinytable_css_qweahanax8wc6eath58p { font-size: 1em; text-align: left; width: 22.2222222222222%; }
-      .table td.tinytable_css_tekyg5ralnegd6frov3f, .table th.tinytable_css_tekyg5ralnegd6frov3f { font-size: 1em; text-align: left; text-align: center; width: 22.2222222222222%; }
-      .table td.tinytable_css_i6032p0jd11mm2jlbtvb, .table th.tinytable_css_i6032p0jd11mm2jlbtvb { font-size: 1em; text-align: left; width: 55.5555555555556%; }
-      .table td.tinytable_css_9tglz1vopl86uqy8d197, .table th.tinytable_css_9tglz1vopl86uqy8d197 { font-size: 1em; text-align: left; text-align: center; width: 55.5555555555556%; }
+      .table td.tinytable_css_z6hupsb9c0yj9a2t4eb1, .table th.tinytable_css_z6hupsb9c0yj9a2t4eb1 { font-size: 1em; text-align: center; width: 11.1111111111111%; }
+      .table td.tinytable_css_r4qkb81rt8gfa03zo5fn, .table th.tinytable_css_r4qkb81rt8gfa03zo5fn { font-size: 1em; text-align: center; text-align: center; width: 11.1111111111111%; }
+      .table td.tinytable_css_9tphsjgny2f6ce4k9nwr, .table th.tinytable_css_9tphsjgny2f6ce4k9nwr { font-size: 1em; text-align: left; width: 22.2222222222222%; }
+      .table td.tinytable_css_zx5z5tc57ze2srsjtnw9, .table th.tinytable_css_zx5z5tc57ze2srsjtnw9 { font-size: 1em; text-align: left; text-align: center; width: 22.2222222222222%; }
+      .table td.tinytable_css_k63qhldtwnej9crppj0e, .table th.tinytable_css_k63qhldtwnej9crppj0e { font-size: 1em; text-align: left; width: 55.5555555555556%; }
+      .table td.tinytable_css_cdfl2aelqpmdkzdkoxa3, .table th.tinytable_css_cdfl2aelqpmdkzdkoxa3 { font-size: 1em; text-align: left; text-align: center; width: 55.5555555555556%; }
     </style>
 <div class="container">
       
-<table id="tinytable_aqjd7kdh280mz9zapg7e" class="table table-bordered caption-top table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false">
+<table id="tinytable_rxm2rmsogio0ipzva6be" class="table table-bordered caption-top table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false">
 <thead><tr class="header">
-<th data-quarto-table-cell-role="th" scope="col">Feature</th>
-<th data-quarto-table-cell-role="th" scope="col">Docs</th>
-<th data-quarto-table-cell-role="th" scope="col">Version</th>
-<th data-quarto-table-cell-role="th" scope="col">Discussion</th>
+<th data-quarto-table-cell-role="th" scope="col" data-row="0" data-col="0">Feature</th>
+<th data-quarto-table-cell-role="th" scope="col" data-row="0" data-col="1">Docs</th>
+<th data-quarto-table-cell-role="th" scope="col" data-row="0" data-col="2">Version</th>
+<th data-quarto-table-cell-role="th" scope="col" data-row="0" data-col="3">Discussion</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>Wide variety of question types</td>
-<td><a href="https://surveydown.org/docs/question-types">Question Types</a></td>
-<td>v0.0.1</td>
-<td>
+<td data-row="1" data-col="0">Wide variety of question types</td>
+<td data-row="1" data-col="1"><a href="https://surveydown.org/docs/question-types">Question Types</a></td>
+<td data-row="1" data-col="2">v0.0.1</td>
+<td data-row="1" data-col="3">
 <a href="https://github.com/orgs/surveydown-dev/discussions/105">105</a>, <a href="https://github.com/orgs/surveydown-dev/discussions/109">109</a>
 </td>
 </tr>
 <tr class="even">
-<td>Conditionally show questions</td>
-<td><a href="https://surveydown.org/docs/conditional-logic">Conditional Display</a></td>
-<td>v0.0.1</td>
-<td></td>
+<td data-row="2" data-col="0">Conditionally show questions</td>
+<td data-row="2" data-col="1"><a href="https://surveydown.org/docs/conditional-logic">Conditional Display</a></td>
+<td data-row="2" data-col="2">v0.0.1</td>
+<td data-row="2" data-col="3"></td>
 </tr>
 <tr class="odd">
-<td>Markdown formatting for options and buttons</td>
-<td><a href="https://surveydown.org/docs/question-formatting#markdown-formatting">Markdown Formatting</a></td>
-<td>v0.0.1</td>
-<td></td>
+<td data-row="3" data-col="0">Markdown formatting for options and buttons</td>
+<td data-row="3" data-col="1"><a href="https://surveydown.org/docs/question-formatting#markdown-formatting">Markdown Formatting</a></td>
+<td data-row="3" data-col="2">v0.0.1</td>
+<td data-row="3" data-col="3"></td>
 </tr>
 <tr class="even">
-<td>Require specific questions or all questions be answered</td>
-<td><a href="https://surveydown.org/docs/server-options#required-questions">Required Questions</a></td>
-<td>v0.0.2</td>
-<td></td>
+<td data-row="4" data-col="0">Require specific questions or all questions be answered</td>
+<td data-row="4" data-col="1"><a href="https://surveydown.org/docs/server-options#required-questions">Required Questions</a></td>
+<td data-row="4" data-col="2">v0.0.2</td>
+<td data-row="4" data-col="3"></td>
 </tr>
 <tr class="odd">
-<td>Support for bootstrap themes</td>
-<td><a href="https://surveydown.org/docs/basic-components#appearance-settings">Themes</a></td>
-<td>v0.0.4</td>
-<td></td>
+<td data-row="5" data-col="0">Support for bootstrap themes</td>
+<td data-row="5" data-col="1"><a href="https://surveydown.org/docs/basic-components#appearance-settings">Themes</a></td>
+<td data-row="5" data-col="2">v0.0.4</td>
+<td data-row="5" data-col="3"></td>
 </tr>
 <tr class="even">
-<td>Customizable scss theme file</td>
-<td><a href="https://surveydown.org/docs/basic-components#appearance-settings">Themes</a></td>
-<td>v0.0.4</td>
-<td></td>
+<td data-row="6" data-col="0">Customizable scss theme file</td>
+<td data-row="6" data-col="1"><a href="https://surveydown.org/docs/basic-components#appearance-settings">Themes</a></td>
+<td data-row="6" data-col="2">v0.0.4</td>
+<td data-row="6" data-col="3"></td>
 </tr>
 <tr class="odd">
-<td>Ability to Ignore the database connection</td>
-<td><a href="https://surveydown.org/docs/storing-data#connecting-to-your-database-in-surveydown">Supabase Ignore</a></td>
-<td>v0.0.8</td>
-<td></td>
+<td data-row="7" data-col="0">Ability to Ignore the database connection</td>
+<td data-row="7" data-col="1"><a href="https://surveydown.org/docs/storing-data#connecting-to-your-database-in-surveydown">Supabase Ignore</a></td>
+<td data-row="7" data-col="2">v0.0.8</td>
+<td data-row="7" data-col="3"></td>
 </tr>
 <tr class="even">
-<td>Time stamps recorded for each question and page interaction</td>
-<td></td>
-<td>v0.0.9</td>
-<td></td>
+<td data-row="8" data-col="0">Time stamps recorded for each question and page interaction</td>
+<td data-row="8" data-col="1"></td>
+<td data-row="8" data-col="2">v0.0.9</td>
+<td data-row="8" data-col="3"></td>
 </tr>
 <tr class="odd">
-<td>Progress bar that updates on each question interaction</td>
-<td><a href="https://surveydown.org/docs/basic-components#progress-bar">Progress Bar</a></td>
-<td>v0.0.9</td>
-<td></td>
+<td data-row="9" data-col="0">Progress bar that updates on each question interaction</td>
+<td data-row="9" data-col="1"><a href="https://surveydown.org/docs/basic-components#progress-bar">Progress Bar</a></td>
+<td data-row="9" data-col="2">v0.0.9</td>
+<td data-row="9" data-col="3"></td>
 </tr>
 <tr class="even">
-<td>Customizable progress bar color and position on page</td>
-<td><a href="https://surveydown.org/docs/basic-components#progress-bar">Progress Bar</a></td>
-<td>v0.0.9</td>
-<td></td>
+<td data-row="10" data-col="0">Customizable progress bar color and position on page</td>
+<td data-row="10" data-col="1"><a href="https://surveydown.org/docs/basic-components#progress-bar">Progress Bar</a></td>
+<td data-row="10" data-col="2">v0.0.9</td>
+<td data-row="10" data-col="3"></td>
 </tr>
 <tr class="odd">
-<td>Ability to use latest survey results in the survey itself</td>
-<td><a href="https://surveydown.org/docs/fetch-data#reactive-fetching">Fetching Data</a></td>
-<td>v0.1.1</td>
-<td></td>
+<td data-row="11" data-col="0">Ability to use latest survey results in the survey itself</td>
+<td data-row="11" data-col="1"><a href="https://surveydown.org/docs/fetch-data#reactive-fetching">Fetching Data</a></td>
+<td data-row="11" data-col="2">v0.1.1</td>
+<td data-row="11" data-col="3"></td>
 </tr>
 <tr class="even">
-<td>Pass parameters through the url e.g.&nbsp;to track user IDs</td>
-<td><a href="https://surveydown.org/docs/external-redirect#reactive-redirect">Reactive Redirect</a></td>
-<td>v0.2.2</td>
-<td><a href="https://github.com/orgs/surveydown-dev/discussions/92">92</a></td>
+<td data-row="12" data-col="0">Pass parameters through the url e.g.&nbsp;to track user IDs</td>
+<td data-row="12" data-col="1"><a href="https://surveydown.org/docs/external-redirect#reactive-redirect">Reactive Redirect</a></td>
+<td data-row="12" data-col="2">v0.2.2</td>
+<td data-row="12" data-col="3"><a href="https://github.com/orgs/surveydown-dev/discussions/92">92</a></td>
 </tr>
 <tr class="odd">
-<td>Redirect users to an external url</td>
-<td><a href="https://surveydown.org/docs/external-redirect">External Redirect</a></td>
-<td>v0.2.2</td>
-<td></td>
+<td data-row="13" data-col="0">Redirect users to an external url</td>
+<td data-row="13" data-col="1"><a href="https://surveydown.org/docs/external-redirect">External Redirect</a></td>
+<td data-row="13" data-col="2">v0.2.2</td>
+<td data-row="13" data-col="3"></td>
 </tr>
 <tr class="even">
-<td>Start the survey from a specific page (helpful when editing survey)</td>
-<td><a href="https://surveydown.org/docs/server-options#starting-page">Starting Page</a></td>
-<td>v0.3.0</td>
-<td></td>
+<td data-row="14" data-col="0">Start the survey from a specific page (helpful when editing survey)</td>
+<td data-row="14" data-col="1"><a href="https://surveydown.org/docs/server-options#starting-page">Starting Page</a></td>
+<td data-row="14" data-col="2">v0.3.0</td>
+<td data-row="14" data-col="3"></td>
 </tr>
 <tr class="odd">
-<td>Create a random numeric completion code</td>
-<td><a href="https://surveydown.org/docs/reactivity#displaying-stored-values-e.g.-a-completion-code">Completion Code</a></td>
-<td>v0.3.2</td>
-<td></td>
+<td data-row="15" data-col="0">Create a random numeric completion code</td>
+<td data-row="15" data-col="1"><a href="https://surveydown.org/docs/reactivity#displaying-stored-values-e.g.-a-completion-code">Completion Code</a></td>
+<td data-row="15" data-col="2">v0.3.2</td>
+<td data-row="15" data-col="3"></td>
 </tr>
 <tr class="even">
-<td>Auto scroll according to the answering progress</td>
-<td><a href="https://surveydown.org/docs/server-options#auto-scroll">Auto Scroll</a></td>
-<td>v0.3.3</td>
-<td><a href="https://github.com/surveydown-dev/surveydown/issues/104">104</a></td>
+<td data-row="16" data-col="0">Auto scroll according to the answering progress</td>
+<td data-row="16" data-col="1"><a href="https://surveydown.org/docs/server-options#auto-scroll">Auto Scroll</a></td>
+<td data-row="16" data-col="2">v0.3.3</td>
+<td data-row="16" data-col="3"><a href="https://github.com/surveydown-dev/surveydown/issues/104">104</a></td>
 </tr>
 <tr class="odd">
-<td>Custom languages / messages for system messages</td>
-<td><a href="https://surveydown.org/docs/system-translations">System Translations</a></td>
-<td>v0.4.2</td>
-<td><a href="https://github.com/orgs/surveydown-dev/discussions/134">134</a></td>
+<td data-row="17" data-col="0">Custom languages / messages for system messages</td>
+<td data-row="17" data-col="1"><a href="https://surveydown.org/docs/system-translations">System Translations</a></td>
+<td data-row="17" data-col="2">v0.4.2</td>
+<td data-row="17" data-col="3"><a href="https://github.com/orgs/surveydown-dev/discussions/134">134</a></td>
 </tr>
 <tr class="even">
-<td>Store session ID in browser cookies to store user progress if they refresh the page</td>
-<td><a href="https://surveydown.org/docs/server-options#cookies">Cookies</a></td>
-<td>v0.6.0</td>
-<td></td>
+<td data-row="18" data-col="0">Store session ID in browser cookies to store user progress if they refresh the page</td>
+<td data-row="18" data-col="1"><a href="https://surveydown.org/docs/server-options#cookies">Cookies</a></td>
+<td data-row="18" data-col="2">v0.6.0</td>
+<td data-row="18" data-col="3"></td>
 </tr>
 <tr class="odd">
-<td>Custom question type to enable custom html widgets</td>
-<td><a href="https://surveydown.org/docs/custom-questions">Custom Questions</a></td>
-<td>v0.7.2</td>
-<td><a href="https://github.com/orgs/surveydown-dev/discussions/111">111</a></td>
+<td data-row="19" data-col="0">Custom question type to enable custom html widgets</td>
+<td data-row="19" data-col="1"><a href="https://surveydown.org/docs/custom-questions">Custom Questions</a></td>
+<td data-row="19" data-col="2">v0.7.2</td>
+<td data-row="19" data-col="3"><a href="https://github.com/orgs/surveydown-dev/discussions/111">111</a></td>
 </tr>
 <tr class="even">
-<td>Dashboard page with password login to preview / download data / pause survey, etc.</td>
-<td><a href="https://surveydown.org/docs/dashboard">Dashboard</a></td>
-<td>v0.8.0</td>
-<td></td>
+<td data-row="20" data-col="0">Dashboard page with password login to preview / download data / pause survey, etc.</td>
+<td data-row="20" data-col="1"><a href="https://surveydown.org/docs/dashboard">Dashboard</a></td>
+<td data-row="20" data-col="2">v0.8.0</td>
+<td data-row="20" data-col="3"></td>
 </tr>
 <tr class="odd">
-<td>Footer on every survey page</td>
-<td></td>
-<td>v0.8.0</td>
-<td></td>
+<td data-row="21" data-col="0">Footer on every survey page</td>
+<td data-row="21" data-col="1"></td>
+<td data-row="21" data-col="2">v0.8.0</td>
+<td data-row="21" data-col="3"></td>
 </tr>
 <tr class="even">
-<td>Conditionally skip to a forward page with <code>skip_forward()</code>
+<td data-row="22" data-col="0">Conditionally skip to a forward page with <code>skip_forward()</code>
 </td>
-<td><a href="https://surveydown.org/docs/conditional-logic#conditional-navigation-of-pages">Conditional Logic</a></td>
-<td>v0.9.0</td>
-<td><a href="https://github.com/surveydown-dev/surveydown/issues/169#issuecomment-2611211412">Issue 169</a></td>
+<td data-row="22" data-col="1"><a href="https://surveydown.org/docs/conditional-logic#conditional-navigation-of-pages">Conditional Logic</a></td>
+<td data-row="22" data-col="2">v0.9.0</td>
+<td data-row="22" data-col="3"><a href="https://github.com/surveydown-dev/surveydown/issues/169#issuecomment-2611211412">Issue 169</a></td>
 </tr>
 <tr class="odd">
-<td>Define questions using an external <code>yml</code> file</td>
-<td><a href="https://surveydown.org/docs/defining-questions.html#using-a-yaml-file">Defining Questions</a></td>
-<td>v0.11.0</td>
-<td><a href="https://github.com/orgs/surveydown-dev/discussions/132">132</a></td>
+<td data-row="23" data-col="0">Define questions using an external <code>yml</code> file</td>
+<td data-row="23" data-col="1"><a href="https://surveydown.org/docs/defining-questions.html#using-a-yaml-file">Defining Questions</a></td>
+<td data-row="23" data-col="2">v0.11.0</td>
+<td data-row="23" data-col="3"><a href="https://github.com/orgs/surveydown-dev/discussions/132">132</a></td>
 </tr>
 <tr class="even">
-<td>Conditionally show pages</td>
-<td><a href="https://surveydown.org/docs/conditional-logic">Conditional Display</a></td>
-<td>v0.11.1</td>
-<td></td>
+<td data-row="24" data-col="0">Conditionally show pages</td>
+<td data-row="24" data-col="1"><a href="https://surveydown.org/docs/conditional-logic">Conditional Display</a></td>
+<td data-row="24" data-col="2">v0.11.1</td>
+<td data-row="24" data-col="3"></td>
 </tr>
 </tbody>
 </table>
@@ -820,9 +825,9 @@ ul.task-list li input[type="checkbox"] {
 
     <script>
 
-      function styleCell_scqms4blz4oommdwf05d(i, j, css_id) {
-          var table = document.getElementById("tinytable_scqms4blz4oommdwf05d");
-          var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
+      function styleCell_mgo8v5xr29nffaq3fizz(i, j, css_id) {
+          var table = document.getElementById("tinytable_mgo8v5xr29nffaq3fizz");
+          var cell = table.querySelector(`[data-row="${i}"][data-col="${j}"]`);
           if (cell) {
               console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
               cell.classList.add(css_id);
@@ -831,154 +836,159 @@ ul.task-list li input[type="checkbox"] {
           }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_scqms4blz4oommdwf05d');
-        var newRow = table.insertRow(i);
+        var table = document.getElementById('tinytable_mgo8v5xr29nffaq3fizz');
+        // Find the row with data-row attribute matching i
+        var targetRow = table.querySelector(`tr [data-row="${i}"]`).closest('tr');
+        var newRow = table.insertRow(targetRow.rowIndex);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
+        newCell.setAttribute("data-col", "0");
+        newCell.setAttribute("data-row", i - 1);
         // newCell.innerText = content;
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_scqms4blz4oommdwf05d(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_scqms4blz4oommdwf05d");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
+      function spanCell_mgo8v5xr29nffaq3fizz(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_mgo8v5xr29nffaq3fizz");
+        const targetCell = table.querySelector(`[data-row="${i}"][data-col="${j}"]`);
+        if (!targetCell) {
+          console.warn(`Cell at (${i}, ${j}) not found.`);
+        }
+
+        // Get all cells that need to be removed
+        const cellsToRemove = [];
         for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
+          for (let c = 0; c < colspan; c++) {
+            if (r === 0 && c === 0) continue; // Skip the target cell
+            const cell = table.querySelector(`[data-row="${i + r}"][data-col="${j + c}"]`);
+            if (cell) {
+              cellsToRemove.push(cell);
             }
           }
         }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
+
+        // Remove all cells
+        cellsToRemove.forEach(cell => cell.remove());
+
+        // Set rowspan and colspan of the target cell if it exists
+        if (targetCell) {
+          targetCell.rowSpan = rowspan;
+          targetCell.colSpan = colspan;
+        }
       }
       // tinytable span after
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: 2, j: 2 }, { i: 3, j: 2 }, { i: 4, j: 2 }, { i: 1, j: 2 }, { i: 6, j: 2 }, { i: 7, j: 2 }, { i: 8, j: 2 }, { i: 5, j: 2 }, { i: 10, j: 2 }, { i: 11, j: 2 }, { i: 12, j: 2 }, { i: 9, j: 2 }, { i: 1, j: 3 }, { i: 2, j: 3 }, { i: 3, j: 3 }, { i: 4, j: 3 }, { i: 5, j: 3 }, { i: 6, j: 3 }, { i: 7, j: 3 }, { i: 8, j: 3 }, { i: 9, j: 3 }, { i: 10, j: 3 }, { i: 11, j: 3 }, { i: 12, j: 3 },  ], css_id: 'tinytable_css_wn7iiwpfp8ycq27lsve5',}, 
-          { positions: [ { i: 0, j: 2 }, { i: 0, j: 3 },  ], css_id: 'tinytable_css_bhlva5rbdbqvb2on49qs',}, 
-          { positions: [ { i: 1, j: 1 }, { i: 2, j: 1 }, { i: 3, j: 1 }, { i: 4, j: 1 }, { i: 5, j: 1 }, { i: 6, j: 1 }, { i: 7, j: 1 }, { i: 8, j: 1 }, { i: 9, j: 1 }, { i: 10, j: 1 }, { i: 11, j: 1 }, { i: 12, j: 1 },  ], css_id: 'tinytable_css_88oq07763we5d1gcq0q9',}, 
-          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_k7hiabjovw9eis2fyu5f',}, 
-          { positions: [ { i: 1, j: 0 }, { i: 2, j: 0 }, { i: 3, j: 0 }, { i: 4, j: 0 }, { i: 5, j: 0 }, { i: 6, j: 0 }, { i: 7, j: 0 }, { i: 8, j: 0 }, { i: 9, j: 0 }, { i: 10, j: 0 }, { i: 11, j: 0 }, { i: 12, j: 0 },  ], css_id: 'tinytable_css_gt4zji46y98kls5fxjm8',}, 
-          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_2pblt7029ehjmxslknh1',}, 
+          { positions: [ { i: '2', j: 2 }, { i: '3', j: 2 }, { i: '4', j: 2 }, { i: '1', j: 2 }, { i: '6', j: 2 }, { i: '7', j: 2 }, { i: '8', j: 2 }, { i: '5', j: 2 }, { i: '10', j: 2 }, { i: '11', j: 2 }, { i: '12', j: 2 }, { i: '9', j: 2 }, { i: '1', j: 3 }, { i: '2', j: 3 }, { i: '3', j: 3 }, { i: '4', j: 3 }, { i: '5', j: 3 }, { i: '6', j: 3 }, { i: '7', j: 3 }, { i: '8', j: 3 }, { i: '9', j: 3 }, { i: '10', j: 3 }, { i: '11', j: 3 }, { i: '12', j: 3 },  ], css_id: 'tinytable_css_b9bane5qblzgfyskz2g1',}, 
+          { positions: [ { i: '0', j: 2 }, { i: '0', j: 3 },  ], css_id: 'tinytable_css_h8azvo7wo6vafpomrwju',}, 
+          { positions: [ { i: '1', j: 1 }, { i: '2', j: 1 }, { i: '3', j: 1 }, { i: '4', j: 1 }, { i: '5', j: 1 }, { i: '6', j: 1 }, { i: '7', j: 1 }, { i: '8', j: 1 }, { i: '9', j: 1 }, { i: '10', j: 1 }, { i: '11', j: 1 }, { i: '12', j: 1 },  ], css_id: 'tinytable_css_4cqk2wfeoaxa36jzf8mn',}, 
+          { positions: [ { i: '0', j: 1 },  ], css_id: 'tinytable_css_neqfzj2v8ozin5zrj2y4',}, 
+          { positions: [ { i: '1', j: 0 }, { i: '2', j: 0 }, { i: '3', j: 0 }, { i: '4', j: 0 }, { i: '5', j: 0 }, { i: '6', j: 0 }, { i: '7', j: 0 }, { i: '8', j: 0 }, { i: '9', j: 0 }, { i: '10', j: 0 }, { i: '11', j: 0 }, { i: '12', j: 0 },  ], css_id: 'tinytable_css_bre8dgynjrzqte0i4yhh',}, 
+          { positions: [ { i: '0', j: 0 },  ], css_id: 'tinytable_css_v44xlielvvehunwxj6aj',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  styleCell_scqms4blz4oommdwf05d(cell.i, cell.j, group.css_id);
+                  styleCell_mgo8v5xr29nffaq3fizz(cell.i, cell.j, group.css_id);
               });
           });
       });
     </script><style>
       /* tinytable css entries after */
-      .table td.tinytable_css_wn7iiwpfp8ycq27lsve5, .table th.tinytable_css_wn7iiwpfp8ycq27lsve5 { font-size: 1em; text-align: center; width: 11.1111111111111%; }
-      .table td.tinytable_css_bhlva5rbdbqvb2on49qs, .table th.tinytable_css_bhlva5rbdbqvb2on49qs { font-size: 1em; text-align: center; text-align: center; width: 11.1111111111111%; }
-      .table td.tinytable_css_88oq07763we5d1gcq0q9, .table th.tinytable_css_88oq07763we5d1gcq0q9 { font-size: 1em; text-align: left; width: 22.2222222222222%; }
-      .table td.tinytable_css_k7hiabjovw9eis2fyu5f, .table th.tinytable_css_k7hiabjovw9eis2fyu5f { font-size: 1em; text-align: left; text-align: center; width: 22.2222222222222%; }
-      .table td.tinytable_css_gt4zji46y98kls5fxjm8, .table th.tinytable_css_gt4zji46y98kls5fxjm8 { font-size: 1em; text-align: left; width: 55.5555555555556%; }
-      .table td.tinytable_css_2pblt7029ehjmxslknh1, .table th.tinytable_css_2pblt7029ehjmxslknh1 { font-size: 1em; text-align: left; text-align: center; width: 55.5555555555556%; }
+      .table td.tinytable_css_b9bane5qblzgfyskz2g1, .table th.tinytable_css_b9bane5qblzgfyskz2g1 { font-size: 1em; text-align: center; width: 11.1111111111111%; }
+      .table td.tinytable_css_h8azvo7wo6vafpomrwju, .table th.tinytable_css_h8azvo7wo6vafpomrwju { font-size: 1em; text-align: center; text-align: center; width: 11.1111111111111%; }
+      .table td.tinytable_css_4cqk2wfeoaxa36jzf8mn, .table th.tinytable_css_4cqk2wfeoaxa36jzf8mn { font-size: 1em; text-align: left; width: 22.2222222222222%; }
+      .table td.tinytable_css_neqfzj2v8ozin5zrj2y4, .table th.tinytable_css_neqfzj2v8ozin5zrj2y4 { font-size: 1em; text-align: left; text-align: center; width: 22.2222222222222%; }
+      .table td.tinytable_css_bre8dgynjrzqte0i4yhh, .table th.tinytable_css_bre8dgynjrzqte0i4yhh { font-size: 1em; text-align: left; width: 55.5555555555556%; }
+      .table td.tinytable_css_v44xlielvvehunwxj6aj, .table th.tinytable_css_v44xlielvvehunwxj6aj { font-size: 1em; text-align: left; text-align: center; width: 55.5555555555556%; }
     </style>
 <div class="container">
       
-<table id="tinytable_scqms4blz4oommdwf05d" class="table table-bordered caption-top table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false">
+<table id="tinytable_mgo8v5xr29nffaq3fizz" class="table table-bordered caption-top table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false">
 <thead><tr class="header">
-<th data-quarto-table-cell-role="th" scope="col">Feature</th>
-<th data-quarto-table-cell-role="th" scope="col">Docs</th>
-<th data-quarto-table-cell-role="th" scope="col">Version</th>
-<th data-quarto-table-cell-role="th" scope="col">Discussion</th>
+<th data-quarto-table-cell-role="th" scope="col" data-row="0" data-col="0">Feature</th>
+<th data-quarto-table-cell-role="th" scope="col" data-row="0" data-col="1">Docs</th>
+<th data-quarto-table-cell-role="th" scope="col" data-row="0" data-col="2">Version</th>
+<th data-quarto-table-cell-role="th" scope="col" data-row="0" data-col="3">Discussion</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>Form validation (limit input based on question type, limit value range for numeric type)</td>
-<td></td>
-<td></td>
-<td><a href="https://github.com/orgs/surveydown-dev/discussions/125">125</a></td>
+<td data-row="1" data-col="0">Form validation (limit input based on question type, limit value range for numeric type)</td>
+<td data-row="1" data-col="1"></td>
+<td data-row="1" data-col="2"></td>
+<td data-row="1" data-col="3"><a href="https://github.com/orgs/surveydown-dev/discussions/125">125</a></td>
 </tr>
 <tr class="even">
-<td>Question type - Best worst</td>
-<td></td>
-<td></td>
-<td><a href="https://github.com/orgs/surveydown-dev/discussions/127">127</a></td>
+<td data-row="2" data-col="0">Question type - Best worst</td>
+<td data-row="2" data-col="1"></td>
+<td data-row="2" data-col="2"></td>
+<td data-row="2" data-col="3"><a href="https://github.com/orgs/surveydown-dev/discussions/127">127</a></td>
 </tr>
 <tr class="odd">
-<td>Question type - Single checkbox with on and off toggle switches</td>
-<td><a href="https://github.com/dreamRs/shinyWidgets?tab=readme-ov-file#single-checkbox">shinyWidgets - Single Checkbox</a></td>
-<td></td>
-<td></td>
+<td data-row="3" data-col="0">Question type - Single checkbox with on and off toggle switches</td>
+<td data-row="3" data-col="1"><a href="https://github.com/dreamRs/shinyWidgets?tab=readme-ov-file#single-checkbox">shinyWidgets - Single Checkbox</a></td>
+<td data-row="3" data-col="2"></td>
+<td data-row="3" data-col="3"></td>
 </tr>
 <tr class="even">
-<td>Question type - Tree inputs</td>
-<td><a href="https://github.com/dreamRs/shinyWidgets?tab=readme-ov-file#tree">shinyWidgets - Tree</a></td>
-<td></td>
-<td></td>
+<td data-row="4" data-col="0">Question type - Tree inputs</td>
+<td data-row="4" data-col="1"><a href="https://github.com/dreamRs/shinyWidgets?tab=readme-ov-file#tree">shinyWidgets - Tree</a></td>
+<td data-row="4" data-col="2"></td>
+<td data-row="4" data-col="3"></td>
 </tr>
 <tr class="odd">
-<td>Question type of select menu - Dropdown select type with multiple selections</td>
-<td><a href="https://github.com/dreamRs/shinyWidgets?tab=readme-ov-file#select-menu">shinyWidgets - Select Menu</a></td>
-<td></td>
-<td></td>
+<td data-row="5" data-col="0">Question type of select menu - Dropdown select type with multiple selections</td>
+<td data-row="5" data-col="1"><a href="https://github.com/dreamRs/shinyWidgets?tab=readme-ov-file#select-menu">shinyWidgets - Select Menu</a></td>
+<td data-row="5" data-col="2"></td>
+<td data-row="5" data-col="3"></td>
 </tr>
 <tr class="even">
-<td>
+<td data-row="6" data-col="0">
 <code>sd_store_data()</code> function - store any values generated <em>after</em> survey launches in the <code>db</code>
 </td>
-<td></td>
-<td></td>
-<td><a href="https://github.com/surveydown-dev/surveydown/issues/178">178</a></td>
+<td data-row="6" data-col="1"></td>
+<td data-row="6" data-col="2"></td>
+<td data-row="6" data-col="3"><a href="https://github.com/surveydown-dev/surveydown/issues/178">178</a></td>
 </tr>
 <tr class="odd">
-<td>Trigger print to pdf mode, e.g., <code>sd_server(print_mode = TRUE)</code>
+<td data-row="7" data-col="0">Trigger print to pdf mode, e.g., <code>sd_server(print_mode = TRUE)</code>
 </td>
-<td></td>
-<td></td>
-<td><a href="https://github.com/jhelvy/renderthis/blob/main/R/pdf.R">Look at {renderthis}</a></td>
+<td data-row="7" data-col="1"></td>
+<td data-row="7" data-col="2"></td>
+<td data-row="7" data-col="3"><a href="https://github.com/jhelvy/renderthis/blob/main/R/pdf.R">Look at {renderthis}</a></td>
 </tr>
 <tr class="even">
-<td>Clipboard problem - quarto-html-after-body div in quarto</td>
-<td></td>
-<td></td>
-<td></td>
+<td data-row="8" data-col="0">Clipboard problem - quarto-html-after-body div in quarto</td>
+<td data-row="8" data-col="1"></td>
+<td data-row="8" data-col="2"></td>
+<td data-row="8" data-col="3"></td>
 </tr>
 <tr class="odd">
-<td>Enter key JS bug - not working if a conditional problem is shown</td>
-<td></td>
-<td></td>
-<td></td>
+<td data-row="9" data-col="0">Enter key JS bug - not working if a conditional problem is shown</td>
+<td data-row="9" data-col="1"></td>
+<td data-row="9" data-col="2"></td>
+<td data-row="9" data-col="3"></td>
 </tr>
 <tr class="even">
-<td>Ability to skip backwards (debated if needed)</td>
-<td></td>
-<td></td>
-<td><a href="https://github.com/surveydown-dev/surveydown/issues/169#issuecomment-2611211412">Issue 169</a></td>
+<td data-row="10" data-col="0">Ability to skip backwards (debated if needed)</td>
+<td data-row="10" data-col="1"></td>
+<td data-row="10" data-col="2"></td>
+<td data-row="10" data-col="3"><a href="https://github.com/surveydown-dev/surveydown/issues/169#issuecomment-2611211412">Issue 169</a></td>
 </tr>
 <tr class="odd">
-<td>Bug - cannot make <code>matrix</code> questions required</td>
-<td></td>
-<td></td>
-<td><a href="https://github.com/surveydown-dev/surveydown/issues/170#issuecomment-2621673999">Issue 170</a></td>
+<td data-row="11" data-col="0">Bug - cannot make <code>matrix</code> questions required</td>
+<td data-row="11" data-col="1"></td>
+<td data-row="11" data-col="2"></td>
+<td data-row="11" data-col="3"><a href="https://github.com/surveydown-dev/surveydown/issues/170#issuecomment-2621673999">Issue 170</a></td>
 </tr>
 <tr class="even">
-<td>Make the <code>gssencmode</code> argument optional in <code>sd_db_connect()</code>
+<td data-row="12" data-col="0">Make the <code>gssencmode</code> argument optional in <code>sd_db_connect()</code>
 </td>
-<td></td>
-<td></td>
-<td><a href="https://github.com/surveydown-dev/surveydown/issues/174#issuecomment-2621695487">Issue 174</a></td>
+<td data-row="12" data-col="1"></td>
+<td data-row="12" data-col="2"></td>
+<td data-row="12" data-col="3"><a href="https://github.com/surveydown-dev/surveydown/issues/174#issuecomment-2621695487">Issue 174</a></td>
 </tr>
 </tbody>
 </table>
@@ -995,9 +1005,9 @@ ul.task-list li input[type="checkbox"] {
 
     <script>
 
-      function styleCell_jrjo2uzuutkeicrh4on6(i, j, css_id) {
-          var table = document.getElementById("tinytable_jrjo2uzuutkeicrh4on6");
-          var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
+      function styleCell_3yiwpz37lc3moh83ncji(i, j, css_id) {
+          var table = document.getElementById("tinytable_3yiwpz37lc3moh83ncji");
+          var cell = table.querySelector(`[data-row="${i}"][data-col="${j}"]`);
           if (cell) {
               console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
               cell.classList.add(css_id);
@@ -1006,102 +1016,107 @@ ul.task-list li input[type="checkbox"] {
           }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_jrjo2uzuutkeicrh4on6');
-        var newRow = table.insertRow(i);
+        var table = document.getElementById('tinytable_3yiwpz37lc3moh83ncji');
+        // Find the row with data-row attribute matching i
+        var targetRow = table.querySelector(`tr [data-row="${i}"]`).closest('tr');
+        var newRow = table.insertRow(targetRow.rowIndex);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
+        newCell.setAttribute("data-col", "0");
+        newCell.setAttribute("data-row", i - 1);
         // newCell.innerText = content;
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_jrjo2uzuutkeicrh4on6(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_jrjo2uzuutkeicrh4on6");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
+      function spanCell_3yiwpz37lc3moh83ncji(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_3yiwpz37lc3moh83ncji");
+        const targetCell = table.querySelector(`[data-row="${i}"][data-col="${j}"]`);
+        if (!targetCell) {
+          console.warn(`Cell at (${i}, ${j}) not found.`);
+        }
+
+        // Get all cells that need to be removed
+        const cellsToRemove = [];
         for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
+          for (let c = 0; c < colspan; c++) {
+            if (r === 0 && c === 0) continue; // Skip the target cell
+            const cell = table.querySelector(`[data-row="${i + r}"][data-col="${j + c}"]`);
+            if (cell) {
+              cellsToRemove.push(cell);
             }
           }
         }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
+
+        // Remove all cells
+        cellsToRemove.forEach(cell => cell.remove());
+
+        // Set rowspan and colspan of the target cell if it exists
+        if (targetCell) {
+          targetCell.rowSpan = rowspan;
+          targetCell.colSpan = colspan;
+        }
       }
       // tinytable span after
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: 2, j: 2 }, { i: 3, j: 2 }, { i: 4, j: 2 }, { i: 1, j: 2 }, { i: 1, j: 3 }, { i: 2, j: 3 }, { i: 3, j: 3 }, { i: 4, j: 3 },  ], css_id: 'tinytable_css_75gh5mg7oz6la8seyvvq',}, 
-          { positions: [ { i: 0, j: 2 }, { i: 0, j: 3 },  ], css_id: 'tinytable_css_g05gubv551f27sho5rkd',}, 
-          { positions: [ { i: 1, j: 1 }, { i: 2, j: 1 }, { i: 3, j: 1 }, { i: 4, j: 1 },  ], css_id: 'tinytable_css_ohe8d1i2u27ka5s0km3f',}, 
-          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_0exxdg8i4y5einw6ao12',}, 
-          { positions: [ { i: 1, j: 0 }, { i: 2, j: 0 }, { i: 3, j: 0 }, { i: 4, j: 0 },  ], css_id: 'tinytable_css_rgsdqz6zhk1dmux5ig3n',}, 
-          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_0eb22ahoc23jnewrgl0b',}, 
+          { positions: [ { i: '2', j: 2 }, { i: '3', j: 2 }, { i: '4', j: 2 }, { i: '1', j: 2 }, { i: '1', j: 3 }, { i: '2', j: 3 }, { i: '3', j: 3 }, { i: '4', j: 3 },  ], css_id: 'tinytable_css_45imyuw3pmr1zwgy01hj',}, 
+          { positions: [ { i: '0', j: 2 }, { i: '0', j: 3 },  ], css_id: 'tinytable_css_mbtdcokhv40sdp0ujsd8',}, 
+          { positions: [ { i: '1', j: 1 }, { i: '2', j: 1 }, { i: '3', j: 1 }, { i: '4', j: 1 },  ], css_id: 'tinytable_css_lhvknco0tvzt1gdhp7sb',}, 
+          { positions: [ { i: '0', j: 1 },  ], css_id: 'tinytable_css_5hrfg2o2t95r84co1ox5',}, 
+          { positions: [ { i: '1', j: 0 }, { i: '2', j: 0 }, { i: '3', j: 0 }, { i: '4', j: 0 },  ], css_id: 'tinytable_css_czmx4ir1b75t49l39ql3',}, 
+          { positions: [ { i: '0', j: 0 },  ], css_id: 'tinytable_css_jbae5xq3t5vz96i4wodh',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  styleCell_jrjo2uzuutkeicrh4on6(cell.i, cell.j, group.css_id);
+                  styleCell_3yiwpz37lc3moh83ncji(cell.i, cell.j, group.css_id);
               });
           });
       });
     </script><style>
       /* tinytable css entries after */
-      .table td.tinytable_css_75gh5mg7oz6la8seyvvq, .table th.tinytable_css_75gh5mg7oz6la8seyvvq { font-size: 1em; text-align: center; width: 11.1111111111111%; }
-      .table td.tinytable_css_g05gubv551f27sho5rkd, .table th.tinytable_css_g05gubv551f27sho5rkd { font-size: 1em; text-align: center; text-align: center; width: 11.1111111111111%; }
-      .table td.tinytable_css_ohe8d1i2u27ka5s0km3f, .table th.tinytable_css_ohe8d1i2u27ka5s0km3f { font-size: 1em; text-align: left; width: 22.2222222222222%; }
-      .table td.tinytable_css_0exxdg8i4y5einw6ao12, .table th.tinytable_css_0exxdg8i4y5einw6ao12 { font-size: 1em; text-align: left; text-align: center; width: 22.2222222222222%; }
-      .table td.tinytable_css_rgsdqz6zhk1dmux5ig3n, .table th.tinytable_css_rgsdqz6zhk1dmux5ig3n { font-size: 1em; text-align: left; width: 55.5555555555556%; }
-      .table td.tinytable_css_0eb22ahoc23jnewrgl0b, .table th.tinytable_css_0eb22ahoc23jnewrgl0b { font-size: 1em; text-align: left; text-align: center; width: 55.5555555555556%; }
+      .table td.tinytable_css_45imyuw3pmr1zwgy01hj, .table th.tinytable_css_45imyuw3pmr1zwgy01hj { font-size: 1em; text-align: center; width: 11.1111111111111%; }
+      .table td.tinytable_css_mbtdcokhv40sdp0ujsd8, .table th.tinytable_css_mbtdcokhv40sdp0ujsd8 { font-size: 1em; text-align: center; text-align: center; width: 11.1111111111111%; }
+      .table td.tinytable_css_lhvknco0tvzt1gdhp7sb, .table th.tinytable_css_lhvknco0tvzt1gdhp7sb { font-size: 1em; text-align: left; width: 22.2222222222222%; }
+      .table td.tinytable_css_5hrfg2o2t95r84co1ox5, .table th.tinytable_css_5hrfg2o2t95r84co1ox5 { font-size: 1em; text-align: left; text-align: center; width: 22.2222222222222%; }
+      .table td.tinytable_css_czmx4ir1b75t49l39ql3, .table th.tinytable_css_czmx4ir1b75t49l39ql3 { font-size: 1em; text-align: left; width: 55.5555555555556%; }
+      .table td.tinytable_css_jbae5xq3t5vz96i4wodh, .table th.tinytable_css_jbae5xq3t5vz96i4wodh { font-size: 1em; text-align: left; text-align: center; width: 55.5555555555556%; }
     </style>
 <div class="container">
       
-<table id="tinytable_jrjo2uzuutkeicrh4on6" class="table table-bordered caption-top table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false">
+<table id="tinytable_3yiwpz37lc3moh83ncji" class="table table-bordered caption-top table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false">
 <thead><tr class="header">
-<th data-quarto-table-cell-role="th" scope="col">Feature</th>
-<th data-quarto-table-cell-role="th" scope="col">Docs</th>
-<th data-quarto-table-cell-role="th" scope="col">Version</th>
-<th data-quarto-table-cell-role="th" scope="col">Discussion</th>
+<th data-quarto-table-cell-role="th" scope="col" data-row="0" data-col="0">Feature</th>
+<th data-quarto-table-cell-role="th" scope="col" data-row="0" data-col="1">Docs</th>
+<th data-quarto-table-cell-role="th" scope="col" data-row="0" data-col="2">Version</th>
+<th data-quarto-table-cell-role="th" scope="col" data-row="0" data-col="3">Discussion</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>GUI support for survey construction with pre-defined templates</td>
-<td></td>
-<td>v0.0.1</td>
-<td></td>
+<td data-row="1" data-col="0">GUI support for survey construction with pre-defined templates</td>
+<td data-row="1" data-col="1"></td>
+<td data-row="1" data-col="2">v0.0.1</td>
+<td data-row="1" data-col="3"></td>
 </tr>
 <tr class="even">
-<td>Drag-n-drop for pages and contents</td>
-<td></td>
-<td>v0.0.1</td>
-<td></td>
+<td data-row="2" data-col="0">Drag-n-drop for pages and contents</td>
+<td data-row="2" data-col="1"></td>
+<td data-row="2" data-col="2">v0.0.1</td>
+<td data-row="2" data-col="3"></td>
 </tr>
 <tr class="odd">
-<td>Deleting and modifying for existing elements</td>
-<td></td>
-<td>v0.0.1</td>
-<td></td>
+<td data-row="3" data-col="0">Deleting and modifying for existing elements</td>
+<td data-row="3" data-col="1"></td>
+<td data-row="3" data-col="2">v0.0.1</td>
+<td data-row="3" data-col="3"></td>
 </tr>
 <tr class="even">
-<td>Live-preview of the working survey</td>
-<td></td>
-<td>v0.0.1</td>
-<td></td>
+<td data-row="4" data-col="0">Live-preview of the working survey</td>
+<td data-row="4" data-col="1"></td>
+<td data-row="4" data-col="2">v0.0.1</td>
+<td data-row="4" data-col="3"></td>
 </tr>
 </tbody>
 </table>
@@ -1116,9 +1131,9 @@ ul.task-list li input[type="checkbox"] {
 
     <script>
 
-      function styleCell_jn988u5f9tqsbmqb4ilj(i, j, css_id) {
-          var table = document.getElementById("tinytable_jn988u5f9tqsbmqb4ilj");
-          var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
+      function styleCell_bood9374u6zyhmsa9hvh(i, j, css_id) {
+          var table = document.getElementById("tinytable_bood9374u6zyhmsa9hvh");
+          var cell = table.querySelector(`[data-row="${i}"][data-col="${j}"]`);
           if (cell) {
               console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
               cell.classList.add(css_id);
@@ -1127,96 +1142,101 @@ ul.task-list li input[type="checkbox"] {
           }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_jn988u5f9tqsbmqb4ilj');
-        var newRow = table.insertRow(i);
+        var table = document.getElementById('tinytable_bood9374u6zyhmsa9hvh');
+        // Find the row with data-row attribute matching i
+        var targetRow = table.querySelector(`tr [data-row="${i}"]`).closest('tr');
+        var newRow = table.insertRow(targetRow.rowIndex);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
+        newCell.setAttribute("data-col", "0");
+        newCell.setAttribute("data-row", i - 1);
         // newCell.innerText = content;
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_jn988u5f9tqsbmqb4ilj(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_jn988u5f9tqsbmqb4ilj");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
+      function spanCell_bood9374u6zyhmsa9hvh(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_bood9374u6zyhmsa9hvh");
+        const targetCell = table.querySelector(`[data-row="${i}"][data-col="${j}"]`);
+        if (!targetCell) {
+          console.warn(`Cell at (${i}, ${j}) not found.`);
+        }
+
+        // Get all cells that need to be removed
+        const cellsToRemove = [];
         for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
+          for (let c = 0; c < colspan; c++) {
+            if (r === 0 && c === 0) continue; // Skip the target cell
+            const cell = table.querySelector(`[data-row="${i + r}"][data-col="${j + c}"]`);
+            if (cell) {
+              cellsToRemove.push(cell);
             }
           }
         }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
+
+        // Remove all cells
+        cellsToRemove.forEach(cell => cell.remove());
+
+        // Set rowspan and colspan of the target cell if it exists
+        if (targetCell) {
+          targetCell.rowSpan = rowspan;
+          targetCell.colSpan = colspan;
+        }
       }
       // tinytable span after
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: 1, j: 2 }, { i: 2, j: 2 }, { i: 3, j: 2 }, { i: 1, j: 3 }, { i: 2, j: 3 }, { i: 3, j: 3 },  ], css_id: 'tinytable_css_ba6nukerhvqb5ceyx5ut',}, 
-          { positions: [ { i: 0, j: 2 }, { i: 0, j: 3 },  ], css_id: 'tinytable_css_nwn94maogg9zru866i3r',}, 
-          { positions: [ { i: 1, j: 1 }, { i: 2, j: 1 }, { i: 3, j: 1 },  ], css_id: 'tinytable_css_shtd6hlm45kcxg7jx2fz',}, 
-          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_93nix09d93dd32lqzcb8',}, 
-          { positions: [ { i: 1, j: 0 }, { i: 2, j: 0 }, { i: 3, j: 0 },  ], css_id: 'tinytable_css_wn06f17519aep805mx5b',}, 
-          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_ybg5gayscknzaaxt0kr1',}, 
+          { positions: [ { i: '1', j: 2 }, { i: '2', j: 2 }, { i: '3', j: 2 }, { i: '1', j: 3 }, { i: '2', j: 3 }, { i: '3', j: 3 },  ], css_id: 'tinytable_css_s5pkhds08hg1628yksgi',}, 
+          { positions: [ { i: '0', j: 2 }, { i: '0', j: 3 },  ], css_id: 'tinytable_css_0su4tdgogpb35wuynzpf',}, 
+          { positions: [ { i: '1', j: 1 }, { i: '2', j: 1 }, { i: '3', j: 1 },  ], css_id: 'tinytable_css_hdvmh6nuwcvgotmd7smd',}, 
+          { positions: [ { i: '0', j: 1 },  ], css_id: 'tinytable_css_r3kra9jtw2fse5k5rqu7',}, 
+          { positions: [ { i: '1', j: 0 }, { i: '2', j: 0 }, { i: '3', j: 0 },  ], css_id: 'tinytable_css_zwn86y2g8mdccgsxja6c',}, 
+          { positions: [ { i: '0', j: 0 },  ], css_id: 'tinytable_css_wwke3m0iukvo9omn9q64',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  styleCell_jn988u5f9tqsbmqb4ilj(cell.i, cell.j, group.css_id);
+                  styleCell_bood9374u6zyhmsa9hvh(cell.i, cell.j, group.css_id);
               });
           });
       });
     </script><style>
       /* tinytable css entries after */
-      .table td.tinytable_css_ba6nukerhvqb5ceyx5ut, .table th.tinytable_css_ba6nukerhvqb5ceyx5ut { font-size: 1em; text-align: center; width: 11.1111111111111%; }
-      .table td.tinytable_css_nwn94maogg9zru866i3r, .table th.tinytable_css_nwn94maogg9zru866i3r { font-size: 1em; text-align: center; text-align: center; width: 11.1111111111111%; }
-      .table td.tinytable_css_shtd6hlm45kcxg7jx2fz, .table th.tinytable_css_shtd6hlm45kcxg7jx2fz { font-size: 1em; text-align: left; width: 22.2222222222222%; }
-      .table td.tinytable_css_93nix09d93dd32lqzcb8, .table th.tinytable_css_93nix09d93dd32lqzcb8 { font-size: 1em; text-align: left; text-align: center; width: 22.2222222222222%; }
-      .table td.tinytable_css_wn06f17519aep805mx5b, .table th.tinytable_css_wn06f17519aep805mx5b { font-size: 1em; text-align: left; width: 55.5555555555556%; }
-      .table td.tinytable_css_ybg5gayscknzaaxt0kr1, .table th.tinytable_css_ybg5gayscknzaaxt0kr1 { font-size: 1em; text-align: left; text-align: center; width: 55.5555555555556%; }
+      .table td.tinytable_css_s5pkhds08hg1628yksgi, .table th.tinytable_css_s5pkhds08hg1628yksgi { font-size: 1em; text-align: center; width: 11.1111111111111%; }
+      .table td.tinytable_css_0su4tdgogpb35wuynzpf, .table th.tinytable_css_0su4tdgogpb35wuynzpf { font-size: 1em; text-align: center; text-align: center; width: 11.1111111111111%; }
+      .table td.tinytable_css_hdvmh6nuwcvgotmd7smd, .table th.tinytable_css_hdvmh6nuwcvgotmd7smd { font-size: 1em; text-align: left; width: 22.2222222222222%; }
+      .table td.tinytable_css_r3kra9jtw2fse5k5rqu7, .table th.tinytable_css_r3kra9jtw2fse5k5rqu7 { font-size: 1em; text-align: left; text-align: center; width: 22.2222222222222%; }
+      .table td.tinytable_css_zwn86y2g8mdccgsxja6c, .table th.tinytable_css_zwn86y2g8mdccgsxja6c { font-size: 1em; text-align: left; width: 55.5555555555556%; }
+      .table td.tinytable_css_wwke3m0iukvo9omn9q64, .table th.tinytable_css_wwke3m0iukvo9omn9q64 { font-size: 1em; text-align: left; text-align: center; width: 55.5555555555556%; }
     </style>
 <div class="container">
       
-<table id="tinytable_jn988u5f9tqsbmqb4ilj" class="table table-bordered caption-top table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false">
+<table id="tinytable_bood9374u6zyhmsa9hvh" class="table table-bordered caption-top table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false">
 <thead><tr class="header">
-<th data-quarto-table-cell-role="th" scope="col">Feature</th>
-<th data-quarto-table-cell-role="th" scope="col">Docs</th>
-<th data-quarto-table-cell-role="th" scope="col">Version</th>
-<th data-quarto-table-cell-role="th" scope="col">Discussion</th>
+<th data-quarto-table-cell-role="th" scope="col" data-row="0" data-col="0">Feature</th>
+<th data-quarto-table-cell-role="th" scope="col" data-row="0" data-col="1">Docs</th>
+<th data-quarto-table-cell-role="th" scope="col" data-row="0" data-col="2">Version</th>
+<th data-quarto-table-cell-role="th" scope="col" data-row="0" data-col="3">Discussion</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>Support for martix type</td>
-<td></td>
-<td></td>
-<td></td>
+<td data-row="1" data-col="0">Support for martix type</td>
+<td data-row="1" data-col="1"></td>
+<td data-row="1" data-col="2"></td>
+<td data-row="1" data-col="3"></td>
 </tr>
 <tr class="even">
-<td>Support for reactive questions</td>
-<td></td>
-<td></td>
-<td></td>
+<td data-row="2" data-col="0">Support for reactive questions</td>
+<td data-row="2" data-col="1"></td>
+<td data-row="2" data-col="2"></td>
+<td data-row="2" data-col="3"></td>
 </tr>
 <tr class="odd">
-<td>Support for conditional skipping and showing</td>
-<td></td>
-<td></td>
-<td></td>
+<td data-row="3" data-col="0">Support for conditional skipping and showing</td>
+<td data-row="3" data-col="1"></td>
+<td data-row="3" data-col="2"></td>
+<td data-row="3" data-col="3"></td>
 </tr>
 </tbody>
 </table>

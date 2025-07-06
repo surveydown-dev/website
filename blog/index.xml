@@ -377,7 +377,10 @@ font-style: inherit;">"disable"</span>)</span></code></pre></div>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
-  <category>Tutorial</category>
+  <category>R</category>
+  <category>package</category>
+  <category>shiny</category>
+  <category>tutorial</category>
   <category>GUI</category>
   <guid>https://www.surveydown.org/blog/2025-06-29-sdstudio/</guid>
   <pubDate>Sun, 29 Jun 2025 00:00:00 GMT</pubDate>
@@ -552,10 +555,10 @@ Or if you have other preferences, feel free to customize them.</li>
 
 <a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
   <category>RStudio</category>
-  <category>Tutorial</category>
+  <category>tutorial</category>
   <guid>https://www.surveydown.org/blog/2025-04-08-surveydown-gadgets/</guid>
   <pubDate>Tue, 08 Apr 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://www.surveydown.org/blog/2025-04-08-surveydown-gadgets/banner.png" medium="image" type="image/png" height="122" width="144"/>
+  <media:content url="https://www.surveydown.org/blog/2025-04-08-surveydown-gadgets/banner.png" medium="image" type="image/png" height="96" width="144"/>
 </item>
 <item>
   <title>surveydown is on CRAN 🎉!</title>
@@ -611,7 +614,7 @@ font-style: inherit;">)</span></span></code></pre></div>
   <category>CRAN</category>
   <guid>https://www.surveydown.org/blog/2024-12-20-surveydown-on-cran/</guid>
   <pubDate>Fri, 20 Dec 2024 00:00:00 GMT</pubDate>
-  <media:content url="https://www.surveydown.org/blog/2024-12-20-surveydown-on-cran/image.png" medium="image" type="image/png" height="112" width="144"/>
+  <media:content url="https://www.surveydown.org/blog/2024-12-20-surveydown-on-cran/banner.png" medium="image" type="image/png" height="96" width="144"/>
 </item>
 <item>
   <title>New architecture in v0.3.0 (and loads of breaking changes)!</title>
@@ -641,45 +644,122 @@ font-style: inherit;">)</span></span></code></pre></div>
 </ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
-<div class="cell">
-<pre class="qmd cell-code"><code>---
-format: html
-echo: false
-warning: false
----
-
-```{r}
-library(surveydown)
-```
-
-::: {#welcome .sd-page}
-
-# Welcome to our survey!
-
-```{r}
-sd_question(
-  type  = 'mc',
-  id    = 'penguins',
-  label = "Which type of penguin do you like the best?",
-  option = c(
-    'Adélie'    = 'adelie',
-    'Chinstrap' = 'chinstrap',
-    'Gentoo'    = 'gentoo'
-  )
-)
-
-sd_next(next_page = 'end')
-```
-
-:::
-
-::: {#end .sd-page}
-
-This it the last page in the survey
-
-:::
-</code></pre>
-</div>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">---</span></span>
+<span id="cb1-2"><span class="an" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">format:</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"> html</span></span>
+<span id="cb1-3"><span class="an" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">echo:</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"> false</span></span>
+<span id="cb1-4"><span class="an" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">warning:</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"> false</span></span>
+<span id="cb1-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">---</span></span>
+<span id="cb1-6"></span>
+<span id="cb1-7"></span>
+<span id="cb1-8">::: {.cell}</span>
+<span id="cb1-9"></span>
+<span id="cb1-10"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```{.r .cell-code}</span></span>
+<span id="cb1-11"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(surveydown)</span>
+<span id="cb1-12"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```</span></span>
+<span id="cb1-13">:::</span>
+<span id="cb1-14"></span>
+<span id="cb1-15"></span>
+<span id="cb1-16">::: {#welcome .sd-page}</span>
+<span id="cb1-17"></span>
+<span id="cb1-18"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"># Welcome to our survey!</span></span>
+<span id="cb1-19"></span>
+<span id="cb1-20"></span>
+<span id="cb1-21">::: {.cell}</span>
+<span id="cb1-22"></span>
+<span id="cb1-23"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```{.r .cell-code}</span></span>
+<span id="cb1-24"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd_question</span>(</span>
+<span id="cb1-25">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">type  =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'mc'</span>,</span>
+<span id="cb1-26">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">id    =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'penguins'</span>,</span>
+<span id="cb1-27">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Which type of penguin do you like the best?"</span>,</span>
+<span id="cb1-28">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">option =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(</span>
+<span id="cb1-29">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Adélie'</span>    <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'adelie'</span>,</span>
+<span id="cb1-30">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Chinstrap'</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'chinstrap'</span>,</span>
+<span id="cb1-31">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Gentoo'</span>    <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'gentoo'</span></span>
+<span id="cb1-32">  )</span>
+<span id="cb1-33">)</span>
+<span id="cb1-34"></span>
+<span id="cb1-35"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd_next</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">next_page =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'end'</span>)</span>
+<span id="cb1-36"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```</span></span>
+<span id="cb1-37">:::</span>
+<span id="cb1-38"></span>
+<span id="cb1-39"></span>
+<span id="cb1-40">:::</span>
+<span id="cb1-41"></span>
+<span id="cb1-42">::: {#end .sd-page}</span>
+<span id="cb1-43"></span>
+<span id="cb1-44">This it the last page in the survey</span>
+<span id="cb1-45"></span>
+<span id="cb1-46">:::</span></code></pre></div>
 </div>
 <div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
@@ -830,7 +910,7 @@ font-style: inherit;">)</span></span></code></pre></div>
 <li>
 <strong>Simplicity</strong>: The new design eliminates the need for a Quarto extension to render the survey. This allows us to ship all of the core functionality of surveydown as a single R package, which is installed globally on your system.</li>
 </ol>
-<p>The updated documentation of the <a href="https://surveydown.org/survey-components.html">Survey Components</a> page reflects this new design.</p>
+<p>The updated documentation of the <a href="https://surveydown.org/manuals/survey-components">Survey Components</a> page reflects this new design.</p>
 </section><section id="new-page-architecture" class="level2"><h2 class="anchored" data-anchor-id="new-page-architecture">New page architecture</h2>
 <p>The motivation to secure the page content led to a totally new approach to designing the survey pages. Our new approach actually renders the <code>survey.qmd</code> into a static html page and then parses it into a list of page objects. Each page object is itself a list of elements, including the page ID, question IDs, etc., as well as the rendered html content for that page.</p>
 <p>The <code><a href="https://pkg.surveydown.org/reference/sd_server.html">sd_server()</a></code> function then uses this list of page objects to display one page at a time via a <code><a href="https://rdrr.io/pkg/shiny/man/renderUI.html">shiny::renderUI()</a></code> function into a single “main” output. This approach allowed us to control what content is being served, eliminating the ability of survey respondents to see anything other than the content on the current page.</p>
@@ -904,7 +984,7 @@ font-style: inherit;">)</span></span>
 background-color: null;
 font-style: inherit;">}</span></span></code></pre></div>
 </div>
-<p>You can provide multiple conditions to the <code><a href="https://pkg.surveydown.org/reference/sd_show_if.html">sd_show_if()</a></code> function, each separated by a comma. The <code><a href="https://pkg.surveydown.org/reference/sd_skip_if.html">sd_skip_if()</a></code> function works the same way, but it will skip to a target page instead of showing a target question. See the revised <a href="https://surveydown.org/config-options">Configuration Options</a> page for more details on the new changes.</p>
+<p>You can provide multiple conditions to the <code><a href="https://pkg.surveydown.org/reference/sd_show_if.html">sd_show_if()</a></code> function, each separated by a comma. The <code><a href="https://pkg.surveydown.org/reference/sd_skip_if.html">sd_skip_if()</a></code> function works the same way, but it will skip to a target page instead of showing a target question. See the revised <a href="https://surveydown.org/manuals/conditional-control">Conditional Control</a> page for more details on the new changes.</p>
 </section><section id="no-more-sd_config-function" class="level2"><h2 class="anchored" data-anchor-id="no-more-sd_config-function">No more <code>sd_config()</code> function</h2>
 <p>One more small change we made is that the <code>sd_config()</code> function is no longer needed. Since we moved the conditional skip and show logic into their own functions, we took the remaining arguments that used to be provided to <code>sd_config()</code> and added them to the <code><a href="https://pkg.surveydown.org/reference/sd_server.html">sd_server()</a></code> function as options. You can now simply pass these arguments to the <code><a href="https://pkg.surveydown.org/reference/sd_server.html">sd_server()</a></code> function in the <code>app.R</code> file.</p>
 </section><section id="our-apologies" class="level2"><h2 class="anchored" data-anchor-id="our-apologies">Our apologies</h2>
@@ -916,7 +996,7 @@ font-style: inherit;">}</span></span></code></pre></div>
   <category>R</category>
   <guid>https://www.surveydown.org/blog/2024-09-18-new-app-design/</guid>
   <pubDate>Wed, 18 Sep 2024 00:00:00 GMT</pubDate>
-  <media:content url="https://www.surveydown.org/blog/2024-09-18-new-app-design/image.png" medium="image" type="image/png" height="144" width="144"/>
+  <media:content url="https://www.surveydown.org/blog/2024-09-18-new-app-design/banner.png" medium="image" type="image/png" height="96" width="144"/>
 </item>
 <item>
   <title>Choice-based conjoint surveys in R with surveydown</title>
@@ -951,17 +1031,17 @@ Note
 </div>
 <p>The key component of a choice-based conjoint survey is asking repsondents to make choices from randomized sets of choice questions. So the hard part is figuring out a way to show each respondent a different set of randomized questions. This post shows how you can achieve this in surveydown.</p>
 <p>Throughout this post, I will use a demo survey about people’s preferences for apples with three attributes: <code>type</code>, <code>price</code>, and <code>freshness</code>.<sup>1</sup></p>
-<p>You can view the live demo survey <a href="https://surveydown.shinyapps.io/conjoint/">here</a>, and all files used to create the survey are on <a href="https://github.com/surveydown-dev/demo-choice-based-conjoint">this GitHub repo</a>.</p>
+<p>You can view the live demo survey <a href="https://surveydown.shinyapps.io/conjoint/">here</a>, and all files used to create the survey are on <a href="https://github.com/surveydown-dev/demos/tree/main/conjoint-buttons">this GitHub repo</a>.</p>
 <section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>If you’ve never used surveydown before, take a look at the <a href="https://surveydown.org/getting-started.html">Getting Started</a> page to get a quick introduction to the package and how to use it to make a survey.</p>
+<p>If you’ve never used surveydown before, take a look at the <a href="https://surveydown.org/docs/getting-started.html">Getting Started</a> page to get a quick introduction to the package and how to use it to make a survey.</p>
 <p>The basic concept is this:</p>
 <ol type="1">
 <li>Design your survey as a <a href="{{< url_quarto >}}">Quarto</a> document using markdown and R code.</li>
 <li>Convert your survey into a <a href="{{< url_shiny >}}">Shiny</a> app that can be hosted online and sent to respondents.</li>
 <li>Store your survey responses in a <a href="{{< url_supabase >}}">Supabase</a> database.</li>
 </ol></section><section id="getting-started" class="level2"><h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
-<p>If you want to start from a blank slate, take a look at the <a href="https://surveydown.org/getting-started">Getting Started</a> documentation page.</p>
-<p>For this post, we recommend starting from the demo survey available at <a href="https://github.com/surveydown-dev/demo-choice-based-conjoint">this GitHub repo</a>. It provides an already working survey that you can modify to the needs of your conjoint survey.</p>
+<p>If you want to start from a blank slate, take a look at the <a href="https://surveydown.org/docs/getting-started.html">Getting Started</a> documentation page.</p>
+<p>For this post, we recommend starting from the demo survey available at <a href="https://github.com/surveydown-dev/demos/tree/main/conjoint-buttons">this GitHub repo</a>. It provides an already working survey that you can modify to the needs of your conjoint survey.</p>
 <p>The demo repo has a lot of files in it, but the main files defining the survey itself are:</p>
 <ul>
 <li>
@@ -988,7 +1068,7 @@ Note
 <p>None of this is necessary for a conjoint survey, but often times these are features that you may want to include, such as screening people out of the survey if they don’t qualify to take it, so we include it for demonstration purposes.</p>
 </section><section id="defining-the-choice-questions" class="level2"><h2 class="anchored" data-anchor-id="defining-the-choice-questions">Defining the choice questions</h2>
 <p>The central component of every conjoint survey is the set of randomized choice questions. To implement these in surveydown, we pre-define our choice questions in a design file that we later use in the survey to select randomized sets of choice questions to display each respondent.</p>
-<p>We use the <a href="https://jhelvy.github.io/cbcTools/">cbcTools</a> package to create the pre-defined design file. The code to create the choice questions for this demo survey is in the <a href="https://github.com/surveydown-dev/demo-choice-based-conjoint/blob/main/make_choice_questions.R"><code>make_choice_questions.R</code></a> file in the demo repo. This code generates a data frame of randomized choice questions that we then save in the project directory as <code>choice_questions.csv</code>.</p>
+<p>We use the <a href="https://jhelvy.github.io/cbcTools/">cbcTools</a> package to create the pre-defined design file. The code to create the choice questions for this demo survey is in the <a href="https://github.com/surveydown-dev/demos/blob/main/conjoint-buttons/code/1_make_choice_questions.R"><code>1_make_choice_questions.R</code></a> file in the demo repo. This code generates a data frame of randomized choice questions that we then save in the project directory as <code>choice_questions.csv</code>.</p>
 </section><section id="implementing-the-choice-questions" class="level2"><h2 class="anchored" data-anchor-id="implementing-the-choice-questions">Implementing the choice questions</h2>
 <p>The choice questions are implemented at the top of the <code>server()</code> function in the <code>app.R</code> file in the demo repo. This code does the following steps:</p>
 <section id="read-in-the-design-file" class="level3"><h3 class="anchored" data-anchor-id="read-in-the-design-file">1. Read in the design file</h3>
@@ -1531,9 +1611,9 @@ font-style: inherit;"># ...and 5 more questions like this</span></span></code></
 <p>When rendered, a choice question will look like this, with the values matching whatever alternative was chosen in the design file:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="container-cbc_q1" data-question-id="cbc_q1" class="question-container" oninput="Shiny.setInputValue('cbc_q1_interacted', true, {priority: 'event'});">
-<div class="form-group shiny-input-container shiny-input-radiogroup shiny-input-container-inline" style="width:100%;">
-<label class="control-label" id="cbc_q1-label" for="cbc_q1"><p>(1 of 6) If these were your only options, which would you choose? <span class="required-asterisk" style="display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;">*</span></p>
+<div id="container-cbc_q1" data-question-id="cbc_q1" class="question-container" style="width: 100%;" oninput="Shiny.setInputValue('cbc_q1_interacted', true, {priority: 'event'});" onclick="Shiny.setInputValue('cbc_q1_interacted', true, {priority: 'event'});">
+<div class="form-group shiny-input-container shiny-input-radiogroup shiny-input-container-inline">
+<label class="control-label" id="cbc_q1-label" for="cbc_q1"><p>(1 of 6) If these were your only options, which would you choose?</p>
 </label>
 <br><div id="cbc_q1" class="radio-group-buttons">
 <div aria-labelledby="cbc_q1-label" class="btn-group btn-group-container-sw" data-toggle="buttons">
@@ -1557,9 +1637,20 @@ font-style: inherit;"># ...and 5 more questions like this</span></span></code></
 <script>
             $(document).on('click', '#cbc_q1 .btn', function() {
                 Shiny.setInputValue('cbc_q1_interacted', true, {priority: 'event'});
+                // Small delay to allow button state to update
+                setTimeout(function() {
+                    var selectedValue = '';
+                    // Look for checked radio input within the container
+                    var checkedInput = $('#cbc_q1 input[type="radio"]:checked');
+                    if (checkedInput.length > 0) {
+                        selectedValue = checkedInput.val();
+                    }
+                    Shiny.setInputValue('cbc_q1', selectedValue, {priority: 'event'});
+                }, 50);
             });
         </script>
 </div>
+<span class="hidden-asterisk">*</span>
 </div>
 </div>
 </div>
@@ -1571,7 +1662,6 @@ font-style: inherit;"># ...and 5 more questions like this</span></span></code></
 In the example above, the conjoint choice questions are displayed as "buttons" where all the information for each alternative is shown as a button. This works particularly well for mobile phone applications where the user may need to scroll vertically to see each option. 
 
 An alternative is to use a tabular layout where each column represents an alternative and the row names explain the attribute. This takes a little manipulation to get it right, but the key concept is to use `kable()` to display the transpose of the `df` data frame (the subset of rows for a particular respondent). We also use the wonderful [kableExtra](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html) package to modify some of the table stying. We don't explain this code in detail, but the gist of what we're doing here is creating a dataframe with our alternatives and displaying it as a table with `kable()`.
-
 
 
 ::: {.cell}
@@ -1611,6 +1701,14 @@ kable(t(alts1), escape = FALSE) |>
 `````{=html}
 
 <table class="table table-striped table-hover table-condensed caption-top" data-quarto-postprocess="true" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Option:</td>
@@ -1620,9 +1718,9 @@ kable(t(alts1), escape = FALSE) |>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
-<td style="text-align: left;"><img src="images/honeycrisp.jpg" class="img-fluid" width="100" /></td>
-<td style="text-align: left;"><img src="images/fuji.jpg" class="img-fluid" width="100" /></td>
-<td style="text-align: left;"><img src="images/redDelicious.jpg" class="img-fluid" width="100" /></td>
+<td style="text-align: left;">&lt;img src="images/honeycrisp.jpg" width=100&gt;</td>
+<td style="text-align: left;">&lt;img src="images/fuji.jpg" width=100&gt;</td>
+<td style="text-align: left;">&lt;img src="images/redDelicious.jpg" width=100&gt;</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Price:</td>
@@ -1651,9 +1749,7 @@ kable(t(alts1), escape = FALSE) |>
 :::
 
 
-
 Of course, the table is just showing the options, but it doesn't allow respondents to indicate their choice. So we still need to create a 
-
 
 
 ::: {.cell}
@@ -1673,9 +1769,9 @@ sd_question(
 ::: {.cell-output-display}
 
 ```{=html}
-<div id="container-cbc_q1" data-question-id="cbc_q1" class="question-container" oninput="Shiny.setInputValue(&#39;cbc_q1_interacted&#39;, true, {priority: &#39;event&#39;});">
-<div class="form-group shiny-input-container shiny-input-radiogroup shiny-input-container-inline" style="width:100%;">
-<label class="control-label" id="cbc_q1-label" for="cbc_q1"><p>(1 of 6) If the above options were your only options, which would you choose? <span class='required-asterisk' style='display:none; color: red; font-size: 1.5em; vertical-align: middle; position: relative; top: 0.1em;'>*</span></p>
+<div id="container-cbc_q1" data-question-id="cbc_q1" class="question-container" style="width: 100%;" oninput="Shiny.setInputValue(&#39;cbc_q1_interacted&#39;, true, {priority: &#39;event&#39;});" onclick="Shiny.setInputValue(&#39;cbc_q1_interacted&#39;, true, {priority: &#39;event&#39;});">
+<div class="form-group shiny-input-container shiny-input-radiogroup shiny-input-container-inline">
+<label class="control-label" id="cbc_q1-label" for="cbc_q1"><p>(1 of 6) If the above options were your only options, which would you choose?</p>
 </label>
 <br/>
 <div id="cbc_q1" class="radio-group-buttons">
@@ -1703,15 +1799,25 @@ Option 3
 <script>
             $(document).on('click', '#cbc_q1 .btn', function() {
                 Shiny.setInputValue('cbc_q1_interacted', true, {priority: 'event'});
+                // Small delay to allow button state to update
+                setTimeout(function() {
+                    var selectedValue = '';
+                    // Look for checked radio input within the container
+                    var checkedInput = $('#cbc_q1 input[type="radio"]:checked');
+                    if (checkedInput.length > 0) {
+                        selectedValue = checkedInput.val();
+                    }
+                    Shiny.setInputValue('cbc_q1', selectedValue, {priority: 'event'});
+                }, 50);
             });
         </script>
 </div>
+<span class="hidden-asterisk">*</span>
 </div>
 ```
 
 :::
 :::
-
 
 
 <center>
@@ -1720,7 +1826,7 @@ Option 3
 
  -->
 </section></section><section id="preview-and-check" class="level2"><h2 class="anchored" data-anchor-id="preview-and-check">Preview and check</h2>
-<p>The rest of the <code>server()</code> function in the <code>app.R</code> file has the remaining components we need, like any conditional display or skip logic. This is all standard features of any surveydown survey, so we won’t cover them in detail here and instead direct you to the <a href="https://surveydown.org/documentation">documentation</a> for details.</p>
+<p>The rest of the <code>server()</code> function in the <code>app.R</code> file has the remaining components we need, like any conditional display or skip logic. This is all standard features of any surveydown survey, so we won’t cover them in detail here and instead direct you to the <a href="https://surveydown.org/docs.html">documentation</a> for details.</p>
 <p>But before you go live, it’s a good idea to do some quick testing. You can test your survey even without having it connected to a database by setting <code>ignore = TRUE</code> in the <code><a href="https://pkg.surveydown.org/reference/sd_database.html">sd_database()</a></code> function. Of course, you probably should also test it after connecting it to a database to ensure that responses are being properly stored.</p>
 <p>When testing, you might get an error - don’t panic! Read the terminal output carefully and debug. There’s a good chance you may have missed a bug somewhere in your server code. Look in your <code>app.R</code> file to see if you can spot the error.</p>
 </section><section id="getting-the-data" class="level2"><h2 class="anchored" data-anchor-id="getting-the-data">Getting the data</h2>
@@ -1790,7 +1896,7 @@ background-color: null;
 font-style: inherit;">)</span></span></code></pre></div>
 </div>
 <p>Obviously your settings in <code><a href="https://pkg.surveydown.org/reference/sd_database.html">sd_database()</a></code> would need to match those of your Supabase database that you created for your survey.</p>
-<p>And that’s it! We hope this post was helpful, and do go check out the <a href="https://github.com/surveydown-dev/demo-choice-based-conjoint">this GitHub repo</a> to try out the demo yourself.</p>
+<p>And that’s it! We hope this post was helpful, and do go check out the <a href="https://github.com/surveydown-dev/demos/blob/main/conjoint-buttons">this GitHub repo</a> to try out the demo yourself.</p>
 
 
 </section><a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
@@ -1802,7 +1908,7 @@ font-style: inherit;">)</span></span></code></pre></div>
   <category>conjoint</category>
   <guid>https://www.surveydown.org/blog/2024-08-28-choice-based-conjoint-surveys-with-surveydown/</guid>
   <pubDate>Wed, 28 Aug 2024 00:00:00 GMT</pubDate>
-  <media:content url="https://www.surveydown.org/blog/2024-08-28-choice-based-conjoint-surveys-with-surveydown/images/example.png" medium="image" type="image/png" height="58" width="144"/>
+  <media:content url="https://www.surveydown.org/blog/2024-08-28-choice-based-conjoint-surveys-with-surveydown/images/banner.png" medium="image" type="image/png" height="96" width="144"/>
 </item>
 <item>
   <title>Introducing surveydown: A markdown-based framework for generating surveys with Quarto and shiny</title>
@@ -1963,7 +2069,7 @@ font-style: inherit;">```</span></span></code></pre></div>
 <p>The above code chunk will create a “Next” button that goes on to page 2 that looks like this:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div data-next-page="page2" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+<div data-next-page="page2" style="margin-top: 1rem; margin-bottom: 0.5rem;">
 <button class="btn btn-default action-button sd-enter-button" id="page_id_next" onclick="Shiny.setInputValue('next_page', this.parentElement.getAttribute('data-next-page'));" style="display: block; margin: auto;" type="button">Next</button>
 </div>
 </div>
@@ -1990,7 +2096,7 @@ font-style: inherit;">```</span></span></code></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div data-next-page="page2" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+<div data-next-page="page2" style="margin-top: 1rem; margin-bottom: 0.5rem;">
 <button class="btn btn-default action-button sd-enter-button" id="page_id_next" onclick="Shiny.setInputValue('next_page', this.parentElement.getAttribute('data-next-page'));" style="display: block; margin: auto;" type="button">Next page</button>
 </div>
 </div>
@@ -2631,12 +2737,12 @@ font-style: inherit;">)</span></span></code></pre></div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt;   respondent_id     brand
-#&gt; 1             1     Honda
-#&gt; 2             1    Nissan
-#&gt; 3             1    Toyota
-#&gt; 4             2    Toyota
-#&gt; 5             2 Chevrolet
-#&gt; 6             2     Honda</code></pre>
+#&gt; 1             1    Nissan
+#&gt; 2             1      Ford
+#&gt; 3             1     Honda
+#&gt; 4             2     Honda
+#&gt; 5             2     Tesla
+#&gt; 6             2 Chevrolet</code></pre>
 </div>
 </div>
 <p>Note that this would not be done in your survey.qmd file - it’s just a one-time thing to create the design (probably stored in an R file).</p>
@@ -2809,11 +2915,10 @@ font-style: inherit;">)</span></span></code></pre></div>
   <category>package</category>
   <category>markdown</category>
   <category>shiny</category>
-  <category>package</category>
   <category>quarto</category>
   <guid>https://www.surveydown.org/blog/2024-08-21-introducing-surveydown/</guid>
   <pubDate>Wed, 21 Aug 2024 00:00:00 GMT</pubDate>
-  <media:content url="https://www.surveydown.org/blog/2024-08-21-introducing-surveydown/logo.png" medium="image" type="image/png" height="144" width="144"/>
+  <media:content url="https://www.surveydown.org/blog/2024-08-21-introducing-surveydown/banner.png" medium="image" type="image/png" height="96" width="144"/>
 </item>
 </channel>
 </rss>

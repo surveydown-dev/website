@@ -109,11 +109,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script><style>html{ scroll-behavior: smooth; }</style>
 <meta property="og:title" content="New architecture in v0.3.0 (and loads of breaking changes)! – surveydown.org">
 <meta property="og:description" content="We’re releasing v0.3.0, and with it multiple breaking changes.">
-<meta property="og:image" content="https://www.surveydown.org/blog/2024-09-18-new-app-design/image.png">
+<meta property="og:image" content="https://www.surveydown.org/blog/2024-09-18-new-app-design/banner.png">
 <meta property="og:site_name" content="https://surveydown.org">
 <meta property="og:locale" content="es_ES">
-<meta property="og:image:height" content="1024">
-<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="427">
+<meta property="og:image:width" content="640">
 <meta name="twitter:title" content="New architecture in v0.3.0 (and loads of breaking changes)! – surveydown.org">
 <meta name="twitter:description" content="We’re releasing v0.3.0, and with it multiple breaking changes.">
 <meta name="twitter:image" content="https://www.surveydown.org/blog/2024-09-18-new-app-design/image.png">
@@ -414,45 +414,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="cell">
-<pre class="qmd cell-code"><code>---
-format: html
-echo: false
-warning: false
----
-
-```{r}
-library(surveydown)
-```
-
-::: {#welcome .sd-page}
-
-# Welcome to our survey!
-
-```{r}
-sd_question(
-  type  = 'mc',
-  id    = 'penguins',
-  label = "Which type of penguin do you like the best?",
-  option = c(
-    'Adélie'    = 'adelie',
-    'Chinstrap' = 'chinstrap',
-    'Gentoo'    = 'gentoo'
-  )
-)
-
-sd_next(next_page = 'end')
-```
-
-:::
-
-::: {#end .sd-page}
-
-This it the last page in the survey
-
-:::
-</code></pre>
-</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">echo:</span><span class="co"> false</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">warning:</span><span class="co"> false</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>::: {.cell}</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="in">```{.r .cell-code}</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(surveydown)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>::: {#welcome .sd-page}</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu"># Welcome to our survey!</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>::: {.cell}</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="in">```{.r .cell-code}</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'mc'</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">'penguins'</span>,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Which type of penguin do you like the best?"</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Adélie'</span>    <span class="ot">=</span> <span class="st">'adelie'</span>,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Chinstrap'</span> <span class="ot">=</span> <span class="st">'chinstrap'</span>,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Gentoo'</span>    <span class="ot">=</span> <span class="st">'gentoo'</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_next</span>(<span class="at">next_page =</span> <span class="st">'end'</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>::: {#end .sd-page}</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>This it the last page in the survey</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
@@ -493,7 +500,7 @@ This it the last page in the survey
 <li>
 <strong>Simplicity</strong>: The new design eliminates the need for a Quarto extension to render the survey. This allows us to ship all of the core functionality of surveydown as a single R package, which is installed globally on your system.</li>
 </ol>
-<p>The updated documentation of the <a href="https://surveydown.org/survey-components.html">Survey Components</a> page reflects this new design.</p>
+<p>The updated documentation of the <a href="https://surveydown.org/manuals/survey-components">Survey Components</a> page reflects this new design.</p>
 </section><section id="new-page-architecture" class="level2"><h2 class="anchored" data-anchor-id="new-page-architecture">New page architecture</h2>
 <p>The motivation to secure the page content led to a totally new approach to designing the survey pages. Our new approach actually renders the <code>survey.qmd</code> into a static html page and then parses it into a list of page objects. Each page object is itself a list of elements, including the page ID, question IDs, etc., as well as the rendered html content for that page.</p>
 <p>The <code><a href="https://pkg.surveydown.org/reference/sd_server.html">sd_server()</a></code> function then uses this list of page objects to display one page at a time via a <code><a href="https://rdrr.io/pkg/shiny/man/renderUI.html">shiny::renderUI()</a></code> function into a single “main” output. This approach allowed us to control what content is being served, eliminating the ability of survey respondents to see anything other than the content on the current page.</p>
@@ -516,7 +523,7 @@ This it the last page in the survey
 <span></span>
 <span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>You can provide multiple conditions to the <code><a href="https://pkg.surveydown.org/reference/sd_show_if.html">sd_show_if()</a></code> function, each separated by a comma. The <code><a href="https://pkg.surveydown.org/reference/sd_skip_if.html">sd_skip_if()</a></code> function works the same way, but it will skip to a target page instead of showing a target question. See the revised <a href="https://surveydown.org/config-options">Configuration Options</a> page for more details on the new changes.</p>
+<p>You can provide multiple conditions to the <code><a href="https://pkg.surveydown.org/reference/sd_show_if.html">sd_show_if()</a></code> function, each separated by a comma. The <code><a href="https://pkg.surveydown.org/reference/sd_skip_if.html">sd_skip_if()</a></code> function works the same way, but it will skip to a target page instead of showing a target question. See the revised <a href="https://surveydown.org/manuals/conditional-control">Conditional Control</a> page for more details on the new changes.</p>
 </section><section id="no-more-sd_config-function" class="level2"><h2 class="anchored" data-anchor-id="no-more-sd_config-function">No more <code>sd_config()</code> function</h2>
 <p>One more small change we made is that the <code>sd_config()</code> function is no longer needed. Since we moved the conditional skip and show logic into their own functions, we took the remaining arguments that used to be provided to <code>sd_config()</code> and added them to the <code><a href="https://pkg.surveydown.org/reference/sd_server.html">sd_server()</a></code> function as options. You can now simply pass these arguments to the <code><a href="https://pkg.surveydown.org/reference/sd_server.html">sd_server()</a></code> function in the <code>app.R</code> file.</p>
 </section><section id="our-apologies" class="level2"><h2 class="anchored" data-anchor-id="our-apologies">Our apologies</h2>

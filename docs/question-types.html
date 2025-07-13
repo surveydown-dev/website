@@ -73,9 +73,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-1b9f91241650320f29b711d22d7c5347.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-0291ec48240b28d679dacef6a4498f07.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-1b9f91241650320f29b711d22d7c5347.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-8b83839bd93781c6930aba6531401a18.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-ef1bc798271cad994f9764505a224e32.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-8b83839bd93781c6930aba6531401a18.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -704,7 +704,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="form-group shiny-input-container">
 <label class="control-label" id="age-label" for="age"><p>What’s your age?</p>
 </label>
-<input id="age" type="number" class="shiny-input-number form-control" data-update-on="change">
+<input id="age" type="number" class="shiny-input-number form-control" data-update-on="change"><script>
+        $(document).ready(function() {
+            $('#age').on('focus input change', function() {
+                Shiny.setInputValue('age_interacted', true, {priority: 'event'});
+            });
+            
+            // Restrict input to numeric characters (0-9) and plus/minus signs
+            $('#age').on('keypress', function(e) {
+                // Allow all key combinations with Ctrl or Cmd (for copy, paste, select all, etc.)
+                if (e.ctrlKey || e.metaKey) {
+                    return true;
+                }
+                
+                var char = String.fromCharCode(e.which);
+                // Allow: digits (0-9), plus sign (+), minus sign (-), backspace, delete, tab, escape, enter
+                if (/[0-9+\-]/.test(char) || 
+                    e.which === 8 || e.which === 46 || e.which === 9 || e.which === 27 || e.which === 13) {
+                    return true;
+                }
+                e.preventDefault();
+                return false;
+            });
+            
+            // Also filter on paste events
+            $('#age').on('paste', function(e) {
+                setTimeout(function() {
+                    var val = $('#age').val();
+                    // Remove any characters that are not digits, plus, or minus
+                    var filtered = val.replace(/[^0-9+\-]/g, '');
+                    if (val !== filtered) {
+                        $('#age').val(filtered);
+                    }
+                }, 1);
+            });
+        });
+    </script>
 </div>
 <span class="hidden-asterisk">*</span>
 </div>
@@ -931,6 +966,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script>
             $(document).on('click', '#fruit .btn', function() {
                 Shiny.setInputValue('fruit_interacted', true, {priority: 'event'});
+                // Small delay to allow button state to update
+                setTimeout(function() {
+                    var selectedValue = '';
+                    // Look for checked radio input within the container
+                    var checkedInput = $('#fruit input[type="radio"]:checked');
+                    if (checkedInput.length > 0) {
+                        selectedValue = checkedInput.val();
+                    }
+                    Shiny.setInputValue('fruit', selectedValue, {priority: 'event'});
+                }, 50);
             });
         </script>
 </div>
@@ -989,6 +1034,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script>
             $(document).on('click', '#fruit_vertical .btn', function() {
                 Shiny.setInputValue('fruit_vertical_interacted', true, {priority: 'event'});
+                // Small delay to allow button state to update
+                setTimeout(function() {
+                    var selectedValue = '';
+                    // Look for checked radio input within the container
+                    var checkedInput = $('#fruit_vertical input[type="radio"]:checked');
+                    if (checkedInput.length > 0) {
+                        selectedValue = checkedInput.val();
+                    }
+                    Shiny.setInputValue('fruit_vertical', selectedValue, {priority: 'event'});
+                }, 50);
             });
         </script>
 </div>
@@ -1050,6 +1105,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script>
             $(document).on('click', '#michael_jackson .btn', function() {
                 Shiny.setInputValue('michael_jackson_interacted', true, {priority: 'event'});
+                // Small delay to allow button state to update
+                setTimeout(function() {
+                    var selectedValues = [];
+                    // Look for checked checkbox inputs within the container
+                    $('#michael_jackson input[type="checkbox"]:checked').each(function() {
+                        selectedValues.push($(this).val());
+                    });
+                    Shiny.setInputValue('michael_jackson', selectedValues, {priority: 'event'});
+                }, 50);
             });
         </script>
 </div>
@@ -1110,6 +1174,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script>
             $(document).on('click', '#michael_jackson_vertical .btn', function() {
                 Shiny.setInputValue('michael_jackson_vertical_interacted', true, {priority: 'event'});
+                // Small delay to allow button state to update
+                setTimeout(function() {
+                    var selectedValues = [];
+                    // Look for checked checkbox inputs within the container
+                    $('#michael_jackson_vertical input[type="checkbox"]:checked').each(function() {
+                        selectedValues.push($(this).val());
+                    });
+                    Shiny.setInputValue('michael_jackson_vertical', selectedValues, {priority: 'event'});
+                }, 50);
             });
         </script>
 </div>

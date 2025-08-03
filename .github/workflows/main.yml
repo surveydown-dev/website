@@ -2,9 +2,9 @@ name: Build and Deploy Quarto Site
 
 on:
   push:
-    branches: [ main, master ]
+    branches: "main"
   pull_request:
-    branches: [ main, master ]
+    branches: "main"
   schedule:
     # Scheduled to run at midnight EST (5:00 UTC) every Sunday
     - cron: '0 5 * * 0'

@@ -6,17 +6,27 @@ As of v0.4.2, {surveydown} supports the ability to set the system language for a
 
 ## Setting the Language
 
-To set the language of your survey, you can use the `language` argument in the `sd_server()` function in your **app.R** file. For example, to set the survey language to Spanish, you would write:
+To set the language of your survey, you can either define the `system-language` key in YAML of **survey.qmd**, or use the `system_language` argument in the `sd_server()` function in your **app.R** file. For example, to set the survey language to **Spanish**, you would write:
+
+Either in YAML of **survey.qmd**:
+
+```yaml
+---
+system-language: es
+---
+```
+
+Or in the **app.R** file:
 
 ```{r}
 server <- function(input, output, session) {
   sd_server(
-    language = "es"
+    system_language = "es"
   )
 }
 ```
 
-When setting the `language` argument, make sure to use a valid language code. The list of supported language codes is the same as those supported by Shiny's `dateInput()` (a [full list](#full-language-code-list) of codes is provided at the bottom of this page). 
+When setting the language, make sure to use a valid language code. The list of supported language codes is the same as those supported by Shiny's `dateInput()` (a [full list](#full-language-code-list) of codes is provided at the bottom of this page). 
 
 For now, {surveydown} comes with built-in translations for the following languages:
 

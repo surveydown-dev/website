@@ -111,40 +111,7 @@ warning: false
 
 The `format: html` setting is optional since by default a Quarto doc is formatted as HTML. We put it here to explicitly state that this document should be rendered as an HTML document. The other settings, `echo: false` and `warning: false`, are recommended for a clean user experience, so that the survey does not display any code scripts or warnings to the participants.
 
-### Appearance settings
-
-Because the **survey.qmd** is a Quarto document, you can use any of the [Quarto formatting options](https://quarto.org/docs/reference/formats/html.html#format-options) to change the appearance of your survey. 
-
-For example, you can change the overall survey theme using the `theme` key:
-
-``` yaml
----
-theme: united # Any bootswatch theme 
----
-```
-
-There are [25 bootswatch themes](https://quarto.org/docs/output-formats/html-themes.html) to choose from. You can also provide a `custom.scss` file to further modify the theme, or even combine the two, e.g.:
-
-``` yaml
----
-theme: [united, custom.scss]
----
-```
-
-### Progress bar
-
-You can modify the survey progress bar with the `barcolor` and `barposition` keys, e.g.:
-
-``` yaml
----
-barcolor: "#768692"
-barposition: top 
----
-```
-
-The `barcolor` key defines the color of the progress bar. It defaults to the primary theme color, but you can change it to any hex code you wish here to overwrite the theme color.
-
-The `barposition` key defines the position of the progress bar. It defaults to `top`, but can also be changed to `bottom` or `none` (to remove the bar). The progress bar updates on every **question** the user clicks on, not pages.
+The YAML header can also contain other survey settings, such as theme settings and survey behavior settings. See the [Survey Settings](survey-settings.html) page for details.
 
 The rest of the content in the **survey.qmd** file is the content you want in your survey, including **pages**, **navigation buttons**, and **questions**.
 
@@ -208,7 +175,7 @@ sd_next(label = "Go to page 3", next_page = 'page3')
 sd_next(label = "Go to page 3", next_page = 'page3')
 ```
 
-You can conditionally override these controls using the `sd_skip_forward()` function in your server function. See the [Conditional Survey Flow](conditional-survey-flow.html) page or [Page Navigation](page-navigation.qmd) page for more details.
+You can conditionally override these controls using the `sd_skip_forward()` function in your server function. See the [Conditional Survey Flow](conditional-survey-flow.html) page or [Page Navigation](page-navigation.html) page for more details.
 
 ### Adding questions
 
@@ -251,7 +218,7 @@ The `sd_question()` function can be used to create a variety of question types, 
 
 The function has many other arguments for customizing the look and feel of the question, such as the `height` and `width` (see the [Question Formatting](question-formatting.html) page).
 
-By default all questions are optional, but you can make questions required in the server options (see the [Server Options](server-options.html#required-questions) page for details).
+By default all questions are optional, but you can make questions required in the survey settings (see the [Survey Settings](survey-settings.html#required-questions) page for details).
 
 Similar to page creation, you can also make use of the [question gadget](defining-questions.html#using-a-gui-in-rstudio) to create questions under the "Addins" dropdown menu following similar operations. Below is a showcase of the **Survey Question Gadget** in RStudio:
 
@@ -360,7 +327,7 @@ The `server()` function is a standard Shiny server function that takes `input`, 
 
 The `sd_server()` function at the bottom makes everything run. It also includes some optional arguments that you can use to customize the survey. 
 
-See the [Server Options](server-options.html) page for details on the different options you can use to customize the server.
+See the [Survey Settings](survey-settings.html) page for details on the different options you can use to customize the server.
 
 ::: {.callout-note}
 

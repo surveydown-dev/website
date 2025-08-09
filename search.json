@@ -259,87 +259,111 @@
     ]
   },
   {
-    "objectID": "docs/server-options.html",
-    "href": "docs/server-options.html",
-    "title": "Server Options",
+    "objectID": "docs/storing-data.html",
+    "href": "docs/storing-data.html",
+    "title": "Storing Data",
     "section": "",
-    "text": "All survey configuration settings are defined within the server function in the app.R file. The server() function is a standard Shiny server function that takes input, output, and session as arguments.\nIf you create a new survey using a template, the server() function looks like this:\nserver &lt;- function(input, output, session) {\n\n  # Define conditional skip logic (skip forward to page if a condition is TRUE)\n  sd_skip_forward()\n\n  # Define conditional display logic (show a question if a condition is TRUE)\n  sd_show_if()\n\n  # Main server to control the app\n  sd_server(db = db)\n\n}\nThe sd_skip_forward() and sd_show_if() functions are used to define Conditional Logic, including Conditional Question Display and Conditional Page Navigation.\nThe sd_server() function is used to run the survey. It handles the main logic, such as page navigation and managing the survey data. The db = db argument is required if you are using a database connection, which should be defined using the sd_database() function (see the Store Data page for more details).\nThe sd_server() function also has many other optional arguments that can be used to customize the survey behavior. This page details these options.",
+    "text": "Survey response data is stored in a PostgreSQL database. We recommend using Supabase as a free and open-source option, though you can use any service you want. In this guide, we’ll walk you through the steps for setting up a Supabase project and connecting your surveydown survey to it.",
     "crumbs": [
       "Documentation",
-      "Survey Design Concepts",
-      "Server Options"
+      "Data Management",
+      "Storing Data"
     ]
   },
   {
-    "objectID": "docs/server-options.html#required-questions",
-    "href": "docs/server-options.html#required-questions",
-    "title": "Server Options",
-    "section": "Required questions",
-    "text": "Required questions\nBy default, no questions are required. However, you can make questions required by providing a vector containing the id of the questions to be required to the required_questions argument in sd_server(), like\n\nsd_server(\n1  required_questions = c(\"vehicle_ownership\", \"penguins_other\")\n)\n\n\n1\n\nThe required_questions argument takes a vector of question IDs that you want to make required.\n\n\n\n\nThis will make the respondent unable to proceed until they have answered the required questions. It will also place a red asterisk (*) next to the question label to indicate that the question is required.\nYou can also make all questions required by setting all_questions_required = TRUE like this:\n\nsd_server(\n  all_questions_required = TRUE\n)",
+    "objectID": "docs/storing-data.html#local-data-preview",
+    "href": "docs/storing-data.html#local-data-preview",
+    "title": "Storing Data",
+    "section": "Local data preview",
+    "text": "Local data preview\nWhen you run a survey without a database connection, response data will be locally stored in a preview_data.csv file. As the name suggests, this is for preview purposes only. It is there to help you understand what the actual survey response data will look like once you get your database connection properly configured.\nThis file is not where your actual survey response data will be saved. If you deploy your survey live without a database connection, no responses will be saved.",
     "crumbs": [
       "Documentation",
-      "Survey Design Concepts",
-      "Server Options"
+      "Data Management",
+      "Storing Data"
     ]
   },
   {
-    "objectID": "docs/server-options.html#starting-page",
-    "href": "docs/server-options.html#starting-page",
-    "title": "Server Options",
-    "section": "Starting page",
-    "text": "Starting page\nWhen editing your survey, it can be helpful to start the survey at a specific page. You can define the starting page with the start_page argument in the sd_server() function, like this:\n\nsd_server(\n  start_page = \"page_id\"\n)",
+    "objectID": "docs/storing-data.html#setting-up-a-supabase-project",
+    "href": "docs/storing-data.html#setting-up-a-supabase-project",
+    "title": "Storing Data",
+    "section": "Setting up a Supabase project",
+    "text": "Setting up a Supabase project\nFirst, navigate to the Supabase website and create an account.\nOnce you are logged in, the page will prompt you to create a project (it’s a green button). Click on it and select your organization. A dialog box will pop up like this:\n\n\n\n\nFill in the project name and give it a strong password. Choose a region that is close to you (or close to your survey audience). All settings can be modified at any time.\n\n\n\n\n\n\nNote\n\n\n\nEach Supabase project is a database that can store multiple tables. Since each surveydown survey requires only one table, you can use the same Supabase project for multiple surveydown surveys.",
     "crumbs": [
       "Documentation",
-      "Survey Design Concepts",
-      "Server Options"
+      "Data Management",
+      "Storing Data"
     ]
   },
   {
-    "objectID": "docs/server-options.html#auto-scroll",
-    "href": "docs/server-options.html#auto-scroll",
-    "title": "Server Options",
-    "section": "Auto scroll",
-    "text": "Auto scroll\nThe auto scroll feature allows the page to automatically scroll according to the user’s working progress and is enabled by default.\n\nsd_server(\n  auto_scroll = TRUE # Change to FALSE to switch it off.\n)",
+    "objectID": "docs/storing-data.html#getting-your-supabase-credentials",
+    "href": "docs/storing-data.html#getting-your-supabase-credentials",
+    "title": "Storing Data",
+    "section": "Getting your Supabase credentials",
+    "text": "Getting your Supabase credentials\nOnce your Supabase project is ready, click on the “connect” button at the top, it should look like this:\n\n\n\n\nOn the connection page, scroll down to the “Transaction pooler” section. There you can click on the “View parameters” drop down to see your connection parameters. It should look somethinglike this:\n\n\n\n\nYou will need these parameters and your password to connect to your database in surveydown.",
     "crumbs": [
       "Documentation",
-      "Survey Design Concepts",
-      "Server Options"
+      "Data Management",
+      "Storing Data"
     ]
   },
   {
-    "objectID": "docs/server-options.html#rating-question",
-    "href": "docs/server-options.html#rating-question",
-    "title": "Server Options",
-    "section": "Rating question",
-    "text": "Rating question\nYou may want to add a rating question by the end of the survey to collect user reflections. Simply set rate_survey to TRUE (Default to FALSE):\n\nsd_server(\n  rate_survey = TRUE\n)\n\nSurvey rating is triggered by the “Exit Survey” button by the end of the survey. If you want to implement the survey rating, make sure you define the Exit Button by the end of the survey using the sd_close() function, and then define rate_survey = TRUE in sd_server().\nBelow are the TRUE and FALSE cases for rate_survey:\n\nTRUEFALSE\n\n\nIf rate_survey is TRUE, a survey rating question will pop up:\n\n\n\n\n\nIf rate_survey is FALSE, a confirm exit dialog box will pop up:",
+    "objectID": "docs/storing-data.html#storing-your-database-credentials",
+    "href": "docs/storing-data.html#storing-your-database-credentials",
+    "title": "Storing Data",
+    "section": "Storing your database credentials",
+    "text": "Storing your database credentials\nBefore connecting to your database, you need to store your credentials. You can do this by running the following code in your R console:\n\nsurveydown::sd_db_config()\n\nThis function will prompt you to enter your database credentials and password, one by one. The current credential values will be shown in square brackets. When done it should look like this:\n\n\n\n\nOnce you have entered your credentials, the function will store them in a .env file in your project folder. We strongly recommend that you do not manually edit this file or share it with others as it stores all of your database credentials, including your password.",
     "crumbs": [
       "Documentation",
-      "Survey Design Concepts",
-      "Server Options"
+      "Data Management",
+      "Storing Data"
     ]
   },
   {
-    "objectID": "docs/server-options.html#system-translations",
-    "href": "docs/server-options.html#system-translations",
-    "title": "Server Options",
-    "section": "System translations",
-    "text": "System translations\nTo systematically display the preset system messages and button text elements in a different language, change the system language using a different country code (default is \"en\" for English).\nFor example, to use Spanish use:\n\nsd_server(\n  language = \"es\"\n)\n\nFive languages are supported by default, but you can customize the messages to any language (or any message) you want. See the System Translations page for more details.",
+    "objectID": "docs/storing-data.html#modifying-credentials",
+    "href": "docs/storing-data.html#modifying-credentials",
+    "title": "Storing Data",
+    "section": "Modifying credentials",
+    "text": "Modifying credentials\nIf you want to modify your credentials stored in the .env file, you can just run sd_db_config() again and press ‘Enter’ on any parameter you want to leave unchanged while modifying the ones you want to change.\nYou can also pass any of the parameters as arguments to sd_db_config() to change them. For example, if you wanted to only change the table name, you could do this:\n\nsd_db_config(table = 'mytable')\n\nOnce run in the R console, a message will print out confirming that the stored table parameter will now be mytable.\nYou can pass any of the following as arguments to update them: host, dbname, port, user, table, and password.\nFinally, you can also view / modify your database credentials in the surveydown dashboard app. To do this, launch the dashboard by running this command in the R console:\n\nsurveydown::sd_dashboard()\n\nThis will open a new browser window where you can navigate to the dashboard for your project. Click on the “Connection Settings” tab to see and edit your database credentials. Once you have made changes, click on the “Test Connection” button to save your updated credentials.\nSee the Local Dashboard page for more information.",
     "crumbs": [
       "Documentation",
-      "Survey Design Concepts",
-      "Server Options"
+      "Data Management",
+      "Storing Data"
     ]
   },
   {
-    "objectID": "docs/server-options.html#cookies",
-    "href": "docs/server-options.html#cookies",
-    "title": "Server Options",
+    "objectID": "docs/storing-data.html#connecting-to-your-database-in-surveydown",
+    "href": "docs/storing-data.html#connecting-to-your-database-in-surveydown",
+    "title": "Storing Data",
+    "section": "Connecting to your database in surveydown",
+    "text": "Connecting to your database in surveydown\nNow that you have set your credentials stored, you can connect to your database in surveydown by running the following code in your app.R file:\n\ndb &lt;- sd_db_connect()\n\nYou do not need to specify any arguments to this function as it will automatically use the credentials stored in your .env file. If the connection is successful, you should see a message in the console that says “✔ Successfully connected to the database.”\nYou can also ignore the database connection by setting ignore = TRUE in sd_db_connect():\n\ndb &lt;- sd_db_connect(ignore = TRUE)\n\nWith this setting, no database connection will be attempted, and the db object will store the value NULL. Instead, data will be stored in a local preview_data.csv file for previewing purposes only. This is useful when you are still editing your survey and do not want to store any data in your database yet.",
+    "crumbs": [
+      "Documentation",
+      "Data Management",
+      "Storing Data"
+    ]
+  },
+  {
+    "objectID": "docs/storing-data.html#table-creation-and-data-operations",
+    "href": "docs/storing-data.html#table-creation-and-data-operations",
+    "title": "Storing Data",
+    "section": "Table creation and data operations",
+    "text": "Table creation and data operations\nYou never need to manually create a table in the database - it gets automatically created after you first run the survey. After you first set up the config and a .env file is properly created, run your survey locally and click past the first page, then you should see the table get created in the database. You can view it directly on supabase (if you’re using supabase), or you can see the table using the dashboard by running sd_dashboard().\nThe data gets updated in the database on every page turn (each time you push a next button) and after you close the browser, which is usually at the end of the survey, but just in case you close it early it will write to the database then too. This is why you usually have to click past the first page after initial configuration to see the table in the database.",
+    "crumbs": [
+      "Documentation",
+      "Data Management",
+      "Storing Data"
+    ]
+  },
+  {
+    "objectID": "docs/storing-data.html#cookies",
+    "href": "docs/storing-data.html#cookies",
+    "title": "Storing Data",
     "section": "Cookies",
-    "text": "Cookies\nCookies are used to store user sessions, including their session ID, survey data storage (backend), and their survey progress (frontend).\nBy default, the cookies are enabled. You can disable the cookies by setting cookies = FALSE in the sd_server() function, like this:\n\nsd_server(\n  cookies = FALSE\n)",
+    "text": "Cookies\nBy default, the data on each page will be locally stored in the browser cookies, though you can turn this feature off if you wish (see here).\nThis is done so that the session state can be restored should a respondent lose an internet connection or close the browser on accident, etc. The responses on each page will not be written to the database until the respondent clicks the next button or if they close the browser.",
     "crumbs": [
       "Documentation",
-      "Survey Design Concepts",
-      "Server Options"
+      "Data Management",
+      "Storing Data"
     ]
   },
   {
@@ -851,7 +875,7 @@
     "href": "docs/basic-components.html#survey.qmd-1",
     "title": "Basic Components",
     "section": "survey.qmd",
-    "text": "survey.qmd\nThe survey.qmd file is where you will define all of the main survey content, such as pages, questions, and navigation buttons.\nYAML header\nThe YAML header is at the top of the survey.qmd file. It contains some basic settings, like this:\n---\nformat: html\necho: false\nwarning: false\n---\nThe format: html setting is optional since by default a Quarto doc is formatted as HTML. We put it here to explicitly state that this document should be rendered as an HTML document. The other settings, echo: false and warning: false, are recommended for a clean user experience, so that the survey does not display any code scripts or warnings to the participants.\nAppearance settings\nBecause the survey.qmd is a Quarto document, you can use any of the Quarto formatting options to change the appearance of your survey.\nFor example, you can change the overall survey theme using the theme key:\n---\ntheme: united # Any bootswatch theme \n---\nThere are 25 bootswatch themes to choose from. You can also provide a custom.scss file to further modify the theme, or even combine the two, e.g.:\n---\ntheme: [united, custom.scss]\n---\nProgress bar\nYou can modify the survey progress bar with the barcolor and barposition keys, e.g.:\n---\nbarcolor: \"#768692\"\nbarposition: top \n---\nThe barcolor key defines the color of the progress bar. It defaults to the primary theme color, but you can change it to any hex code you wish here to overwrite the theme color.\nThe barposition key defines the position of the progress bar. It defaults to top, but can also be changed to bottom or none (to remove the bar). The progress bar updates on every question the user clicks on, not pages.\nThe rest of the content in the survey.qmd file is the content you want in your survey, including pages, navigation buttons, and questions.\nDefining pages\nIn surveydown, pages are defined using fences (:::), like this:\n\n::: {.sd_page id=page1}\n\nPage 1 content here\n\n:::\n\n::: {.sd_page id=page2}\n\nPage 2 content here\n\n:::\n\nWe use three colon symbols :::, called a “fence”, to mark the start and end of pages. In the starting fence, you need to define the class as .sd_page and provide a page id (e.g. welcome and page2 in the example above). If you are using RStudio, you can also make use of the page gadget to create pages under the “Addins” dropdown menu. Here is what the Survey Page Gadget looks like in RStudio:\n\n\n\n\nAdding navigation buttons\nTo navigate to the next page, you need to insert a sd_next() function call inside a code chunk, like this:\n\n```{r}\nsd_next()\n```\n\nThe above code chunk will create a “Next” button that goes on to the immediate next page. The button will look like this:\n\n\n\nNext\n\n\n\nYou can also provide an alternative label on the next page button using the label argument, and you can send the user to other pages by just changing the value assigned to the next_page argument. For example, to send the user to a page with the id page3, you can use:\n\n```{r}\nsd_next(label = \"Go to page 3\", next_page = 'page3')\n```\n\n\n\n\nGo to page 3\n\n\n\nYou can conditionally override these controls using the sd_skip_forward() function in your server function. See the Conditional Survey Flow page or Page Navigation page for more details.\nAdding questions\nEvery survey question is created using the sd_question() function inside a code chunk. The question type is defined by the type argument. For example, to add a multiple choice question, you could insert the following code chunk:\n\n```{r}\nsd_question(\n  type  = 'mc',\n  id    = 'penguins',\n  label = \"Which is your favorite type of penguin?\",\n  option = c(\n    'Adélie'    = 'adelie',\n    'Chinstrap' = 'chinstrap',\n    'Gentoo'    = 'gentoo'\n  )\n)\n```\n\nThe above code chunk will create a multiple choice question that looks like this:\n\n\n\n\nWhich is your favorite type of penguin?\n\n\n\n\nAdélie\n\n\n\n\nChinstrap\n\n\n\n\nGentoo\n\n\n\n\n*\n\n\n\nThe sd_question() function can be used to create a variety of question types, like text input, select drop down choices, and more by changing the type argument (see the Questions Types page).\nThe function has many other arguments for customizing the look and feel of the question, such as the height and width (see the Question Formatting page).\nBy default all questions are optional, but you can make questions required in the server options (see the Server Options page for details).\nSimilar to page creation, you can also make use of the question gadget to create questions under the “Addins” dropdown menu following similar operations. Below is a showcase of the Survey Question Gadget in RStudio:\n\n\n\n\nEnding the survey\nThe simplest way to end a survey is to create a page with no sd_next() button on it. This will effectively serve as a ending page, because the respondent will not be able to navigate anywhere else once reaching a page with no next button.\nFor example, you may want to have a screen-out page that respondents are sent to if they answer a certain way on a question (e.g., see Conditional Survey Flow). You can do this by creating a page with no sd_next() button on it, like this:\n\n::: {.sd_page id=screenout}\n\nSorry, you are not eligible for this survey.\n\nYou can close this window now.\n\n:::\n\nWhen a respondent reaches this page, they will not be able to navigate anywhere else, so the survey is over.\nYou can also add a button to end the survey programmatically using the sd_close() function inside a code chunk, like this:\n\n```{r}\nsd_close()\n```\n\nThis will create a button with the label “Exit Survey” that the respondent can click on to close the survey window. If you want to customize the label, use the label argument, like this:\n\n```{r}\nsd_close(label = 'Close Window')\n```\n\nThis button can be added anywhere in the survey, not necessarily on the last page - all it does is close the browser window.\nFinally, you can also add a button to end the survey and redirect the respondent to another page. You can do this using the sd_redirect() function, like this:\n\n\nCode chunk\nOutput\n\n\n\n\nsd_redirect(\n  id     = \"redirect\",\n  url    = \"https://www.google.com\",\n  label  = \"Redirect to Google\",\n  button = TRUE,\n  newtab = TRUE\n)\n\n\n\n\n\n\n\nRedirect to Google\n\n\n\n\n\n\n\nThis will create a button with the label “Redirect to Google” that the respondent can click on to be redirected to Google. You can also customize the url to include url parameters. See the External Redirect page for more details.",
+    "text": "survey.qmd\nThe survey.qmd file is where you will define all of the main survey content, such as pages, questions, and navigation buttons.\nYAML header\nThe YAML header is at the top of the survey.qmd file. It contains some basic settings, like this:\n---\nformat: html\necho: false\nwarning: false\n---\nThe format: html setting is optional since by default a Quarto doc is formatted as HTML. We put it here to explicitly state that this document should be rendered as an HTML document. The other settings, echo: false and warning: false, are recommended for a clean user experience, so that the survey does not display any code scripts or warnings to the participants.\nThe YAML header can also contain other survey settings, such as theme settings and survey behavior settings. See the Survey Settings page for details.\nThe rest of the content in the survey.qmd file is the content you want in your survey, including pages, navigation buttons, and questions.\nDefining pages\nIn surveydown, pages are defined using fences (:::), like this:\n\n::: {.sd_page id=page1}\n\nPage 1 content here\n\n:::\n\n::: {.sd_page id=page2}\n\nPage 2 content here\n\n:::\n\nWe use three colon symbols :::, called a “fence”, to mark the start and end of pages. In the starting fence, you need to define the class as .sd_page and provide a page id (e.g. welcome and page2 in the example above). If you are using RStudio, you can also make use of the page gadget to create pages under the “Addins” dropdown menu. Here is what the Survey Page Gadget looks like in RStudio:\n\n\n\n\nAdding navigation buttons\nTo navigate to the next page, you need to insert a sd_next() function call inside a code chunk, like this:\n\n```{r}\nsd_next()\n```\n\nThe above code chunk will create a “Next” button that goes on to the immediate next page. The button will look like this:\n\n\n\nNext\n\n\n\nYou can also provide an alternative label on the next page button using the label argument, and you can send the user to other pages by just changing the value assigned to the next_page argument. For example, to send the user to a page with the id page3, you can use:\n\n```{r}\nsd_next(label = \"Go to page 3\", next_page = 'page3')\n```\n\n\n\n\nGo to page 3\n\n\n\nYou can conditionally override these controls using the sd_skip_forward() function in your server function. See the Conditional Survey Flow page or Page Navigation page for more details.\nAdding questions\nEvery survey question is created using the sd_question() function inside a code chunk. The question type is defined by the type argument. For example, to add a multiple choice question, you could insert the following code chunk:\n\n```{r}\nsd_question(\n  type  = 'mc',\n  id    = 'penguins',\n  label = \"Which is your favorite type of penguin?\",\n  option = c(\n    'Adélie'    = 'adelie',\n    'Chinstrap' = 'chinstrap',\n    'Gentoo'    = 'gentoo'\n  )\n)\n```\n\nThe above code chunk will create a multiple choice question that looks like this:\n\n\n\n\nWhich is your favorite type of penguin?\n\n\n\n\nAdélie\n\n\n\n\nChinstrap\n\n\n\n\nGentoo\n\n\n\n\n*\n\n\n\nThe sd_question() function can be used to create a variety of question types, like text input, select drop down choices, and more by changing the type argument (see the Questions Types page).\nThe function has many other arguments for customizing the look and feel of the question, such as the height and width (see the Question Formatting page).\nBy default all questions are optional, but you can make questions required in the survey settings (see the Survey Settings page for details).\nSimilar to page creation, you can also make use of the question gadget to create questions under the “Addins” dropdown menu following similar operations. Below is a showcase of the Survey Question Gadget in RStudio:\n\n\n\n\nEnding the survey\nThe simplest way to end a survey is to create a page with no sd_next() button on it. This will effectively serve as a ending page, because the respondent will not be able to navigate anywhere else once reaching a page with no next button.\nFor example, you may want to have a screen-out page that respondents are sent to if they answer a certain way on a question (e.g., see Conditional Survey Flow). You can do this by creating a page with no sd_next() button on it, like this:\n\n::: {.sd_page id=screenout}\n\nSorry, you are not eligible for this survey.\n\nYou can close this window now.\n\n:::\n\nWhen a respondent reaches this page, they will not be able to navigate anywhere else, so the survey is over.\nYou can also add a button to end the survey programmatically using the sd_close() function inside a code chunk, like this:\n\n```{r}\nsd_close()\n```\n\nThis will create a button with the label “Exit Survey” that the respondent can click on to close the survey window. If you want to customize the label, use the label argument, like this:\n\n```{r}\nsd_close(label = 'Close Window')\n```\n\nThis button can be added anywhere in the survey, not necessarily on the last page - all it does is close the browser window.\nFinally, you can also add a button to end the survey and redirect the respondent to another page. You can do this using the sd_redirect() function, like this:\n\n\nCode chunk\nOutput\n\n\n\n\nsd_redirect(\n  id     = \"redirect\",\n  url    = \"https://www.google.com\",\n  label  = \"Redirect to Google\",\n  button = TRUE,\n  newtab = TRUE\n)\n\n\n\n\n\n\n\nRedirect to Google\n\n\n\n\n\n\n\nThis will create a button with the label “Redirect to Google” that the respondent can click on to be redirected to Google. You can also customize the url to include url parameters. See the External Redirect page for more details.",
     "crumbs": [
       "Documentation",
       "Survey Basics",
@@ -863,7 +887,7 @@
     "href": "docs/basic-components.html#app.r-1",
     "title": "Basic Components",
     "section": "app.R",
-    "text": "app.R\nThe main components of the app.R file are:\n\n\nGlobal settings: where you load the surveydown package and define the database connection.\n\nServer: where you define the logic of the survey (conditional question display / conditional survey flow, etc.)\n\nGlobal settings\nThe global settings are at the top of the app.R file. At a minimum, you need to load the surveydown package and define the database connection. You can also load other packages / global objects here if you need to. It typically looks like this:\n\nlibrary(surveydown)\n\n# sd_db_config()\ndb &lt;- sd_db_connect()\n\nThe db object is used to store survey data - see the Storing Data page for details on how to set up the database connection.\nServer\nThe server() function is a standard Shiny server function that takes input, output, and session as arguments. It is where you can set custom control logic and other configuration options, such as conditional question display logic with the sd_show_if() function, or conditional survey flow logic with the sd_skip_forward() function.\nIf you create a new survey using a template, the server() function looks like this:\n\nserver &lt;- function(input, output, session) {\n\n  # Define conditional skip logic (skip forward to page if a condition is TRUE)\n  sd_skip_forward()\n\n  # Define conditional display logic (show a question if a condition is TRUE)\n  sd_show_if()\n\n  # Main server to control the app\n  sd_server(db = db)\n\n}\n\nThe sd_server() function at the bottom makes everything run. It also includes some optional arguments that you can use to customize the survey.\nSee the Server Options page for details on the different options you can use to customize the server.\n\n\n\n\n\n\nNote\n\n\n\nThe db = db argument in sd_server() is required if you are using a database connection, which should be defined using the sd_database() function as mentioned above in the Global Settings section. See the Store Data page for more details.\n\n\nLaunch app\nAt the very bottom of the app.R file, you will see the following code:\n\nshiny::shinyApp(ui = sd_ui(), server = server)\n\nThis code defines the Shiny app and should always be at the bottom of the app.R file.\n\n\n\n\n\n\nNote\n\n\n\nWhat’s with the sd_ui() thing?\nIn a typical Shiny app, you have to define the UI and server functions separately. In a surveydown survey, the UI is a fixed structure that is defined by the sd_ui() function, so simply provide it to the ui argument in shiny::shinyApp() to run the survey.\n\n\nLocal run\nTo preview your survey, you can run the Shiny app locally by clicking the “Run App” button in RStudio or in your R console run the code shiny::runApp('app.R'). Typically, RStudio will launch the app in a new window, but you can also choose to have the app launch in a dedicated viewer pane, or in your external web browser. Make your selection by clicking the icon next to Run App:",
+    "text": "app.R\nThe main components of the app.R file are:\n\n\nGlobal settings: where you load the surveydown package and define the database connection.\n\nServer: where you define the logic of the survey (conditional question display / conditional survey flow, etc.)\n\nGlobal settings\nThe global settings are at the top of the app.R file. At a minimum, you need to load the surveydown package and define the database connection. You can also load other packages / global objects here if you need to. It typically looks like this:\n\nlibrary(surveydown)\n\n# sd_db_config()\ndb &lt;- sd_db_connect()\n\nThe db object is used to store survey data - see the Storing Data page for details on how to set up the database connection.\nServer\nThe server() function is a standard Shiny server function that takes input, output, and session as arguments. It is where you can set custom control logic and other configuration options, such as conditional question display logic with the sd_show_if() function, or conditional survey flow logic with the sd_skip_forward() function.\nIf you create a new survey using a template, the server() function looks like this:\n\nserver &lt;- function(input, output, session) {\n\n  # Define conditional skip logic (skip forward to page if a condition is TRUE)\n  sd_skip_forward()\n\n  # Define conditional display logic (show a question if a condition is TRUE)\n  sd_show_if()\n\n  # Main server to control the app\n  sd_server(db = db)\n\n}\n\nThe sd_server() function at the bottom makes everything run. It also includes some optional arguments that you can use to customize the survey.\nSee the Survey Settings page for details on the different options you can use to customize the server.\n\n\n\n\n\n\nNote\n\n\n\nThe db = db argument in sd_server() is required if you are using a database connection, which should be defined using the sd_database() function as mentioned above in the Global Settings section. See the Store Data page for more details.\n\n\nLaunch app\nAt the very bottom of the app.R file, you will see the following code:\n\nshiny::shinyApp(ui = sd_ui(), server = server)\n\nThis code defines the Shiny app and should always be at the bottom of the app.R file.\n\n\n\n\n\n\nNote\n\n\n\nWhat’s with the sd_ui() thing?\nIn a typical Shiny app, you have to define the UI and server functions separately. In a surveydown survey, the UI is a fixed structure that is defined by the sd_ui() function, so simply provide it to the ui argument in shiny::shinyApp() to run the survey.\n\n\nLocal run\nTo preview your survey, you can run the Shiny app locally by clicking the “Run App” button in RStudio or in your R console run the code shiny::runApp('app.R'). Typically, RStudio will launch the app in a new window, but you can also choose to have the app launch in a dedicated viewer pane, or in your external web browser. Make your selection by clicking the icon next to Run App:",
     "crumbs": [
       "Documentation",
       "Survey Basics",
@@ -1457,7 +1481,7 @@
     "href": "docs/getting-started.html#overview",
     "title": "Getting Started",
     "section": "Overview",
-    "text": "Overview\nEvery surveydown survey is composed of a survey and an app, defined in two separate files:\n\n\nsurvey.qmd: A Quarto document that contains the survey content (pages, questions, etc), which renders to an HTML file.\n\napp.R: An R script defining a Shiny app that contains the global settings (libraries, database configuration, etc.) and server configuration options (e.g., conditional page skipping / question display, etc.).\n\nThese files must be named survey.qmd and app.R.\nThe surveydown R package provides a set of functions for defining the survey content and configuration options. Each function starts with sd_ to make them easy to identify.\nThe platform is based on some basic principles:\n\nAdd content to your survey.qmd file using markdown text (or in RStudio use the visual editor).\nDefine survey questions in R code chunks with the sd_question() function.\nDefine pages using fences (:::), with navigation buttons handled using the sd_next() function.\nAdd rich functionality to your survey using a variety of Server Options in the server() function in the app.R file.\nApply Conditional Logic to question display with sd_show_if() or page navigation with sd_skip_forward().\nStore your respondent data in a database (see Storing Data).\n\nThis approach ensures a flexible survey platform that is fully reproducible and easy to customize.\nThe remaining steps on this page will guide you through the process of creating a surveydown survey.",
+    "text": "Overview\nEvery surveydown survey is composed of a survey and an app, defined in two separate files:\n\n\nsurvey.qmd: A Quarto document that contains the survey content (pages, questions, etc), which renders to an HTML file.\n\napp.R: An R script defining a Shiny app that contains the global settings (libraries, database configuration, etc.) and server configuration options (e.g., conditional page skipping / question display, etc.).\n\nThese files must be named survey.qmd and app.R.\nThe surveydown R package provides a set of functions for defining the survey content and configuration options. Each function starts with sd_ to make them easy to identify.\nThe platform is based on some basic principles:\n\nAdd content to your survey.qmd file using markdown text (or in RStudio use the visual editor).\nDefine survey questions in R code chunks with the sd_question() function.\nDefine pages using fences (:::), with navigation buttons handled using the sd_next() function.\nAdd rich functionality to your survey using a variety of Survey Settings in the server() function in the app.R file.\nApply Conditional Logic to question display with sd_show_if() or page navigation with sd_skip_forward().\nStore your respondent data in a database (see Storing Data).\n\nThis approach ensures a flexible survey platform that is fully reproducible and easy to customize.\nThe remaining steps on this page will guide you through the process of creating a surveydown survey.",
     "crumbs": [
       "Documentation",
       "Survey Basics",
@@ -1505,7 +1529,7 @@
     "href": "docs/getting-started.html#add-control-options",
     "title": "Getting Started",
     "section": "4. Add control options",
-    "text": "4. Add control options\nIn the server() function in the app.R file, add rich functionality to your survey using a variety of Server Options or Conditional Logic.",
+    "text": "4. Add control options\nIn the server() function in the app.R file, add rich functionality to your survey using a variety of Survey Settings or Conditional Logic.",
     "crumbs": [
       "Documentation",
       "Survey Basics",
@@ -1729,111 +1753,51 @@
     ]
   },
   {
-    "objectID": "docs/storing-data.html",
-    "href": "docs/storing-data.html",
-    "title": "Storing Data",
+    "objectID": "docs/survey-settings.html",
+    "href": "docs/survey-settings.html",
+    "title": "Survey Settings",
     "section": "",
-    "text": "Survey response data is stored in a PostgreSQL database. We recommend using Supabase as a free and open-source option, though you can use any service you want. In this guide, we’ll walk you through the steps for setting up a Supabase project and connecting your surveydown survey to it.",
+    "text": "surveydown provides 2 ways of configuring survey settings:\nWe chose to use YAML header keys in our templates, and we intentionally made them verbose to demonstrate all available options. If you prefer using sd_server(), you can call ?sd_server() to see all available options.",
     "crumbs": [
       "Documentation",
-      "Data Management",
-      "Storing Data"
+      "Survey Design Concepts",
+      "Survey Settings"
     ]
   },
   {
-    "objectID": "docs/storing-data.html#local-data-preview",
-    "href": "docs/storing-data.html#local-data-preview",
-    "title": "Storing Data",
-    "section": "Local data preview",
-    "text": "Local data preview\nWhen you run a survey without a database connection, response data will be locally stored in a preview_data.csv file. As the name suggests, this is for preview purposes only. It is there to help you understand what the actual survey response data will look like once you get your database connection properly configured.\nThis file is not where your actual survey response data will be saved. If you deploy your survey live without a database connection, no responses will be saved.",
+    "objectID": "docs/survey-settings.html#option-1-yaml-in-survey.qmd-recommended",
+    "href": "docs/survey-settings.html#option-1-yaml-in-survey.qmd-recommended",
+    "title": "Survey Settings",
+    "section": "Option 1: YAML in survey.qmd (Recommended)",
+    "text": "Option 1: YAML in survey.qmd (Recommended)\nThis is a comprehensive list of all survey configuration settings that can be defined in the YAML header of the survey.qmd file.\n# General Settings - Must Have\nformat: html\necho: false\nwarning: false\n\n# Theme Settings\ntheme: default\nbarcolor: \"#768692\"\nbarposition: top\nfooter: Footer Text\nfooter-left: Footer Left Test\nfooter-center: Footer Center Test\nfooter-right: Footer Right Test\n\n# Survey Settings - Compatible with sd_server() arguments\nuse-cookies: true\nauto-scroll: false\nrate-survey: false\nsystem-language: en\nhighlight-unanswered: true\nhighlight-color: gray\ncapture-metadata: true\nstart-page: page_1\nall-questions-required: false\nrequired-questions:\n  - question_1\n  - question_2\nThe General Settings are standard Quarto options. Our format is set to html, indicating a web-based survey. The echo and warning options are set to false to suppress code and warning messages in the survey output.\nThe Theme Settings control the visual appearance of the survey. You can customize the theme, position of the progress bar, and footer text. Notice that footer is equivalent to footer-center.\nThe Survey Settings section includes various options to customize the survey behavior, such as enabling cookies, auto-scrolling, survey rating, system language, highlighting unanswered questions, capturing metadata, and specifying required questions.\n\n\n\n\n\n\nNote\n\n\n\nBoth Theme Settings and Survey Settings YAML keys can be written with underscores (_) or hyphens (-), so that use-cookies and use_cookies are interchangeable.\nIn YAML keys, you have 2 ways to represent boolean values: true/false or yes/no. Both are acceptable. For true/false, you can also use capitalized versions: True/False.",
     "crumbs": [
       "Documentation",
-      "Data Management",
-      "Storing Data"
+      "Survey Design Concepts",
+      "Survey Settings"
     ]
   },
   {
-    "objectID": "docs/storing-data.html#setting-up-a-supabase-project",
-    "href": "docs/storing-data.html#setting-up-a-supabase-project",
-    "title": "Storing Data",
-    "section": "Setting up a Supabase project",
-    "text": "Setting up a Supabase project\nFirst, navigate to the Supabase website and create an account.\nOnce you are logged in, the page will prompt you to create a project (it’s a green button). Click on it and select your organization. A dialog box will pop up like this:\n\n\n\n\nFill in the project name and give it a strong password. Choose a region that is close to you (or close to your survey audience). All settings can be modified at any time.\n\n\n\n\n\n\nNote\n\n\n\nEach Supabase project is a database that can store multiple tables. Since each surveydown survey requires only one table, you can use the same Supabase project for multiple surveydown surveys.",
+    "objectID": "docs/survey-settings.html#option-2-sd_server-in-app.r",
+    "href": "docs/survey-settings.html#option-2-sd_server-in-app.r",
+    "title": "Survey Settings",
+    "section": "Option 2: sd_server() in app.R",
+    "text": "Option 2: sd_server() in app.R\nAlternatively, you can configure survey settings using the sd_server() function in the app.R file, under the server function definition. The server() function is a standard Shiny server function that takes input, output, and session as arguments.\nDefine your sd_server() like this:\n\nserver &lt;- function(input, output, session) {\n  sd_server(\n    db = db, # Left out from YAML\n    use_cookies = TRUE,\n    auto_scroll = FALSE,\n    rate_survey = FALSE,\n    language = \"en\",\n    highlight_unanswered = TRUE,\n    highlight_color = \"gray\",\n    capture_metadata = TRUE,\n    start_page = \"page_1\",\n    all_questions_required = FALSE,\n    required_questions = c(\"question_1\", \"question_2\")\n  )\n}\n\nAbove are the equivalent settings to those defined in the YAML header example. Note that the db argument is not available in the YAML header and must be specified in sd_server() if you are using a database connection.",
     "crumbs": [
       "Documentation",
-      "Data Management",
-      "Storing Data"
+      "Survey Design Concepts",
+      "Survey Settings"
     ]
   },
   {
-    "objectID": "docs/storing-data.html#getting-your-supabase-credentials",
-    "href": "docs/storing-data.html#getting-your-supabase-credentials",
-    "title": "Storing Data",
-    "section": "Getting your Supabase credentials",
-    "text": "Getting your Supabase credentials\nOnce your Supabase project is ready, click on the “connect” button at the top, it should look like this:\n\n\n\n\nOn the connection page, scroll down to the “Transaction pooler” section. There you can click on the “View parameters” drop down to see your connection parameters. It should look somethinglike this:\n\n\n\n\nYou will need these parameters and your password to connect to your database in surveydown.",
+    "objectID": "docs/survey-settings.html#setting-explanations",
+    "href": "docs/survey-settings.html#setting-explanations",
+    "title": "Survey Settings",
+    "section": "Setting explanations",
+    "text": "Setting explanations\nAppearance settings\nBecause the survey.qmd is a Quarto document, you can use any of the Quarto formatting options to change the appearance of your survey.\nFor example, you can change the overall survey theme using the theme key:\n---\ntheme: united # Any bootswatch theme \n---\nThere are 25 bootswatch themes to choose from. You can also provide a custom.scss file to further modify the theme, or even combine the two, e.g.:\n---\ntheme: [united, custom.scss]\n---\nProgress bar\nYou can modify the survey progress bar with the barcolor and barposition keys, e.g.:\n---\nbarcolor: \"#768692\"\nbarposition: top \n---\nThe barcolor key defines the color of the progress bar. It defaults to the primary theme color, but you can change it to any hex code you wish here to overwrite the theme color.\nThe barposition key defines the position of the progress bar. It defaults to top, but can also be changed to bottom or none (to remove the bar). The progress bar updates on every question the user clicks on, not pages.\nFooter\nYou can customize the footer text using the footer, footer-left, footer-center, and footer-right keys.\nIf you only want to set a centered footer text, use the footer key, like this:\n---\nfooter: This is your centered footer text.\n---\nOr, you can customize the left, center, and right footer texts separately using the footer-left, footer-center, and footer-right keys, like this:\n---\nfooter-left: Footer Left Test\nfooter-center: Footer Center Test\nfooter-right: Footer Right Test\n---\nCookies\nCookies are used to store user sessions, including their session ID, survey data storage (backend), and their survey progress (frontend).\nDefine your cookies like this in YAML:\n---\nuse-cookies: true\n---\nBy default, the cookies are enabled. You can disable the cookies by changing the YAML key to false.\nAuto scroll\nThe auto scroll feature allows the page to automatically scroll according to the user’s working progress.\nDefine auto scroll like this in YAML:\n---\nauto-scroll: true\n---\nBy default, auto scroll is disabled.\nSurvey rating\nYou may want to add a survey rating question by the end of the survey to collect user reflections. Simply set rate-survey to true (Default to false) in YAML:\n---\nrate-survey: true\n---\nBy default, survey rating is disabled.\nSurvey rating is triggered by the “Exit Survey” button by the end of the survey. If you want to implement the survey rating, make sure you define the Exit Button by the end of the survey using the sd_close() function.\nBelow are the true and false cases for rate-survey:\n\n\nTRUE\nFALSE\n\n\n\nIf rate-survey is true, a survey rating question will pop up:\n\n\n\n\n\nIf rate-survey is false, a confirm exit dialog box will pop up:\n\n\n\n\n\n\nSystem language\nTo systematically display the preset system messages and button text elements in a different language, change the system language using a different country code.\nBy default, the system language is set to English (en):\n---\nsystem-language: en\n---\nSix languages are internally supported by surveydown:\n\nEnglish (en)\nGerman (de)\nSpanish (es)\nFrench (fr)\nItalian (it)\nChinese (zh-CN)\n\nBelow is an example of the system language set to Spanish (es):\n\n\n\n\nYou can also customize the system language. See the System Translations page for more details.\nHighlight unanswered questions\nYou can highlight unanswered questions to help respondents identify which questions they have not answered yet:\n---\nhighlight-unanswered: true\nhighlight-color: gray\n---\nBy default, highlighting unanswered questions is enabled. You can disable this feature by setting highlight-unanswered to false.\nBy default, the highlight color is set to gray (equivalent to grey). We also provide 4 other colors: blue, orange, green, and purple.\nBelow is an example of unanswered questions being highlighted in gray:\n\n\n\nChanged to blue:\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nWe auto-trigger red highlighting for required questions that are not answered, if the respondent attempts to click on the “Next” button without answering them, regardless of the highlight-unanswered setting.\n\n\nCapture metadata\nsurveydown supports metadata capturing. If enabled, the data sheet will show columns of browser and ip_address, in which browser contains information of the respondent’s browser name, version, and operating system, and ip_address shows the respondent’s IP address. To enable metadata capturing, set capture-metadata to true in YAML:\n---\ncapture-metadata: true\n---\nBy default, metadata capturing is enabled.\nStart page\nWhen editing your survey, it can be helpful to start the survey at a specific page. You can define the start page in YAML like this:\n---\nstart-page: page_1\n---\nBy default, the survey starts at the first page.\nRequired questions\nBy default, no questions are required. We provide 2 YAML keys to define required questions:\nFirstly, set all-questions-required to true to make all questions required:\n---\nall-questions-required: true\n---\nBy default, all-questions-required is set to false.\nSecondly, use required-questions to provide a list of question IDs to make specific questions required:\n---\nrequired-questions:\n  - question_1\n  - question_2\n---\nThe questions set to required will make the respondent unable to proceed until they have answered all of them on the current page. It will also place a red asterisk (*) next to the question label to indicate that the question is required.",
     "crumbs": [
       "Documentation",
-      "Data Management",
-      "Storing Data"
-    ]
-  },
-  {
-    "objectID": "docs/storing-data.html#storing-your-database-credentials",
-    "href": "docs/storing-data.html#storing-your-database-credentials",
-    "title": "Storing Data",
-    "section": "Storing your database credentials",
-    "text": "Storing your database credentials\nBefore connecting to your database, you need to store your credentials. You can do this by running the following code in your R console:\n\nsurveydown::sd_db_config()\n\nThis function will prompt you to enter your database credentials and password, one by one. The current credential values will be shown in square brackets. When done it should look like this:\n\n\n\n\nOnce you have entered your credentials, the function will store them in a .env file in your project folder. We strongly recommend that you do not manually edit this file or share it with others as it stores all of your database credentials, including your password.",
-    "crumbs": [
-      "Documentation",
-      "Data Management",
-      "Storing Data"
-    ]
-  },
-  {
-    "objectID": "docs/storing-data.html#modifying-credentials",
-    "href": "docs/storing-data.html#modifying-credentials",
-    "title": "Storing Data",
-    "section": "Modifying credentials",
-    "text": "Modifying credentials\nIf you want to modify your credentials stored in the .env file, you can just run sd_db_config() again and press ‘Enter’ on any parameter you want to leave unchanged while modifying the ones you want to change.\nYou can also pass any of the parameters as arguments to sd_db_config() to change them. For example, if you wanted to only change the table name, you could do this:\n\nsd_db_config(table = 'mytable')\n\nOnce run in the R console, a message will print out confirming that the stored table parameter will now be mytable.\nYou can pass any of the following as arguments to update them: host, dbname, port, user, table, and password.\nFinally, you can also view / modify your database credentials in the surveydown dashboard app. To do this, launch the dashboard by running this command in the R console:\n\nsurveydown::sd_dashboard()\n\nThis will open a new browser window where you can navigate to the dashboard for your project. Click on the “Connection Settings” tab to see and edit your database credentials. Once you have made changes, click on the “Test Connection” button to save your updated credentials.\nSee the Local Dashboard page for more information.",
-    "crumbs": [
-      "Documentation",
-      "Data Management",
-      "Storing Data"
-    ]
-  },
-  {
-    "objectID": "docs/storing-data.html#connecting-to-your-database-in-surveydown",
-    "href": "docs/storing-data.html#connecting-to-your-database-in-surveydown",
-    "title": "Storing Data",
-    "section": "Connecting to your database in surveydown",
-    "text": "Connecting to your database in surveydown\nNow that you have set your credentials stored, you can connect to your database in surveydown by running the following code in your app.R file:\n\ndb &lt;- sd_db_connect()\n\nYou do not need to specify any arguments to this function as it will automatically use the credentials stored in your .env file. If the connection is successful, you should see a message in the console that says “✔ Successfully connected to the database.”\nYou can also ignore the database connection by setting ignore = TRUE in sd_db_connect():\n\ndb &lt;- sd_db_connect(ignore = TRUE)\n\nWith this setting, no database connection will be attempted, and the db object will store the value NULL. Instead, data will be stored in a local preview_data.csv file for previewing purposes only. This is useful when you are still editing your survey and do not want to store any data in your database yet.",
-    "crumbs": [
-      "Documentation",
-      "Data Management",
-      "Storing Data"
-    ]
-  },
-  {
-    "objectID": "docs/storing-data.html#table-creation-and-data-operations",
-    "href": "docs/storing-data.html#table-creation-and-data-operations",
-    "title": "Storing Data",
-    "section": "Table creation and data operations",
-    "text": "Table creation and data operations\nYou never need to manually create a table in the database - it gets automatically created after you first run the survey. After you first set up the config and a .env file is properly created, run your survey locally and click past the first page, then you should see the table get created in the database. You can view it directly on supabase (if you’re using supabase), or you can see the table using the dashboard by running sd_dashboard().\nThe data gets updated in the database on every page turn (each time you push a next button) and after you close the browser, which is usually at the end of the survey, but just in case you close it early it will write to the database then too. This is why you usually have to click past the first page after initial configuration to see the table in the database.",
-    "crumbs": [
-      "Documentation",
-      "Data Management",
-      "Storing Data"
-    ]
-  },
-  {
-    "objectID": "docs/storing-data.html#cookies",
-    "href": "docs/storing-data.html#cookies",
-    "title": "Storing Data",
-    "section": "Cookies",
-    "text": "Cookies\nBy default, the data on each page will be locally stored in the browser cookies, though you can turn this feature off if you wish (see here).\nThis is done so that the session state can be restored should a respondent lose an internet connection or close the browser on accident, etc. The responses on each page will not be written to the database until the respondent clicks the next button or if they close the browser.",
-    "crumbs": [
-      "Documentation",
-      "Data Management",
-      "Storing Data"
+      "Survey Design Concepts",
+      "Survey Settings"
     ]
   },
   {
@@ -1882,11 +1846,11 @@
     "text": "Why is my survey app so slow when starting?\nWhen a {surveydown} survey first runs, it checks for files in a **_survey** folder that contain the rendered content from your survey.qmd file. If any of those files are missing or if changes have been detected in your survey.qmd or app.R files, it will re-render your survey, which can take a bit longer. But this only happens once, and afterwards so long as no further changes have been made to your survey files the app will use the saved content in the **_survey** folder to launch, which should load almost instantly. So if your app launches slowly, just close it and launch it again and you should immediately load. If you still see a slow launch, consider posting an issue to let us know that something might be wrong.\nAlso, it is important that you run your survey locally at least once before deploying it live. This will render all your survey content into the **_survey** folder, which will also get uploaded when you deploy it."
   },
   {
-    "objectID": "faq.html#how-do-i-make-a-question-required",
-    "href": "faq.html#how-do-i-make-a-question-required",
+    "objectID": "faq.html#how-do-i-customize-my-survey",
+    "href": "faq.html#how-do-i-customize-my-survey",
     "title": "Frequently Asked Questions",
-    "section": "How do I make a question required?",
-    "text": "How do I make a question required?\nUse the required_questions argument in sd_server() to control required responses (see the required questions page for more details)."
+    "section": "How do I customize my survey?",
+    "text": "How do I customize my survey?\nPlease see our Survey Settings page for a full walkthrough of all available customization options, including themes, colors, progress bar settings, and survey behaviors."
   },
   {
     "objectID": "templates.html",

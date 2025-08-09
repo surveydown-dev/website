@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.7.33">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,14 +37,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-bc185b5c5bdbcb35c2eb49d8a876ef70.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-8b83839bd93781c6930aba6531401a18.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-ef1bc798271cad994f9764505a224e32.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-8b83839bd93781c6930aba6531401a18.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-07286b949df937945e7a844906c8ffa0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-2df6145a9583d86a91b07fd13f64d372.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-07286b949df937945e7a844906c8ffa0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -322,7 +322,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#is-surveydown-right-for-me" id="toc-is-surveydown-right-for-me" class="nav-link active" data-scroll-target="#is-surveydown-right-for-me">Is surveydown right for me?</a></li>
   <li><a href="#why-is-my-survey-app-so-slow-when-starting" id="toc-why-is-my-survey-app-so-slow-when-starting" class="nav-link" data-scroll-target="#why-is-my-survey-app-so-slow-when-starting">Why is my survey app so slow when starting?</a></li>
-  <li><a href="#how-do-i-make-a-question-required" id="toc-how-do-i-make-a-question-required" class="nav-link" data-scroll-target="#how-do-i-make-a-question-required">How do I make a question required?</a></li>
+  <li><a href="#how-do-i-customize-my-survey" id="toc-how-do-i-customize-my-survey" class="nav-link" data-scroll-target="#how-do-i-customize-my-survey">How do I customize my survey?</a></li>
   </ul>
 </nav>
     </div>
@@ -392,9 +392,9 @@ Note
 <p>When a {surveydown} survey first runs, it checks for files in a **_survey** folder that contain the rendered content from your <strong>survey.qmd</strong> file. If any of those files are missing or if changes have been detected in your <strong>survey.qmd</strong> or <strong>app.R</strong> files, it will re-render your survey, which can take a bit longer. But this only happens once, and afterwards so long as no further changes have been made to your survey files the app will use the saved content in the **_survey** folder to launch, which should load almost instantly. So if your app launches slowly, just close it and launch it again and you should immediately load. If you still see a slow launch, consider <a href="https://github.com/surveydown-dev/surveydown/issues">posting an issue</a> to let us know that something might be wrong.</p>
 <p>Also, it is important that you run your survey locally <strong>at least once</strong> before deploying it live. This will render all your survey content into the **_survey** folder, which will also get uploaded when you deploy it.</p>
 </section>
-<section id="how-do-i-make-a-question-required" class="level2">
-<h2 class="anchored" data-anchor-id="how-do-i-make-a-question-required">How do I make a question required?</h2>
-<p>Use the <code>required_questions</code> argument in <code>sd_server()</code> to control required responses (see the <a href="docs/server-options.html#required-questions">required questions</a> page for more details).</p>
+<section id="how-do-i-customize-my-survey" class="level2">
+<h2 class="anchored" data-anchor-id="how-do-i-customize-my-survey">How do I customize my survey?</h2>
+<p>Please see our <a href="./docs/survey-settings.html">Survey Settings</a> page for a full walkthrough of all available customization options, including themes, colors, progress bar settings, and survey behaviors.</p>
 
 
 </section>

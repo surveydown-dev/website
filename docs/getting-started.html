@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.7.33">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Getting Started – surveydown.org</title>
 <style>
@@ -68,14 +68,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-bc185b5c5bdbcb35c2eb49d8a876ef70.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-8b83839bd93781c6930aba6531401a18.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-ef1bc798271cad994f9764505a224e32.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-8b83839bd93781c6930aba6531401a18.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-07286b949df937945e7a844906c8ffa0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-2df6145a9583d86a91b07fd13f64d372.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-07286b949df937945e7a844906c8ffa0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -425,14 +425,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/page-navigation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Page Navigation</span></a>
+  <a href="../docs/survey-settings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Survey Settings</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/server-options.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Server Options</span></a>
+  <a href="../docs/page-navigation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Page Navigation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -621,7 +621,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Add content to your <strong>survey.qmd</strong> file using markdown text (or in RStudio use the visual editor).</li>
 <li>Define survey questions in R code chunks with the <code><a href="https://pkg.surveydown.org/reference/sd_question.html">sd_question()</a></code> function.</li>
 <li>Define pages using fences (<code>:::</code>), with navigation buttons handled using the <code><a href="https://pkg.surveydown.org/reference/sd_next.html">sd_next()</a></code> function.</li>
-<li>Add rich functionality to your survey using a variety of <a href="server-options.html">Server Options</a> in the <code>server()</code> function in the <strong>app.R</strong> file.</li>
+<li>Add rich functionality to your survey using a variety of <a href="survey-settings.html">Survey Settings</a> in the <code>server()</code> function in the <strong>app.R</strong> file.</li>
 <li>Apply <a href="conditional-logic.html">Conditional Logic</a> to question display with <code><a href="https://pkg.surveydown.org/reference/sd_show_if.html">sd_show_if()</a></code> or page navigation with <code><a href="https://pkg.surveydown.org/reference/sd_skip_forward.html">sd_skip_forward()</a></code>.</li>
 <li>Store your respondent data in a database (see <a href="storing-data.html">Storing Data</a>).</li>
 </ul>
@@ -753,7 +753,7 @@ Note
 </div>
 </li>
 </ul></section><section id="add-control-options" class="level2"><h2 class="anchored" data-anchor-id="add-control-options">4. Add control options</h2>
-<p>In the <code>server()</code> function in the <strong>app.R</strong> file, add rich functionality to your survey using a variety of <a href="server-options.html">Server Options</a> or <a href="conditional-logic.html">Conditional Logic</a>.</p>
+<p>In the <code>server()</code> function in the <strong>app.R</strong> file, add rich functionality to your survey using a variety of <a href="survey-settings.html">Survey Settings</a> or <a href="conditional-logic.html">Conditional Logic</a>.</p>
 </section><section id="setup-your-database-connection" class="level2"><h2 class="anchored" data-anchor-id="setup-your-database-connection">5. Setup your database connection</h2>
 <p>Setup your database connection using the <code><a href="https://pkg.surveydown.org/reference/sd_db_config.html">sd_db_config()</a></code> function. Once your configuration credentials are created (they get saved in a <code>.env</code> file), make a connection to your database using the <code><a href="https://pkg.surveydown.org/reference/sd_db_connect.html">sd_db_connect()</a></code> function in the global settings at the top of the <strong>app.R</strong> file. You can also use <code>sd_db_connect(ignore = TRUE)</code> to run the survey without storing data. See the <a href="../docs/storing-data.html">Storing Data</a> page for more details.</p>
 </section><section id="locally-preview" class="level2"><h2 class="anchored" data-anchor-id="locally-preview">6. Locally preview</h2>

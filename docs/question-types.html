@@ -709,24 +709,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             $('#age').on('focus input change', function() {
                 Shiny.setInputValue('age_interacted', true, {priority: 'event'});
             });
-            
+
             // Restrict input to numeric characters (0-9) and plus/minus signs
             $('#age').on('keypress', function(e) {
                 // Allow all key combinations with Ctrl or Cmd (for copy, paste, select all, etc.)
                 if (e.ctrlKey || e.metaKey) {
                     return true;
                 }
-                
+
                 var char = String.fromCharCode(e.which);
                 // Allow: digits (0-9), plus sign (+), minus sign (-), backspace, delete, tab, escape, enter
-                if (/[0-9+\-]/.test(char) || 
+                if (/[0-9+\-]/.test(char) ||
                     e.which === 8 || e.which === 46 || e.which === 9 || e.which === 27 || e.which === 13) {
                     return true;
                 }
                 e.preventDefault();
                 return false;
             });
-            
+
             // Also filter on paste events
             $('#age').on('paste', function(e) {
                 setTimeout(function() {

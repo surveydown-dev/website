@@ -14,7 +14,7 @@
 <title>surveydown.org</title>
 <link>https://www.surveydown.org/blog/</link>
 </image>
-<generator>quarto-1.7.34</generator>
+<generator>quarto-1.8.24</generator>
 <lastBuildDate>Sun, 29 Jun 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Introducing sdstudio: A companion GUI for surveydown</title>
@@ -38,7 +38,7 @@
 <section id="installation" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="installation"><span class="header-section-number">1.1</span> Installation</h3>
 <p>The <strong>sdstudio</strong> package is currently in development and can be installed directly from GitHub:</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Development version</span></span>
 <span id="cb1-2">pak<span class="sc" style="color: #5E5E5E;
@@ -51,9 +51,9 @@ font-style: inherit;">"surveydown-dev/sdstudio"</span>, <span class="at" style="
 background-color: null;
 font-style: inherit;">ask =</span> <span class="cn" style="color: #8f5902;
 background-color: null;
-font-style: inherit;">FALSE</span>)</span></code></pre></div>
+font-style: inherit;">FALSE</span>)</span></code></pre></div></div>
 <p>Since <strong>sdstudio</strong> is a companion package of <strong>surveydown</strong>, make sure to install <strong>surveydown</strong> as well:</p>
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Development version</span></span>
 <span id="cb2-2">pak<span class="sc" style="color: #5E5E5E;
@@ -75,16 +75,16 @@ font-style: inherit;"># CRAN version</span></span>
 background-color: null;
 font-style: inherit;">install.packages</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"surveydown"</span>)</span></code></pre></div>
+font-style: inherit;">"surveydown"</span>)</span></code></pre></div></div>
 </section>
 <section id="launch" class="level3" data-number="1.2">
 <h3 data-number="1.2" class="anchored" data-anchor-id="launch"><span class="header-section-number">1.2</span> Launch!</h3>
 <p>Launch the studio in your browser using this function:</p>
-<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">sdstudio<span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">sdstudio<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">launch</span>()</span></code></pre></div>
+font-style: inherit;">launch</span>()</span></code></pre></div></div>
 <p>The <strong>sdstudio</strong> interface is organized into three main tabs that follow the natural survey workflow:</p>
 <ul>
 <li><strong>🏗️ Build</strong>: Visual survey creation with side-by-side structure and scripts</li>
@@ -291,7 +291,7 @@ Note
 <h3 data-number="5.1" class="anchored" data-anchor-id="the-.env-file"><span class="header-section-number">5.1</span> The <code>.env</code> File</h3>
 <p>When you input your database credentials in the “Responses” tab, it creates a local <code>.env</code> file in your current working directory, which is a hidden file. This file is used to store environment variables securely. Along with this file, there will be a <code>.gitignore</code> file created with <code>.env</code> added to prevent it from being accidentally pushed to your git repository. This is a good practice to keep your credentials safe.</p>
 <p>In this <code>.env</code> file, you will find the following variables:</p>
-<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Database connection settings for surveydown</span></span>
 <span id="cb4-2">SD_HOST<span class="ot" style="color: #003B4F;
@@ -323,23 +323,23 @@ font-style: inherit;">"your-database-password"</span></span>
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"your-database-table"</span></span></code></pre></div>
+font-style: inherit;">"your-database-table"</span></span></code></pre></div></div>
 <p>The editing of this file is bi-directional, so you can either edit on this file, or use the <strong>sdstudio</strong> interface.</p>
 </section>
 <section id="gssapi-encryption" class="level3" data-number="5.2">
 <h3 data-number="5.2" class="anchored" data-anchor-id="gssapi-encryption"><span class="header-section-number">5.2</span> GSSAPI Encryption</h3>
 <p>The <code>sdstudio::launch()</code> function allows the <code>gssencmode</code> argument. It controls the encryption mode for database connections. This is crucial for ensuring secure communication with your database, especially when handling sensitive survey data.</p>
 <p>By default, we set <code>gssencmode = "auto"</code>, which attempts to use GSSAPI encryption if available, falling back to a plain connection if not. This is the recommended mode for most users. The connection status will show a green “Connected (GSSAPI enabled)” message if GSSAPI is successfully enabled, or a yellow “Connected (GSSAPI disabled)” message if it falls back to plain connection:</p>
-<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Auto mode (recommended) - tries GSSAPI first, falls back if needed</span></span>
 <span id="cb5-2">sdstudio<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">launch</span>()</span></code></pre></div>
+font-style: inherit;">launch</span>()</span></code></pre></div></div>
 <p>However, if you want to explicitly control the encryption mode, you can set <code>gssencmode</code> to one of the following values:</p>
-<div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Prefer mode - only use GSSAPI</span></span>
 <span id="cb6-2">sdstudio<span class="sc" style="color: #5E5E5E;
@@ -363,7 +363,7 @@ font-style: inherit;">launch</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">gssencmode =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"disable"</span>)</span></code></pre></div>
+font-style: inherit;">"disable"</span>)</span></code></pre></div></div>
 </section>
 </section>
 <section id="conclusion" class="level2" data-number="6">
@@ -567,7 +567,7 @@ Or if you have other preferences, feel free to customize them.</li>
   <description><![CDATA[ <p>We have some exciting news to share - surveydown is on CRAN 🎉!</p>
 <p>You can now install surveydown from CRAN using the usual <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> function:</p>
 <div class="cell">
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -575,7 +575,7 @@ font-style: inherit;">(</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"surveydown"</span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">)</span></span></code></pre></div>
+font-style: inherit;">)</span></span></code></pre></div></div>
 </div>
 <p>Actually, surveydown has been on CRAN since v0.4.0, but we’ve been making so many updates that we’re now already on v0.7.2 before we could even make a post about being on CRAN!</p>
 <p>So it seems about time we highlight some of the improvements and new features we’ve added recently.</p>
@@ -639,12 +639,12 @@ font-style: inherit;">)</span></span></code></pre></div>
 <p>They typically look something like this:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs">
-<li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true"><code>survey.qmd</code> file</a></li>
-<li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false"><code>app.R</code> file</a></li>
+<li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href=""><code>survey.qmd</code> file</a></li>
+<li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href=""><code>app.R</code> file</a></li>
 </ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">---</span></span>
 <span id="cb1-2"><span class="an" style="color: #5E5E5E;
@@ -759,11 +759,11 @@ font-style: inherit;">```</span></span>
 <span id="cb1-43"></span>
 <span id="cb1-44">This it the last page in the survey</span>
 <span id="cb1-45"></span>
-<span id="cb1-46">:::</span></code></pre></div>
+<span id="cb1-46">:::</span></code></pre></div></div>
 </div>
 <div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op" style="color: #5E5E5E;
@@ -896,7 +896,7 @@ font-style: inherit;">=</span> <span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">server</span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">)</span></span></code></pre></div>
+font-style: inherit;">)</span></span></code></pre></div></div>
 </div>
 </div>
 </div>
@@ -923,7 +923,7 @@ font-style: inherit;">)</span></span></code></pre></div>
 </blockquote>
 <p>As an example, let’s say we want to show a question called <code>"penguins_other"</code> if the respondent chose the <code>"other"</code> option in a question called <code>"penguins"</code>. We could do this with the following code in the <code>app.R</code> file:</p>
 <div class="cell">
-<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">server</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -982,7 +982,7 @@ font-style: inherit;">)</span></span>
 <span></span>
 <span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">}</span></span></code></pre></div>
+font-style: inherit;">}</span></span></code></pre></div></div>
 </div>
 <p>You can provide multiple conditions to the <code><a href="https://pkg.surveydown.org/reference/sd_show_if.html">sd_show_if()</a></code> function, each separated by a comma. The <code><a href="https://pkg.surveydown.org/reference/sd_skip_if.html">sd_skip_if()</a></code> function works the same way, but it will skip to a target page instead of showing a target question. See the revised <a href="https://surveydown.org/manuals/conditional-control">Conditional Control</a> page for more details on the new changes.</p>
 </section><section id="no-more-sd_config-function" class="level2"><h2 class="anchored" data-anchor-id="no-more-sd_config-function">No more <code>sd_config()</code> function</h2>
@@ -1074,7 +1074,7 @@ Note
 <section id="read-in-the-design-file" class="level3"><h3 class="anchored" data-anchor-id="read-in-the-design-file">1. Read in the design file</h3>
 <p>Pretty straightforward - this is one line to read in the <code>choice_questions.csv</code> design file that we saved in the project folder.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">design</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1090,13 +1090,13 @@ font-style: inherit;">(</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"choice_questions.csv"</span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">)</span></span></code></pre></div>
+font-style: inherit;">)</span></span></code></pre></div></div>
 </div>
 </section><section id="sample-and-store-a-random-respondent-id" class="level3"><h3 class="anchored" data-anchor-id="sample-and-store-a-random-respondent-id">2. Sample and store a random respondent ID</h3>
 <p>Since we want each respondent to see a different set of choice questions, we randomly sample a respondent ID from the set of all respondent IDs in the design file. We also need to keep track of this and store it in our response data so that later we can know what each respondent was actually shown.</p>
 <p>Since this is a value that we generated in the server (and not a value from a survey question to a respondent), we have to manually add it to the survey response data using <code><a href="https://pkg.surveydown.org/reference/sd_store_value.html">sd_store_value()</a></code>. Here we modified the name so that in the resulting survey data the column name will be <code>"respID"</code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Sample a random respondentID</span></span>
 <span><span class="va" style="color: #111111;
@@ -1132,12 +1132,12 @@ font-style: inherit;">respondentID</span>, <span class="st" style="color: #20794
 background-color: null;
 font-style: inherit;">"respID"</span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">)</span></span></code></pre></div>
+font-style: inherit;">)</span></span></code></pre></div></div>
 </div>
 </section><section id="filter-the-design-for-the-respondentid" class="level3"><h3 class="anchored" data-anchor-id="filter-the-design-for-the-respondentid">3. Filter the design for the respondentID</h3>
 <p>We create a subset dataframe called <code>df</code> that stores only the rows for the randomly chosen respondent ID. We also append the <code>"images/"</code> string onto the values in the <code>image</code> column as this will create the relative path to the images in our survey, e.g.&nbsp;<code>"images/fuji.jpg"</code> (all the images we show are in the <code>"images"</code> folder in the repo).</p>
 <div class="cell">
-<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Filter for the rows for the chosen respondentID</span></span>
 <span><span class="va" style="color: #111111;
@@ -1182,7 +1182,7 @@ font-style: inherit;">image</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">)</span></span></code></pre></div>
+font-style: inherit;">)</span></span></code></pre></div></div>
 </div>
 </section><section id="define-a-function-to-create-question-options" class="level3"><h3 class="anchored" data-anchor-id="define-a-function-to-create-question-options">4. Define a function to create question options</h3>
 <p>This is the most complex component in the server logic. Here we created a function that takes a dataframe and returns a named vector defining the options to show in each choice question. In this case, we only have 3 options per choice question, so each time we call this function we will use a small dataframe that has just 3 rows defining the 3 choice alternatives in a single choice question.</p>
@@ -1191,7 +1191,7 @@ font-style: inherit;">)</span></span></code></pre></div>
 <p>In our case, we’re including some html code to insert an image of the apple type (<code>&lt;img src='{alt1$image}' width=100&gt;</code>), the apply type itself (<code>**Type**: {alt1$type}</code>), and the apple price (<code>**Price**: $ {alt1$price} / lb</code>).</p>
 <p>Notice also that we’re mixing markdown (e.g.&nbsp;<code>**Option 1**</code>) and html (e.g.&nbsp;<code>&lt;br&gt;</code>), which will all get rendered into proper html in the resulting shiny app. The full function looks like this:</p>
 <div class="cell">
-<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Function to create the labels for a choice question</span></span>
 <span><span class="co" style="color: #5E5E5E;
@@ -1398,12 +1398,12 @@ background-color: null;
 font-style: inherit;">)</span></span>
 <span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">}</span></span></code></pre></div>
+font-style: inherit;">}</span></span></code></pre></div></div>
 </div>
 </section><section id="create-the-options-for-each-choice-question" class="level3"><h3 class="anchored" data-anchor-id="create-the-options-for-each-choice-question">5. Create the options for each choice question</h3>
 <p>One of the benefits of making the function the way we did in the previous step is that we can now easily call it to generate the option vector for each of the 6 choice questions in <code>df</code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Create the options for each choice question</span></span>
 <span></span>
@@ -1568,12 +1568,12 @@ font-style: inherit;">6</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">)</span></span></code></pre></div>
+font-style: inherit;">)</span></span></code></pre></div></div>
 </div>
 </section><section id="create-each-choice-question-6-in-total" class="level3"><h3 class="anchored" data-anchor-id="create-each-choice-question-6-in-total">6. Create each choice question (6 in total)</h3>
 <p>Finally, we now have everything we need to generate each choice question. Here we’re using the <code>mc_buttons</code> question type so that the labels we generated will be displayed on a large button, which looks good both on a computer and phone. We give the question a unique <code>id</code> (e.g.&nbsp;<code>cbc_q1</code>), and a label, and then set the <code>option</code> to the corresponding option vector we defined above.</p>
 <div class="cell">
-<div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">sd_question</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1604,7 +1604,7 @@ font-style: inherit;">)</span></span>
 <span></span>
 <span><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># ...and 5 more questions like this</span></span></code></pre></div>
+font-style: inherit;"># ...and 5 more questions like this</span></span></code></pre></div></div>
 </div>
 <p>Remember that since the labels in the options are being <em>dynamically</em> generated on each new session (each respondent), they have to be created in the server, not in the main survey body. As a result, the <code><a href="https://pkg.surveydown.org/reference/sd_question.html">sd_question()</a></code> function must also be created in the server code (if you put this code in the main body, only one random set of choice options will be generated, and they’ll be the same for everyone).</p>
 <p>To display each question in the survey body, we use <code>sd_output("id", type = "question")</code>, changing <code>id</code> to each corresponding choice question we created. In the demo <code>survey.qmd</code> file, you’ll see that there are 6 choice questions displayed in the main survey body (each on their own page), and each of those 6 questions are defined in the <code>server()</code> function in the <code>app.R</code> file.</p>
@@ -1832,7 +1832,7 @@ Option 3
 </section><section id="getting-the-data" class="level2"><h2 class="anchored" data-anchor-id="getting-the-data">Getting the data</h2>
 <p>Once your survey is live and you start collecting responses, you can easily access your data with the <code><a href="https://pkg.surveydown.org/reference/sd_get_data.html">sd_get_data()</a></code> function. This is typically done in a separate R file, which might look something like this:</p>
 <div class="cell">
-<div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op" style="color: #5E5E5E;
@@ -1893,7 +1893,7 @@ font-style: inherit;">(</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">db</span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">)</span></span></code></pre></div>
+font-style: inherit;">)</span></span></code></pre></div></div>
 </div>
 <p>Obviously your settings in <code><a href="https://pkg.surveydown.org/reference/sd_database.html">sd_database()</a></code> would need to match those of your Supabase database that you created for your survey.</p>
 <p>And that’s it! We hope this post was helpful, and do go check out the <a href="https://github.com/surveydown-dev/demos/blob/main/conjoint-buttons">this GitHub repo</a> to try out the demo yourself.</p>
@@ -1990,7 +1990,7 @@ Note
 <section id="getting-started" class="level2"><h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
 <p>After getting everything <a href="https://surveydown.org//docs/getting-started.html#install">installed</a>, we recommend starting with a template survey project. To do so, run the following in the R console:</p>
 <div class="cell">
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">surveydown</span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -2002,7 +2002,7 @@ font-style: inherit;">(</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"path/to/folder"</span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">)</span></span></code></pre></div>
+font-style: inherit;">)</span></span></code></pre></div></div>
 </div>
 <p>This will create a folder with the following files:</p>
 <ul>
@@ -2020,7 +2020,7 @@ font-style: inherit;">)</span></span></code></pre></div>
 </section><section id="adding-pages" class="level2"><h2 class="anchored" data-anchor-id="adding-pages">Adding pages</h2>
 <p>In surveydown, pages are delineated using “fences”, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:::</span> {<span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -2046,13 +2046,13 @@ font-style: inherit;">2</span> content here</span>
 <span id="cb2-10"></span>
 <span id="cb2-11"><span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">:::</span></span></code></pre></div>
+font-style: inherit;">:::</span></span></code></pre></div></div>
 </div>
 <p>As you can see, we use three colon symbols <code>:::</code>, called a “fence”, to mark the start and end of pages. This notation is commonly used in Quarto for a variety of use cases, like defining <a href="https://quarto.org/docs/authoring/figures.html#subfigures">subfigures</a> in images.</p>
 <p>In the starting fence, you need to define a page name (e.g.&nbsp;<code>welcome</code> and <code>page2</code> in the example above) and you need to define the class as <code>.sd-page</code>. Then anything you put between the page fences will appear on that page.</p>
 <p>To navigate to the next page, you need to insert a <code>sd_next()</code> function call inside a code chunk, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><span class="in" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><span class="in" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">```{r}</span></span>
 <span id="cb3-2"><span class="fu" style="color: #4758AB;
@@ -2064,7 +2064,7 @@ background-color: null;
 font-style: inherit;">'page2'</span>)</span>
 <span id="cb3-3"><span class="in" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">```</span></span></code></pre></div>
+font-style: inherit;">```</span></span></code></pre></div></div>
 </div>
 <p>The above code chunk will create a “Next” button that goes on to page 2 that looks like this:</p>
 <div class="cell">
@@ -2076,7 +2076,7 @@ font-style: inherit;">```</span></span></code></pre></div>
 </div>
 <p>You would need to place the code chunk in between the <code>:::</code> fences of the <code>welcome</code> page in order to have a “Next” button that goes on to page 2. You can also send the user to other pages by just changing the <code>next_page</code> argument. Finally, you can also change the label of the button by changing the <code>label</code> argument, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><span class="in" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><span class="in" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">```{r}</span></span>
 <span id="cb4-2"><span class="fu" style="color: #4758AB;
@@ -2092,7 +2092,7 @@ background-color: null;
 font-style: inherit;">'Next page'</span>)</span>
 <span id="cb4-3"><span class="in" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">```</span></span></code></pre></div>
+font-style: inherit;">```</span></span></code></pre></div></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -2104,7 +2104,7 @@ font-style: inherit;">```</span></span></code></pre></div>
 </section><section id="adding-questions" class="level2"><h2 class="anchored" data-anchor-id="adding-questions">Adding questions</h2>
 <p>Every survey question is created using the <code>sd_question()</code> function inside a code chunk. The question type is defined by the <code>type</code> argument. For example, to add a multiple choice question, you could insert the following code chunk:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><span class="in" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><span class="in" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">```{r}</span></span>
 <span id="cb5-2"><span class="fu" style="color: #4758AB;
@@ -2155,7 +2155,7 @@ font-style: inherit;">'gentoo'</span></span>
 <span id="cb5-11">)</span>
 <span id="cb5-12"><span class="in" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">```</span></span></code></pre></div>
+font-style: inherit;">```</span></span></code></pre></div></div>
 </div>
 <p>The above code chunk will create a multiple choice question that looks like this:</p>
 <div class="cell">
@@ -2192,7 +2192,7 @@ font-style: inherit;">```</span></span></code></pre></div>
 </section><section id="the-server-chunk" class="level2"><h2 class="anchored" data-anchor-id="the-server-chunk">The server chunk</h2>
 <p>At the very bottom of the .qmd file is a special “server” code chunk (that’s the <code>#| context: server</code> bit) that defines the app server. This is where you can customize and control the survey flow logic as well as where you define the database that will store the survey response data. It looks like this:</p>
 <div class="cell" data-context="server">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><span class="in" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><span class="in" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">```{r}</span></span>
 <span id="cb6-2"><span class="co" style="color: #5E5E5E;
@@ -2238,7 +2238,7 @@ font-style: inherit;">db      =</span> db</span>
 <span id="cb6-16">)</span>
 <span id="cb6-17"><span class="in" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">```</span></span></code></pre></div>
+font-style: inherit;">```</span></span></code></pre></div></div>
 </div>
 <p>The <code>sd_database()</code> function is where you set up your database. The <code>sd_server()</code> function makes everything run, which you can safely ignore - just don’t change it and all will be good!</p>
 <p>The middle part (the <code>sd_config()</code> function) is where you can define custom control logic for the survey, such as <em>conditional display</em> (conditionally displaying a question based on responses to questions), or <em>conditional skip</em> (conditionally sending the respondent to a page based on responses to questions).</p>
@@ -2249,7 +2249,7 @@ font-style: inherit;">```</span></span></code></pre></div>
 <section id="conditional-display" class="level2"><h2 class="anchored" data-anchor-id="conditional-display">Conditional display</h2>
 <p>Let’s say we had a fourth option for “other” in our multiple choice question about penguins. If the respondent chose it, you may want a second question to popup that allows them to specify the other penguin type. To implement this, you would need to define both questions, e.g.:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><span class="in" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><span class="in" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">```{r}</span></span>
 <span id="cb7-2"><span class="fu" style="color: #4758AB;
@@ -2327,11 +2327,11 @@ font-style: inherit;">"Please specify the other penguin type:"</span></span>
 <span id="cb7-18">)</span>
 <span id="cb7-19"><span class="in" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">```</span></span></code></pre></div>
+font-style: inherit;">```</span></span></code></pre></div></div>
 </div>
 <p>Then in the server code chunk, you could use the <code>show_if</code> argument to define that the <code>penguins_other</code> question would only be shown if the respondent chose the <code>other</code> option in the <code>penguins</code> question, like this:</p>
 <div class="cell">
-<div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">config</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -2376,7 +2376,7 @@ background-color: null;
 font-style: inherit;">)</span></span>
 <span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">)</span></span></code></pre></div>
+font-style: inherit;">)</span></span></code></pre></div></div>
 </div>
 <p>This will make the <code>penguins_other</code> question only appear if the respondent chose the <code>other</code> option in the <code>penguins</code> question, like this:</p>
 <center>
@@ -2394,7 +2394,7 @@ font-style: inherit;">)</span></span></code></pre></div>
 </ul>
 <p>You don’t have to use <code><a href="https://tibble.tidyverse.org/reference/tribble.html">tibble::tribble()</a></code>, and in fact if you have a lot of <code>show_if</code> conditions, then you could create a csv file with all of your conditions in it and read it in to set the <code>show_if</code> conditions (just make sure the header has the same three column names), e.g.:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">config <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">config <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -2411,13 +2411,13 @@ font-style: inherit;">'path/to/show_if_conditions.csv'</span>)</span>
 <span id="cb9-3">  )</span>
 <span id="cb9-4"><span class="er" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">)</span></span></code></pre></div>
+font-style: inherit;">)</span></span></code></pre></div></div>
 </div>
 </section><section id="conditional-skip" class="level2"><h2 class="anchored" data-anchor-id="conditional-skip">Conditional skip</h2>
 <p>Often times you’ll want to screen people out of a survey based on responses to questions. For example, let’s say you only wanted to only include people who own a vehicle. On your first page (e.g., with page name <code>welcome</code>), you could screen out people who do <em>not</em> own a vehicle.</p>
 <p>First, define a question about their vehicle ownership, e.g.:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><span class="in" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><span class="in" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">```{r}</span></span>
 <span id="cb10-2"><span class="fu" style="color: #4758AB;
@@ -2461,11 +2461,11 @@ font-style: inherit;">'no'</span></span>
 <span id="cb10-10">)</span>
 <span id="cb10-11"><span class="in" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">```</span></span></code></pre></div>
+font-style: inherit;">```</span></span></code></pre></div></div>
 </div>
 <p>Then in the server code chunk, you could use the <code>skip_if</code> argument in <code>sd_config()</code> to define the behavior of the next button on the <code>welcome</code> page, like this:</p>
 <div class="cell">
-<div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">config</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -2510,11 +2510,11 @@ background-color: null;
 font-style: inherit;">)</span></span>
 <span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">)</span></span></code></pre></div>
+font-style: inherit;">)</span></span></code></pre></div></div>
 </div>
 <p>This sets up a condition where if the respondent chooses <code>no</code> on the <code>vehicle_ownership</code> question, they will be sent to a page named <code>screenout</code>. You could put such a page at the end of the survey, something like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:::</span> {<span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -2524,13 +2524,13 @@ font-style: inherit;">#screenout .sd-page}</span></span>
 <span id="cb12-4"></span>
 <span id="cb12-5"><span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">:::</span></span></code></pre></div>
+font-style: inherit;">:::</span></span></code></pre></div></div>
 </div>
 <p>Notice that I don’t have a <code>sd_next()</code> on this screenout page. That is how you define an end point for the survey taker. If there’s no “Next” button, then they cannot navigate anywhere else, so the survey is over.</p>
 </section><section id="required-responses" class="level2"><h2 class="anchored" data-anchor-id="required-responses">Required responses</h2>
 <p>By default, no questions are required. However, you can make questions required by adding the question <code>id</code> to the <code>required</code> argument in <code>sd_config()</code>, like this:</p>
 <div class="cell">
-<div class="sourceCode" id="cb13" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">config</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -2554,12 +2554,12 @@ background-color: null;
 font-style: inherit;">)</span></span>
 <span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">)</span></span></code></pre></div>
+font-style: inherit;">)</span></span></code></pre></div></div>
 </div>
 <p>This will make the respondent unable to proceed until they have answered the required questions. It will also place a red asterisk (*) next to the question label to indicate that the question is required.</p>
 <p>You can also make all questions required by setting <code>all_questions_required = TRUE</code> like this:</p>
 <div class="cell">
-<div class="sourceCode" id="cb14" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">config</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -2575,14 +2575,14 @@ background-color: null;
 font-style: inherit;">TRUE</span></span>
 <span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">)</span></span></code></pre></div>
+font-style: inherit;">)</span></span></code></pre></div></div>
 </div>
 </section><section id="reactivity" class="level2"><h2 class="anchored" data-anchor-id="reactivity">Reactivity</h2>
 <p>One other feature that is particularly powerful is the ability to use R code in your survey via Shiny’s reactive programming. This allows you to make your survey more interactive and to use the full power of R to create custom functionality.</p>
 <section id="demo-1-displaying-content-based-on-previous-responses" class="level3"><h3 class="anchored" data-anchor-id="demo-1-displaying-content-based-on-previous-responses">Demo 1: Displaying content based on previous responses</h3>
 <p>Let’s say you wanted to create a survey that asked the respondent’s name, and then displayed a personalized message based on their name. You could do this by first asking their name:</p>
 <div class="cell">
-<div class="sourceCode" id="cb15" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">sd_question</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -2604,11 +2604,11 @@ background-color: null;
 font-style: inherit;">"What is your name?"</span></span>
 <span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">)</span></span></code></pre></div>
+font-style: inherit;">)</span></span></code></pre></div></div>
 </div>
 <p>Then you can use the <code>sd_display_value("name")</code> function to display the value of the <code>name</code> question in other parts of your survey. For example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1">Welcome, <span class="st" style="color: #20794D;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1">Welcome, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">`</span><span class="at" style="color: #657422;
 background-color: null;
@@ -2616,14 +2616,14 @@ font-style: inherit;">r sd_display_value("name")</span><span class="st" style="c
 background-color: null;
 font-style: inherit;">`</span><span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">!</span></span></code></pre></div>
+font-style: inherit;">!</span></span></code></pre></div></div>
 </div>
 <p>Which would render as something like “Welcome, Dave!” (assuming the respondent entered “Dave” in the <code>name</code> question). This works because the <code>sd_display_value()</code> function is reactive, meaning it will update the display based on the respondent’s responses.</p>
 </section><section id="demo-2-displaying-randomized-question-labels" class="level3"><h3 class="anchored" data-anchor-id="demo-2-displaying-randomized-question-labels">Demo 2: Displaying randomized question labels</h3>
 <p>Let’s say you wanted to show a series of questions, but you wanted to randomize the labels shown for each question. You could do this by first defining a list of labels, and then using the <code>sd_question_reactive()</code> function to create a question that will display a random label from the list.</p>
 <p>For example, let’s ask the respondent to rate different car brands from a random set of brands. You could first pre-define the randomized sets of brands for each respondent and store it as a csv file, like this:</p>
 <div class="cell">
-<div class="sourceCode" id="cb17" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">brands</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -2731,7 +2731,7 @@ font-style: inherit;">design</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"design.csv"</span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">)</span></span></code></pre></div>
+font-style: inherit;">)</span></span></code></pre></div></div>
 </div>
 <p>This would make a design file that looks like this:</p>
 <div class="cell">
@@ -2748,7 +2748,7 @@ font-style: inherit;">)</span></span></code></pre></div>
 <p>Note that this would not be done in your survey.qmd file - it’s just a one-time thing to create the design (probably stored in an R file).</p>
 <p>Then in your server code chunk, you could read in the design file and use it to randomize the labels for each question based on a randomly chosen respondent:</p>
 <div class="cell">
-<div class="sourceCode" id="cb19" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">design</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -2864,12 +2864,12 @@ background-color: null;
 font-style: inherit;">options</span></span>
 <span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">)</span></span></code></pre></div>
+font-style: inherit;">)</span></span></code></pre></div></div>
 </div>
 <p>Here the <code>sd_question_reactive()</code> function is used because the labels depend on the randomly chosen respondent. This means the labels will be different for each respondent.</p>
 <p>Since this is a reactive question, <strong>this code must be placed inside the server code chunk</strong>, not where you want it to appear in the survey. To define where in the survey the question should appear, you use the <code>sd_display_question()</code> function with the <code>id</code> set to the same value as the <code>id</code> in the <code>sd_question_reactive()</code> function, like this:</p>
 <div class="cell">
-<div class="sourceCode" id="cb20" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">sd_display_question</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -2879,12 +2879,12 @@ font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"brands"</span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">)</span></span></code></pre></div>
+font-style: inherit;">)</span></span></code></pre></div></div>
 </div>
 <p>Now the <code>brands</code> question will be displayed in the survey where you put this code chunk.</p>
 <p>Note that all question responses are automatically saved to the database, but if you wanted to store some other value (e.g.&nbsp;the randomly chosen <code>respondent_id</code>), you could do that with the <code>sd_store_value()</code> function, like this:</p>
 <div class="cell">
-<div class="sourceCode" id="cb21" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">sd_store_value</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -2892,7 +2892,7 @@ font-style: inherit;">(</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">resp_id</span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">)</span></span></code></pre></div>
+font-style: inherit;">)</span></span></code></pre></div></div>
 </div>
 </section></section></section><section id="how-we-built-it" class="level1"><h1>How we built it</h1>
 <p>Before I wrap up, I just want to say that I am absolutely amazed at the time we live in. I have had this idea in mind for many years, but I’m not a web developer, and I never could come up with a way to make it happen. That was actually what motivated me to write my <a href="https://jhelvy.com/blog/2023-04-06-markdown-surveys/">previous blog post</a> - it was a call for help from others!</p>

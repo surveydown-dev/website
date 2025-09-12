@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -35,18 +35,19 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-befe23ebd2f54d8af2c8a89d1a1611f1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-3232ff2542485a8813775321f3b106fc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-ecd8664d0150bd9105b7b95154771319.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-3232ff2542485a8813775321f3b106fc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-bbc99b88f32aa90fa47c28cdfad4b271.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-16565f984f715e0dccfe4f31ed1d6fc5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-bbc99b88f32aa90fa47c28cdfad4b271.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -121,7 +122,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -323,6 +324,8 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">surveydown.org</span>
     </a>
@@ -387,6 +390,10 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -600,7 +607,7 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="QmFzaWM=" data-listing-date-sort="1735689600000" data-listing-file-modified-sort="1757681691723" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="83">
+<div class="g-col-1" data-index="0" data-categories="QmFzaWM=" data-listing-date-sort="1735689600000" data-listing-file-modified-sort="1757691115573" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="83">
 <a href="./templates/default.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -621,7 +628,7 @@ Default Template
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="QmFzaWM=" data-listing-date-sort="1735776000000" data-listing-file-modified-sort="1757681691723" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<div class="g-col-1" data-index="1" data-categories="QmFzaWM=" data-listing-date-sort="1735776000000" data-listing-file-modified-sort="1757691115573" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
 <a href="./templates/question_types.html" class="quarto-grid-link">
 </a><div class="quarto-grid-item card h-100 card-left"><a href="./templates/question_types.html" class="quarto-grid-link">
 <p class="card-img-top">
@@ -642,7 +649,7 @@ Question Types
 </div>
 </div>
 </div>
-<div class="g-col-1" data-index="2" data-categories="QmFzaWM=" data-listing-date-sort="1735862400000" data-listing-file-modified-sort="1757681691723" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<div class="g-col-1" data-index="2" data-categories="QmFzaWM=" data-listing-date-sort="1735862400000" data-listing-file-modified-sort="1757691115573" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
 <a href="./templates/questions_yml.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -663,7 +670,7 @@ Questions Defined with YAML
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="3" data-categories="Q29uZGl0aW9ucw==" data-listing-date-sort="1735948800000" data-listing-file-modified-sort="1757681691723" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<div class="g-col-1" data-index="3" data-categories="Q29uZGl0aW9ucw==" data-listing-date-sort="1735948800000" data-listing-file-modified-sort="1757691115573" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
 <a href="./templates/conditional_showing.html" class="quarto-grid-link">
 </a><div class="quarto-grid-item card h-100 card-left"><a href="./templates/conditional_showing.html" class="quarto-grid-link">
 <p class="card-img-top">
@@ -684,7 +691,7 @@ Conditional Showing
 </div>
 </div>
 </div>
-<div class="g-col-1" data-index="4" data-categories="Q29uZGl0aW9ucw==" data-listing-date-sort="1736035200000" data-listing-file-modified-sort="1757681691723" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<div class="g-col-1" data-index="4" data-categories="Q29uZGl0aW9ucw==" data-listing-date-sort="1736035200000" data-listing-file-modified-sort="1757691115573" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
 <a href="./templates/conditional_skipping.html" class="quarto-grid-link">
 </a><div class="quarto-grid-item card h-100 card-left"><a href="./templates/conditional_skipping.html" class="quarto-grid-link">
 <p class="card-img-top">
@@ -705,7 +712,7 @@ Conditional Skipping
 </div>
 </div>
 </div>
-<div class="g-col-1" data-index="5" data-categories="Q29uZGl0aW9ucw==" data-listing-date-sort="1736035200000" data-listing-file-modified-sort="1757681691723" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<div class="g-col-1" data-index="5" data-categories="Q29uZGl0aW9ucw==" data-listing-date-sort="1736035200000" data-listing-file-modified-sort="1757691115573" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
 <a href="./templates/conditional_stopping.html" class="quarto-grid-link">
 </a><div class="quarto-grid-item card h-100 card-left"><a href="./templates/conditional_stopping.html" class="quarto-grid-link">
 <p class="card-img-top">
@@ -726,7 +733,7 @@ Conditional Stopping
 </div>
 </div>
 </div>
-<div class="g-col-1" data-index="6" data-categories="UmFuZG9taXphdGlvbg==" data-listing-date-sort="1738368000000" data-listing-file-modified-sort="1757681691723" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<div class="g-col-1" data-index="6" data-categories="UmFuZG9taXphdGlvbg==" data-listing-date-sort="1738368000000" data-listing-file-modified-sort="1757691115573" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
 <a href="./templates/random_options.html" class="quarto-grid-link">
 </a><div class="quarto-grid-item card h-100 card-left"><a href="./templates/random_options.html" class="quarto-grid-link">
 <p class="card-img-top">
@@ -747,7 +754,7 @@ Random Options
 </div>
 </div>
 </div>
-<div class="g-col-1" data-index="7" data-categories="UmFuZG9taXphdGlvbg==" data-listing-date-sort="1738454400000" data-listing-file-modified-sort="1757681691723" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<div class="g-col-1" data-index="7" data-categories="UmFuZG9taXphdGlvbg==" data-listing-date-sort="1738454400000" data-listing-file-modified-sort="1757691115573" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
 <a href="./templates/random_options_predefined.html" class="quarto-grid-link">
 </a><div class="quarto-grid-item card h-100 card-left"><a href="./templates/random_options_predefined.html" class="quarto-grid-link">
 <p class="card-img-top">
@@ -768,7 +775,7 @@ Predefined Random Options
 </div>
 </div>
 </div>
-<div class="g-col-1" data-index="8" data-categories="UmVhY3Rpdml0eQ==" data-listing-date-sort="1740787200000" data-listing-file-modified-sort="1757681691723" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<div class="g-col-1" data-index="8" data-categories="UmVhY3Rpdml0eQ==" data-listing-date-sort="1740787200000" data-listing-file-modified-sort="1757691115573" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
 <a href="./templates/reactive_questions.html" class="quarto-grid-link">
 </a><div class="quarto-grid-item card h-100 card-left"><a href="./templates/reactive_questions.html" class="quarto-grid-link">
 <p class="card-img-top">
@@ -789,7 +796,7 @@ Reactive Questions
 </div>
 </div>
 </div>
-<div class="g-col-1" data-index="9" data-categories="UmVhY3Rpdml0eQ==" data-listing-date-sort="1740873600000" data-listing-file-modified-sort="1757681691723" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<div class="g-col-1" data-index="9" data-categories="UmVhY3Rpdml0eQ==" data-listing-date-sort="1740873600000" data-listing-file-modified-sort="1757691115573" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
 <a href="./templates/reactive_drilldown.html" class="quarto-grid-link">
 </a><div class="quarto-grid-item card h-100 card-left"><a href="./templates/reactive_drilldown.html" class="quarto-grid-link">
 <p class="card-img-top">
@@ -810,7 +817,7 @@ Reactive drilldown
 </div>
 </div>
 </div>
-<div class="g-col-1" data-index="10" data-categories="UmVhY3Rpdml0eQ==" data-listing-date-sort="1740960000000" data-listing-file-modified-sort="1757681691723" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<div class="g-col-1" data-index="10" data-categories="UmVhY3Rpdml0eQ==" data-listing-date-sort="1740960000000" data-listing-file-modified-sort="1757691115573" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
 <a href="./templates/external_redirect.html" class="quarto-grid-link">
 </a><div class="quarto-grid-item card h-100 card-left"><a href="./templates/external_redirect.html" class="quarto-grid-link">
 <p class="card-img-top">
@@ -831,7 +838,7 @@ External Redirect
 </div>
 </div>
 </div>
-<div class="g-col-1" data-index="11" data-categories="UmVhY3Rpdml0eQ==" data-listing-date-sort="1741046400000" data-listing-file-modified-sort="1757681691723" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="198">
+<div class="g-col-1" data-index="11" data-categories="UmVhY3Rpdml0eQ==" data-listing-date-sort="1741046400000" data-listing-file-modified-sort="1757691115573" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="198">
 <a href="./templates/live_polling.html" class="quarto-grid-link">
 </a><div class="quarto-grid-item card h-100 card-left"><a href="./templates/live_polling.html" class="quarto-grid-link">
 <p class="card-img-top">
@@ -852,7 +859,7 @@ Live Polling
 </div>
 </div>
 </div>
-<div class="g-col-1" data-index="12" data-categories="Q29uam9pbnQ=" data-listing-date-sort="1743465600000" data-listing-file-modified-sort="1757681691723" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<div class="g-col-1" data-index="12" data-categories="Q29uam9pbnQ=" data-listing-date-sort="1743465600000" data-listing-file-modified-sort="1757691115573" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
 <a href="./templates/conjoint_buttons.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -873,7 +880,7 @@ Choice-based-conjoint Survey with Buttons
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="13" data-categories="Q29uam9pbnQ=" data-listing-date-sort="1743552000000" data-listing-file-modified-sort="1757681691723" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<div class="g-col-1" data-index="13" data-categories="Q29uam9pbnQ=" data-listing-date-sort="1743552000000" data-listing-file-modified-sort="1757691115573" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
 <a href="./templates/conjoint_tables.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -894,7 +901,7 @@ Choice-based-conjoint Survey with Tables
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="14" data-categories="Q3VzdG9t" data-listing-date-sort="1746057600000" data-listing-file-modified-sort="1757681691723" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<div class="g-col-1" data-index="14" data-categories="Q3VzdG9t" data-listing-date-sort="1746057600000" data-listing-file-modified-sort="1757691115573" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
 <a href="./templates/custom_leaflet_map.html" class="quarto-grid-link">
 </a><div class="quarto-grid-item card h-100 card-left"><a href="./templates/custom_leaflet_map.html" class="quarto-grid-link">
 <p class="card-img-top">
@@ -915,7 +922,7 @@ Custom Leaflet Map
 </div>
 </div>
 </div>
-<div class="g-col-1" data-index="15" data-categories="Q3VzdG9t" data-listing-date-sort="1746144000000" data-listing-file-modified-sort="1757681691723" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
+<div class="g-col-1" data-index="15" data-categories="Q3VzdG9t" data-listing-date-sort="1746144000000" data-listing-file-modified-sort="1757691115573" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65">
 <a href="./templates/custom_plotly_chart.html" class="quarto-grid-link">
 </a><div class="quarto-grid-item card h-100 card-left"><a href="./templates/custom_plotly_chart.html" class="quarto-grid-link">
 <p class="card-img-top">
@@ -1003,13 +1010,14 @@ Custom Plotly Chart
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

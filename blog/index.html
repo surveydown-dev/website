@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -36,18 +36,19 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-befe23ebd2f54d8af2c8a89d1a1611f1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-3232ff2542485a8813775321f3b106fc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-ecd8664d0150bd9105b7b95154771319.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-3232ff2542485a8813775321f3b106fc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-bbc99b88f32aa90fa47c28cdfad4b271.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-16565f984f715e0dccfe4f31ed1d6fc5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-bbc99b88f32aa90fa47c28cdfad4b271.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -122,7 +123,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -320,6 +321,8 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">surveydown.org</span>
     </a>
@@ -413,7 +416,7 @@ window.Quarto = {
     </div>
 </div>
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="UiUyQ3BhY2thZ2UlMkNzaGlueSUyQ3R1dG9yaWFsJTJDR1VJ" data-listing-date-sort="1751155200000" data-listing-file-modified-sort="1757681691594" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1776">
+<div class="quarto-post image-right" data-index="0" data-categories="UiUyQ3BhY2thZ2UlMkNzaGlueSUyQ3R1dG9yaWFsJTJDR1VJ" data-listing-date-sort="1751155200000" data-listing-file-modified-sort="1757691115445" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1776">
 <div class="thumbnail"><a href="../blog/2025-06-29-sdstudio/index.html" class="no-external">
 
 <img loading="lazy" src="../blog/2025-06-29-sdstudio/banner.png" class="thumbnail-image">
@@ -441,7 +444,7 @@ John Paul Helveston, Pingfan Hu
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="UlN0dWRpbyUyQ3R1dG9yaWFs" data-listing-date-sort="1744070400000" data-listing-file-modified-sort="1757681691479" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="630">
+<div class="quarto-post image-right" data-index="1" data-categories="UlN0dWRpbyUyQ3R1dG9yaWFs" data-listing-date-sort="1744070400000" data-listing-file-modified-sort="1757691115335" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="630">
 <div class="thumbnail"><a href="../blog/2025-04-08-surveydown-gadgets/index.html" class="no-external">
 
 <img loading="lazy" src="../blog/2025-04-08-surveydown-gadgets/banner.png" class="thumbnail-image">
@@ -469,7 +472,7 @@ John Paul Helveston, </a><a href="https://pingfanhu.com">Pingfan Hu</a>
 
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="UiUyQ0NSQU4=" data-listing-date-sort="1734652800000" data-listing-file-modified-sort="1757681691366" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="755">
+<div class="quarto-post image-right" data-index="2" data-categories="UiUyQ0NSQU4=" data-listing-date-sort="1734652800000" data-listing-file-modified-sort="1757691115224" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="755">
 <div class="thumbnail"><a href="../blog/2024-12-20-surveydown-on-cran/index.html" class="no-external">
 
 <img loading="lazy" src="../blog/2024-12-20-surveydown-on-cran/banner.png" class="thumbnail-image">
@@ -497,7 +500,7 @@ John Paul Helveston
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="Ug==" data-listing-date-sort="1726617600000" data-listing-file-modified-sort="1757681691363" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1410">
+<div class="quarto-post image-right" data-index="3" data-categories="Ug==" data-listing-date-sort="1726617600000" data-listing-file-modified-sort="1757691115221" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1410">
 <div class="thumbnail"><a href="../blog/2024-09-18-new-app-design/index.html" class="no-external">
 
 <img loading="lazy" src="../blog/2024-09-18-new-app-design/banner.png" class="thumbnail-image">
@@ -525,7 +528,7 @@ John Paul Helveston
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="UiUyQ3R1dG9yaWFsJTJDY29uam9pbnQ=" data-listing-date-sort="1724803200000" data-listing-file-modified-sort="1757681691359" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2476">
+<div class="quarto-post image-right" data-index="4" data-categories="UiUyQ3R1dG9yaWFsJTJDY29uam9pbnQ=" data-listing-date-sort="1724803200000" data-listing-file-modified-sort="1757691115217" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2476">
 <div class="thumbnail"><a href="../blog/2024-08-28-choice-based-conjoint-surveys-with-surveydown/index.html" class="no-external">
 
 <img loading="lazy" src="../blog/2024-08-28-choice-based-conjoint-surveys-with-surveydown/images/banner.png" class="thumbnail-image">
@@ -553,7 +556,7 @@ John Paul Helveston
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="UiUyQ3BhY2thZ2UlMkNtYXJrZG93biUyQ3NoaW55JTJDcXVhcnRv" data-listing-date-sort="1724198400000" data-listing-file-modified-sort="1757681691355" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="18" data-listing-word-count-sort="3593">
+<div class="quarto-post image-right" data-index="5" data-categories="UiUyQ3BhY2thZ2UlMkNtYXJrZG93biUyQ3NoaW55JTJDcXVhcnRv" data-listing-date-sort="1724198400000" data-listing-file-modified-sort="1757691115213" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="18" data-listing-word-count-sort="3593">
 <div class="thumbnail"><a href="../blog/2024-08-21-introducing-surveydown/index.html" class="no-external">
 
 <img loading="lazy" src="../blog/2024-08-21-introducing-surveydown/banner.png" class="thumbnail-image">
@@ -648,13 +651,14 @@ John Paul Helveston
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

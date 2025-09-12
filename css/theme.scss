@@ -6,13 +6,8 @@
 $navbar-font-family: "Raleway";
 $headings-font-family: "Raleway";
 $font-family-base: "Raleway";
-
-// Page layout
 $grid-sidebar-width: 300px !default;
 $grid-margin-width: 300px !default;
-.sidebar-item-section > .sidebar-item-container > .sidebar-item-text {
-  font-weight: bold;
-}
 
 /*-- scss:rules --*/
 
@@ -22,6 +17,7 @@ $grid-margin-width: 300px !default;
 body {
   font-family: "Roboto", $font-family-base, sans-serif;
 }
+
 div.quarto-post .metadata {
   font-family: "Roboto", $font-family-base, sans-serif;
 }
@@ -31,11 +27,16 @@ h1, .h1, h2, .h2, h3, .h3 {
   font-weight: 800;
 }
 
+/* Sidebar styles */
+.sidebar-item-section > .sidebar-item-container > .sidebar-item-text {
+  font-weight: bold;
+}
+
 /* Question border */
 .form-group {
-  border: 1px solid #ddd;  /* Light gray border */
-  border-radius: 5px;      /* Rounded corners */
-  padding: 1rem;           /* Inner spacing */
+  border: 1px solid #ddd;    /* Light gray border */
+  border-radius: 5px;            /* Rounded corners */
+  padding: 1rem;                 /* Inner spacing */
   background-color: #f9f9f9; /* Light background */
 }
 
@@ -75,4 +76,36 @@ h1, .h1, h2, .h2, h3, .h3 {
 }
 p {
   margin-bottom: 8px;
+}
+
+/* Footer */
+.nav-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  min-height: 1em;
+  padding-top: 0.5em;
+  padding-bottom: 0em;
+  z-index: 1000;
+}
+
+footer.footer .nav-footer, #quarto-header>nav {
+  padding-top: 0em;
+}
+.nav-footer-center {
+  min-height: 2em;
+}
+
+// Padding to avoid content overlap
+main.content {
+  padding-bottom: 4em;
+}
+
+@media (max-width: 767.98px) {
+  .nav-footer-center,
+  .nav-footer-left,
+  .nav-footer-right {
+    margin-top: -1em;
+    margin-bottom: 0em;
+  }
 }

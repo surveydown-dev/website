@@ -3,16 +3,24 @@ title: "Conditional Logic"
 code-annotations: hover
 ---
 
-This page talks about the `sd_show_if()` function to conditionally display [Questions](#conditional-question-display) and [Pages](#conditional-page-display), and the `sd_skip_forward()` function to conditionally [Skip to Pages](#conditional-forward-page-skipping) in surveydown, followed by examples of [Common Conditions](#common-conditions) that you can use with these functions. These functions allow you to control the flow of your survey based on the respondent's answers.
+In surveydown, there are 3 conditional logic functions you can use to control the content and flow of your survey:
 
-## Conditional Question Display
+1. `sd_show_if()` to show a question or a page if a condition is `TRUE`. See details in [Conditional Showing](#conditional-showing).
+2. `sd_skip_if()` to skip forward to a page if a condition is `TRUE`. See details in [Conditional Skipping](#conditional-skipping).
+3. `sd_stop_if()` to stop the navigation if a condition is `TRUE`. See details in [Conditional Stopping](#conditional-stopping).
 
-It is often useful to have a question display based on some condition, such as the respondent choosing a particular value in a multiple choice question. This can be achieved by the `sd_show_if()` function.
+## Conditional Showing
+
+The `sd_show_if()` function supports both conditional **question** display and conditional **page** display.
+
+### Conditional Question Display
+
+It is often useful to show a **question** based on some condition, such as the respondent choosing a particular value in a multiple choice question. This can be achieved by the `sd_show_if()` function.
 
 For example, let's say we have a choice question about people's favorite penguin type, and the last option is "other". If the respondent chose it, you may want a second question to display that allows them to specify the "other" penguin type, like this:
 
 <center>
-<img src="../images/screenshots/show_if.gif" style="max-width: 600px; width: 100%;">
+<img src="/images/screenshots/show_if.gif" style="max-width: 600px; width: 100%;">
 </center>
 <br>
 
@@ -62,7 +70,7 @@ server <- function(input, output, session) {
 }
 ```
 
-The structure of the condition in the `sd_show_if()` function is always:
+The structure of the `sd_show_if()` function for question display is:
 
 > `<condition> ~ "target_question_id"`
 
@@ -72,9 +80,9 @@ In the example above, `input$penguins == "other"` is the condition, and `"pengui
 
 Take a look at the [Common Conditions](#common-conditions) section for examples of other types of supported conditions you can use to conditionally display questions.
 
-## Conditional Page Display
+### Conditional Page Display
 
-You can use `sd_show_if()` to also conditionally show whole pages using the same pattern:
+You can use `sd_show_if()` to also conditionally show a **page** in a similar pattern. The structure of the `sd_show_if()` function for page display is:
 
 ```{r}
 sd_show_if(
@@ -85,7 +93,7 @@ sd_show_if(
 One use case for this is a design where you want to randomly show respondents one of a set of pages. For example, let's say you have versions A and B of page 2 in your survey, and you want to randomly show one to each respondent. Here's a visual explanation of this setup:
 
 <center>
-<img src="../images/show_if_page.png" style="max-width: 700px; width: 100%;">
+<img src="/images/show_if_page.png" style="max-width: 700px; width: 100%;">
 </center>
 <br>
 
@@ -161,9 +169,51 @@ This approach will hide both `page2a` and `page2b` by default and only show the 
 
 Note that we're also using `sd_store_value()` here to store the random value, A or B, in the response data so that we can know later which page was shown for each respondent.
 
-## Conditional Forward Page Skipping
+## Conditional Skipping
 
-{{< include ../chunks/skip-forward.qmd >}}
+{{< include /chunks/skip-if.qmd >}}
+
+## Conditional Stopping
+
+Sometimes you may want to stop the survey navigation based on some condition. For example, say you want to collect respondents' ZIP code. In the U.S., ZIP codes are 5-digit numbers, so if a respondent enters a ZIP code that is not 5 digits long, you may want to stop the navigation and prevent them from proceeding further in the survey.
+
+Here is how you can implement this. Firstly, in the **survey.qmd** file, you would define a question to collect the ZIP code, like this:
+
+```{r}
+#| echo: fenced
+
+sd_question(
+  type  = "numeric",
+  id    = "zip",
+  label = "What's your zip code?"
+)
+```
+
+Then, in the **app.R** file, you can use the `sd_stop_if()` function to define the condition that will stop the navigation if the ZIP code is not 5 digits long, like this:
+
+```{r}
+server <- function(input, output, session) {
+
+  sd_stop_if(
+    # The zip question only accepts a 5-digit response
+    nchar(input$zip) != 5 ~ "Zip code must be 5 digits."
+  )
+
+  sd_server(db = db)
+}
+```
+
+The structure of the `sd_stop_if()` function is:
+
+```{r}
+sd_stop_if(
+  <condition> ~ "error_message"
+)
+```
+
+It means: if the `<condition>` is `TRUE`, display the `"error_message"` to the respondent while they attempt to trigger the navigation.
+
+Likewise, `sd_stop_if()` supports multiple conditions, each separated by a comma. If there are more than one conditions on the same page, the error messages will be concatenated and displayed together.
 
 ## Common Conditions
 
@@ -171,7 +221,7 @@ This section highlights some of the most common types of conditions you might ne
 
 ::: {.callout-note}
 
-While we use the `sd_show_if()` function in most of these examples, the same logic applies to conditions used in the `sd_skip_forward()` function.
+While we use the `sd_show_if()` function in most of these examples, similar logic applies to `sd_skip_if()` and `sd_stop_if()`.
 
 :::
 
@@ -245,7 +295,7 @@ For [`"matrix"`](question-types.html#matrix) type questions, `sd_is_answered()` 
 
 ### Custom functions
 
-For situations where the conditional logic is more complex, we recommend defining a custom function that will return a logical value (`TRUE` or `FALSE`). You can then pass this function to the `sd_show_if()` or `sd_skip_forward()` functions as a condition. 
+For situations where the conditional logic is more complex, we recommend defining a custom function that will return a logical value (`TRUE` or `FALSE`). You can then pass this function to `sd_show_if()`, `sd_skip_if()`, or `sd_stop_if()` as a condition.
 
 For example, let's say we had a `mc` type question where we asked how many cars the respondent owned, and we included numeric options `1` through `5` as well as a final option `"6 or more"`. If we wanted to set a condition that would return `TRUE` if the user had more than one car, using `as.numeric(input$question_id) > 1` as the condition would be problematic, because this would return `NA` if the respondent chose the `"6 or more"` option.
 
@@ -258,10 +308,7 @@ server <- function(input, output, session) {
     if (is.null(input$car_number)) {
       return(FALSE)
     }
-    num_cars <- suppressWarnings(as.numeric(input$car_number))
-    if (is.na(num_cars)) {
-      return(TRUE)
-    }
+    num_cars <- as.numeric(input$car_number)
     return(num_cars > 1)
   }
 
@@ -274,7 +321,7 @@ server <- function(input, output, session) {
 }
 ```
 
-In the `more_than_one_car()` function, we first return `FALSE` if the question is not yet answered (that's the `if (is.null(input$car_number))` part). Then we obtain the numeric value of the `car_number` question using `as.numeric(input$car_number)`. We included a `suppressWarnings()` call here only because R will warn you if the result is `NA` by coercion. This will only happen if the respondent chose the `"6 or more"` option, in which case we return `TRUE`. If not, then we return the simple condition `num_cars > 1` since we can safely know that the value of `num_cars` is a number.
+In the `more_than_one_car()` function, we first return `FALSE` if the question is not yet answered (that's the `if (is.null(input$car_number))` part). Then we obtain the numeric value of the `car_number` question using `as.numeric(input$car_number)`. Then we return the simple condition `num_cars > 1`, which will return `TRUE` if the respondent chose a number greater than 1, or `FALSE` otherwise (including if they chose `"6 or more"`).
 
 ### Custom values
 

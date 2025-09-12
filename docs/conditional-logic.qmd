@@ -13,7 +13,7 @@ In surveydown, there are 3 conditional logic functions you can use to control th
 
 The `sd_show_if()` function supports both conditional **question** display and conditional **page** display.
 
-### Conditional Question Display
+### Showing Questions
 
 It is often useful to show a **question** based on some condition, such as the respondent choosing a particular value in a multiple choice question. This can be achieved by the `sd_show_if()` function.
 
@@ -80,7 +80,7 @@ In the example above, `input$penguins == "other"` is the condition, and `"pengui
 
 Take a look at the [Common Conditions](#common-conditions) section for examples of other types of supported conditions you can use to conditionally display questions.
 
-### Conditional Page Display
+### Showing Pages
 
 You can use `sd_show_if()` to also conditionally show a **page** in a similar pattern. The structure of the `sd_show_if()` function for page display is:
 
@@ -327,7 +327,7 @@ In the `more_than_one_car()` function, we first return `FALSE` if the question i
 
 Sometimes you'll want to condition on values that aren't directly related to question responses. For example, you might want to randomly assign respondents to different survey versions or experimental conditions.
 
-A common example is the same situation as the [Conditional Page Display](#conditional-page-display) section above where you have two versions of a page, `page2a` and `page2b`, and you want half of your respondents to see page 2a and the other half to see page 2b. You can accomplish this by:
+A common example is the same situation as the [Showing Pages](#showing-pages) section above where you have two versions of a page, `page2a` and `page2b`, and you want half of your respondents to see page 2a and the other half to see page 2b. You can accomplish this by:
 
 1. Generating a random condition value, A or B
 2. Storing that value for later use

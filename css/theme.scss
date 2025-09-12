@@ -7,6 +7,13 @@ $navbar-font-family: "Raleway";
 $headings-font-family: "Raleway";
 $font-family-base: "Raleway";
 
+// Page layout
+$grid-sidebar-width: 300px !default;
+$grid-margin-width: 300px !default;
+.sidebar-item-section > .sidebar-item-container > .sidebar-item-text {
+  font-weight: bold;
+}
+
 /*-- scss:rules --*/
 
 /*-- Raleway numbers aren't aligned, so use Roboto for numbers only: --*/
@@ -68,23 +75,4 @@ h1, .h1, h2, .h2, h3, .h3 {
 }
 p {
   margin-bottom: 8px;
-}
-
-/* Sidebar */
-/* Sidebar Width */
-body.docked .sidebar.sidebar-navigation {
-  width: 260px;
-}
-/* Content Area */
-.page-columns .content {
-  margin-left: 30px; /* Adjust as needed */
-}
-/* Section Headers */
-.sidebar-item-section > .sidebar-item-container > .sidebar-item-text {
-  font-weight: bold;
-}
-
-/* Grid Image Ratio fix */
-.thumbnail-image.card-img {
-  height: auto !important;
 }

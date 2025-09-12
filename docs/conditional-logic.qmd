@@ -11,8 +11,6 @@ In surveydown, there are 3 conditional logic functions you can use to control th
 
 ## Conditional Showing
 
-The `sd_show_if()` function supports both conditional **question** display and conditional **page** display.
-
 ### Showing Questions
 
 It is often useful to show a **question** based on some condition, such as the respondent choosing a particular value in a multiple choice question. This can be achieved by the `sd_show_if()` function.
@@ -86,9 +84,12 @@ You can use `sd_show_if()` to also conditionally show a **page** in a similar pa
 
 ```{r}
 sd_show_if(
-  <condition> ~ "target_page_id"
+  <condition_1> ~ "target_page_id_a",
+  <condition_2> ~ "target_page_id_b"
 )
 ```
+
+Note that there are 2 condition checks and 2 target page branches in the example above. It means the navigation flow will choose from either page A or page B to show based on which condition is `TRUE`.
 
 One use case for this is a design where you want to randomly show respondents one of a set of pages. For example, let's say you have versions A and B of page 2 in your survey, and you want to randomly show one to each respondent. Here's a visual explanation of this setup:
 

@@ -1,8 +1,9 @@
-@import"https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900";
-@import"https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,600;0,800;0,900&display=swap&text=0123456789";
+@import "https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900";
+@import "https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,600;0,800;0,900&display=swap&text=0123456789";
 
 /*-- scss:defaults --*/
 
+// Font families
 $navbar-font-family: "Raleway";
 $headings-font-family: "Raleway";
 $font-family-base: "Raleway";
@@ -10,18 +11,16 @@ $font-family-base: "Raleway";
 // Page layout
 $grid-sidebar-width: 300px !default;
 $grid-margin-width: 300px !default;
-.sidebar-item-section > .sidebar-item-container > .sidebar-item-text {
-  font-weight: bold;
-}
 
 /*-- scss:rules --*/
 
-/*-- Raleway numbers aren't aligned, so use Roboto for numbers only: --*/
-/*-- https://stackoverflow.com/a/68779757/1456821 --*/
-
+/* Typography */
+/* Raleway numbers aren't aligned, so use Roboto for numbers only: */
+/* https://stackoverflow.com/a/68779757/1456821 */
 body {
   font-family: "Roboto", $font-family-base, sans-serif;
 }
+
 div.quarto-post .metadata {
   font-family: "Roboto", $font-family-base, sans-serif;
 }
@@ -31,48 +30,85 @@ h1, .h1, h2, .h2, h3, .h3 {
   font-weight: 800;
 }
 
-/* Question border */
-.form-group {
-  border: 1px solid #ddd;  /* Light gray border */
-  border-radius: 5px;      /* Rounded corners */
-  padding: 1rem;           /* Inner spacing */
-  background-color: #f9f9f9; /* Light background */
+p {
+  margin-bottom: 8px;
 }
 
-/* Margin of question label */
+/* Sidebar */
+.sidebar-item-section > .sidebar-item-container > .sidebar-item-text {
+  font-weight: bold;
+}
+
+.sidebar-item-container .active {
+  font-weight: bold !important;
+}
+
+/* Form elements */
+.form-group {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 1rem;
+  background-color: #f9f9f9;
+}
+
 .form-group > label.control-label {
   margin-top: 0rem;
   margin-bottom: 0.3rem;
 }
 
-/* Margin of question options */
 .radio {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
 }
 
-/* Center-align radio and checkbox button groups */
+/* Button groups */
 .radio-group-buttons,
 .checkbox-group-buttons {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
+
 .btn-group-container-sw {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-/* Bold the active sidebar item */
-.sidebar-item-container .active {
-  font-weight: bold !important;
-}
-
-/* Styles for multiple choice buttons (gap: 0.5rem) */
 .checkbox-group-buttons .btn-group-container-sw {
   gap: 0.5rem;
 }
-p {
-  margin-bottom: 8px;
+
+/* Footer */
+.nav-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  min-height: 1em;
+  padding-top: 0.5em;
+  padding-bottom: 0em;
+  z-index: 1000;
+}
+
+footer.footer .nav-footer, #quarto-header>nav {
+  padding-top: 0em;
+}
+
+.nav-footer-center {
+  min-height: 2em;
+}
+
+/* Layout */
+main.content {
+  padding-bottom: 4em;
+}
+
+/* Media queries */
+@media (max-width: 767.98px) {
+  .nav-footer-center,
+  .nav-footer-left,
+  .nav-footer-right {
+    margin-top: -1em;
+    margin-bottom: 0em;
+  }
 }

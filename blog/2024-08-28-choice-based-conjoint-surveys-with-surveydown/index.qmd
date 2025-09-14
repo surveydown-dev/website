@@ -19,6 +19,7 @@ format: html
 execute: 
   eval: false
 toc: true
+css: /css/surveydown.css
 ---
 
 ```{r}
@@ -29,7 +30,7 @@ toc: true
 library(surveydown)
 library(dplyr)
 library(glue)
-sd_setup()
+shiny::shinyOptions(bootstrapTheme = bslib::bs_theme(version = 5L))
 ```
 
 ::: {.callout-important}

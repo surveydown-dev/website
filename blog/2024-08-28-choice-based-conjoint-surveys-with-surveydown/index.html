@@ -108,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script><style>html{ scroll-behavior: smooth; }</style>
-<script src="../../site_libs/sw-buttons-group-0.8.7/buttons-group.js"></script>
+<script src="../../site_libs/sw-buttons-group-0.9.0/buttons-group.js"></script><link rel="stylesheet" href="../../css/surveydown.css">
 <meta property="og:title" content="Choice-based conjoint surveys in R with surveydown – surveydown.org">
 <meta property="og:description" content="A how-to guide for using R to design and implement choice-based conjoint surveys using the surveydown R package">
 <meta property="og:image" content="https://www.surveydown.org/blog/2024-08-28-choice-based-conjoint-surveys-with-surveydown/images/banner.png">
@@ -582,21 +582,9 @@ Note
 </label>
 <br><div id="cbc_q1" class="radio-group-buttons">
 <div aria-labelledby="cbc_q1-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
-<div class="btn-group btn-group-toggle" role="group">
-<button class="btn radiobtn btn-default">
-<input type="radio" autocomplete="off" name="cbc_q1" value="option_1"><strong>Option 1</strong><br><img src="images/honeycrisp.jpg" width="100"><br><strong>Type</strong>: Honeycrisp<br><strong>Price</strong>: $ 1 / lb<br><strong>Freshness</strong>: Average
-</button>
-</div>
-<div class="btn-group btn-group-toggle" role="group">
-<button class="btn radiobtn btn-default">
-<input type="radio" autocomplete="off" name="cbc_q1" value="option_2"><strong>Option 2</strong><br><img src="images/fuji.jpg" width="100"><br><strong>Type</strong>: Fuji<br><strong>Price</strong>: $ 3 / lb<br><strong>Freshness</strong>: Excellent
-</button>
-</div>
-<div class="btn-group btn-group-toggle" role="group">
-<button class="btn radiobtn btn-default">
-<input type="radio" autocomplete="off" name="cbc_q1" value="option_3"><strong>Option 3</strong><br><img src="images/redDelicious.jpg" width="100"><br><strong>Type</strong>: Red Delicious<br><strong>Price</strong>: $ 2.5 / lb<br><strong>Freshness</strong>: Average
-</button>
-</div>
+<input type="radio" autocomplete="off" id="cbc_q11" name="cbc_q1" value="option_1" class="btn-check"><label class="btn radiobtn btn-outline-primary" for="cbc_q11"><strong>Option 1</strong><br><img src="images/honeycrisp.jpg" width="100"><br><strong>Type</strong>: Honeycrisp<br><strong>Price</strong>: $ 1 / lb<br><strong>Freshness</strong>: Average</label>
+<input type="radio" autocomplete="off" id="cbc_q12" name="cbc_q1" value="option_2" class="btn-check"><label class="btn radiobtn btn-outline-primary" for="cbc_q12"><strong>Option 2</strong><br><img src="images/fuji.jpg" width="100"><br><strong>Type</strong>: Fuji<br><strong>Price</strong>: $ 3 / lb<br><strong>Freshness</strong>: Excellent</label>
+<input type="radio" autocomplete="off" id="cbc_q13" name="cbc_q1" value="option_3" class="btn-check"><label class="btn radiobtn btn-outline-primary" for="cbc_q13"><strong>Option 3</strong><br><img src="images/redDelicious.jpg" width="100"><br><strong>Type</strong>: Red Delicious<br><strong>Price</strong>: $ 2.5 / lb<br><strong>Freshness</strong>: Average</label>
 </div>
 </div>
 <script>
@@ -675,24 +663,9 @@ Note
 </label>
 <br><div id="cbc_q1" class="radio-group-buttons">
 <div aria-labelledby="cbc_q1-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
-<div class="btn-group btn-group-toggle" role="group">
-<button class="btn radiobtn btn-default">
-<input type="radio" autocomplete="off" name="cbc_q1" value="option_1">
-Option 1
-</button>
-</div>
-<div class="btn-group btn-group-toggle" role="group">
-<button class="btn radiobtn btn-default">
-<input type="radio" autocomplete="off" name="cbc_q1" value="option_2">
-Option 2
-</button>
-</div>
-<div class="btn-group btn-group-toggle" role="group">
-<button class="btn radiobtn btn-default">
-<input type="radio" autocomplete="off" name="cbc_q1" value="option_3">
-Option 3
-</button>
-</div>
+<input type="radio" autocomplete="off" id="cbc_q11" name="cbc_q1" value="option_1" class="btn-check"><label class="btn radiobtn btn-outline-primary" for="cbc_q11">Option 1</label>
+<input type="radio" autocomplete="off" id="cbc_q12" name="cbc_q1" value="option_2" class="btn-check"><label class="btn radiobtn btn-outline-primary" for="cbc_q12">Option 2</label>
+<input type="radio" autocomplete="off" id="cbc_q13" name="cbc_q1" value="option_3" class="btn-check"><label class="btn radiobtn btn-outline-primary" for="cbc_q13">Option 3</label>
 </div>
 </div>
 <script>

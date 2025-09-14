@@ -34,7 +34,7 @@ sd_setup()
 
 ::: {.callout-important}
 
-**This post was updated on 2024-09-23 to match the new architecture introduced in v0.3.0.** See the [blog post](https://surveydown.org/blog/2024-09-18-new-app-design/) on the v0.3.0 release for more details.
+**This post was updated on 2025-09-14 to match the latest package version**
 
 :::
 
@@ -48,9 +48,7 @@ If you're unfamiliar with what a conjoint survey is, take a look at this [quick 
 
 The key component of a choice-based conjoint survey is asking repsondents to make choices from randomized sets of choice questions. So the hard part is figuring out a way to show each respondent a different set of randomized questions. This post shows how you can achieve this in surveydown.
 
-Throughout this post, I will use a demo survey about people's preferences for apples with three attributes: `type`, `price`, and `freshness`.^[Yes, people have [actually done conjoint surveys on fruit](https://www.emerald.com/insight/content/doi/10.1108/00070709610150879/full/html) before.] 
-
-You can view the live demo survey [here](https://surveydown.shinyapps.io/conjoint/), and all files used to create the survey are on [this GitHub repo](https://github.com/surveydown-dev/demos/tree/main/conjoint-buttons).
+Throughout this post, I will use a demo survey about people's preferences for apples with three attributes: `type`, `price`, and `freshness`.^[Yes, people have [actually done conjoint surveys on fruit](https://www.emerald.com/insight/content/doi/10.1108/00070709610150879/full/html) before.] I will focus on one structure for the conjoint survey that uses the [`mc_buttons`](https://surveydown.org/docs/question-types.html#mc_buttons) question type for the main choice questions. You can view a live demo of that survey and the template used to create it [here](https://surveydown.org/templates/conjoint_buttons.html). An alternative structure is to display choice options in a table - that template can be found [here](https://surveydown.org/templates/conjoint_tables).
 
 ## Introduction
 
@@ -58,15 +56,13 @@ If you've never used surveydown before, take a look at the [Getting Started](htt
 
 The basic concept is this:
 
-1.  Design your survey as a [Quarto]({{< url_quarto >}}) document using markdown and R code.
-2.  Convert your survey into a [Shiny]({{< url_shiny >}}) app that can be hosted online and sent to respondents.
-3.  Store your survey responses in a [Supabase]({{< url_supabase >}}) database.
+1.  Design your survey as a [Quarto](https://quarto.org/) document using markdown and R code.
+2.  Convert your survey into a [Shiny](https://shiny.posit.co/) app that can be hosted online and sent to respondents.
+3.  Store your survey responses in a [Supabase](https://supabase.com/) database.
 
 ## Getting started 
 
-If you want to start from a blank slate, take a look at the [Getting Started](https://surveydown.org/docs/getting-started.html) documentation page. 
-
-For this post, we recommend starting from the demo survey available at [this GitHub repo](https://github.com/surveydown-dev/demos/tree/main/conjoint-buttons). It provides an already working survey that you can modify to the needs of your conjoint survey.
+For this post, we recommend starting from the demo survey available [here](https://surveydown.org/templates/conjoint_buttons.html). It provides an already working survey that you can modify to the needs of your conjoint survey.
 
 The demo repo has a lot of files in it, but the main files defining the survey itself are:
 
@@ -75,7 +71,7 @@ The demo repo has a lot of files in it, but the main files defining the survey i
 
 ::: {.callout-note}
 
-We recommend opening the `survey.Rproj` if you're working in RStudio to make sure RStudio opens to the correct project folder. 
+We recommend opening the `survey.Rproj` if you're working in RStudio to make sure RStudio opens to the correct project folder.
 
 :::
 
@@ -85,13 +81,13 @@ After the setup code chunk where we load the surveydown package, we have a serie
 
 In this demo, we have a few other examples included, like a conditionally displayed question (the `fav_fruit` question will not display if you choose "No" on the first question about liking fruit) as well as a question that skips people to the end (if you choose "blue" and not "red" on the `screening` page). The logic controlling the conditional display and skipping is defined with the `sd_skip_if()` function in the `app.R` file.
 
-None of this is necessary for a conjoint survey, but often times these are features that you may want to include, such as screening people out of the survey if they don't qualify to take it, so we include it for demonstration purposes.
+None of this is absolutely necessary for a conjoint survey, but often times these are features that you may want to include, such as screening people out of the survey if they don't qualify to take it, so we include it for demonstration purposes.
 
 ## Defining the choice questions
 
 The central component of every conjoint survey is the set of randomized choice questions. To implement these in surveydown, we pre-define our choice questions in a design file that we later use in the survey to select randomized sets of choice questions to display each respondent.
 
-We use the [cbcTools](https://jhelvy.github.io/cbcTools/) package to create the pre-defined design file. The code to create the choice questions for this demo survey is in the [`1_make_choice_questions.R`](https://github.com/surveydown-dev/demos/blob/main/conjoint-buttons/code/1_make_choice_questions.R) file in the demo repo. This code generates a data frame of randomized choice questions that we then save in the project directory as `choice_questions.csv`.
+We use the [cbcTools](https://jhelvy.github.io/cbcTools/) package to create the pre-defined design file. The code to create the choice questions for this demo survey is in the [`1_make_choice_questions.R`](https://github.com/surveydown-dev/templates/blob/main/conjoint_buttons/code/1_make_choice_questions.R) file in the demo repo. This code generates a data frame of randomized choice questions that we then save in the project directory as `choice_questions.csv`.
 
 ## Implementing the choice questions
 
@@ -156,24 +152,33 @@ make_cbc_options <- function(df) {
   options <- c("option_1", "option_2", "option_3")
 
   names(options) <- c(
-    glue("
-      **Option 1**<br>
-      <img src='{alt1$image}' width=100><br>
-      **Type**: {alt1$type}<br>
-      **Price**: $ {alt1$price} / lb
-    "),
-    glue("
-      **Option 2**<br>
-      <img src='{alt2$image}' width=100><br>
-      **Type**: {alt2$type}<br>
-      **Price**: $ {alt2$price} / lb
-    "),
-    glue("
-      **Option 3**<br>
-      <img src='{alt3$image}' width=100><br>
-      **Type**: {alt3$type}<br>
-      **Price**: $ {alt3$price} / lb
-    ")
+    glue(
+      "
+    **Option 1**<br>
+    <img src='{alt1$image}' width=100><br>
+    **Type**: {alt1$type}<br>
+    **Price**: $ {alt1$price} / lb<br>
+    **Freshness**: {alt1$freshness}
+  "
+    ),
+    glue(
+      "
+    **Option 2**<br>
+    <img src='{alt2$image}' width=100><br>
+    **Type**: {alt2$type}<br>
+    **Price**: $ {alt2$price} / lb<br>
+    **Freshness**: {alt2$freshness}
+  "
+    ),
+    glue(
+      "
+    **Option 3**<br>
+    <img src='{alt3$image}' width=100><br>
+    **Type**: {alt3$type}<br>
+    **Price**: $ {alt3$price} / lb<br>
+    **Freshness**: {alt3$freshness}
+  "
+    )
   )
   return(options)
 }
@@ -235,12 +240,13 @@ sd_question(
 
 And that's it! You now have 6 randomized choice questions!
 
-<!-- 
 ## Buttons versus tables 
 
 In the example above, the conjoint choice questions are displayed as "buttons" where all the information for each alternative is shown as a button. This works particularly well for mobile phone applications where the user may need to scroll vertically to see each option. 
 
-An alternative is to use a tabular layout where each column represents an alternative and the row names explain the attribute. This takes a little manipulation to get it right, but the key concept is to use `kable()` to display the transpose of the `df` data frame (the subset of rows for a particular respondent). We also use the wonderful [kableExtra](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html) package to modify some of the table stying. We don't explain this code in detail, but the gist of what we're doing here is creating a dataframe with our alternatives and displaying it as a table with `kable()`.
+An alternative is to use a table layout where each column represents an alternative and the row names explain the attribute. This takes a little manipulation to get it right, but the key concept is to use `kable()` to display the transpose of the `df` data frame (the subset of rows for a particular respondent). We also use the wonderful [kableExtra](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html) package to modify some of the table stying. We don't explain this code in detail in this blog post, but the gist of what we're doing here is creating a dataframe with our alternatives and displaying it as a table with `kable()`. 
+
+The main function doing this work in the [conjoint table](https://surveydown.org/templates/conjoint_tables) template is the `make_cbc_table()` function, which looks like this:
 
 ```{r}
 #| eval: true
@@ -248,34 +254,36 @@ An alternative is to use a tabular layout where each column represents an altern
 library(dplyr)
 library(kableExtra)
 
-# Create dataframe of the alternatives for the first choice question
-alts1 <- df |>
-  filter(qID == 1) |>
-  mutate(
-    price = paste(scales::dollar(price), "/ lb"),
-    image = paste0('<img src="', image, '" width=100>')) |>
-  # Make nicer attribute labels
-  select(
-    `Option:` = altID, 
-    ` ` = image,
-    `Price:` = price, 
-    `Type:` = type, 
-    `Freshness:` = freshness
-  )
+# Function to create the options table for a given choice question
+make_cbc_table <- function(df) {
+  alts <- df |>
+    mutate(
+      price = paste(scales::dollar(price), "/ lb"),
+      image = paste0('<img src="', image, '" width=100>')
+    ) |>
+    # Make nicer attribute labels
+    select(
+      `Option:` = altID,
+      ` ` = image,
+      `Price:` = price,
+      `Type:` = type,
+      `Freshness:` = freshness
+    )
+  row.names(alts) <- NULL # Drop row names
 
-# Drop row names
-row.names(alts1) <- NULL 
-
-# Display the table
-kable(t(alts1), escape = FALSE) |>
-  kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed"), 
-    full_width = FALSE, 
-    position = "center"
-  )
+  table <- kbl(t(alts), escape = FALSE) |>
+    kable_styling(
+      bootstrap_options = c("striped", "hover", "condensed"),
+      full_width = FALSE,
+      position = "center"
+    )
+  function() {
+    table
+  }
+}
 ```
 
-Of course, the table is just showing the options, but it doesn't allow respondents to indicate their choice. So we still need to create a 
+It is important to note that the table just shows the options, but it doesn't allow respondents to indicate their choice. So we still need to create a basic choice question like this:
 
 ```{r}
 #| eval: true
@@ -291,39 +299,34 @@ sd_question(
 )
 ```
 
+The final result is a set of choice questions that each look something like this:
+
 <center>
 <img src="images/cbc_table.png" width=500>
 </center>
-
- -->
-
 
 ## Preview and check
 
 The rest of the `server()` function in the `app.R` file has the remaining components we need, like any conditional display or skip logic. This is all standard features of any surveydown survey, so we won't cover them in detail here and instead direct you to the [documentation](https://surveydown.org/docs.html) for details.
 
-But before you go live, it's a good idea to do some quick testing. You can test your survey even without having it connected to a database by setting `ignore = TRUE` in the `sd_database()` function. Of course, you probably should also test it after connecting it to a database to ensure that responses are being properly stored. 
+But before you go live, it's a good idea to do some quick testing. You can test your survey even without having it connected to a database by setting `ignore = TRUE` in the `sd_db_connect()` function. Of course, you probably should also test it after connecting it to a database to ensure that responses are being properly stored. 
 
 When testing, you might get an error - don't panic! Read the terminal output carefully and debug. There's a good chance you may have missed a bug somewhere in your server code. Look in your `app.R` file to see if you can spot the error.
 
 ## Getting the data
 
-Once your survey is live and you start collecting responses, you can easily access your data with the `sd_get_data()` function. This is typically done in a separate R file, which might look something like this:
+Once your survey is live and you start collecting responses, you can easily access your data with the `sd_get_data()` function. This is typically done in a separate R file (e.g., see [here](https://github.com/surveydown-dev/templates/blob/main/conjoint_buttons/code/2_get_raw_data.R)), which might look something like this:
 
 ```{r}
 library(surveydown)
 
-db <- sd_database(
-  user   = 'postgres.axzkymswaxcasjdflkurrj',
-  host   = 'aws-0-us-east-1.pooler.supabase.com',
-  port   = 5678,
-  db_name = 'postgres',
-  table_name = 'my_table'
-)
+# Connect to database
+db <- sd_db_connect()
 
-data <- sd_get_data(db)
+# Pull in the data
+df <- sd_get_data(db)
 ```
 
-Obviously your settings in `sd_database()` would need to match those of your Supabase database that you created for your survey.
+For this to work, you will first have to make sure you've set up your database connection using `sd_db_config` (see [here](https://surveydown.org/docs/storing-data) for more).
 
-And that's it! We hope this post was helpful, and do go check out the [this GitHub repo](https://github.com/surveydown-dev/demos/blob/main/conjoint-buttons) to try out the demo yourself.
+And that's it! We hope this post was helpful, and do go check out the [conjoint buttons](https://surveydown.org/templates/conjoint_buttons) and [conjoint table](https://surveydown.org/templates/conjoint_tables) templates to try out the demos yourself!

@@ -74,9 +74,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-abacf43cb235ec66c890f5598a4564f5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-90eb906b97721a976e140603f995e2ce.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-abacf43cb235ec66c890f5598a4564f5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-90b20e41beb9ba6dfa004accff5a422e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-ff2866e089a03f556e3d38b1a3149123.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-90b20e41beb9ba6dfa004accff5a422e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -590,7 +590,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="#launch-the-r-console" id="toc-launch-the-r-console" class="nav-link" data-scroll-target="#launch-the-r-console">Launch the R Console</a></li>
   <li><a href="#shiny" id="toc-shiny" class="nav-link" data-scroll-target="#shiny">Shiny</a></li>
   <li><a href="#surveydown" id="toc-surveydown" class="nav-link" data-scroll-target="#surveydown">surveydown</a></li>
-  <li><a href="#sdapps-optional" id="toc-sdapps-optional" class="nav-link" data-scroll-target="#sdapps-optional">sdApps (Optional)</a></li>
+  <li><a href="#sdstudio" id="toc-sdstudio" class="nav-link" data-scroll-target="#sdstudio">sdstudio</a></li>
   <li><a href="#other-r-packages" id="toc-other-r-packages" class="nav-link" data-scroll-target="#other-r-packages">Other R Packages</a></li>
   </ul>
 </li>
@@ -700,19 +700,19 @@ Note
 <li><a href="https://cran.r-project.org/web/packages/surveydown/index.html">surveydown CRAN Page</a></li>
 <li><a href="https://github.com/surveydown-dev/surveydown/">surveydown GitHub repo</a></li>
 <li><a href="docs/getting-started.html#install">surveydown installation docs</a></li>
-</ul></section><section id="sdapps-optional" class="level3"><h3 class="anchored" data-anchor-id="sdapps-optional">sdApps (Optional)</h3>
-<p><strong>sdApps</strong> is a companion R package with <strong>surveydown</strong>. It is intended for supportive webapps for surveydown. Now it has an <code>sd_studio()</code> function that launches the <strong>surveydown Studio</strong>, which supports GUI interface for survey construction, preview, and database management.</p>
-<p>In your R Console, run this to install <strong>sdApps</strong>:</p>
+</ul></section><section id="sdstudio" class="level3"><h3 class="anchored" data-anchor-id="sdstudio">sdstudio</h3>
+<p><strong>sdstudio</strong> is a companion R package with <strong>surveydown</strong>. It is intended for supportive webapps for surveydown. It has a single function: <code>sdstudio::launch()</code>, which launches the <strong>surveydown Studio</strong>. This is a locally run shiny app that supports a graphic interface for survey construction, preview, and data management.</p>
+<p>In your R Console, run this to install <strong>sdstudio</strong> from GitHub (it’s not yet on CRAN):</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># GitHub version - sdApps is not on CRAN yet</span></span>
-<span><span class="fu">pak</span><span class="fu">::</span><span class="fu">pak</span><span class="op">(</span><span class="st">"surveydown-dev/sdApps"</span>, ask <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># install.packages('pak')</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu">pak</span><span class="op">(</span><span class="st">"surveydown-dev/sdstudio"</span>, ask <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Call <code>sdApps::sd_studio()</code> to launch the <strong>surveydown Studio</strong>:</p>
+<p>Once installed, run this to launch the studio:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sdApps</span><span class="fu">::</span><span class="fu">sd_studio</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sdstudio</span><span class="fu">::</span><span class="fu">launch</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <center>
-<img src="../images/sd_studio.gif" style="width: 100%; max-width: 1000px;" alt="surveydown Studio">
+<img src="../images/sdstudio.gif" style="width: 100%; max-width: 1000px;" alt="surveydown Studio">
 </center>
 </section><section id="other-r-packages" class="level3"><h3 class="anchored" data-anchor-id="other-r-packages">Other R Packages</h3>
 <p>You might need some other R packages to get your survey running, for example, <code>tidyverse</code>, <code>kableExtra</code>, etc. Likewise, you can use the <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> function to install them:</p>
@@ -721,19 +721,6 @@ Note
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"kableExtra"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section></section><section id="database-connection" class="level2"><h2 class="anchored" data-anchor-id="database-connection">Database Connection</h2>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If you encounter connection problem using <strong>surveydown</strong> with versions earlier than <code>v0.12.5</code>, this part might be helpful for you.</p>
-</div>
-</div>
 <p>You might encounter connection problem caused by failure of GSSAPI (Generic Security Services Application Program Interface). It is a a protection layer for data security supported by PostgreSQL. In SQL management, it is controlled by the <code>gssencmode</code> argument.</p>
 <p>In previous versions of <strong>surveydown</strong> (before <code>v0.12.5</code>), the <code>sd_db_connect()</code> and <code>sd_dashboard()</code> functions have a <code>gssencmode</code> default to <code>"prefer"</code>, which enables GSSAPI, but may cause connection failure under some network conditions (VPN, for example). Our previous solution is to manually change <code>gssencmode</code> from <code>"prefer"</code> to <code>"disable"</code>, but it is less intuitive and causes more trouble than efficiency.</p>
 <p>Therefore, our current solution (versions after <code>v0.12.5</code>) is to remove the <code>gssencmode</code> argument from these functions, in which the GSSAPI is set to <code>"prefer"</code> by default, but if the connection errors due to network problem, it will auto-switch to <code>"disable"</code> and leave a message.</p>

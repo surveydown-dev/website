@@ -74,9 +74,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-abacf43cb235ec66c890f5598a4564f5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-90eb906b97721a976e140603f995e2ce.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-abacf43cb235ec66c890f5598a4564f5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-90b20e41beb9ba6dfa004accff5a422e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-ff2866e089a03f556e3d38b1a3149123.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-90b20e41beb9ba6dfa004accff5a422e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -588,6 +588,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#modifying-credentials" id="toc-modifying-credentials" class="nav-link" data-scroll-target="#modifying-credentials">Modifying credentials</a></li>
   <li><a href="#connecting-to-your-database-in-surveydown" id="toc-connecting-to-your-database-in-surveydown" class="nav-link" data-scroll-target="#connecting-to-your-database-in-surveydown">Connecting to your database in surveydown</a></li>
   <li><a href="#table-creation-and-data-operations" id="toc-table-creation-and-data-operations" class="nav-link" data-scroll-target="#table-creation-and-data-operations">Table creation and data operations</a></li>
+  <li><a href="#trouble-connecting" id="toc-trouble-connecting" class="nav-link" data-scroll-target="#trouble-connecting">Trouble connecting?</a></li>
   <li><a href="#cookies" id="toc-cookies" class="nav-link" data-scroll-target="#cookies">Cookies</a></li>
   </ul></nav>
     </div>
@@ -683,8 +684,14 @@ Note
 </section><section id="table-creation-and-data-operations" class="level2"><h2 class="anchored" data-anchor-id="table-creation-and-data-operations">Table creation and data operations</h2>
 <p>You never need to manually create a table in the database - it gets automatically created after you first run the survey. After you first set up the config and a <code>.env</code> file is properly created, run your survey locally and click past the first page, then you should see the table get created in the database. You can view it directly on supabase (if you’re using supabase), or you can see the table using the dashboard by running <code>sd_dashboard()</code>.</p>
 <p>The data gets updated in the database on every page turn (each time you push a next button) and after you close the browser, which is usually at the end of the survey, but just in case you close it early it will write to the database then too. This is why you usually have to click past the first page after initial configuration to see the table in the database.</p>
-</section><section id="cookies" class="level2"><h2 class="anchored" data-anchor-id="cookies">Cookies</h2>
-<p>By default, the data on each page will be locally stored in the browser cookies, though you can turn this feature off if you wish (see <a href="docs/survey-settings.html#cookies">here</a>).</p>
+</section><section id="trouble-connecting" class="level2"><h2 class="anchored" data-anchor-id="trouble-connecting">Trouble connecting?</h2>
+<p>If you’re having trouble connecting to your database, try these steps:</p>
+<ul>
+<li>Are you certain your password is correct? You can open your .env file in a text reader app or in your IDE to check it.</li>
+<li>Are you certain your credentials are correct? If you run <code><a href="https://pkg.surveydown.org/reference/sd_db_config.html">surveydown::sd_db_config()</a></code> again in your R console, you can see the current values stored in the <code>[]</code> symbols to check if those are correct.</li>
+<li>Are you getting a message about something related to <code>gssencmode</code>? Take a look <a href="https://surveydown.org/docs/troubleshooting#database-connection">here</a>.</li>
+</ul></section><section id="cookies" class="level2"><h2 class="anchored" data-anchor-id="cookies">Cookies</h2>
+<p>By default, the data on each page will be locally stored in the browser cookies, though you can turn this feature off if you wish (see <a href="https://surveydown.org/docs/survey-settings#cookies">here</a>).</p>
 <p>This is done so that the session state can be restored should a respondent lose an internet connection or close the browser on accident, etc. The responses on each page will not be written to the database until the respondent clicks the next button or if they close the browser.</p>
 
 

@@ -116,9 +116,17 @@ You never need to manually create a table in the database - it gets automaticall
 
 The data gets updated in the database on every page turn (each time you push a next button) and after you close the browser, which is usually at the end of the survey, but just in case you close it early it will write to the database then too. This is why you usually have to click past the first page after initial configuration to see the table in the database. 
 
+## Trouble connecting?
+
+If you're having trouble connecting to your database, try these steps:
+
+- Are you certain your password is correct? You can open your .env file in a text reader app or in your IDE to check it.
+- Are you certain your credentials are correct? If you run `surveydown::sd_db_config()` again in your R console, you can see the current values stored in the `[]` symbols to check if those are correct.
+- Are you getting a message about something related to `gssencmode`? Take a look [here](https://surveydown.org/docs/troubleshooting#database-connection).
+
 ## Cookies 
 
-By default, the data on each page will be locally stored in the browser cookies, though you can turn this feature off if you wish (see [here](docs/survey-settings.html#cookies)). 
+By default, the data on each page will be locally stored in the browser cookies, though you can turn this feature off if you wish (see [here](https://surveydown.org/docs/survey-settings#cookies)).
 
 This is done so that the session state can be restored should a respondent lose an internet connection or close the browser on accident, etc. The responses on each page will not be written to the database until the respondent clicks the next button or if they close the browser.
 

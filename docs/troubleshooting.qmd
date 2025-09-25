@@ -97,25 +97,25 @@ Some useful links:
 - [surveydown GitHub repo](https://github.com/surveydown-dev/surveydown/)
 - [surveydown installation docs](docs/getting-started.html#install)
 
-### sdApps (Optional)
+### sdstudio
 
-**sdApps** is a companion R package with **surveydown**. It is intended for supportive webapps for surveydown. Now it has an `sd_studio()` function that launches the **surveydown Studio**, which supports GUI interface for survey construction, preview, and database management.
+**sdstudio** is a companion R package with **surveydown**. It is intended for supportive webapps for surveydown. It has a single function: `sdstudio::launch()`, which launches the **surveydown Studio**. This is a locally run shiny app that supports a graphic interface for survey construction, preview, and data management.
 
-In your R Console, run this to install **sdApps**:
+In your R Console, run this to install **sdstudio** from GitHub (it's not yet on CRAN):
 
 ```{r}
-# GitHub version - sdApps is not on CRAN yet
-pak::pak("surveydown-dev/sdApps", ask = FALSE)
+# install.packages('pak')
+pak::pak("surveydown-dev/sdstudio", ask = FALSE)
 ```
 
-Call `sdApps::sd_studio()` to launch the **surveydown Studio**:
+Once installed, run this to launch the studio:
 
 ```{r}
-sdApps::sd_studio()
+sdstudio::launch()
 ```
 
 <center>
-<img src='/images/sd_studio.gif' style="width: 100%; max-width: 1000px;" alt="surveydown Studio"/>
+<img src='/images/sdstudio.gif' style="width: 100%; max-width: 1000px;" alt="surveydown Studio"/>
 </center>
 
 ### Other R Packages
@@ -128,12 +128,6 @@ install.packages("kableExtra")
 ```
 
 ## Database Connection
-
-::: {.callout-note}
-
-If you encounter connection problem using **surveydown** with versions earlier than `v0.12.5`, this part might be helpful for you.
-
-:::
 
 You might encounter connection problem caused by failure of GSSAPI (Generic Security Services Application Program Interface). It is a a protection layer for data security supported by PostgreSQL. In SQL management, it is controlled by the `gssencmode` argument.
 

@@ -88,7 +88,7 @@ None of this is absolutely necessary for a conjoint survey, but often times thes
 
 The central component of every conjoint survey is the set of randomized choice questions. To implement these in surveydown, we pre-define our choice questions in a design file that we later use in the survey to select randomized sets of choice questions to display each respondent.
 
-We use the [cbcTools](https://jhelvy.github.io/cbcTools/) package to create the pre-defined design file. The code to create the choice questions for this demo survey is in the [`1_make_choice_questions.R`](https://github.com/surveydown-dev/templates/blob/main/conjoint_buttons/code/1_make_choice_questions.R) file in the demo repo. This code generates a data frame of randomized choice questions that we then save in the project directory as `choice_questions.csv`.
+We use the [cbcTools](https://jhelvy.github.io/cbcTools/) package to create the pre-defined design file. The code to create the choice questions for this demo survey is in the [`1_make_choice_questions.R`](https://github.com/surveydown-dev/template_conjoint_buttons/blob/main/code/1_make_choice_questions.R) file in the demo repo. This code generates a data frame of randomized choice questions that we then save in the project directory as `choice_questions.csv`.
 
 ## Implementing the choice questions
 
@@ -316,7 +316,7 @@ When testing, you might get an error - don't panic! Read the terminal output car
 
 ## Getting the data
 
-Once your survey is live and you start collecting responses, you can easily access your data with the `sd_get_data()` function. This is typically done in a separate R file (e.g., see [here](https://github.com/surveydown-dev/templates/blob/main/conjoint_buttons/code/2_get_raw_data.R)), which might look something like this:
+Once your survey is live and you start collecting responses, you can easily access your data with the `sd_get_data()` function. This is typically done in a separate R file (e.g., see [here](https://github.com/surveydown-dev/template_conjoint_buttons/blob/main/code/2_get_raw_data.R)), which might look something like this:
 
 ```{r}
 library(surveydown)

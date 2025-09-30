@@ -711,38 +711,78 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="form-group shiny-input-container">
 <label class="control-label" id="age-label" for="age"><p>What’s your age?</p>
 </label>
-<input id="age" type="number" class="shiny-input-number form-control" data-update-on="change"><script>
+<input id="age" type="text" class="shiny-input-text form-control" value="" data-update-on="change"><script>
         $(document).ready(function() {
             $('#age').on('focus input change', function() {
                 Shiny.setInputValue('age_interacted', true, {priority: 'event'});
             });
 
-            // Restrict input to numeric characters (0-9) and plus/minus signs
-            $('#age').on('keypress', function(e) {
-                // Allow all key combinations with Ctrl or Cmd (for copy, paste, select all, etc.)
-                if (e.ctrlKey || e.metaKey) {
-                    return true;
-                }
+            // Transform the input to look like a number input
+            var inputElement = $('#age');
+            inputElement.attr('type', 'text'); // Keep as text for our validation
+            inputElement.addClass('numeric-input-with-spinner');
+            inputElement.wrap('<div class="numeric-input-container"></div>');
 
-                var char = String.fromCharCode(e.which);
-                // Allow: digits (0-9), plus sign (+), minus sign (-), backspace, delete, tab, escape, enter
-                if (/[0-9+\-]/.test(char) ||
-                    e.which === 8 || e.which === 46 || e.which === 9 || e.which === 27 || e.which === 13) {
-                    return true;
-                }
+            // Add native-style spinner
+            inputElement.after(`
+                <div class="native-spinner">
+                    <button type="button" class="native-spinner-button spinner-up" tabindex="-1"></button>
+                    <button type="button" class="native-spinner-button spinner-down" tabindex="-1"></button>
+                </div>
+            `);
+
+            var container = inputElement.parent();
+
+            // Spinner functionality
+            container.find('.spinner-up').on('mousedown', function(e) {
                 e.preventDefault();
-                return false;
+                var currentVal = parseFloat(inputElement.val()) || 0;
+                var newVal = currentVal + 1;
+                inputElement.val(newVal).trigger('input');
             });
 
-            // Also filter on paste events
+            container.find('.spinner-down').on('mousedown', function(e) {
+                e.preventDefault();
+                var currentVal = parseFloat(inputElement.val()) || 0;
+                var newVal = currentVal - 1;
+                inputElement.val(newVal).trigger('input');
+            });
+
+            // Custom numeric validation
+            $('#age').on('input', function(e) {
+                var val = $(this).val();
+                var filtered = '';
+                var hasDecimal = false;
+                var hasSign = false;
+
+                for (var i = 0; i < val.length; i++) {
+                    var char = val[i];
+
+                    // Allow +/- only at the beginning and only one
+                    if ((char === '+' || char === '-') && i === 0 && !hasSign) {
+                        filtered += char;
+                        hasSign = true;
+                    }
+                    // Allow digits
+                    else if (/[0-9]/.test(char)) {
+                        filtered += char;
+                    }
+                    // Allow decimal point only once
+                    else if (char === '.' && !hasDecimal) {
+                        filtered += char;
+                        hasDecimal = true;
+                    }
+                }
+
+                if (val !== filtered) {
+                    $(this).val(filtered);
+                }
+            });
+
+            // Handle paste events
             $('#age').on('paste', function(e) {
                 setTimeout(function() {
-                    var val = $('#age').val();
-                    // Remove any characters that are not digits, plus, or minus
-                    var filtered = val.replace(/[^0-9+\-]/g, '');
-                    if (val !== filtered) {
-                        $('#age').val(filtered);
-                    }
+                    $('#age').trigger('input');
                 }, 1);
             });
         });

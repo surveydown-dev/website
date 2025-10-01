@@ -74,9 +74,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f641d0f9f337b9346038f83425aa5db2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-ac4c02f88b267e69f85c1c3c4fc0a58c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-f641d0f9f337b9346038f83425aa5db2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-267c72f5fb8bc878b573d26eb18fd9cb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-d3f33e5d7e4eadfefdffa3dc38d20edd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-267c72f5fb8bc878b573d26eb18fd9cb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -107,11 +107,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script><style>html{ scroll-behavior: smooth; }</style>
 <meta property="og:title" content="Local Dashboard – surveydown.org">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://www.surveydown.org/images/screenshots/dashboard_1.png">
+<meta property="og:image" content="https://www.surveydown.org/images/screenshots/dashboard_local.png">
 <meta property="og:site_name" content="https://surveydown.org">
 <meta property="og:locale" content="es_ES">
-<meta property="og:image:height" content="1675">
-<meta property="og:image:width" content="2978">
+<meta property="og:image:height" content="2058">
+<meta property="og:image:width" content="2458">
 <meta name="twitter:title" content="Local Dashboard – surveydown.org">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://www.surveydown.org/docs/images/logo.png">
@@ -581,8 +581,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#dashboard-tab" id="toc-dashboard-tab" class="nav-link active" data-scroll-target="#dashboard-tab">Dashboard Tab</a></li>
-  <li><a href="#db-config-tab" id="toc-db-config-tab" class="nav-link" data-scroll-target="#db-config-tab">DB Config Tab</a></li>
+<li><a href="#local-mode" id="toc-local-mode" class="nav-link active" data-scroll-target="#local-mode">Local Mode</a></li>
+  <li><a href="#db-mode" id="toc-db-mode" class="nav-link" data-scroll-target="#db-mode">DB Mode</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -601,25 +601,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>The surveydown package has a dashboard app for viewing and modifying your database credentials as well as viewing your survey data. To launch the dashboard, run the following in your R console:</p>
+</header><p>This feature requires the <strong>sdstudio</strong> package. Install it using code below:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">surveydown</span><span class="fu">::</span><span class="fu"><a href="https://pkg.surveydown.org/reference/sd_dashboard.html">sd_dashboard</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu">pak</span><span class="op">(</span><span class="st">"surveydown-dev/sdstudio"</span>, ask <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>This will open a new browser window where you can navigate to the dashboard for your project. It has two tabs: “Dashboard” and “DB Config”.</p>
-<section id="dashboard-tab" class="level2"><h2 class="anchored" data-anchor-id="dashboard-tab">Dashboard Tab</h2>
-<p>The “Dashboard” tab looks like this:</p>
-<br><center>
-<img src="../images/screenshots/dashboard_1.png" width="100%">
-</center>
-<p><br></p>
-<p>The “Dashboard” tab allows you to view your survey data in a user-friendly interface. It contains survey answering statistics and response summarization charts. On the lower part you can preview the survey data sheet. There is a download button for you to obtain the survey data in CSV format.</p>
-</section><section id="db-config-tab" class="level2"><h2 class="anchored" data-anchor-id="db-config-tab">DB Config Tab</h2>
-<p>The “DB Config” tab looks like this:</p>
-<br><center>
-<img src="../images/screenshots/dashboard_2.png" width="100%">
-</center>
-<p><br></p>
-<p>In the “DB Config” tab, you can view and edit your database credentials. Therefore, you can either set up your credentials using the <code>sd_db_config()</code> function in your R console, or simply launch this dashboard app and modify them here.</p>
+<p>With the <strong>sdstudio</strong> package, you can launch the <strong>surveydown studio</strong>. It is a local shiny app that provides a variety of extended capabilities that supports <strong>surveydown</strong>. For a full introduciton to the surveydown studio, proceed to our blog post <a href="../blog/2025-06-29-sdstudio/index.html">Introducing sdstudio: A companion GUI for surveydown</a>.</p>
+<p>In the studio, there is a dashboard for viewing and modifying your database credentials as well as viewing your survey data. To launch the studio, run the following in your R console:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sdstudio</span><span class="fu">::</span><span class="fu">launch</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This will open a new browser window with 3 tabs. Nagivate to the <strong>Responses</strong> tab to access the local dashboard.</p>
+<p>The <strong>Responses</strong> tab in the surveydown studio allows you to view your survey data in a user-friendly interface. It contains survey answering statistics and response summarization charts. On the lower part you can preview the survey data sheet. There is a download button for you to obtain the survey data in CSV format.</p>
+<p>On the top right corner, you can toggle between <strong>Local</strong> and <strong>DB</strong> mode. The <strong>Local</strong> mode grabs the data from your <code>preview_data.csv</code> file, which is an auto-generated file when you don’t connect to a database. The <strong>DB</strong> mode grabs the data from your connected database.</p>
+<section id="local-mode" class="level2"><h2 class="anchored" data-anchor-id="local-mode">Local Mode</h2>
+<p>This is the <strong>Local</strong> mode dashboard:</p>
+<p><img src="../images/screenshots/dashboard_local.png" class="image-with-border img-fluid"></p>
+<p>In this mode, the <code>preview_data.csv</code> file is auto-selected. The attributes of this data file are displayed in different cards, followed by the actual data sheet preview in the “Survey Responses” card.</p>
+</section><section id="db-mode" class="level2"><h2 class="anchored" data-anchor-id="db-mode">DB Mode</h2>
+<p>In this mode, a “Database Connection” card is provided on the top. You can toggle it on and off by clicking the “Settings” button next to the card name. Input your database credentials here and click “Connect”. You’ll see the connection status on the top right corner.</p>
+<p>For more info on database connection, refer to the <a href="../docs/storing-data.html">Storing Data</a> page.</p>
+<p>This is how the “Database Connection” card looks like when it’s expanded:</p>
+<p><img src="../images/screenshots/dashboard_db_1.png" class="image-with-border img-fluid"></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Therefore, you can either set up your credentials using the <code>sd_db_config()</code> function in your R console, or simply launch this studio app and modify them here.</p>
+</div>
+</div>
+<p>When your connection is setup and ready, you can toggle the “Database Connection” card off and view your survey data. The layout is the same as the <strong>Local</strong> mode described above.</p>
+<p>This is how the dashboard looks like in <strong>DB</strong> mode:</p>
+<p><img src="../images/screenshots/dashboard_db_2.png" class="image-with-border img-fluid"></p>
 
 
 </section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

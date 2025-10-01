@@ -1307,7 +1307,7 @@
     "href": "docs/local-dashboard.html",
     "title": "Local Dashboard",
     "section": "",
-    "text": "The surveydown package has a dashboard app for viewing and modifying your database credentials as well as viewing your survey data. To launch the dashboard, run the following in your R console:\nsurveydown::sd_dashboard()\nThis will open a new browser window where you can navigate to the dashboard for your project. It has two tabs: “Dashboard” and “DB Config”.",
+    "text": "This feature requires the sdstudio package. Install it using code below:\n# install.packages(\"pak\")\npak::pak(\"surveydown-dev/sdstudio\", ask = FALSE)\nWith the sdstudio package, you can launch the surveydown studio. It is a local shiny app that provides a variety of extended capabilities that supports surveydown. For a full introduciton to the surveydown studio, proceed to our blog post Introducing sdstudio: A companion GUI for surveydown.\nIn the studio, there is a dashboard for viewing and modifying your database credentials as well as viewing your survey data. To launch the studio, run the following in your R console:\nsdstudio::launch()\nThis will open a new browser window with 3 tabs. Nagivate to the Responses tab to access the local dashboard.\nThe Responses tab in the surveydown studio allows you to view your survey data in a user-friendly interface. It contains survey answering statistics and response summarization charts. On the lower part you can preview the survey data sheet. There is a download button for you to obtain the survey data in CSV format.\nOn the top right corner, you can toggle between Local and DB mode. The Local mode grabs the data from your preview_data.csv file, which is an auto-generated file when you don’t connect to a database. The DB mode grabs the data from your connected database.",
     "crumbs": [
       "Documentation",
       "Data Management",
@@ -1315,11 +1315,11 @@
     ]
   },
   {
-    "objectID": "docs/local-dashboard.html#dashboard-tab",
-    "href": "docs/local-dashboard.html#dashboard-tab",
+    "objectID": "docs/local-dashboard.html#local-mode",
+    "href": "docs/local-dashboard.html#local-mode",
     "title": "Local Dashboard",
-    "section": "Dashboard Tab",
-    "text": "Dashboard Tab\nThe “Dashboard” tab looks like this:\n\n\n\n\nThe “Dashboard” tab allows you to view your survey data in a user-friendly interface. It contains survey answering statistics and response summarization charts. On the lower part you can preview the survey data sheet. There is a download button for you to obtain the survey data in CSV format.",
+    "section": "Local Mode",
+    "text": "Local Mode\nThis is the Local mode dashboard:\n\nIn this mode, the preview_data.csv file is auto-selected. The attributes of this data file are displayed in different cards, followed by the actual data sheet preview in the “Survey Responses” card.",
     "crumbs": [
       "Documentation",
       "Data Management",
@@ -1327,11 +1327,11 @@
     ]
   },
   {
-    "objectID": "docs/local-dashboard.html#db-config-tab",
-    "href": "docs/local-dashboard.html#db-config-tab",
+    "objectID": "docs/local-dashboard.html#db-mode",
+    "href": "docs/local-dashboard.html#db-mode",
     "title": "Local Dashboard",
-    "section": "DB Config Tab",
-    "text": "DB Config Tab\nThe “DB Config” tab looks like this:\n\n\n\n\nIn the “DB Config” tab, you can view and edit your database credentials. Therefore, you can either set up your credentials using the sd_db_config() function in your R console, or simply launch this dashboard app and modify them here.",
+    "section": "DB Mode",
+    "text": "DB Mode\nIn this mode, a “Database Connection” card is provided on the top. You can toggle it on and off by clicking the “Settings” button next to the card name. Input your database credentials here and click “Connect”. You’ll see the connection status on the top right corner.\nFor more info on database connection, refer to the Storing Data page.\nThis is how the “Database Connection” card looks like when it’s expanded:\n\n\n\n\n\n\n\nTip\n\n\n\nTherefore, you can either set up your credentials using the sd_db_config() function in your R console, or simply launch this studio app and modify them here.\n\n\nWhen your connection is setup and ready, you can toggle the “Database Connection” card off and view your survey data. The layout is the same as the Local mode described above.\nThis is how the dashboard looks like in DB mode:",
     "crumbs": [
       "Documentation",
       "Data Management",

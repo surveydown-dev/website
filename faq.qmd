@@ -22,10 +22,10 @@ Have a question but don't see an answer here? Feel free to make a post on GitHub
 
 surveydown might be a good fit for you today if…
 
-- you are comfortable using {{< var quarto >}} for rendering markdown into html outputs and {{< var rproject >}} for basic coding (you certainly don't need to be an R "expert" to use surveydown!)
+- you are comfortable using {{< var quarto >}} for rendering markdown into html outputs and {{< var rproject >}} for basic coding (you certainly don't need to be an R / coding "expert" to use surveydown!)
 - you are frustrated with alternative survey platforms that require expensive licenses or have limited features. 
 - you want to collaborate on surveys with others using reproducible tools like Git.
-- you don't mind using a project that is not fully polished or finished.
+- you don't mind using a project that is not fully polished or finished (but certainly good enough for proper research projects).
 
 surveydown might not be a good fit for you today if…
 
@@ -35,9 +35,9 @@ surveydown might not be a good fit for you today if…
 
 ## Why is my survey app so slow when starting?
 
-When a {surveydown} survey first runs, it checks for files in a **_survey** folder that contain the rendered content from your **survey.qmd** file. If any of those files are missing or if changes have been detected in your **survey.qmd** or **app.R** files, it will re-render your survey, which can take a bit longer. But this only happens once, and afterwards so long as no further changes have been made to your survey files the app will use the saved content in the **_survey** folder to launch, which should load almost instantly. So if your app launches slowly, just close it and launch it again and you should immediately load. If you still see a slow launch, consider [posting an issue](https://github.com/surveydown-dev/surveydown/issues) to let us know that something might be wrong. 
+When a surveydown survey first runs, it checks for files in a **\_survey** folder that contain the rendered content from your **survey.qmd** file. If any of those files are missing or if changes have been detected in your **survey.qmd** or **app.R** files, it will re-render your survey, which can take a bit longer. But this only happens once, and afterwards so long as no further changes have been made to your survey files the app will use the saved content in the **\_survey** folder to launch, which should load almost instantly. So if your app launches slowly, just close it and launch it again and you should immediately load. If you still see a slow launch, consider [posting an issue](https://github.com/surveydown-dev/surveydown/issues) to let us know that something might be wrong.
 
-Also, it is important that you run your survey locally **at least once** before deploying it live. This will render all your survey content into the **_survey** folder, which will also get uploaded when you deploy it.
+Also, it is important that you run your survey locally **at least once** before deploying it live. This will render all your survey content into the **\_survey** folder, which will also get uploaded when you deploy it.
 
 ## How do I customize my survey?
 

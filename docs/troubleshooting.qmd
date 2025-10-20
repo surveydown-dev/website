@@ -8,77 +8,13 @@ title: "Troubleshooting"
 
 :::
 
-## R & RStudio
+## Required software
 
-Make sure you have installed the up-to-date versions of **R** and **RStudio**. Both can be installed via [**this link**](https://posit.co/download/rstudio-desktop/).
-
-**R** is the coding language that supports **surveydown**, and **RStudio** is the IDE that runs **R**. Other than **RStudio**, you can also choose [VS Code](https://code.visualstudio.com) or [Positron](https://positron.posit.co). These two IDEs are both open to multiple coding languages, with **R** included and highly supported.
-
-## Quarto
-
-[**Quarto**](https://quarto.org) is a publication system that supports Markdown and code scripts. **surveydown** uses Quarto to turn scripts into nicely formatted survey pages.
-
-Sometimes, glitches of your quarto rendering can be simply solved by an update. To install or update Quarto, go to [**this page**](https://quarto.org/docs/get-started/) and click on the big download button.
-
-## R Packages
-
-After you've installed all the above environments, it's time to take care of the R packages. The function we use to install R packages is `install.packages()`, and is thus used a lot in this section. You might want to re-run this function for these packages in order to get the most recent version.
-
-### Launch the R Console
-
-The **R Console** is used to run R codes as well as install R packages. It can be launched by one of the **2 ways**:
-
-::: {.panel-tabset}
-
-#### RStudio
-
-Launch an **RStudio** session and you'll find your **R Console** in it. It's located at the bottom left by default.
-
-<center>
-<img src='/images/r_console_rstudio.png' style="width: 100%; max-width: 1000px;" alt="R Console in RStudio"/>
-</center>
-
-#### Terminal
-
-Launch your **Terminal** and simply type "**R**" (capitalized) and then Enter.
-
-<center>
-<img src='/images/r_console_terminal.png' style="width: 100%; max-width: 600px;" alt="R Console in Terminal"/>
-</center>
-
-:::
-
-### Shiny
-
-All surveydown surveys are [**Shiny**](https://shiny.posit.co) webapps, so Shiny is an essential component.
-
-In your R Console, run this to install **Shiny**:
-
-```{r}
-install.packages("shiny")
-```
-
-### surveydown
-
-In your R Console, run this to install **surveydown**:
-
-```{r}
-# CRAN version - stable but might lack the latest features
-install.packages("surveydown")
-
-# GitHub version - with the latest features
-pak::pak("surveydown-dev/surveydown", ask = FALSE)
-```
-
-The GitHub version installation requires the `pak` package. If you don't have it, install it using:
-
-```{r}
-install.packages("pak")
-```
+Make sure you have all of the required software for surveydown - see the [installation instructions](docs/getting-started.html#install) on the [Getting Started](docs/getting-started.html) page for details.
 
 ::: {.callout-note}
 
-Sometimes neither of these approaches work, often because your path is managed by some package managing system like [Anaconda](https://www.anaconda.com). In this case, a third alternative is to download the zip file of the package source code and then install it locally.
+Sometimes the R packages like `surveydown` may not install properly, often because your path is managed by some package managing system like [Anaconda](https://www.anaconda.com). In this case, a third alternative is to download the zip file of the package source code and then install it locally.
 
 To download the zip file, go the the [surveydown repo](https://github.com/surveydown-dev/surveydown), click on the green "Code" button and click on "Download Zip", or simplify click on [this link](https://github.com/surveydown-dev/surveydown/archive/refs/heads/main.zip).
 
@@ -95,7 +31,6 @@ Some useful links:
 
 - [surveydown CRAN Page](https://cran.r-project.org/web/packages/surveydown/index.html)
 - [surveydown GitHub repo](https://github.com/surveydown-dev/surveydown/)
-- [surveydown installation docs](docs/getting-started.html#install)
 
 ### sdstudio
 
@@ -117,15 +52,6 @@ sdstudio::launch()
 <center>
 <img src='/images/sdstudio.gif' style="width: 100%; max-width: 1000px;" alt="surveydown Studio"/>
 </center>
-
-### Other R Packages
-
-You might need some other R packages to get your survey running, for example, `tidyverse`, `kableExtra`, etc. Likewise, you can use the `install.packages()` function to install them:
-
-```{r}
-install.packages("tidyverse")
-install.packages("kableExtra")
-```
 
 ## Database Connection
 

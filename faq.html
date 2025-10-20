@@ -378,10 +378,10 @@ Note
 <h2 class="anchored" data-anchor-id="is-surveydown-right-for-me">Is surveydown right for me?</h2>
 <p>surveydown might be a good fit for you today if…</p>
 <ul>
-<li>you are comfortable using <a href="https://quarto.org/">Quarto</a> for rendering markdown into html outputs and <a href="https://CRAN.R-project.org/"><i class="fa-brands fa-r-project" aria-label="r-project"></i></a> for basic coding (you certainly don’t need to be an R “expert” to use surveydown!)</li>
+<li>you are comfortable using <a href="https://quarto.org/">Quarto</a> for rendering markdown into html outputs and <a href="https://CRAN.R-project.org/"><i class="fa-brands fa-r-project" aria-label="r-project"></i></a> for basic coding (you certainly don’t need to be an R / coding “expert” to use surveydown!)</li>
 <li>you are frustrated with alternative survey platforms that require expensive licenses or have limited features.</li>
 <li>you want to collaborate on surveys with others using reproducible tools like Git.</li>
-<li>you don’t mind using a project that is not fully polished or finished.</li>
+<li>you don’t mind using a project that is not fully polished or finished (but certainly good enough for proper research projects).</li>
 </ul>
 <p>surveydown might not be a good fit for you today if…</p>
 <ul>
@@ -392,8 +392,8 @@ Note
 </section>
 <section id="why-is-my-survey-app-so-slow-when-starting" class="level2">
 <h2 class="anchored" data-anchor-id="why-is-my-survey-app-so-slow-when-starting">Why is my survey app so slow when starting?</h2>
-<p>When a {surveydown} survey first runs, it checks for files in a **_survey** folder that contain the rendered content from your <strong>survey.qmd</strong> file. If any of those files are missing or if changes have been detected in your <strong>survey.qmd</strong> or <strong>app.R</strong> files, it will re-render your survey, which can take a bit longer. But this only happens once, and afterwards so long as no further changes have been made to your survey files the app will use the saved content in the **_survey** folder to launch, which should load almost instantly. So if your app launches slowly, just close it and launch it again and you should immediately load. If you still see a slow launch, consider <a href="https://github.com/surveydown-dev/surveydown/issues">posting an issue</a> to let us know that something might be wrong.</p>
-<p>Also, it is important that you run your survey locally <strong>at least once</strong> before deploying it live. This will render all your survey content into the **_survey** folder, which will also get uploaded when you deploy it.</p>
+<p>When a surveydown survey first runs, it checks for files in a <strong>_survey</strong> folder that contain the rendered content from your <strong>survey.qmd</strong> file. If any of those files are missing or if changes have been detected in your <strong>survey.qmd</strong> or <strong>app.R</strong> files, it will re-render your survey, which can take a bit longer. But this only happens once, and afterwards so long as no further changes have been made to your survey files the app will use the saved content in the <strong>_survey</strong> folder to launch, which should load almost instantly. So if your app launches slowly, just close it and launch it again and you should immediately load. If you still see a slow launch, consider <a href="https://github.com/surveydown-dev/surveydown/issues">posting an issue</a> to let us know that something might be wrong.</p>
+<p>Also, it is important that you run your survey locally <strong>at least once</strong> before deploying it live. This will render all your survey content into the <strong>_survey</strong> folder, which will also get uploaded when you deploy it.</p>
 </section>
 <section id="how-do-i-customize-my-survey" class="level2">
 <h2 class="anchored" data-anchor-id="how-do-i-customize-my-survey">How do I customize my survey?</h2>

@@ -641,7 +641,7 @@ Note
 <p><br></p>
 <p>On the connection page, click the “Method” dropdown menu (by default this is “Direct connection”) and select “Transaction pooler”. There you can click on the “View parameters” drop down to see your connection parameters. It should look something like this:</p>
 <br><center>
-<img src="../images/screenshots/supabase-connection.png" style="max-width: 600px; width: 100%;">
+<img src="../images/screenshots/supabase-connection.png" style="max-width: 700px; width: 100%;">
 </center>
 <p><br></p>
 <p>You will need these parameters and your password to connect to your database in surveydown.</p>
@@ -664,9 +664,9 @@ Note
 </div>
 <p>Once run in the R console, a message will print out confirming that the stored <code>table</code> parameter will now be <code>mytable</code>.</p>
 <p>You can pass any of the following as arguments to update them: <code>host</code>, <code>dbname</code>, <code>port</code>, <code>user</code>, <code>table</code>, and <code>password</code>.</p>
-<p>Finally, you can also view / modify your database credentials in the surveydown dashboard app. To do this, launch the dashboard by running this command in the R console:</p>
+<p>Finally, you can also view / modify your database credentials using the <code>sdstudio</code> package, a companion GUI package for surveydown surveys. To do this, launch the app by running this command in the R console:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">surveydown</span><span class="fu">::</span><span class="fu"><a href="https://pkg.surveydown.org/reference/sd_dashboard.html">sd_dashboard</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sdstudio</span><span class="fu">::</span><span class="fu">launch</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This will open a new browser window where you can navigate to the dashboard for your project. Click on the “Connection Settings” tab to see and edit your database credentials. Once you have made changes, click on the “Test Connection” button to save your updated credentials.</p>
 <p>See the <a href="local-dashboard.html">Local Dashboard</a> page for more information.</p>

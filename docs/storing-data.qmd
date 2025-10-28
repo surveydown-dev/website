@@ -44,7 +44,7 @@ On the connection page, click the "Method" dropdown menu (by default this is "Di
 
 <br>
 <center>
-<img src="../images/screenshots/supabase-connection.png" style="max-width: 600px; width: 100%;">
+<img src="../images/screenshots/supabase-connection.png" style="max-width: 700px; width: 100%;">
 </center>
 <br>
 
@@ -82,10 +82,10 @@ Once run in the R console, a message will print out confirming that the stored `
 
 You can pass any of the following as arguments to update them: `host`, `dbname`, `port`, `user`, `table`, and `password`.
 
-Finally, you can also view / modify your database credentials in the surveydown dashboard app. To do this, launch the dashboard by running this command in the R console:
+Finally, you can also view / modify your database credentials using the `sdstudio` package, a companion GUI package for surveydown surveys. To do this, launch the app by running this command in the R console:
 
 ```{r}
-surveydown::sd_dashboard()
+sdstudio::launch()
 ```
 
 This will open a new browser window where you can navigate to the dashboard for your project. Click on the "Connection Settings" tab to see and edit your database credentials. Once you have made changes, click on the "Test Connection" button to save your updated credentials.

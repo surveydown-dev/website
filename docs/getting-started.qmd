@@ -91,7 +91,7 @@ You can also specify where you want the template survey to be created using the 
 
 ```{r}
 surveydown::sd_create_survey(
-  path     = "path/to/folder",
+  path = "path/to/folder",
   template = "question_types"
 )
 ```
@@ -102,56 +102,58 @@ The default is `template = "default"`, but you can specify other templates. See 
 
 Survey content is edited in the **survey.qmd** file. See the [Basic Components](basic-components.qmd) page for more details on how to add more content to a surveydown survey. At a minimum, you can add pages and questions like this:
 
-- Add pages with fences, like this:
+- Add pages with the shorthand syntax (details [here](page-navigation.html#defining-pages)), like this:
 
-  ```{r}
-  ::: {.sd_page id=page1}
+```{r}
+--- page1
 
-  Page 1 content here
+Page 1 content here
 
-  :::
-  ```
+--- page2
+
+Page 2 content here
+```
 
 - Add questions with the `sd_question()` function in code chunks (see the [Question Types](question-types.html) page for more on the types of questions supported). For example, here's a multiple choice question:
 
-  ::: {.panel-tabset}
+::: {.panel-tabset}
 
-  ## Code chunk
+## Code chunk
 
-  ```{r}
-  #| echo: fenced
+```{r}
+#| echo: fenced
 
-  sd_question(
-    type  = 'mc',
-    id    = 'penguins',
-    label = "Which is your favorite type of penguin?",
-    option = c(
-      'Adélie'    = 'adelie',
-      'Chinstrap' = 'chinstrap',
-      'Gentoo'    = 'gentoo'
-    )
+sd_question(
+  type = 'mc',
+  id = 'penguins',
+  label = "Which is your favorite type of penguin?",
+  option = c(
+    'Adélie' = 'adelie',
+    'Chinstrap' = 'chinstrap',
+    'Gentoo' = 'gentoo'
   )
-  ```
+)
+```
 
-  ## Output
+## Output
 
-  ```{r}
-  #| eval: true
-  #| echo: false
+```{r}
+#| eval: true
+#| echo: false
 
-  sd_question(
-    type  = 'mc',
-    id    = 'penguins',
-    label = "Which is your favorite type of penguin?",
-    option = c(
-      'Adélie'    = 'adelie',
-      'Chinstrap' = 'chinstrap',
-      'Gentoo'    = 'gentoo'
-    )
+sd_question(
+  type = 'mc',
+  id = 'penguins',
+  label = "Which is your favorite type of penguin?",
+  option = c(
+    'Adélie' = 'adelie',
+    'Chinstrap' = 'chinstrap',
+    'Gentoo' = 'gentoo'
   )
-  ```
+)
+```
 
-  :::
+:::
 
 ## 4. Add control options
 

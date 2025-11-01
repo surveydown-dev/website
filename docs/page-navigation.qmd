@@ -13,7 +13,30 @@ This page discusses how to create pages and navigate between them in a surveydow
 
 ## Defining pages
 
-In surveydown, pages are defined using fences (`:::`), like this:
+In surveydown, pages can be defined using two different syntax options: 
+
+- **Shorthand syntax** (recommended) 
+- **Fence syntax**
+
+### Shorthand syntax
+
+The shorthand syntax uses three dashes `---` followed by the page ID to mark the start of a page. Each new page delimiter automatically closes the previous page, so you don't need explicit closing tags:
+
+```{r}
+--- page1
+
+Page 1 content here
+
+--- page2
+
+Page 2 content here
+```
+
+This is the recommended approach as it's more concise and easier to read.
+
+### Fence syntax
+
+Alternatively, you can define pages using fences (`:::`), which explicitly mark both the start and end of each page:
 
 ```{r}
 ::: {.sd_page id=page1}
@@ -29,9 +52,11 @@ Page 2 content here
 :::
 ```
 
-We use three colon symbols `:::`, called a "fence", to mark the start and end of pages. This notation is commonly used in Quarto for a variety of use cases, like defining [subfigures](https://quarto.org/docs/authoring/figures.html#subfigures) in images.
+With fence syntax, we use three colon symbols `:::`, called a "fence", to mark the start and end of pages. This notation is commonly used in Quarto for a variety of use cases, like defining [subfigures](https://quarto.org/docs/authoring/figures.html#subfigures) in images.
 
-In the starting fence, you need to define the class as `.sd_page` and provide a page id (e.g. `welcome` and `page2` in the example above). Then anything you put between the page fences will appear on that page.
+In the starting fence, you need to define the class as `.sd_page` and provide a page id (e.g. `page1` and `page2` in the example above). Then anything you put between the page fences will appear on that page.
+
+Both syntaxes work identically - choose whichever you find more readable.
 
 If you are using RStudio, you can also make use of the page gadget to create pages under the "Addins" dropdown menu. You can easily link the gadget with a keyboard shortcut from the "Tools" menu. Check out [this blog post](/blog/2025-04-08-surveydown-gadgets/) for a detailed walkthrough.
 

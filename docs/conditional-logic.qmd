@@ -101,19 +101,17 @@ One use case for this is a design where you want to randomly show respondents on
 To implement this, you first need to define each of the pages in your **survey.qmd** file, like this (on page 1 I'm using `sd_output` to display the randomly chosen value, A or B, which we'll define in the `server` function below):
 
 ````{markdown}
-::: {.sd_page id=page1}
+--- page1
 
 This is page 1
 
-The next page will be page 2 `r sd_output("rand_val", type = "value")` 
+The next page will be page 2 `r sd_output("rand_val", type = "value")`
 
 ```{r}
 sd_next()
 ```
 
-:::
-
-::: {.sd_page id=page2a}
+--- page2a
 
 This is page 2A
 
@@ -121,9 +119,7 @@ This is page 2A
 sd_next()
 ```
 
-:::
-
-::: {.sd_page id=page2b}
+--- page2b
 
 This is page 2B
 
@@ -131,17 +127,13 @@ This is page 2B
 sd_next()
 ```
 
-:::
-
-::: {.sd_page id=page3}
+--- page3
 
 This is page 3
 
 ```{r}
 sd_close()
 ```
-
-:::
 ````
 
 Then in the server function in the **app.R** file, you can randomly generate a value to determine which of the page 2 version you'll use (A or B), then condition on that value to display `page2a` or `page2b` using the `sd_show_if()` function, like this:

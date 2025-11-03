@@ -560,6 +560,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../docs/architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../docs/tips.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tips</span></a>
   </div>
@@ -684,7 +690,7 @@ Note
 <p>You can also specify where you want the template survey to be created using the <code>path</code> argument, and you can also specify which template to use with the <code>template</code> argument, like this:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">surveydown</span><span class="fu">::</span><span class="fu"><a href="https://pkg.surveydown.org/reference/sd_create_survey.html">sd_create_survey</a></span><span class="op">(</span></span>
-<span>  path     <span class="op">=</span> <span class="st">"path/to/folder"</span>,</span>
+<span>  path <span class="op">=</span> <span class="st">"path/to/folder"</span>,</span>
 <span>  template <span class="op">=</span> <span class="st">"question_types"</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -692,18 +698,20 @@ Note
 </section><section id="add-survey-content" class="level2"><h2 class="anchored" data-anchor-id="add-survey-content">3. Add survey content</h2>
 <p>Survey content is edited in the <strong>survey.qmd</strong> file. See the <a href="../docs/basic-components.html">Basic Components</a> page for more details on how to add more content to a surveydown survey. At a minimum, you can add pages and questions like this:</p>
 <ul>
-<li>
-<p>Add pages with fences, like this:</p>
+<li>Add pages with the shorthand syntax (details <a href="page-navigation.html#defining-pages">here</a>), like this:</li>
+</ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span> {.sd_page id<span class="ot">=</span>page1}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span> page1</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>Page <span class="dv">1</span> content here</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span> page2</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>Page <span class="dv">2</span> content here</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</li>
-<li>
-<p>Add questions with the <code><a href="https://pkg.surveydown.org/reference/sd_question.html">sd_question()</a></code> function in code chunks (see the <a href="question-types.html">Question Types</a> page for more on the types of questions supported). For example, here’s a multiple choice question:</p>
+<ul>
+<li>Add questions with the <code><a href="https://pkg.surveydown.org/reference/sd_question.html">sd_question()</a></code> function in code chunks (see the <a href="question-types.html">Question Types</a> page for more on the types of questions supported). For example, here’s a multiple choice question:</li>
+</ul>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
 <li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Code chunk</a></li>
@@ -714,13 +722,13 @@ Note
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'mc'</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">'penguins'</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">'mc'</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">'penguins'</span>,</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Which is your favorite type of penguin?"</span>,</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Adélie'</span>    <span class="ot">=</span> <span class="st">'adelie'</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Adélie'</span> <span class="ot">=</span> <span class="st">'adelie'</span>,</span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Chinstrap'</span> <span class="ot">=</span> <span class="st">'chinstrap'</span>,</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Gentoo'</span>    <span class="ot">=</span> <span class="st">'gentoo'</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Gentoo'</span> <span class="ot">=</span> <span class="st">'gentoo'</span></span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -758,8 +766,7 @@ Note
 </div>
 </div>
 </div>
-</li>
-</ul></section><section id="add-control-options" class="level2"><h2 class="anchored" data-anchor-id="add-control-options">4. Add control options</h2>
+</section><section id="add-control-options" class="level2"><h2 class="anchored" data-anchor-id="add-control-options">4. Add control options</h2>
 <p>In the <code>server()</code> function in the <strong>app.R</strong> file, add rich functionality to your survey using a variety of <a href="survey-settings.html">Survey Settings</a> or <a href="conditional-logic.html">Conditional Logic</a>.</p>
 </section><section id="setup-your-database-connection" class="level2"><h2 class="anchored" data-anchor-id="setup-your-database-connection">5. Setup your database connection</h2>
 <p>Setup your database connection using the <code><a href="https://pkg.surveydown.org/reference/sd_db_config.html">sd_db_config()</a></code> function. Once your configuration credentials are created (they get saved in a <code>.env</code> file), make a connection to your database using the <code><a href="https://pkg.surveydown.org/reference/sd_db_connect.html">sd_db_connect()</a></code> function in the global settings at the top of the <strong>app.R</strong> file. You can also use <code>sd_db_connect(ignore = TRUE)</code> to run the survey without storing data. See the <a href="../docs/storing-data.html">Storing Data</a> page for more details.</p>

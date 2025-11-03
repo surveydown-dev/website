@@ -559,6 +559,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../docs/architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../docs/tips.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tips</span></a>
   </div>
@@ -599,7 +605,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#local-run" id="toc-local-run" class="nav-link" data-scroll-target="#local-run">Local run</a></li>
   </ul>
 </li>
-  <li><a href="#architecture" id="toc-architecture" class="nav-link" data-scroll-target="#architecture">Architecture</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -658,7 +663,7 @@ Note
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="at">library(surveydown)</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span> {.sd_page id<span class="ot">=</span>welcome}</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span> welcome</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Welcome to our survey!</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
@@ -677,17 +682,13 @@ Note
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="at">sd_next()</span></span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span> end</span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="er">:::</span> {.sd_page id<span class="ot">=</span>end}</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>This is the last page of the survey.</span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>This is the last page of the survey.</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r}</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="at">sd_close()</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r}</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="at">sd_close()</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
@@ -723,21 +724,19 @@ Note
 <p>The YAML header can also contain other survey settings, such as theme settings and survey behavior settings. See the <a href="survey-settings.html">Survey Settings</a> page for details.</p>
 <p>The rest of the content in the <strong>survey.qmd</strong> file is the content you want in your survey, including <strong>pages</strong>, <strong>navigation buttons</strong>, and <strong>questions</strong>.</p>
 </section><section id="defining-pages" class="level3"><h3 class="anchored" data-anchor-id="defining-pages">Defining pages</h3>
-<p>In surveydown, pages are defined using fences (<code>:::</code>), like this:</p>
+<p>In surveydown, pages are defined using the shorthand syntax with three dashes <code>---</code> followed by the page ID:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span> {.sd_page id<span class="ot">=</span>page1}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span> page1</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>Page <span class="dv">1</span> content here</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span> page2</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="er">:::</span> {.sd_page id<span class="ot">=</span>page2}</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>Page <span class="dv">2</span> content here</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>Page <span class="dv">2</span> content here</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>We use three colon symbols <code>:::</code>, called a “fence”, to mark the start and end of pages. In the starting fence, you need to define the class as <code>.sd_page</code> and provide a page id (e.g.&nbsp;<code>welcome</code> and <code>page2</code> in the example above). If you are using RStudio, you can also make use of the page gadget to create pages under the “Addins” dropdown menu. Here is what the <strong>Survey Page Gadget</strong> looks like in RStudio:</p>
+<p>Each new page delimiter automatically closes the previous page, so you don’t need explicit closing tags.</p>
+<p>Alternatively, you can use fence syntax with <code>:::</code> to explicitly mark the start and end of pages (see the <a href="page-navigation.html">Page Navigation</a> page for details on both syntax options).</p>
+<p>If you are using RStudio, you can also make use of the page gadget to create pages under the “Addins” dropdown menu. Here is what the <strong>Survey Page Gadget</strong> looks like in RStudio:</p>
 <br><center>
 <img src="../images/screenshots/gadget_of_page.gif" style="width: 80%; max-width: 1000px;">
 </center>
@@ -772,22 +771,31 @@ Note
 </div>
 <p>You can conditionally override these controls using the <code><a href="https://pkg.surveydown.org/reference/sd_skip_forward.html">sd_skip_forward()</a></code> function in your server function. See the <a href="conditional-survey-flow.html">Conditional Survey Flow</a> page or <a href="page-navigation.html">Page Navigation</a> page for more details.</p>
 </section><section id="adding-questions" class="level3"><h3 class="anchored" data-anchor-id="adding-questions">Adding questions</h3>
-<p>Every survey question is created using the <code><a href="https://pkg.surveydown.org/reference/sd_question.html">sd_question()</a></code> function inside a code chunk. The question type is defined by the <code>type</code> argument. For example, to add a multiple choice question, you could insert the following code chunk:</p>
+<p>Every survey question is created using the <code><a href="https://pkg.surveydown.org/reference/sd_question.html">sd_question()</a></code> function inside a code chunk. The question type is defined by the <code>type</code> argument.</p>
+<p>For example, to add a multiple choice question, you could insert the following code chunk:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Code chunk</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Output</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'mc'</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">'penguins'</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">'mc'</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">'penguins'</span>,</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Which is your favorite type of penguin?"</span>,</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Adélie'</span>    <span class="ot">=</span> <span class="st">'adelie'</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Adélie'</span> <span class="ot">=</span> <span class="st">'adelie'</span>,</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Chinstrap'</span> <span class="ot">=</span> <span class="st">'chinstrap'</span>,</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Gentoo'</span>    <span class="ot">=</span> <span class="st">'gentoo'</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Gentoo'</span> <span class="ot">=</span> <span class="st">'gentoo'</span></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>The above code chunk will create a multiple choice question that looks like this:</p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div id="container-penguins" data-question-id="penguins" class="question-container" style="width: 100%;" oninput="Shiny.setInputValue('penguins_interacted', true, {priority: 'event'});" onclick="Shiny.setInputValue('penguins_interacted', true, {priority: 'event'});">
@@ -816,7 +824,10 @@ Note
 </div>
 </div>
 </div>
-<p>The <code><a href="https://pkg.surveydown.org/reference/sd_question.html">sd_question()</a></code> function can be used to create a variety of question types, like text input, select drop down choices, and more by changing the <code>type</code> argument (see the <a href="question-types.html">Questions Types</a> page).</p>
+</div>
+</div>
+</div>
+<p>The <code><a href="https://pkg.surveydown.org/reference/sd_question.html">sd_question()</a></code> function can be used to create a variety of question types, like text input, select drop down choices, and more by changing the <code>type</code> argument (see the <a href="question-types.html">Question Types</a> page for more on the types of questions supported)</p>
 <p>The function has many other arguments for customizing the look and feel of the question, such as the <code>height</code> and <code>width</code> (see the <a href="question-formatting.html">Question Formatting</a> page).</p>
 <p>By default all questions are optional, but you can make questions required in the survey settings (see the <a href="survey-settings.html#required-questions">Survey Settings</a> page for details).</p>
 <p>Similar to page creation, you can also make use of the <a href="defining-questions.html#using-a-gui-in-rstudio">question gadget</a> to create questions under the “Addins” dropdown menu following similar operations. Below is a showcase of the <strong>Survey Question Gadget</strong> in RStudio:</p>
@@ -828,13 +839,11 @@ Note
 <p>The simplest way to end a survey is to create a page with no <code><a href="https://pkg.surveydown.org/reference/sd_next.html">sd_next()</a></code> button on it. This will effectively serve as a ending page, because the respondent will not be able to navigate anywhere else once reaching a page with no next button.</p>
 <p>For example, you may want to have a screen-out page that respondents are sent to if they answer a certain way on a question (e.g., see <a href="conditional-survey-flow.html">Conditional Survey Flow</a>). You can do this by creating a page with no <code><a href="https://pkg.surveydown.org/reference/sd_next.html">sd_next()</a></code> button on it, like this:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span> {.sd_page id<span class="ot">=</span>screenout}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span> screenout</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Sorry, you are not eligible <span class="cf">for</span> this survey.</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>You can close this window now.</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="sc">:::</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>You can close this window now.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>When a respondent reaches this page, they will not be able to navigate anywhere else, so the survey is over.</p>
 <p>You can also add a button to end the survey programmatically using the <code><a href="https://pkg.surveydown.org/reference/sd_close.html">sd_close()</a></code> function inside a code chunk, like this:</p>
@@ -853,11 +862,11 @@ Note
 <p>Finally, you can also add a button to end the survey and redirect the respondent to another page. You can do this using the <code><a href="https://pkg.surveydown.org/reference/sd_redirect.html">sd_redirect()</a></code> function, like this:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Code chunk</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Output</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Code chunk</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Output</a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pkg.surveydown.org/reference/sd_redirect.html">sd_redirect</a></span><span class="op">(</span></span>
 <span>  id     <span class="op">=</span> <span class="st">"redirect"</span>,</span>
@@ -868,7 +877,7 @@ Note
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="sd-wrapper">
@@ -956,26 +965,9 @@ Note
 <center>
 <img src="https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/images/launch-options.png" style="width: 80%; max-width: 200px;" alt="image showing the launch options of local run">
 </center>
-</section></section><section id="architecture" class="level2"><h2 class="anchored" data-anchor-id="architecture">Architecture</h2>
-<p>If you are interested in what is happening under the hood, here is a flow diagram that illustrates the overall architecture of a typical surveydown survey application:</p>
-<br><center>
-<img src="../images/architecture.svg" style="width: 100%; max-width: 800px;" alt="image showing the flow diagram of the surveydown architecture">
-</center>
-<p><br></p>
-<p>Following this flow diagram, survey designers only need to edit <strong>survey.qmd</strong> and <strong>app.R</strong>. Since the survey is launched by <strong>app.R</strong>, which holds the core control logic of the survey, we’ve placed it at top left as starting point of the logic flows.</p>
-<p>In <strong>app.R</strong>, we have three logic flows:</p>
-<ol type="1">
-<li>
-<code><a href="https://pkg.surveydown.org/reference/sd_db_connect.html">sd_db_connect()</a></code>, as colored in <span style="color:#50AE73"><strong>green</strong></span>, creates database connection.</li>
-<li>
-<code><a href="https://pkg.surveydown.org/reference/sd_ui.html">sd_ui()</a></code>, in <span style="color:#FF8C02"><strong>orange</strong></span>, serves two purposes: <strong>1)</strong> it renders the <strong>survey.qmd</strong> file into survey content in the “_survey” folder, and re-renders if changes detected; <strong>2)</strong> it initializes the user interface container for the survey app.</li>
-<li>
-<code><a href="https://pkg.surveydown.org/reference/sd_server.html">sd_server()</a></code>, in <span style="color:#057DFC"><strong>blue</strong></span>, also serves two purposes: <strong>1)</strong> it grabs the generated “_survey” folder and serves processed page content to the survey app; <strong>2)</strong> it updates database with responses.</li>
-</ol>
-<p>On the right most part of the flow diagram, we reach to the ending point of the logic flow. The survey app is what is presented to the survey participants, and the data in PostgreSQL is a collection of survey results for survey analysts to study for. As this flow diagram illustrates, the surveydown platform is the one product that streamlines the experience of survey designers, survey participants, and survey analysts.</p>
 
 
-</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {

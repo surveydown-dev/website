@@ -15,7 +15,767 @@
 <link>https://www.surveydown.org/blog/</link>
 </image>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Sun, 29 Jun 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 01 Nov 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Introducing Shorthand Page Syntax in v0.14.0</title>
+  <dc:creator>John Paul Helveston</dc:creator>
+  <link>https://www.surveydown.org/blog/2025-11-15-shorthand-page-syntax/</link>
+  <description><![CDATA[ <p>We are excited to announce a significant improvement to the surveydown developer experience in package version 0.14.0: <strong>shorthand page syntax</strong>. This new syntax makes defining pages in your surveys dramatically cleaner and easier to read, while maintaining full backward compatibility with the existing fence syntax.</p>
+<section id="the-problem-verbose-fence-syntax" class="level2"><h2 class="anchored" data-anchor-id="the-problem-verbose-fence-syntax">The Problem: Verbose Fence Syntax</h2>
+<p>Since the beginning, surveydown has used Quarto’s fence syntax (three colons <code>:::</code>) to define pages. While this approach works well and leverages familiar Quarto conventions, it requires explicit opening and closing tags for every page:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:::</span> {.sd_page id<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span>welcome}</span>
+<span id="cb1-2"></span>
+<span id="cb1-3">Welcome to our survey<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span></span>
+<span id="cb1-4"></span>
+<span id="cb1-5"><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">:::</span></span>
+<span id="cb1-6"></span>
+<span id="cb1-7"><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">:::</span> {.sd_page id<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span>demographics}</span>
+<span id="cb1-8"></span>
+<span id="cb1-9">Please tell us about yourself.</span>
+<span id="cb1-10"></span>
+<span id="cb1-11"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:::</span></span>
+<span id="cb1-12"></span>
+<span id="cb1-13"><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">:::</span> {.sd_page id<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span>questions}</span>
+<span id="cb1-14"></span>
+<span id="cb1-15">Now <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> the main questions...</span>
+<span id="cb1-16"></span>
+<span id="cb1-17"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:::</span></span></code></pre></div></div>
+</div>
+<p>As your surveys grow, these closing <code>:::</code> tags add visual clutter and make it harder to see where one page ends and another begins. You also need to remember to close every page - forgetting a closing fence can cause parsing errors.</p>
+</section><section id="the-solution-shorthand-syntax" class="level2"><h2 class="anchored" data-anchor-id="the-solution-shorthand-syntax">The Solution: Shorthand Syntax</h2>
+<p>With surveydown package version 0.14.0, we’re introducing a new <strong>shorthand syntax</strong> that eliminates the need for closing tags. Instead, you simply use three dashes <code>---</code> followed by the page ID:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">---</span> welcome</span>
+<span id="cb2-2"></span>
+<span id="cb2-3">Welcome to our survey<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span></span>
+<span id="cb2-4"></span>
+<span id="cb2-5"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">---</span> demographics</span>
+<span id="cb2-6"></span>
+<span id="cb2-7">Please tell us about yourself.</span>
+<span id="cb2-8"></span>
+<span id="cb2-9"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">---</span> questions</span>
+<span id="cb2-10"></span>
+<span id="cb2-11">Now <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> the main questions...</span></code></pre></div></div>
+</div>
+<p>That’s it! Each new page delimiter automatically closes the previous page, so there’s no need to track opening and closing tags. The syntax is cleaner, more concise, and easier to scan visually.</p>
+<p>The shorthand syntax offers several advantages:</p>
+<ol type="1">
+<li>
+<strong>Cleaner code</strong>: Eliminates visual clutter from closing tags</li>
+<li>
+<strong>Easier to scan</strong>: Page delimiters stand out clearly, making survey structure obvious</li>
+<li>
+<strong>Less typing</strong>: Fewer characters to type means faster survey development</li>
+<li>
+<strong>Fewer errors</strong>: No need to remember closing tags - can’t forget what doesn’t exist!</li>
+<li>
+<strong>Better git diffs</strong>: When you add or modify pages, diffs are cleaner without closing tag changes</li>
+</ol></section><section id="example" class="level2"><h2 class="anchored" data-anchor-id="example">Example</h2>
+<p>Let’s look at another survey example to see the improvement. Here’s the same survey written both ways:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs">
+<li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">Fence Syntax (Old)</a></li>
+<li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">Shorthand Syntax (New)</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">---</span></span>
+<span id="cb3-2">format<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> html</span>
+<span id="cb3-3">echo<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> false</span>
+<span id="cb3-4"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">---</span></span>
+<span id="cb3-5"></span>
+<span id="cb3-6"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">{r}</span></span>
+<span id="cb3-7"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">library(surveydown)</span></span>
+<span id="cb3-8"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```</span></span>
+<span id="cb3-9"></span>
+<span id="cb3-10"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:::</span> {.sd_page id<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span>welcome}</span>
+<span id="cb3-11"></span>
+<span id="cb3-12"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Welcome!</span></span>
+<span id="cb3-13"></span>
+<span id="cb3-14">Thank you <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> participating <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> our study.</span>
+<span id="cb3-15"></span>
+<span id="cb3-16"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">{r}</span></span>
+<span id="cb3-17"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd_next()</span></span>
+<span id="cb3-18"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```</span></span>
+<span id="cb3-19"></span>
+<span id="cb3-20"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:::</span></span>
+<span id="cb3-21"></span>
+<span id="cb3-22"><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">:::</span> {.sd_page id<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span>consent}</span>
+<span id="cb3-23"></span>
+<span id="cb3-24"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">## Informed Consent</span></span>
+<span id="cb3-25"></span>
+<span id="cb3-26">Please read the following information carefully...</span>
+<span id="cb3-27"></span>
+<span id="cb3-28"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">{r}</span></span>
+<span id="cb3-29"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd_question(</span></span>
+<span id="cb3-30"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  type = 'mc',</span></span>
+<span id="cb3-31"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  id = 'consent',</span></span>
+<span id="cb3-32"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  label = "Do you consent to participate?",</span></span>
+<span id="cb3-33"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  option = c(</span></span>
+<span id="cb3-34"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    'Yes, I consent' = 'yes',</span></span>
+<span id="cb3-35"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    'No, I decline' = 'no'</span></span>
+<span id="cb3-36"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  )</span></span>
+<span id="cb3-37"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb3-38"></span>
+<span id="cb3-39"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd_next()</span></span>
+<span id="cb3-40"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```</span></span>
+<span id="cb3-41"></span>
+<span id="cb3-42"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:::</span></span>
+<span id="cb3-43"></span>
+<span id="cb3-44"><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">:::</span> {.sd_page id<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span>demographics}</span>
+<span id="cb3-45"></span>
+<span id="cb3-46"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">## Demographics</span></span>
+<span id="cb3-47"></span>
+<span id="cb3-48"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">{r}</span></span>
+<span id="cb3-49"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd_question(</span></span>
+<span id="cb3-50"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  type = 'numeric',</span></span>
+<span id="cb3-51"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  id = 'age',</span></span>
+<span id="cb3-52"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  label = "What is your age?"</span></span>
+<span id="cb3-53"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb3-54"></span>
+<span id="cb3-55"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd_question(</span></span>
+<span id="cb3-56"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  type = 'mc',</span></span>
+<span id="cb3-57"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  id = 'education',</span></span>
+<span id="cb3-58"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  label = "What is your highest level of education?",</span></span>
+<span id="cb3-59"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  option = c(</span></span>
+<span id="cb3-60"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    'High school' = 'hs',</span></span>
+<span id="cb3-61"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    'Bachelor</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\'</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">s degree' = 'ba',</span></span>
+<span id="cb3-62"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    'Graduate degree' = 'grad'</span></span>
+<span id="cb3-63"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  )</span></span>
+<span id="cb3-64"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb3-65"></span>
+<span id="cb3-66"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd_next()</span></span>
+<span id="cb3-67"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```</span></span>
+<span id="cb3-68"></span>
+<span id="cb3-69"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:::</span></span>
+<span id="cb3-70"></span>
+<span id="cb3-71"><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">:::</span> {.sd_page id<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span>survey_questions}</span>
+<span id="cb3-72"></span>
+<span id="cb3-73"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">## Main Questions</span></span>
+<span id="cb3-74"></span>
+<span id="cb3-75"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">{r}</span></span>
+<span id="cb3-76"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd_question(</span></span>
+<span id="cb3-77"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  type = 'mc',</span></span>
+<span id="cb3-78"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  id = 'satisfaction',</span></span>
+<span id="cb3-79"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  label = "How satisfied are you with our product?",</span></span>
+<span id="cb3-80"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  option = c(</span></span>
+<span id="cb3-81"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    'Very satisfied' = '5',</span></span>
+<span id="cb3-82"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    'Satisfied' = '4',</span></span>
+<span id="cb3-83"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    'Neutral' = '3',</span></span>
+<span id="cb3-84"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    'Dissatisfied' = '2',</span></span>
+<span id="cb3-85"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    'Very dissatisfied' = '1'</span></span>
+<span id="cb3-86"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  )</span></span>
+<span id="cb3-87"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb3-88"></span>
+<span id="cb3-89"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd_next()</span></span>
+<span id="cb3-90"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```</span></span>
+<span id="cb3-91"></span>
+<span id="cb3-92"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:::</span></span>
+<span id="cb3-93"></span>
+<span id="cb3-94"><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">:::</span> {.sd_page id<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span>end}</span>
+<span id="cb3-95"></span>
+<span id="cb3-96"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">## Thank You!</span></span>
+<span id="cb3-97"></span>
+<span id="cb3-98">Your responses have been recorded. You may now close this window.</span>
+<span id="cb3-99"></span>
+<span id="cb3-100"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">{r}</span></span>
+<span id="cb3-101"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd_close()</span></span>
+<span id="cb3-102"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```</span></span>
+<span id="cb3-103"></span>
+<span id="cb3-104"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:::</span></span></code></pre></div></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">---</span></span>
+<span id="cb4-2">format<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> html</span>
+<span id="cb4-3">echo<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> false</span>
+<span id="cb4-4"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">---</span></span>
+<span id="cb4-5"></span>
+<span id="cb4-6"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">{r}</span></span>
+<span id="cb4-7"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">library(surveydown)</span></span>
+<span id="cb4-8"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```</span></span>
+<span id="cb4-9"></span>
+<span id="cb4-10"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">---</span> welcome</span>
+<span id="cb4-11"></span>
+<span id="cb4-12"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Welcome!</span></span>
+<span id="cb4-13"></span>
+<span id="cb4-14">Thank you <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> participating <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> our study.</span>
+<span id="cb4-15"></span>
+<span id="cb4-16"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">{r}</span></span>
+<span id="cb4-17"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd_next()</span></span>
+<span id="cb4-18"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```</span></span>
+<span id="cb4-19"></span>
+<span id="cb4-20"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">---</span> consent</span>
+<span id="cb4-21"></span>
+<span id="cb4-22"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">## Informed Consent</span></span>
+<span id="cb4-23"></span>
+<span id="cb4-24">Please read the following information carefully...</span>
+<span id="cb4-25"></span>
+<span id="cb4-26"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">{r}</span></span>
+<span id="cb4-27"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd_question(</span></span>
+<span id="cb4-28"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  type = 'mc',</span></span>
+<span id="cb4-29"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  id = 'consent',</span></span>
+<span id="cb4-30"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  label = "Do you consent to participate?",</span></span>
+<span id="cb4-31"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  option = c(</span></span>
+<span id="cb4-32"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    'Yes, I consent' = 'yes',</span></span>
+<span id="cb4-33"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    'No, I decline' = 'no'</span></span>
+<span id="cb4-34"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  )</span></span>
+<span id="cb4-35"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb4-36"></span>
+<span id="cb4-37"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd_next()</span></span>
+<span id="cb4-38"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```</span></span>
+<span id="cb4-39"></span>
+<span id="cb4-40"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">---</span> demographics</span>
+<span id="cb4-41"></span>
+<span id="cb4-42"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">## Demographics</span></span>
+<span id="cb4-43"></span>
+<span id="cb4-44"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">{r}</span></span>
+<span id="cb4-45"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd_question(</span></span>
+<span id="cb4-46"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  type = 'numeric',</span></span>
+<span id="cb4-47"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  id = 'age',</span></span>
+<span id="cb4-48"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  label = "What is your age?"</span></span>
+<span id="cb4-49"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb4-50"></span>
+<span id="cb4-51"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd_question(</span></span>
+<span id="cb4-52"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  type = 'mc',</span></span>
+<span id="cb4-53"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  id = 'education',</span></span>
+<span id="cb4-54"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  label = "What is your highest level of education?",</span></span>
+<span id="cb4-55"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  option = c(</span></span>
+<span id="cb4-56"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    'High school' = 'hs',</span></span>
+<span id="cb4-57"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    'Bachelor</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\'</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">s degree' = 'ba',</span></span>
+<span id="cb4-58"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    'Graduate degree' = 'grad'</span></span>
+<span id="cb4-59"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  )</span></span>
+<span id="cb4-60"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb4-61"></span>
+<span id="cb4-62"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd_next()</span></span>
+<span id="cb4-63"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```</span></span>
+<span id="cb4-64"></span>
+<span id="cb4-65"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">---</span> survey_questions</span>
+<span id="cb4-66"></span>
+<span id="cb4-67"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">## Main Questions</span></span>
+<span id="cb4-68"></span>
+<span id="cb4-69"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">{r}</span></span>
+<span id="cb4-70"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd_question(</span></span>
+<span id="cb4-71"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  type = 'mc',</span></span>
+<span id="cb4-72"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  id = 'satisfaction',</span></span>
+<span id="cb4-73"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  label = "How satisfied are you with our product?",</span></span>
+<span id="cb4-74"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  option = c(</span></span>
+<span id="cb4-75"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    'Very satisfied' = '5',</span></span>
+<span id="cb4-76"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    'Satisfied' = '4',</span></span>
+<span id="cb4-77"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    'Neutral' = '3',</span></span>
+<span id="cb4-78"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    'Dissatisfied' = '2',</span></span>
+<span id="cb4-79"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    'Very dissatisfied' = '1'</span></span>
+<span id="cb4-80"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  )</span></span>
+<span id="cb4-81"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb4-82"></span>
+<span id="cb4-83"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd_next()</span></span>
+<span id="cb4-84"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```</span></span>
+<span id="cb4-85"></span>
+<span id="cb4-86"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">---</span> end</span>
+<span id="cb4-87"></span>
+<span id="cb4-88"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">## Thank You!</span></span>
+<span id="cb4-89"></span>
+<span id="cb4-90">Your responses have been recorded. You may now close this window.</span>
+<span id="cb4-91"></span>
+<span id="cb4-92"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">{r}</span></span>
+<span id="cb4-93"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd_close()</span></span>
+<span id="cb4-94"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```</span></span></code></pre></div></div>
+</div>
+</div>
+</div>
+</div>
+<p>Notice how much cleaner the shorthand version is? The page boundaries are immediately visible, and there’s no visual clutter from closing tags. Your survey structure becomes easier to understand at a glance.</p>
+</section><section id="backward-compatibility" class="level2"><h2 class="anchored" data-anchor-id="backward-compatibility">Backward Compatibility</h2>
+<p>We want to emphasize that <strong>both syntaxes work perfectly</strong> in v0.14.0 and beyond. Your existing surveys using fence syntax will continue to work without any changes. We’re introducing shorthand syntax as the <strong>recommended</strong> approach going forward, but you’re free to use whichever style you prefer.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Be careful not to mix both syntaxes within the same survey. Each survey must define pages using either the fence syntax or shorthand syntax exclusively.</p>
+</div>
+</div>
+</section><section id="updated-documentation" class="level2"><h2 class="anchored" data-anchor-id="updated-documentation">Updated Documentation</h2>
+<p>All of our documentation has been updated to use the new shorthand syntax as the primary example. However, we’ve kept documentation for both approaches:</p>
+<ul>
+<li>The <a href="https://surveydown.org/docs/page-navigation.html#defining-pages">Page Navigation</a> page explains both syntaxes in detail</li>
+<li>The <a href="https://surveydown.org/docs/basic-components.html#defining-pages">Basic Components</a> page introduces shorthand syntax</li>
+<li>All our <a href="https://surveydown.org/templates.html">templates</a> will be updated to use shorthand syntax</li>
+</ul></section><section id="migration-guide" class="level2"><h2 class="anchored" data-anchor-id="migration-guide">Migration Guide</h2>
+<p>The good news is you do not need to change anything in your existing surveys. They will continue to work as before. However, if you want to take advantage of the cleaner shorthand syntax, migrating is easy:</p>
+<ol type="1">
+<li>Replace <code>::: {.sd_page id=PAGE_ID}</code> with <code>--- PAGE_ID</code>
+</li>
+<li>Remove all closing <code>:::</code> tags</li>
+<li>Make sure each page starts with <code>---</code> followed by a space and the page ID</li>
+</ol>
+<p>For example, convert this:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:::</span> {.sd_page id<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span>page1} </span>
+<span id="cb5-2"></span>
+<span id="cb5-3">Content here</span>
+<span id="cb5-4"></span>
+<span id="cb5-5"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:::</span></span>
+<span id="cb5-6"></span>
+<span id="cb5-7"><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">:::</span> {.sd_page id<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span>page2}</span>
+<span id="cb5-8"></span>
+<span id="cb5-9">More content</span>
+<span id="cb5-10"></span>
+<span id="cb5-11"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:::</span></span></code></pre></div></div>
+</div>
+<p>To this:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">---</span> page1</span>
+<span id="cb6-2"></span>
+<span id="cb6-3">Content here</span>
+<span id="cb6-4"></span>
+<span id="cb6-5"><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">---</span> page2</span>
+<span id="cb6-6"></span>
+<span id="cb6-7">More content</span></code></pre></div></div>
+</div>
+<p>That’s all there is to it!</p>
+</section><section id="looking-forward" class="level2"><h2 class="anchored" data-anchor-id="looking-forward">Looking Forward</h2>
+<p>This improvement is part of our ongoing effort to make surveydown as developer-friendly as possible. We’re constantly listening to user feedback and looking for ways to reduce friction in the survey development process.</p>
+<p>If you have suggestions for future improvements, please let us know through <a href="https://github.com/orgs/surveydown-dev/discussions">GitHub Discussions</a> or by filing an issue on our <a href="https://github.com/surveydown-dev/surveydown">GitHub repository</a>.</p>
+</section><section id="getting-started" class="level2"><h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
+<p>To start using the shorthand syntax, simply update to surveydown v0.14.0 or later:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Install from CRAN (once 0.14.0 is released)</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"surveydown"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Or install the development version from GitHub</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pak</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pak</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"surveydown-dev/surveydown"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div></div>
+</div>
+<p>Then start using <code>---</code> followed by your page IDs in your survey.qmd files. It’s that simple!</p>
+
+
+</section><a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>R</category>
+  <category>package</category>
+  <category>syntax</category>
+  <category>feature</category>
+  <guid>https://www.surveydown.org/blog/2025-11-15-shorthand-page-syntax/</guid>
+  <pubDate>Sat, 01 Nov 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://www.surveydown.org/blog/2025-11-15-shorthand-page-syntax/banner.png" medium="image" type="image/png" height="96" width="144"/>
+</item>
 <item>
   <title>Introducing sdstudio: A companion GUI for surveydown</title>
   <dc:creator>John Paul Helveston</dc:creator>

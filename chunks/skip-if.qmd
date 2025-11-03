@@ -19,11 +19,9 @@ sd_question(
 You would also need to define a screenout page to send respondents to, like this:
 
 ```{r}
-::: {.sd_page id=screenout}
+--- screenout
 
 Sorry, but you are not qualified to take our survey.
-
-:::
 ```
 
 Then in the server function in the **app.R** file, you can use the `sd_skip_if()` function to define the condition under which the respondent will be sent to the target `screenout` page, like this:

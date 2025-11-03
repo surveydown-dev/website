@@ -39,7 +39,7 @@ warning: false
 library(surveydown)
 ```
 
-::: {.sd_page id=welcome}
+--- welcome
 
 # Welcome to our survey!
 
@@ -58,17 +58,13 @@ sd_question(
 sd_next()
 ```
 
-:::
-
-::: {.sd_page id=end}
+--- end
 
 This is the last page of the survey.
 
 ```{r}
 sd_close()
 ```
-
-:::
 
 ````
 
@@ -117,23 +113,23 @@ The rest of the content in the **survey.qmd** file is the content you want in yo
 
 ### Defining pages
 
-In surveydown, pages are defined using fences (`:::`), like this:
+In surveydown, pages are defined using the shorthand syntax with three dashes `---` followed by the page ID:
 
 ```{r}
-::: {.sd_page id=page1}
+--- page1
 
 Page 1 content here
 
-:::
-
-::: {.sd_page id=page2}
+--- page2
 
 Page 2 content here
-
-:::
 ```
 
-We use three colon symbols `:::`, called a "fence", to mark the start and end of pages. In the starting fence, you need to define the class as `.sd_page` and provide a page id (e.g. `welcome` and `page2` in the example above). If you are using RStudio, you can also make use of the page gadget to create pages under the "Addins" dropdown menu. Here is what the **Survey Page Gadget** looks like in RStudio:
+Each new page delimiter automatically closes the previous page, so you don't need explicit closing tags.
+
+Alternatively, you can use fence syntax with `:::` to explicitly mark the start and end of pages (see the [Page Navigation](page-navigation.html) page for details on both syntax options).
+
+If you are using RStudio, you can also make use of the page gadget to create pages under the "Addins" dropdown menu. Here is what the **Survey Page Gadget** looks like in RStudio:
 
 <br>
 <center>
@@ -179,42 +175,50 @@ You can conditionally override these controls using the `sd_skip_forward()` func
 
 ### Adding questions
 
-Every survey question is created using the `sd_question()` function inside a code chunk. The question type is defined by the `type` argument. For example, to add a multiple choice question, you could insert the following code chunk:
+Every survey question is created using the `sd_question()` function inside a code chunk. The question type is defined by the `type` argument. 
+
+For example, to add a multiple choice question, you could insert the following code chunk:
+
+::: {.panel-tabset}
+
+## Code chunk
 
 ```{r}
 #| echo: fenced
 
 sd_question(
-  type  = 'mc',
-  id    = 'penguins',
+  type = 'mc',
+  id = 'penguins',
   label = "Which is your favorite type of penguin?",
   option = c(
-    'Adélie'    = 'adelie',
+    'Adélie' = 'adelie',
     'Chinstrap' = 'chinstrap',
-    'Gentoo'    = 'gentoo'
+    'Gentoo' = 'gentoo'
   )
 )
 ```
 
-The above code chunk will create a multiple choice question that looks like this:
+## Output
 
 ```{r}
 #| eval: true
 #| echo: false
 
 sd_question(
-  type  = 'mc',
-  id    = 'penguins',
+  type = 'mc',
+  id = 'penguins',
   label = "Which is your favorite type of penguin?",
   option = c(
-    'Adélie'    = 'adelie',
+    'Adélie' = 'adelie',
     'Chinstrap' = 'chinstrap',
-    'Gentoo'    = 'gentoo'
+    'Gentoo' = 'gentoo'
   )
 )
 ```
 
-The `sd_question()` function can be used to create a variety of question types, like text input, select drop down choices, and more by changing the `type` argument (see the [Questions Types](question-types.html) page).
+:::
+
+The `sd_question()` function can be used to create a variety of question types, like text input, select drop down choices, and more by changing the `type` argument (see the [Question Types](question-types.html) page for more on the types of questions supported)
 
 The function has many other arguments for customizing the look and feel of the question, such as the `height` and `width` (see the [Question Formatting](question-formatting.html) page).
 
@@ -235,13 +239,11 @@ The simplest way to end a survey is to create a page with no `sd_next()` button 
 For example, you may want to have a screen-out page that respondents are sent to if they answer a certain way on a question (e.g., see [Conditional Survey Flow](conditional-survey-flow.html)). You can do this by creating a page with no `sd_next()` button on it, like this:
 
 ```{r}
-::: {.sd_page id=screenout}
+--- screenout
 
 Sorry, you are not eligible for this survey.
 
 You can close this window now.
-
-:::
 ```
 
 When a respondent reaches this page, they will not be able to navigate anywhere else, so the survey is over.
@@ -360,23 +362,3 @@ To preview your survey, you can run the Shiny app locally by clicking the "Run A
 <center>
 <img src='https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/images/launch-options.png' style="width: 80%; max-width: 200px;" alt="image showing the launch options of local run"/>
 </center>
-
-## Architecture
-
-If you are interested in what is happening under the hood, here is a flow diagram that illustrates the overall architecture of a typical surveydown survey application:
-
-<br>
-<center>
-<img src='../images/architecture.svg' style="width: 100%; max-width: 800px;" alt="image showing the flow diagram of the surveydown architecture"/>
-</center>
-<br>
-
-Following this flow diagram, survey designers only need to edit **survey.qmd** and **app.R**. Since the survey is launched by **app.R**, which holds the core control logic of the survey, we've placed it at top left as starting point of the logic flows.
-
-In **app.R**, we have three logic flows:
-
-1. `sd_db_connect()`, as colored in <span style="color:#50AE73"><strong>green</strong></span>, creates database connection.
-2. `sd_ui()`, in <span style="color:#FF8C02"><strong>orange</strong></span>, serves two purposes: **1)** it renders the **survey.qmd** file into survey content in the "_survey" folder, and re-renders if changes detected; **2)** it initializes the user interface container for the survey app.
-3. `sd_server()`, in <span style="color:#057DFC"><strong>blue</strong></span>, also serves two purposes: **1)** it grabs the generated "_survey" folder and serves processed page content to the survey app; **2)** it updates database with responses.
-
-On the right most part of the flow diagram, we reach to the ending point of the logic flow. The survey app is what is presented to the survey participants, and the data in PostgreSQL is a collection of survey results for survey analysts to study for. As this flow diagram illustrates, the surveydown platform is the one product that streamlines the experience of survey designers, survey participants, and survey analysts.

@@ -1,0 +1,369 @@
+---
+title: "Introducing Shorthand Page Syntax in v0.14.0"
+author:
+  - name: John Paul Helveston
+description: |
+  Introducing a new shorthand syntax for page definition to make your survey code cleaner and easier to read.
+date: '2025-11-01'
+image: "banner.png"
+categories:
+  - R
+  - package
+  - syntax
+  - feature
+format: html
+execute:
+  eval: false
+toc: true
+lightbox: true
+---
+
+We are excited to announce a significant improvement to the surveydown developer experience in package version 0.14.0: **shorthand page syntax**. This new syntax makes defining pages in your surveys dramatically cleaner and easier to read, while maintaining full backward compatibility with the existing fence syntax.
+
+## The Problem: Verbose Fence Syntax
+
+Since the beginning, surveydown has used Quarto's fence syntax (three colons `:::`) to define pages. While this approach works well and leverages familiar Quarto conventions, it requires explicit opening and closing tags for every page:
+
+```{r}
+::: {.sd_page id=welcome}
+
+Welcome to our survey!
+
+:::
+
+::: {.sd_page id=demographics}
+
+Please tell us about yourself.
+
+:::
+
+::: {.sd_page id=questions}
+
+Now for the main questions...
+
+:::
+```
+
+As your surveys grow, these closing `:::` tags add visual clutter and make it harder to see where one page ends and another begins. You also need to remember to close every page - forgetting a closing fence can cause parsing errors.
+
+## The Solution: Shorthand Syntax
+
+With surveydown package version 0.14.0, we're introducing a new **shorthand syntax** that eliminates the need for closing tags. Instead, you simply use three dashes `---` followed by the page ID:
+
+```{r}
+--- welcome
+
+Welcome to our survey!
+
+--- demographics
+
+Please tell us about yourself.
+
+--- questions
+
+Now for the main questions...
+```
+
+That's it! Each new page delimiter automatically closes the previous page, so there's no need to track opening and closing tags. The syntax is cleaner, more concise, and easier to scan visually.
+
+The shorthand syntax offers several advantages:
+
+1. **Cleaner code**: Eliminates visual clutter from closing tags
+2. **Easier to scan**: Page delimiters stand out clearly, making survey structure obvious
+3. **Less typing**: Fewer characters to type means faster survey development
+4. **Fewer errors**: No need to remember closing tags - can't forget what doesn't exist!
+5. **Better git diffs**: When you add or modify pages, diffs are cleaner without closing tag changes
+
+## Example
+
+Let's look at another survey example to see the improvement. Here's the same survey written both ways:
+
+::: {.panel-tabset}
+
+## Fence Syntax (Old)
+
+````{r}
+---
+format: html
+echo: false
+---
+
+```{r}
+library(surveydown)
+```
+
+::: {.sd_page id=welcome}
+
+# Welcome!
+
+Thank you for participating in our study.
+
+```{r}
+sd_next()
+```
+
+:::
+
+::: {.sd_page id=consent}
+
+## Informed Consent
+
+Please read the following information carefully...
+
+```{r}
+sd_question(
+  type = 'mc',
+  id = 'consent',
+  label = "Do you consent to participate?",
+  option = c(
+    'Yes, I consent' = 'yes',
+    'No, I decline' = 'no'
+  )
+)
+
+sd_next()
+```
+
+:::
+
+::: {.sd_page id=demographics}
+
+## Demographics
+
+```{r}
+sd_question(
+  type = 'numeric',
+  id = 'age',
+  label = "What is your age?"
+)
+
+sd_question(
+  type = 'mc',
+  id = 'education',
+  label = "What is your highest level of education?",
+  option = c(
+    'High school' = 'hs',
+    'Bachelor\'s degree' = 'ba',
+    'Graduate degree' = 'grad'
+  )
+)
+
+sd_next()
+```
+
+:::
+
+::: {.sd_page id=survey_questions}
+
+## Main Questions
+
+```{r}
+sd_question(
+  type = 'mc',
+  id = 'satisfaction',
+  label = "How satisfied are you with our product?",
+  option = c(
+    'Very satisfied' = '5',
+    'Satisfied' = '4',
+    'Neutral' = '3',
+    'Dissatisfied' = '2',
+    'Very dissatisfied' = '1'
+  )
+)
+
+sd_next()
+```
+
+:::
+
+::: {.sd_page id=end}
+
+## Thank You!
+
+Your responses have been recorded. You may now close this window.
+
+```{r}
+sd_close()
+```
+
+:::
+````
+
+## Shorthand Syntax (New)
+
+````{r}
+---
+format: html
+echo: false
+---
+
+```{r}
+library(surveydown)
+```
+
+--- welcome
+
+# Welcome!
+
+Thank you for participating in our study.
+
+```{r}
+sd_next()
+```
+
+--- consent
+
+## Informed Consent
+
+Please read the following information carefully...
+
+```{r}
+sd_question(
+  type = 'mc',
+  id = 'consent',
+  label = "Do you consent to participate?",
+  option = c(
+    'Yes, I consent' = 'yes',
+    'No, I decline' = 'no'
+  )
+)
+
+sd_next()
+```
+
+--- demographics
+
+## Demographics
+
+```{r}
+sd_question(
+  type = 'numeric',
+  id = 'age',
+  label = "What is your age?"
+)
+
+sd_question(
+  type = 'mc',
+  id = 'education',
+  label = "What is your highest level of education?",
+  option = c(
+    'High school' = 'hs',
+    'Bachelor\'s degree' = 'ba',
+    'Graduate degree' = 'grad'
+  )
+)
+
+sd_next()
+```
+
+--- survey_questions
+
+## Main Questions
+
+```{r}
+sd_question(
+  type = 'mc',
+  id = 'satisfaction',
+  label = "How satisfied are you with our product?",
+  option = c(
+    'Very satisfied' = '5',
+    'Satisfied' = '4',
+    'Neutral' = '3',
+    'Dissatisfied' = '2',
+    'Very dissatisfied' = '1'
+  )
+)
+
+sd_next()
+```
+
+--- end
+
+## Thank You!
+
+Your responses have been recorded. You may now close this window.
+
+```{r}
+sd_close()
+```
+````
+
+:::
+
+Notice how much cleaner the shorthand version is? The page boundaries are immediately visible, and there's no visual clutter from closing tags. Your survey structure becomes easier to understand at a glance.
+
+## Backward Compatibility
+
+We want to emphasize that **both syntaxes work perfectly** in v0.14.0 and beyond. Your existing surveys using fence syntax will continue to work without any changes. We're introducing shorthand syntax as the **recommended** approach going forward, but you're free to use whichever style you prefer.
+
+::: {.callout-caution}
+
+Be careful not to mix both syntaxes within the same survey. Each survey must define pages using either the fence syntax or shorthand syntax exclusively.
+
+:::
+
+## Updated Documentation
+
+All of our documentation has been updated to use the new shorthand syntax as the primary example. However, we've kept documentation for both approaches:
+
+- The [Page Navigation](https://surveydown.org/docs/page-navigation.html#defining-pages) page explains both syntaxes in detail
+- The [Basic Components](https://surveydown.org/docs/basic-components.html#defining-pages) page introduces shorthand syntax
+- All our [templates](https://surveydown.org/templates.html) will be updated to use shorthand syntax
+
+## Migration Guide
+
+The good news is you do not need to change anything in your existing surveys. They will continue to work as before. However, if you want to take advantage of the cleaner shorthand syntax, migrating is easy:
+
+1. Replace `::: {.sd_page id=PAGE_ID}` with `--- PAGE_ID`
+2. Remove all closing `:::` tags
+3. Make sure each page starts with `---` followed by a space and the page ID
+
+For example, convert this:
+
+```{r}
+::: {.sd_page id=page1} 
+
+Content here
+
+:::
+
+::: {.sd_page id=page2}
+
+More content
+
+:::
+```
+
+To this:
+
+```{r}
+--- page1
+
+Content here
+
+--- page2
+
+More content
+```
+
+That's all there is to it!
+
+## Looking Forward
+
+This improvement is part of our ongoing effort to make surveydown as developer-friendly as possible. We're constantly listening to user feedback and looking for ways to reduce friction in the survey development process.
+
+If you have suggestions for future improvements, please let us know through [GitHub Discussions](https://github.com/orgs/surveydown-dev/discussions) or by filing an issue on our [GitHub repository](https://github.com/surveydown-dev/surveydown).
+
+## Getting Started
+
+To start using the shorthand syntax, simply update to surveydown v0.14.0 or later:
+
+```{r}
+# Install from CRAN (once 0.14.0 is released)
+install.packages("surveydown")
+
+# Or install the development version from GitHub
+pak::pak("surveydown-dev/surveydown")
+```
+
+Then start using `---` followed by your page IDs in your survey.qmd files. It's that simple!

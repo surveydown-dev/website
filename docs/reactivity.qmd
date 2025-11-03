@@ -110,6 +110,54 @@ If you find this annoying, we agree! This is a bit of a hack and we are working 
 
 :::
 
+## Embedding question values in labels
+
+Another common use case for reactivity is embedding a respondent's answer to one question into the label of a follow-up question. This can make your survey feel more personalized and contextually relevant.
+
+For example, you might ask what type of pet someone prefers, then use their answer in the label of a follow-up question. In your **survey.qmd** file, you can do this using the `sd_output()` function with the `glue()` function from the `glue` package to create dynamic strings:
+
+```{r}
+sd_question(
+  id     = "pet_type",
+  type   = "mc",
+  label  = "Which do you like more, dogs or cats?",
+  option = c("Dogs" = "dog", "Cats" = "cat")
+)
+
+pet_type_chosen <- sd_output(id = "pet_type", type = "value")
+
+sd_question(
+  type   = "mc",
+  id     = "pet_owner",
+  label  = glue::glue("Are you a {pet_type_chosen} owner?"),
+  option = c("Yes" = "yes", "No" = "no")
+)
+
+sd_next()
+```
+
+In this example, if the respondent selects "Cats" in the first question, the label for the second question will display as "Are you a cat owner?".
+
+::: {.callout-tip}
+
+If both questions are on the same page, you'll probably want to conditionally display the second question so that the label doesn't appear until the first question is answered. You can do this in your **app.R** file using `sd_show_if()`:
+
+```{r}
+server <- function(input, output, session) {
+  # Only show the pet_owner question if pet_type is answered
+  sd_show_if(
+    sd_is_answered("pet_type") ~ "pet_owner"
+  )
+
+  # Database designation and other settings
+  sd_server(db = db)
+}
+```
+
+This ensures that the `pet_owner` question only appears after the respondent has selected an answer to `pet_type`, preventing any awkward display of an incomplete label like "Are you a  owner?".
+
+:::
+
 ## Working with calculated values
 
 Often times you'll need to create intermediate objects in your server that depend on question responses. In this situation, the intermediate objects won't be generated when the survey launches since the question response(s) needed to calculate them are not yet answered. Instead, they'll need to be _reactively_ created once the respondent answers the questions. 
@@ -123,7 +171,7 @@ To provide a concrete example, suppose you have a page in your **survey.qmd** fi
 **Example page in **survey.qmd** file**:
 
 ````{r}
-::: {#page1 .sd-page}
+--- page1
 
 # Demo - Calculation
 
@@ -154,8 +202,6 @@ The sum of these 2 numbers is: `r sd_output("sum", type = "value")`.
 ```{r}
 sd_next()
 ```
-
-:::
 ````
 
 To make these values display properly, you can create reactive values with the `sd_reactive()` function in the server, which reactively updates as the user changes any of the question values. Here is an example of how you might create the `product` value:

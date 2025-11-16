@@ -1,6 +1,6 @@
 Every surveydown survey is composed of a _survey_ and an _app_, defined in two separate files:
 
-- **survey.qmd**: A Quarto document that contains the survey content (pages, questions, etc), which renders to an HTML file.
-- **app.R**: An R script defining a Shiny app that contains the global settings (libraries, database configuration, etc.) and server configuration options (e.g., conditional page skipping / question display, etc.).
+- **survey.qmd**: A {{< var quarto >}} document that contains the main survey content, such as pages, questions, and navigation buttons. It is a standard Quarto document, so you can use any text editor or IDE to insert content.
+- **app.R**: An R script defining a Shiny app that contains the global settings (libraries, database configuration, etc.) and any server configurations (e.g., conditional page skipping / question display, etc.).
 
 These files must be named **survey.qmd** and **app.R**.

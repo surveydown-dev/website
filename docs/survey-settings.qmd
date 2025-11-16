@@ -3,109 +3,96 @@ title: "Survey Settings"
 code-annotations: hover
 ---
 
-**surveydown** provides 2 ways of configuring survey settings:
+All survey settings are configured in the YAML header of the **survey.qmd** file. If you wish to use the default settings, no YAML header is required. 
 
-1. (Recommended) Using YAML header in **survey.qmd**.
-2. Using `sd_server()` in **app.R**.
+## Default settings
 
-We chose to use YAML header keys in our [templates](/templates.html), and we intentionally made them verbose to demonstrate all available options. If you prefer using `sd_server()`, you can call `?sd_server()` to see all available options.
+There are three categories of settings:
 
-::: {.callout-note}
-If you define the same setting in both the YAML header and `sd_server()`, the setting in `sd_server()` will take precedence.
-:::
+- The `theme-settings` control the visual appearance of the survey. You can customize the theme, position of the progress bar, and footer text.
+- The `survey-settings` includes various options to customize the survey behavior, such as enabling cookies, enabling auto-scrolling, changing the system language, highlighting unanswered questions, and specifying required questions. 
+- The `system-messages` section allows you to customize the text for various buttons and messages displayed throughout the survey.
 
-## Option 1: YAML in survey.qmd (Recommended)
-
-This is a comprehensive list of all survey configuration settings that can be defined in the YAML header of the **survey.qmd** file.
+This is the comprehensive list of all default survey configuration settings:
 
 ```yaml
-# General Settings - Must Have
-format: html
-echo: false
-warning: false
+---
+theme-settings:
+  theme: default
+  barposition: top
+  footer-left: ''
+  footer-center: ''
+  footer-right: ''
 
-# Theme Settings
-theme: default
-barcolor: "#768692"
-barposition: top
-footer: Footer Text
-footer-left: Footer Left Test
-footer-center: Footer Center Test
-footer-right: Footer Right Test
+survey-settings:
+  show-previous: no
+  use-cookies: no
+  auto-scroll: no
+  rate-survey: no
+  all-questions-required: no
+  start-page: initial-page
+  system-language: en
+  highlight-unanswered: yes
+  highlight-color: gray
+  capture-metadata: yes
+  required-questions: []
 
-# Survey Settings - Compatible with sd_server() arguments
-use-cookies: true
-auto-scroll: false
-rate-survey: false
-system-language: en
-highlight-unanswered: true
-highlight-color: gray
-capture-metadata: true
-start-page: page_1
-all-questions-required: false
-required-questions:
-  - question_1
-  - question_2
+system-messages:
+  cancel: Cancel
+  confirm-exit: Confirm Exit
+  sure-exit: Are you sure you want to exit the survey?
+  submit-exit: Submit and Exit
+  warning: Warning
+  required: Please answer all required questions before proceeding.
+  rating-title: Before you go...
+  rating-text: 'Rate your survey experience:'
+  rating-scale: from 1-poor to 5-excellent
+  label-previous: Previous
+  label-next: Next
+  exit: Exit Survey
+  close-tab: Please close this tab manually to exit the survey.
+  choose-option: Choose an option...
+  click: Click here
+  redirect: Redirecting in
+  seconds: seconds
+  new-tab: Opens in a new tab
+  redirect-error: "Error: This text won't trigger any redirection..."
+---
 ```
-
-The **General Settings** are standard Quarto options. Our `format` is set to `html`, indicating a web-based survey. The `echo` and `warning` options are set to `false` to suppress code and warning messages in the survey output.
-
-The **Theme Settings** control the visual appearance of the survey. You can customize the theme, position of the progress bar, and footer text. Notice that `footer` is equivalent to `footer-center`.
-
-The **Survey Settings** section includes various options to customize the survey behavior, such as enabling cookies, auto-scrolling, survey rating, system language, highlighting unanswered questions, capturing metadata, and specifying required questions.
 
 ::: {.callout-note}
-Both **Theme Settings** and **Survey Settings** YAML keys can be written with underscores (`_`) or hyphens (`-`), so that `use-cookies` and `use_cookies` are interchangeable.
 
-In YAML keys, you have 2 ways to represent boolean values: `true`/`false` or `yes`/`no`. Both are acceptable. For `true`/`false`, you can also use capitalized versions: `True`/`False`.
+- All YAML keys can be written with underscores (`_`) or hyphens (`-`), so both `use-cookies` and `use_cookies` are valid.
+- In YAML keys, you have 2 ways to represent boolean values: `true`/`false` or `yes`/`no`. Both are acceptable. For `true`/`false`, you can also use capitalized versions: `True`/`False`.
+
 :::
 
-## Option 2: `sd_server()` in app.R
+## `settings.yml` file
 
-Alternatively, you can configure survey settings using the `sd_server()` function in the **app.R** file, under the `server` function definition. The `server()` function is a standard Shiny server function that takes `input`, `output`, and `session` as arguments.
+When you render your surveydown survey, a `_survey` folder is generated that contains all files needed to run the survey. In that folder, there is a `settings.yml` file that contains all survey settings in YAML format. This file is automatically generated based on the YAML header in your **survey.qmd** file. You can open and inspect this file to see how your survey settings are stored.
 
-Define your `sd_server()` like this:
+::: {.callout-warning}
 
-```{r}
-server <- function(input, output, session) {
-  sd_server(
-    db = db, # Left out from YAML
-    use_cookies = TRUE,
-    auto_scroll = FALSE,
-    rate_survey = FALSE,
-    language = "en",
-    highlight_unanswered = TRUE,
-    highlight_color = "gray",
-    capture_metadata = TRUE,
-    start_page = "page_1",
-    all_questions_required = FALSE,
-    required_questions = c("question_1", "question_2")
-  )
-}
-```
+Do not manually edit the `settings.yml` file, as any changes you make will be overwritten the next time you render your survey.
 
-Above are the equivalent settings to those defined in the YAML header example. Note that the `db` argument is not available in the YAML header and must be specified in `sd_server()` if you are using a database connection.
+:::
 
-## Setting explanations
+## Theme settings
 
-### Appearance settings
+### Overall theme
 
 Because the **survey.qmd** is a Quarto document, you can use any of the [Quarto formatting options](https://quarto.org/docs/reference/formats/html.html#format-options) to change the appearance of your survey. 
 
 For example, you can change the overall survey theme using the `theme` key:
 
 ``` yaml
----
 theme: united # Any bootswatch theme 
----
 ```
 
 There are [25 bootswatch themes](https://quarto.org/docs/output-formats/html-themes.html) to choose from. You can also provide a `custom.scss` file to further modify the theme, or even combine the two, e.g.:
 
 ``` yaml
----
 theme: [united, custom.scss]
----
 ```
 
 ### Progress bar
@@ -113,10 +100,8 @@ theme: [united, custom.scss]
 You can modify the survey progress bar with the `barcolor` and `barposition` keys, e.g.:
 
 ``` yaml
----
 barcolor: "#768692"
 barposition: top 
----
 ```
 
 The `barcolor` key defines the color of the progress bar. It defaults to the primary theme color, but you can change it to any hex code you wish here to overwrite the theme color.
@@ -130,20 +115,18 @@ You can customize the footer text using the `footer`, `footer-left`, `footer-cen
 If you only want to set a centered footer text, use the `footer` key, like this:
 
 ``` yaml
----
 footer: This is your centered footer text.
----
 ```
 
 Or, you can customize the left, center, and right footer texts separately using the `footer-left`, `footer-center`, and `footer-right` keys, like this:
 
 ``` yaml
----
 footer-left: Footer Left Test
 footer-center: Footer Center Test
 footer-right: Footer Right Test
----
 ```
+
+## Survey settings
 
 ### Cookies
 
@@ -152,9 +135,7 @@ Cookies are used to store user sessions, including their session ID, survey data
 Define your cookies like this in YAML:
 
 ``` yaml
----
 use-cookies: true
----
 ```
 
 By default, the cookies are **enabled**. You can disable the cookies by changing the YAML key to `false`.
@@ -166,9 +147,7 @@ The auto scroll feature allows the page to automatically scroll according to the
 Define auto scroll like this in YAML:
 
 ``` yaml
----
 auto-scroll: true
----
 ```
 
 By default, auto scroll is **disabled**.
@@ -178,9 +157,7 @@ By default, auto scroll is **disabled**.
 You may want to add a survey rating question by the end of the survey to collect user reflections. Simply set `rate-survey` to `true` (Default to `false`) in YAML:
 
 ``` yaml
----
 rate-survey: true
----
 ```
 
 By default, survey rating is **disabled**.
@@ -216,9 +193,7 @@ To systematically display the preset system messages and button text elements in
 By default, the system language is set to English (`en`):
 
 ``` yaml
----
 system-language: en
----
 ```
 
 Six languages are internally supported by **surveydown**:
@@ -237,17 +212,15 @@ Below is an example of the system language set to **Spanish** (`es`):
 </center>
 <br>
 
-You can also customize the system language. See the [System Translations](system-translations.html) page for more details.
+You can also customize any system message beyond these default values (see the [System Messages](#system-messages) section below).
 
 ### Highlight unanswered questions
 
 You can highlight unanswered questions to help respondents identify which questions they have not answered yet:
 
 ``` yaml
----
 highlight-unanswered: true
 highlight-color: gray
----
 ```
 
 By default, highlighting unanswered questions is **enabled**. You can disable this feature by setting `highlight-unanswered` to `false`.
@@ -276,9 +249,7 @@ We auto-trigger **red** highlighting for required questions that are not answere
 To enable metadata capturing, set `capture-metadata` to `true` in YAML:
 
 ``` yaml
----
 capture-metadata: true
----
 ```
 
 By default, metadata capturing is **enabled**.
@@ -288,9 +259,7 @@ By default, metadata capturing is **enabled**.
 When editing your survey, it can be helpful to start the survey at a specific page. You can define the start page in YAML like this:
 
 ``` yaml
----
 start-page: page_1
----
 ```
 
 By default, the survey starts at the first page.
@@ -302,9 +271,7 @@ By default, no questions are required. We provide 2 YAML keys to define required
 **Firstly**, set `all-questions-required` to `true` to make all questions required:
 
 ``` yaml
----
 all-questions-required: true
----
 ```
 
 By default, `all-questions-required` is set to `false`.
@@ -312,11 +279,37 @@ By default, `all-questions-required` is set to `false`.
 **Secondly**, use `required-questions` to provide a list of question IDs to make specific questions required:
 
 ``` yaml
----
 required-questions:
   - question_1
   - question_2
----
 ```
 
 The questions set to required will make the respondent unable to proceed until they have answered all of them on the current page. It will also place a red asterisk (*) next to the question label to indicate that the question is required.
+
+## System messages
+
+You can customize all system messages and button text elements displayed throughout the survey by modifying the `system-messages` section in YAML. By default, all system messages are in English, though you can set the default language to one of six supported languages by changing the [`system-language`](#system-language) setting. 
+
+Any customizations you make in the `system-messages` section will override the default messages, regardless of the system language setting.
+
+Here is a description of each system message key and its default value:
+
+- `cancel`: Text for the cancel button in dialog boxes.
+- `confirm-exit`: Title text for the confirm exit dialog box (when using `sd_close()` to insert a closing button).
+- `sure-exit`: Message text asking if the user is sure they want to exit the survey (when using `sd_close()` to insert a closing button).
+- `submit-exit`: Text for the submit and exit button in the confirm exit dialog box.
+- `warning`: Title text for warning dialog boxes.
+- `required`: Message text prompting the user to answer all required questions before proceeding.
+- `rating-title`: Title text for the survey rating dialog box.
+- `rating-text`: Message text prompting the user to rate their survey experience.
+- `rating-scale`: Description of the rating scale used in the survey rating question.
+- `label-previous`: Text for all previous navigation buttons.
+- `label-next`: Text for all next navigation buttons.
+- `exit`: Text for the exit survey button.
+- `close-tab`: Message prompting the user to close the tab manually to exit the survey.
+- `choose-option`: Placeholder text for dropdown menus.
+- `click`: Text for clickable links.
+- `redirect`: Text indicating that the user is being redirected.
+- `seconds`: Text indicating the number of seconds remaining before redirection.
+- `new-tab`: Text indicating that a link opens in a new tab.
+- `redirect-error`: Error message displayed if redirection fails.

@@ -1,12 +1,14 @@
-If you create a new survey using a [template](getting-started.html#start-with-a-template), the `server()` function looks like this:
+If you create a new survey using a [template](getting-started.html#start-with-a-template), the `server()` function might look something like this:
 
 ```{r}
 server <- function(input, output, session) {
 
-  # Define conditional skip logic (skip forward to page if a condition is TRUE)
-  sd_skip_forward()
+  # Define conditional skip logic 
+  # (skip forward to page if a condition is TRUE)
+  sd_skip_if()
 
-  # Define conditional display logic (show a question if a condition is TRUE)
+  # Define conditional display logic 
+  # (show a question if a condition is TRUE)
   sd_show_if()
 
   # Main server to control the app

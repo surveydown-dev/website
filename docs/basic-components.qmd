@@ -181,20 +181,7 @@ Additionally, you can also manually add navigation buttons using the `sd_nav()` 
 sd_nav()
 ```
 
-The `sd_nav()` function allows you control over the labels using the `next_label` and `prev_label` arguments, e.g.:
-
-- `next_label = "Next Page"`
-- `prev_label = "Previous Page"`
- 
-You can also control whether to show either button at all using the following arguments:
-
-- `show_next`: Set to `TRUE` or `FALSE` to show the next button or not.
-- `show_prev`: Set to `TRUE` or `FALSE` to show the previous button or not.
-- `show_buttons`: Set to `TRUE` or `FALSE` to show both buttons or not.
-
-Finally, you can also set the target page to navigate to using the `next_page` argument in case you want to send respondents to a different page. The default behavior is to send the respondent to the immediate next page.
-
-You can also conditionally control page skipping using the `sd_skip_if()` function in your server function. See the [Conditional Page Skipping](conditional-logic.html#conditional-skipping) page or [Page Navigation](page-navigation.html) page for more details.
+The `sd_nav()` function allows you to control mutliple aspects of the navigation buttons on a given page, including control over the labels used in the navigation buttons, control over whether to show either button at all, and control over which page to navigate to next. See the [Navigation Buttons](page-navigation.html#navigation-buttons) page for more details.
 
 ### Ending the survey
 

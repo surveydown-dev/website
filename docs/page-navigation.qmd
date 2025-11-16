@@ -68,50 +68,41 @@ Here is what the **Survey Page Gadget** looks like in RStudio:
 </center>
 <br>
 
-## Adding navigation buttons
+## Navigation buttons
 
-To navigate to the next page, you need to insert a `sd_next()` function call inside a code chunk, like this: 
+By default, navigation buttons are automatically added to each page to allow respondents to move forward through the survey. To change the global settings (e.g., add a previous button on all pages, change the message shown on all next buttons, etc.), you can edit the survey settings in the YAML header (see the [Survey Settings](survey-settings.html#navigation-buttons) page for details).
 
-```{r}
-#| echo: fenced
-
-sd_next()
-```
-
-The above code chunk will create a "Next" button that goes on to the immediate next page. The button will look like this:
-
-```{r}
-#| eval: true
-#| echo: false
-
-sd_next()
-```
-
-You can also provide an alternative label on the next page button using the `label` argument, like this:
+Additionally, you can also manually add navigation buttons using the `sd_nav()` function inside code chunks on any page, which will override the global settings for that specific page, like this: 
 
 ```{r}
 #| echo: fenced
 
-sd_next(label = "Go to the next page")
+sd_nav()
 ```
 
-```{r}
-#| eval: true
-#| echo: false
+The `sd_nav()` function allows you control over the labels using the `label_next` and `label_prev` arguments, e.g.:
 
-sd_next(label = "Go to the next page")
-```
+- `label_next = "Next Page"`
+- `label_prev = "Previous Page"`
+ 
+You can also control whether to show either button at all using the following arguments:
+
+- `show_next`: Set to `TRUE` or `FALSE` to show the next button or not.
+- `show_prev`: Set to `TRUE` or `FALSE` to show the previous button or not.
+- `show_buttons`: Set to `TRUE` or `FALSE` to show both buttons or not.
+
+Finally, you can also control which page to navigate to next using the `page_next` argument (see [Direct Forward Skipping](#direct-forward-skipping) below). 
 
 ## Skipping Forward
 
 ### Direct Forward Skipping
 
-You can send the survey respondent to other forward pages by changing the value assigned to the `next_page` argument in the `sd_next()` function. For example, to send the user to a page with the id `page3`, you can use:
+You can send the survey respondent to other forward pages by changing the value assigned to the `page_next` argument in the `sd_nav()` function. For example, to send the user to a page with the id `page3`, you can use:
 
 ```{r}
 #| echo: fenced
 
-sd_next(next_page = 'page3')
+sd_nav(page_next = 'page3')
 ```
 
 ### Conditional Forward Skipping

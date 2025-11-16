@@ -39,6 +39,46 @@ When a surveydown survey first runs, it checks for files in a **\_survey** folde
 
 Also, it is important that you run your survey locally **at least once** before deploying it live. This will render all your survey content into the **\_survey** folder, which will also get uploaded when you deploy it.
 
-## How do I customize my survey?
+## How do I customize the look and feel of my survey?
 
 Please see our [Survey Settings](/docs/survey-settings.html) page for a full walkthrough of all available customization options, including themes, colors, progress bar settings, and survey behaviors.
+
+## Installation issues
+
+Make sure you have all of the required software for surveydown - see the [installation instructions](docs/getting-started.html#install) for details.
+
+::: {.callout-note}
+
+Sometimes the R packages like `surveydown` may not install properly, often because your path is managed by some package managing system like [Anaconda](https://www.anaconda.com). In this case, a third alternative is to download the zip file of the package source code and then install it locally.
+
+To download the zip file, go the the [surveydown repo](https://github.com/surveydown-dev/surveydown), click on the green "Code" button and click on "Download Zip", or simplify click on [this link](https://github.com/surveydown-dev/surveydown/archive/refs/heads/main.zip).
+
+Unzip this repo, then open the **surveydown.Rproj** file. In your R Console panel, run this code to install:
+
+```{r}
+# install.packages("pak")
+pak::local_install(ask = FALSE)
+```
+
+:::
+
+Some useful links:
+
+- [surveydown CRAN Page](https://cran.r-project.org/web/packages/surveydown/index.html)
+- [surveydown GitHub repo](https://github.com/surveydown-dev/surveydown/)
+
+## I'm having trouble with the database connection
+
+You might encounter connection problem caused by failure of GSSAPI (Generic Security Services Application Program Interface). It is a a protection layer for data security supported by PostgreSQL. In SQL management, it is controlled by the `gssencmode` argument.
+
+In previous versions of **surveydown** (before `v0.12.5`), the `sd_db_connect()` and `sd_dashboard()` functions have a `gssencmode` default to `"prefer"`, which enables GSSAPI, but may cause connection failure under some network conditions (VPN, for example). Our previous solution is to manually change `gssencmode` from `"prefer"` to `"disable"`, but it is less intuitive and causes more trouble than efficiency.
+
+Therefore, our current solution (versions after `v0.12.5`) is to remove the `gssencmode` argument from these functions, in which the GSSAPI is set to `"prefer"` by default, but if the connection errors due to network problem, it will auto-switch to `"disable"` and leave a message.
+
+## I'm having trouble deploying my survey to shinyapps.io
+
+If your shinyapps deployment fails, you should firstly make sure your database credentials are correctly defined, including your Supabase project settings and password settings (if you're using Supabase). The password defined by `sd_db_config()` should be the same as your Supabase project / database password. Access the [Storing Data](docs/storing-data.html) page for how to set all database credentials. 
+
+Then, make sure your survey runs on your local machine and can successfully link with your database table. With these confirmed, your shinyapps deployment should work without problem.
+
+If you still encounter an error (e.g., the page shows the app failed to start, or you see the page but it doesn't run properly), try clearing your cache. The simplest way to do so is to **reboot your computer**. It may also help if you delete previously generated files, such as the `survey.html` file if you rendered it and the `rsconnect` folder. After re-rendering, you should be able to deploy the app without error.

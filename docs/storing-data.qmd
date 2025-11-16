@@ -122,11 +122,11 @@ If you're having trouble connecting to your database, try these steps:
 
 - Are you certain your password is correct? You can open your .env file in a text reader app or in your IDE to check it.
 - Are you certain your credentials are correct? If you run `surveydown::sd_db_config()` again in your R console, you can see the current values stored in the `[]` symbols to check if those are correct.
-- Are you getting a message about something related to `gssencmode`? Take a look [here](https://surveydown.org/docs/troubleshooting#database-connection).
+- Consider modifying the `gssencmode` parameter. Take a look [here](https://surveydown.org/faq.html#im-having-trouble-with-the-database-connection).
 
 ## Cookies 
 
-By default, the data on each page will be locally stored in the browser cookies, though you can turn this feature off if you wish (see [here](https://surveydown.org/docs/survey-settings#cookies)).
+By default, the data on each page will be locally stored in the browser cookies, though you can turn this feature off if you wish (see [here](survey-settings.html#cookies)).
 
 This is done so that the session state can be restored should a respondent lose an internet connection or close the browser on accident, etc. The responses on each page will not be written to the database until the respondent clicks the next button or if they close the browser.
 

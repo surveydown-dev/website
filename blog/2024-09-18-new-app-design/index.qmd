@@ -134,7 +134,7 @@ This approach allows us to separate the _survey content_ (in the `survey.qmd` fi
 2. **Clarity**: With two files, it is now clearer where the survey content versus control logic should be defined. Before, all of the server logic was in a single server code chunk at the end of the `survey.qmd` file, which required the user to scroll up and down to edit the server logic versus the survey content. Now a user can have both files open in two tabs in an IDE and more easily edit the survey content and server content.
 3. **Simplicity**: The new design eliminates the need for a Quarto extension to render the survey. This allows us to ship all of the core functionality of surveydown as a single R package, which is installed globally on your system.
 
-The updated documentation of the [Survey Components](https://surveydown.org/manuals/survey-components) page reflects this new design.
+The updated documentation of the [Basic Components](https://surveydown.org/docs/basic-components) page reflects this new design.
 
 ## New page architecture
 
@@ -166,7 +166,7 @@ server <- function(input, output, session) {
 }
 ```
 
-You can provide multiple conditions to the `sd_show_if()` function, each separated by a comma. The `sd_skip_if()` function works the same way, but it will skip to a target page instead of showing a target question. See the revised [Conditional Control](https://surveydown.org/manuals/conditional-control) page for more details on the new changes.
+You can provide multiple conditions to the `sd_show_if()` function, each separated by a comma. The `sd_skip_if()` function works the same way, but it will skip to a target page instead of showing a target question. There is also an `sd_stop_if()` to stop the navigation under centain conditions. See the revised [Conditional Logic](https://surveydown.org/docs/conditional-logic) page for more details on the new changes.
 
 ## No more `sd_config()` function
 
@@ -176,4 +176,4 @@ One more small change we made is that the `sd_config()` function is no longer ne
 
 That's about it for the changes with v0.3.0. We want to send our deepest apologies for anyone who has already begun a study using the orginal design. The most recent version prior to v0.3.0 was v0.2.4, so this is the version you should install if you want to stick with the old design. 
 
-That said, all development will now continue on this new design, so we strongly recommend updating to the new version and converting any existing surveys to the new design. The biggest change you'll need to make is to move your server logic out of the `survey.qmd` file and into the `app.R` file. We've also updated all our [demos](https://surveydown.org/demos) to the new design, so you can refer to these for examples on how to convert your existing surveys.
+That said, all development will now continue on this new design, so we strongly recommend updating to the new version and converting any existing surveys to the new design. The biggest change you'll need to make is to move your server logic out of the `survey.qmd` file and into the `app.R` file. We've also updated all our [templates](https://surveydown.org/templates) to the new design, so you can refer to these for examples on how to convert your existing surveys.

@@ -29,6 +29,7 @@ css: /css/surveydown.css
 
 library(surveydown)
 library(dplyr)
+library(readr)
 library(glue)
 shiny::shinyOptions(bootstrapTheme = bslib::bs_theme(version = 5L))
 ```
@@ -99,7 +100,7 @@ The choice questions are implemented at the top of the `server()` function in th
 Pretty straightforward - this is one line to read in the `choice_questions.csv` design file that we saved in the project folder.
 
 ```{r}
-design <- readr::read_csv("choice_questions.csv")
+design <- read_csv("choice_questions.csv")
 ```
 
 ### 2. Sample and store a random respondent ID
@@ -226,7 +227,7 @@ When rendered, a choice question will look like this, with the values matching w
 #| eval: true
 #| echo: false
  
-df <- readr::read_csv("choice_questions.csv")
+df <- read_csv("choice_questions.csv")
 df$image <- paste0("images/", df$image)
 cbc1_options <- make_cbc_options(df |> filter(qID == 1))
 sd_question(

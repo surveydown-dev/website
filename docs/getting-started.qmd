@@ -22,14 +22,10 @@ The [**surveydown**]({{< var url_package >}}) R package provides a set of functi
 
 The platform is based on some basic principles:
 
-- Add content to your **survey.qmd** file using markdown text (or in RStudio use the visual editor).
-- Define survey questions in R code chunks with the `sd_question()` function.
-- Define pages using fences (`:::`), with navigation buttons handled using the `sd_next()` function.
-- Add rich functionality to your survey using a variety of [Survey Settings](survey-settings.html) in the `server()` function in the **app.R** file.
-- Apply [Conditional Logic](conditional-logic.html) to question display with `sd_show_if()` or page navigation with `sd_skip_forward()`.
-- Store your respondent data in a database (see [Storing Data](storing-data.html)).
-
-This approach ensures a flexible survey platform that is fully reproducible and easy to customize.
+- All content is defined and controlled in code, making it fully reproducible and version controllable.
+- Survey content is defined inside a [Quarto](https://quarto.org/) document, allowing for rich content combining Markdown syntax and code chunks.
+- Each survey is rendered as a single Shiny application, allowing for interactivity and dynamic behavior.
+- Data storage is flexible and managed independently of where the survey app is hosted, providing flexibility and control over all data handling and storage.
 
 The remaining steps on this page will guide you through the process of creating a surveydown survey.
 

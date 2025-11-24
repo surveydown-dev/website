@@ -11,10 +11,7 @@ library(surveydown)
 
 ## Overview
 
-Every surveydown survey is composed of a _survey_ and an _app_, defined in two separate files:
-
-- **survey.qmd**: This file is where you define all of the main survey content, such as pages, questions, and navigation buttons. It is a standard Quarto document, so you can use any text editor or IDE to insert text, images, etc. just like you would in any Quarto document. See the [survey.qmd](#survey.qmd-1) section for details.
-- **app.R**: This file is where you define the global settings (libraries, database configuration, etc.) and server logic (e.g., conditional page skipping / question display, etc.) for your survey. It defines a Shiny app, so if you are familiar with Shiny you should feel right at home. See the [app.R](#app.r-1) section for details.
+{{< include ../chunks/files.qmd >}}
 
 ::: {.callout-note}
 
@@ -31,8 +28,6 @@ Here is an example set of files for a basic survey:
 ````{r}
 ---
 format: html
-echo: false
-warning: false
 ---
 
 ```{r}
@@ -54,8 +49,6 @@ sd_question(
     'Gentoo'    = 'gentoo'
   )
 )
-
-sd_next()
 ```
 
 --- end
@@ -95,19 +88,15 @@ The **survey.qmd** file is where you will define all of the main survey content,
 
 ### YAML header
 
-The YAML header is at the top of the **survey.qmd** file. It contains some basic settings, like this:
+The YAML header is at the top of the **survey.qmd** file. It is where you specify all global settings for your survey. If you do not specify a YAML header, all default settings will be used. The simplest YAML header just specifies the output format as HTML, like this:
 
 ``` yaml
 ---
 format: html
-echo: false
-warning: false
 ---
 ```
 
-The `format: html` setting is optional since by default a Quarto doc is formatted as HTML. We put it here to explicitly state that this document should be rendered as an HTML document. The other settings, `echo: false` and `warning: false`, are recommended for a clean user experience, so that the survey does not display any code scripts or warnings to the participants.
-
-The YAML header can also contain other survey settings, such as theme settings and survey behavior settings. See the [Survey Settings](survey-settings.html) page for details.
+The YAML header can also contain other settings, such as theme settings, survey settings, and system message settings. See the [Survey Settings](survey-settings.html) page for details.
 
 The rest of the content in the **survey.qmd** file is the content you want in your survey, including **pages**, **navigation buttons**, and **questions**.
 
@@ -128,50 +117,6 @@ Page 2 content here
 Each new page delimiter automatically closes the previous page, so you don't need explicit closing tags.
 
 Alternatively, you can use fence syntax with `:::` to explicitly mark the start and end of pages (see the [Page Navigation](page-navigation.html) page for details on both syntax options).
-
-If you are using RStudio, you can also make use of the page gadget to create pages under the "Addins" dropdown menu. Here is what the **Survey Page Gadget** looks like in RStudio:
-
-<br>
-<center>
-<img src="/images/screenshots/gadget_of_page.gif" style="width: 80%; max-width: 1000px;">
-</center>
-<br>
-
-### Adding navigation buttons
-
-To navigate to the next page, you need to insert a `sd_next()` function call inside a code chunk, like this: 
-
-```{r}
-#| echo: fenced
-
-sd_next()
-```
-
-The above code chunk will create a "Next" button that goes on to the immediate next page. The button will look like this:
-
-```{r}
-#| eval: true
-#| echo: false
-
-sd_next()
-```
-
-You can also provide an alternative label on the next page button using the `label` argument, and you can send the user to other pages by just changing the value assigned to the `next_page` argument. For example, to send the user to a page with the id `page3`, you can use:
-
-```{r}
-#| echo: fenced
-
-sd_next(label = "Go to page 3", next_page = 'page3')
-```
-
-```{r}
-#| eval: true
-#| echo: false
-
-sd_next(label = "Go to page 3", next_page = 'page3')
-```
-
-You can conditionally override these controls using the `sd_skip_forward()` function in your server function. See the [Conditional Survey Flow](conditional-survey-flow.html) page or [Page Navigation](page-navigation.html) page for more details.
 
 ### Adding questions
 
@@ -224,13 +169,19 @@ The function has many other arguments for customizing the look and feel of the q
 
 By default all questions are optional, but you can make questions required in the survey settings (see the [Survey Settings](survey-settings.html#required-questions) page for details).
 
-Similar to page creation, you can also make use of the [question gadget](defining-questions.html#using-a-gui-in-rstudio) to create questions under the "Addins" dropdown menu following similar operations. Below is a showcase of the **Survey Question Gadget** in RStudio:
+### Navigation buttons
 
-<br>
-<center>
-<img src="/images/screenshots/gadget_of_question.gif" style="width: 80%; max-width: 1000px;">
-</center>
-<br>
+By default, navigation buttons are automatically added to each page to allow respondents to move forward through the survey. To change the global settings (e.g., add a previous button on all pages, change the message shown on all next buttons, etc.), you can edit the survey settings in the YAML header (see the [Survey Settings](survey-settings.html#navigation-buttons) page for details).
+
+Additionally, you can also manually add navigation buttons using the `sd_nav()` function inside code chunks on any page, which will override the global settings for that specific page, like this: 
+
+```{r}
+#| echo: fenced
+
+sd_nav()
+```
+
+The `sd_nav()` function allows you to control mutliple aspects of the navigation buttons on a given page, including control over the labels used in the navigation buttons, control over whether to show either button at all, and control over which page to navigate to next. See the [Navigation Buttons](page-navigation.html#navigation-buttons) page for more details.
 
 ### Ending the survey
 
@@ -323,13 +274,11 @@ The `db` object is used to store survey data - see the [Storing Data](storing-da
 
 ### Server
 
-The `server()` function is a standard Shiny server function that takes `input`, `output`, and `session` as arguments. It is where you can set custom control logic and other configuration options, such as [conditional question display](conditional-question-display.html) logic with the `sd_show_if()` function, or [conditional survey flow](conditional-survey-flow.html) logic with the `sd_skip_forward()` function.
+The `server()` function is a standard Shiny server function that takes `input`, `output`, and `session` as arguments. It is where you can set custom control logic and other configuration options, such as [conditional showing](conditional-logic.html#showing-questions) logic with the `sd_show_if()` function, [conditional page skipping](conditional-logic.html#conditional-skipping) logic with the `sd_skip_if()` function, or [conditional stopping](conditional-logic.html#conditional-stopping) logic with the `sd_stop_if()` function. It is also where you can control the logic for [reactive elements](reactivity.html) in your survey.
 
 {{< include ../chunks/server.qmd >}}
 
 The `sd_server()` function at the bottom makes everything run. It also includes some optional arguments that you can use to customize the survey. 
-
-See the [Survey Settings](survey-settings.html) page for details on the different options you can use to customize the server.
 
 ::: {.callout-note}
 
@@ -342,18 +291,10 @@ The `db = db` argument in `sd_server()` is required if you are using a database 
 At the very bottom of the **app.R** file, you will see the following code:
 
 ```{r}
-shiny::shinyApp(ui = sd_ui(), server = server)
+shiny::shinyApp(ui = ui, server = server)
 ```
 
 This code defines the Shiny app and should always be at the bottom of the **app.R** file.
-
-::: {.callout-note}
-
-**What's with the `sd_ui()` thing?**
-
-In a typical Shiny app, you have to define the UI and server functions separately. In a surveydown survey, the UI is a fixed structure that is defined by the `sd_ui()` function, so simply provide it to the `ui` argument in `shiny::shinyApp()` to run the survey.
-
-:::
 
 ### Local run
 

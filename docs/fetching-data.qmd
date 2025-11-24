@@ -20,15 +20,15 @@ data <- sd_get_data(db)
 
 Here the `data` object will be a data.frame with the data from your database table.
 
-## Reactive Fetching
+## Live-polling Data
 
 ::: {.callout-tip}
 
-Run the [Demo survey](https://github.com/surveydown-dev/demos/tree/main/reactive-plot) of a reactive plot for an example of reactively fetching data.
+Run the [live-polling template](https://github.com/surveydown-dev/template_live_polling) of a reactive plot for an example of live-polling data.
 
 :::
 
-The above example is intended for an analysis context, where all you want to do is fetch the latest data from your database. However, you may also want to fetch the data in a reactive context (i.e. in your survey). For example, perhaps you want to show respondents a bar chart of the most common responses to a question. The `sd_get_data()` function is compatible with reactive fetching as well - just call it inside the `server()` function in your **app.R** file:
+The above example is intended for an analysis context, where all you want to do is to fetch the latest data from your database. However, you may also want to fetch the data in a reactive context (i.e. in your survey). For example, perhaps you want to show respondents a bar chart of the most common responses to a question. The `sd_get_data()` function is compatible with reactive fetching as well - just call it inside the `server()` function in your **app.R** file:
 
 ```{r}
 server <- function(input, output, session) {

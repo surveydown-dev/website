@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.26">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-<meta name="author" content="Pingfan Hu">
 <meta name="author" content="John Paul Helveston">
-<meta name="dcterms.date" content="2025-06-29">
-<meta name="description" content="A brief walkthrough of the sdstudio R Package, a companion GUI for surveydown. ">
-
-<title>Introducing sdstudio: A companion GUI for surveydown – surveydown.org</title>
+<meta name="author" content="Pingfan Hu">
+<meta name="dcterms.date" content="2025-11-21">
+<meta name="description" content="We are thrilled to announce the v1.0.0 release of surveydown, a stable release with improvements to YAML settings, page navigation, question creation, and a smoother overall developer experience.">
+<title>Announcing surveydown v1.0.0! – surveydown.org</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -61,7 +58,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
@@ -86,8 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/bootstrap/bootstrap-dark-d3f33e5d7e4eadfefdffa3dc38d20edd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../../site_libs/bootstrap/bootstrap-267c72f5fb8bc878b573d26eb18fd9cb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
-<script id="quarto-search-options" type="application/json">{
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -113,27 +108,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-<style>html{ scroll-behavior: smooth; }</style>
-
-
-<meta property="og:title" content="Introducing sdstudio: A companion GUI for surveydown – surveydown.org">
-<meta property="og:description" content="A brief walkthrough of the sdstudio R Package, a companion GUI for surveydown. ">
-<meta property="og:image" content="https://www.surveydown.org/blog/2025-06-29-sdstudio/banner.png">
+}</script><style>html{ scroll-behavior: smooth; }</style>
+<meta property="og:title" content="Announcing surveydown v1.0.0! – surveydown.org">
+<meta property="og:description" content="We are thrilled to announce the v1.0.0 release of surveydown, a stable release with improvements to YAML settings, page navigation, question creation, and a smoother overall developer experience.">
+<meta property="og:image" content="https://www.surveydown.org/blog/2025-11-21-announcing-surveydown-version-1/banner.png">
 <meta property="og:site_name" content="https://surveydown.org">
 <meta property="og:locale" content="es_ES">
-<meta property="og:image:height" content="427">
-<meta property="og:image:width" content="640">
-<meta name="twitter:title" content="Introducing sdstudio: A companion GUI for surveydown – surveydown.org">
-<meta name="twitter:description" content="A brief walkthrough of the sdstudio R Package, a companion GUI for surveydown. ">
-<meta name="twitter:image" content="https://www.surveydown.org/blog/2025-06-29-sdstudio/banner.png">
+<meta property="og:image:height" content="1024">
+<meta property="og:image:width" content="1536">
+<meta name="twitter:title" content="Announcing surveydown v1.0.0! – surveydown.org">
+<meta name="twitter:description" content="We are thrilled to announce the v1.0.0 release of surveydown, a stable release with improvements to YAML settings, page navigation, question creation, and a smoother overall developer experience.">
+<meta name="twitter:image" content="https://www.surveydown.org/blog/2025-11-21-announcing-surveydown-version-1/banner.png">
 <meta name="twitter:creator" content="@johnhelveston">
 <meta name="twitter:site" content="@johnhelveston">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image-height" content="427">
-<meta name="twitter:image-width" content="640">
+<meta name="twitter:image-height" content="1024">
+<meta name="twitter:image-width" content="1536">
 </head>
-
 <body class="docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
@@ -299,9 +290,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">surveydown.org</span>
@@ -313,7 +302,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
@@ -330,8 +319,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item">
     <a class="nav-link" href="../../faq.html"> 
 <span class="menu-text">FAQ</span></a>
   </li>  
@@ -346,75 +335,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Contents</h2>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#getting-started" id="toc-getting-started" class="nav-link active" data-scroll-target="#getting-started"><span class="header-section-number">1</span> Getting Started</a>
-  <ul class="collapse">
-  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"><span class="header-section-number">1.1</span> Installation</a></li>
-  <li><a href="#launch" id="toc-launch" class="nav-link" data-scroll-target="#launch"><span class="header-section-number">1.2</span> Launch!</a></li>
-  </ul></li>
-  <li><a href="#the-build-tab" id="toc-the-build-tab" class="nav-link" data-scroll-target="#the-build-tab"><span class="header-section-number">2</span> The “Build” Tab</a>
-  <ul class="collapse">
-  <li><a href="#start-from-a-template" id="toc-start-from-a-template" class="nav-link" data-scroll-target="#start-from-a-template"><span class="header-section-number">2.1</span> Start from a Template</a></li>
-  <li><a href="#build-your-survey" id="toc-build-your-survey" class="nav-link" data-scroll-target="#build-your-survey"><span class="header-section-number">2.2</span> Build Your Survey</a></li>
-  </ul></li>
-  <li><a href="#the-preview-tab" id="toc-the-preview-tab" class="nav-link" data-scroll-target="#the-preview-tab"><span class="header-section-number">3</span> The “Preview” Tab</a>
-  <ul class="collapse">
-  <li><a href="#live-rendering" id="toc-live-rendering" class="nav-link" data-scroll-target="#live-rendering"><span class="header-section-number">3.1</span> Live Rendering</a></li>
-  <li><a href="#desktop-and-mobile-views" id="toc-desktop-and-mobile-views" class="nav-link" data-scroll-target="#desktop-and-mobile-views"><span class="header-section-number">3.2</span> Desktop and Mobile Views</a></li>
-  <li><a href="#new-sessions" id="toc-new-sessions" class="nav-link" data-scroll-target="#new-sessions"><span class="header-section-number">3.3</span> New Sessions</a></li>
-  </ul></li>
-  <li><a href="#the-responses-tab" id="toc-the-responses-tab" class="nav-link" data-scroll-target="#the-responses-tab"><span class="header-section-number">4</span> The “Responses” Tab</a>
-  <ul class="collapse">
-  <li><a href="#local-mode" id="toc-local-mode" class="nav-link" data-scroll-target="#local-mode"><span class="header-section-number">4.1</span> Local Mode</a></li>
-  <li><a href="#db-mode" id="toc-db-mode" class="nav-link" data-scroll-target="#db-mode"><span class="header-section-number">4.2</span> DB Mode</a></li>
-  <li><a href="#viewing-other-tables" id="toc-viewing-other-tables" class="nav-link" data-scroll-target="#viewing-other-tables"><span class="header-section-number">4.3</span> Viewing other tables</a></li>
-  </ul></li>
-  <li><a href="#data-security" id="toc-data-security" class="nav-link" data-scroll-target="#data-security"><span class="header-section-number">5</span> Data Security</a>
-  <ul class="collapse">
-  <li><a href="#the-.env-file" id="toc-the-.env-file" class="nav-link" data-scroll-target="#the-.env-file"><span class="header-section-number">5.1</span> The <code>.env</code> File</a></li>
-  <li><a href="#gssapi-encryption" id="toc-gssapi-encryption" class="nav-link" data-scroll-target="#gssapi-encryption"><span class="header-section-number">5.2</span> GSSAPI Encryption</a></li>
-  </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6</span> Conclusion</a></li>
-  </ul>
-</nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation">Installation</a></li>
+  <li><a href="#yaml-settings" id="toc-yaml-settings" class="nav-link" data-scroll-target="#yaml-settings">YAML settings</a></li>
+  <li><a href="#previous-button-support" id="toc-previous-button-support" class="nav-link" data-scroll-target="#previous-button-support">Previous Button Support</a></li>
+  <li><a href="#auto-page-navigation" id="toc-auto-page-navigation" class="nav-link" data-scroll-target="#auto-page-navigation">Auto Page Navigation</a></li>
+  <li><a href="#sd_question-enhancements" id="toc-sd_question-enhancements" class="nav-link" data-scroll-target="#sd_question-enhancements"><code>sd_question()</code> Enhancements</a></li>
+  <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next">What’s Next?</a></li>
+  </ul></nav>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Introducing sdstudio: A companion GUI for surveydown</h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Announcing surveydown v1.0.0!</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">R</div>
     <div class="quarto-category">package</div>
-    <div class="quarto-category">shiny</div>
-    <div class="quarto-category">tutorial</div>
-    <div class="quarto-category">GUI</div>
+    <div class="quarto-category">feature</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    <p>A brief walkthrough of the <strong>sdstudio</strong> R Package, a companion GUI for <strong>surveydown</strong>. <a href="https://sdstudio.surveydown.org"><img src="../../blog/2025-06-29-sdstudio/images/sdstudio.png" align="right" style="height:139px;"></a></p>
+    <p>We are thrilled to announce the <code>v1.0.0</code> release of <code>surveydown</code>, a stable release with improvements to YAML settings, page navigation, question creation, and a smoother overall developer experience.</p>
   </div>
 </div>
 
@@ -424,15 +377,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Authors</div>
     <div class="quarto-title-meta-contents">
-             <p>Pingfan Hu </p>
              <p>John Paul Helveston </p>
+             <p>Pingfan Hu </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-06-29</p>
+      <p class="date">2025-11-21</p>
     </div>
   </div>
   
@@ -441,274 +394,223 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header>
-
-
-<p>As a companion package to the <a href="https://surveydown.org/">surveydown</a> platform, <strong>sdstudio</strong> serves as a comprehensive GUI for working with surveydown surveys. It allows you to build and preview surveys as well as manage response data all without requiring programming knowledge.</p>
-<p>Below is a brief walkthrough video of the <strong>sdstudio</strong> package:</p>
-<div style="width:100%; text-align:center;">
-<p></p><div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/p00ivfg1B1M" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div> <strong><em>Intro to sdstudio</em></strong><p></p>
+</header><section id="installation" class="level2"><h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<p>Verion 1.0.0 is coming to CRAN soon, but in the meantime you can upgrade to it by installing it from GitHub:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu">pak</span><span class="op">(</span><span class="st">"surveydown-dev/surveydown"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>Now, let’s check out the new features!</p>
+</section><section id="yaml-settings" class="level2"><h2 class="anchored" data-anchor-id="yaml-settings">YAML settings</h2>
+<p>A YAML header is used in every <code>.qmd</code> file as metadata to define page behavior. The <code>survey.qmd</code> file in each <code>surveydown</code> survey also relies on the YAML header, but we’ve made some significant changes to improve the experience.</p>
+<p><strong>YAML omission:</strong> First, you no longer need to include any YAML header at all now as <code>surveydown</code> now auto-loads the following:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This used to be the standard YAML header in <code>survey.qmd</code>, but now if you leave it out, these settings will be used by default.</p>
+<p><strong>New YAML experience:</strong> An empty YAML is fine if you want to use all default settings, so your <code>survey.qmd</code> file can start directly with your library calls and survey content:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">library(surveydown)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">library(other_packages)</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>Survey content...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>YAML settings:</strong> We have also expanded the YAML header to include all other survey settings to customize your survey behavior. Below is a full list of all possible YAML settings with their default values, including <strong>theme</strong>, <strong>survey</strong>, and <strong>system message</strong> settings. The comprehensive list of settings used in any one survey are generated in your <code>_survey/settings.yml</code> file of any <code>surveydown</code> survey project.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme-settings</span><span class="kw">:</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">barposition</span><span class="kw">:</span><span class="at"> top</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">footer-left</span><span class="kw">:</span><span class="at"> </span><span class="st">''</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">footer-center</span><span class="kw">:</span><span class="at"> </span><span class="st">''</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">footer-right</span><span class="kw">:</span><span class="at"> </span><span class="st">''</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">survey-settings</span><span class="kw">:</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">show-previous</span><span class="kw">:</span><span class="at"> </span><span class="ch">no</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">use-cookies</span><span class="kw">:</span><span class="at"> </span><span class="ch">no</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">auto-scroll</span><span class="kw">:</span><span class="at"> </span><span class="ch">no</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rate-survey</span><span class="kw">:</span><span class="at"> </span><span class="ch">no</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">all-questions-required</span><span class="kw">:</span><span class="at"> </span><span class="ch">no</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">start-page</span><span class="kw">:</span><span class="at"> your_first_page</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">system-language</span><span class="kw">:</span><span class="at"> en</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">highlight-unanswered</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">highlight-color</span><span class="kw">:</span><span class="at"> gray</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">capture-metadata</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">required-questions</span><span class="kw">:</span><span class="at"> </span><span class="kw">[]</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="fu">system-messages</span><span class="kw">:</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cancel</span><span class="kw">:</span><span class="at"> Cancel</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">confirm-exit</span><span class="kw">:</span><span class="at"> Confirm Exit</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">sure-exit</span><span class="kw">:</span><span class="at"> Are you sure you want to exit the survey?</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">submit-exit</span><span class="kw">:</span><span class="at"> Submit and Exit</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> Warning</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">required</span><span class="kw">:</span><span class="at"> Please answer all required questions before proceeding.</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rating-title</span><span class="kw">:</span><span class="at"> Before you go...</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rating-text</span><span class="kw">:</span><span class="at"> </span><span class="st">'Rate your survey experience:'</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rating-scale</span><span class="kw">:</span><span class="at"> from 1-poor to 5-excellent</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">previous</span><span class="kw">:</span><span class="at"> Previous</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">next</span><span class="kw">:</span><span class="at"> Next</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">exit</span><span class="kw">:</span><span class="at"> Exit Survey</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">close-tab</span><span class="kw">:</span><span class="at"> Please close this tab manually to exit the survey.</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">choose-option</span><span class="kw">:</span><span class="at"> Choose an option...</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">click</span><span class="kw">:</span><span class="at"> Click here</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">redirect</span><span class="kw">:</span><span class="at"> Redirecting in</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">seconds</span><span class="kw">:</span><span class="at"> seconds</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">new-tab</span><span class="kw">:</span><span class="at"> Opens in a new tab</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">redirect-error</span><span class="kw">:</span><span class="at"> </span><span class="st">"Error: This text won't trigger any redirection..."</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You can customize any of them in <code>survey.qmd</code> to fit your survey needs. For example, say you want to <strong>enable cookies</strong>, you can have these YAML settings in your <code>survey.qmd</code> file (cookies are on by default):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">survey-settings</span><span class="kw">:</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">use-cookies</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Note also the <code>system-messages</code> category. Here you can customize the text of all system messages used in your survey. For example, to change the “Next” button label to “Continue”, you can do this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system-messages</span><span class="kw">:</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">next</span><span class="kw">:</span><span class="at"> Continue</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This used to be handled in a separate <code>translations.yml</code> file, but now they’re all consolidated into the YAML header for easier access.</p>
+</section><section id="previous-button-support" class="level2"><h2 class="anchored" data-anchor-id="previous-button-support">Previous Button Support</h2>
+<p>One of the most requested features is finally here: <strong>previous buttons</strong>! Survey respondents can now navigate backwards through your survey, and you have full control over whether to enable this feature globally or on a per-page basis.</p>
+<p><strong>Global setting:</strong> By default, previous buttons are <strong>not</strong> enabled, but you can enable them globally by changing the YAML header setting in the <code>survey.qmd</code> file:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">survey-settings</span><span class="kw">:</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">show-previous</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Page-Level override:</strong> You can override the global setting on specific pages using the newly introduced <code>sd_nav()</code> function in your <code>survey.qmd</code> file:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Enable previous button on a page</span></span>
+<span><span class="fu">sd_nav</span><span class="op">(</span>show_previous <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Disable previous button on a page</span></span>
+<span><span class="fu">sd_nav</span><span class="op">(</span>show_previous <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Here are examples of previous button being enabled and disabled:</p>
+<center>
+<img src="images/previous_off.png" style="max-width: 700px; width: 100%;"><p>
+<em>Previous button disabled</em>
+</p>
+</center>
 <p><br></p>
-<section id="getting-started" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="getting-started"><span class="header-section-number">1</span> Getting Started</h2>
-<section id="installation" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="installation"><span class="header-section-number">1.1</span> Installation</h3>
-<p>The <strong>sdstudio</strong> package is currently in development and can be installed directly from GitHub:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Development version</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">pak</span>(<span class="st">"surveydown-dev/sdstudio"</span>, <span class="at">ask =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Since <strong>sdstudio</strong> is a companion package of <strong>surveydown</strong>, make sure to install <strong>surveydown</strong> as well:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Development version</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">pak</span>(<span class="st">"surveydown-dev/surveydown"</span>, <span class="at">ask =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># CRAN version</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"surveydown"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="launch" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="launch"><span class="header-section-number">1.2</span> Launch!</h3>
-<p>Launch the studio in your browser using this function:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sdstudio<span class="sc">::</span><span class="fu">launch</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The <strong>sdstudio</strong> interface is organized into three main tabs that follow the natural survey workflow:</p>
+<center>
+<img src="images/previous_on.png" style="max-width: 700px; width: 100%;"><p>
+<em>Previous button enabled</em>
+</p>
+</center>
+</section><section id="auto-page-navigation" class="level2"><h2 class="anchored" data-anchor-id="auto-page-navigation">Auto Page Navigation</h2>
+<p>One of our favorite new additions is auto-injecting page navigation. In previous versions of <code>surveydown</code>, you needed to add <code>sd_next()</code> on each page to insert next buttons. But now navigation buttons are auto injected at the end of each page unless you call <code>sd_nav()</code> or <code>sd_close()</code> on that page, which will override the global settings.</p>
+<p>This means survey page definition can be as simple as:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span> page_1</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>Page <span class="dv">1</span> content...</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span> page_2</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>Page <span class="dv">2</span> content...</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span> page_3</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>Page <span class="dv">3</span> content...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>No navigation code needed - <code>surveydown</code> handles it for you!</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The auto nav injection is equivalent to having <code>sd_nav()</code> at the end of a page with a succeeding page. If you manually call <code>sd_nav()</code> or <code>sd_close()</code>, the auto injection will be overridden.</p>
+</div>
+</div>
+<p><strong>Manual navigation control</strong>: Use <code>sd_nav()</code> or <code>sd_close()</code> to customize navigation.</p>
+<p>The new <code>sd_nav()</code> function replaces the old <code>sd_next()</code>, providing a unified interface for both previous and next buttons.</p>
+<p>In most cases, calling <code>sd_nav()</code> with empty parameters will suffice, as it defaults to showing the navigation buttons based on your global settings.</p>
+<p><code>sd_nav()</code> has the following arguments:</p>
 <ul>
-<li><strong>🏗️ Build</strong>: Visual survey creation with side-by-side structure and scripts</li>
-<li><strong>👁️ Preview</strong>: Real-time survey testing</li>
-<li><strong>📊 Responses</strong>: Data collection, analytics, and export capabilities</li>
+<li>
+<code>page_next</code>: Which page to go to next? (defaults to the next page in order)</li>
+<li>
+<code>label_previous</code>: Override previous button label (defaults to the system message “Previous”)</li>
+<li>
+<code>label_next</code>: Override next button label (defaults to the system message “Next”)</li>
+<li>
+<code>show_previous</code>: Show previous button? (defaults to the global setting)</li>
+<li>
+<code>show_next</code>: Show next button? (defaults to the global setting)</li>
 </ul>
-</section>
-</section>
-<section id="the-build-tab" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="the-build-tab"><span class="header-section-number">2</span> The “Build” Tab</h2>
-<section id="start-from-a-template" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="start-from-a-template"><span class="header-section-number">2.1</span> Start from a Template</h3>
-<p>The “Build” tab is your workspace of survey construction. You can either start from a prepared template or continue with your own survey files. The “Directory” will show your current working directory, but you can change it to any directory where your survey files are stored.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>Likewise, <code>sd_close()</code> supports both previous and next buttons with the following arguments:</p>
+<ul>
+<li>
+<code>label_close</code>: Label on the close page buttons (defaults to the system message “Close”)</li>
+<li>
+<code>label_previous</code>: Override previous button label (defaults to the system message “Previous”)</li>
+<li>
+<code>show_previous</code>: Show previous button? (defaults to the global setting)</li>
+</ul></section><section id="sd_question-enhancements" class="level2"><h2 class="anchored" data-anchor-id="sd_question-enhancements">
+<code>sd_question()</code> Enhancements</h2>
+<p>Since <code>surveydown</code> is built on top of shiny, we originally used the singular word <code>option</code> to define multiple-choice options in <code>sd_question()</code> (this is what shiny uses). But this can be confusing, since most of the time you want to provide multiple <code>options</code> (plural).</p>
+<p>To address this, now <strong>both <code>option</code> and <code>options</code> are supported</strong> for <code>sd_question()</code> when using multiple-choice type questions, such as <code>mc</code>, <code>mc_buttons</code>, etc.</p>
+<p><strong>Auto label to value conversion</strong>: When defining <code>option</code> or <code>options</code>, the traditional way to define options is the pattern <code>label = value</code>, like this:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sd_question</span><span class="op">(</span></span>
+<span>  id <span class="op">=</span> <span class="st">"favorite_color"</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"mc"</span>,</span>
+<span>  label <span class="op">=</span> <span class="st">"What's your favorite color?"</span>,</span>
+<span>  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"Light Blue"</span> <span class="op">=</span> <span class="st">"light_blue"</span>,</span>
+<span>    <span class="st">"Dark Green"</span> <span class="op">=</span> <span class="st">"dark_green"</span>,</span>
+<span>    <span class="st">"Bright Red"</span> <span class="op">=</span> <span class="st">"bright_red"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-title-container flex-fill">
-Note
+<p>But in case you forget this pattern, you can now just provide a single vector of labels like this:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sd_question</span><span class="op">(</span></span>
+<span>  id <span class="op">=</span> <span class="st">"favorite_color"</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"mc"</span>,</span>
+<span>  label <span class="op">=</span> <span class="st">"What's your favorite color?"</span>,</span>
+<span>  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"Light Blue"</span>,</span>
+<span>    <span class="st">"Dark Green"</span>,</span>
+<span>    <span class="st">"Bright Red"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-<div class="callout-body-container callout-body">
-<p>We currently have 15 templates to choose from. The <strong><em>default</em></strong> template contains a minimum basic structure for a clean start. You might also try the <strong><em>question_type</em></strong> template for a showcase of all question types, or try some advanced features with <strong><em>conditional_display</em></strong>, <strong><em>conditional_navigation</em></strong>, etc. Our <a href="https://github.com/surveydown-dev">surveydown-dev GitHub organization</a> has template repositories starting with <code>template_</code>. Feel free to search for your desired templates, clone or download the source code and try them out!</p>
-</div>
-</div>
-<br>
-<center>
-<img src="images/build_tab_1.png" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
-<p style="color: gray; font-weight: bold;">
-<em>Start from a Template in the Build Tab</em>
-</p>
-</center>
-<p><br></p>
-</section>
-<section id="build-your-survey" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="build-your-survey"><span class="header-section-number">2.2</span> Build Your Survey</h3>
-<p>After you’ve selected your template, or if you already have an existing survey, you’ll see the dual panel of survey constructions on the “Build” tab. The “Structure” section on the left shows the page-content structure of your survey. The “Code” section on the right displays the survey scripts in a code editor.</p>
-<br>
-<center>
-<img src="images/build_tab_2.png" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
-<p style="color: gray; font-weight: bold;">
-<em>Dual Panel of the Build Tab</em>
-</p>
-</center>
-<p><br></p>
-<section id="the-structure-section" class="level4" data-number="2.2.1">
-<h4 data-number="2.2.1" class="anchored" data-anchor-id="the-structure-section"><span class="header-section-number">2.2.1</span> The Structure Section</h4>
-<p>The <strong>“Structure”</strong> section on the left gives you 2 hierarchies: page and content. The pages can be toggled on to show the content, or toggled off. There are two types of content: questions and texts, with labels of “Q” and “T”, respectively.</p>
-<p>There are buttons on each page and content which self-explain their capabilities. The “Add A New Page” button at the bottom allows you to create a new page.</p>
-<p>The <em>question</em> content shows question ID, question type, and question label. You can review the full question details with the edit button, or view the full question definition code on the code section. The <em>text</em> content shows the first 5 words of the full piece of text.</p>
-<br>
-<center>
-<img src="images/build_tab_3.png" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
-<p style="color: gray; font-weight: bold;">
-<em>Click on the +T/+Q button to add a text/question</em>
-</p>
-</center>
-<p><br></p>
-<p>All elements support drag-n-drop operations. After each operation, the structure will refresh and update the code editor on the right. If you move two test elements together, they will merge in to one text element.</p>
-<br>
-<center>
-<img src="images/build_tab_4.gif" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
-<p style="color: gray; font-weight: bold;">
-<em>Dragging two texts together will merge them</em>
-</p>
-</center>
-<p><br></p>
-</section>
-<section id="the-code-section" class="level4" data-number="2.2.2">
-<h4 data-number="2.2.2" class="anchored" data-anchor-id="the-code-section"><span class="header-section-number">2.2.2</span> The Code Section</h4>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>For now the surveydown Studio has powerful support to <strong>survey.qmd</strong> because it is meant to be the main file for survey construction. However, even though <strong>app.R</strong> is directly editable, we still recommend that you edit it using your IDE or other text editors. All our templates have the <strong>app.R</strong> file ready to run, which can be a good starting point.</p>
-</div>
-</div>
-<p>The <strong>“Code”</strong> section on the right is an integrated code editor that allows you to edit the survey scripts directly, with the <strong>survey.qmd</strong> file opened by default. It also reflects any operation you’ve done on the “Structure” section. The other file, <strong>app.R</strong>, is available for direct editing as well.</p>
-</section>
-</section>
-</section>
-<section id="the-preview-tab" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="the-preview-tab"><span class="header-section-number">3</span> The “Preview” Tab</h2>
-<p>The “Preview” tab is where your survey comes to life. It provides a real-time, interactive preview of your survey as you build it, allowing you to see exactly how respondents will experience your survey.</p>
-<section id="live-rendering" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="live-rendering"><span class="header-section-number">3.1</span> Live Rendering</h3>
-<p>Every time you make changes in the Build tab, the survey is live-rendered and revealed in the Preview tab. It takes a couple of seconds to render, so if you switch to the Preview tab too early, you’ll see message of survey being rendered. After rendering is done, the survey will be available.</p>
-<br>
-<center>
-<img src="images/preview_tab_1.gif" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
-<p style="color: gray; font-weight: bold;">
-<em>The survey preview is live and interactive</em>
-</p>
-</center>
-<p><br></p>
-</section>
-<section id="desktop-and-mobile-views" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="desktop-and-mobile-views"><span class="header-section-number">3.2</span> Desktop and Mobile Views</h3>
-<p>You can toggle between “Desktop View” and “Mobile View” using the pair of buttons at the top right corner:</p>
-<br>
-<center>
-<img src="images/preview_tab_2.gif" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
-<p style="color: gray; font-weight: bold;">
-<em>Toggling between desktop and mobile views</em>
-</p>
-</center>
-<p><br></p>
-</section>
-<section id="new-sessions" class="level3" data-number="3.3">
-<h3 data-number="3.3" class="anchored" data-anchor-id="new-sessions"><span class="header-section-number">3.3</span> New Sessions</h3>
-<p>You might have noticed there is a green refresh button on the top right as well. This is for you to manually refresh the preview if you want to restart a session:</p>
-<br>
-<center>
-<img src="images/preview_tab_3.gif" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
-<p style="color: gray; font-weight: bold;">
-<em>Restart a new session using the refresh button</em>
-</p>
-</center>
-<p><br></p>
-</section>
-</section>
-<section id="the-responses-tab" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="the-responses-tab"><span class="header-section-number">4</span> The “Responses” Tab</h2>
-<p>We built <strong>sdstudio</strong> for two purposes: for designing surveys and for managing survey response data. You can use the studio for either or both purposes.</p>
-<p>The “Responses” tab is used to view two forms of survey response data:</p>
-<ol type="1">
-<li><strong>Local Mode</strong>: This mode allows you to view “preview data” while locally previewing your survey without having a database connection. The preview data are stored in a local “preview_data.csv” file and are purely available for the purposes of previewing what your data will look like once you have a database connection.</li>
-<li><strong>DB Mode</strong>: After creating and testing your survey, you can add a database connection to start collecting survey responses in your live database.</li>
-</ol>
-<p>Lets go through each of these use cases in details.</p>
-<section id="local-mode" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="local-mode"><span class="header-section-number">4.1</span> Local Mode</h3>
-<p>All our templates have <strong>Local Mode</strong> enabled by default, because we recommend you to start from local testing. To start with your local testing, you can simply go through all 3 tabs in order: <strong>Build</strong>, <strong>Preview</strong>, and then <strong>Responses</strong>.</p>
-<p>Below is a brief walkthrough of the process:</p>
-<br>
-<center>
-<img src="images/responses_tab_1.gif" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
-<p style="color: gray; font-weight: bold;">
-<em>Build, Preview, and Responses in Sequence</em>
-</p>
-</center>
-<p><br></p>
-</section>
-<section id="db-mode" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="db-mode"><span class="header-section-number">4.2</span> DB Mode</h3>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>For instructions on how to obtain your database credentials, see the <a href="https://surveydown.org/docs/storing-data.html#getting-your-supabase-credentials">Storing Data</a> documentation page.</p>
-</div>
-</div>
-<p>To get started with viewing your database response data, you need to firstly switch to <strong>DB Mode</strong> by clicking the “DB Mode” button on the top right corner. This is available in all 3 tabs. Then, in your “Responses” tab, you’ll see a “Database Connection” section on the top. Toggle on the “Settings” button and fill in your database credentials. You can test the connection by clicking the “Test Connection” button. If you have already set up your database credentials using <code>sd_db_config()</code> to create a local <code>.env</code>, then your credentials should show here.</p>
-<p>In order to have a clean start, we recommend you to name a new table in the “Table” field of “Database Connection”. Upon clicking “Test Connection”, this table will only be a placeholder, and the database will create such table once you start your first survey run.</p>
-<br>
-<center>
-<img src="images/responses_tab_2.png" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
-<p style="color: gray; font-weight: bold;">
-<em>Input your credentials and create a new table</em>
-</p>
-</center>
-<p><br></p>
-<p>If the connection is successful, you will see a “Connected” status message in green. The “Choose a table to view” section will show the new table you just created, but all fields will be empty. They will be filled in once you run your survey in the <strong>Preview</strong> tab.</p>
-<p>After you’ve taken care of the database connection, you can go back to the <strong>Build</strong> tab and proceed with your survey construction, following the exact same steps. The only difference is that now, when you run the survey in the <strong>Preview</strong> tab, your responses will be stored in the database table you just created instead of the local “preview_data.csv” file.</p>
-</section>
-<section id="viewing-other-tables" class="level3" data-number="4.3">
-<h3 data-number="4.3" class="anchored" data-anchor-id="viewing-other-tables"><span class="header-section-number">4.3</span> Viewing other tables</h3>
-<p>It is important to note that you can use the “Responses” tab to view all tables stored in your database. For example, if you have multiple surveys you are working on (each in a separate folder) that share the same database, you can select other tables to view from the “Responses” tab.</p>
-<br>
-<center>
-<img src="images/responses_tab_3.png" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
-<p style="color: gray; font-weight: bold;">
-<em>Input your database credentials</em>
-</p>
-</center>
-<p><br></p>
-<p>If the connection is successful, you will see a “Connected” status message in green. You can choose your desired response table from the dropdown menu, review its progress and details, and download the csv file if needed:</p>
-<br>
-<center>
-<img src="images/responses_tab_4.gif" style="width: 100%; max-width: 1000px; border: 1px solid #ddd;">
-<p style="color: gray; font-weight: bold;">
-<em>Fill in your database credentials and click on the “Test Connection” button</em>
-</p>
-</center>
-<p><br></p>
-</section>
-</section>
-<section id="data-security" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="data-security"><span class="header-section-number">5</span> Data Security</h2>
-<section id="the-.env-file" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="the-.env-file"><span class="header-section-number">5.1</span> The <code>.env</code> File</h3>
-<p>When you input your database credentials in the “Responses” tab, it creates a local <code>.env</code> file in your current working directory, which is a hidden file. This file is used to store environment variables securely. Along with this file, there will be a <code>.gitignore</code> file created with <code>.env</code> added to prevent it from being accidentally pushed to your git repository. This is a good practice to keep your credentials safe.</p>
-<p>In this <code>.env</code> file, you will find the following variables:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Database connection settings for surveydown</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>SD_HOST<span class="ot">=</span><span class="st">"your-database-host"</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>SD_PORT<span class="ot">=</span><span class="st">"your-database-port"</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>SD_DBNAME<span class="ot">=</span><span class="st">"your-database-name"</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>SD_USER<span class="ot">=</span><span class="st">"your-database-username"</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>SD_PASSWORD<span class="ot">=</span><span class="st">"your-database-password"</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>SD_TABLE<span class="ot">=</span><span class="st">"your-database-table"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The editing of this file is bi-directional, so you can either edit on this file, or use the <strong>sdstudio</strong> interface.</p>
-</section>
-<section id="gssapi-encryption" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="gssapi-encryption"><span class="header-section-number">5.2</span> GSSAPI Encryption</h3>
-<p>The <code>sdstudio::launch()</code> function allows the <code>gssencmode</code> argument. It controls the encryption mode for database connections. This is crucial for ensuring secure communication with your database, especially when handling sensitive survey data.</p>
-<p>By default, we set <code>gssencmode = "auto"</code>, which attempts to use GSSAPI encryption if available, falling back to a plain connection if not. This is the recommended mode for most users. The connection status will show a green “Connected (GSSAPI enabled)” message if GSSAPI is successfully enabled, or a yellow “Connected (GSSAPI disabled)” message if it falls back to plain connection:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Auto mode (recommended) - tries GSSAPI first, falls back if needed</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sdstudio<span class="sc">::</span><span class="fu">launch</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>However, if you want to explicitly control the encryption mode, you can set <code>gssencmode</code> to one of the following values:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prefer mode - only use GSSAPI</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sdstudio<span class="sc">::</span><span class="fu">launch</span>(<span class="at">gssencmode =</span> <span class="st">"prefer"</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Disable mode - forces plain connection (useful for VPN environments)</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>sdstudio<span class="sc">::</span><span class="fu">launch</span>(<span class="at">gssencmode =</span> <span class="st">"disable"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-</section>
-<section id="conclusion" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">6</span> Conclusion</h2>
-<p>As a companion GUI for the <strong>surveydown</strong> platform, <strong>sdstudio</strong> significantly simplifies the survey creation process. It allows users to build, preview, and manage surveys through an intuitive interface, without requiring extensive programming skills. The three-tab workflow - Build, Preview, and Responses - provides a comprehensive solution that covers the entire survey lifecycle.</p>
-<p>If you have any questions or feedback you’d like to share, please drop us a line using <a href="https://github.com/orgs/surveydown-dev/discussions">GitHub Discussions</a>.</p>
-<hr>
-<p><em>For more information, visit the <a href="https://sdstudio.surveydown.org">sdstudio documentation</a> or explore the <a href="https://surveydown.org">surveydown platform</a>.</em></p>
+<p>In this case, the value stored in the data will be automatically converted to snake case. In this example, the above question will store the following values in the database:</p>
+<table class="caption-top table">
+<thead><tr class="header">
+<th>Display Label</th>
+<th>Database Value</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Light Blue</td>
+<td><code>light_blue</code></td>
+</tr>
+<tr class="even">
+<td>Dark Green</td>
+<td><code>dark_green</code></td>
+</tr>
+<tr class="odd">
+<td>Bright Red</td>
+<td><code>bright_red</code></td>
+</tr>
+</tbody>
+</table></section><section id="whats-next" class="level2"><h2 class="anchored" data-anchor-id="whats-next">What’s Next?</h2>
+<p>This <code>v1.0.0</code> release marks a major milestone for <code>surveydown</code>, but we’re not stopping here. We have exciting features planned for future releases. Stay tuned!</p>
+<p>As always, we welcome your feedback and contributions. If you encounter any issues or have suggestions, please <a href="https://github.com/surveydown-dev/surveydown/issues">open an issue for the package</a>, <a href="https://github.com/orgs/surveydown-dev/discussions">create a discussion in our organization</a>, or contribute directly via pull requests.</p>
+<p>Happy surveying!</p>
 
 
-</section>
-
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -1127,25 +1029,22 @@ Note
   });
   </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
-    <li class="nav-item">
+<li class="nav-item">
  Site made with <i class="bi bi-heart-fill"></i>, <i class="bi bi-git"></i>, and <a href="https://quarto.org/" target="_blank"><img src="https://quarto.org/favicon.png" width="12"> quarto</a>
   </li>  
 </ul>
-    </div>
+</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
-
-
 
 
 <script src="../../site_libs/quarto-html/zenscroll-min.js"></script>

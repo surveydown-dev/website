@@ -20,6 +20,7 @@ This is the comprehensive list of all default survey configuration settings:
 theme-settings:
   theme: default
   barposition: top
+  barcolor: ~
   footer-left: ''
   footer-center: ''
   footer-right: ''
@@ -104,7 +105,7 @@ barcolor: "#768692"
 barposition: top 
 ```
 
-The `barcolor` key defines the color of the progress bar. It defaults to the primary theme color, but you can change it to any hex code you wish here to overwrite the theme color.
+The `barcolor` key defines the color of the progress bar. It defaults to the primary theme color, but you can change it to text color names (over 140 supported by browser CSS) and hex color codes in 3 or 6 digits, e.g. `#FF5733` or `#F53`.
 
 The `barposition` key defines the position of the progress bar. It defaults to `top`, but can also be changed to `bottom` or `none` (to remove the bar). The progress bar updates on every **question** the user clicks on, not pages.
 

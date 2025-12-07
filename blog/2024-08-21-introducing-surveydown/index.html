@@ -545,7 +545,9 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 <div data-next-page="page2" style="margin-top: 1rem; margin-bottom: 0.5rem;">
-<button class="btn btn-default action-button sd-enter-button" id="page_id_next" onclick="Shiny.setInputValue('next_page', this.parentElement.getAttribute('data-next-page'));" style="display: block; margin: auto;" type="button">Next</button>
+<button class="btn btn-default action-button sd-enter-button" id="page_id_next" onclick="Shiny.setInputValue('next_page', this.parentElement.getAttribute('data-next-page'));" style="display: block; margin: auto;" type="button">
+<span class="action-label">Next</span>
+</button>
 </div>
 </div>
 </div>
@@ -558,7 +560,9 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 <div data-next-page="page2" style="margin-top: 1rem; margin-bottom: 0.5rem;">
-<button class="btn btn-default action-button sd-enter-button" id="page_id_next" onclick="Shiny.setInputValue('next_page', this.parentElement.getAttribute('data-next-page'));" style="display: block; margin: auto;" type="button">Next page</button>
+<button class="btn btn-default action-button sd-enter-button" id="page_id_next" onclick="Shiny.setInputValue('next_page', this.parentElement.getAttribute('data-next-page'));" style="display: block; margin: auto;" type="button">
+<span class="action-label">Next page</span>
+</button>
 </div>
 </div>
 </div>
@@ -769,12 +773,12 @@ Note
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt;   respondent_id     brand
-#&gt; 1             1    Nissan
-#&gt; 2             1     Tesla
+#&gt; 1             1      Ford
+#&gt; 2             1     Honda
 #&gt; 3             1 Chevrolet
-#&gt; 4             2 Chevrolet
-#&gt; 5             2    Nissan
-#&gt; 6             2     Honda</code></pre>
+#&gt; 4             2    Nissan
+#&gt; 5             2 Chevrolet
+#&gt; 6             2     Tesla</code></pre>
 </div>
 </div>
 <p>Note that this would not be done in your survey.qmd file - it’s just a one-time thing to create the design (probably stored in an R file).</p>

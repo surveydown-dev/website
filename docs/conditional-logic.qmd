@@ -50,11 +50,7 @@ sd_question(
 
 Then in the server function in the **app.R** file, you can use the `sd_show_if()` function to define that the `"penguins_other"` question would only be shown if the respondent chose the `"other"` option in the `"penguins"` question, like this:
 
-::: {.callout-note}
-
-The `sd_value("question_id")` function returns the chosen value for a given question keyed by the `question_id`. It is a reactive function and so can only be used inside the `server()` function. It will also return the chosen value even if the user refreshes the survey, so long as cookies are set to `true`.
-
-:::
+{{< include ../chunks/sdvalue.qmd >}}
 
 ```{r}
 server <- function(input, output, session) {
@@ -258,7 +254,7 @@ For multiple response question types (e.g. [`mc_multiple`](question-types.html#m
 sd_show_if(
 
  # Check if the respondent chose "apple", "banana", or both
- all(sd_value("fav_fruits") %in% c("apple", "banana")) ~ "apple_or_banana",
+ ("apple" %in% sd_value("fav_fruits")) | ("banana" %in% sd_value("fav_fruits")) ~ "apple_or_banana",
 
  # Check if the respondent chose more than 3 fruits
  length(sd_value("fav_fruits")) > 3 ~ "fruit_number"

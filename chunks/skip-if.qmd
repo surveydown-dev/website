@@ -36,7 +36,7 @@ The `input` object is a Shiny object that stores each question `id` defined by `
 server <- function(input, output, session) {
 
   sd_skip_if(
-    input$vehicle_ownership == "no" ~ "screenout"
+    sd_value("vehicle_ownership") == "no" ~ "screenout"
   )
 
   # ...other server code...
@@ -48,6 +48,6 @@ You can provide multiple conditions to the `sd_skip_if()` function, each separat
 
 > `<condition> ~ "target_page_id"`
 
-In the example above, `input$vehicle_ownership == "no"` is the condition, and `"screenout"` is the target page that the respondent will be sent to if the condition is met.
+In the example above, `sd_value("vehicle_ownership") == "no"` is the condition, and `"screenout"` is the target page that the respondent will be sent to if the condition is met.
 
 Take a look at the [Common Conditions](conditional-logic.html#common-conditions) section for examples of other types of supported conditions you can use to conditionally control the survey flow.

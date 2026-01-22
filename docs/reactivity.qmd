@@ -198,17 +198,13 @@ The product of these 2 numbers is: `r sd_output("product", type = "value")`.
 The sum of these 2 numbers is: `r sd_output("sum", type = "value")`.
 
 `r sd_output("summary")`
-
-```{r}
-sd_next()
-```
 ````
 
 To make these values display properly, you can create reactive values with the `sd_reactive()` function in the server, which reactively updates as the user changes any of the question values. Here is an example of how you might create the `product` value:
 
 ```{r}
 product <- sd_reactive("product", {
-  input$first_number * input$second_number
+  sd_value("first_number") * sd_value("second_number")
 })
 ```
 
@@ -225,11 +221,11 @@ server <- function(input, output, session) {
 
   # Create reactive values for 'product' and 'sum'
   product <- sd_reactive("product", {
-    input$first_number * input$second_number
+    sd_value("first_number") * sd_value("second_number")
   })
 
   sum <- sd_reactive("sum", {
-    input$first_number + input$second_number
+    sd_value("first_number") + sd_value("second_number")
   })
 
   # Use the reactive values to create an additional 'summary' output
@@ -267,7 +263,7 @@ My follow-up question is whether or not the respondent has a pet of the type the
 server <- function(input, output, session) {
 
   observe({
-    pet_type <- input$pet_type
+    pet_type <- sd_value("pet_type")
 
     # Make the question label and options
     label <-glue::glue("Are you a {pet_type} owner?")

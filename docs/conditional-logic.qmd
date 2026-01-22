@@ -52,7 +52,7 @@ Then in the server function in the **app.R** file, you can use the `sd_show_if()
 
 ::: {.callout-note}
 
-The `input` object is a Shiny object that stores each question `id` defined by `sd_question()` in your **survey.qmd** file, so whenever referring to a question in a condition, you must use the format `input$question_id`.
+The `sd_value("question_id")` function returns the chosen value for a given question keyed by the `question_id`. It is a reactive function and so can only be used inside the `server()` function. It will also return the chosen value even if the user refreshes the survey, so long as cookies are set to `true`.
 
 :::
 
@@ -60,7 +60,7 @@ The `input` object is a Shiny object that stores each question `id` defined by `
 server <- function(input, output, session) {
 
   sd_show_if(
-    input$penguins == "other" ~ "penguins_other" 
+    sd_value("penguins") == "other" ~ "penguins_other"
   )
 
   sd_server(db = db)
@@ -74,7 +74,7 @@ The structure of the `sd_show_if()` function for question display is:
 
 You can provide multiple conditions to the `sd_show_if()` function, each separated by a comma. 
 
-In the example above, `input$penguins == "other"` is the condition, and `"penguins_other"` is the target question that will be shown if the condition is met. The `~` symbol is used to separate the condition from the target question.
+In the example above, `sd_value("penguins") == "other"` is the condition, and `"penguins_other"` is the target question that will be shown if the condition is met. The `~` symbol is used to separate the condition from the target question.
 
 Take a look at the [Common Conditions](#common-conditions) section for examples of other types of supported conditions you can use to conditionally display questions.
 
@@ -189,7 +189,7 @@ server <- function(input, output, session) {
 
   sd_stop_if(
     # The zip question only accepts a 5-digit response
-    nchar(input$zip) != 5 ~ "Zip code must be 5 digits."
+    nchar(sd_value("zip")) != 5 ~ "Zip code must be 5 digits."
   )
 
   sd_server(db = db)
@@ -226,10 +226,10 @@ One of the most common situations is conditioning on the response of a single qu
 sd_show_if(
 
  # Simple condition based on single question choice
- input$penguins1 == "other" ~ "penguins1_other",
+ sd_value("penguins1") == "other" ~ "penguins1_other",
 
  # Multiple condition based on multiple question choices
- input$penguins2 == "other" & input$show_other == "show" ~ "penguins2_other"
+ sd_value("penguins2") == "other" & sd_value("show_other") == "show" ~ "penguins2_other"
 
 )
 ```
@@ -240,11 +240,11 @@ In the second condition, the `penguins2` question is checked to see if the respo
 
 ### Numeric values
 
-Another common condition is checking the value of a numeric question. To do so, you need to wrap the `input$question_id` in the `as.numeric()` function because all question values are stored as strings, like this:
+Another common condition is checking the value of a numeric question. To do so, you need to wrap the `sd_value("question_id")` in the `as.numeric()` function because all question values are stored as strings, like this:
 
 ```{r}
 sd_show_if(
- as.numeric(input$car_number) > 1 ~ "car_ownership"
+ as.numeric(sd_value("car_number")) > 1 ~ "car_ownership"
 )
 ```
 
@@ -258,10 +258,10 @@ For multiple response question types (e.g. [`mc_multiple`](question-types.html#m
 sd_show_if(
 
  # Check if the respondent chose "apple", "banana", or both
- all(input$fav_fruits %in% c("apple", "banana")) ~ "apple_or_banana",
+ all(sd_value("fav_fruits") %in% c("apple", "banana")) ~ "apple_or_banana",
 
  # Check if the respondent chose more than 3 fruits
- length(input$fav_fruits) > 3 ~ "fruit_number"
+ length(sd_value("fav_fruits")) > 3 ~ "fruit_number"
 
 )
 ```
@@ -290,23 +290,23 @@ For [`"matrix"`](question-types.html#matrix) type questions, `sd_is_answered()` 
 
 For situations where the conditional logic is more complex, we recommend defining a custom function that will return a logical value (`TRUE` or `FALSE`). You can then pass this function to `sd_show_if()`, `sd_skip_if()`, or `sd_stop_if()` as a condition.
 
-For example, let's say we had a `mc` type question where we asked how many cars the respondent owned, and we included numeric options `1` through `5` as well as a final option `"6 or more"`. If we wanted to set a condition that would return `TRUE` if the user had more than one car, using `as.numeric(input$question_id) > 1` as the condition would be problematic, because this would return `NA` if the respondent chose the `"6 or more"` option.
+For example, let's say we had a `mc` type question where we asked how many cars the respondent owned, and we included numeric options `1` through `5` as well as a final option `"6 or more"`. If we wanted to set a condition that would return `TRUE` if the user had more than one car, using `as.numeric(sd_value("question_id")) > 1` as the condition would be problematic, because this would return `NA` if the respondent chose the `"6 or more"` option.
 
 To address this, we could create a custom function to handle this special condition:
 
 ```{r}
 server <- function(input, output, session) {
 
-  more_than_one_car <- function(input) {
-    if (is.null(input$car_number)) {
+  more_than_one_car <- function() {
+    if (is.null(sd_value("car_number"))) {
       return(FALSE)
     }
-    num_cars <- as.numeric(input$car_number)
+    num_cars <- as.numeric(sd_value("car_number"))
     return(num_cars > 1)
   }
 
   sd_show_if(
-    more_than_one_car(input) ~ "car_ownership"
+    more_than_one_car() ~ "car_ownership"
   )
 
   sd_server(db = db)
@@ -314,7 +314,7 @@ server <- function(input, output, session) {
 }
 ```
 
-In the `more_than_one_car()` function, we first return `FALSE` if the question is not yet answered (that's the `if (is.null(input$car_number))` part). Then we obtain the numeric value of the `car_number` question using `as.numeric(input$car_number)`. Then we return the simple condition `num_cars > 1`, which will return `TRUE` if the respondent chose a number greater than 1, or `FALSE` otherwise (including if they chose `"6 or more"`).
+In the `more_than_one_car()` function, we first return `FALSE` if the question is not yet answered (that's the `if (is.null(sd_value("car_number")))` part). Then we obtain the numeric value of the `car_number` question using `as.numeric(sd_value("car_number"))`. Then we return the simple condition `num_cars > 1`, which will return `TRUE` if the respondent chose a number greater than 1, or `FALSE` otherwise (including if they chose `"6 or more"`).
 
 ### Custom values
 

@@ -230,9 +230,41 @@ sd_question(
 
 :::
 
-In addition, [`matrix`](question-types.html#matrix) type questions have two additional size arguments:
+In addition, [`matrix`](question-types.html#matrix) type questions have an additional size argument:
 
 - `matrix_question_width`
-- `matrix_option_width`
 
-These set the relative widths of the question and option parts of `matrix` questions. You should set them to a percentage, such as `"40%"`, for example.
+This controls the width of the question column in matrix questions. The option column width is automatically calculated based on the remaining space.
+
+By default, `matrix_question_width` is set to `NULL`, which automatically sizes the question column based on the length of the longest question text.
+
+You can override this by setting `matrix_question_width` to a specific value. The parameter accepts several formats:
+
+- **Percentage string**: `"40%"`
+- **Numeric string**: `"40"`
+- **Numeric value**: `40`
+
+All three formats above result in a 40% width for the question column.
+
+For example:
+
+```r
+sd_question(
+  type = "matrix",
+  id = "satisfaction",
+  label = "Rate your satisfaction:",
+  option = c(
+    "Very unsatisfied" = 1,
+    "Unsatisfied" = 2,
+    "Neutral" = 3,
+    "Satisfied" = 4,
+    "Very satisfied" = 5
+  ),
+  question = c(
+    "Overall experience" = "experience",
+    "Customer service" = "service",
+    "Product quality" = "quality"
+  ),
+  matrix_question_width = "40%"  # Question column takes 40% of width
+)
+```

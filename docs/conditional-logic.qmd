@@ -184,13 +184,22 @@ Then, in the **app.R** file, you can use the `sd_stop_if()` function to define t
 server <- function(input, output, session) {
 
   sd_stop_if(
-    # The zip question only accepts a 5-digit response
-    nchar(sd_value("zip")) != 5 ~ "Zip code must be 5 digits."
+    # Use as_numeric = FALSE to preserve leading zeros (e.g., "01234")
+    # Otherwise sd_value() would convert it to 1234 (only 4 characters)
+    nchar(sd_value("zip", as_numeric = FALSE)) != 5 ~ "Zip code must be 5 digits."
   )
 
   sd_server(db = db)
 }
 ```
+
+::: {.callout-tip}
+
+ZIP codes are a special case where you need to prevent automatic numeric conversion. Without `as_numeric = FALSE`, a ZIP code like `"01234"` would be converted to `1234`, losing the leading zero. This would cause `nchar()` to return `4` instead of `5`, incorrectly flagging valid ZIP codes as invalid.
+
+:::
+
+
 
 The structure of the `sd_stop_if()` function is:
 
@@ -236,11 +245,11 @@ In the second condition, the `penguins2` question is checked to see if the respo
 
 ### Numeric values
 
-Another common condition is checking the value of a numeric question. To do so, you need to wrap the `sd_value("question_id")` in the `as.numeric()` function because all question values are stored as strings, like this:
+Another common condition is checking the value of a numeric question. The `sd_value()` function automatically converts numeric values, so you can use them directly in comparisons:
 
 ```{r}
 sd_show_if(
- as.numeric(sd_value("car_number")) > 1 ~ "car_ownership"
+ sd_value("car_number") > 1 ~ "car_ownership"
 )
 ```
 
@@ -286,7 +295,7 @@ For [`"matrix"`](question-types.html#matrix) type questions, `sd_is_answered()` 
 
 For situations where the conditional logic is more complex, we recommend defining a custom function that will return a logical value (`TRUE` or `FALSE`). You can then pass this function to `sd_show_if()`, `sd_skip_if()`, or `sd_stop_if()` as a condition.
 
-For example, let's say we had a `mc` type question where we asked how many cars the respondent owned, and we included numeric options `1` through `5` as well as a final option `"6 or more"`. If we wanted to set a condition that would return `TRUE` if the user had more than one car, using `as.numeric(sd_value("question_id")) > 1` as the condition would be problematic, because this would return `NA` if the respondent chose the `"6 or more"` option.
+For example, let's say we had a `mc` type question where we asked how many cars the respondent owned, and we included numeric options `1` through `5` as well as a final option `"6 or more"`. If we wanted to set a condition that would return `TRUE` if the user had more than one car, using `sd_value("car_number") > 1` as the condition would be problematic, because `sd_value()` would return `NA` when trying to convert `"6 or more"` to a number (since it contains text), and comparisons with `NA` don't work as expected.
 
 To address this, we could create a custom function to handle this special condition:
 
@@ -294,11 +303,16 @@ To address this, we could create a custom function to handle this special condit
 server <- function(input, output, session) {
 
   more_than_one_car <- function() {
-    if (is.null(sd_value("car_number"))) {
+    val <- sd_value("car_number")
+    if (is.null(val)) {
       return(FALSE)
     }
-    num_cars <- as.numeric(sd_value("car_number"))
-    return(num_cars > 1)
+    # For "6 or more", sd_value() returns NA after trying to convert
+    # We treat NA as TRUE (more than one car)
+    if (is.na(val)) {
+      return(TRUE)
+    }
+    return(val > 1)
   }
 
   sd_show_if(
@@ -310,7 +324,18 @@ server <- function(input, output, session) {
 }
 ```
 
-In the `more_than_one_car()` function, we first return `FALSE` if the question is not yet answered (that's the `if (is.null(sd_value("car_number")))` part). Then we obtain the numeric value of the `car_number` question using `as.numeric(sd_value("car_number"))`. Then we return the simple condition `num_cars > 1`, which will return `TRUE` if the respondent chose a number greater than 1, or `FALSE` otherwise (including if they chose `"6 or more"`).
+In the `more_than_one_car()` function, we first return `FALSE` if the question is not yet answered (that's the `if (is.null(val))` part). Then we check if the value is `NA` (which happens when `sd_value()` tries to auto-convert `"6 or more"` to numeric and fails) - in that case we return `TRUE` because "6 or more" means more than one car. Otherwise, we return the simple condition `val > 1`, which will return `TRUE` if the respondent chose a number greater than 1.
+
+Alternatively, you could prevent the automatic numeric conversion for this question by using `as_numeric = FALSE`:
+
+```{r}
+more_than_one_car <- function() {
+  val <- sd_value("car_number", as_numeric = FALSE)
+  if (is.null(val)) return(FALSE)
+  if (val == "6 or more") return(TRUE)
+  return(as.numeric(val) > 1)
+}
+```
 
 ### Custom values
 

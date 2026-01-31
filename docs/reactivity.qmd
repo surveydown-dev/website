@@ -210,7 +210,7 @@ To make these values display properly, you can create reactive values with the `
 
 The `sd_reactive()` function takes an `id`, which is the name that will be used in the resulting survey response data to store the returned value. The created object is a reactive expression that can also be used anywhere else in the server using the `()` symbols. Inside the function can be any expression that returns a value. 
 
-To create all of the objects in the example page above, our server would look like the following below. Note that we first create intermediate reactive objects (`n1` and `n2`) purely for convenience as we first have to make sure the entered number values are converted to numbers (e.g., `as.numeric(sd_value("first_number"))`) before we can do math with them:
+To create all of the objects in the example page above, our server would look like the following below. Note that we first create intermediate objects (`n1` and `n2`) purely for convenience as we use the numbers in multiple places.
 
 {{< include ../chunks/sdvalue.qmd >}}
 
@@ -222,21 +222,19 @@ library(surveydown)
 ui <- sd_ui()
 
 server <- function(input, output, session) {
-  # Create numeric versions of the input numbers
-  n1 <- reactive(as.numeric(sd_value("first_number")))
-  n2 <- reactive(as.numeric(sd_value("second_number")))
+  observe({
+    # Create local objects for each number
+    n1 <- sd_value("first_number")
+    n2 <- sd_value("second_number")
 
-  # Create reactive values for 'product' and 'sum'
-  product <- sd_reactive("product", {
-    n1() * n2()
-  })
-  sum <- sd_reactive("sum", {
-    n1() + n2()
-  })
+    # Create reactive values for 'product' and 'sum'
+    product <- sd_reactive("product", n1 * n2)
+    sum <- sd_reactive("sum", n1 + n2)
 
-  # Use the reactive values to create an additional 'summary' output
-  sd_reactive("summary", {
-    paste("The product is", product(), "and the sum is", sum())
+    # Use the reactive values to create an additional 'summary' output
+    sd_reactive("summary", {
+      paste("The product is", product(), "and the sum is", sum())
+    })
   })
 
   sd_server()
@@ -246,7 +244,9 @@ server <- function(input, output, session) {
 shiny::shinyApp(ui = ui, server = server)
 ```
 
-In this server, we create two reactive values, `product` and `sum`, which get stored in our survey data under those respective names. We also use `product()` and `sum()` to create the `output$summary` object, which is just some rendered text to display on the survey page.
+In this server, we create two reactive values, `product` and `sum`, which get stored in our survey data under those respective names. We also use `product()` and `sum()` to create the `summary` object, which is just some rendered text to display on the survey page.
+
+Note also that we wrap the logic for creating these objects inside an `observe()` call. This is because initially the objects `n1` and `n2` will be `NULL` until a respondent answers the question, so using `observe()` will make sure these calculations don't run until a value is present.
 
 ## Defining questions in the server function
 

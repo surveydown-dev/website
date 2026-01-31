@@ -1,0 +1,328 @@
+---
+title: "Accessing Question Values"
+---
+
+In surveydown, you often need to access the values that respondents have entered in your survey questions. This is essential for implementing conditional logic, creating reactive content, performing calculations, or storing derived values.
+
+The primary way to access question values in your **app.R** file is through the `sd_value()` and `sd_values()` functions. The two functions are aliases - they work identically, so use whatever name is easier to remember for you. For the documentation, we'll just be using `sd_value()`.
+
+## Basic Usage
+
+The `sd_value()` function retrieves the value(s) that a respondent has entered for one or more questions.
+
+### Single Question Value
+
+To get the value of a single question, pass the question ID to `sd_value()`:
+
+```r
+server <- function(input, output, session) {
+
+  # Get the value of a single question
+  fruit_choice <- sd_value("fruit")
+
+  sd_server()
+}
+```
+
+### Multiple Question Values
+
+You can retrieve multiple question values at once by passing multiple question IDs. This returns a vector of values:
+
+```r
+server <- function(input, output, session) {
+
+  # Get values from multiple questions
+  food_choices <- sd_value("fruit", "vegetable", "protein")
+  # Returns the vector of chosen values, something like c("apple", "lettuce", "chicken")
+
+  sd_server()
+}
+```
+
+## Quoted vs Unquoted IDs
+
+One of the convenient features of `sd_value()` is that it accepts both quoted and unquoted question IDs:
+
+```r
+# Both of these work identically:
+sd_value("fruit")
+sd_value(fruit)
+
+# Also works with multiple IDs:
+sd_value("fruit", "vegetable")
+sd_value(fruit, vegetable)
+```
+
+Choose whichever style you prefer - they function the same way.
+
+## Automatic Type Detection
+
+One of the most convenient features of `sd_value()` is its **automatic type detection and conversion**. By default, the function intelligently determines the appropriate data type and format for the returned value.
+
+### Automatic Numeric Conversion
+
+When `sd_value()` retrieves a value that looks numeric, it automatically converts it to a numeric type. This means you don't need to manually call `as.numeric()`:
+
+```r
+# If age question value is "25", sd_value() returns 25 (numeric)
+age <- sd_value("age")
+
+# You can use it directly in numeric operations
+if (age > 18) {
+  # Do something
+}
+
+# Works in calculations too
+age_in_months <- sd_value("age") * 12
+```
+
+If a value cannot be converted to numeric (e.g., it contains letters), `sd_value()` returns it as a character string.
+
+### Automatic Vector Splitting
+
+For multiple-choice questions that allow multiple selections (like `mc_multiple`), responses are often stored with pipe separators (e.g., `"apple|banana|orange"`). The `sd_value()` function automatically detects and splits these into a vector:
+
+```r
+# If the stored value is "apple|banana|orange"
+fruits <- sd_value("favorite_fruits")
+# Returns: c("apple", "banana", "orange")
+
+# You can use it directly in vector operations
+if ("apple" %in% fruits) {
+  # Do something
+}
+```
+
+### Controlling Type Conversion
+
+While automatic detection works well in most cases, you can override this behavior using the `as_numeric` and `as_vector` parameters:
+
+**Force numeric conversion:**
+
+```r
+# Always convert to numeric (non-convertible values become NA)
+val <- sd_value("some_field", as_numeric = TRUE)
+```
+
+**Prevent numeric conversion:**
+
+This is useful for values like ZIP codes that should stay as strings to preserve leading zeros:
+
+```r
+# Keep as string (e.g., "01234" stays "01234", not converted to 1234)
+zip <- sd_value("zip_code", as_numeric = FALSE)
+```
+
+::: {.callout-warning title="ZIP Code Special Case"}
+
+**ZIP codes require `as_numeric = FALSE`** to preserve leading zeros. Without it, automatic conversion will strip the leading zero:
+
+```r
+# Without as_numeric = FALSE (WRONG for ZIP codes):
+zip <- sd_value("zip")
+# "01234" becomes 1234 - leading zero lost!
+
+# With as_numeric = FALSE (CORRECT for ZIP codes):
+zip <- sd_value("zip", as_numeric = FALSE)
+# "01234" stays as "01234" - preserved correctly
+```
+
+This matters when you need to check the length:
+
+```r
+# Validate ZIP code length - must use as_numeric = FALSE
+sd_stop_if(
+  nchar(sd_value("zip", as_numeric = FALSE)) != 5 ~ "ZIP code must be 5 digits."
+)
+```
+
+Without `as_numeric = FALSE`, the ZIP code `"01234"` would be converted to `1234`, and `nchar(1234)` would return `4`, incorrectly rejecting a valid ZIP code.
+
+:::
+
+**Force vector splitting:**
+
+```r
+# Always split on pipe, even if no pipe is present
+vals <- sd_value("some_field", as_vector = TRUE)
+```
+
+**Prevent vector splitting:**
+
+```r
+# Keep as single string, don't split
+raw <- sd_value("favorite_fruits", as_vector = FALSE)
+# Returns: "apple|banana|orange" (as single string)
+```
+
+## Key Features
+
+### Reactive by Default
+
+`sd_value()` is a reactive function, which means it automatically updates whenever the question value changes. This makes it ideal for use in reactive contexts like `observe()`, `reactive()`, or within `sd_show_if()` conditions.
+
+**Important:** Because `sd_value()` is reactive, it can only be used inside the `server()` function in your **app.R** file, not in the **survey.qmd** file.
+
+### Persistence After Refresh
+
+When cookies are enabled (the default), `sd_value()` will restore user inputs from the database even after a page refresh. This ensures that respondents don't lose their progress if they accidentally refresh the page or close and reopen the survey.
+
+### Replacement for `input$`
+
+If you're familiar with Shiny, you might know about accessing inputs using `input$question_id`. In surveydown, **you should use `sd_value()` instead of `input$`** because:
+
+1. `sd_value()` restores values after page refresh
+2. `sd_value()` provides cleaner syntax with support for unquoted IDs
+3. `sd_value()` works seamlessly with surveydown's data persistence features
+
+## Common Use Cases
+
+### Conditional Logic
+
+Use `sd_value()` to check question responses and show/hide content:
+
+```r
+server <- function(input, output, session) {
+
+  sd_show_if(
+    sd_value("pet_type") == "dog" ~ "dog_breed",
+    sd_value("pet_type") == "cat" ~ "cat_breed"
+  )
+
+  sd_server()
+}
+```
+
+See the [Conditional Logic](conditional-logic.qmd) page for more details.
+
+### Numeric Calculations
+
+When working with numeric questions, `sd_value()` automatically converts values to numbers, so you can use them directly in calculations:
+
+```r
+server <- function(input, output, session) {
+
+  # Create a reactive calculation
+  # sd_value() automatically converts to numeric
+  total <- reactive({
+    sd_value("price") * sd_value("quantity")
+  })
+
+  # Store the calculated value
+  sd_reactive("total_cost", total())
+
+  sd_server()
+}
+```
+
+### Checking Multiple Choice Selections
+
+For `mc_multiple` or `mc_multiple_buttons` questions that return vectors:
+
+```r
+server <- function(input, output, session) {
+
+  # Check if a specific option was selected
+  sd_show_if(
+    "apple" %in% sd_value("favorite_fruits") ~ "apple_question"
+  )
+
+  # Check how many options were selected
+  sd_show_if(
+    length(sd_value("favorite_fruits")) >= 3 ~ "fruit_lover"
+  )
+
+  sd_server()
+}
+```
+
+### Creating Derived Values
+
+You can use question values to create new values and store them:
+
+```r
+server <- function(input, output, session) {
+
+  # Create a derived value based on responses
+  # sd_value() automatically converts age to numeric
+  category <- reactive({
+    age <- sd_value("age")
+    if (age < 18) {
+      "minor"
+    } else if (age < 65) {
+      "adult"
+    } else {
+      "senior"
+    }
+  })
+
+  # Store the category for later analysis
+  sd_store_value(category = category())
+
+  sd_server()
+}
+```
+
+### Checking if Questions are Answered
+
+Use `sd_is_answered()` to check if a question has been answered at all:
+
+```r
+server <- function(input, output, session) {
+
+  sd_show_if(
+    sd_is_answered("name") ~ "greeting_message"
+  )
+
+  sd_server()
+}
+```
+
+This is especially useful when you want to show follow-up content once any answer is provided, regardless of which specific option was chosen.
+
+## Important Notes
+
+### NULL Values
+
+If a question hasn't been answered yet, `sd_value()` returns `NULL`. Always check for this when performing operations that might fail on `NULL`:
+
+```r
+# Safe approach for conditional logic
+age <- sd_value("age")
+if (!is.null(age) && age > 18) {
+  # Do something
+}
+```
+
+### Matrix Questions
+
+For `matrix` type questions, `sd_is_answered()` only returns `TRUE` if **all** sub-questions (rows) have been answered.
+
+### Automatic Type Detection
+
+Thanks to automatic type detection, `sd_value()` handles data type conversion for you:
+
+```r
+# Numeric values are automatically converted
+# This works directly, no need for as.numeric()
+if (sd_value("age") > 18) {
+  # This works because sd_value() returns 25 (numeric), not "25" (string)
+}
+
+# Pipe-separated values are automatically split into vectors
+# This works directly, no need to split manually
+if ("apple" %in% sd_value("favorite_fruits")) {
+  # This works because sd_value() returns c("apple", "banana"), not "apple|banana"
+}
+```
+
+The only time you need to manually control type conversion is for special cases like ZIP codes with leading zeros. In those cases, use `as_numeric = FALSE` to prevent conversion (see [Controlling Type Conversion](#controlling-type-conversion) above).
+
+## Related Functions
+
+- `sd_is_answered()` - Check if a question has been answered
+- `sd_store_value()` - Store custom values in the survey data
+- `sd_reactive()` - Create reactive values that are stored in the data
+- `sd_copy_value()` - Create a copy of a question value for display
+
+See the [Reactivity](reactivity.qmd) page for more information on these related functions.

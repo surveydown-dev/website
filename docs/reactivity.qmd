@@ -78,6 +78,12 @@ This should render as something like this:
 
 > Your code is: `r sd_completion_code(10)`
 
+::: {.callout-note title="Why can't I just use `sd_completion_code()` in the **survey.qmd** file?"}
+
+If you use `sd_completion_code()` in the **survey.qmd** file, you will generate one single completion code that is the same for every respondent, because the **survey.qmd** file can only produce _static_ content. If you want a unique code for each respondent, then you have to generate the code inside the `server()` function in the **app.R** file, then use `sd_output()` to display it in the **survey.qmd** file.
+
+:::
+
 ## Displaying the same value in multiple places
 
 The `sd_output()` function can only be used once per each unique question `id` because the `id` gets used in the rendered HTML divs, and HTML with more than one element with the same id is invalid HTML. This is a general issue for Shiny - outputs can only be used once per each unique `id` (see [this GitHub issue](https://github.com/rstudio/shiny/issues/743) on the topic).
@@ -132,8 +138,6 @@ sd_question(
   label  = glue::glue("Are you a {pet_type_chosen} owner?"),
   option = c("Yes" = "yes", "No" = "no")
 )
-
-sd_next()
 ```
 
 In this example, if the respondent selects "Cats" in the first question, the label for the second question will display as "Are you a cat owner?".
@@ -144,13 +148,15 @@ If both questions are on the same page, you'll probably want to conditionally di
 
 ```{r}
 server <- function(input, output, session) {
-  # Only show the pet_owner question if pet_type is answered
+
+  #...other code
+
   sd_show_if(
     sd_is_answered("pet_type") ~ "pet_owner"
   )
 
-  # Database designation and other settings
-  sd_server(db = db)
+  #...other code
+
 }
 ```
 
@@ -197,54 +203,50 @@ The product of these 2 numbers is: `r sd_output("product", type = "value")`.
 
 The sum of these 2 numbers is: `r sd_output("sum", type = "value")`.
 
-`r sd_output("summary")`
-
-```{r}
-sd_next()
-```
+**Summary**: `r sd_output("summary", type = "value")`
 ````
 
-To make these values display properly, you can create reactive values with the `sd_reactive()` function in the server, which reactively updates as the user changes any of the question values. Here is an example of how you might create the `product` value:
+To make these values display properly, you can create reactive values with the `sd_reactive()` function in the server, which reactively updates as the user changes any of the question values. 
 
-```{r}
-product <- sd_reactive("product", {
-  input$first_number * input$second_number
-})
-```
+The `sd_reactive()` function takes an `id`, which is the name that will be used in the resulting survey response data to store the returned value. The created object is a reactive expression that can also be used anywhere else in the server using the `()` symbols. Inside the function can be any expression that returns a value. 
 
-The `sd_reactive()` function takes an `id` (in this case `"product"`), which is the name that will be used in the resulting survey response data to store the returned value. The created object (in this case named `product`) is a reactive expression that can also be used anywhere else in the server using the `()` symbols, e.g. `product()`. Inside the function can be any expression that returns a value. In this case, we're just multiplying together the two input numbers.
+To create all of the objects in the example page above, our server would look like the following below. Note that we first create intermediate objects (`n1` and `n2`) purely for convenience as we use the numbers in multiple places.
 
-To create all of the objects in the example page above, our server would look like this:
+{{< include ../chunks/sdvalue.qmd >}}
 
 **app.R file**:
 
 ```{r}
 library(surveydown)
 
+ui <- sd_ui()
+
 server <- function(input, output, session) {
+  observe({
+    # Create local objects for each number
+    n1 <- sd_value("first_number")
+    n2 <- sd_value("second_number")
 
-  # Create reactive values for 'product' and 'sum'
-  product <- sd_reactive("product", {
-    input$first_number * input$second_number
-  })
+    # Create reactive values for 'product' and 'sum'
+    product <- sd_reactive("product", n1 * n2)
+    sum <- sd_reactive("sum", n1 + n2)
 
-  sum <- sd_reactive("sum", {
-    input$first_number + input$second_number
-  })
-
-  # Use the reactive values to create an additional 'summary' output
-  output$summary <- renderText({
-    paste("The product is:", product(), "and the sum is:", sum())
+    # Use the reactive values to create an additional 'summary' output
+    sd_reactive("summary", {
+      paste("The product is", product(), "and the sum is", sum())
+    })
   })
 
   sd_server()
 }
 
 # Launch Survey
-shiny::shinyApp(ui = sd_ui(), server = server)
+shiny::shinyApp(ui = ui, server = server)
 ```
 
-In this server, we create two reactive values, `product` and `sum`, which get stored in our survey data under those respective names. We also use `product()` and `sum()` to create the `output$summary` object, which is just some rendered text to display on the survey page.
+In this server, we create two reactive values, `product` and `sum`, which get stored in our survey data under those respective names. We also use `product()` and `sum()` to create the `summary` object, which is just some rendered text to display on the survey page.
+
+Note also that we wrap the logic for creating these objects inside an `observe()` call. This is because initially the objects `n1` and `n2` will be `NULL` until a respondent answers the question, so using `observe()` will make sure these calculations don't run until a value is present.
 
 ## Defining questions in the server function
 
@@ -264,22 +266,26 @@ sd_question(
 My follow-up question is whether or not the respondent has a pet of the type they chose above. To do this, you would define the follow-up question in the **app.R** file's `server()` function like this:
 
 ```{r}
+library(surveydown)
+library(glue)
+
 server <- function(input, output, session) {
-
   observe({
-    pet_type <- input$pet_type
+    # Get the chosen pet_type value
+    pet_type <- sd_value("pet_type")
 
-    # Make the question label and options
-    label <-glue::glue("Are you a {pet_type} owner?")
+    # Make the option vector
     options <- c('yes', 'no')
-    names(options)[1] <- glue::glue("Yes, am a {pet_type} owner")
-    names(options)[2] <- glue::glue("No, I am not a {pet_type} owner")
+    names(options) <- c(
+      glue("Yes, am a {pet_type} owner"),
+      glue("No, I am not a {pet_type} owner")
+    )
 
-    # Make the question
+    # Make the question with the chosen pet_type in the label and options
     sd_question(
-      type   = "mc",
-      id     = "pet_owner",
-      label  = label,
+      type = "mc",
+      id = "pet_owner",
+      label = glue("Are you a {pet_type} owner?"),
       option = options
     )
   })
@@ -290,18 +296,18 @@ server <- function(input, output, session) {
 
 The `pet_owner` question is a reactive question where the label and options will change based on the respondent's answer to the `pet_type` question.
 
-::: {.callout-note}
-
-The `observe()` function is used to create the reactive question. This is a core concept in Shiny [reactivity](https://shiny.posit.co/r/articles/build/reactivity-overview/) that allows you to create reactive expressions that can change based on the values of other reactive expressions.
-
-Also, in this example we use the [`glue` package](https://cran.r-project.org/web/packages/glue/readme/README.html) to create the question label and options. This is a powerful package for creating strings that contain variable values. 
-
-:::
-
-Finally, you can display the `pet_owner` question in the **survey.qmd** file using the `sd_output()` function, like this:
+You can then display the `pet_owner` question in the **survey.qmd** file using the `sd_output()` function, like this:
 
 ```{r}
 #| echo: fenced
 
 sd_output(id = "pet_owner", type = "question")
 ```
+
+::: {.callout-note}
+
+The `observe()` function in the above example is used to create the reactive question. This is a core concept in Shiny [reactivity](https://shiny.posit.co/r/articles/build/reactivity-overview/) that allows you to create reactive expressions that can change based on the values of other reactive expressions.
+
+Also, in this example we use the [`glue` package](https://cran.r-project.org/web/packages/glue/readme/README.html) to create the question label and options. This is a powerful package for creating strings that contain variable values. 
+
+:::

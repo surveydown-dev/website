@@ -30,13 +30,15 @@ survey-settings:
   use-cookies: yes
   auto-scroll: no
   rate-survey: no
-  all-questions-required: no
+  all-required: no
   start-page: initial_page
   system-language: en
   highlight-unanswered: yes
   highlight-color: gray
   capture-metadata: yes
-  required-questions: []
+  required: []
+  all-shuffled: no
+  shuffled: []
 
 system-messages:
   cancel: Cancel
@@ -269,23 +271,79 @@ By default, the survey starts at the first page.
 
 By default, no questions are required. We provide 2 YAML keys to define required questions:
 
-**Firstly**, set `all-questions-required` to `true` to make all questions required:
+**Firstly**, set `all-required` to `true` to make all questions required:
 
 ``` yaml
-all-questions-required: true
+all-required: true
 ```
 
-By default, `all-questions-required` is set to `false`.
+By default, `all-required` is set to `false`.
 
-**Secondly**, use `required-questions` to provide a list of question IDs to make specific questions required:
+**Secondly**, use `required` to provide a list of question IDs to make specific questions required:
 
 ``` yaml
-required-questions:
+required:
   - question_1
   - question_2
 ```
 
 The questions set to required will make the respondent unable to proceed until they have answered all of them on the current page. It will also place a red asterisk (*) next to the question label to indicate that the question is required.
+
+### Shuffled questions
+
+By default, question options and matrix subquestions are displayed in the order they are defined. You can shuffle options/subquestions for supported question types using the `shuffled` and `all-shuffled` settings.
+
+**Option shuffling** is supported for these question types:
+
+- `mc` (multiple choice)
+- `mc_buttons` (multiple choice buttons)
+- `mc_multiple` (multiple choice multiple selection)
+- `mc_multiple_buttons` (multiple choice multiple selection buttons)
+
+**Subquestion shuffling** is supported for:
+
+- `matrix` (matrix questions)
+
+#### Shuffle all questions
+
+Set `all-shuffled` to `true` to shuffle all supported questions:
+
+``` yaml
+all-shuffled: true
+```
+
+By default, `all-shuffled` is set to `false`.
+
+#### Shuffle specific questions
+
+Use `shuffled` to specify which questions should have their options/subquestions shuffled. You can shuffle all options/subquestions, or use indexing to shuffle only specific positions:
+
+**Shuffle all options/subquestions:**
+
+``` yaml
+shuffled:
+  - question_1
+  - question_2
+```
+
+**Indexed shuffling:**
+
+You can specify which positions to shuffle using several syntax options:
+
+1. Range notation: `1-5` shuffles positions 1 through 5
+2. List notation: `[1, 2, 4, 7]` shuffles positions 1, 2, 4, and 7
+3. Combined ranges: `[1-5, 8-10]` shuffles positions 1-5 and 8-10
+
+``` yaml
+shuffled:
+  - artist: 1-5                  # Shuffle first 5 options
+  - fruit: [1, 2, 4, 7]          # Shuffle options at positions 1, 2, 4, 7
+  - swift: [1-5, 8-10]           # Shuffle options 1-5 and 8-10
+  - michael_jackson              # Shuffle all options
+  - car_preference: [1, 3]       # Shuffle options at positions 1 and 3
+```
+
+For matrix questions, the same syntax applies but shuffles subquestions instead of options.
 
 ## System messages
 

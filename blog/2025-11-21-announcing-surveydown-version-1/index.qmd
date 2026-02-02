@@ -66,13 +66,13 @@ survey-settings:
   use-cookies: no
   auto-scroll: no
   rate-survey: no
-  all-questions-required: no
+  all-required: no
   start-page: your_first_page
   system-language: en
   highlight-unanswered: yes
   highlight-color: gray
   capture-metadata: yes
-  required-questions: []
+  required: []
 
 system-messages:
   cancel: Cancel
@@ -244,6 +244,10 @@ In this case, the value stored in the data will be automatically converted to sn
 | Light Blue   | `light_blue`   |
 | Dark Green   | `dark_green`   |
 | Bright Red   | `bright_red`   |
+
+::: {.callout-caution}
+This snake case conversion is **removed** after `v1.1.0`, in which if you provide a single vector of labels, the values stored in the database will be exactly the same as the labels shown to respondents.
+:::
 
 ## What's Next?
 

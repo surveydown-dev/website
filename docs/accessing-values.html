@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Security – surveydown.org</title>
+<title>Accessing Question Values – surveydown.org</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -78,12 +113,12 @@ ul.task-list li input[type="checkbox"] {
 <style>html{ scroll-behavior: smooth; }</style>
 
 
-<meta property="og:title" content="Security – surveydown.org">
+<meta property="og:title" content="Accessing Question Values – surveydown.org">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://www.surveydown.org/docs/images/logo.ico">
 <meta property="og:site_name" content="https://surveydown.org">
 <meta property="og:locale" content="es_ES">
-<meta name="twitter:title" content="Security – surveydown.org">
+<meta name="twitter:title" content="Accessing Question Values – surveydown.org">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://www.surveydown.org/docs/images/logo.png">
 <meta name="twitter:creator" content="@johnhelveston">
@@ -314,7 +349,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/deployment.html">Deployment &amp; Operations</a></li><li class="breadcrumb-item"><a href="../docs/security.html">Security</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/accessing-values.html">Interactivity</a></li><li class="breadcrumb-item"><a href="../docs/accessing-values.html">Accessing Question Values</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -419,7 +454,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/accessing-values.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/accessing-values.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Accessing Question Values</span></a>
   </div>
 </li>
@@ -495,7 +530,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/security.html" class="sidebar-item-text sidebar-link active">
+  <a href="../docs/security.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Security</span></a>
   </div>
 </li>
@@ -546,13 +581,39 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-surveydown-application-code" id="toc-the-surveydown-application-code" class="nav-link active" data-scroll-target="#the-surveydown-application-code">The surveydown application code</a></li>
-  <li><a href="#the-hosting-environment" id="toc-the-hosting-environment" class="nav-link" data-scroll-target="#the-hosting-environment">The hosting environment</a>
+  <li><a href="#basic-usage" id="toc-basic-usage" class="nav-link active" data-scroll-target="#basic-usage">Basic Usage</a>
   <ul class="collapse">
-  <li><a href="#shinyapps.io" id="toc-shinyapps.io" class="nav-link" data-scroll-target="#shinyapps.io">Shinyapps.io</a></li>
-  <li><a href="#other-hosting-services" id="toc-other-hosting-services" class="nav-link" data-scroll-target="#other-hosting-services">Other Hosting Services</a></li>
+  <li><a href="#single-question-value" id="toc-single-question-value" class="nav-link" data-scroll-target="#single-question-value">Single Question Value</a></li>
+  <li><a href="#multiple-question-values" id="toc-multiple-question-values" class="nav-link" data-scroll-target="#multiple-question-values">Multiple Question Values</a></li>
   </ul></li>
-  <li><a href="#the-data-storage-environment" id="toc-the-data-storage-environment" class="nav-link" data-scroll-target="#the-data-storage-environment">The data storage environment</a></li>
+  <li><a href="#quoted-vs-unquoted-ids" id="toc-quoted-vs-unquoted-ids" class="nav-link" data-scroll-target="#quoted-vs-unquoted-ids">Quoted vs Unquoted IDs</a></li>
+  <li><a href="#automatic-type-detection" id="toc-automatic-type-detection" class="nav-link" data-scroll-target="#automatic-type-detection">Automatic Type Detection</a>
+  <ul class="collapse">
+  <li><a href="#automatic-numeric-conversion" id="toc-automatic-numeric-conversion" class="nav-link" data-scroll-target="#automatic-numeric-conversion">Automatic Numeric Conversion</a></li>
+  <li><a href="#automatic-vector-splitting" id="toc-automatic-vector-splitting" class="nav-link" data-scroll-target="#automatic-vector-splitting">Automatic Vector Splitting</a></li>
+  <li><a href="#controlling-type-conversion" id="toc-controlling-type-conversion" class="nav-link" data-scroll-target="#controlling-type-conversion">Controlling Type Conversion</a></li>
+  </ul></li>
+  <li><a href="#key-features" id="toc-key-features" class="nav-link" data-scroll-target="#key-features">Key Features</a>
+  <ul class="collapse">
+  <li><a href="#reactive-by-default" id="toc-reactive-by-default" class="nav-link" data-scroll-target="#reactive-by-default">Reactive by Default</a></li>
+  <li><a href="#persistence-after-refresh" id="toc-persistence-after-refresh" class="nav-link" data-scroll-target="#persistence-after-refresh">Persistence After Refresh</a></li>
+  <li><a href="#replacement-for-input" id="toc-replacement-for-input" class="nav-link" data-scroll-target="#replacement-for-input">Replacement for <code>input$</code></a></li>
+  </ul></li>
+  <li><a href="#common-use-cases" id="toc-common-use-cases" class="nav-link" data-scroll-target="#common-use-cases">Common Use Cases</a>
+  <ul class="collapse">
+  <li><a href="#conditional-logic" id="toc-conditional-logic" class="nav-link" data-scroll-target="#conditional-logic">Conditional Logic</a></li>
+  <li><a href="#numeric-calculations" id="toc-numeric-calculations" class="nav-link" data-scroll-target="#numeric-calculations">Numeric Calculations</a></li>
+  <li><a href="#checking-multiple-choice-selections" id="toc-checking-multiple-choice-selections" class="nav-link" data-scroll-target="#checking-multiple-choice-selections">Checking Multiple Choice Selections</a></li>
+  <li><a href="#creating-derived-values" id="toc-creating-derived-values" class="nav-link" data-scroll-target="#creating-derived-values">Creating Derived Values</a></li>
+  <li><a href="#checking-if-questions-are-answered" id="toc-checking-if-questions-are-answered" class="nav-link" data-scroll-target="#checking-if-questions-are-answered">Checking if Questions are Answered</a></li>
+  </ul></li>
+  <li><a href="#important-notes" id="toc-important-notes" class="nav-link" data-scroll-target="#important-notes">Important Notes</a>
+  <ul class="collapse">
+  <li><a href="#null-values" id="toc-null-values" class="nav-link" data-scroll-target="#null-values">NULL Values</a></li>
+  <li><a href="#matrix-questions" id="toc-matrix-questions" class="nav-link" data-scroll-target="#matrix-questions">Matrix Questions</a></li>
+  <li><a href="#automatic-type-detection-1" id="toc-automatic-type-detection-1" class="nav-link" data-scroll-target="#automatic-type-detection-1">Automatic Type Detection</a></li>
+  </ul></li>
+  <li><a href="#related-functions" id="toc-related-functions" class="nav-link" data-scroll-target="#related-functions">Related Functions</a></li>
   </ul>
 </nav>
     </div>
@@ -560,9 +621,9 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/deployment.html">Deployment &amp; Operations</a></li><li class="breadcrumb-item"><a href="../docs/security.html">Security</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/accessing-values.html">Interactivity</a></li><li class="breadcrumb-item"><a href="../docs/accessing-values.html">Accessing Question Values</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Security</h1>
+<h1 class="title">Accessing Question Values</h1>
 </div>
 
 
@@ -579,45 +640,273 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>There are three main security considerations when working with a surveydown survey:</p>
+<p>In surveydown, you often need to access the values that respondents have entered in your survey questions. This is essential for implementing conditional logic, creating reactive content, performing calculations, or storing derived values.</p>
+<p>The primary way to access question values in your <strong>app.R</strong> file is through the <code>sd_value()</code> and <code>sd_values()</code> functions. The two functions are aliases - they work identically, so use whatever name is easier to remember for you. For the documentation, we’ll just be using <code>sd_value()</code>.</p>
+<section id="basic-usage" class="level2">
+<h2 class="anchored" data-anchor-id="basic-usage">Basic Usage</h2>
+<p>The <code>sd_value()</code> function retrieves the value(s) that a respondent has entered for one or more questions.</p>
+<section id="single-question-value" class="level3">
+<h3 class="anchored" data-anchor-id="single-question-value">Single Question Value</h3>
+<p>To get the value of a single question, pass the question ID to <code>sd_value()</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get the value of a single question</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  fruit_choice <span class="ot">&lt;-</span> <span class="fu">sd_value</span>(<span class="st">"fruit"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_server</span>()</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="multiple-question-values" class="level3">
+<h3 class="anchored" data-anchor-id="multiple-question-values">Multiple Question Values</h3>
+<p>You can retrieve multiple question values at once by passing multiple question IDs. This returns a vector of values:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get values from multiple questions</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  food_choices <span class="ot">&lt;-</span> <span class="fu">sd_value</span>(<span class="st">"fruit"</span>, <span class="st">"vegetable"</span>, <span class="st">"protein"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Returns the vector of chosen values, something like c("apple", "lettuce", "chicken")</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_server</span>()</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="quoted-vs-unquoted-ids" class="level2">
+<h2 class="anchored" data-anchor-id="quoted-vs-unquoted-ids">Quoted vs Unquoted IDs</h2>
+<p>One of the convenient features of <code>sd_value()</code> is that it accepts both quoted and unquoted question IDs:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Both of these work identically:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_value</span>(<span class="st">"fruit"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_value</span>(fruit)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Also works with multiple IDs:</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_value</span>(<span class="st">"fruit"</span>, <span class="st">"vegetable"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_value</span>(fruit, vegetable)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Choose whichever style you prefer - they function the same way.</p>
+</section>
+<section id="automatic-type-detection" class="level2">
+<h2 class="anchored" data-anchor-id="automatic-type-detection">Automatic Type Detection</h2>
+<p>One of the most convenient features of <code>sd_value()</code> is its <strong>automatic type detection and conversion</strong>. By default, the function intelligently determines the appropriate data type and format for the returned value.</p>
+<section id="automatic-numeric-conversion" class="level3">
+<h3 class="anchored" data-anchor-id="automatic-numeric-conversion">Automatic Numeric Conversion</h3>
+<p>When <code>sd_value()</code> retrieves a value that looks numeric, it automatically converts it to a numeric type. This means you don’t need to manually call <code>as.numeric()</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If age question value is "25", sd_value() returns 25 (numeric)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">sd_value</span>(<span class="st">"age"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># You can use it directly in numeric operations</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (age <span class="sc">&gt;</span> <span class="dv">18</span>) {</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Do something</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Works in calculations too</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>age_in_months <span class="ot">&lt;-</span> <span class="fu">sd_value</span>(<span class="st">"age"</span>) <span class="sc">*</span> <span class="dv">12</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If a value cannot be converted to numeric (e.g., it contains letters), <code>sd_value()</code> returns it as a character string.</p>
+</section>
+<section id="automatic-vector-splitting" class="level3">
+<h3 class="anchored" data-anchor-id="automatic-vector-splitting">Automatic Vector Splitting</h3>
+<p>For multiple-choice questions that allow multiple selections (like <code>mc_multiple</code>), responses are often stored with pipe separators (e.g., <code>"apple|banana|orange"</code>). The <code>sd_value()</code> function automatically detects and splits these into a vector:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If the stored value is "apple|banana|orange"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fruits <span class="ot">&lt;-</span> <span class="fu">sd_value</span>(<span class="st">"favorite_fruits"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Returns: c("apple", "banana", "orange")</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># You can use it directly in vector operations</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="st">"apple"</span> <span class="sc">%in%</span> fruits) {</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Do something</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="controlling-type-conversion" class="level3">
+<h3 class="anchored" data-anchor-id="controlling-type-conversion">Controlling Type Conversion</h3>
+<p>While automatic detection works well in most cases, you can override this behavior using the <code>as_numeric</code> and <code>as_vector</code> parameters:</p>
+<p><strong>Force numeric conversion:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Always convert to numeric (non-convertible values become NA)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> <span class="fu">sd_value</span>(<span class="st">"some_field"</span>, <span class="at">as_numeric =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Prevent numeric conversion:</strong></p>
+<p>This is useful for values like ZIP codes that should stay as strings to preserve leading zeros:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep as string (e.g., "01234" stays "01234", not converted to 1234)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>zip <span class="ot">&lt;-</span> <span class="fu">sd_value</span>(<span class="st">"zip_code"</span>, <span class="at">as_numeric =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-warning callout-titled" title="ZIP Code Special Case">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>ZIP Code Special Case
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>ZIP codes require <code>as_numeric = FALSE</code></strong> to preserve leading zeros. Without it, automatic conversion will strip the leading zero:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Without as_numeric = FALSE (WRONG for ZIP codes):</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>zip <span class="ot">&lt;-</span> <span class="fu">sd_value</span>(<span class="st">"zip"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># "01234" becomes 1234 - leading zero lost!</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># With as_numeric = FALSE (CORRECT for ZIP codes):</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>zip <span class="ot">&lt;-</span> <span class="fu">sd_value</span>(<span class="st">"zip"</span>, <span class="at">as_numeric =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># "01234" stays as "01234" - preserved correctly</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This matters when you need to check the length:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Validate ZIP code length - must use as_numeric = FALSE</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_stop_if</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nchar</span>(<span class="fu">sd_value</span>(<span class="st">"zip"</span>, <span class="at">as_numeric =</span> <span class="cn">FALSE</span>)) <span class="sc">!=</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">"ZIP code must be 5 digits."</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Without <code>as_numeric = FALSE</code>, the ZIP code <code>"01234"</code> would be converted to <code>1234</code>, and <code>nchar(1234)</code> would return <code>4</code>, incorrectly rejecting a valid ZIP code.</p>
+</div>
+</div>
+<p><strong>Force vector splitting:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Always split on pipe, even if no pipe is present</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>vals <span class="ot">&lt;-</span> <span class="fu">sd_value</span>(<span class="st">"some_field"</span>, <span class="at">as_vector =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Prevent vector splitting:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep as single string, don't split</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>raw <span class="ot">&lt;-</span> <span class="fu">sd_value</span>(<span class="st">"favorite_fruits"</span>, <span class="at">as_vector =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Returns: "apple|banana|orange" (as single string)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="key-features" class="level2">
+<h2 class="anchored" data-anchor-id="key-features">Key Features</h2>
+<section id="reactive-by-default" class="level3">
+<h3 class="anchored" data-anchor-id="reactive-by-default">Reactive by Default</h3>
+<p><code>sd_value()</code> is a reactive function, which means it automatically updates whenever the question value changes. This makes it ideal for use in reactive contexts like <code>observe()</code>, <code>reactive()</code>, or within <code>sd_show_if()</code> conditions.</p>
+<p><strong>Important:</strong> Because <code>sd_value()</code> is reactive, it can only be used inside the <code>server()</code> function in your <strong>app.R</strong> file, not in the <strong>survey.qmd</strong> file.</p>
+</section>
+<section id="persistence-after-refresh" class="level3">
+<h3 class="anchored" data-anchor-id="persistence-after-refresh">Persistence After Refresh</h3>
+<p>When cookies are enabled (the default), <code>sd_value()</code> will restore user inputs from the database even after a page refresh. This ensures that respondents don’t lose their progress if they accidentally refresh the page or close and reopen the survey.</p>
+</section>
+<section id="replacement-for-input" class="level3">
+<h3 class="anchored" data-anchor-id="replacement-for-input">Replacement for <code>input$</code></h3>
+<p>If you’re familiar with Shiny, you might know about accessing inputs using <code>input$question_id</code>. In surveydown, <strong>you should use <code>sd_value()</code> instead of <code>input$</code></strong> because:</p>
 <ol type="1">
-<li>The surveydown application code</li>
-<li>The hosting environment</li>
-<li>The data storage environment</li>
+<li><code>sd_value()</code> restores values after page refresh</li>
+<li><code>sd_value()</code> provides cleaner syntax with support for unquoted IDs</li>
+<li><code>sd_value()</code> works seamlessly with surveydown’s data persistence features</li>
 </ol>
-<p>While we have worked to make our application code secure, it is ultimately up to you to choose appropriate host and data storage environments that are also secure for your needs.</p>
-<section id="the-surveydown-application-code" class="level2">
-<h2 class="anchored" data-anchor-id="the-surveydown-application-code">The surveydown application code</h2>
-<p>The application code refers to the resulting Shiny app generated from a surveydown survey. Since surveydown users will be collecting potentially sensitive data from survey respondents, we have tried to develop the platform with data security in mind. We have taken care to follow many <a href="https://mastering-shiny.org/scaling-security.html">best practices</a>, such as using <a href="https://shiny.posit.co/r/articles/build/sql-injections/">SQL injection prevention</a> strategies in how we store the survey response data, and ensuring that users store their database credentials as a <code>.env</code> file that is also added to a <code>.gitignore</code> file. We also adopted an architecture where all content on any page in the survey is served entirely from the shiny server, meaning that respondents taking the survey cannot see the underlying html source code for any of the content being displayed in the survey. This is important so respondents cannot see content on other pages (e.g., completion codes) before getting there from the survey navigation buttons.</p>
-<p>Despite our efforts, however, we do not (yet) have any form of security compliance certificate that we can provide. <strong>This means we cannot guarantee the application code is compliant with common security protocols, such as SOC2 Type 2 or HIPPA</strong>. This is an eventual goal, but for now this is a limitation for using this package for some domains that require certain certifications.</p>
 </section>
-<section id="the-hosting-environment" class="level2">
-<h2 class="anchored" data-anchor-id="the-hosting-environment">The hosting environment</h2>
-<section id="shinyapps.io" class="level3">
-<h3 class="anchored" data-anchor-id="shinyapps.io">Shinyapps.io</h3>
-<p>The free service we use for hosting a surveydown survey is <a href="https://shinyapps.io/">shinyapps.io</a>, which <strong>is not HIPPA compliant</strong>. According to the <a href="https://docs.posit.co/shinyapps.io/guide/security_and_compliance/index.html">Posit Documentation on Security and Compliance</a> for <a href="https://shinyapps.io/">shinyapps.io</a>:</p>
-<blockquote class="blockquote">
-<p>shinyapps.io is currently hosted on Amazon’s Web Services (AWS) infrastructure in the us-east-1 region. The infrastructure used is not the HIPAA-compliant stack, so if you need to be in a HIPAA-compliant environment, we recommend deploying and operating your own Posit Connect or Shiny Server Open Source instance.</p>
-</blockquote>
-<p>This means that if you require a HIPPA compliant hosting service, we recommend that follow Posit’s guidelines and deploy your own instance of <a href="https://posit.co/products/enterprise/connect/">Posit Connect</a>.</p>
 </section>
-<section id="other-hosting-services" class="level3">
-<h3 class="anchored" data-anchor-id="other-hosting-services">Other Hosting Services</h3>
-<p>You can deploy shiny apps to other hosting services. Here are some guides for several other alternatives:</p>
+<section id="common-use-cases" class="level2">
+<h2 class="anchored" data-anchor-id="common-use-cases">Common Use Cases</h2>
+<section id="conditional-logic" class="level3">
+<h3 class="anchored" data-anchor-id="conditional-logic">Conditional Logic</h3>
+<p>Use <code>sd_value()</code> to check question responses and show/hide content:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_show_if</span>(</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd_value</span>(<span class="st">"pet_type"</span>) <span class="sc">==</span> <span class="st">"dog"</span> <span class="sc">~</span> <span class="st">"dog_breed"</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd_value</span>(<span class="st">"pet_type"</span>) <span class="sc">==</span> <span class="st">"cat"</span> <span class="sc">~</span> <span class="st">"cat_breed"</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_server</span>()</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>See the <a href="../docs/conditional-logic.html">Conditional Logic</a> page for more details.</p>
+</section>
+<section id="numeric-calculations" class="level3">
+<h3 class="anchored" data-anchor-id="numeric-calculations">Numeric Calculations</h3>
+<p>When working with numeric questions, <code>sd_value()</code> automatically converts values to numbers, so you can use them directly in calculations:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a reactive calculation</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># sd_value() automatically converts to numeric</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  total <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd_value</span>(<span class="st">"price"</span>) <span class="sc">*</span> <span class="fu">sd_value</span>(<span class="st">"quantity"</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Store the calculated value</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_reactive</span>(<span class="st">"total_cost"</span>, <span class="fu">total</span>())</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_server</span>()</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="checking-multiple-choice-selections" class="level3">
+<h3 class="anchored" data-anchor-id="checking-multiple-choice-selections">Checking Multiple Choice Selections</h3>
+<p>For <code>mc_multiple</code> or <code>mc_multiple_buttons</code> questions that return vectors:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Check if a specific option was selected</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_show_if</span>(</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"apple"</span> <span class="sc">%in%</span> <span class="fu">sd_value</span>(<span class="st">"favorite_fruits"</span>) <span class="sc">~</span> <span class="st">"apple_question"</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Check how many options were selected</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_show_if</span>(</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">length</span>(<span class="fu">sd_value</span>(<span class="st">"favorite_fruits"</span>)) <span class="sc">&gt;=</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"fruit_lover"</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_server</span>()</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="creating-derived-values" class="level3">
+<h3 class="anchored" data-anchor-id="creating-derived-values">Creating Derived Values</h3>
+<p>You can use question values to create new values and store them:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a derived value based on responses</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># sd_value() automatically converts age to numeric</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  category <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    age <span class="ot">&lt;-</span> <span class="fu">sd_value</span>(<span class="st">"age"</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (age <span class="sc">&lt;</span> <span class="dv">18</span>) {</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"minor"</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (age <span class="sc">&lt;</span> <span class="dv">65</span>) {</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">"adult"</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>      <span class="st">"senior"</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Store the category for later analysis</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_store_value</span>(<span class="at">category =</span> <span class="fu">category</span>())</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_server</span>()</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="checking-if-questions-are-answered" class="level3">
+<h3 class="anchored" data-anchor-id="checking-if-questions-are-answered">Checking if Questions are Answered</h3>
+<p>Use <code>sd_is_answered()</code> to check if a question has been answered at all:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_show_if</span>(</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd_is_answered</span>(<span class="st">"name"</span>) <span class="sc">~</span> <span class="st">"greeting_message"</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd_server</span>()</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is especially useful when you want to show follow-up content once any answer is provided, regardless of which specific option was chosen.</p>
+</section>
+</section>
+<section id="important-notes" class="level2">
+<h2 class="anchored" data-anchor-id="important-notes">Important Notes</h2>
+<section id="null-values" class="level3">
+<h3 class="anchored" data-anchor-id="null-values">NULL Values</h3>
+<p>If a question hasn’t been answered yet, <code>sd_value()</code> returns <code>NULL</code>. Always check for this when performing operations that might fail on <code>NULL</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Safe approach for conditional logic</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">sd_value</span>(<span class="st">"age"</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(age) <span class="sc">&amp;&amp;</span> age <span class="sc">&gt;</span> <span class="dv">18</span>) {</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Do something</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="matrix-questions" class="level3">
+<h3 class="anchored" data-anchor-id="matrix-questions">Matrix Questions</h3>
+<p>For <code>matrix</code> type questions, <code>sd_is_answered()</code> only returns <code>TRUE</code> if <strong>all</strong> sub-questions (rows) have been answered.</p>
+</section>
+<section id="automatic-type-detection-1" class="level3">
+<h3 class="anchored" data-anchor-id="automatic-type-detection-1">Automatic Type Detection</h3>
+<p>Thanks to automatic type detection, <code>sd_value()</code> handles data type conversion for you:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Numeric values are automatically converted</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This works directly, no need for as.numeric()</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">sd_value</span>(<span class="st">"age"</span>) <span class="sc">&gt;</span> <span class="dv">18</span>) {</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This works because sd_value() returns 25 (numeric), not "25" (string)</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Pipe-separated values are automatically split into vectors</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># This works directly, no need to split manually</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="st">"apple"</span> <span class="sc">%in%</span> <span class="fu">sd_value</span>(<span class="st">"favorite_fruits"</span>)) {</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This works because sd_value() returns c("apple", "banana"), not "apple|banana"</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The only time you need to manually control type conversion is for special cases like ZIP codes with leading zeros. In those cases, use <code>as_numeric = FALSE</code> to prevent conversion (see <a href="#controlling-type-conversion">Controlling Type Conversion</a> above).</p>
+</section>
+</section>
+<section id="related-functions" class="level2">
+<h2 class="anchored" data-anchor-id="related-functions">Related Functions</h2>
 <ul>
-<li><a href="https://docs.posit.co/connect-cloud/how-to/r/shiny-r.html">Posit Connect Cloud</a></li>
-<li><a href="https://huggingface.co/docs/hub/spaces-sdks-docker-shiny#shiny-for-r">Hugging Face</a></li>
-<li><a href="https://medium.com/@gracemwendemicheni/deploy-r-shiny-app-to-heroku-31b48fb6eb39">Heroku</a></li>
+<li><code>sd_is_answered()</code> - Check if a question has been answered</li>
+<li><code>sd_store_value()</code> - Store custom values in the survey data</li>
+<li><code>sd_reactive()</code> - Create reactive values that are stored in the data</li>
+<li><code>sd_copy_value()</code> - Create a copy of a question value for display</li>
 </ul>
-<p>You can also install <a href="https://posit.co/products/enterprise/connect/">Posit Connect</a> on your own server, which is the <a href="https://docs.posit.co/shinyapps.io/guide/security_and_compliance/index.html">recommended approach</a> for remaining compliant with any security protocols your organization requires.</p>
-<p>Whatever hosting service you choose, please read carefully about the security implications of the environment you choose.</p>
-</section>
-</section>
-<section id="the-data-storage-environment" class="level2">
-<h2 class="anchored" data-anchor-id="the-data-storage-environment">The data storage environment</h2>
-<p>We designed surveydown to be able to <a href="storing-data.html">store data</a> on any PostgreSQL database. This gives you flexibility on where you choose to store your data, and it is up to you to find a suitable host.</p>
-<p>Fortunately, the default service we recommend using (<a href="https://supabase.com/">Supabase</a>) is actually <a href="https://supabase.com/security">SOC2 Type 2 and HIPPA compliant</a> 🎉</p>
-<p>As with the hosting service, please choose a data storage environment carefully and read about the security implications of the environment you choose.</p>
+<p>See the <a href="../docs/reactivity.html">Reactivity</a> page for more information on these related functions.</p>
 
 
 </section>

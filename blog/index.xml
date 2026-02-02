@@ -224,7 +224,7 @@ font-style: inherit;">no</span></span>
 background-color: null;
 font-style: inherit;">  </span><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">all-questions-required</span><span class="kw" style="color: #003B4F;
+font-style: inherit;">all-required</span><span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
@@ -290,7 +290,7 @@ font-style: inherit;">yes</span></span>
 background-color: null;
 font-style: inherit;">  </span><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">required-questions</span><span class="kw" style="color: #003B4F;
+font-style: inherit;">required</span><span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
@@ -815,7 +815,21 @@ font-style: inherit;">)</span></span></code></pre></div></div>
 <td><code>bright_red</code></td>
 </tr>
 </tbody>
-</table></section><section id="whats-next" class="level2"><h2 class="anchored" data-anchor-id="whats-next">What’s Next?</h2>
+</table>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This snake case conversion is <strong>removed</strong> after <code>v1.1.0</code>, in which if you provide a single vector of labels, the values stored in the database will be exactly the same as the labels shown to respondents.</p>
+</div>
+</div>
+</section><section id="whats-next" class="level2"><h2 class="anchored" data-anchor-id="whats-next">What’s Next?</h2>
 <p>This <code>v1.0.0</code> release marks a major milestone for <code>surveydown</code>, but we’re not stopping here. We have exciting features planned for future releases. Stay tuned!</p>
 <p>As always, we welcome your feedback and contributions. If you encounter any issues or have suggestions, please <a href="https://github.com/surveydown-dev/surveydown/issues">open an issue for the package</a>, <a href="https://github.com/orgs/surveydown-dev/discussions">create a discussion in our organization</a>, or contribute directly via pull requests.</p>
 <p>Happy surveying!</p>
@@ -4462,10 +4476,10 @@ font-style: inherit;">)</span></span></code></pre></div></div>
 <pre><code>#&gt;   respondent_id     brand
 #&gt; 1             1    Nissan
 #&gt; 2             1      Ford
-#&gt; 3             1 Chevrolet
-#&gt; 4             2    Nissan
-#&gt; 5             2    Toyota
-#&gt; 6             2      Ford</code></pre>
+#&gt; 3             1    Toyota
+#&gt; 4             2    Toyota
+#&gt; 5             2     Tesla
+#&gt; 6             2 Chevrolet</code></pre>
 </div>
 </div>
 <p>Note that this would not be done in your survey.qmd file - it’s just a one-time thing to create the design (probably stored in an R file).</p>

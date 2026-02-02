@@ -438,6 +438,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../docs/accessing-values.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Accessing Question Values</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../docs/conditional-logic.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Conditional Logic</span></a>
   </div>
@@ -825,12 +831,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>In addition, <a href="question-types.html#matrix"><code>matrix</code></a> type questions have two additional size arguments:</p>
+<p>In addition, <a href="question-types.html#matrix"><code>matrix</code></a> type questions have an additional size argument:</p>
 <ul>
 <li><code>matrix_question_width</code></li>
-<li><code>matrix_option_width</code></li>
 </ul>
-<p>These set the relative widths of the question and option parts of <code>matrix</code> questions. You should set them to a percentage, such as <code>"40%"</code>, for example.</p>
+<p>This controls the width of the question column in matrix questions. The option column width is automatically calculated based on the remaining space.</p>
+<p>By default, <code>matrix_question_width</code> is set to <code>NULL</code>, which automatically sizes the question column based on the length of the longest question text.</p>
+<p>You can override this by setting <code>matrix_question_width</code> to a specific value. The parameter accepts several formats:</p>
+<ul>
+<li>
+<strong>Percentage string</strong>: <code>"40%"</code>
+</li>
+<li>
+<strong>Numeric string</strong>: <code>"40"</code>
+</li>
+<li>
+<strong>Numeric value</strong>: <code>40</code>
+</li>
+</ul>
+<p>All three formats above result in a 40% width for the question column.</p>
+<p>For example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sd_question</span><span class="op">(</span></span>
+<span>  type <span class="op">=</span> <span class="st">"matrix"</span>,</span>
+<span>  id <span class="op">=</span> <span class="st">"satisfaction"</span>,</span>
+<span>  label <span class="op">=</span> <span class="st">"Rate your satisfaction:"</span>,</span>
+<span>  option <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"Very unsatisfied"</span> <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    <span class="st">"Unsatisfied"</span> <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>    <span class="st">"Neutral"</span> <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>    <span class="st">"Satisfied"</span> <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>    <span class="st">"Very satisfied"</span> <span class="op">=</span> <span class="fl">5</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  question <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"Overall experience"</span> <span class="op">=</span> <span class="st">"experience"</span>,</span>
+<span>    <span class="st">"Customer service"</span> <span class="op">=</span> <span class="st">"service"</span>,</span>
+<span>    <span class="st">"Product quality"</span> <span class="op">=</span> <span class="st">"quality"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  matrix_question_width <span class="op">=</span> <span class="st">"40%"</span>  <span class="co"># Question column takes 40% of width</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

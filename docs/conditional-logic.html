@@ -336,7 +336,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/conditional-logic.html">Interactivity</a></li><li class="breadcrumb-item"><a href="../docs/conditional-logic.html">Conditional Logic</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/accessing-values.html">Interactivity</a></li><li class="breadcrumb-item"><a href="../docs/conditional-logic.html">Conditional Logic</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -436,6 +436,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/accessing-values.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Accessing Question Values</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../docs/conditional-logic.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Conditional Logic</span></a>
@@ -579,7 +585,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/conditional-logic.html">Interactivity</a></li><li class="breadcrumb-item"><a href="../docs/conditional-logic.html">Conditional Logic</a></li></ol></nav><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/accessing-values.html">Interactivity</a></li><li class="breadcrumb-item"><a href="../docs/conditional-logic.html">Conditional Logic</a></li></ol></nav><div class="quarto-title">
 <h1 class="title">Conditional Logic</h1>
 </div>
 
@@ -646,14 +652,15 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The <code>input</code> object is a Shiny object that stores each question <code>id</code> defined by <code>sd_question()</code> in your <strong>survey.qmd</strong> file, so whenever referring to a question in a condition, you must use the format <code>input$question_id</code>.</p>
+<p>The <code>sd_value()</code> function returns the chosen value or values for one or more questions. It is a reactive function and can only be used inside the <code>server()</code> function in your <strong>app.R</strong> file.</p>
+<p>See the <a href="../docs/accessing-values.html">Accessing Question Values</a> page for details on how to use <code>sd_value()</code>.</p>
 </div>
 </div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
 <span></span>
 <span>  <span class="fu">sd_show_if</span><span class="op">(</span></span>
-<span>    <span class="va">input</span><span class="op">$</span><span class="va">penguins</span> <span class="op">==</span> <span class="st">"other"</span> <span class="op">~</span> <span class="st">"penguins_other"</span> </span>
+<span>    <span class="fu">sd_value</span><span class="op">(</span><span class="st">"penguins"</span><span class="op">)</span> <span class="op">==</span> <span class="st">"other"</span> <span class="op">~</span> <span class="st">"penguins_other"</span></span>
 <span>  <span class="op">)</span></span>
 <span></span>
 <span>  <span class="fu">sd_server</span><span class="op">(</span>db <span class="op">=</span> <span class="va">db</span><span class="op">)</span></span>
@@ -665,7 +672,7 @@ Note
 <p><code>&lt;condition&gt; ~ "target_question_id"</code></p>
 </blockquote>
 <p>You can provide multiple conditions to the <code>sd_show_if()</code> function, each separated by a comma.</p>
-<p>In the example above, <code>input$penguins == "other"</code> is the condition, and <code>"penguins_other"</code> is the target question that will be shown if the condition is met. The <code>~</code> symbol is used to separate the condition from the target question.</p>
+<p>In the example above, <code>sd_value("penguins") == "other"</code> is the condition, and <code>"penguins_other"</code> is the target question that will be shown if the condition is met. The <code>~</code> symbol is used to separate the condition from the target question.</p>
 <p>Take a look at the <a href="#common-conditions">Common Conditions</a> section for examples of other types of supported conditions you can use to conditionally display questions.</p>
 </section><section id="showing-pages" class="level3"><h3 class="anchored" data-anchor-id="showing-pages">Showing Pages</h3>
 <p>You can use <code>sd_show_if()</code> to also conditionally show a <strong>page</strong> in a similar pattern. The structure of the <code>sd_show_if()</code> function for page display is:</p>
@@ -740,7 +747,7 @@ Note
 <p>This approach will hide both <code>page2a</code> and <code>page2b</code> by default and only show the page if the condition on the left hand side is <code>TRUE</code>.</p>
 <p>Note that we’re also using <code>sd_store_value()</code> here to store the random value, A or B, in the response data so that we can know later which page was shown for each respondent.</p>
 </section></section><section id="conditional-skipping" class="level2"><h2 class="anchored" data-anchor-id="conditional-skipping">Conditional Skipping</h2>
-<p>While basic page navigation is handled using <code>sd_nav()</code>, you can override this static navigation in your server function with the <code>sd_skip_if()</code> function to send the respondent to a forward page based on some condition.</p>
+<p>While basic page navigation is handled automatically (or with the <code>sd_nav()</code> function for more fine-tuned control), you can override this static navigation in your server function with the <code>sd_skip_if()</code> function to send the respondent to a forward page based on some condition.</p>
 <p>A common example is the need to <strong>screen out</strong> people based on their response(s) to a question. Let’s say you need to screen out people who do not own a vehicle. To do this, you would first define a question in your <strong>survey.qmd</strong> file about their vehicle ownership, e.g.:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
@@ -762,24 +769,11 @@ Note
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>Sorry, but you are not qualified to take our survey.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Then in the server function in the <strong>app.R</strong> file, you can use the <code>sd_skip_if()</code> function to define the condition under which the respondent will be sent to the target <code>screenout</code> page, like this:</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The <code>input</code> object is a Shiny object that stores each question <code>id</code> defined by <code>sd_question()</code> in your <strong>survey.qmd</strong> file, so whenever referring to a question in a condition, you must use the format <code>input$question_id</code>.</p>
-</div>
-</div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
 <span></span>
 <span>  <span class="fu">sd_skip_if</span><span class="op">(</span></span>
-<span>    <span class="va">input</span><span class="op">$</span><span class="va">vehicle_ownership</span> <span class="op">==</span> <span class="st">"no"</span> <span class="op">~</span> <span class="st">"screenout"</span></span>
+<span>    <span class="fu">sd_value</span><span class="op">(</span><span class="st">"vehicle_ownership"</span><span class="op">)</span> <span class="op">==</span> <span class="st">"no"</span> <span class="op">~</span> <span class="st">"screenout"</span></span>
 <span>  <span class="op">)</span></span>
 <span></span>
 <span>  <span class="co"># ...other server code...</span></span>
@@ -790,7 +784,7 @@ Note
 <blockquote class="blockquote">
 <p><code>&lt;condition&gt; ~ "target_page_id"</code></p>
 </blockquote>
-<p>In the example above, <code>input$vehicle_ownership == "no"</code> is the condition, and <code>"screenout"</code> is the target page that the respondent will be sent to if the condition is met.</p>
+<p>In the example above, <code>sd_value("vehicle_ownership") == "no"</code> is the condition, and <code>"screenout"</code> is the target page that the respondent will be sent to if the condition is met.</p>
 <p>Take a look at the <a href="conditional-logic.html#common-conditions">Common Conditions</a> section for examples of other types of supported conditions you can use to conditionally control the survey flow.</p>
 </section><section id="conditional-stopping" class="level2"><h2 class="anchored" data-anchor-id="conditional-stopping">Conditional Stopping</h2>
 <p>Sometimes you may want to stop the survey navigation based on some condition. For example, say you want to collect respondents’ ZIP code. In the U.S., ZIP codes are 5-digit numbers, so if a respondent enters a ZIP code that is not 5 digits long, you may want to stop the navigation and prevent them from proceeding further in the survey.</p>
@@ -809,12 +803,26 @@ Note
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
 <span></span>
 <span>  <span class="fu">sd_stop_if</span><span class="op">(</span></span>
-<span>    <span class="co"># The zip question only accepts a 5-digit response</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">zip</span><span class="op">)</span> <span class="op">!=</span> <span class="fl">5</span> <span class="op">~</span> <span class="st">"Zip code must be 5 digits."</span></span>
+<span>    <span class="co"># Use as_numeric = FALSE to preserve leading zeros (e.g., "01234")</span></span>
+<span>    <span class="co"># Otherwise sd_value() would convert it to 1234 (only 4 characters)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="fu">sd_value</span><span class="op">(</span><span class="st">"zip"</span>, as_numeric <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span> <span class="op">!=</span> <span class="fl">5</span> <span class="op">~</span> <span class="st">"Zip code must be 5 digits."</span></span>
 <span>  <span class="op">)</span></span>
 <span></span>
 <span>  <span class="fu">sd_server</span><span class="op">(</span>db <span class="op">=</span> <span class="va">db</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>ZIP codes are a special case where you need to prevent automatic numeric conversion. Without <code>as_numeric = FALSE</code>, a ZIP code like <code>"01234"</code> would be converted to <code>1234</code>, losing the leading zero. This would cause <code><a href="https://rdrr.io/r/base/nchar.html">nchar()</a></code> to return <code>4</code> instead of <code>5</code>, incorrectly flagging valid ZIP codes as invalid.</p>
+</div>
 </div>
 <p>The structure of the <code>sd_stop_if()</code> function is:</p>
 <div class="cell">
@@ -845,20 +853,20 @@ Note
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sd_show_if</span><span class="op">(</span></span>
 <span></span>
 <span> <span class="co"># Simple condition based on single question choice</span></span>
-<span> <span class="va">input</span><span class="op">$</span><span class="va">penguins1</span> <span class="op">==</span> <span class="st">"other"</span> <span class="op">~</span> <span class="st">"penguins1_other"</span>,</span>
+<span> <span class="fu">sd_value</span><span class="op">(</span><span class="st">"penguins1"</span><span class="op">)</span> <span class="op">==</span> <span class="st">"other"</span> <span class="op">~</span> <span class="st">"penguins1_other"</span>,</span>
 <span></span>
 <span> <span class="co"># Multiple condition based on multiple question choices</span></span>
-<span> <span class="va">input</span><span class="op">$</span><span class="va">penguins2</span> <span class="op">==</span> <span class="st">"other"</span> <span class="op">&amp;</span> <span class="va">input</span><span class="op">$</span><span class="va">show_other</span> <span class="op">==</span> <span class="st">"show"</span> <span class="op">~</span> <span class="st">"penguins2_other"</span></span>
+<span> <span class="fu">sd_value</span><span class="op">(</span><span class="st">"penguins2"</span><span class="op">)</span> <span class="op">==</span> <span class="st">"other"</span> <span class="op">&amp;</span> <span class="fu">sd_value</span><span class="op">(</span><span class="st">"show_other"</span><span class="op">)</span> <span class="op">==</span> <span class="st">"show"</span> <span class="op">~</span> <span class="st">"penguins2_other"</span></span>
 <span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In the first condition, the <code>penguins1</code> question is checked to see if the respondent chose the <code>"other"</code> option. If they did, the <code>penguins1_other</code> question will be shown.</p>
 <p>In the second condition, the <code>penguins2</code> question is checked to see if the respondent chose the <code>"other"</code> option, and the <code>show_other</code> question is checked to see if the respondent chose the <code>"show"</code> option. With this condition, the <code>penguins2_other</code> question will only be shown if both conditions are <code>TRUE</code>.</p>
 </section><section id="numeric-values" class="level3"><h3 class="anchored" data-anchor-id="numeric-values">Numeric values</h3>
-<p>Another common condition is checking the value of a numeric question. To do so, you need to wrap the <code>input$question_id</code> in the <code><a href="https://rdrr.io/r/base/numeric.html">as.numeric()</a></code> function because all question values are stored as strings, like this:</p>
+<p>Another common condition is checking the value of a numeric question. The <code>sd_value()</code> function automatically converts numeric values, so you can use them directly in comparisons:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sd_show_if</span><span class="op">(</span></span>
-<span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">car_number</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">1</span> <span class="op">~</span> <span class="st">"car_ownership"</span></span>
+<span> <span class="fu">sd_value</span><span class="op">(</span><span class="st">"car_number"</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">1</span> <span class="op">~</span> <span class="st">"car_ownership"</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In the condition above, the <code>car_number</code> question is checked to see if the respondent chose a number greater than 1. If they did, the <code>car_ownership</code> question will be shown.</p>
@@ -868,10 +876,10 @@ Note
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sd_show_if</span><span class="op">(</span></span>
 <span></span>
 <span> <span class="co"># Check if the respondent chose "apple", "banana", or both</span></span>
-<span> <span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">fav_fruits</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"apple"</span>, <span class="st">"banana"</span><span class="op">)</span><span class="op">)</span> <span class="op">~</span> <span class="st">"apple_or_banana"</span>,</span>
+<span> <span class="op">(</span><span class="st">"apple"</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu">sd_value</span><span class="op">(</span><span class="st">"fav_fruits"</span><span class="op">)</span><span class="op">)</span> <span class="op">|</span> <span class="op">(</span><span class="st">"banana"</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu">sd_value</span><span class="op">(</span><span class="st">"fav_fruits"</span><span class="op">)</span><span class="op">)</span> <span class="op">~</span> <span class="st">"apple_or_banana"</span>,</span>
 <span></span>
 <span> <span class="co"># Check if the respondent chose more than 3 fruits</span></span>
-<span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">fav_fruits</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">3</span> <span class="op">~</span> <span class="st">"fruit_number"</span></span>
+<span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu">sd_value</span><span class="op">(</span><span class="st">"fav_fruits"</span><span class="op">)</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">3</span> <span class="op">~</span> <span class="st">"fruit_number"</span></span>
 <span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -889,28 +897,42 @@ Note
 <p>For <a href="question-types.html#matrix"><code>"matrix"</code></a> type questions, <code>sd_is_answered()</code> will only be <code>TRUE</code> if all sub-questions (matrix rows) in it are answered.</p>
 </section><section id="custom-functions" class="level3"><h3 class="anchored" data-anchor-id="custom-functions">Custom functions</h3>
 <p>For situations where the conditional logic is more complex, we recommend defining a custom function that will return a logical value (<code>TRUE</code> or <code>FALSE</code>). You can then pass this function to <code>sd_show_if()</code>, <code>sd_skip_if()</code>, or <code>sd_stop_if()</code> as a condition.</p>
-<p>For example, let’s say we had a <code>mc</code> type question where we asked how many cars the respondent owned, and we included numeric options <code>1</code> through <code>5</code> as well as a final option <code>"6 or more"</code>. If we wanted to set a condition that would return <code>TRUE</code> if the user had more than one car, using <code>as.numeric(input$question_id) &gt; 1</code> as the condition would be problematic, because this would return <code>NA</code> if the respondent chose the <code>"6 or more"</code> option.</p>
+<p>For example, let’s say we had a <code>mc</code> type question where we asked how many cars the respondent owned, and we included numeric options <code>1</code> through <code>5</code> as well as a final option <code>"6 or more"</code>. If we wanted to set a condition that would return <code>TRUE</code> if the user had more than one car, using <code>sd_value("car_number") &gt; 1</code> as the condition would be problematic, because <code>sd_value()</code> would return <code>NA</code> when trying to convert <code>"6 or more"</code> to a number (since it contains text), and comparisons with <code>NA</code> don’t work as expected.</p>
 <p>To address this, we could create a custom function to handle this special condition:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
 <span></span>
-<span>  <span class="va">more_than_one_car</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">car_number</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">more_than_one_car</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">val</span> <span class="op">&lt;-</span> <span class="fu">sd_value</span><span class="op">(</span><span class="st">"car_number"</span><span class="op">)</span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">val</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>      <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span>    <span class="op">}</span></span>
-<span>    <span class="va">num_cars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">car_number</span><span class="op">)</span></span>
-<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">num_cars</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>    <span class="co"># For "6 or more", sd_value() returns NA after trying to convert</span></span>
+<span>    <span class="co"># We treat NA as TRUE (more than one car)</span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">val</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">val</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span></span>
 <span>  <span class="op">}</span></span>
 <span></span>
 <span>  <span class="fu">sd_show_if</span><span class="op">(</span></span>
-<span>    <span class="fu">more_than_one_car</span><span class="op">(</span><span class="va">input</span><span class="op">)</span> <span class="op">~</span> <span class="st">"car_ownership"</span></span>
+<span>    <span class="fu">more_than_one_car</span><span class="op">(</span><span class="op">)</span> <span class="op">~</span> <span class="st">"car_ownership"</span></span>
 <span>  <span class="op">)</span></span>
 <span></span>
 <span>  <span class="fu">sd_server</span><span class="op">(</span>db <span class="op">=</span> <span class="va">db</span><span class="op">)</span></span>
 <span></span>
 <span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>In the <code>more_than_one_car()</code> function, we first return <code>FALSE</code> if the question is not yet answered (that’s the <code>if (is.null(input$car_number))</code> part). Then we obtain the numeric value of the <code>car_number</code> question using <code>as.numeric(input$car_number)</code>. Then we return the simple condition <code>num_cars &gt; 1</code>, which will return <code>TRUE</code> if the respondent chose a number greater than 1, or <code>FALSE</code> otherwise (including if they chose <code>"6 or more"</code>).</p>
+<p>In the <code>more_than_one_car()</code> function, we first return <code>FALSE</code> if the question is not yet answered (that’s the <code>if (is.null(val))</code> part). Then we check if the value is <code>NA</code> (which happens when <code>sd_value()</code> tries to auto-convert <code>"6 or more"</code> to numeric and fails) - in that case we return <code>TRUE</code> because “6 or more” means more than one car. Otherwise, we return the simple condition <code>val &gt; 1</code>, which will return <code>TRUE</code> if the respondent chose a number greater than 1.</p>
+<p>Alternatively, you could prevent the automatic numeric conversion for this question by using <code>as_numeric = FALSE</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">more_than_one_car</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">val</span> <span class="op">&lt;-</span> <span class="fu">sd_value</span><span class="op">(</span><span class="st">"car_number"</span>, as_numeric <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">val</span><span class="op">)</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">val</span> <span class="op">==</span> <span class="st">"6 or more"</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">val</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section><section id="custom-values" class="level3"><h3 class="anchored" data-anchor-id="custom-values">Custom values</h3>
 <p>Sometimes you’ll want to condition on values that aren’t directly related to question responses. For example, you might want to randomly assign respondents to different survey versions or experimental conditions.</p>
 <p>A common example is the same situation as the <a href="#showing-pages">Showing Pages</a> section above where you have two versions of a page, <code>page2a</code> and <code>page2b</code>, and you want half of your respondents to see page 2a and the other half to see page 2b. You can accomplish this by:</p>
@@ -921,7 +943,7 @@ Note
 </ol>
 <p>Here’s how to implement this:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
 <span></span>
 <span>  <span class="co"># Generate random condition</span></span>
 <span>  <span class="va">rand_val</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'A'</span>, <span class="st">'B'</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span></span>

@@ -433,13 +433,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">use-cookies</span><span class="kw">:</span><span class="at"> </span><span class="ch">no</span></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">auto-scroll</span><span class="kw">:</span><span class="at"> </span><span class="ch">no</span></span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rate-survey</span><span class="kw">:</span><span class="at"> </span><span class="ch">no</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">all-questions-required</span><span class="kw">:</span><span class="at"> </span><span class="ch">no</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">all-required</span><span class="kw">:</span><span class="at"> </span><span class="ch">no</span></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">start-page</span><span class="kw">:</span><span class="at"> your_first_page</span></span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">system-language</span><span class="kw">:</span><span class="at"> en</span></span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">highlight-unanswered</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span></span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">highlight-color</span><span class="kw">:</span><span class="at"> gray</span></span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">capture-metadata</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">required-questions</span><span class="kw">:</span><span class="at"> </span><span class="kw">[]</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">required</span><span class="kw">:</span><span class="at"> </span><span class="kw">[]</span></span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="fu">system-messages</span><span class="kw">:</span></span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cancel</span><span class="kw">:</span><span class="at"> Cancel</span></span>
@@ -604,7 +604,21 @@ Tip
 <td><code>bright_red</code></td>
 </tr>
 </tbody>
-</table></section><section id="whats-next" class="level2"><h2 class="anchored" data-anchor-id="whats-next">What’s Next?</h2>
+</table>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This snake case conversion is <strong>removed</strong> after <code>v1.1.0</code>, in which if you provide a single vector of labels, the values stored in the database will be exactly the same as the labels shown to respondents.</p>
+</div>
+</div>
+</section><section id="whats-next" class="level2"><h2 class="anchored" data-anchor-id="whats-next">What’s Next?</h2>
 <p>This <code>v1.0.0</code> release marks a major milestone for <code>surveydown</code>, but we’re not stopping here. We have exciting features planned for future releases. Stay tuned!</p>
 <p>As always, we welcome your feedback and contributions. If you encounter any issues or have suggestions, please <a href="https://github.com/surveydown-dev/surveydown/issues">open an issue for the package</a>, <a href="https://github.com/orgs/surveydown-dev/discussions">create a discussion in our organization</a>, or contribute directly via pull requests.</p>
 <p>Happy surveying!</p>

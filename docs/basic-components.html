@@ -437,6 +437,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../docs/accessing-values.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Accessing Question Values</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../docs/conditional-logic.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Conditional Logic</span></a>
   </div>
@@ -762,7 +768,7 @@ Note
 <p>The function has many other arguments for customizing the look and feel of the question, such as the <code>height</code> and <code>width</code> (see the <a href="question-formatting.html">Question Formatting</a> page).</p>
 <p>By default all questions are optional, but you can make questions required in the survey settings (see the <a href="survey-settings.html#required-questions">Survey Settings</a> page for details).</p>
 </section><section id="navigation-buttons" class="level3"><h3 class="anchored" data-anchor-id="navigation-buttons">Navigation buttons</h3>
-<p>By default, navigation buttons are automatically added to each page to allow respondents to move forward through the survey. To change the global settings (e.g., add a previous button on all pages, change the message shown on all next buttons, etc.), you can edit the survey settings in the YAML header (see the <a href="survey-settings.html#navigation-buttons">Survey Settings</a> page for details).</p>
+<p>By default, navigation buttons are automatically added to each page to allow respondents to move forward through the survey. To change the global settings (e.g., add a previous button on all pages, change the message shown on all next buttons, etc.), you can edit the survey settings in the YAML header (see the <a href="survey-settings.html#default-settings">Survey Settings</a> page for details).</p>
 <p>Additionally, you can also manually add navigation buttons using the <code><a href="https://pkg.surveydown.org/reference/sd_nav.html">sd_nav()</a></code> function inside code chunks on any page, which will override the global settings for that specific page, like this:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>

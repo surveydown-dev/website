@@ -454,6 +454,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../docs/accessing-values.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Accessing Question Values</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../docs/conditional-logic.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Conditional Logic</span></a>
   </div>
@@ -593,6 +599,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#capture-metadata" id="toc-capture-metadata" class="nav-link" data-scroll-target="#capture-metadata">Capture metadata</a></li>
   <li><a href="#start-page" id="toc-start-page" class="nav-link" data-scroll-target="#start-page">Start page</a></li>
   <li><a href="#required-questions" id="toc-required-questions" class="nav-link" data-scroll-target="#required-questions">Required questions</a></li>
+  <li><a href="#shuffled-questions" id="toc-shuffled-questions" class="nav-link" data-scroll-target="#shuffled-questions">Shuffled questions</a></li>
   </ul></li>
   <li><a href="#system-messages" id="toc-system-messages" class="nav-link" data-scroll-target="#system-messages">System messages</a></li>
   </ul>
@@ -645,35 +652,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">use-cookies</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">auto-scroll</span><span class="kw">:</span><span class="at"> </span><span class="ch">no</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rate-survey</span><span class="kw">:</span><span class="at"> </span><span class="ch">no</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">all-questions-required</span><span class="kw">:</span><span class="at"> </span><span class="ch">no</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">all-required</span><span class="kw">:</span><span class="at"> </span><span class="ch">no</span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">start-page</span><span class="kw">:</span><span class="at"> initial_page</span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">system-language</span><span class="kw">:</span><span class="at"> en</span></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">highlight-unanswered</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">highlight-color</span><span class="kw">:</span><span class="at"> gray</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">capture-metadata</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">required-questions</span><span class="kw">:</span><span class="at"> </span><span class="kw">[]</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">system-messages</span><span class="kw">:</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cancel</span><span class="kw">:</span><span class="at"> Cancel</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">confirm-exit</span><span class="kw">:</span><span class="at"> Confirm Exit</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">sure-exit</span><span class="kw">:</span><span class="at"> Are you sure you want to exit the survey?</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">submit-exit</span><span class="kw">:</span><span class="at"> Submit and Exit</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> Warning</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">required</span><span class="kw">:</span><span class="at"> Please answer all required questions before proceeding.</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rating-title</span><span class="kw">:</span><span class="at"> Before you go...</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rating-text</span><span class="kw">:</span><span class="at"> </span><span class="st">'Rate your survey experience:'</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rating-scale</span><span class="kw">:</span><span class="at"> from 1-poor to 5-excellent</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">previous</span><span class="kw">:</span><span class="at"> Previous</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">next</span><span class="kw">:</span><span class="at"> Next</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">exit</span><span class="kw">:</span><span class="at"> Exit Survey</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">close-tab</span><span class="kw">:</span><span class="at"> Please close this tab manually to exit the survey.</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">choose-option</span><span class="kw">:</span><span class="at"> Choose an option...</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">click</span><span class="kw">:</span><span class="at"> Click here</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">redirect</span><span class="kw">:</span><span class="at"> Redirecting in</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">seconds</span><span class="kw">:</span><span class="at"> seconds</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">new-tab</span><span class="kw">:</span><span class="at"> Opens in a new tab</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">redirect-error</span><span class="kw">:</span><span class="at"> </span><span class="st">"Error: This text won't trigger any redirection..."</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">required</span><span class="kw">:</span><span class="at"> </span><span class="kw">[]</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">all-shuffled</span><span class="kw">:</span><span class="at"> </span><span class="ch">no</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">shuffled</span><span class="kw">:</span><span class="at"> </span><span class="kw">[]</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">system-messages</span><span class="kw">:</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cancel</span><span class="kw">:</span><span class="at"> Cancel</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">confirm-exit</span><span class="kw">:</span><span class="at"> Confirm Exit</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">sure-exit</span><span class="kw">:</span><span class="at"> Are you sure you want to exit the survey?</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">submit-exit</span><span class="kw">:</span><span class="at"> Submit and Exit</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> Warning</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">required</span><span class="kw">:</span><span class="at"> Please answer all required questions before proceeding.</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rating-title</span><span class="kw">:</span><span class="at"> Before you go...</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rating-text</span><span class="kw">:</span><span class="at"> </span><span class="st">'Rate your survey experience:'</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rating-scale</span><span class="kw">:</span><span class="at"> from 1-poor to 5-excellent</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">previous</span><span class="kw">:</span><span class="at"> Previous</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">next</span><span class="kw">:</span><span class="at"> Next</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">exit</span><span class="kw">:</span><span class="at"> Exit Survey</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">close-tab</span><span class="kw">:</span><span class="at"> Please close this tab manually to exit the survey.</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">choose-option</span><span class="kw">:</span><span class="at"> Choose an option...</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">click</span><span class="kw">:</span><span class="at"> Click here</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">redirect</span><span class="kw">:</span><span class="at"> Redirecting in</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">seconds</span><span class="kw">:</span><span class="at"> seconds</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">new-tab</span><span class="kw">:</span><span class="at"> Opens in a new tab</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">redirect-error</span><span class="kw">:</span><span class="at"> </span><span class="st">"Error: This text won't trigger any redirection..."</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -843,14 +852,57 @@ Note
 <section id="required-questions" class="level3">
 <h3 class="anchored" data-anchor-id="required-questions">Required questions</h3>
 <p>By default, no questions are required. We provide 2 YAML keys to define required questions:</p>
-<p><strong>Firstly</strong>, set <code>all-questions-required</code> to <code>true</code> to make all questions required:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all-questions-required</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>By default, <code>all-questions-required</code> is set to <code>false</code>.</p>
-<p><strong>Secondly</strong>, use <code>required-questions</code> to provide a list of question IDs to make specific questions required:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">required-questions</span><span class="kw">:</span></span>
+<p><strong>Firstly</strong>, set <code>all-required</code> to <code>true</code> to make all questions required:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all-required</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>By default, <code>all-required</code> is set to <code>false</code>.</p>
+<p><strong>Secondly</strong>, use <code>required</code> to provide a list of question IDs to make specific questions required:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">required</span><span class="kw">:</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> question_1</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> question_2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The questions set to required will make the respondent unable to proceed until they have answered all of them on the current page. It will also place a red asterisk (*) next to the question label to indicate that the question is required.</p>
+</section>
+<section id="shuffled-questions" class="level3">
+<h3 class="anchored" data-anchor-id="shuffled-questions">Shuffled questions</h3>
+<p>By default, question options and matrix subquestions are displayed in the order they are defined. You can shuffle options/subquestions for supported question types using the <code>shuffled</code> and <code>all-shuffled</code> settings.</p>
+<p><strong>Option shuffling</strong> is supported for these question types:</p>
+<ul>
+<li><code>mc</code> (multiple choice)</li>
+<li><code>mc_buttons</code> (multiple choice buttons)</li>
+<li><code>mc_multiple</code> (multiple choice multiple selection)</li>
+<li><code>mc_multiple_buttons</code> (multiple choice multiple selection buttons)</li>
+</ul>
+<p><strong>Subquestion shuffling</strong> is supported for:</p>
+<ul>
+<li><code>matrix</code> (matrix questions)</li>
+</ul>
+<section id="shuffle-all-questions" class="level4">
+<h4 class="anchored" data-anchor-id="shuffle-all-questions">Shuffle all questions</h4>
+<p>Set <code>all-shuffled</code> to <code>true</code> to shuffle all supported questions:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all-shuffled</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>By default, <code>all-shuffled</code> is set to <code>false</code>.</p>
+</section>
+<section id="shuffle-specific-questions" class="level4">
+<h4 class="anchored" data-anchor-id="shuffle-specific-questions">Shuffle specific questions</h4>
+<p>Use <code>shuffled</code> to specify which questions should have their options/subquestions shuffled. You can shuffle all options/subquestions, or use indexing to shuffle only specific positions:</p>
+<p><strong>Shuffle all options/subquestions:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shuffled</span><span class="kw">:</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> question_1</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> question_2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Indexed shuffling:</strong></p>
+<p>You can specify which positions to shuffle using several syntax options:</p>
+<ol type="1">
+<li>Range notation: <code>1-5</code> shuffles positions 1 through 5</li>
+<li>List notation: <code>[1, 2, 4, 7]</code> shuffles positions 1, 2, 4, and 7</li>
+<li>Combined ranges: <code>[1-5, 8-10]</code> shuffles positions 1-5 and 8-10</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shuffled</span><span class="kw">:</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">artist</span><span class="kw">:</span><span class="at"> 1-5</span><span class="co">                  # Shuffle first 5 options</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">fruit</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="dv">1</span><span class="kw">,</span><span class="at"> </span><span class="dv">2</span><span class="kw">,</span><span class="at"> </span><span class="dv">4</span><span class="kw">,</span><span class="at"> </span><span class="dv">7</span><span class="kw">]</span><span class="co">          # Shuffle options at positions 1, 2, 4, 7</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">swift</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">1</span><span class="dv">-5</span><span class="kw">,</span><span class="at"> 8</span><span class="dv">-10</span><span class="kw">]</span><span class="co">           # Shuffle options 1-5 and 8-10</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> michael_jackson</span><span class="co">              # Shuffle all options</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">car_preference</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="dv">1</span><span class="kw">,</span><span class="at"> </span><span class="dv">3</span><span class="kw">]</span><span class="co">       # Shuffle options at positions 1 and 3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For matrix questions, the same syntax applies but shuffles subquestions instead of options.</p>
+</section>
 </section>
 </section>
 <section id="system-messages" class="level2">

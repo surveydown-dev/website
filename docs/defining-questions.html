@@ -437,6 +437,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../docs/accessing-values.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Accessing Question Values</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../docs/conditional-logic.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Conditional Logic</span></a>
   </div>
@@ -668,7 +674,7 @@ Tip
 <div class="callout-body-container callout-body">
 <p>Note that either <code>option</code> or <code>options</code> can be used as the argument name for specifying the choices. If both are used, <code>option</code> takes precedence.</p>
 <p>The standard way of defining options is to use the <code>c("Label" = "value")</code> format, where the left side is the label shown to respondents, and the right side is the internal value stored in the survey results.</p>
-<p>The short-hand format <code>c("Label 1", "Label 2")</code> is also supported, in which case the values will be the snake case version of the labels (e.g., <code>"Label 1"</code> becomes <code>"label_1"</code>).</p>
+<p>The short-hand format <code>c("Label 1", "Label 2")</code> is also supported, in which case the values will be stored as they are.</p>
 </div>
 </div>
 <p>Different question types require different arguments. For example, a <strong>text input</strong> question is much simpler:</p>

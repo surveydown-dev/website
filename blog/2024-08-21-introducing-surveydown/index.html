@@ -107,7 +107,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><style>html{ scroll-behavior: smooth; }</style>
+}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-69VF2EDH9X"></script><script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-69VF2EDH9X', { 'anonymize_ip': true});
+</script><style>html{ scroll-behavior: smooth; }</style>
 <meta property="og:title" content="Introducing surveydown: A markdown-based framework for generating surveys with Quarto and shiny – surveydown.org">
 <meta property="og:description" content="A quick overview of the {surveydown} R package for making markdown-based surveys with open-source technologies: Quarto, shiny, and supabase.">
 <meta property="og:image" content="https://www.surveydown.org/blog/2024-08-21-introducing-surveydown/banner.png">
@@ -774,11 +780,11 @@ Note
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt;   respondent_id     brand
 #&gt; 1             1 Chevrolet
-#&gt; 2             1    Nissan
-#&gt; 3             1     Honda
-#&gt; 4             2     Honda
-#&gt; 5             2    Nissan
-#&gt; 6             2 Chevrolet</code></pre>
+#&gt; 2             1      Ford
+#&gt; 3             1     Tesla
+#&gt; 4             2 Chevrolet
+#&gt; 5             2     Honda
+#&gt; 6             2     Tesla</code></pre>
 </div>
 </div>
 <p>Note that this would not be done in your survey.qmd file - it’s just a one-time thing to create the design (probably stored in an R file).</p>

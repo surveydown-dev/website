@@ -84,18 +84,25 @@ p {
   position: fixed;
   bottom: 0;
   width: 100%;
-  min-height: 1em;
-  padding-top: 0.5em;
-  padding-bottom: 0em;
+  height: 2rem;
+  min-height: unset !important;
+  padding: 0 !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
   z-index: 1000;
 }
 
 footer.footer .nav-footer {
-  padding-top: 0em;
+  padding: 0 !important;
 }
 
-.nav-footer-center {
-  min-height: 2em;
+.nav-footer-left,
+.nav-footer-center,
+.nav-footer-right {
+  flex: 1 1 0px !important;
+  min-height: unset !important;
+  margin: 0 !important;
+  order: unset !important;
 }
 
 /* Layout */

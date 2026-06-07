@@ -4,11 +4,47 @@ title: "Storing Data"
 
 Survey response data is stored in a PostgreSQL database. We recommend using {{< var supabase >}} as a free and open-source option, though you can use any service you want. In this guide, we'll walk you through the steps for setting up a Supabase project and connecting your surveydown survey to it.
 
-## Local data preview 
+## Survey modes
 
-When you run a survey without a database connection, response data will be locally stored in a `preview_data.csv` file. As the name suggests, this is for preview purposes only. It is there to help you understand what the actual survey response data will look like once you get your database connection properly configured.
+`sd_db_connect()` supports three operating modes, controlled by the `mode` argument:
 
-This file is **not** where your actual survey response data will be saved. If you deploy your survey live without a database connection, no responses will be saved. 
+| Mode | CSV file | Banner | Use case |
+|------|----------|--------|----------|
+| `"database"` (default) | — | — | Live deployment; responses stored in PostgreSQL. |
+| `"preview"` | `preview_data.csv` | Yellow footer banner on every page | Testing before deployment. |
+| `"local"` | `local_data.csv` | None | Intentional offline data collection. |
+
+```r
+db <- sd_db_connect()                   # database mode (default)
+db <- sd_db_connect(mode = "preview")   # preview mode
+db <- sd_db_connect(mode = "local")     # local/offline mode
+```
+
+The `"preview"` mode is particularly useful for catching a common mistake: accidentally deploying a live survey without a database connection. A yellow banner appears at the bottom of every page making it immediately obvious to anyone opening the survey that it is not recording responses to the database.
+
+<br>
+<center>
+<img src="../images/screenshots/mode-preview.png" style="max-width: 700px; width: 100%;">
+</center>
+<br>
+
+The `"local"` mode is designed for situations where you intentionally want to run a survey without an internet connection and collect data locally in a CSV file. Unlike `"preview"` mode, no banner is shown — the assumption is that this is a deliberate choice. Responses are saved to `local_data.csv` in your project folder.
+
+::: {.callout-note}
+The `ignore = TRUE` argument is deprecated. Use `mode = "preview"` instead.
+:::
+
+## Failed database connection
+
+If `mode = "database"` is set (or no mode is specified) but the database connection fails — for example because no `.env` file exists or the credentials are incorrect — a red banner will appear at the bottom of every page:
+
+<br>
+<center>
+<img src="../images/screenshots/mode-db-fail.png" style="max-width: 700px; width: 100%;">
+</center>
+<br>
+
+This is distinct from `"preview"` mode: the red banner signals an unexpected failure rather than an intentional testing state. Responses will not be saved. If you see this banner when running a live survey, check your `.env` file and credentials (see [Trouble connecting?](#trouble-connecting) below).
 
 ## Setting up a Supabase project
 
@@ -100,15 +136,23 @@ Now that you have set your credentials stored, you can connect to your database 
 db <- sd_db_connect()
 ```
 
-You do not need to specify any arguments to this function as it will automatically use the credentials stored in your `.env` file. If the connection is successful, you should see a message in the console that says "✔ Successfully connected to the database." 
+You do not need to specify any arguments to this function as it will automatically use the credentials stored in your `.env` file. If the connection is successful, you should see a message in the console that says "✔ Running in **database** mode. Successfully connected to the database."
 
-You can also ignore the database connection by setting `ignore = TRUE` in `sd_db_connect()`:
+To test your survey without connecting to the database, use `mode = "preview"`:
 
 ```{r}
-db <- sd_db_connect(ignore = TRUE)
+db <- sd_db_connect(mode = "preview")
 ```
 
-With this setting, no database connection will be attempted, and the `db` object will store the value `NULL`. Instead, data will be stored in a local `preview_data.csv` file for previewing purposes only. This is useful when you are still editing your survey and do not want to store any data in your database yet.
+In preview mode, no database connection is attempted and data is stored in a local `preview_data.csv` file. A red banner will also appear at the bottom of every survey page to make it clear the survey is not recording responses to the database. This is useful when you are still editing your survey and do not want to store any data in your database yet.
+
+To run the survey offline without an internet connection and intentionally collect data locally, use `mode = "local"`:
+
+```{r}
+db <- sd_db_connect(mode = "local")
+```
+
+In local mode, no database connection is attempted and no banner is shown. Responses are saved to a `local_data.csv` file in your project folder.
 
 ## Table creation and data operations
 

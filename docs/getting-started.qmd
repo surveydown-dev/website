@@ -157,7 +157,7 @@ In the `server()` function in the **app.R** file, add rich functionality to your
 
 ## 5. Setup your database connection
 
-Setup your database connection using the `sd_db_config()` function. Once your configuration credentials are created (they get saved in a `.env` file), make a connection to your database using the `sd_db_connect()` function in the global settings at the top of the **app.R** file. You can also use `sd_db_connect(ignore = TRUE)` to run the survey without storing data. See the [Storing Data](storing-data.qmd) page for more details.
+Setup your database connection using the `sd_db_config()` function. Once your configuration credentials are created (they get saved in a `.env` file), make a connection to your database using the `sd_db_connect()` function in the global settings at the top of the **app.R** file. You can also use `sd_db_connect(mode = "preview")` to run the survey locally without storing data to a database. See the [Storing Data](storing-data.qmd) page for more details on the available modes.
 
 ## 6. Locally preview
 

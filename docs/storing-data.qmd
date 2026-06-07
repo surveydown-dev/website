@@ -10,7 +10,7 @@ Survey response data is stored in a PostgreSQL database. We recommend using {{< 
 
 | Mode | CSV file | Banner | Use case |
 |------|----------|--------|----------|
-| `"database"` (default) | — | — | Live deployment; responses stored in PostgreSQL. |
+| `"database"` (default) | — | Red footer banner if connection fails | Live deployment; responses stored in PostgreSQL. |
 | `"preview"` | `preview_data.csv` | Yellow footer banner on every page | Testing before deployment. |
 | `"local"` | `local_data.csv` | None | Intentional offline data collection. |
 
@@ -36,7 +36,7 @@ The `ignore = TRUE` argument is deprecated. Use `mode = "preview"` instead.
 
 ## Failed database connection
 
-If `mode = "database"` is set (or no mode is specified) but the database connection fails — for example because no `.env` file exists or the credentials are incorrect — a red banner will appear at the bottom of every page:
+If `mode = "database"` is set (or no mode is specified) but the database connection fails (for example because no `.env` file exists or the credentials are incorrect), a red banner will appear at the bottom of every page:
 
 <br>
 <center>
@@ -44,7 +44,7 @@ If `mode = "database"` is set (or no mode is specified) but the database connect
 </center>
 <br>
 
-This is distinct from `"preview"` mode: the red banner signals an unexpected failure rather than an intentional testing state. Responses will not be saved. If you see this banner when running a live survey, check your `.env` file and credentials (see [Trouble connecting?](#trouble-connecting) below).
+This is distinct from `"preview"` mode: the red banner signals an unexpected failure rather than an intentional testing state. Responses will only be logged in the local `preview_data.csv` file. If you see this banner when running a live survey, check your `.env` file and credentials (see [Trouble connecting?](#trouble-connecting) below).
 
 ## Setting up a Supabase project
 

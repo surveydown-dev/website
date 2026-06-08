@@ -6,45 +6,9 @@ Survey response data is stored in a PostgreSQL database. We recommend using {{< 
 
 ## Survey modes
 
-`sd_db_connect()` supports three operating modes, controlled by the `mode` argument:
+surveydown supports three operating modes — `database`, `preview`, and `local` — controlled by the `mode` setting in your `survey.qmd` YAML header. These modes determine how and where your response data is stored. See the [Survey Settings](survey-settings.qmd#mode) page for full documentation on each mode.
 
-| Mode | CSV file | Banner | Use case |
-|------|----------|--------|----------|
-| `"database"` (default) | — | Red footer banner if connection fails | Live deployment; responses stored in PostgreSQL. |
-| `"preview"` | `preview_data.csv` | Yellow footer banner on every page | Testing before deployment. |
-| `"local"` | `local_data.csv` | None | Intentional offline data collection. |
-
-```r
-db <- sd_db_connect()                   # database mode (default)
-db <- sd_db_connect(mode = "preview")   # preview mode
-db <- sd_db_connect(mode = "local")     # local/offline mode
-```
-
-The `"preview"` mode is particularly useful for catching a common mistake: accidentally deploying a live survey without a database connection. A yellow banner appears at the bottom of every page making it immediately obvious to anyone opening the survey that it is not recording responses to the database.
-
-<br>
-<center>
-<img src="../images/screenshots/mode-preview.png" style="max-width: 700px; width: 100%;">
-</center>
-<br>
-
-The `"local"` mode is designed for situations where you intentionally want to run a survey without an internet connection and collect data locally in a CSV file. Unlike `"preview"` mode, no banner is shown — the assumption is that this is a deliberate choice. Responses are saved to `local_data.csv` in your project folder.
-
-::: {.callout-note}
-The `ignore = TRUE` argument is deprecated. Use `mode = "preview"` instead.
-:::
-
-## Failed database connection
-
-If `mode = "database"` is set (or no mode is specified) but the database connection fails (for example because no `.env` file exists or the credentials are incorrect), a red banner will appear at the bottom of every page:
-
-<br>
-<center>
-<img src="../images/screenshots/mode-db-fail.png" style="max-width: 700px; width: 100%;">
-</center>
-<br>
-
-This is distinct from `"preview"` mode: the red banner signals an unexpected failure rather than an intentional testing state. Responses will only be logged in the local `preview_data.csv` file. If you see this banner when running a live survey, check your `.env` file and credentials (see [Trouble connecting?](#trouble-connecting) below).
+In short: set `mode: preview` while building your survey, which stores data locally, then remove it (or set it to `database`) before deploying to store in a database, or set it to `local` to run the survey on a single computer and store data locally.
 
 ## Setting up a Supabase project
 
@@ -128,31 +92,21 @@ This will open a new browser window where you can navigate to the dashboard for 
 
 See the [Local Dashboard](local-dashboard.html) page for more information.
 
-## Connecting to your database in surveydown
+## Connecting to the database
 
-Now that you have set your credentials stored, you can connect to your database in surveydown by running the following code in your **app.R** file:
+Once your credentials are stored in a `.env` file, add the following to your **app.R** file in the global scope to connect your survey to the database:
 
-```{r}
+```r
 db <- sd_db_connect()
 ```
 
-You do not need to specify any arguments to this function as it will automatically use the credentials stored in your `.env` file. If the connection is successful, you should see a message in the console that says "✔ Running in **database** mode. Successfully connected to the database."
+This reads your credentials from the `.env` file. If the connection is successful, a message prints to the console confirming it. The survey mode (`database`, `preview`, or `local`) is controlled via the `mode` key in your `survey.qmd` YAML — not by `sd_db_connect()`.
 
-To test your survey without connecting to the database, use `mode = "preview"`:
+If the database connection fails (e.g. no `.env` file or incorrect credentials), a red banner appears at the bottom of every survey page. See [Trouble connecting?](#trouble-connecting) below if this happens unexpectedly.
 
-```{r}
-db <- sd_db_connect(mode = "preview")
-```
-
-In preview mode, no database connection is attempted and data is stored in a local `preview_data.csv` file. A red banner will also appear at the bottom of every survey page to make it clear the survey is not recording responses to the database. This is useful when you are still editing your survey and do not want to store any data in your database yet.
-
-To run the survey offline without an internet connection and intentionally collect data locally, use `mode = "local"`:
-
-```{r}
-db <- sd_db_connect(mode = "local")
-```
-
-In local mode, no database connection is attempted and no banner is shown. Responses are saved to a `local_data.csv` file in your project folder.
+::: {.callout-note}
+The `ignore = TRUE` argument in `sd_db_connect()` is deprecated. Use `mode: preview` in your YAML instead.
+:::
 
 ## Table creation and data operations
 

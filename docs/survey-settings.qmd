@@ -26,6 +26,7 @@ theme-settings:
   footer-right: ''
 
 survey-settings:
+  mode: database
   show-previous: no
   use-cookies: yes
   auto-scroll: no
@@ -130,6 +131,45 @@ footer-right: Footer Right Test
 ```
 
 ## Survey settings
+
+### Mode
+
+The `mode` setting controls how your survey stores response data. There are three options:
+
+| Mode | CSV file | Banner | Use case |
+|------|----------|--------|----------|
+| `database` (default) | — | Red footer banner if connection fails | Live deployment; responses stored in PostgreSQL. |
+| `preview` | `preview_data.csv` | Yellow footer banner on every page | Testing before deployment. |
+| `local` | `local_data.csv` | None | Intentional offline data collection. |
+
+Set the mode in the `survey-settings` section of your `survey.qmd` YAML header:
+
+``` yaml
+survey-settings:
+  mode: preview
+```
+
+Since `database` is the default, you only need to set `mode` when using `preview` or `local`. When you are ready to deploy, remove the `mode` key (or set it back to `database`), then run the app once locally so the change is picked up before deploying.
+
+**Preview mode** shows a yellow banner at the bottom of every page, making it immediately obvious that responses are not being saved to the database:
+
+<br>
+<center>
+<img src="../images/screenshots/mode-preview.png" style="max-width: 700px; width: 100%;">
+</center>
+<br>
+
+**Local mode** is for intentional offline data collection — no internet connection required, no banner shown, and responses are saved to a `local_data.csv` file in your project folder.
+
+If `mode` is set to `database` but the connection fails (e.g. no `.env` file or incorrect credentials), a red banner appears instead:
+
+<br>
+<center>
+<img src="../images/screenshots/mode-db-fail.png" style="max-width: 700px; width: 100%;">
+</center>
+<br>
+
+See the [Storing Data](storing-data.qmd) page for full details on database setup and connection configuration.
 
 ### Cookies
 

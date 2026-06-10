@@ -572,12 +572,12 @@ gtag('config', 'G-69VF2EDH9X', { 'anonymize_ip': true});
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#local-data-preview" id="toc-local-data-preview" class="nav-link active" data-scroll-target="#local-data-preview">Local data preview</a></li>
+<li><a href="#survey-modes" id="toc-survey-modes" class="nav-link active" data-scroll-target="#survey-modes">Survey modes</a></li>
   <li><a href="#setting-up-a-supabase-project" id="toc-setting-up-a-supabase-project" class="nav-link" data-scroll-target="#setting-up-a-supabase-project">Setting up a Supabase project</a></li>
   <li><a href="#getting-your-supabase-credentials" id="toc-getting-your-supabase-credentials" class="nav-link" data-scroll-target="#getting-your-supabase-credentials">Getting your Supabase credentials</a></li>
   <li><a href="#storing-your-database-credentials" id="toc-storing-your-database-credentials" class="nav-link" data-scroll-target="#storing-your-database-credentials">Storing your database credentials</a></li>
   <li><a href="#modifying-credentials" id="toc-modifying-credentials" class="nav-link" data-scroll-target="#modifying-credentials">Modifying credentials</a></li>
-  <li><a href="#connecting-to-your-database-in-surveydown" id="toc-connecting-to-your-database-in-surveydown" class="nav-link" data-scroll-target="#connecting-to-your-database-in-surveydown">Connecting to your database in surveydown</a></li>
+  <li><a href="#connecting-to-the-database" id="toc-connecting-to-the-database" class="nav-link" data-scroll-target="#connecting-to-the-database">Connecting to the database</a></li>
   <li><a href="#table-creation-and-data-operations" id="toc-table-creation-and-data-operations" class="nav-link" data-scroll-target="#table-creation-and-data-operations">Table creation and data operations</a></li>
   <li><a href="#trouble-connecting" id="toc-trouble-connecting" class="nav-link" data-scroll-target="#trouble-connecting">Trouble connecting?</a></li>
   <li><a href="#cookies" id="toc-cookies" class="nav-link" data-scroll-target="#cookies">Cookies</a></li>
@@ -600,9 +600,9 @@ gtag('config', 'G-69VF2EDH9X', { 'anonymize_ip': true});
 
 
 </header><p>Survey response data is stored in a PostgreSQL database. We recommend using <a href="https://supabase.com/">Supabase</a> as a free and open-source option, though you can use any service you want. In this guide, we’ll walk you through the steps for setting up a Supabase project and connecting your surveydown survey to it.</p>
-<section id="local-data-preview" class="level2"><h2 class="anchored" data-anchor-id="local-data-preview">Local data preview</h2>
-<p>When you run a survey without a database connection, response data will be locally stored in a <code>preview_data.csv</code> file. As the name suggests, this is for preview purposes only. It is there to help you understand what the actual survey response data will look like once you get your database connection properly configured.</p>
-<p>This file is <strong>not</strong> where your actual survey response data will be saved. If you deploy your survey live without a database connection, no responses will be saved.</p>
+<section id="survey-modes" class="level2"><h2 class="anchored" data-anchor-id="survey-modes">Survey modes</h2>
+<p>surveydown supports three operating modes — <code>database</code>, <code>preview</code>, and <code>local</code> — controlled by the <code>mode</code> setting in your <code>survey.qmd</code> YAML header. These modes determine how and where your response data is stored. See the <a href="../docs/survey-settings.html#mode">Survey Settings</a> page for full documentation on each mode.</p>
+<p>In short: set <code>mode: preview</code> while building your survey, which stores data locally, then remove it (or set it to <code>database</code>) before deploying to store in a database, or set it to <code>local</code> to run the survey on a single computer and store data locally.</p>
 </section><section id="setting-up-a-supabase-project" class="level2"><h2 class="anchored" data-anchor-id="setting-up-a-supabase-project">Setting up a Supabase project</h2>
 <p>First, navigate to the <a href="https://supabase.com/">Supabase</a> website and create an account.</p>
 <p>Once you are logged in, the page will prompt you to create a project (it’s a green button). Click on it and select your organization. A dialog box will pop up like this:</p>
@@ -661,17 +661,24 @@ Note
 </div>
 <p>This will open a new browser window where you can navigate to the dashboard for your project. Click on the “Connection Settings” tab to see and edit your database credentials. Once you have made changes, click on the “Test Connection” button to save your updated credentials.</p>
 <p>See the <a href="local-dashboard.html">Local Dashboard</a> page for more information.</p>
-</section><section id="connecting-to-your-database-in-surveydown" class="level2"><h2 class="anchored" data-anchor-id="connecting-to-your-database-in-surveydown">Connecting to your database in surveydown</h2>
-<p>Now that you have set your credentials stored, you can connect to your database in surveydown by running the following code in your <strong>app.R</strong> file:</p>
-<div class="cell">
+</section><section id="connecting-to-the-database" class="level2"><h2 class="anchored" data-anchor-id="connecting-to-the-database">Connecting to the database</h2>
+<p>Once your credentials are stored in a <code>.env</code> file, add the following to your <strong>app.R</strong> file in the global scope to connect your survey to the database:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu">sd_db_connect</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This reads your credentials from the <code>.env</code> file. If the connection is successful, a message prints to the console confirming it. The survey mode (<code>database</code>, <code>preview</code>, or <code>local</code>) is controlled via the <code>mode</code> key in your <code>survey.qmd</code> YAML — not by <code>sd_db_connect()</code>.</p>
+<p>If the database connection fails (e.g.&nbsp;no <code>.env</code> file or incorrect credentials), a red banner appears at the bottom of every survey page. See <a href="#trouble-connecting">Trouble connecting?</a> below if this happens unexpectedly.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>You do not need to specify any arguments to this function as it will automatically use the credentials stored in your <code>.env</code> file. If the connection is successful, you should see a message in the console that says “✔ Successfully connected to the database.”</p>
-<p>You can also ignore the database connection by setting <code>ignore = TRUE</code> in <code>sd_db_connect()</code>:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu">sd_db_connect</span><span class="op">(</span>ignore <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout-title-container flex-fill">
+Note
 </div>
-<p>With this setting, no database connection will be attempted, and the <code>db</code> object will store the value <code>NULL</code>. Instead, data will be stored in a local <code>preview_data.csv</code> file for previewing purposes only. This is useful when you are still editing your survey and do not want to store any data in your database yet.</p>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <code>ignore = TRUE</code> argument in <code>sd_db_connect()</code> is deprecated. Use <code>mode: preview</code> in your YAML instead.</p>
+</div>
+</div>
 </section><section id="table-creation-and-data-operations" class="level2"><h2 class="anchored" data-anchor-id="table-creation-and-data-operations">Table creation and data operations</h2>
 <p>You never need to manually create a table in the database - it gets automatically created after you first run the survey. After you first set up the config and a <code>.env</code> file is properly created, run your survey locally and click past the first page, then you should see the table get created in the database. You can view it directly on supabase (if you’re using supabase), or you can see the table using the dashboard by running <code>sd_dashboard()</code>.</p>
 <p>The data gets updated in the database on every page turn (each time you push a next button) and after you close the browser, which is usually at the end of the survey, but just in case you close it early it will write to the database then too. This is why you usually have to click past the first page after initial configuration to see the table in the database.</p>

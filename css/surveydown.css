@@ -260,25 +260,35 @@ p:last-child,
     width: 100%;
 }
 
-.matrix-question .shiny-options-group .radio {
+.matrix-question .shiny-options-group .radio,
+.matrix-question .shiny-options-group .checkbox {
     margin: 0;
     flex: 1;
     text-align: center;
 }
 
-.matrix-question .shiny-options-group .radio label {
+.matrix-question .shiny-options-group .radio label,
+.matrix-question .shiny-options-group .checkbox label {
     padding-left: 0;
     display: inline-block;
 }
 
-.matrix-question .shiny-options-group .radio input {
+.matrix-question .shiny-options-group .radio input,
+.matrix-question .shiny-options-group .checkbox input {
     margin: 0;
     position: relative;
     top: 2px;
 }
 
-/* Hide radio button labels */
-.matrix-question .shiny-options-group .radio span {
+/* Hide radio/checkbox option labels (column headers show the options) */
+.matrix-question .shiny-options-group .radio span,
+.matrix-question .shiny-options-group .checkbox span {
+    display: none;
+}
+
+/* Hide control-label in matrix question radio/checkbox groups */
+.matrix-question .shiny-input-radiogroup > .control-label,
+.matrix-question .shiny-input-checkboxgroup > .control-label {
     display: none;
 }
 
@@ -315,4 +325,72 @@ div:where(.swal2-container) .swal2-html-container {
 .modal-body .shiny-input-container .control-label {
   text-align: center;
   width: 100%;
+}
+
+/* Slider styling (ionRangeSlider, used by slider and slider_numeric) */
+.irs--shiny .irs-line {
+    height: 6px;
+    border: none;
+    border-radius: 3px;
+    background: #e3e6ea;
+    top: 27px;
+}
+
+.irs--shiny .irs-bar {
+    height: 6px;
+    border: none;
+    background: var(--theme-color);
+    top: 27px;
+}
+
+.irs--shiny .irs-handle {
+    width: 22px;
+    height: 22px;
+    top: 19px;
+    border: 2px solid var(--theme-color);
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.irs--shiny .irs-handle.state_hover,
+.irs--shiny .irs-handle:hover {
+    background: color-mix(in srgb, var(--theme-color) 10%, white);
+}
+
+.irs--shiny .irs-single,
+.irs--shiny .irs-from,
+.irs--shiny .irs-to {
+    background: var(--theme-color);
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.irs--shiny .irs-min,
+.irs--shiny .irs-max {
+    background: transparent;
+    color: #8a8a8a;
+    font-size: 11px;
+}
+
+/* Hide the small minor tick marks; keep only the labeled major ticks */
+.irs--shiny .irs-grid-pol.small {
+    display: none;
+}
+
+.irs--shiny .irs-grid-pol {
+    width: 2px;
+    background: #a8adb3;
+}
+
+.irs--shiny .irs-grid-text {
+    color: #8a8a8a;
+    font-size: 11px;
+}
+
+/* When a labeled grid is shown, the min/max labels above the track are
+   redundant with the grid's end labels */
+.irs--shiny:has(.irs-grid) .irs-min,
+.irs--shiny:has(.irs-grid) .irs-max {
+    display: none;
 }

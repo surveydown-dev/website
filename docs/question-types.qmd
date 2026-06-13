@@ -501,7 +501,7 @@ sd_question(
 ## Output
 
 <center>
-<img src="../images/screenshots/slider.png" width=500>
+<img src="../images/screenshots/slider.png" width=800>
 </center>
 
 ## Code chunk
@@ -511,15 +511,16 @@ sd_question(
 
 sd_question(
   type  = 'slider',
-  id    = 'climate_care',
-  label = "To what extent do you believe human-caused climate change is real?",
+  id    = 'experience',
+  label = "How would you rate your overall experience?",
   option = c(
-    "Don't Believe"    = "dont_believe",
-    "Somewhat Believe" = "somewhat",
-    "Neutral"          = "neutral",
-    "Believe"          = "believe",
-    "Strongly Believe" = "strongly_believe"
-  )
+    "Very poor" = "very_poor",
+    "Poor"      = "poor",
+    "Neutral"   = "neutral",
+    "Good"      = "good",
+    "Very good" = "very_good"
+  ),
+  selected = 'neutral'
 )
 ```
 
@@ -538,7 +539,7 @@ If your slider uses numeric inputs, use the `slider_numeric` question type. This
 ## Output
 
 <center>
-<img src="../images/screenshots/slider_numeric_single.png" width=500>
+<img src="../images/screenshots/slider_numeric_single.png" width=800>
 </center>
 
 ## Code chunk
@@ -563,7 +564,7 @@ sd_question(
 ## Output
 
 <center>
-<img src="../images/screenshots/slider_numeric_range.png" width=500>
+<img src="../images/screenshots/slider_numeric_range.png" width=800>
 </center>
 
 ## Code chunk
@@ -683,6 +684,59 @@ sd_question(
     "Disagree" = "disagree",
     "Neutral"  = "neutral",
     "Agree"    = "agree"
+  )
+)
+```
+
+:::
+
+## `matrix_multiple`
+
+Use `type = 'matrix_multiple'` to specify a matrix input type where each row allows **multiple** selections (checkboxes) instead of a single selection (radio buttons).
+
+Each row becomes its own sub-question with the ID `<question_id>_<row_id>`, stored as a separate column in the resulting data. Multiple selections within a row are stored as a single pipe-separated string (e.g., `"online|app"`), just like the [`mc_multiple`](#mc_multiple) type.
+
+::: {.panel-tabset}
+
+## Output
+
+```{r}
+#| eval: true
+#| echo: false
+
+sd_question(
+  type   = "matrix_multiple",
+  id     = "purchase_channels",
+  label  = "How have you purchased each of the following? (select all that apply)",
+  row    = c(
+    "Groceries"   = "groceries",
+    "Electronics" = "electronics"
+  ),
+  option = c(
+    "In store" = "store",
+    "Online"   = "online",
+    "Mobile app" = "app"
+  )
+)
+```
+
+## Code
+
+```{r}
+#| echo: fenced
+
+sd_question(
+  type   = "matrix_multiple",
+  id     = "purchase_channels",
+  label  = "How have you purchased each of the following? (select all that apply)",
+  row    = c(
+    "Groceries"   = "groceries",
+    "Electronics" = "electronics"
+  ),
+  option = c(
+    "In store" = "store",
+    "Online"   = "online",
+    "Mobile app" = "app"
   )
 )
 ```

@@ -13,7 +13,21 @@ shots <- list(
   # selector = output file (relative to website root)
   "#container-experience" = "images/screenshots/slider.png",
   "#container-slider_single_val" = "images/screenshots/slider_numeric_single.png",
-  "#container-slider_range" = "images/screenshots/slider_numeric_range.png"
+  "#container-slider_range" = "images/screenshots/slider_numeric_range.png",
+  "#container-pet" = "images/screenshots/mc_image.png",
+  "#container-pet_no_caption" = "images/screenshots/mc_image_no_caption.png",
+  "#container-pets_owned" = "images/screenshots/mc_multiple_image.png"
+)
+
+# Image-choice cards whose inputs to click (to show the selected state)
+# before screenshotting, keyed by container selector
+clicks <- list(
+  "#container-pet" = "#pet input[value=\"cat\"]",
+  "#container-pet_no_caption" = "#pet_no_caption input[value=\"cat\"]",
+  "#container-pets_owned" = c(
+    "#pets_owned input[value=\"cat\"]",
+    "#pets_owned input[value=\"dog\"]"
+  )
 )
 
 # -- Build a temporary survey app with the questions to screenshot -------
@@ -21,6 +35,14 @@ shots <- list(
 
 app_dir <- file.path(tempdir(), "screenshot_app")
 dir.create(app_dir, showWarnings = FALSE)
+
+# Image-choice examples need their images on Shiny's resource path
+dir.create(file.path(app_dir, "images"), showWarnings = FALSE)
+file.copy(
+  c("images/cat.png", "images/dog.png"),
+  file.path(app_dir, "images"),
+  overwrite = TRUE
+)
 
 writeLines(
   c(
@@ -64,6 +86,30 @@ writeLines(
     "  label = 'Range example',",
     "  option = seq(0, 10, 1),",
     "  default = c(3, 5)",
+    ")",
+    "",
+    "sd_question(",
+    "  type   = 'mc_image',",
+    "  id     = 'pet',",
+    "  label  = \"Which pet do you prefer?\",",
+    "  option = c('Cat' = 'cat', 'Dog' = 'dog'),",
+    "  image  = c('images/cat.png', 'images/dog.png')",
+    ")",
+    "",
+    "sd_question(",
+    "  type   = 'mc_image',",
+    "  id     = 'pet_no_caption',",
+    "  label  = \"Which pet do you prefer?\",",
+    "  option = c('cat', 'dog'),",
+    "  image  = c('images/cat.png', 'images/dog.png')",
+    ")",
+    "",
+    "sd_question(",
+    "  type   = 'mc_multiple_image',",
+    "  id     = 'pets_owned',",
+    "  label  = \"Which pets have you owned? (select all that apply)\",",
+    "  option = c('Cat' = 'cat', 'Dog' = 'dog'),",
+    "  image  = c('images/cat.png', 'images/dog.png')",
     ")",
     "```",
     "",
@@ -119,6 +165,16 @@ if (!up) stop("App did not start. See /tmp/sd_screenshot_app.log")
 b <- ChromoteSession$new(width = 1000, height = 1600)
 b$Page$navigate(url)
 Sys.sleep(6)
+
+# Click image-choice cards to show the selected state in the screenshots
+for (container in names(clicks)) {
+  for (target in clicks[[container]]) {
+    b$Runtime$evaluate(sprintf(
+      "document.querySelector('%s').click();", target
+    ))
+  }
+}
+Sys.sleep(1)
 
 for (sel in names(shots)) {
   out <- shots[[sel]]

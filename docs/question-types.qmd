@@ -441,6 +441,105 @@ sd_question(
 
 :::
 
+## `mc_image`
+
+Use `type = 'mc_image'` for a single-choice question where each option is a clickable image card. Provide an `image` argument: a vector of image paths or URLs, one per option, in the same order as `option`. Paths are used directly in the image `src`, so they should resolve against your survey's `images` or `www` folder (e.g. `"images/cat.png"`) or be full URLs.
+
+::: {.callout-note}
+## Captions are optional
+
+For image-choice questions, the `option` **names** control whether a text caption appears beneath each image:
+
+- **With captions** - give your options names, e.g. `option = c('Cat' = 'cat', 'Dog' = 'dog')`. The names ("Cat", "Dog") are shown as captions; the values ("cat", "dog") are stored in your data.
+- **Without captions (images only)** - pass an *unnamed* vector, e.g. `option = c('cat', 'dog')`. No captions are shown, and the values ("cat", "dog") are still stored in your data.
+
+This is different from the other multiple choice types, where an unnamed option vector uses the values as the visible labels. For image questions an unnamed vector means "no caption".
+:::
+
+{{< include ../chunks/question-screenshot-note.qmd >}}
+
+**With captions**:
+
+::: {.panel-tabset}
+
+## Output
+
+<center>
+<img src="../images/screenshots/mc_image.png" width=800>
+</center>
+
+## Code
+
+```{r}
+#| echo: fenced
+
+sd_question(
+  type   = 'mc_image',
+  id     = 'pet',
+  label  = "Which pet do you prefer?",
+  option = c('Cat' = 'cat', 'Dog' = 'dog'),
+  image  = c('images/cat.png', 'images/dog.png')
+)
+```
+
+:::
+
+**Without captions** (unnamed `option`, images only):
+
+::: {.panel-tabset}
+
+## Output
+
+<center>
+<img src="../images/screenshots/mc_image_no_caption.png" width=800>
+</center>
+
+## Code
+
+```{r}
+#| echo: fenced
+
+sd_question(
+  type   = 'mc_image',
+  id     = 'pet_no_caption',
+  label  = "Which pet do you prefer?",
+  option = c('cat', 'dog'),
+  image  = c('images/cat.png', 'images/dog.png')
+)
+```
+
+:::
+
+## `mc_multiple_image`
+
+Use `type = 'mc_multiple_image'` for the multiple-selection version of `mc_image`, where respondents can select more than one image card.
+
+{{< include ../chunks/question-screenshot-note.qmd >}}
+
+::: {.panel-tabset}
+
+## Output
+
+<center>
+<img src="../images/screenshots/mc_multiple_image.png" width=800>
+</center>
+
+## Code
+
+```{r}
+#| echo: fenced
+
+sd_question(
+  type   = 'mc_multiple_image',
+  id     = 'pets_owned',
+  label  = "Which pets have you owned? (select all that apply)",
+  option = c('Cat' = 'cat', 'Dog' = 'dog'),
+  image  = c('images/cat.png', 'images/dog.png')
+)
+```
+
+:::
+
 ## `select`
 
 Use `type = 'select'` to specify a drop down select type question.

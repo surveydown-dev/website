@@ -76,9 +76,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-023f25179ce03e9743587f86346418e1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-72fccd5b59150887b27a3e1bbc06eb82.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-023f25179ce03e9743587f86346418e1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-6774d48d3295fefca937b6600a790ee4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-745d750b5162978def628586bc34d7cb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-6774d48d3295fefca937b6600a790ee4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -117,11 +117,11 @@ gtag('config', 'G-69VF2EDH9X', { 'anonymize_ip': true});
 <script src="../site_libs/selectize-0.15.2/js/selectize.min.js"></script><script src="../site_libs/selectize-0.15.2/accessibility/js/selectize-plugin-a11y.min.js"></script><link rel="stylesheet" href="../css/surveydown.css">
 <meta property="og:title" content="Question Types – surveydown.org">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://www.surveydown.org/images/screenshots/slider.png">
+<meta property="og:image" content="https://www.surveydown.org/images/screenshots/mc_image.png">
 <meta property="og:site_name" content="surveydown.org">
 <meta property="og:locale" content="es_ES">
-<meta property="og:image:height" content="189">
-<meta property="og:image:width" content="927">
+<meta property="og:image:height" content="474">
+<meta property="og:image:width" content="1634">
 <meta name="twitter:title" content="Question Types – surveydown.org">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://www.surveydown.org/docs/images/logo.png">
@@ -581,12 +581,15 @@ gtag('config', 'G-69VF2EDH9X', { 'anonymize_ip': true});
   <li><a href="#mc_multiple" id="toc-mc_multiple" class="nav-link" data-scroll-target="#mc_multiple"><code>mc_multiple</code></a></li>
   <li><a href="#mc_buttons" id="toc-mc_buttons" class="nav-link" data-scroll-target="#mc_buttons"><code>mc_buttons</code></a></li>
   <li><a href="#mc_multiple_buttons" id="toc-mc_multiple_buttons" class="nav-link" data-scroll-target="#mc_multiple_buttons"><code>mc_multiple_buttons</code></a></li>
+  <li><a href="#mc_image" id="toc-mc_image" class="nav-link" data-scroll-target="#mc_image"><code>mc_image</code></a></li>
+  <li><a href="#mc_multiple_image" id="toc-mc_multiple_image" class="nav-link" data-scroll-target="#mc_multiple_image"><code>mc_multiple_image</code></a></li>
   <li><a href="#select" id="toc-select" class="nav-link" data-scroll-target="#select"><code>select</code></a></li>
   <li><a href="#slider" id="toc-slider" class="nav-link" data-scroll-target="#slider"><code>slider</code></a></li>
   <li><a href="#slider_numeric" id="toc-slider_numeric" class="nav-link" data-scroll-target="#slider_numeric"><code>slider_numeric</code></a></li>
   <li><a href="#date" id="toc-date" class="nav-link" data-scroll-target="#date"><code>date</code></a></li>
   <li><a href="#daterange" id="toc-daterange" class="nav-link" data-scroll-target="#daterange"><code>daterange</code></a></li>
   <li><a href="#matrix" id="toc-matrix" class="nav-link" data-scroll-target="#matrix"><code>matrix</code></a></li>
+  <li><a href="#matrix_multiple" id="toc-matrix_multiple" class="nav-link" data-scroll-target="#matrix_multiple"><code>matrix_multiple</code></a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -702,82 +705,7 @@ gtag('config', 'G-69VF2EDH9X', { 'anonymize_ip': true});
 <div class="form-group shiny-input-container">
 <label class="control-label" id="age-label" for="age"><p>What’s your age?</p>
 </label>
-<input id="age" type="text" class="shiny-input-text form-control" value="" data-update-on="change"><script>
-        $(document).ready(function() {
-            $('#age').on('focus input change', function() {
-                Shiny.setInputValue('age_interacted', true, {priority: 'event'});
-            });
-
-            // Transform the input to look like a number input
-            var inputElement = $('#age');
-            inputElement.attr('type', 'text'); // Keep as text for our validation
-            inputElement.addClass('numeric-input-with-spinner');
-            inputElement.wrap('<div class="numeric-input-container"></div>');
-
-            // Add native-style spinner
-            inputElement.after(`
-                <div class="native-spinner">
-                    <button type="button" class="native-spinner-button spinner-up" tabindex="-1"></button>
-                    <button type="button" class="native-spinner-button spinner-down" tabindex="-1"></button>
-                </div>
-            `);
-
-            var container = inputElement.parent();
-
-            // Spinner functionality
-            container.find('.spinner-up').on('mousedown', function(e) {
-                e.preventDefault();
-                var currentVal = parseFloat(inputElement.val()) || 0;
-                var newVal = currentVal + 1;
-                inputElement.val(newVal).trigger('input');
-            });
-
-            container.find('.spinner-down').on('mousedown', function(e) {
-                e.preventDefault();
-                var currentVal = parseFloat(inputElement.val()) || 0;
-                var newVal = currentVal - 1;
-                inputElement.val(newVal).trigger('input');
-            });
-
-            // Custom numeric validation
-            $('#age').on('input', function(e) {
-                var val = $(this).val();
-                var filtered = '';
-                var hasDecimal = false;
-                var hasSign = false;
-
-                for (var i = 0; i < val.length; i++) {
-                    var char = val[i];
-
-                    // Allow +/- only at the beginning and only one
-                    if ((char === '+' || char === '-') && i === 0 && !hasSign) {
-                        filtered += char;
-                        hasSign = true;
-                    }
-                    // Allow digits
-                    else if (/[0-9]/.test(char)) {
-                        filtered += char;
-                    }
-                    // Allow decimal point only once
-                    else if (char === '.' && !hasDecimal) {
-                        filtered += char;
-                        hasDecimal = true;
-                    }
-                }
-
-                if (val !== filtered) {
-                    $(this).val(filtered);
-                }
-            });
-
-            // Handle paste events
-            $('#age').on('paste', function(e) {
-                setTimeout(function() {
-                    $('#age').trigger('input');
-                }, 1);
-            });
-        });
-    </script>
+<input id="age" type="text" class="shiny-input-text form-control sd-numeric" value="" data-update-on="change">
 </div>
 <span class="hidden-asterisk">*</span>
 </div>
@@ -1001,21 +929,6 @@ gtag('config', 'G-69VF2EDH9X', { 'anonymize_ip': true});
 <input type="radio" autocomplete="off" id="fruit7" name="fruit" value="watermelon" class="btn-check"><label class="btn radiobtn btn-outline-primary" for="fruit7">Watermelon</label>
 </div>
 </div>
-<script>
-            $(document).on('click', '#fruit .btn', function() {
-                Shiny.setInputValue('fruit_interacted', true, {priority: 'event'});
-                // Small delay to allow button state to update
-                setTimeout(function() {
-                    var selectedValue = '';
-                    // Look for checked radio input within the container
-                    var checkedInput = $('#fruit input[type="radio"]:checked');
-                    if (checkedInput.length > 0) {
-                        selectedValue = checkedInput.val();
-                    }
-                    Shiny.setInputValue('fruit', selectedValue, {priority: 'event'});
-                }, 50);
-            });
-        </script>
 </div>
 <span class="hidden-asterisk">*</span>
 </div>
@@ -1069,21 +982,6 @@ gtag('config', 'G-69VF2EDH9X', { 'anonymize_ip': true});
 <input type="radio" autocomplete="off" id="fruit_vertical7" name="fruit_vertical" value="watermelon" class="btn-check"><label class="btn radiobtn btn-outline-primary" for="fruit_vertical7">Watermelon</label>
 </div>
 </div>
-<script>
-            $(document).on('click', '#fruit_vertical .btn', function() {
-                Shiny.setInputValue('fruit_vertical_interacted', true, {priority: 'event'});
-                // Small delay to allow button state to update
-                setTimeout(function() {
-                    var selectedValue = '';
-                    // Look for checked radio input within the container
-                    var checkedInput = $('#fruit_vertical input[type="radio"]:checked');
-                    if (checkedInput.length > 0) {
-                        selectedValue = checkedInput.val();
-                    }
-                    Shiny.setInputValue('fruit_vertical', selectedValue, {priority: 'event'});
-                }, 50);
-            });
-        </script>
 </div>
 <span class="hidden-asterisk">*</span>
 </div>
@@ -1140,20 +1038,6 @@ gtag('config', 'G-69VF2EDH9X', { 'anonymize_ip': true});
 <input type="checkbox" autocomplete="off" id="michael_jackson8" name="michael_jackson" value="human_nature" class="btn-check"><label class="btn checkbtn btn-outline-primary" for="michael_jackson8">Human Nature (1982)</label>
 </div>
 </div>
-<script>
-            $(document).on('click', '#michael_jackson .btn', function() {
-                Shiny.setInputValue('michael_jackson_interacted', true, {priority: 'event'});
-                // Small delay to allow button state to update
-                setTimeout(function() {
-                    var selectedValues = [];
-                    // Look for checked checkbox inputs within the container
-                    $('#michael_jackson input[type="checkbox"]:checked').each(function() {
-                        selectedValues.push($(this).val());
-                    });
-                    Shiny.setInputValue('michael_jackson', selectedValues, {priority: 'event'});
-                }, 50);
-            });
-        </script>
 </div>
 <span class="hidden-asterisk">*</span>
 </div>
@@ -1209,20 +1093,6 @@ gtag('config', 'G-69VF2EDH9X', { 'anonymize_ip': true});
 <input type="checkbox" autocomplete="off" id="michael_jackson_vertical8" name="michael_jackson_vertical" value="human_nature" class="btn-check"><label class="btn checkbtn btn-outline-primary" for="michael_jackson_vertical8">Human Nature (1982)</label>
 </div>
 </div>
-<script>
-            $(document).on('click', '#michael_jackson_vertical .btn', function() {
-                Shiny.setInputValue('michael_jackson_vertical_interacted', true, {priority: 'event'});
-                // Small delay to allow button state to update
-                setTimeout(function() {
-                    var selectedValues = [];
-                    // Look for checked checkbox inputs within the container
-                    $('#michael_jackson_vertical input[type="checkbox"]:checked').each(function() {
-                        selectedValues.push($(this).val());
-                    });
-                    Shiny.setInputValue('michael_jackson_vertical', selectedValues, {priority: 'event'});
-                }, 50);
-            });
-        </script>
 </div>
 <span class="hidden-asterisk">*</span>
 </div>
@@ -1253,8 +1123,42 @@ gtag('config', 'G-69VF2EDH9X', { 'anonymize_ip': true});
 </div>
 </div>
 </div>
-</section><section id="select" class="level2"><h2 class="anchored" data-anchor-id="select"><code>select</code></h2>
-<p>Use <code>type = 'select'</code> to specify a drop down select type question.</p>
+</section><section id="mc_image" class="level2"><h2 class="anchored" data-anchor-id="mc_image"><code>mc_image</code></h2>
+<p>Use <code>type = 'mc_image'</code> for a single-choice question where each option is a clickable image card. Provide an <code>image</code> argument: a vector of image paths or URLs, one per option, in the same order as <code>option</code>. Paths are used directly in the image <code>src</code>, so they should resolve against your survey’s <code>images</code> or <code>www</code> folder (e.g.&nbsp;<code>"images/cat.png"</code>) or be full URLs.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Captions are optional
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For image-choice questions, the <code>option</code> <strong>names</strong> control whether a text caption appears beneath each image:</p>
+<ul>
+<li>
+<strong>With captions</strong> - give your options names, e.g.&nbsp;<code>option = c('Cat' = 'cat', 'Dog' = 'dog')</code>. The names (“Cat”, “Dog”) are shown as captions; the values (“cat”, “dog”) are stored in your data.</li>
+<li>
+<strong>Without captions (images only)</strong> - pass an <em>unnamed</em> vector, e.g.&nbsp;<code>option = c('cat', 'dog')</code>. No captions are shown, and the values (“cat”, “dog”) are still stored in your data.</li>
+</ul>
+<p>This is different from the other multiple choice types, where an unnamed option vector uses the values as the visible labels. For image questions an unnamed vector means “no caption”.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This widget only renders well in a Shiny environment, so we just show a screenshot here.</p>
+</div>
+</div>
+<p><strong>With captions</strong>:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
 <li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true" href="">Output</a></li>
@@ -1262,6 +1166,102 @@ gtag('config', 'G-69VF2EDH9X', { 'anonymize_ip': true});
 </ul>
 <div class="tab-content">
 <div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
+<center>
+<img src="../images/screenshots/mc_image.png" width="800">
+</center>
+</div>
+<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type   =</span> <span class="st">'mc_image'</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id     =</span> <span class="st">'pet'</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label  =</span> <span class="st">"Which pet do you prefer?"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(<span class="st">'Cat'</span> <span class="ot">=</span> <span class="st">'cat'</span>, <span class="st">'Dog'</span> <span class="ot">=</span> <span class="st">'dog'</span>),</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">image  =</span> <span class="fu">c</span>(<span class="st">'images/cat.png'</span>, <span class="st">'images/dog.png'</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+<p><strong>Without captions</strong> (unnamed <code>option</code>, images only):</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true" href="">Output</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false" href="">Code</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
+<center>
+<img src="../images/screenshots/mc_image_no_caption.png" width="800">
+</center>
+</div>
+<div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type   =</span> <span class="st">'mc_image'</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id     =</span> <span class="st">'pet_no_caption'</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label  =</span> <span class="st">"Which pet do you prefer?"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(<span class="st">'cat'</span>, <span class="st">'dog'</span>),</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">image  =</span> <span class="fu">c</span>(<span class="st">'images/cat.png'</span>, <span class="st">'images/dog.png'</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="mc_multiple_image" class="level2"><h2 class="anchored" data-anchor-id="mc_multiple_image"><code>mc_multiple_image</code></h2>
+<p>Use <code>type = 'mc_multiple_image'</code> for the multiple-selection version of <code>mc_image</code>, where respondents can select more than one image card.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This widget only renders well in a Shiny environment, so we just show a screenshot here.</p>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true" href="">Output</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false" href="">Code</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
+<center>
+<img src="../images/screenshots/mc_multiple_image.png" width="800">
+</center>
+</div>
+<div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type   =</span> <span class="st">'mc_multiple_image'</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id     =</span> <span class="st">'pets_owned'</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label  =</span> <span class="st">"Which pets have you owned? (select all that apply)"</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(<span class="st">'Cat'</span> <span class="ot">=</span> <span class="st">'cat'</span>, <span class="st">'Dog'</span> <span class="ot">=</span> <span class="st">'dog'</span>),</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">image  =</span> <span class="fu">c</span>(<span class="st">'images/cat.png'</span>, <span class="st">'images/dog.png'</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="select" class="level2"><h2 class="anchored" data-anchor-id="select"><code>select</code></h2>
+<p>Use <code>type = 'select'</code> to specify a drop down select type question.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-13-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-1" role="tab" aria-controls="tabset-13-1" aria-selected="true" href="">Output</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-2" role="tab" aria-controls="tabset-13-2" aria-selected="false" href="">Code</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-13-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-13-1-tab">
 <div class="cell">
 <div class="cell-output-display no-overflow-x">
 <div id="container-education" data-question-id="education" class="question-container" style="width: 100%;" oninput="Shiny.setInputValue('education_interacted', true, {priority: 'event'});" onclick="Shiny.setInputValue('education_interacted', true, {priority: 'event'});">
@@ -1284,24 +1284,24 @@ gtag('config', 'G-69VF2EDH9X', { 'anonymize_ip': true});
 </div>
 </div>
 </div>
-<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
+<div id="tabset-13-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-2-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'select'</span>,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">'education'</span>,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"What is the highest level of education you have attained?"</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Did not attend high school"</span> <span class="ot">=</span> <span class="st">"hs_no"</span>,</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Some high school"</span>           <span class="ot">=</span> <span class="st">"hs_some"</span>,</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"High school graduate"</span>       <span class="ot">=</span> <span class="st">"hs_grad"</span>,</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Some college"</span>               <span class="ot">=</span> <span class="st">"college_some"</span>,</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"College"</span>                    <span class="ot">=</span> <span class="st">"college_grad"</span>,</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Graduate Work"</span>              <span class="ot">=</span> <span class="st">"grad"</span>,</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Prefer not to say"</span>          <span class="ot">=</span> <span class="st">"no_response"</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'select'</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">'education'</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"What is the highest level of education you have attained?"</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Did not attend high school"</span> <span class="ot">=</span> <span class="st">"hs_no"</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Some high school"</span>           <span class="ot">=</span> <span class="st">"hs_some"</span>,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"High school graduate"</span>       <span class="ot">=</span> <span class="st">"hs_grad"</span>,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Some college"</span>               <span class="ot">=</span> <span class="st">"college_some"</span>,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"College"</span>                    <span class="ot">=</span> <span class="st">"college_grad"</span>,</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Graduate Work"</span>              <span class="ot">=</span> <span class="st">"grad"</span>,</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Prefer not to say"</span>          <span class="ot">=</span> <span class="st">"no_response"</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1322,31 +1322,32 @@ Note
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true" href="">Output</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false" href="">Code chunk</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-14-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-1" role="tab" aria-controls="tabset-14-1" aria-selected="true" href="">Output</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-14-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-2" role="tab" aria-controls="tabset-14-2" aria-selected="false" href="">Code chunk</a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
+<div id="tabset-14-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-14-1-tab">
 <center>
-<img src="../images/screenshots/slider.png" width="500">
+<img src="../images/screenshots/slider.png" width="800">
 </center>
 </div>
-<div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
+<div id="tabset-14-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-14-2-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'slider'</span>,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">'climate_care'</span>,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"To what extent do you believe human-caused climate change is real?"</span>,</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Don't Believe"</span>    <span class="ot">=</span> <span class="st">"dont_believe"</span>,</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Somewhat Believe"</span> <span class="ot">=</span> <span class="st">"somewhat"</span>,</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Neutral"</span>          <span class="ot">=</span> <span class="st">"neutral"</span>,</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Believe"</span>          <span class="ot">=</span> <span class="st">"believe"</span>,</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Strongly Believe"</span> <span class="ot">=</span> <span class="st">"strongly_believe"</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'slider'</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">'experience'</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"How would you rate your overall experience?"</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Very poor"</span> <span class="ot">=</span> <span class="st">"very_poor"</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Poor"</span>      <span class="ot">=</span> <span class="st">"poor"</span>,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Neutral"</span>   <span class="ot">=</span> <span class="st">"neutral"</span>,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Good"</span>      <span class="ot">=</span> <span class="st">"good"</span>,</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Very good"</span> <span class="ot">=</span> <span class="st">"very_good"</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">selected =</span> <span class="st">'neutral'</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1369,25 +1370,25 @@ Note
 <p><strong>Single slider</strong>:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true" href="">Output</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false" href="">Code chunk</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-15-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-1" role="tab" aria-controls="tabset-15-1" aria-selected="true" href="">Output</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-15-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-2" role="tab" aria-controls="tabset-15-2" aria-selected="false" href="">Code chunk</a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
+<div id="tabset-15-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-15-1-tab">
 <center>
-<img src="../images/screenshots/slider_numeric_single.png" width="500">
+<img src="../images/screenshots/slider_numeric_single.png" width="800">
 </center>
 </div>
-<div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
+<div id="tabset-15-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-15-2-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"slider_numeric"</span>, </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">'slider_single_val'</span>,  </span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">'Single value example'</span>, </span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">1</span>)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"slider_numeric"</span>, </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">'slider_single_val'</span>,  </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">'Single value example'</span>, </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">1</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1395,26 +1396,26 @@ Note
 <p><strong>Range slider</strong>:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-13-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-1" role="tab" aria-controls="tabset-13-1" aria-selected="true" href="">Output</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-2" role="tab" aria-controls="tabset-13-2" aria-selected="false" href="">Code chunk</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-16-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-1" role="tab" aria-controls="tabset-16-1" aria-selected="true" href="">Output</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-16-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-2" role="tab" aria-controls="tabset-16-2" aria-selected="false" href="">Code chunk</a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-13-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-13-1-tab">
+<div id="tabset-16-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-16-1-tab">
 <center>
-<img src="../images/screenshots/slider_numeric_range.png" width="500">
+<img src="../images/screenshots/slider_numeric_range.png" width="800">
 </center>
 </div>
-<div id="tabset-13-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-2-tab">
+<div id="tabset-16-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-16-2-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"slider_numeric"</span>, </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">'slider_range'</span>,  </span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">'Range example'</span>, </span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">1</span>), </span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">default =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"slider_numeric"</span>, </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">'slider_range'</span>,  </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">'Range example'</span>, </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">1</span>), </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">default =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1436,24 +1437,24 @@ Note
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-14-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-1" role="tab" aria-controls="tabset-14-1" aria-selected="true" href="">Output</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-14-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-2" role="tab" aria-controls="tabset-14-2" aria-selected="false" href="">Code</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-17-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-17-1" role="tab" aria-controls="tabset-17-1" aria-selected="true" href="">Output</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-17-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-17-2" role="tab" aria-controls="tabset-17-2" aria-selected="false" href="">Code</a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-14-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-14-1-tab">
+<div id="tabset-17-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-17-1-tab">
 <center>
 <img src="../images/screenshots/date.png" width="500">
 </center>
 </div>
-<div id="tabset-14-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-14-2-tab">
+<div id="tabset-17-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-17-2-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'date'</span>,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">'dob'</span>,</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"What is your date of birth?"</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'date'</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">'dob'</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"What is your date of birth?"</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1475,24 +1476,24 @@ Note
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-15-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-1" role="tab" aria-controls="tabset-15-1" aria-selected="true" href="">Output</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-15-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-2" role="tab" aria-controls="tabset-15-2" aria-selected="false" href="">Code</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-18-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-18-1" role="tab" aria-controls="tabset-18-1" aria-selected="true" href="">Output</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-18-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-18-2" role="tab" aria-controls="tabset-18-2" aria-selected="false" href="">Code</a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-15-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-15-1-tab">
+<div id="tabset-18-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-18-1-tab">
 <center>
 <img src="../images/screenshots/daterange.png" width="500">
 </center>
 </div>
-<div id="tabset-15-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-15-2-tab">
+<div id="tabset-18-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-18-2-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'daterange'</span>,</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">'hs_date'</span>,</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"When did you start and finish high school?"</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type  =</span> <span class="st">'daterange'</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id    =</span> <span class="st">'hs_date'</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"When did you start and finish high school?"</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1501,11 +1502,11 @@ Note
 <p>Use <code>type = 'matrix'</code> to specify a matrix input type.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-16-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-1" role="tab" aria-controls="tabset-16-1" aria-selected="true" href="">Output</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-16-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-2" role="tab" aria-controls="tabset-16-2" aria-selected="false" href="">Code</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-19-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-19-1" role="tab" aria-controls="tabset-19-1" aria-selected="true" href="">Output</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-19-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-19-2" role="tab" aria-controls="tabset-19-2" aria-selected="false" href="">Code</a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-16-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-16-1-tab">
+<div id="tabset-19-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-19-1-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div id="container-car_preference" data-question-id="car_preference" class="question-container" style="width: 100%;" oninput="Shiny.setInputValue('car_preference_interacted', true, {priority: 'event'});" onclick="Shiny.setInputValue('car_preference_interacted', true, {priority: 'event'});">
@@ -1515,10 +1516,10 @@ Note
 
 <table class="matrix-question caption-top table table-sm table-striped small">
 <colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
+<col style="width: 33%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 22%">
 </colgroup>
 <tbody><tr class="odd">
 <th data-quarto-table-cell-role="th"></th>
@@ -1575,24 +1576,131 @@ Note
 </div>
 </div>
 </div>
-<div id="tabset-16-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-16-2-tab">
+<div id="tabset-19-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-19-2-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type   =</span> <span class="st">"matrix"</span>,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id     =</span> <span class="st">"car_preference"</span>,</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label  =</span> <span class="st">"Please indicate your agreement with the following statements."</span>,</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">row    =</span> <span class="fu">c</span>(</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"I would buy a gasoline car."</span> <span class="ot">=</span> <span class="st">"buy_gasoline"</span>,</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"I would buy an EV."</span>          <span class="ot">=</span> <span class="st">"buy_ev"</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Disagree"</span> <span class="ot">=</span> <span class="st">"disagree"</span>,</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Neutral"</span>  <span class="ot">=</span> <span class="st">"neutral"</span>,</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Agree"</span>    <span class="ot">=</span> <span class="st">"agree"</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type   =</span> <span class="st">"matrix"</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id     =</span> <span class="st">"car_preference"</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label  =</span> <span class="st">"Please indicate your agreement with the following statements."</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">row    =</span> <span class="fu">c</span>(</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"I would buy a gasoline car."</span> <span class="ot">=</span> <span class="st">"buy_gasoline"</span>,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"I would buy an EV."</span>          <span class="ot">=</span> <span class="st">"buy_ev"</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Disagree"</span> <span class="ot">=</span> <span class="st">"disagree"</span>,</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Neutral"</span>  <span class="ot">=</span> <span class="st">"neutral"</span>,</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Agree"</span>    <span class="ot">=</span> <span class="st">"agree"</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="matrix_multiple" class="level2"><h2 class="anchored" data-anchor-id="matrix_multiple"><code>matrix_multiple</code></h2>
+<p>Use <code>type = 'matrix_multiple'</code> to specify a matrix input type where each row allows <strong>multiple</strong> selections (checkboxes) instead of a single selection (radio buttons).</p>
+<p>Each row becomes its own sub-question with the ID <code>&lt;question_id&gt;_&lt;row_id&gt;</code>, stored as a separate column in the resulting data. Multiple selections within a row are stored as a single pipe-separated string (e.g., <code>"online|app"</code>), just like the <a href="#mc_multiple"><code>mc_multiple</code></a> type.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-20-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-20-1" role="tab" aria-controls="tabset-20-1" aria-selected="true" href="">Output</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-20-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-20-2" role="tab" aria-controls="tabset-20-2" aria-selected="false" href="">Code</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-20-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-20-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div id="container-purchase_channels" data-question-id="purchase_channels" class="question-container" style="width: 100%;" oninput="Shiny.setInputValue('purchase_channels_interacted', true, {priority: 'event'});" onclick="Shiny.setInputValue('purchase_channels_interacted', true, {priority: 'event'});">
+<div class="matrix-question-container">
+<label class="control-label"><p>How have you purchased each of the following? (select all that apply)</p>
+</label>
+
+<table class="matrix-question caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 23%">
+</colgroup>
+<tbody><tr class="odd">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">In store</th>
+<th data-quarto-table-cell-role="th">Online</th>
+<th data-quarto-table-cell-role="th">Mobile app</th>
+</tr></tbody>
+<tbody>
+<tr class="odd">
+<td>Groceries</td>
+<td colspan="3"><div id="container-purchase_channels_groceries" class="question-container" data-question-id="purchase_channels_groceries" style="width: 100%;" oninput="Shiny.setInputValue('purchase_channels_groceries_interacted', true, {priority: 'event'});" onclick="Shiny.setInputValue('purchase_channels_groceries_interacted', true, {priority: 'event'});">
+<div id="purchase_channels_groceries" class="form-group shiny-input-checkboxgroup shiny-input-container" role="group" aria-labelledby="purchase_channels_groceries-label">
+<label class="control-label" id="purchase_channels_groceries-label" for="purchase_channels_groceries"></label>
+<div class="shiny-options-group">
+<div class="checkbox">
+<label>
+<input type="checkbox" name="purchase_channels_groceries" value="store"><span>In store</span> </label>
+</div>
+<div class="checkbox">
+<label>
+<input type="checkbox" name="purchase_channels_groceries" value="online"><span>Online</span> </label>
+</div>
+<div class="checkbox">
+<label>
+<input type="checkbox" name="purchase_channels_groceries" value="app"><span>Mobile app</span> </label>
+</div>
+</div>
+</div>
+<span class="hidden-asterisk">*</span>
+</div></td>
+</tr>
+<tr class="even">
+<td>Electronics</td>
+<td colspan="3"><div id="container-purchase_channels_electronics" class="question-container" data-question-id="purchase_channels_electronics" style="width: 100%;" oninput="Shiny.setInputValue('purchase_channels_electronics_interacted', true, {priority: 'event'});" onclick="Shiny.setInputValue('purchase_channels_electronics_interacted', true, {priority: 'event'});">
+<div id="purchase_channels_electronics" class="form-group shiny-input-checkboxgroup shiny-input-container" role="group" aria-labelledby="purchase_channels_electronics-label">
+<label class="control-label" id="purchase_channels_electronics-label" for="purchase_channels_electronics"></label>
+<div class="shiny-options-group">
+<div class="checkbox">
+<label>
+<input type="checkbox" name="purchase_channels_electronics" value="store"><span>In store</span> </label>
+</div>
+<div class="checkbox">
+<label>
+<input type="checkbox" name="purchase_channels_electronics" value="online"><span>Online</span> </label>
+</div>
+<div class="checkbox">
+<label>
+<input type="checkbox" name="purchase_channels_electronics" value="app"><span>Mobile app</span> </label>
+</div>
+</div>
+</div>
+<span class="hidden-asterisk">*</span>
+</div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<span class="hidden-asterisk">*</span>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-20-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-20-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_question</span>(</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type   =</span> <span class="st">"matrix_multiple"</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id     =</span> <span class="st">"purchase_channels"</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label  =</span> <span class="st">"How have you purchased each of the following? (select all that apply)"</span>,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">row    =</span> <span class="fu">c</span>(</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Groceries"</span>   <span class="ot">=</span> <span class="st">"groceries"</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Electronics"</span> <span class="ot">=</span> <span class="st">"electronics"</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">option =</span> <span class="fu">c</span>(</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"In store"</span> <span class="ot">=</span> <span class="st">"store"</span>,</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Online"</span>   <span class="ot">=</span> <span class="st">"online"</span>,</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mobile app"</span> <span class="ot">=</span> <span class="st">"app"</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>

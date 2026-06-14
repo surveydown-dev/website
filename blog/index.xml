@@ -3217,21 +3217,6 @@ font-style: inherit;"># ...and 5 more questions like this</span></span></code></
 <input type="radio" autocomplete="off" id="cbc_q13" name="cbc_q1" value="option_3" class="btn-check"><label class="btn radiobtn btn-outline-primary" for="cbc_q13"><strong>Option 3</strong><br><img src="https://www.surveydown.org/blog/2024-08-28-choice-based-conjoint-surveys-with-surveydown/images/redDelicious.jpg" width="100"><br><strong>Type</strong>: Red Delicious<br><strong>Price</strong>: $ 2.5 / lb<br><strong>Freshness</strong>: Average</label>
 </div>
 </div>
-<script>
-            $(document).on('click', '#cbc_q1 .btn', function() {
-                Shiny.setInputValue('cbc_q1_interacted', true, {priority: 'event'});
-                // Small delay to allow button state to update
-                setTimeout(function() {
-                    var selectedValue = '';
-                    // Look for checked radio input within the container
-                    var checkedInput = $('#cbc_q1 input[type="radio"]:checked');
-                    if (checkedInput.length > 0) {
-                        selectedValue = checkedInput.val();
-                    }
-                    Shiny.setInputValue('cbc_q1', selectedValue, {priority: 'event'});
-                }, 50);
-            });
-        </script>
 </div>
 <span class="hidden-asterisk">*</span>
 </div>
@@ -3554,21 +3539,6 @@ font-style: inherit;">)</span></span></code></pre></div></div>
 <input type="radio" autocomplete="off" id="cbc_q13" name="cbc_q1" value="option_3" class="btn-check"><label class="btn radiobtn btn-outline-primary" for="cbc_q13">Option 3</label>
 </div>
 </div>
-<script>
-            $(document).on('click', '#cbc_q1 .btn', function() {
-                Shiny.setInputValue('cbc_q1_interacted', true, {priority: 'event'});
-                // Small delay to allow button state to update
-                setTimeout(function() {
-                    var selectedValue = '';
-                    // Look for checked radio input within the container
-                    var checkedInput = $('#cbc_q1 input[type="radio"]:checked');
-                    if (checkedInput.length > 0) {
-                        selectedValue = checkedInput.val();
-                    }
-                    Shiny.setInputValue('cbc_q1', selectedValue, {priority: 'event'});
-                }, 50);
-            });
-        </script>
 </div>
 <span class="hidden-asterisk">*</span>
 </div>
@@ -4471,11 +4441,11 @@ font-style: inherit;">)</span></span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt;   respondent_id     brand
 #&gt; 1             1    Nissan
-#&gt; 2             1     Honda
-#&gt; 3             1      Ford
-#&gt; 4             2    Toyota
-#&gt; 5             2 Chevrolet
-#&gt; 6             2     Tesla</code></pre>
+#&gt; 2             1     Tesla
+#&gt; 3             1    Toyota
+#&gt; 4             2    Nissan
+#&gt; 5             2      Ford
+#&gt; 6             2 Chevrolet</code></pre>
 </div>
 </div>
 <p>Note that this would not be done in your survey.qmd file - it’s just a one-time thing to create the design (probably stored in an R file).</p>

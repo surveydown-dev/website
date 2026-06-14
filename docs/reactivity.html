@@ -76,9 +76,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-023f25179ce03e9743587f86346418e1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-72fccd5b59150887b27a3e1bbc06eb82.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-023f25179ce03e9743587f86346418e1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-6774d48d3295fefca937b6600a790ee4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-745d750b5162978def628586bc34d7cb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-6774d48d3295fefca937b6600a790ee4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -782,7 +782,7 @@ Tip
 </div>
 <p>To make these values display properly, you can create reactive values with the <code><a href="https://pkg.surveydown.org/reference/sd_reactive.html">sd_reactive()</a></code> function in the server, which reactively updates as the user changes any of the question values.</p>
 <p>The <code><a href="https://pkg.surveydown.org/reference/sd_reactive.html">sd_reactive()</a></code> function takes an <code>id</code>, which is the name that will be used in the resulting survey response data to store the returned value. The created object is a reactive expression that can also be used anywhere else in the server using the <code>()</code> symbols. Inside the function can be any expression that returns a value.</p>
-<p>To create all of the objects in the example page above, our server would look like the following below. Note that we first create intermediate objects (<code>n1</code> and <code>n2</code>) purely for convenience as we use the numbers in multiple places.</p>
+<p>To create all of the objects in the example page above, our server would look like the following below.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -793,8 +793,8 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The <code>sd_value()</code> function returns the chosen value or values for one or more questions. It is a reactive function and can only be used inside the <code>server()</code> function in your <strong>app.R</strong> file.</p>
-<p>See the <a href="../docs/accessing-values.html">Accessing Question Values</a> page for details on how to use <code>sd_value()</code>.</p>
+<p>The <code><a href="https://pkg.surveydown.org/reference/sd_value.html">sd_value()</a></code> function returns the chosen value or values for one or more questions. It is a reactive function and can only be used inside the <code>server()</code> function in your <strong>app.R</strong> file.</p>
+<p>See the <a href="../docs/accessing-values.html">Accessing Question Values</a> page for details on how to use <code><a href="https://pkg.surveydown.org/reference/sd_value.html">sd_value()</a></code>.</p>
 </div>
 </div>
 <p><strong>app.R file</strong>:</p>
@@ -804,19 +804,18 @@ Note
 <span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_ui.html">sd_ui</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu">observe</span><span class="op">(</span><span class="op">{</span></span>
-<span>    <span class="co"># Create local objects for each number</span></span>
-<span>    <span class="va">n1</span> <span class="op">&lt;-</span> <span class="fu">sd_value</span><span class="op">(</span><span class="st">"first_number"</span><span class="op">)</span></span>
-<span>    <span class="va">n2</span> <span class="op">&lt;-</span> <span class="fu">sd_value</span><span class="op">(</span><span class="st">"second_number"</span><span class="op">)</span></span>
+<span>  <span class="co"># Create reactive values for 'product' and 'sum'</span></span>
+<span>  <span class="va">product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_reactive.html">sd_reactive</a></span><span class="op">(</span><span class="st">"product"</span>, <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_value.html">sd_value</a></span><span class="op">(</span><span class="st">"first_number"</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_value.html">sd_value</a></span><span class="op">(</span><span class="st">"second_number"</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
 <span></span>
-<span>    <span class="co"># Create reactive values for 'product' and 'sum'</span></span>
-<span>    <span class="va">product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_reactive.html">sd_reactive</a></span><span class="op">(</span><span class="st">"product"</span>, <span class="va">n1</span> <span class="op">*</span> <span class="va">n2</span><span class="op">)</span></span>
-<span>    <span class="va">sum</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_reactive.html">sd_reactive</a></span><span class="op">(</span><span class="st">"sum"</span>, <span class="va">n1</span> <span class="op">+</span> <span class="va">n2</span><span class="op">)</span></span>
+<span>  <span class="va">sum_val</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_reactive.html">sd_reactive</a></span><span class="op">(</span><span class="st">"sum"</span>, <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_value.html">sd_value</a></span><span class="op">(</span><span class="st">"first_number"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_value.html">sd_value</a></span><span class="op">(</span><span class="st">"second_number"</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
 <span></span>
-<span>    <span class="co"># Use the reactive values to create an additional 'summary' output</span></span>
-<span>    <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_reactive.html">sd_reactive</a></span><span class="op">(</span><span class="st">"summary"</span>, <span class="op">{</span></span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"The product is"</span>, <span class="fu">product</span><span class="op">(</span><span class="op">)</span>, <span class="st">"and the sum is"</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="op">}</span><span class="op">)</span></span>
+<span>  <span class="co"># Use the reactive values to create an additional 'summary' output</span></span>
+<span>  <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_reactive.html">sd_reactive</a></span><span class="op">(</span><span class="st">"summary"</span>, <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"The product is"</span>, <span class="fu">product</span><span class="op">(</span><span class="op">)</span>, <span class="st">"and the sum is"</span>, <span class="fu">sum_val</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">}</span><span class="op">)</span></span>
 <span></span>
 <span>  <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_server.html">sd_server</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -825,13 +824,36 @@ Note
 <span><span class="co"># Launch Survey</span></span>
 <span><span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>In this server, we create two reactive values, <code>product</code> and <code>sum</code>, which get stored in our survey data under those respective names. We also use <code>product()</code> and <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> to create the <code>summary</code> object, which is just some rendered text to display on the survey page.</p>
-<p>Note also that we wrap the logic for creating these objects inside an <code>observe()</code> call. This is because initially the objects <code>n1</code> and <code>n2</code> will be <code>NULL</code> until a respondent answers the question, so using <code>observe()</code> will make sure these calculations don’t run until a value is present.</p>
+<p>In this server, we create two reactive values, <code>product</code> and <code>sum</code>, which get stored in our survey data under those respective names. We also use <code>product()</code> and <code>sum_val()</code> to create the <code>summary</code> object, which is just some rendered text to display on the survey page. (We name the R object <code>sum_val</code> rather than <code>sum</code> to avoid masking base R’s <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> function; the value is still stored in the data as <code>"sum"</code>.)</p>
+<p>Note that the <code><a href="https://pkg.surveydown.org/reference/sd_value.html">sd_value()</a></code> calls are made <em>inside</em> each <code><a href="https://pkg.surveydown.org/reference/sd_reactive.html">sd_reactive()</a></code> expression. This is what makes the expressions reactive - they re-compute whenever the referenced answers change. It also lets <code><a href="https://pkg.surveydown.org/reference/sd_reactive.html">sd_reactive()</a></code> recognize when a calculation fails simply because a question hasn’t been answered yet (e.g., arithmetic on a blank value), in which case it quietly stores an empty value instead of raising a warning. Repeating a <code><a href="https://pkg.surveydown.org/reference/sd_value.html">sd_value()</a></code> call is essentially free - it’s just a fast lookup of the stored answer.</p>
+<p>There is no need to wrap <code><a href="https://pkg.surveydown.org/reference/sd_reactive.html">sd_reactive()</a></code> calls in <code>observe()</code>. Each <code><a href="https://pkg.surveydown.org/reference/sd_reactive.html">sd_reactive()</a></code> manages its own reactivity, and capturing question values into local objects outside of the <code><a href="https://pkg.surveydown.org/reference/sd_reactive.html">sd_reactive()</a></code> call (e.g., <code>n1 &lt;- sd_value("first_number")</code> followed by <code>sd_reactive("product", n1 * n2)</code>) breaks both the reactivity and the quiet handling of unanswered questions.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Many calculated values from the same questions?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you have many <code><a href="https://pkg.surveydown.org/reference/sd_reactive.html">sd_reactive()</a></code> calls built from the same handful of answers, you can avoid repeating the question ids by defining shared reactive expressions plus a “ready” guard, and returning <code>NA</code> until the questions are answered (<code><a href="https://pkg.surveydown.org/reference/sd_reactive.html">sd_reactive()</a></code> stores <code>NA</code> results as empty values without warnings):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n1</span> <span class="op">&lt;-</span> <span class="fu">reactive</span><span class="op">(</span><span class="fu"><a href="https://pkg.surveydown.org/reference/sd_value.html">sd_value</a></span><span class="op">(</span><span class="st">"first_number"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">n2</span> <span class="op">&lt;-</span> <span class="fu">reactive</span><span class="op">(</span><span class="fu"><a href="https://pkg.surveydown.org/reference/sd_value.html">sd_value</a></span><span class="op">(</span><span class="st">"second_number"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">ready</span> <span class="op">&lt;-</span> <span class="fu">reactive</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="fu">n1</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="fu">n2</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_reactive.html">sd_reactive</a></span><span class="op">(</span><span class="st">"product"</span>, <span class="kw">if</span> <span class="op">(</span><span class="fu">ready</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu">n1</span><span class="op">(</span><span class="op">)</span> <span class="op">*</span> <span class="fu">n2</span><span class="op">(</span><span class="op">)</span> <span class="kw">else</span> <span class="cn">NA</span><span class="op">)</span></span>
+<span><span class="va">sum_val</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_reactive.html">sd_reactive</a></span><span class="op">(</span><span class="st">"sum"</span>, <span class="kw">if</span> <span class="op">(</span><span class="fu">ready</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu">n1</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">n2</span><span class="op">(</span><span class="op">)</span> <span class="kw">else</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The guard is required with this approach: question ids hidden behind <code>n1()</code> can’t be detected by <code><a href="https://pkg.surveydown.org/reference/sd_reactive.html">sd_reactive()</a></code>, so without it you would see warnings at survey startup while the questions are still unanswered.</p>
+</div>
+</div>
 </section><section id="defining-questions-in-the-server-function" class="level2"><h2 class="anchored" data-anchor-id="defining-questions-in-the-server-function">Defining questions in the server function</h2>
 <p>Often you will want to define questions where the label or options change based on the respondent’s answers to other questions. You can do this by defining the question in the server function and then displaying it in the <strong>survey.qmd</strong> file using the <code><a href="https://pkg.surveydown.org/reference/sd_output.html">sd_output()</a></code> function.</p>
 <p>For example, let’s say you want to ask a follow-up question based on the respondent’s answer to a previous question. To do this, you would define the first question in the <strong>survey.qmd</strong> file as usual, e.g.:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pkg.surveydown.org/reference/sd_question.html">sd_question</a></span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pkg.surveydown.org/reference/sd_question.html">sd_question</a></span><span class="op">(</span></span>
 <span>  id     <span class="op">=</span> <span class="st">"pet_type"</span>,</span>
 <span>  type   <span class="op">=</span> <span class="st">"mc"</span>,</span>
 <span>  label  <span class="op">=</span> <span class="st">"Which do you like more, dogs or cats?"</span>,</span>
@@ -840,13 +862,13 @@ Note
 </div>
 <p>My follow-up question is whether or not the respondent has a pet of the type they chose above. To do this, you would define the follow-up question in the <strong>app.R</strong> file’s <code>server()</code> function like this:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://pkg.surveydown.org">surveydown</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://pkg.surveydown.org">surveydown</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://glue.tidyverse.org/">glue</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu">observe</span><span class="op">(</span><span class="op">{</span></span>
 <span>    <span class="co"># Get the chosen pet_type value</span></span>
-<span>    <span class="va">pet_type</span> <span class="op">&lt;-</span> <span class="fu">sd_value</span><span class="op">(</span><span class="st">"pet_type"</span><span class="op">)</span></span>
+<span>    <span class="va">pet_type</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://pkg.surveydown.org/reference/sd_value.html">sd_value</a></span><span class="op">(</span><span class="st">"pet_type"</span><span class="op">)</span></span>
 <span></span>
 <span>    <span class="co"># Make the option vector</span></span>
 <span>    <span class="va">options</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'yes'</span>, <span class="st">'no'</span><span class="op">)</span></span>
@@ -870,9 +892,9 @@ Note
 <p>The <code>pet_owner</code> question is a reactive question where the label and options will change based on the respondent’s answer to the <code>pet_type</code> question.</p>
 <p>You can then display the <code>pet_owner</code> question in the <strong>survey.qmd</strong> file using the <code><a href="https://pkg.surveydown.org/reference/sd_output.html">sd_output()</a></code> function, like this:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_output</span>(<span class="at">id =</span> <span class="st">"pet_owner"</span>, <span class="at">type =</span> <span class="st">"question"</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd_output</span>(<span class="at">id =</span> <span class="st">"pet_owner"</span>, <span class="at">type =</span> <span class="st">"question"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">

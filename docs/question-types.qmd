@@ -441,6 +441,105 @@ sd_question(
 
 :::
 
+## `mc_image`
+
+Use `type = 'mc_image'` for a single-choice question where each option is a clickable image card. Provide an `image` argument: a vector of image paths or URLs, one per option, in the same order as `option`. Paths are used directly in the image `src`, so they should resolve against your survey's `images` or `www` folder (e.g. `"images/cat.png"`) or be full URLs.
+
+::: {.callout-note}
+## Captions are optional
+
+For image-choice questions, the `option` **names** control whether a text caption appears beneath each image:
+
+- **With captions** - give your options names, e.g. `option = c('Cat' = 'cat', 'Dog' = 'dog')`. The names ("Cat", "Dog") are shown as captions; the values ("cat", "dog") are stored in your data.
+- **Without captions (images only)** - pass an *unnamed* vector, e.g. `option = c('cat', 'dog')`. No captions are shown, and the values ("cat", "dog") are still stored in your data.
+
+This is different from the other multiple choice types, where an unnamed option vector uses the values as the visible labels. For image questions an unnamed vector means "no caption".
+:::
+
+{{< include ../chunks/question-screenshot-note.qmd >}}
+
+**With captions**:
+
+::: {.panel-tabset}
+
+## Output
+
+<center>
+<img src="../images/screenshots/mc_image.png" width=800>
+</center>
+
+## Code
+
+```{r}
+#| echo: fenced
+
+sd_question(
+  type   = 'mc_image',
+  id     = 'pet',
+  label  = "Which pet do you prefer?",
+  option = c('Cat' = 'cat', 'Dog' = 'dog'),
+  image  = c('images/cat.png', 'images/dog.png')
+)
+```
+
+:::
+
+**Without captions** (unnamed `option`, images only):
+
+::: {.panel-tabset}
+
+## Output
+
+<center>
+<img src="../images/screenshots/mc_image_no_caption.png" width=800>
+</center>
+
+## Code
+
+```{r}
+#| echo: fenced
+
+sd_question(
+  type   = 'mc_image',
+  id     = 'pet_no_caption',
+  label  = "Which pet do you prefer?",
+  option = c('cat', 'dog'),
+  image  = c('images/cat.png', 'images/dog.png')
+)
+```
+
+:::
+
+## `mc_multiple_image`
+
+Use `type = 'mc_multiple_image'` for the multiple-selection version of `mc_image`, where respondents can select more than one image card.
+
+{{< include ../chunks/question-screenshot-note.qmd >}}
+
+::: {.panel-tabset}
+
+## Output
+
+<center>
+<img src="../images/screenshots/mc_multiple_image.png" width=800>
+</center>
+
+## Code
+
+```{r}
+#| echo: fenced
+
+sd_question(
+  type   = 'mc_multiple_image',
+  id     = 'pets_owned',
+  label  = "Which pets have you owned? (select all that apply)",
+  option = c('Cat' = 'cat', 'Dog' = 'dog'),
+  image  = c('images/cat.png', 'images/dog.png')
+)
+```
+
+:::
+
 ## `select`
 
 Use `type = 'select'` to specify a drop down select type question.
@@ -501,7 +600,7 @@ sd_question(
 ## Output
 
 <center>
-<img src="../images/screenshots/slider.png" width=500>
+<img src="../images/screenshots/slider.png" width=800>
 </center>
 
 ## Code chunk
@@ -511,15 +610,16 @@ sd_question(
 
 sd_question(
   type  = 'slider',
-  id    = 'climate_care',
-  label = "To what extent do you believe human-caused climate change is real?",
+  id    = 'experience',
+  label = "How would you rate your overall experience?",
   option = c(
-    "Don't Believe"    = "dont_believe",
-    "Somewhat Believe" = "somewhat",
-    "Neutral"          = "neutral",
-    "Believe"          = "believe",
-    "Strongly Believe" = "strongly_believe"
-  )
+    "Very poor" = "very_poor",
+    "Poor"      = "poor",
+    "Neutral"   = "neutral",
+    "Good"      = "good",
+    "Very good" = "very_good"
+  ),
+  selected = 'neutral'
 )
 ```
 
@@ -538,7 +638,7 @@ If your slider uses numeric inputs, use the `slider_numeric` question type. This
 ## Output
 
 <center>
-<img src="../images/screenshots/slider_numeric_single.png" width=500>
+<img src="../images/screenshots/slider_numeric_single.png" width=800>
 </center>
 
 ## Code chunk
@@ -563,7 +663,7 @@ sd_question(
 ## Output
 
 <center>
-<img src="../images/screenshots/slider_numeric_range.png" width=500>
+<img src="../images/screenshots/slider_numeric_range.png" width=800>
 </center>
 
 ## Code chunk
@@ -683,6 +783,59 @@ sd_question(
     "Disagree" = "disagree",
     "Neutral"  = "neutral",
     "Agree"    = "agree"
+  )
+)
+```
+
+:::
+
+## `matrix_multiple`
+
+Use `type = 'matrix_multiple'` to specify a matrix input type where each row allows **multiple** selections (checkboxes) instead of a single selection (radio buttons).
+
+Each row becomes its own sub-question with the ID `<question_id>_<row_id>`, stored as a separate column in the resulting data. Multiple selections within a row are stored as a single pipe-separated string (e.g., `"online|app"`), just like the [`mc_multiple`](#mc_multiple) type.
+
+::: {.panel-tabset}
+
+## Output
+
+```{r}
+#| eval: true
+#| echo: false
+
+sd_question(
+  type   = "matrix_multiple",
+  id     = "purchase_channels",
+  label  = "How have you purchased each of the following? (select all that apply)",
+  row    = c(
+    "Groceries"   = "groceries",
+    "Electronics" = "electronics"
+  ),
+  option = c(
+    "In store" = "store",
+    "Online"   = "online",
+    "Mobile app" = "app"
+  )
+)
+```
+
+## Code
+
+```{r}
+#| echo: fenced
+
+sd_question(
+  type   = "matrix_multiple",
+  id     = "purchase_channels",
+  label  = "How have you purchased each of the following? (select all that apply)",
+  row    = c(
+    "Groceries"   = "groceries",
+    "Electronics" = "electronics"
+  ),
+  option = c(
+    "In store" = "store",
+    "Online"   = "online",
+    "Mobile app" = "app"
   )
 )
 ```

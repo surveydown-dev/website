@@ -210,7 +210,7 @@ To make these values display properly, you can create reactive values with the `
 
 The `sd_reactive()` function takes an `id`, which is the name that will be used in the resulting survey response data to store the returned value. The created object is a reactive expression that can also be used anywhere else in the server using the `()` symbols. Inside the function can be any expression that returns a value. 
 
-To create all of the objects in the example page above, our server would look like the following below. Note that we first create intermediate objects (`n1` and `n2`) purely for convenience as we use the numbers in multiple places.
+To create all of the objects in the example page above, our server would look like the following below.
 
 {{< include ../chunks/sdvalue.qmd >}}
 
@@ -222,19 +222,18 @@ library(surveydown)
 ui <- sd_ui()
 
 server <- function(input, output, session) {
-  observe({
-    # Create local objects for each number
-    n1 <- sd_value("first_number")
-    n2 <- sd_value("second_number")
+  # Create reactive values for 'product' and 'sum'
+  product <- sd_reactive("product", {
+    sd_value("first_number") * sd_value("second_number")
+  })
 
-    # Create reactive values for 'product' and 'sum'
-    product <- sd_reactive("product", n1 * n2)
-    sum <- sd_reactive("sum", n1 + n2)
+  sum_val <- sd_reactive("sum", {
+    sd_value("first_number") + sd_value("second_number")
+  })
 
-    # Use the reactive values to create an additional 'summary' output
-    sd_reactive("summary", {
-      paste("The product is", product(), "and the sum is", sum())
-    })
+  # Use the reactive values to create an additional 'summary' output
+  sd_reactive("summary", {
+    paste("The product is", product(), "and the sum is", sum_val())
   })
 
   sd_server()
@@ -244,9 +243,30 @@ server <- function(input, output, session) {
 shiny::shinyApp(ui = ui, server = server)
 ```
 
-In this server, we create two reactive values, `product` and `sum`, which get stored in our survey data under those respective names. We also use `product()` and `sum()` to create the `summary` object, which is just some rendered text to display on the survey page.
+In this server, we create two reactive values, `product` and `sum`, which get stored in our survey data under those respective names. We also use `product()` and `sum_val()` to create the `summary` object, which is just some rendered text to display on the survey page. (We name the R object `sum_val` rather than `sum` to avoid masking base R's `sum()` function; the value is still stored in the data as `"sum"`.)
 
-Note also that we wrap the logic for creating these objects inside an `observe()` call. This is because initially the objects `n1` and `n2` will be `NULL` until a respondent answers the question, so using `observe()` will make sure these calculations don't run until a value is present.
+Note that the `sd_value()` calls are made *inside* each `sd_reactive()` expression. This is what makes the expressions reactive - they re-compute whenever the referenced answers change. It also lets `sd_reactive()` recognize when a calculation fails simply because a question hasn't been answered yet (e.g., arithmetic on a blank value), in which case it quietly stores an empty value instead of raising a warning. Repeating a `sd_value()` call is essentially free - it's just a fast lookup of the stored answer.
+
+There is no need to wrap `sd_reactive()` calls in `observe()`. Each `sd_reactive()` manages its own reactivity, and capturing question values into local objects outside of the `sd_reactive()` call (e.g., `n1 <- sd_value("first_number")` followed by `sd_reactive("product", n1 * n2)`) breaks both the reactivity and the quiet handling of unanswered questions.
+
+::: {.callout-tip}
+
+## Many calculated values from the same questions?
+
+If you have many `sd_reactive()` calls built from the same handful of answers, you can avoid repeating the question ids by defining shared reactive expressions plus a "ready" guard, and returning `NA` until the questions are answered (`sd_reactive()` stores `NA` results as empty values without warnings):
+
+```{r}
+n1 <- reactive(sd_value("first_number"))
+n2 <- reactive(sd_value("second_number"))
+ready <- reactive(is.numeric(n1()) && is.numeric(n2()))
+
+product <- sd_reactive("product", if (ready()) n1() * n2() else NA)
+sum_val <- sd_reactive("sum", if (ready()) n1() + n2() else NA)
+```
+
+The guard is required with this approach: question ids hidden behind `n1()` can't be detected by `sd_reactive()`, so without it you would see warnings at survey startup while the questions are still unanswered.
+
+:::
 
 ## Defining questions in the server function
 

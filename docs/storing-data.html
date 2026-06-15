@@ -575,7 +575,14 @@ gtag('config', 'G-69VF2EDH9X', { 'anonymize_ip': true});
 <li><a href="#survey-modes" id="toc-survey-modes" class="nav-link active" data-scroll-target="#survey-modes">Survey modes</a></li>
   <li><a href="#setting-up-a-supabase-project" id="toc-setting-up-a-supabase-project" class="nav-link" data-scroll-target="#setting-up-a-supabase-project">Setting up a Supabase project</a></li>
   <li><a href="#getting-your-supabase-credentials" id="toc-getting-your-supabase-credentials" class="nav-link" data-scroll-target="#getting-your-supabase-credentials">Getting your Supabase credentials</a></li>
-  <li><a href="#storing-your-database-credentials" id="toc-storing-your-database-credentials" class="nav-link" data-scroll-target="#storing-your-database-credentials">Storing your database credentials</a></li>
+  <li>
+<a href="#storing-your-database-credentials" id="toc-storing-your-database-credentials" class="nav-link" data-scroll-target="#storing-your-database-credentials">Storing your database credentials</a>
+  <ul class="collapse">
+<li><a href="#option-1-using-the-connection-url-fastest" id="toc-option-1-using-the-connection-url-fastest" class="nav-link" data-scroll-target="#option-1-using-the-connection-url-fastest">Option 1: Using the connection URL (fastest)</a></li>
+  <li><a href="#option-2-interactive-setup" id="toc-option-2-interactive-setup" class="nav-link" data-scroll-target="#option-2-interactive-setup">Option 2: Interactive setup</a></li>
+  <li><a href="#the-.env-file" id="toc-the-.env-file" class="nav-link" data-scroll-target="#the-.env-file">The <code>.env</code> file</a></li>
+  </ul>
+</li>
   <li><a href="#modifying-credentials" id="toc-modifying-credentials" class="nav-link" data-scroll-target="#modifying-credentials">Modifying credentials</a></li>
   <li><a href="#connecting-to-the-database" id="toc-connecting-to-the-database" class="nav-link" data-scroll-target="#connecting-to-the-database">Connecting to the database</a></li>
   <li><a href="#table-creation-and-data-operations" id="toc-table-creation-and-data-operations" class="nav-link" data-scroll-target="#table-creation-and-data-operations">Table creation and data operations</a></li>
@@ -630,40 +637,51 @@ Note
 <img src="../images/screenshots/supabase-connect.png" width="400">
 </center>
 <p><br></p>
-<p>On the connection page, click the “Direct” connection option, then select “Transaction pooler”. There if you scroll down you can see your connection parameters. It should look something like this:</p>
+<p>On the connection page, click the “Direct” connection option, then select “Transaction pooler”. There you can see the connection URL at the top as well as the individual connection parameters below it. It should look something like this:</p>
 <br><center>
 <img src="../images/screenshots/supabase-connection.png" style="max-width: 700px; width: 100%;">
 </center>
 <p><br></p>
-<p>You will need these parameters and your password to connect to your database in surveydown.</p>
+<p>You can use either the <strong>connection URL</strong> or the <strong>individual parameters</strong> to configure your database in surveydown.</p>
 </section><section id="storing-your-database-credentials" class="level2"><h2 class="anchored" data-anchor-id="storing-your-database-credentials">Storing your database credentials</h2>
-<p>Before connecting to your database, you need to store your credentials. You can do this by running the following code in your R console:</p>
+<p>Before connecting to your database, you need to store your credentials. There are two ways to do this:</p>
+<section id="option-1-using-the-connection-url-fastest" class="level3"><h3 class="anchored" data-anchor-id="option-1-using-the-connection-url-fastest">Option 1: Using the connection URL (fastest)</h3>
+<p>Copy the connection URL from Supabase and pass it to <code>sd_db_config()</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">surveydown</span><span class="fu">::</span><span class="fu"><a href="https://pkg.surveydown.org/reference/sd_db_config.html">sd_db_config</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">surveydown</span><span class="fu">::</span><span class="fu"><a href="https://pkg.surveydown.org/reference/sd_db_config.html">sd_db_config</a></span><span class="op">(</span></span>
+<span>  url <span class="op">=</span> <span class="st">"postgresql://postgres.xxxx:[YOUR-PASSWORD]@aws-0-us-east-1.pooler.supabase.com:6543/postgres"</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>This function will prompt you to enter your database credentials and password, one by one. The current credential values will be shown in square brackets. When done it should look like this:</p>
+<p>This parses the host, port, database name, and user from the URL automatically. Since the URL contains <code>[YOUR-PASSWORD]</code> as a placeholder, you will be prompted to enter your password. You will also be prompted to choose a table name (press Enter to accept the default <code>"responses"</code>).</p>
+</section><section id="option-2-interactive-setup" class="level3"><h3 class="anchored" data-anchor-id="option-2-interactive-setup">Option 2: Interactive setup</h3>
+<p>Run <code>sd_db_config()</code> with no arguments:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">surveydown</span><span class="fu">::</span><span class="fu"><a href="https://pkg.surveydown.org/reference/sd_db_config.html">sd_db_config</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This will prompt you to enter each database credential one by one. The current values will be shown in square brackets. When done it should look like this:</p>
 <br><center>
 <img src="../images/screenshots/sd-db-config.png" width="60%">
 </center>
 <p><br></p>
+</section><section id="the-.env-file" class="level3"><h3 class="anchored" data-anchor-id="the-.env-file">The <code>.env</code> file</h3>
 <p>Once you have entered your credentials, the function will store them in a <code>.env</code> file in your project folder. <strong>We strongly recommend that you do not manually edit this file or share it with others as it stores all of your database credentials, including your password.</strong></p>
-</section><section id="modifying-credentials" class="level2"><h2 class="anchored" data-anchor-id="modifying-credentials">Modifying credentials</h2>
+</section></section><section id="modifying-credentials" class="level2"><h2 class="anchored" data-anchor-id="modifying-credentials">Modifying credentials</h2>
 <p>If you want to modify your credentials stored in the <code>.env</code> file, you can just run <code>sd_db_config()</code> again and press ‘Enter’ on any parameter you want to leave unchanged while modifying the ones you want to change.</p>
 <p>You can also pass any of the parameters as arguments to <code>sd_db_config()</code> to change them. For example, if you wanted to only change the table name, you could do this:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sd_db_config</span><span class="op">(</span>table <span class="op">=</span> <span class="st">'mytable'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sd_db_config</span><span class="op">(</span>table <span class="op">=</span> <span class="st">'mytable'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Once run in the R console, a message will print out confirming that the stored <code>table</code> parameter will now be <code>mytable</code>.</p>
-<p>You can pass any of the following as arguments to update them: <code>host</code>, <code>dbname</code>, <code>port</code>, <code>user</code>, <code>table</code>, and <code>password</code>.</p>
+<p>You can pass any of the following as arguments to update them: <code>url</code>, <code>host</code>, <code>dbname</code>, <code>port</code>, <code>user</code>, <code>table</code>, and <code>password</code>.</p>
 <p>Finally, you can also view / modify your database credentials using the <code>sdstudio</code> package, a companion GUI package for surveydown surveys. To do this, launch the app by running this command in the R console:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sdstudio</span><span class="fu">::</span><span class="fu">launch</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sdstudio</span><span class="fu">::</span><span class="fu">launch</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This will open a new browser window where you can navigate to the dashboard for your project. Click on the “Connection Settings” tab to see and edit your database credentials. Once you have made changes, click on the “Test Connection” button to save your updated credentials.</p>
 <p>See the <a href="local-dashboard.html">Local Dashboard</a> page for more information.</p>
 </section><section id="connecting-to-the-database" class="level2"><h2 class="anchored" data-anchor-id="connecting-to-the-database">Connecting to the database</h2>
 <p>Once your credentials are stored in a <code>.env</code> file, add the following to your <strong>app.R</strong> file in the global scope to connect your survey to the database:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu">sd_db_connect</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu">sd_db_connect</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This reads your credentials from the <code>.env</code> file. If the connection is successful, a message prints to the console confirming it. The survey mode (<code>database</code>, <code>preview</code>, or <code>local</code>) is controlled via the <code>mode</code> key in your <code>survey.qmd</code> YAML — not by <code>sd_db_connect()</code>.</p>
 <p>If the database connection fails (e.g.&nbsp;no <code>.env</code> file or incorrect credentials), a red banner appears at the bottom of every survey page. See <a href="#trouble-connecting">Trouble connecting?</a> below if this happens unexpectedly.</p>
 <div class="callout callout-style-default callout-note callout-titled">

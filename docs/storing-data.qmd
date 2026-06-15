@@ -40,7 +40,7 @@ Once your Supabase project is ready, click on the "connect" button at the top, i
 </center>
 <br>
 
-On the connection page, click the "Direct" connection option, then select "Transaction pooler". There if you scroll down you can see your connection parameters. It should look something like this:
+On the connection page, click the "Direct" connection option, then select "Transaction pooler". There you can see the connection URL at the top as well as the individual connection parameters below it. It should look something like this:
 
 <br>
 <center>
@@ -48,23 +48,41 @@ On the connection page, click the "Direct" connection option, then select "Trans
 </center>
 <br>
 
-You will need these parameters and your password to connect to your database in surveydown.
+You can use either the **connection URL** or the **individual parameters** to configure your database in surveydown.
 
 ## Storing your database credentials
 
-Before connecting to your database, you need to store your credentials. You can do this by running the following code in your R console:
+Before connecting to your database, you need to store your credentials. There are two ways to do this:
+
+### Option 1: Using the connection URL (fastest)
+
+Copy the connection URL from Supabase and pass it to `sd_db_config()`:
+
+```{r}
+surveydown::sd_db_config(
+  url = "postgresql://postgres.xxxx:[YOUR-PASSWORD]@aws-0-us-east-1.pooler.supabase.com:6543/postgres"
+)
+```
+
+This parses the host, port, database name, and user from the URL automatically. Since the URL contains `[YOUR-PASSWORD]` as a placeholder, you will be prompted to enter your password. You will also be prompted to choose a table name (press Enter to accept the default `"responses"`).
+
+### Option 2: Interactive setup
+
+Run `sd_db_config()` with no arguments:
 
 ```{r}
 surveydown::sd_db_config()
 ```
 
-This function will prompt you to enter your database credentials and password, one by one. The current credential values will be shown in square brackets. When done it should look like this:
+This will prompt you to enter each database credential one by one. The current values will be shown in square brackets. When done it should look like this:
 
 <br>
 <center>
 <img src="../images/screenshots/sd-db-config.png" width=60%>
 </center>
 <br>
+
+### The `.env` file
 
 Once you have entered your credentials, the function will store them in a `.env` file in your project folder. **We strongly recommend that you do not manually edit this file or share it with others as it stores all of your database credentials, including your password.**
 
@@ -80,7 +98,7 @@ sd_db_config(table = 'mytable')
 
 Once run in the R console, a message will print out confirming that the stored `table` parameter will now be `mytable`.
 
-You can pass any of the following as arguments to update them: `host`, `dbname`, `port`, `user`, `table`, and `password`.
+You can pass any of the following as arguments to update them: `url`, `host`, `dbname`, `port`, `user`, `table`, and `password`.
 
 Finally, you can also view / modify your database credentials using the `sdstudio` package, a companion GUI package for surveydown surveys. To do this, launch the app by running this command in the R console:
 

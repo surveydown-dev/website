@@ -1,12 +1,16 @@
 ---
 title: "Live Polling"
 date: 2025-03-04
-categories: [Reactivity, video]
+categories: [Reactivity]
 image: banners/live_polling.png
 description: "A [reactive](/docs/reactivity.html) question template of live-polling with responses shown as a bar chart."
 ---
 
-To create this template, run this command in your R console:
+<div id="template-links" data-repo="https://github.com/surveydown-dev/template_live_polling" hidden></div>
+
+## Create this template
+
+Run this command in your R console:
 
 ```{r}
 surveydown::sd_create_survey(
@@ -15,23 +19,13 @@ surveydown::sd_create_survey(
 )
 ```
 
-Refer to the [Start with a template](/docs/getting-started.html#start-with-a-template) section for more details.
+## Video Walkthrough
 
-::: {.d-flex .justify-content-center .flex-wrap .text-center}
+<video class="template-video" controls preload="metadata">
+  <source src="https://cdn.jsdelivr.net/gh/surveydown-dev/template_live_polling@main/video-recording.mp4#t=0.1" type="video/mp4">
+</video>
 
-[<i class="fab fa-github"></i> GitHub Repo](https://github.com/surveydown-dev/template_live_polling){.template-button .m-1 style="width: 200px;"}
+## Learn more
 
-:::
-
-::: {.callout-note}
-
-1. The live-polling feature requires connection to database and cannot be demonstrated in the template preview. Therefore, a screenshot of bar chart resulted by live-polling is shown here instead.
-2. To make this template work, you should firstly define your credentials by calling `sd_db_config()`, and then delete the `ignore = TRUE` argument in the `sd_db_connect()` function call. Once your survey is up and running, try to go through the survey several times. You'll see the bar chart updating in real-time as new responses are submitted.
-
-:::
-
-<center>
-<img src='banners/live_polling.png' style="width: 100%; max-width: 1000px;" alt="a screenshot of bar chart resulted by live-polling"/>
-</center>
-
-In the screenshot above, the survey page shows the choice of the current session, as well as a bar chart of all responses from the database. The bar chart updates in real-time as new responses are submitted. This feature is useful for live polling or feedback sessions where you want to see how opinions change over time.
+- [Reactivity](/docs/reactivity.html)
+- [Start with a template](/docs/getting-started.html#start-with-a-template)

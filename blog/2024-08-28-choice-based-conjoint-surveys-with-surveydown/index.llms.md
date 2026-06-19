@@ -1,0 +1,320 @@
+# Choice-based conjoint surveys in R with surveydown
+
+R
+
+tutorial
+
+conjoint
+
+A how-to guide for using R to design and implement choice-based conjoint surveys using the surveydown R package
+
+Author
+
+John Paul Helveston
+
+Published
+
+2024-08-28
+
+> **IMPORTANT:**
+>
+> **This post was updated on 2025-09-14 to match the latest package version**
+
+Because [surveydown](https://surveydown.org/) surveys run as a shiny app, you can include custom logic in the background by writing some code in your server. In this post, I’m going to show you one approach for using surveydown to create a particular type of complex survey: a **choice-based conjoint survey**.
+
+> **NOTE:**
+>
+> If you’re unfamiliar with what a conjoint survey is, take a look at this [quick introduction](https://sawtoothsoftware.com/conjoint-analysis/cbc).
+
+The key component of a choice-based conjoint survey is asking repsondents to make choices from randomized sets of choice questions. So the hard part is figuring out a way to show each respondent a different set of randomized questions. This post shows how you can achieve this in surveydown.
+
+Throughout this post, I will use a demo survey about people’s preferences for apples with three attributes: `type`, `price`, and `freshness`.[^1] I will focus on one structure for the conjoint survey that uses the [`mc_buttons`](https://surveydown.org/docs/question-types.html#mc_buttons) question type for the main choice questions. You can view a live demo of that survey and the template used to create it [here](https://surveydown.org/templates/conjoint_buttons.html). An alternative structure is to display choice options in a table - that template can be found [here](https://surveydown.org/templates/conjoint_tables).
+
+## Introduction
+
+If you’ve never used surveydown before, take a look at the [Getting Started](https://surveydown.org/docs/getting-started.html) page to get a quick introduction to the package and how to use it to make a survey.
+
+The basic concept is this:
+
+1.  Design your survey as a [Quarto](https://quarto.org/) document using markdown and R code.
+2.  Convert your survey into a [Shiny](https://shiny.posit.co/) app that can be hosted online and sent to respondents.
+3.  Store your survey responses in a [Supabase](https://supabase.com/) database.
+
+## Getting started
+
+For this post, we recommend starting from the demo survey available [here](https://surveydown.org/templates/conjoint_buttons.html). It provides an already working survey that you can modify to the needs of your conjoint survey.
+
+The demo repo has a lot of files in it, but the main files defining the survey itself are:
+
+- `survey.qmd`: The main body of the survey.
+- `app.R`: The app file containing the server logic implemented in the survey, including randomizing questions, connecting to a database, etc.
+
+> **NOTE:**
+>
+> We recommend opening the `survey.Rproj` if you’re working in RStudio to make sure RStudio opens to the correct project folder.
+
+## Content in the survey body
+
+After the setup code chunk where we load the surveydown package, we have a series of pages (defined with `:::` fences) that include markdown-formatted text and survey questions (defined with [`sd_question()`](https://pkg.surveydown.org/reference/sd_question.html)). You can modify any of this content as you wish to suit the needs of your survey.
+
+In this demo, we have a few other examples included, like a conditionally displayed question (the `fav_fruit` question will not display if you choose “No” on the first question about liking fruit) as well as a question that skips people to the end (if you choose “blue” and not “red” on the `screening` page). The logic controlling the conditional display and skipping is defined with the [`sd_skip_if()`](https://pkg.surveydown.org/reference/sd_skip_if.html) function in the `app.R` file.
+
+None of this is absolutely necessary for a conjoint survey, but often times these are features that you may want to include, such as screening people out of the survey if they don’t qualify to take it, so we include it for demonstration purposes.
+
+## Defining the choice questions
+
+The central component of every conjoint survey is the set of randomized choice questions. To implement these in surveydown, we pre-define our choice questions in a design file that we later use in the survey to select randomized sets of choice questions to display each respondent.
+
+We use the [cbcTools](https://jhelvy.github.io/cbcTools/) package to create the pre-defined design file. The code to create the choice questions for this demo survey is in the [`1_make_choice_questions.R`](https://github.com/surveydown-dev/template_conjoint_buttons/blob/main/code/1_make_choice_questions.R) file in the demo repo. This code generates a data frame of randomized choice questions that we then save in the project directory as `choice_questions.csv`.
+
+## Implementing the choice questions
+
+The choice questions are implemented at the top of the `server()` function in the `app.R` file in the demo repo. This code does the following steps:
+
+### 1. Read in the design file
+
+Pretty straightforward - this is one line to read in the `choice_questions.csv` design file that we saved in the project folder.
+
+``` downlit
+design <- read_csv("choice_questions.csv")
+```
+
+### 2. Sample and store a random respondent ID
+
+Since we want each respondent to see a different set of choice questions, we randomly sample a respondent ID from the set of all respondent IDs in the design file. We also need to keep track of this and store it in our response data so that later we can know what each respondent was actually shown.
+
+Since this is a value that we generated in the server (and not a value from a survey question to a respondent), we have to manually add it to the survey response data using [`sd_store_value()`](https://pkg.surveydown.org/reference/sd_store_value.html). Here we modified the name so that in the resulting survey data the column name will be `"respID"`.
+
+``` downlit
+# Sample a random respondentID
+respondentID <- sample(design$respID, 1)
+
+# Store the respondentID
+sd_store_value(respondentID, "respID")
+```
+
+### 3. Filter the design for the respondentID
+
+We create a subset dataframe called `df` that stores only the rows for the randomly chosen respondent ID. We also append the `"images/"` string onto the values in the `image` column as this will create the relative path to the images in our survey, e.g. `"images/fuji.jpg"` (all the images we show are in the `"images"` folder in the repo).
+
+``` downlit
+# Filter for the rows for the chosen respondentID
+df <- design %>%
+  filter(respID == respondentID) %>%
+  mutate(image = paste0("images/", image))
+```
+
+### 4. Define a function to create question options
+
+This is the most complex component in the server logic. Here we created a function that takes a dataframe and returns a named vector defining the options to show in each choice question. In this case, we only have 3 options per choice question, so each time we call this function we will use a small dataframe that has just 3 rows defining the 3 choice alternatives in a single choice question.
+
+The function does several things. First, it extracts three single-row data frames that store the values of each of the 3 alternatives (`alt1`, `alt2`, and `alt3`). It then creates an `options` vector that has just 3 values: `"option_1"`, `"option_2"`, and `"option_3"`. Then we have to define the names of each of those options. Remember that the *values* in the `options` vector are what gets stored in our resulting survey data based on what the respondent chooses, but the *names* are what respondents see. So in the context of a choice survey like this, we need to embed all of the attributes and their levels in the names of the `options` vector.
+
+We use the `glue()` function to easily inject the values stored in `alt1`, `alt2`, and `alt3` into our labels. The `glue()` function is similar to [`paste()`](https://rdrr.io/r/base/paste.html) in that is just concatenates object values into a string, but it has an easier syntax to work with. Anything inside [`{}`](https://rdrr.io/r/base/Paren.html) brackets is evaluated, and the resulting value is inserted into the string. So for example, the line `glue("1 plus 1 equals {1+1}")` would produce the string `"1 plus 1 equals 2"`.
+
+In our case, we’re including some html code to insert an image of the apple type (`<img src='{alt1$image}' width=100>`), the apply type itself (`**Type**: {alt1$type}`), and the apple price (`**Price**: $ {alt1$price} / lb`).
+
+Notice also that we’re mixing markdown (e.g. `**Option 1**`) and html (e.g. `<br>`), which will all get rendered into proper html in the resulting shiny app. The full function looks like this:
+
+``` downlit
+# Function to create the labels for a choice question
+# based on the values in df
+
+make_cbc_options <- function(df) {
+  alt1 <- df |> filter(altID == 1)
+  alt2 <- df |> filter(altID == 2)
+  alt3 <- df |> filter(altID == 3)
+
+  options <- c("option_1", "option_2", "option_3")
+
+  names(options) <- c(
+    glue(
+      "
+    **Option 1**<br>
+    <img src='{alt1$image}' width=100><br>
+    **Type**: {alt1$type}<br>
+    **Price**: $ {alt1$price} / lb<br>
+    **Freshness**: {alt1$freshness}
+  "
+    ),
+    glue(
+      "
+    **Option 2**<br>
+    <img src='{alt2$image}' width=100><br>
+    **Type**: {alt2$type}<br>
+    **Price**: $ {alt2$price} / lb<br>
+    **Freshness**: {alt2$freshness}
+  "
+    ),
+    glue(
+      "
+    **Option 3**<br>
+    <img src='{alt3$image}' width=100><br>
+    **Type**: {alt3$type}<br>
+    **Price**: $ {alt3$price} / lb<br>
+    **Freshness**: {alt3$freshness}
+  "
+    )
+  )
+  return(options)
+}
+```
+
+### 5. Create the options for each choice question
+
+One of the benefits of making the function the way we did in the previous step is that we can now easily call it to generate the option vector for each of the 6 choice questions in `df`:
+
+``` downlit
+# Create the options for each choice question
+
+cbc1_options <- make_cbc_options(df |> filter(qID == 1))
+cbc2_options <- make_cbc_options(df |> filter(qID == 2))
+cbc3_options <- make_cbc_options(df |> filter(qID == 3))
+cbc4_options <- make_cbc_options(df |> filter(qID == 4))
+cbc5_options <- make_cbc_options(df |> filter(qID == 5))
+cbc6_options <- make_cbc_options(df |> filter(qID == 6))
+```
+
+### 6. Create each choice question (6 in total)
+
+Finally, we now have everything we need to generate each choice question. Here we’re using the `mc_buttons` question type so that the labels we generated will be displayed on a large button, which looks good both on a computer and phone. We give the question a unique `id` (e.g. `cbc_q1`), and a label, and then set the `option` to the corresponding option vector we defined above.
+
+``` downlit
+sd_question(
+  type   = 'mc_buttons',
+  id     = 'cbc_q1',
+  label  = "(1 of 6) If these were your only options, which would you choose?",
+  option = cbc1_options
+)
+
+# ...and 5 more questions like this
+```
+
+Remember that since the labels in the options are being *dynamically* generated on each new session (each respondent), they have to be created in the server, not in the main survey body. As a result, the [`sd_question()`](https://pkg.surveydown.org/reference/sd_question.html) function must also be created in the server code (if you put this code in the main body, only one random set of choice options will be generated, and they’ll be the same for everyone).
+
+To display each question in the survey body, we use `sd_output("id", type = "question")`, changing `id` to each corresponding choice question we created. In the demo `survey.qmd` file, you’ll see that there are 6 choice questions displayed in the main survey body (each on their own page), and each of those 6 questions are defined in the `server()` function in the `app.R` file.
+
+When rendered, a choice question will look like this, with the values matching whatever alternative was chosen in the design file:
+
+(1 of 6) If these were your only options, which would you choose?
+
+  
+
+**Option 1**  
+![](images/honeycrisp.jpg)  
+**Type**: Honeycrisp  
+**Price**: \$ 1 / lb  
+**Freshness**: Average **Option 2**  
+![](images/fuji.jpg)  
+**Type**: Fuji  
+**Price**: \$ 3 / lb  
+**Freshness**: Excellent **Option 3**  
+![](images/redDelicious.jpg)  
+**Type**: Red Delicious  
+**Price**: \$ 2.5 / lb  
+**Freshness**: Average
+
+\*
+
+  
+
+And that’s it! You now have 6 randomized choice questions!
+
+## Buttons versus tables
+
+In the example above, the conjoint choice questions are displayed as “buttons” where all the information for each alternative is shown as a button. This works particularly well for mobile phone applications where the user may need to scroll vertically to see each option.
+
+An alternative is to use a table layout where each column represents an alternative and the row names explain the attribute. This takes a little manipulation to get it right, but the key concept is to use [`kable()`](https://rdrr.io/pkg/knitr/man/kable.html) to display the transpose of the `df` data frame (the subset of rows for a particular respondent). We also use the wonderful [kableExtra](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html) package to modify some of the table stying. We don’t explain this code in detail in this blog post, but the gist of what we’re doing here is creating a dataframe with our alternatives and displaying it as a table with [`kable()`](https://rdrr.io/pkg/knitr/man/kable.html).
+
+The main function doing this work in the [conjoint table](https://surveydown.org/templates/conjoint_tables) template is the `make_cbc_table()` function, which looks like this:
+
+``` downlit
+library(dplyr)
+library(kableExtra)
+
+# Function to create the options table for a given choice question
+make_cbc_table <- function(df) {
+  alts <- df |>
+    mutate(
+      price = paste(scales::dollar(price), "/ lb"),
+      image = paste0('<img src="', image, '" width=100>')
+    ) |>
+    # Make nicer attribute labels
+    select(
+      `Option:` = altID,
+      ` ` = image,
+      `Price:` = price,
+      `Type:` = type,
+      `Freshness:` = freshness
+    )
+  row.names(alts) <- NULL # Drop row names
+
+  table <- kbl(t(alts), escape = FALSE) |>
+    kable_styling(
+      bootstrap_options = c("striped", "hover", "condensed"),
+      full_width = FALSE,
+      position = "center"
+    )
+  function() {
+    table
+  }
+}
+```
+
+It is important to note that the table just shows the options, but it doesn’t allow respondents to indicate their choice. So we still need to create a basic choice question like this:
+
+``` downlit
+cbc1_options <- c("option_1", "option_2", "option_3")
+names(cbc1_options) <- c("Option 1", "Option 2", "Option 3")
+
+sd_question(
+  type   = 'mc_buttons',
+  id     = 'cbc_q1',
+  label  = "(1 of 6) If the above options were your only options, which would you choose?",
+  option = cbc1_options
+)
+```
+
+(1 of 6) If the above options were your only options, which would you choose?
+
+  
+
+Option 1 Option 2 Option 3
+
+\*
+
+The final result is a set of choice questions that each look something like this:
+
+![](images/cbc_table.png)
+
+## Preview and check
+
+The rest of the `server()` function in the `app.R` file has the remaining components we need, like any conditional display or skip logic. This is all standard features of any surveydown survey, so we won’t cover them in detail here and instead direct you to the [documentation](https://surveydown.org/docs.html) for details.
+
+But before you go live, it’s a good idea to do some quick testing. You can test your survey even without having it connected to a database by setting `ignore = TRUE` in the [`sd_db_connect()`](https://pkg.surveydown.org/reference/sd_db_connect.html) function. Of course, you probably should also test it after connecting it to a database to ensure that responses are being properly stored.
+
+When testing, you might get an error - don’t panic! Read the terminal output carefully and debug. There’s a good chance you may have missed a bug somewhere in your server code. Look in your `app.R` file to see if you can spot the error.
+
+## Getting the data
+
+Once your survey is live and you start collecting responses, you can easily access your data with the [`sd_get_data()`](https://pkg.surveydown.org/reference/sd_get_data.html) function. This is typically done in a separate R file (e.g., see [here](https://github.com/surveydown-dev/template_conjoint_buttons/blob/main/code/2_get_raw_data.R)), which might look something like this:
+
+``` downlit
+library(surveydown)
+
+# Connect to database
+db <- sd_db_connect()
+
+# Pull in the data
+df <- sd_get_data(db)
+```
+
+For this to work, you will first have to make sure you’ve set up your database connection using `sd_db_config` (see [here](https://surveydown.org/docs/storing-data) for more).
+
+And that’s it! We hope this post was helpful, and do go check out the [conjoint buttons](https://surveydown.org/templates/conjoint_buttons) and [conjoint table](https://surveydown.org/templates/conjoint_tables) templates to try out the demos yourself!
+
+Back to top
+
+## Footnotes
+
+[^1]: Yes, people have [actually done conjoint surveys on fruit](https://www.emerald.com/insight/content/doi/10.1108/00070709610150879/full/html) before.

@@ -1,0 +1,204 @@
+# Question Formatting
+
+The `sd_question()` function has many optional arguments for modifying the appearance and behavior of questions. This page demonstrates some of the formatting options.
+
+## Markdown formatting
+
+**Markdown** is supported for **question labels** and **option labels**.
+
+### Question labels
+
+The `label` argument for any question type can accept markdown formatting. For example, the question below uses the `*` symbol to make some words bold, italic, and bold italic.
+
+## Code chunk
+
+```` markdown
+```{r}
+sd_question(
+  type   = 'mc',
+  id     = 'markdown_label',
+  label  = "**This** is a question *label* supporting ***markdown***:",
+  option = c(
+    "Option A" = "option_a",
+    "Option B" = "option_b",
+    "Option C" = "option_c"
+  )
+)
+```
+````
+
+## Output
+
+**This** is a question *label* supporting ***markdown***:
+
+Option A
+
+Option B
+
+Option C
+
+\*
+
+### Option labels
+
+Markdown formatting is also supported for the `option` labels in question types that have options, such as `mc`, `mc_multiple`, `mc_buttons`, and `mc_multiple_buttons`. For example:
+
+## Code chunk
+
+```` markdown
+```{r}
+sd_question(
+  type   = 'mc_buttons',
+  id     = 'markdown_buttons',
+  label  = "The 3 options below support markdown:",
+  option = c(
+    "*Option A*"     = "option_a",
+    "**Option B**"   = "option_b",
+    "***Option C***" = "option_c"
+  )
+)
+```
+````
+
+## Output
+
+The 3 options below support markdown:
+
+  
+
+*Option A* **Option B** ***Option C***
+
+\*
+
+## HTML formatting
+
+HTML formatting is supported for the `option` labels in question types that have options, such as `mc_buttons` and `mc_multiple_buttons`. This allows you to insert mixed content to achieve more complex labels, including plain text, markdown, and HTML code.
+
+For example, here is a question with some complex labels for a choice question that include markdown and HTML code to embed images.
+
+## Code chunk
+
+```` markdown
+```{r}
+# Define the option vector
+html_button_options <- c("option_1", "option_2", "option_3")
+
+# Define option labels that include markdown and HTML code to embed images
+names(html_button_options) <- c(
+
+  "**Option 1**<br>
+   <img src='https://raw.githubusercontent.com/surveydown-dev/template_conjoint_buttons/main/images/fuji.jpg' width=100><br>
+   **Type**: Fuji<br>
+   **Price**: $ 2 / lb<br>
+   **Freshness**: Average",
+
+  "**Option 2**<br>
+   <img src='https://raw.githubusercontent.com/surveydown-dev/template_conjoint_buttons/main/images/pinkLady.jpg' width=100><br>
+    **Type**: Pink Lady<br>
+    **Price**: $ 1.5 / lb<br>
+    **Freshness**: Excellent",
+
+  "**Option 3**<br>
+    <img src='https://raw.githubusercontent.com/surveydown-dev/template_conjoint_buttons/main/images/honeycrisp.jpg' width=100><br>
+    **Type**: Honeycrisp<br>
+    **Price**: $ 2 / lb<br>
+    **Freshness**: Poor"
+)
+
+sd_question(
+  type   = 'mc_buttons',
+  id     = 'html_buttons',
+  label  = "A sample survey question using `mc_buttons`",
+  option = html_button_options
+)
+```
+````
+
+## Output
+
+A sample survey question using `mc_buttons`
+
+  
+
+**Option 1**  
+![](https://raw.githubusercontent.com/surveydown-dev/template_conjoint_buttons/main/images/fuji.jpg)  
+**Type**: Fuji  
+**Price**: \$ 2 / lb  
+**Freshness**: Average **Option 2**  
+![](https://raw.githubusercontent.com/surveydown-dev/template_conjoint_buttons/main/images/pinkLady.jpg)  
+**Type**: Pink Lady  
+**Price**: \$ 1.5 / lb  
+**Freshness**: Excellent **Option 3**  
+![](https://raw.githubusercontent.com/surveydown-dev/template_conjoint_buttons/main/images/honeycrisp.jpg)  
+**Type**: Honeycrisp  
+**Price**: \$ 2 / lb  
+**Freshness**: Poor
+
+\*
+
+## Size formatting
+
+Use the `width`, `height` arguments to change the size of the question.
+
+For example, the question below uses the `width` and `height` arguments to change the size of a text area question.
+
+## Code chunk
+
+```` markdown
+```{r}
+sd_question(
+  type  = "textarea",
+  id    = "change_width",
+  label = "This text area has width set as 40% and height set as 100px:",
+  width = "40%", 
+  height = "100px"
+)
+```
+````
+
+## Output
+
+This text area has width set as 40% and height set as 100px:
+
+\*
+
+In addition, [`matrix`](question-types.llms.md#matrix) type questions have an additional size argument:
+
+- `matrix_question_width`
+
+This controls the width of the question column in matrix questions. The option column width is automatically calculated based on the remaining space.
+
+By default, `matrix_question_width` is set to `NULL`, which automatically sizes the question column based on the length of the longest question text.
+
+You can override this by setting `matrix_question_width` to a specific value. The parameter accepts several formats:
+
+- **Percentage string**: `"40%"`
+- **Numeric string**: `"40"`
+- **Numeric value**: `40`
+
+All three formats above result in a 40% width for the question column.
+
+For example:
+
+``` downlit
+sd_question(
+  type = "matrix",
+  id = "satisfaction",
+  label = "Rate your satisfaction:",
+  option = c(
+    "Very unsatisfied" = 1,
+    "Unsatisfied" = 2,
+    "Neutral" = 3,
+    "Satisfied" = 4,
+    "Very satisfied" = 5
+  ),
+  question = c(
+    "Overall experience" = "experience",
+    "Customer service" = "service",
+    "Product quality" = "quality"
+  ),
+  matrix_question_width = "40%"  # Question column takes 40% of width
+)
+```
+
+Back to top

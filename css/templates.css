@@ -4,21 +4,41 @@
 /* Icon-only links appended to the end of the page title (GitHub repo and,
    when present, the live demo). Soft rounded Lucide tiles, sized relative
    to the title so they scale across breakpoints. */
-#title-block-header h1.title .title-icon {
+/* Action controls appended to the title: a GitHub icon tile and a Live Demo
+   button (window icon + label). Sizes are em of the title so they scale with
+   it; both share the soft tint of the site accent #18bc9c. */
+#title-block-header h1.title .title-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3em;
+    margin-left: 0.35em;
+    vertical-align: middle;
+    position: relative;
+    top: -0.06em; /* optically center against the caps */
+}
+
+#title-block-header h1.title .title-actions a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 1.05em;       /* relative to the title; ~ matches cap height */
-    height: 1.05em;
-    margin-left: 0.3em;
     border-radius: 0.22em;
-    background: rgba(24, 188, 156, 0.13); /* tint of the site accent #18bc9c */
+    background: rgba(24, 188, 156, 0.13);
     color: #18bc9c;
-    vertical-align: middle;
-    position: relative;
-    top: -0.06em;        /* nudge up to optically center against the caps */
     text-decoration: none;
     transition: background 0.15s ease, color 0.15s ease;
+}
+
+#title-block-header h1.title .title-actions a:hover {
+    background: rgba(24, 188, 156, 0.24);
+    color: #12a589;
+    border-color: #12a589;
+}
+
+/* GitHub: square icon tile (unchanged from the icon-only version) */
+#title-block-header h1.title .title-icon {
+    width: 1.05em;
+    height: 1.05em;
+    border: 2px solid #18bc9c; /* matches the icon stroke color */
 }
 
 #title-block-header h1.title .title-icon svg {
@@ -26,9 +46,55 @@
     height: 0.74em;
 }
 
-#title-block-header h1.title .title-icon:hover {
+/* Live Demo: two segments joined into one pill — a light icon tile on the left
+   (matching the GitHub tile) and a solid accent text segment on the right.
+   Scoped with a.title-pill so it overrides the shared tinted .title-actions a. */
+#title-block-header h1.title .title-actions a.title-pill {
+    height: 1.05em;
+    align-items: stretch;        /* both segments fill the pill height */
+    background: none;
+    padding: 0;
+}
+
+#title-block-header h1.title .title-pill .pill-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.05em;               /* square, same as the GitHub tile */
+    background: rgba(24, 188, 156, 0.13);
+    color: #18bc9c;
+    border: 2px solid #18bc9c;   /* matches the icon stroke color */
+    border-radius: 0.22em 0 0 0.22em; /* round only the outer (left) corners */
+}
+
+#title-block-header h1.title .title-pill .pill-icon svg {
+    width: 0.74em;
+    height: 0.74em;
+}
+
+#title-block-header h1.title .title-pill .pill-text {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 0.55em;
+    background: #18bc9c;
+    color: #fff;
+    font-size: 0.5em;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    /* 0.44em here = 0.22em at the title scale, since this segment is font-size:0.5em,
+       so the right corners match the icon segment's left corners. */
+    border-radius: 0 0.44em 0.44em 0;
+}
+
+#title-block-header h1.title .title-pill:hover .pill-icon {
     background: rgba(24, 188, 156, 0.24);
     color: #12a589;
+    border-color: #12a589;
+}
+
+#title-block-header h1.title .title-pill:hover .pill-text {
+    background: #149e85;
 }
 
 .template-video {

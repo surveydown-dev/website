@@ -311,6 +311,27 @@ main.content {
 .pkg-pill-surveydown { --pkg-color: #2C8475; }
 .pkg-pill-sdstudio { --pkg-color: #5A9BD4; }
 
+/* "Packages sites:" label + the two pills. inline-flex so the whole group is
+   positioned by the parent text-align (left in the desktop hero, centered on
+   mobile). The two pills stay together as one wrapping unit, so on a narrow
+   screen the label sits on its own line with both pills neatly below it. */
+.pkg-sites {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem 0.6rem;
+  max-width: 100%; // cap to the line so items wrap instead of overflowing
+}
+
+.pkg-sites-pills {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
 /* Home page navigation pills — the whole tile is one link to its page. Same
    teal glow (hover) + press (active) language as the listing cards.
    A CSS grid makes pills in the same row stretch to equal height. */

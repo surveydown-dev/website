@@ -6,18 +6,4 @@
 
   
 
-About the package and the open-source technologies behind it.
-
-[ABOUT](about.llms.md)
-
-Templates for an easy start.
-
-[TEMPLATES](templates.llms.md)
-
-Comprehensive documentation for building surveys with surveydown.
-
-[DOCUMENTATION](docs.llms.md)
-
-Frequently asked questions.
-
-[FAQ](faq.llms.md)
+[AboutAbout the package and the open-source technologies behind it.](about.llms.md) [TemplatesTemplates for an easy start.](templates.llms.md) [DocumentationComprehensive documentation for building surveys with surveydown.](docs.llms.md) [FAQFrequently asked questions.](faq.llms.md)

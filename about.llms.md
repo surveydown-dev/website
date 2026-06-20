@@ -14,7 +14,7 @@ Unable to execute JavaScript.
 
 **surveydown** is a flexible, open-source platform for making programmable, markdown-based surveys with [](https://CRAN.R-project.org/), [Quarto](https://quarto.org/), [Shiny](https://shiny.posit.co/), and [PostgreSQL](https://www.postgresql.org/).
 
-**Packages sites:** [surveydown](https://pkg.surveydown.org/) [sdstudio](https://sdstudio.surveydown.org/)
+**Packages sites:** [surveydown](https://pkg.surveydown.org/)[sdstudio](https://sdstudio.surveydown.org/)
 
 ------------------------------------------------------------------------
 

@@ -55,7 +55,7 @@ Here is what the **Survey Page Gadget** looks like in RStudio:
 
   
 
-![](../images/screenshots/gadget_of_page.gif)
+![](../images/screenshots/gadget-of-page.gif)
 
   
 

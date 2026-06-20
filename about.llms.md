@@ -14,7 +14,7 @@ Unable to execute JavaScript.
 
 **surveydown** is a flexible, open-source platform for making programmable, markdown-based surveys with [](https://CRAN.R-project.org/), [Quarto](https://quarto.org/), [Shiny](https://shiny.posit.co/), and [PostgreSQL](https://www.postgresql.org/).
 
-**Packages sites:** [![surveydown](https://img.shields.io/badge/surveydown-2C8475?style=flat&logo=r&logoColor=white.png)](https://pkg.surveydown.org/) \| [![sdstudio](https://img.shields.io/badge/sdstudio-5A9BD4?style=flat&logo=r&logoColor=white.png)](https://sdstudio.surveydown.org/)
+**Packages sites:** [surveydown](https://pkg.surveydown.org/) [sdstudio](https://sdstudio.surveydown.org/)
 
 ------------------------------------------------------------------------
 
@@ -51,19 +51,19 @@ As an open-source package, surveydown now has many more contributors who have ad
 
   
 
-![](./images/authors/john_helveston_square.png)
+![](./images/authors/john-helveston-square.png)
 
 **John Paul Helveston, Ph.D.**
 
 [John Paul Helveston](https://www.jhelvy.com) is an Associate Professor in the Department of [Engineering Management and Systems Engineering](https://emse.engineering.gwu.edu/) at George Washington University. Professor Helveston is the core designer and developer, and maintainer of both the surveydown project and this documentation website.
 
-![](./images/authors/pingfan_hu.jpg)
+![](./images/authors/pingfan-hu.jpg)
 
 **Pingfan Hu**
 
 [Pingfan Hu](https://pingfanhu.com) is a Ph.D. student in Systems Engineering at George Washington University, supervised by professor Helveston. Pingfan is mainly responsible for UI design, user interactions, and website maintenance.
 
-![](./images/authors/bogdan_bunea.jpg)
+![](./images/authors/bogdan-bunea.jpg)
 
 **Bogdan Bunea**
 

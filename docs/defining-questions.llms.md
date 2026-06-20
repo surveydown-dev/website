@@ -142,7 +142,7 @@ The gadget will insert the properly formatted question code at your cursor posit
 
   
 
-![](../images/screenshots/gadget_of_question.gif)
+![](../images/screenshots/gadget-of-question.gif)
 
   
 
@@ -154,7 +154,7 @@ You can make it easier to trigger the gadget by binding it to a keyboard shortcu
 
   
 
-![](../images/screenshots/shortcut_1.png)
+![](../images/screenshots/shortcut-1.png)
 
   
 
@@ -162,7 +162,7 @@ You can make it easier to trigger the gadget by binding it to a keyboard shortcu
 
   
 
-![](../images/screenshots/shortcut_2.png)
+![](../images/screenshots/shortcut-2.png)
 
   
 
@@ -170,7 +170,7 @@ You can make it easier to trigger the gadget by binding it to a keyboard shortcu
 
   
 
-![](../images/screenshots/shortcut_3.png)
+![](../images/screenshots/shortcut-3.png)
 
   
 

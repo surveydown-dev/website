@@ -274,7 +274,7 @@ config <- sd_config(
 
 This will make the `penguins_other` question only appear if the respondent chose the `other` option in the `penguins` question, like this:
 
-![](show_if.gif)
+![](show-if.gif)
 
   
 
@@ -398,12 +398,12 @@ write_csv(design, "design.csv")
 This would make a design file that looks like this:
 
     #>   respondent_id     brand
-    #> 1             1 Chevrolet
-    #> 2             1    Nissan
-    #> 3             1      Ford
-    #> 4             2 Chevrolet
-    #> 5             2      Ford
-    #> 6             2     Honda
+    #> 1             1      Ford
+    #> 2             1 Chevrolet
+    #> 3             1     Honda
+    #> 4             2      Ford
+    #> 5             2     Tesla
+    #> 6             2    Nissan
 
 Note that this would not be done in your survey.qmd file - it’s just a one-time thing to create the design (probably stored in an R file).
 

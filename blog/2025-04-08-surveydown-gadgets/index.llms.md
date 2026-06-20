@@ -33,7 +33,7 @@ Here is a showcase of the **Survey Page Gadget** in RStudio:
 
   
 
-![](images/gadget_of_page.gif)
+![](images/gadget-of-page.gif)
 
   
 
@@ -41,7 +41,7 @@ The **Survey Question Gadget**:
 
   
 
-![](images/gadget_of_question.gif)
+![](images/gadget-of-question.gif)
 
   
 
@@ -75,7 +75,7 @@ For more efficient workflow, set up keyboard shortcuts:
 
   
 
-![](images/shortcut_1.png)
+![](images/shortcut-1.png)
 
   
 
@@ -83,7 +83,7 @@ For more efficient workflow, set up keyboard shortcuts:
 
   
 
-![](images/shortcut_2.png)
+![](images/shortcut-2.png)
 
   
 
@@ -91,7 +91,7 @@ For more efficient workflow, set up keyboard shortcuts:
 
   
 
-![](images/shortcut_3.png)
+![](images/shortcut-3.png)
 
   
 

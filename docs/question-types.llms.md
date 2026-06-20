@@ -366,7 +366,7 @@ Use `type = 'mc_image'` for a single-choice question where each option is a clic
 
 ## Output
 
-![](../images/screenshots/mc_image.png)
+![](../images/screenshots/mc-image.png)
 
 ## Code
 
@@ -386,7 +386,7 @@ sd_question(
 
 ## Output
 
-![](../images/screenshots/mc_image_no_caption.png)
+![](../images/screenshots/mc-image-no-caption.png)
 
 ## Code
 
@@ -412,7 +412,7 @@ Use `type = 'mc_multiple_image'` for the multiple-selection version of `mc_image
 
 ## Output
 
-![](../images/screenshots/mc_multiple_image.png)
+![](../images/screenshots/mc-multiple-image.png)
 
 ## Code
 
@@ -503,7 +503,7 @@ If your slider uses numeric inputs, use the `slider_numeric` question type. This
 
 ## Output
 
-![](../images/screenshots/slider_numeric_single.png)
+![](../images/screenshots/slider-numeric-single.png)
 
 ## Code chunk
 
@@ -522,7 +522,7 @@ sd_question(
 
 ## Output
 
-![](../images/screenshots/slider_numeric_range.png)
+![](../images/screenshots/slider-numeric-range.png)
 
 ## Code chunk
 

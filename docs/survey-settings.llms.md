@@ -206,13 +206,13 @@ Below are the `true` and `false` cases for `rate-survey`:
 
 If `rate-survey` is `true`, a survey rating question will pop up:
 
-![](../images/screenshots/rate_survey.gif)
+![](../images/screenshots/rate-survey.gif)
 
 ## `FALSE`
 
 If `rate-survey` is `false`, a confirm exit dialog box will pop up:
 
-![](../images/screenshots/confirm_exit.gif)
+![](../images/screenshots/confirm-exit.gif)
 
 ### System language
 
@@ -235,7 +235,7 @@ Six languages are internally supported by **surveydown**:
 
 Below is an example of the system language set to **Spanish** (`es`):
 
-![](../images/system_language_es.gif)
+![](../images/system-language-es.gif)
 
   
 
@@ -256,11 +256,11 @@ By default, the highlight color is set to `gray` (equivalent to `grey`). We also
 
 Below is an example of unanswered questions being highlighted in gray:
 
-![](../images/highlight_gray.png)
+![](../images/highlight-gray.png)
 
 Changed to blue:
 
-![](../images/highlight_blue.png)
+![](../images/highlight-blue.png)
 
 > **NOTE:**
 >

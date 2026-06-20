@@ -43,7 +43,7 @@ On the top right corner, you can toggle between **Local** and **DB** mode. The *
 
 This is the **Local** mode dashboard:
 
-![](../images/screenshots/dashboard_local.png)
+![](../images/screenshots/dashboard-local.png)
 
 In this mode, the `preview_data.csv` file is auto-selected. The attributes of this data file are displayed in different cards, followed by the actual data sheet preview in the “Survey Responses” card.
 
@@ -55,7 +55,7 @@ For more info on database connection, refer to the [Storing Data](../docs/storin
 
 This is how the “Database Connection” card looks like when it’s expanded:
 
-![](../images/screenshots/dashboard_db_1.png)
+![](../images/screenshots/dashboard-db-1.png)
 
 > **TIP:**
 >
@@ -65,6 +65,6 @@ When your connection is setup and ready, you can toggle the “Database Connecti
 
 This is how the dashboard looks like in **DB** mode:
 
-![](../images/screenshots/dashboard_db_2.png)
+![](../images/screenshots/dashboard-db-2.png)
 
 Back to top

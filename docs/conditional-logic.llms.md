@@ -14,7 +14,7 @@ It is often useful to show a **question** based on some condition, such as the r
 
 For example, let’s say we have a choice question about people’s favorite penguin type, and the last option is “other”. If the respondent chose it, you may want a second question to display that allows them to specify the “other” penguin type, like this:
 
-![](../images/screenshots/show_if.gif)
+![](../images/screenshots/show-if.gif)
 
   
 
@@ -89,7 +89,7 @@ Note that there are 2 condition checks and 2 target page branches in the example
 
 One use case for this is a design where you want to randomly show respondents one of a set of pages. For example, let’s say you have versions A and B of page 2 in your survey, and you want to randomly show one to each respondent. Here’s a visual explanation of this setup:
 
-![](../images/show_if_page.png)
+![](../images/show-if-page.png)
 
   
 

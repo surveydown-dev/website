@@ -399,11 +399,11 @@ This would make a design file that looks like this:
 
     #>   respondent_id     brand
     #> 1             1     Honda
-    #> 2             1 Chevrolet
-    #> 3             1    Toyota
-    #> 4             2    Toyota
-    #> 5             2    Nissan
-    #> 6             2     Honda
+    #> 2             1    Toyota
+    #> 3             1 Chevrolet
+    #> 4             2      Ford
+    #> 5             2 Chevrolet
+    #> 6             2     Tesla
 
 Note that this would not be done in your survey.qmd file - it’s just a one-time thing to create the design (probably stored in an R file).
 

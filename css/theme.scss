@@ -21,6 +21,12 @@ body {
   font-family: "Roboto", $font-family-base, sans-serif;
 }
 
+/* Page background — cream in light, navy in dark. Only the body is recolored;
+   the docked sidebar keeps its own `background: light` panel so it stays
+   visually distinct from the content area. */
+body { background-color: #F8F7F0; }
+body.quarto-dark { background-color: #1a1f2e; }
+
 div.quarto-post .metadata {
   font-family: "Roboto", $font-family-base, sans-serif;
 }
@@ -103,6 +109,145 @@ footer.footer .nav-footer {
   min-height: unset !important;
   margin: 0 !important;
   order: unset !important;
+  white-space: nowrap;
+}
+
+// Match body hyperlink styling (see css/surveydown.css link rules)
+.nav-footer-center a {
+  color: #fff;
+  text-decoration: underline;
+  &:hover { color: var(--bs-link-color); }
+}
+
+/* Navbar */
+
+// Show site title only when navbar is collapsed (mobile)
+@media (min-width: 992px) {
+  .navbar-brand-container,
+  .navbar .navbar-brand { display: none !important; }
+}
+
+// Lab logo injected by JS into .navbar-container so flex `order` pushes it to the end.
+// Negative top/bottom margins (per Quarto's Posit-badge approach) keep the logo from
+// inflating the navbar height — the image renders larger than the navbar's natural
+// content height but doesn't contribute to vertical sizing.
+.navbar-lab-link {
+  order: 9999;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -100px;
+  margin-bottom: -100px;
+  margin-left: 8px;
+  padding: 4px 8px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.14);
+    text-decoration: none;
+  }
+
+  &:active {
+    background-color: rgba(255, 255, 255, 0.30);
+    transform: scale(0.97);
+  }
+
+  img {
+    height: 36px;
+    width: auto;
+    display: block;
+    border-radius: 7px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  }
+}
+
+// Hide the lab logo on very narrow viewports (phones in portrait) where the
+// navbar content otherwise wraps and overlaps the page below.
+@media (max-width: 575.98px) {
+  .navbar-lab-link { display: none !important; }
+}
+
+nav.navbar {
+  padding-top: 0.6rem !important;
+  padding-bottom: 0.6rem !important;
+  min-height: 0;
+}
+
+// Shared hover/active "block" effect for left-side nav items and right-side tools.
+// Quarto renders `tools:` entries as `.quarto-navbar-tools > a` (or
+// `.quarto-navbar-tool`), which bypasses the `.nav-link` selectors — so they
+// must be listed explicitly here.
+.navbar-nav .nav-link,
+.quarto-navbar-tools > a,
+.quarto-navbar-tools > .quarto-navbar-tool {
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  &.active {
+    background-color: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+  }
+
+  &:active {
+    background-color: rgba(255, 255, 255, 0.30);
+  }
+}
+
+.navbar-nav .nav-link {
+  padding: 0.2rem 0.55rem !important;
+}
+
+.quarto-navbar-tools > a,
+.quarto-navbar-tools > .quarto-navbar-tool {
+  padding: 0.2rem 0.45rem !important;
+  margin: 0 0.05rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.quarto-navbar-tools {
+  display: flex !important;
+  align-items: center;
+}
+
+.navbar-nav {
+  @media (min-width: 768px) {
+    flex-wrap: nowrap !important;
+    white-space: nowrap;
+    .nav-item { flex-shrink: 1; }
+
+    // Spacing + dividers between left-nav items (skip right-side .ms-auto group)
+    &:not(.ms-auto) {
+      gap: 1rem;
+
+      .nav-item + .nav-item {
+        position: relative;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: -0.5rem;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 1px;
+          height: 1rem;
+          background-color: rgba(255, 255, 255, 0.35);
+          pointer-events: none;
+        }
+      }
+    }
+  }
 }
 
 /* Layout */
@@ -112,6 +257,152 @@ main.content {
 
 .sidebar {
   padding-bottom: 3em;
+}
+
+/* Package site pills — split button: light icon tile (hard stroke) + solid
+   inverted text segment. Mirrors the template "Live Demo" pill (templates.css). */
+.pkg-pill {
+  display: inline-flex;
+  align-items: stretch;
+  height: 1.7em;
+  vertical-align: middle;
+  text-decoration: none;
+  border-radius: 0.32em;
+  white-space: nowrap;
+}
+
+.pkg-pill .pill-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7em;
+  background: color-mix(in srgb, var(--pkg-color) 14%, white);
+  color: var(--pkg-color);
+  border: 1.5px solid var(--pkg-color);
+  border-radius: 0.32em 0 0 0.32em;
+}
+
+// R logo as a mask so a single images/icon-r.svg can be tinted per package.
+.pkg-pill .pill-icon::before {
+  content: "";
+  display: block;
+  width: 0.95em;
+  height: 0.95em;
+  background-color: currentColor;
+  -webkit-mask: url(/images/icon-r.svg) center / contain no-repeat;
+  mask: url(/images/icon-r.svg) center / contain no-repeat;
+}
+
+.pkg-pill .pill-text {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.6em;
+  background: var(--pkg-color);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.82em;
+  line-height: 1;
+  border-radius: 0 0.32em 0.32em 0;
+}
+
+.pkg-pill:hover .pill-icon { background: color-mix(in srgb, var(--pkg-color) 26%, white); }
+.pkg-pill:hover .pill-text { background: color-mix(in srgb, var(--pkg-color) 86%, black); }
+
+.pkg-pill-surveydown { --pkg-color: #2C8475; }
+.pkg-pill-sdstudio { --pkg-color: #5A9BD4; }
+
+/* ---- Listing cards: Templates grid (.quarto-grid-item) + Blog list
+   (.quarto-post). Ported from the personal site's listing styling, recolored
+   from its purple accent to surveydown's teal (#18bc9c). Resting borders use a
+   translucent teal so they read on both the light (flatly) and dark (darkly)
+   themes without separate per-theme overrides. Hover = teal glow (no lift);
+   active = dimmer glow + a faint inward press. */
+.quarto-grid-item.card,
+.quarto-post {
+  border: 1.5px solid rgba(24, 188, 156, 0.30);
+  border-radius: 14px;
+  transition: border-color 0.25s ease,
+              box-shadow 0.25s ease,
+              transform 0.12s ease;
+
+  &:hover {
+    border-color: #18bc9c !important;
+    box-shadow: 0 0 16px 1px rgba(24, 188, 156, 0.22),
+                0 6px 16px rgba(24, 188, 156, 0.16);
+  }
+  &:active {
+    border-color: #12a589 !important;
+    box-shadow: 0 0 9px 0 rgba(24, 188, 156, 0.18),
+                0 3px 8px rgba(24, 188, 156, 0.16);
+    transform: scale(0.992);
+  }
+}
+
+// Clip grid card images to the rounded corners (box-shadow is painted outside
+// the border box, so overflow:hidden does not clip the hover glow).
+.quarto-grid-item.card { overflow: hidden; }
+
+// Blog list items: turn the default flex row into a padded card and make the
+// whole card follow the post's title link.
+.quarto-post {
+  position: relative;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
+
+  .listing-title a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .listing-categories { margin-top: 0.4rem; }
+
+  // Keep category badges clickable above the whole-card title overlay.
+  .quarto-category,
+  .listing-category {
+    position: relative;
+    z-index: 2;
+  }
+
+  .thumbnail { align-self: center; }
+  .thumbnail img { border-radius: 10px; overflow: hidden; }
+}
+
+// Category badges: teal fill on hover (templates + blog + title-block tags).
+.quarto-category,
+.listing-category {
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    background-color: #18bc9c !important;
+    color: #fff !important;
+    border-color: #18bc9c !important;
+  }
+}
+
+/* Template title-action glyphs (GitHub tile + Live Demo window icon). Defined
+   here rather than in css/templates.css because Quarto mangles absolute url()
+   paths inside plain `css:` files, but leaves the compiled SCSS bundle intact.
+   The tile/pill styling itself stays in css/templates.css. */
+#title-block-header h1.title .title-icon::before,
+#title-block-header h1.title .title-pill .pill-icon::before {
+  content: "";
+  display: block;
+  width: 0.74em;
+  height: 0.74em;
+  background-color: currentColor;
+}
+
+#title-block-header h1.title .title-icon::before {
+  -webkit-mask: url(/images/icon-github.svg) center / contain no-repeat;
+  mask: url(/images/icon-github.svg) center / contain no-repeat;
+}
+
+#title-block-header h1.title .title-pill .pill-icon::before {
+  -webkit-mask: url(/images/icon-window.svg) center / contain no-repeat;
+  mask: url(/images/icon-window.svg) center / contain no-repeat;
 }
 
 /* Images */

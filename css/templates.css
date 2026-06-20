@@ -41,10 +41,8 @@
     border: 1.5px solid #18bc9c; /* matches the icon stroke color */
 }
 
-#title-block-header h1.title .title-icon svg {
-    width: 0.74em;
-    height: 0.74em;
-}
+/* GitHub glyph (.title-icon::before) is drawn via CSS mask in css/theme.scss,
+   because Quarto mangles absolute url() paths inside plain `css:` files. */
 
 /* Live Demo: two segments joined into one pill — a light icon tile on the left
    (matching the GitHub tile) and a solid accent text segment on the right.
@@ -67,10 +65,8 @@
     border-radius: 0.22em 0 0 0.22em; /* round only the outer (left) corners */
 }
 
-#title-block-header h1.title .title-pill .pill-icon svg {
-    width: 0.74em;
-    height: 0.74em;
-}
+/* Window glyph (.title-pill .pill-icon::before) is drawn via CSS mask in
+   css/theme.scss (see GitHub note above). */
 
 #title-block-header h1.title .title-pill .pill-text {
     display: inline-flex;

@@ -12,11 +12,11 @@ port <- 8121
 shots <- list(
   # selector = output file (relative to website root)
   "#container-experience" = "images/screenshots/slider.png",
-  "#container-slider_single_val" = "images/screenshots/slider_numeric_single.png",
-  "#container-slider_range" = "images/screenshots/slider_numeric_range.png",
-  "#container-pet" = "images/screenshots/mc_image.png",
-  "#container-pet_no_caption" = "images/screenshots/mc_image_no_caption.png",
-  "#container-pets_owned" = "images/screenshots/mc_multiple_image.png"
+  "#container-slider_single_val" = "images/screenshots/slider-numeric-single.png",
+  "#container-slider_range" = "images/screenshots/slider-numeric-range.png",
+  "#container-pet" = "images/screenshots/mc-image.png",
+  "#container-pet_no_caption" = "images/screenshots/mc-image-no-caption.png",
+  "#container-pets_owned" = "images/screenshots/mc-multiple-image.png"
 )
 
 # Image-choice cards whose inputs to click (to show the selected state)

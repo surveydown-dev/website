@@ -7,12 +7,15 @@ project:
   render:
     - "!chunks/"
     - "**/*.qmd"
+  resources:
+    - js/
+    - images/
 
 website:
   title: surveydown.org
   llms-txt: true
-  image: images/logo.ico
-  favicon: images/logo.ico
+  image: images/logo-surveydown.ico
+  favicon: images/logo-surveydown.ico
   site-url: https://www.surveydown.org
   repo-url: https://github.com/surveydown/website
   back-to-top-navigation: true
@@ -24,35 +27,43 @@ website:
   twitter-card:
     creator: "@johnhelveston"
     site: "@johnhelveston"
-    image: images/logo.png
+    image: images/logo-surveydown.png
     card-style: summary_large_image
     image-width: 150
     image-height: 150
   page-footer:
     background: dark
     center:
-      - text: "Site made with <i class='bi bi-heart-fill'></i>, <i class='bi bi-git'></i></a>, and <a href='https://quarto.org/' target='_blank'><img src='https://quarto.org/favicon.png' width=12> quarto</a>"
+      - text: "Site made with <i class='bi bi-heart-fill'></i>, <i class='bi bi-git'></i></a>, and <img src='/images/icon-quarto.svg' width=13 style='vertical-align:-1px;margin-right:0.25em'><a href='https://quarto.org/' target='_blank'>Quarto</a>"
 
   navbar:
     background: primary
     search: true
     left:
-      - text: "About"
-        href: about.qmd   
-      - text: "Documentation"
+      - icon: house-door
+        text: "surveydown.org"
+        href: index.qmd
+      - icon: info-circle
+        text: "About"
+        href: about.qmd
+      - icon: book
+        text: "Documentation"
         href: docs.qmd
-      - text: "Templates"
+      - icon: grid-1x2
+        text: "Templates"
         href: templates.qmd
-      - text: "Blog"
-        href: blog/index.qmd
+      - icon: newspaper
+        text: "Blog"
+        href: blog.qmd
 
     right:
-      - text: "FAQ"
+      - icon: question-circle
+        text: "FAQ"
         href: faq.qmd
       - icon: github
         href: https://github.com/surveydown-dev/surveydown
       - icon: rss
-        href: blog/index.xml
+        href: blog.xml
 
   sidebar:
     - title: "Documentation"
@@ -195,6 +206,9 @@ format:
     link-external-newwindow: true
     link-external-icon: false
     link-external-filter: '^(?:http:|https:)\/\/(?:www\.)?surveydown\.org'
+    include-after-body:
+      text: |
+        <script src="/js/navbar-logo.js"></script>
 
 execute:
   echo: true

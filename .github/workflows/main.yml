@@ -31,26 +31,14 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev libudunits2-dev libgdal-dev libgeos-dev libproj-dev
 
-      - name: Query R package dependencies
-        run: |
-          install.packages(c('remotes', 'here'))
-          saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
-          writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
-        shell: Rscript {0}
-
-      - name: Cache R packages
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-${{ env.R_VERSION }}-1-${{ hashFiles('.github/depends.Rds') }}
-          restore-keys: ${{ runner.os }}-${{ env.R_VERSION }}-1-
-
       - name: Install R dependencies
-        run: |
-          install.packages(c('sf', 'leaflet', 'plotly'), dependencies=TRUE, repos='https://cloud.r-project.org/')
-          remotes::install_deps(dependencies = TRUE)
-          install.packages("pkgdown")
-        shell: Rscript {0}
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: |
+            any::pkgdown
+            any::sf
+            any::leaflet
+            any::plotly
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2

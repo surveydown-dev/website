@@ -2,6 +2,10 @@
 
 Survey response data is stored in a PostgreSQL database. We recommend using [Supabase](https://supabase.com/) as a free and open-source option, though you can use any service you want. In this guide, we’ll walk you through the steps for setting up a Supabase project and connecting your surveydown survey to it.
 
+> **TIP:**
+>
+> Rather not do this by hand? The [surveydown agentic skill](agentic-skill.llms.md#connect-a-database) can walk through this whole process for you: creating a Supabase project, storing your credentials, and switching the survey to `mode: database`. See [Connect a database](agentic-skill.llms.md#connect-a-database).
+
 ## Survey modes
 
 surveydown supports three operating modes — `database`, `preview`, and `local` — controlled by the `mode` setting in your `survey.qmd` YAML header. These modes determine how and where your response data is stored. See the [Survey Settings](../docs/survey-settings.llms.md#mode) page for full documentation on each mode.
@@ -44,25 +48,13 @@ On the connection page, click the “Direct” connection option, then select �
 
   
 
-You can use either the **connection URL** or the **individual parameters** to configure your database in surveydown.
+You’ll read the **individual connection parameters** shown below the URL (host, port, database name, user, password) to configure your database in surveydown.
 
 ## Storing your database credentials
 
 Before connecting to your database, you need to store your credentials. There are two ways to do this:
 
-### Option 1: Using the connection URL (fastest)
-
-Copy the connection URL from Supabase and pass it to `sd_db_config()`:
-
-``` downlit
-surveydown::sd_db_config(
-  url = "postgresql://postgres.xxxx:[YOUR-PASSWORD]@aws-0-us-east-1.pooler.supabase.com:6543/postgres"
-)
-```
-
-This parses the host, port, database name, and user from the URL automatically. Since the URL contains `[YOUR-PASSWORD]` as a placeholder, you will be prompted to enter your password. You will also be prompted to choose a table name (press Enter to accept the default `"responses"`).
-
-### Option 2: Interactive setup
+### Option 1: Interactive setup (recommended)
 
 Run `sd_db_config()` with no arguments:
 
@@ -70,13 +62,30 @@ Run `sd_db_config()` with no arguments:
 surveydown::sd_db_config()
 ```
 
-This will prompt you to enter each database credential one by one. The current values will be shown in square brackets. When done it should look like this:
+This will prompt you to enter each database credential one by one — host, port, database name, user, password, and table name — which you can read off the connection parameters shown on the Supabase page. The current values are shown in square brackets; press Enter to keep one (e.g. the default `"responses"` table name). When done it should look like this:
 
   
 
 ![](../images/screenshots/sd-db-config.png)
 
   
+
+### Option 2: Passing parameters directly
+
+Instead of the interactive prompts, you can pass any of the connection parameters as arguments to `sd_db_config()`:
+
+``` downlit
+surveydown::sd_db_config(
+  host     = "aws-0-us-east-1.pooler.supabase.com",
+  port     = "6543",
+  dbname   = "postgres",
+  user     = "postgres.xxxx",
+  password = "YOUR-PASSWORD",
+  table    = "responses"
+)
+```
+
+Any parameter you omit keeps its current stored value (or its default), so this also works for changing just one field — see [Modifying credentials](#modifying-credentials) below.
 
 ### The `.env` file
 
@@ -94,7 +103,7 @@ sd_db_config(table = 'mytable')
 
 Once run in the R console, a message will print out confirming that the stored `table` parameter will now be `mytable`.
 
-You can pass any of the following as arguments to update them: `url`, `host`, `dbname`, `port`, `user`, `table`, and `password`.
+You can pass any of the following as arguments to update them: `host`, `dbname`, `port`, `user`, `table`, and `password`.
 
 Finally, you can also view / modify your database credentials using the `sdstudio` package, a companion GUI package for surveydown surveys. To do this, launch the app by running this command in the R console:
 

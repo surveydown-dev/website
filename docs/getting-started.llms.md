@@ -85,6 +85,10 @@ surveydown::sd_create_survey(
 
 The default is `template = "default"`, but you can specify other templates. See the [Templates](../templates.llms.md) page for an overview of all currently available templates.
 
+> **TIP:**
+>
+> Prefer to let an AI agent do it? The [`/surveydown-skill`](agentic-skill.llms.md#create-a-survey) can scaffold a survey from any template (or compose a custom one you describe) for you.
+
 ## 3. Add survey content
 
 Survey content is edited in the **survey.qmd** file. See the [Basic Components](../docs/basic-components.llms.md) page for more details on how to add more content to a surveydown survey. At a minimum, you can add pages and questions like this:
@@ -140,12 +144,16 @@ In the `server()` function in the **app.R** file, add rich functionality to your
 
 Setup your database connection using the [`sd_db_config()`](https://pkg.surveydown.org/reference/sd_db_config.html) function. Once your configuration credentials are created (they get saved in a `.env` file), make a connection to your database using the [`sd_db_connect()`](https://pkg.surveydown.org/reference/sd_db_connect.html) function in the global settings at the top of the **app.R** file. To run the survey locally without storing data to a database, set `mode: preview` in your `survey.qmd` YAML. See the [Storing Data](../docs/storing-data.llms.md) page for more details on the available modes.
 
+> **TIP:**
+>
+> The [`/surveydown-skill`](agentic-skill.llms.md#connect-a-database) can set up this database connection for you, including creating a free Supabase project and writing the `.env`.
+
 ## 6. Locally preview
 
 Preview your survey by clicking the “Run App” button in RStudio or in your R console running the `runApp()` command.
 
 ## 7. Deploy
 
-Deploy your survey by hosting it on your favorite server, like [shinyapps.io](https://shinyapps.io/), [HuggingFace](https://huggingface.co/), [Posit Connect Cloud](https://connect.posit.cloud/), [Heroku](https://www.heroku.com/), etc. See the [Deployment](deployment.llms.md) page for more details.
+Deploy your survey on a host that runs R/Shiny: [Posit Connect Cloud](https://connect.posit.cloud/), [Hugging Face Spaces](https://huggingface.co/), or [Google Cloud Run](https://cloud.google.com/run). See the [Deployment](deployment.llms.md) page for details, or let the [`/surveydown-skill`](agentic-skill.llms.md#deploy-online) deploy it for you.
 
 Back to top

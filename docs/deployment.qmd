@@ -11,33 +11,24 @@ Before deploying your survey, make sure everything is working locally. You shoul
 
 With these steps completed, you are ready to deploy your survey online.
 
-## Deploying to shinyapps.io
+## Using a skill
 
-Deploying your survey is pretty much the same as deploying any other Shiny app. We recommend using {{< var shinyapps >}} to host your survey as it is designed to work with Shiny Apps, but you can also use [other hosting services](#deploying-to-other-hosting-services).
+If you are familiar with AI or agentive engineering, you can use this skill to expedite your server deployment. Simply install and invoke `/surveydown-skill` in your AI agent, and use it to deploy your survel. Visit the [surveydown agentic skill](agentic-skill.html) page for more information.
+
+## Deploy by hand
+
+A surveydown survey is a live {{< var shiny >}} application, not a static website, so it must be hosted on a service that can run R.
 
 ::: {.callout-note}
 
-You may have deployed other Quarto documents on [Quarto Pub](https://quartopub.com) before, but this site is only for static websites, so you **SHOULD NOT** use Quarto Pub for your survey deployment.
+You may have deployed other Quarto documents on [Quarto Pub](https://quartopub.com) before, but this service is only for static websites, so you **SHOULD NOT** use Quarto Pub (or other static hosts like GitHub Pages or Netlify) for your survey deployment.
 
 :::
 
-To start using {{< var shinyapps >}}, you'll need to create an account and follow the basic instructions to set up your sub-domain and authorize your IDE. See more information [here](https://docs.posit.co/shinyapps.io/guide/getting_started/).
+We recommend three hosting platforms, all of which the agentic skill can deploy to automatically:
 
-Once you have your account and sub-domain ready, make sure you have the [rsconnect](https://rstudio.github.io/rsconnect/) package installed. You should have done this while authorizing your IDE, but in case you didn't, you can install it with:
+- **[Posit Connect Cloud](https://connect.posit.cloud/)** — Posit's managed home for R/Shiny apps and the recommended successor to the retiring shinyapps.io. The free plan allows **5 applications**, and you publish straight from the [rsconnect](https://rstudio.github.io/rsconnect/) package.
+- **[Hugging Face Spaces](https://huggingface.co/)** — runs your survey as a Docker Space on a clean URL. The free tier can run roughly **3 surveys** at once.
+- **[Google Cloud Run](https://cloud.google.com/run)** — runs each survey as its own container with **no limit** on the number of surveys. Idle services scale to zero (≈ $0 when unused), but a billing card is required on the project.
 
-```{r}
-install.packages('rsconnect')
-```
-
-Then to deploy your survey, run:
-
-```{r}
-# Define your app name with the appName parameter
-rsconnect::deployApp(appName = "my_survey")
-```
-
-That's it! Now you should have your survey site deployed on **shinyapps.io**. Congratulations! 🎉
-
-## Deploying to Other Hosting Services
-
-{{< include ../chunks/deploy-alts.qmd >}}
+You can also install [Posit Connect](https://posit.co/products/enterprise/connect/) on your own server, which is the recommended approach for remaining compliant with any security protocols your organization requires.

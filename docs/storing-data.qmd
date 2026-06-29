@@ -4,6 +4,10 @@ title: "Storing Data"
 
 Survey response data is stored in a PostgreSQL database. We recommend using {{< var supabase >}} as a free and open-source option, though you can use any service you want. In this guide, we'll walk you through the steps for setting up a Supabase project and connecting your surveydown survey to it.
 
+::: {.callout-tip}
+Rather not do this by hand? The [surveydown agentic skill](agentic-skill.html#connect-a-database) can walk through this whole process for you: creating a Supabase project, storing your credentials, and switching the survey to `mode: database`. See [Connect a database](agentic-skill.html#connect-a-database).
+:::
+
 ## Survey modes
 
 surveydown supports three operating modes — `database`, `preview`, and `local` — controlled by the `mode` setting in your `survey.qmd` YAML header. These modes determine how and where your response data is stored. See the [Survey Settings](survey-settings.qmd#mode) page for full documentation on each mode.

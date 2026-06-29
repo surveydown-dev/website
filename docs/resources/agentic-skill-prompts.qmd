@@ -1,0 +1,205 @@
+```{=html}
+<style>
+/* Single grid so both columns share one set of tracks: the divider stays
+   aligned across every row. Column 1 sizes to its widest label but is capped
+   at 14rem, so on a narrow (in-between) viewport the label wraps instead of
+   squeezing the prompt. Column 2 is minmax(0, 1fr) so it can shrink below its
+   content's min-width — the prompt text wraps and the copy pill never clips. */
+.skp-outer {
+  display: grid;
+  grid-template-columns: minmax(min-content, 14rem) minmax(0, 1fr);
+  margin: 1.1rem 0 1.6rem;
+  border: 1.5px solid rgba(24, 188, 156, 0.30);
+  border-radius: 14px;
+  overflow: hidden;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 10px rgba(60, 50, 20, 0.05);
+}
+.skp-head {
+  background: #2C8475;
+  color: #fff;
+  font-weight: 800;
+  padding: 0.7rem 1.1rem;
+}
+.skp-task-head { border-right: 1px solid rgba(255, 255, 255, 0.30); }
+
+/* Rows are display:contents so their two cells become items of the outer grid
+   (shared tracks). Hovering either cell highlights the whole row. */
+.skp-row { display: contents; }
+.skp-cell {
+  padding: 0.8rem 1.1rem;
+  border-top: 1px solid rgba(24, 188, 156, 0.18);
+  transition: background-color 0.15s ease;
+}
+.skp-row:hover .skp-cell { background-color: rgba(24, 188, 156, 0.07); }
+
+.skp-task {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  color: #18bc9c;
+  border-right: 1px solid rgba(24, 188, 156, 0.18);
+}
+.skp-prompt-row {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  justify-content: space-between;
+}
+.skp-text { line-height: 1.5; min-width: 0; }
+.skp-text code {
+  background: rgba(24, 188, 156, 0.12);
+  color: #1f7d70;
+  padding: 0.12em 0.42em;
+  border-radius: 5px;
+  font-size: 0.88em;
+}
+
+/* Copy pill. Icon and label each stack both states in one grid cell, so the
+   pill's width is fixed to the wider state ("Copied!") and never reflows. */
+.skp-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  flex-shrink: 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #2C8475;
+  background: rgba(24, 188, 156, 0.10);
+  border: 1px solid rgba(24, 188, 156, 0.35);
+  border-radius: 999px;
+  padding: 0.35em 0.85em;
+  cursor: pointer;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease,
+              transform 0.1s ease, color 0.15s ease;
+}
+.skp-copy:hover { background: rgba(24, 188, 156, 0.20); box-shadow: 0 3px 10px rgba(24, 188, 156, 0.18); }
+.skp-copy:active { transform: scale(0.96); }
+.skp-copy.copied { background: #18bc9c; border-color: #18bc9c; color: #fff; }
+
+.skp-copy-icon, .skp-copy-label { display: inline-grid; }
+.skp-copy-icon > span, .skp-copy-label > span {
+  grid-area: 1 / 1;
+  text-align: center;
+  white-space: nowrap;
+}
+.skp-i-copied, .skp-l-copied { visibility: hidden; }
+.skp-copy.copied .skp-i-copy,
+.skp-copy.copied .skp-l-copy { visibility: hidden; }
+.skp-copy.copied .skp-i-copied,
+.skp-copy.copied .skp-l-copied { visibility: visible; }
+
+/* Mobile: collapse to one column — task label becomes a small caption above
+   its prompt, header row hidden. */
+@media (max-width: 520px) {
+  .skp-outer { display: block; }
+  .skp-head { display: none; }
+  .skp-row { display: block; }
+  .skp-row + .skp-row { border-top: 1px solid rgba(24, 188, 156, 0.18); }
+  .skp-cell { border-top: none; border-right: none; }
+  .skp-task {
+    color: #2C8475;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.8rem 1rem 0.1rem;
+  }
+  .skp-prompt { padding: 0.1rem 1rem 0.85rem; }
+}
+
+body.quarto-dark .skp-outer { border-color: rgba(24, 188, 156, 0.35); }
+body.quarto-dark .skp-cell { border-top-color: rgba(24, 188, 156, 0.20); }
+body.quarto-dark .skp-task { border-right-color: rgba(24, 188, 156, 0.22); }
+body.quarto-dark .skp-row + .skp-row { border-top-color: rgba(24, 188, 156, 0.20); }
+body.quarto-dark .skp-row:hover .skp-cell { background-color: rgba(24, 188, 156, 0.10); }
+body.quarto-dark .skp-copy { color: #4fd6bd; }
+body.quarto-dark .skp-text code { background: rgba(24, 188, 156, 0.18); color: #5fe3c8; }
+</style>
+
+<div class="skp-outer">
+ <div class="skp-head skp-task-head">What you'll do</div>
+ <div class="skp-head">Example prompt</div>
+
+ <div class="skp-row">
+  <div class="skp-cell skp-task">Create a survey</div>
+  <div class="skp-cell skp-prompt">
+   <div class="skp-prompt-row">
+    <span class="skp-text">Make me a surveydown survey about coffee preferences.</span>
+    <button class="skp-copy" type="button" aria-label="Copy prompt">
+     <span class="skp-copy-icon"><span class="bi bi-clipboard skp-i-copy"></span><span class="bi bi-check-lg skp-i-copied"></span></span>
+     <span class="skp-copy-label"><span class="skp-l-copy">Copy</span><span class="skp-l-copied">Copied!</span></span>
+    </button>
+   </div>
+  </div>
+ </div>
+
+ <div class="skp-row">
+  <div class="skp-cell skp-task">Connect a database</div>
+  <div class="skp-cell skp-prompt">
+   <div class="skp-prompt-row">
+    <span class="skp-text"><code>/surveydown-skill</code> connect my survey to a Supabase database.</span>
+    <button class="skp-copy" type="button" aria-label="Copy prompt">
+     <span class="skp-copy-icon"><span class="bi bi-clipboard skp-i-copy"></span><span class="bi bi-check-lg skp-i-copied"></span></span>
+     <span class="skp-copy-label"><span class="skp-l-copy">Copy</span><span class="skp-l-copied">Copied!</span></span>
+    </button>
+   </div>
+  </div>
+ </div>
+
+ <div class="skp-row">
+  <div class="skp-cell skp-task">Deploy online</div>
+  <div class="skp-cell skp-prompt">
+   <div class="skp-prompt-row">
+    <span class="skp-text">Deploy this survey to Hugging Face Spaces.</span>
+    <button class="skp-copy" type="button" aria-label="Copy prompt">
+     <span class="skp-copy-icon"><span class="bi bi-clipboard skp-i-copy"></span><span class="bi bi-check-lg skp-i-copied"></span></span>
+     <span class="skp-copy-label"><span class="skp-l-copy">Copy</span><span class="skp-l-copied">Copied!</span></span>
+    </button>
+   </div>
+  </div>
+ </div>
+
+ <div class="skp-row">
+  <div class="skp-cell skp-task">Record a video walkthrough</div>
+  <div class="skp-cell skp-prompt">
+   <div class="skp-prompt-row">
+    <span class="skp-text"><code>/surveydown-skill</code> record a video walkthrough of my survey.</span>
+    <button class="skp-copy" type="button" aria-label="Copy prompt">
+     <span class="skp-copy-icon"><span class="bi bi-clipboard skp-i-copy"></span><span class="bi bi-check-lg skp-i-copied"></span></span>
+     <span class="skp-copy-label"><span class="skp-l-copy">Copy</span><span class="skp-l-copied">Copied!</span></span>
+    </button>
+   </div>
+  </div>
+ </div>
+</div>
+
+<script>
+(function () {
+  function wire() {
+    document.querySelectorAll('.skp-outer .skp-copy').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var cell = btn.closest('.skp-prompt');
+        var el = cell ? cell.querySelector('.skp-text') : null;
+        var text = el ? el.innerText.trim() : '';
+        function done() {
+          btn.classList.add('copied');
+          setTimeout(function () { btn.classList.remove('copied'); }, 1500);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done).catch(done);
+        } else {
+          done();
+        }
+      });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', wire);
+  } else {
+    wire();
+  }
+})();
+</script>
+```

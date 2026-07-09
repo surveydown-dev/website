@@ -397,13 +397,13 @@ write_csv(design, "design.csv")
 
 This would make a design file that looks like this:
 
-    #>   respondent_id     brand
-    #> 1             1      Ford
-    #> 2             1    Toyota
-    #> 3             1 Chevrolet
-    #> 4             2 Chevrolet
-    #> 5             2    Toyota
-    #> 6             2     Honda
+    #>   respondent_id  brand
+    #> 1             1 Nissan
+    #> 2             1 Toyota
+    #> 3             1   Ford
+    #> 4             2  Honda
+    #> 5             2  Tesla
+    #> 6             2 Toyota
 
 Note that this would not be done in your survey.qmd file - it’s just a one-time thing to create the design (probably stored in an R file).
 

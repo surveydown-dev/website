@@ -511,6 +511,31 @@ body.quarto-dark .home-pill-desc { color: #cfd2cf; }
   margin-bottom: 1em;
 }
 
+/* Panel tabsets — the active tab defaults to pure white (light) / pure black
+   (dark), which clashes with the cream/navy page background. Recolor the active
+   tab and its border so it blends into the themed background instead of
+   standing out as a stark white or black block. */
+.panel-tabset .nav-tabs .nav-link.active,
+.panel-tabset .nav-tabs .nav-item.show .nav-link {
+  background-color: #F8F7F0;
+  border-color: #e2e0d5 #e2e0d5 #F8F7F0;
+}
+
+body.quarto-dark .panel-tabset .nav-tabs .nav-link.active,
+body.quarto-dark .panel-tabset .nav-tabs .nav-item.show .nav-link {
+  background-color: #1a1f2e;
+  border-color: #2c3346 #2c3346 #1a1f2e;
+}
+
+/* Code blocks — the default light-gray fill reads cool and washed-out against
+   the warm cream page background. Recolor to a warm off-cream tint so code
+   blocks harmonize with the beige body. Light theme only; dark is unchanged. */
+body:not(.quarto-dark) div.sourceCode,
+body:not(.quarto-dark) pre.sourceCode,
+body:not(.quarto-dark) pre:not(.sourceCode) {
+  background-color: #F0EEE2;
+}
+
 /* Media queries */
 @media (max-width: 767.98px) {
   .nav-footer-center,

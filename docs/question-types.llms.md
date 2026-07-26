@@ -185,7 +185,7 @@ Use `type = 'mc_buttons'` to generate the button version of `mc`.
 
 Which fruit do you prefer most from this list?
 
-  
+\
 
 Apple Banana Pear Strawberry Grape Mango Watermelon
 
@@ -218,7 +218,7 @@ Use `direction = "vertical"` to display the button options vertically.
 
 Which fruit do you prefer most from this list?
 
-  
+\
 
 Apple Banana Pear Strawberry Grape Mango Watermelon
 
@@ -254,7 +254,7 @@ Use `type = 'mc_multiple_buttons'` to generate the button version of `mc_multipl
 
 Which are your favorite Michael Jackson songs (select all that apply)?
 
-  
+\
 
 Thriller (1982)
 
@@ -302,7 +302,7 @@ Use `direction = "vertical"` to display the button options vertically.
 
 Which are your favorite Michael Jackson songs (select all that apply)?
 
-  
+\
 
 Thriller (1982)
 

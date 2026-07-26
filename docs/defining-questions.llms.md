@@ -140,11 +140,11 @@ The Survey Question Gadget provides a simple form to create a new question:
 
 The gadget will insert the properly formatted question code at your cursor position, which you can then customize further as needed.
 
-  
+\
 
 ![](../images/screenshots/gadget-of-question.gif)
 
-  
+\
 
 ### Setting Up Keyboard Shortcuts
 
@@ -152,27 +152,27 @@ You can make it easier to trigger the gadget by binding it to a keyboard shortcu
 
 1.  Go to Tools → Addins → Browse Addins…
 
-  
+\
 
 ![](../images/screenshots/shortcut-1.png)
 
-  
+\
 
 2.  In the Addins popup window, click on the “Keyboard shortcuts…” button on the bottom left corner.
 
-  
+\
 
 ![](../images/screenshots/shortcut-2.png)
 
-  
+\
 
 3.  Input “survey” in the search box.
 
-  
+\
 
 ![](../images/screenshots/shortcut-3.png)
 
-  
+\
 
 4.  Assign whatever shortcuts you want, e.g.:
     - `Ctrl+Shift+P` for the Survey Page Gadget

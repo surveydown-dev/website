@@ -4,7 +4,7 @@ To help you get started with surveydown, we created some templates that cover ma
 
 Call `sd_create_survey()` with proper arguments to create your desired templates in your preferred directory. Refer to the [Start with a template](docs/getting-started.llms.md#start-with-a-template) section for more details.
 
-  
+\
 
 ![](./templates/banners/default.png)
 

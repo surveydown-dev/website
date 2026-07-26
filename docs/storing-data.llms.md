@@ -18,11 +18,11 @@ First, navigate to the [Supabase](https://supabase.com/) website and create an a
 
 Once you are logged in, the page will prompt you to create a project (it’s a green button). Click on it and select your organization. A dialog box will pop up like this:
 
-  
+\
 
 ![](../images/screenshots/supabase-project.png)
 
-  
+\
 
 Fill in the project name and give it a strong password. Choose a region that is close to you (or close to your survey audience). All settings can be modified at any time.
 
@@ -34,19 +34,19 @@ Fill in the project name and give it a strong password. Choose a region that is 
 
 Once your Supabase project is ready, click on the “connect” button at the top, it should look like this:
 
-  
+\
 
 ![](../images/screenshots/supabase-connect.png)
 
-  
+\
 
 On the connection page, click the “Direct” connection option, then select “Transaction pooler”. There you can see the connection URL at the top as well as the individual connection parameters below it. It should look something like this:
 
-  
+\
 
 ![](../images/screenshots/supabase-connection.png)
 
-  
+\
 
 You’ll read the **individual connection parameters** shown below the URL (host, port, database name, user, password) to configure your database in surveydown.
 
@@ -64,11 +64,11 @@ surveydown::sd_db_config()
 
 This will prompt you to enter each database credential one by one — host, port, database name, user, password, and table name — which you can read off the connection parameters shown on the Supabase page. The current values are shown in square brackets; press Enter to keep one (e.g. the default `"responses"` table name). When done it should look like this:
 
-  
+\
 
 ![](../images/screenshots/sd-db-config.png)
 
-  
+\
 
 ### Option 2: Passing parameters directly
 

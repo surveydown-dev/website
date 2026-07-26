@@ -32,7 +32,7 @@ Unable to execute JavaScript.
 
 ***Intro to sdstudio***
 
-  
+\
 
 ## 1 Getting Started
 
@@ -79,25 +79,25 @@ The “Build” tab is your workspace of survey construction. You can either sta
 >
 > We currently have 15 templates to choose from. The ***default*** template contains a minimum basic structure for a clean start. You might also try the ***question_type*** template for a showcase of all question types, or try some advanced features with ***conditional_display***, ***conditional_navigation***, etc. Our [surveydown-dev GitHub organization](https://github.com/surveydown-dev) has template repositories starting with `template_`. Feel free to search for your desired templates, clone or download the source code and try them out!
 
-  
+\
 
 ![](images/build_tab_1.png)
 
 *Start from a Template in the Build Tab*
 
-  
+\
 
 ### 2.2 Build Your Survey
 
 After you’ve selected your template, or if you already have an existing survey, you’ll see the dual panel of survey constructions on the “Build” tab. The “Structure” section on the left shows the page-content structure of your survey. The “Code” section on the right displays the survey scripts in a code editor.
 
-  
+\
 
 ![](images/build_tab_2.png)
 
 *Dual Panel of the Build Tab*
 
-  
+\
 
 #### 2.2.1 The Structure Section
 
@@ -107,23 +107,23 @@ There are buttons on each page and content which self-explain their capabilities
 
 The *question* content shows question ID, question type, and question label. You can review the full question details with the edit button, or view the full question definition code on the code section. The *text* content shows the first 5 words of the full piece of text.
 
-  
+\
 
 ![](images/build_tab_3.png)
 
 *Click on the +T/+Q button to add a text/question*
 
-  
+\
 
 All elements support drag-n-drop operations. After each operation, the structure will refresh and update the code editor on the right. If you move two test elements together, they will merge in to one text element.
 
-  
+\
 
 ![](images/build_tab_4.gif)
 
 *Dragging two texts together will merge them*
 
-  
+\
 
 #### 2.2.2 The Code Section
 
@@ -141,37 +141,37 @@ The “Preview” tab is where your survey comes to life. It provides a real-tim
 
 Every time you make changes in the Build tab, the survey is live-rendered and revealed in the Preview tab. It takes a couple of seconds to render, so if you switch to the Preview tab too early, you’ll see message of survey being rendered. After rendering is done, the survey will be available.
 
-  
+\
 
 ![](images/preview_tab_1.gif)
 
 *The survey preview is live and interactive*
 
-  
+\
 
 ### 3.2 Desktop and Mobile Views
 
 You can toggle between “Desktop View” and “Mobile View” using the pair of buttons at the top right corner:
 
-  
+\
 
 ![](images/preview_tab_2.gif)
 
 *Toggling between desktop and mobile views*
 
-  
+\
 
 ### 3.3 New Sessions
 
 You might have noticed there is a green refresh button on the top right as well. This is for you to manually refresh the preview if you want to restart a session:
 
-  
+\
 
 ![](images/preview_tab_3.gif)
 
 *Restart a new session using the refresh button*
 
-  
+\
 
 ## 4 The “Responses” Tab
 
@@ -190,13 +190,13 @@ All our templates have **Local Mode** enabled by default, because we recommend y
 
 Below is a brief walkthrough of the process:
 
-  
+\
 
 ![](images/responses_tab_1.gif)
 
 *Build, Preview, and Responses in Sequence*
 
-  
+\
 
 ### 4.2 DB Mode
 
@@ -208,13 +208,13 @@ To get started with viewing your database response data, you need to firstly swi
 
 In order to have a clean start, we recommend you to name a new table in the “Table” field of “Database Connection”. Upon clicking “Test Connection”, this table will only be a placeholder, and the database will create such table once you start your first survey run.
 
-  
+\
 
 ![](images/responses_tab_2.png)
 
 *Input your credentials and create a new table*
 
-  
+\
 
 If the connection is successful, you will see a “Connected” status message in green. The “Choose a table to view” section will show the new table you just created, but all fields will be empty. They will be filled in once you run your survey in the **Preview** tab.
 
@@ -224,23 +224,23 @@ After you’ve taken care of the database connection, you can go back to the **B
 
 It is important to note that you can use the “Responses” tab to view all tables stored in your database. For example, if you have multiple surveys you are working on (each in a separate folder) that share the same database, you can select other tables to view from the “Responses” tab.
 
-  
+\
 
 ![](images/responses_tab_3.png)
 
 *Input your database credentials*
 
-  
+\
 
 If the connection is successful, you will see a “Connected” status message in green. You can choose your desired response table from the dropdown menu, review its progress and details, and download the csv file if needed:
 
-  
+\
 
 ![](images/responses_tab_4.gif)
 
 *Fill in your database credentials and click on the “Test Connection” button*
 
-  
+\
 
 ## 5 Data Security
 

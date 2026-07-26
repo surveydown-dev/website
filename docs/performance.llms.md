@@ -14,7 +14,7 @@ One thing you can do to improve the performance is to **max out the memory** set
 
 ![](../images/shinyapps-ram.png)
 
-  
+\
 
 The free tier allows for 1 GB of memory, and paid plans can go up much higher (this screenhot is from an earlier period when the free tier memory limits were larger).
 
@@ -34,13 +34,13 @@ Many researchers use panel providers like [Prolific](https://www.prolific.co/) t
 
 ![](../images/prolific-limit.png)
 
-  
+\
 
 Another option to consider is what types of devices your respondents will be completing your survey on. You may want to test how your survey renders on phones versus computers to see if there are siginificant differences. Some panel providers have options to limit which devices respondents can use to take the survey. On prolific this looks like this:
 
 ![](../images/prolific-types.png)
 
-  
+\
 
 Many panel providers offer these kinds of fielding options, and we recommend checking with your panel provider to help prevent overloading your app.
 

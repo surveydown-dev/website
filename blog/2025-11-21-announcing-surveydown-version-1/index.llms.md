@@ -150,7 +150,7 @@ Here are examples of previous button being enabled and disabled:
 
 *Previous button disabled*
 
-  
+\
 
 ![](images/previous_on.png)
 

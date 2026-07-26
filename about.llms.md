@@ -10,7 +10,7 @@ Unable to execute JavaScript.
 
 ![image showing the three technologies used in the surveydown platform along with their logos: quarto (for designing surveys), shiny (for rendering the survey), and supabase (for storing data)](images/technologies.svg)
 
-  
+\
 
 **surveydown** is a flexible, open-source platform for making programmable, markdown-based surveys with [](https://CRAN.R-project.org/), [Quarto](https://quarto.org/), [Shiny](https://shiny.posit.co/), and [PostgreSQL](https://www.postgresql.org/).
 
@@ -26,7 +26,7 @@ Here’s how it works:
 
 The **surveydown** [](https://CRAN.R-project.org/) package provides functions to bring this all together.
 
-  
+\
 
 We recommend reading the [Getting Started](docs/getting-started.llms.md) page to get a sense of how to use surveydown and perform your basic setups. The rest of the documentation covers more details on how to use surveydown.
 
@@ -49,7 +49,7 @@ The surveydown project is led by professor [John Paul Helveston](https://www.jhe
 
 As an open-source package, surveydown now has many more contributors who have added features and improved the project over time. See the [**Contributors’ Page**](https://github.com/surveydown-dev/surveydown/graphs/contributors) for details.
 
-  
+\
 
 ![](./images/authors/john-helveston-square.png)
 

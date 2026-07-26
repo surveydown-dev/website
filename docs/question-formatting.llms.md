@@ -64,7 +64,7 @@ sd_question(
 
 The 3 options below support markdown:
 
-  
+\
 
 *Option A* **Option B** ***Option C***
 
@@ -118,20 +118,20 @@ sd_question(
 
 A sample survey question using `mc_buttons`
 
-  
+\
 
-**Option 1**  
-![](https://raw.githubusercontent.com/surveydown-dev/template_conjoint_buttons/main/images/fuji.jpg)  
-**Type**: Fuji  
-**Price**: \$ 2 / lb  
-**Freshness**: Average **Option 2**  
-![](https://raw.githubusercontent.com/surveydown-dev/template_conjoint_buttons/main/images/pinkLady.jpg)  
-**Type**: Pink Lady  
-**Price**: \$ 1.5 / lb  
-**Freshness**: Excellent **Option 3**  
-![](https://raw.githubusercontent.com/surveydown-dev/template_conjoint_buttons/main/images/honeycrisp.jpg)  
-**Type**: Honeycrisp  
-**Price**: \$ 2 / lb  
+**Option 1**\
+![](https://raw.githubusercontent.com/surveydown-dev/template_conjoint_buttons/main/images/fuji.jpg)\
+**Type**: Fuji\
+**Price**: \$ 2 / lb\
+**Freshness**: Average **Option 2**\
+![](https://raw.githubusercontent.com/surveydown-dev/template_conjoint_buttons/main/images/pinkLady.jpg)\
+**Type**: Pink Lady\
+**Price**: \$ 1.5 / lb\
+**Freshness**: Excellent **Option 3**\
+![](https://raw.githubusercontent.com/surveydown-dev/template_conjoint_buttons/main/images/honeycrisp.jpg)\
+**Type**: Honeycrisp\
+**Price**: \$ 2 / lb\
 **Freshness**: Poor
 
 \*

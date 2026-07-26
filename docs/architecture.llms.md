@@ -2,11 +2,11 @@
 
 If you are interested in what is happening under the hood, here is a flow diagram that illustrates the overall architecture of a typical surveydown survey application:
 
-  
+\
 
 ![image showing the flow diagram of the surveydown architecture](../images/architecture.svg)
 
-  
+\
 
 Following this flow diagram, survey designers only need to edit **survey.qmd** and **app.R**. Since the survey is launched by **app.R**, which holds the core control logic of the survey, we’ve placed it at top left as starting point of the logic flows.
 

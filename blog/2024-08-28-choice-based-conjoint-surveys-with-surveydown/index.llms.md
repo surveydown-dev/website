@@ -198,25 +198,25 @@ When rendered, a choice question will look like this, with the values matching w
 
 (1 of 6) If these were your only options, which would you choose?
 
-  
+\
 
-**Option 1**  
-![](images/honeycrisp.jpg)  
-**Type**: Honeycrisp  
-**Price**: \$ 1 / lb  
-**Freshness**: Average **Option 2**  
-![](images/fuji.jpg)  
-**Type**: Fuji  
-**Price**: \$ 3 / lb  
-**Freshness**: Excellent **Option 3**  
-![](images/redDelicious.jpg)  
-**Type**: Red Delicious  
-**Price**: \$ 2.5 / lb  
+**Option 1**\
+![](images/honeycrisp.jpg)\
+**Type**: Honeycrisp\
+**Price**: \$ 1 / lb\
+**Freshness**: Average **Option 2**\
+![](images/fuji.jpg)\
+**Type**: Fuji\
+**Price**: \$ 3 / lb\
+**Freshness**: Excellent **Option 3**\
+![](images/redDelicious.jpg)\
+**Type**: Red Delicious\
+**Price**: \$ 2.5 / lb\
 **Freshness**: Average
 
 \*
 
-  
+\
 
 And that’s it! You now have 6 randomized choice questions!
 
@@ -277,7 +277,7 @@ sd_question(
 
 (1 of 6) If the above options were your only options, which would you choose?
 
-  
+\
 
 Option 1 Option 2 Option 3
 

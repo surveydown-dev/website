@@ -22,7 +22,7 @@ Published
 
 ![](logo.png)
 
-  
+\
 
 > **IMPORTANT:**
 >
@@ -40,11 +40,11 @@ In this post, I’m going to show you a quick overview of the {surveydown} R pac
 
 [surveydown](https://surveydown.org/) is a flexible platform for making surveys in using three open source technologies: [Quarto](https://quarto.org/), [shiny](https://shiny.posit.co/), and [supabase](https://supabase.com/). The package is still in development, but you can already use it to create surveys.
 
-  
+\
 
 ![](technologies.png)
 
-  
+\
 
 The basic concept is this:
 
@@ -193,7 +193,7 @@ Gentoo
 
 \*
 
-  
+\
 
 The `sd_question()` function can be used to create a variety of [question types](https://surveydown.org/docs/question-types.html), like text input, select drop down choices, and more by changing the `type` argument.
 
@@ -276,7 +276,7 @@ This will make the `penguins_other` question only appear if the respondent chose
 
 ![](show-if.gif)
 
-  
+\
 
 Here we’re using the [`tibble::tribble()`](https://tibble.tidyverse.org/reference/tribble.html) function to define a data frame with three columns:
 
@@ -398,12 +398,12 @@ write_csv(design, "design.csv")
 This would make a design file that looks like this:
 
     #>   respondent_id     brand
-    #> 1             1 Chevrolet
-    #> 2             1    Toyota
+    #> 1             1    Toyota
+    #> 2             1     Tesla
     #> 3             1     Honda
-    #> 4             2      Ford
-    #> 5             2     Honda
-    #> 6             2 Chevrolet
+    #> 4             2 Chevrolet
+    #> 5             2    Toyota
+    #> 6             2     Tesla
 
 Note that this would not be done in your survey.qmd file - it’s just a one-time thing to create the design (probably stored in an R file).
 

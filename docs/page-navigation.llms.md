@@ -53,11 +53,11 @@ If you are using RStudio, you can also make use of the page gadget to create pag
 
 Here is what the **Survey Page Gadget** looks like in RStudio:
 
-  
+\
 
 ![](../images/screenshots/gadget-of-page.gif)
 
-  
+\
 
 ## Navigation buttons
 

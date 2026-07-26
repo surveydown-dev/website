@@ -16,7 +16,7 @@ For example, let’s say we have a choice question about people’s favorite pen
 
 ![](../images/screenshots/show-if.gif)
 
-  
+\
 
 To implement this, you first need to define both the **conditional question** and the **target question** in the **survey.qmd** file, like this:
 
@@ -91,7 +91,7 @@ One use case for this is a design where you want to randomly show respondents on
 
 ![](../images/show-if-page.png)
 
-  
+\
 
 To implement this, you first need to define each of the pages in your **survey.qmd** file, like this (on page 1 I’m using `sd_output` to display the randomly chosen value, A or B, which we’ll define in the `server` function below):
 

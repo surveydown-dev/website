@@ -146,21 +146,21 @@ Since `database` is the default, you only need to set `mode` when using `preview
 
 **Preview mode** shows a yellow banner at the bottom of every page, making it immediately obvious that responses are not being saved to the database:
 
-  
+\
 
 ![](../images/screenshots/mode-preview.png)
 
-  
+\
 
 **Local mode** is for intentional offline data collection — no internet connection required, no banner shown, and responses are saved to a `local_data.csv` file in your project folder.
 
 If `mode` is set to `database` but the connection fails (e.g. no `.env` file or incorrect credentials), a red banner appears instead:
 
-  
+\
 
 ![](../images/screenshots/mode-db-fail.png)
 
-  
+\
 
 See the [Storing Data](../docs/storing-data.llms.md) page for full details on database setup and connection configuration.
 
@@ -237,7 +237,7 @@ Below is an example of the system language set to **Spanish** (`es`):
 
 ![](../images/system-language-es.gif)
 
-  
+\
 
 You can also customize any system message beyond these default values (see the [System Messages](#system-messages) section below).
 

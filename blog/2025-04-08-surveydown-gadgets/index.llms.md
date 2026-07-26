@@ -31,19 +31,19 @@ Two primary gadgets are offered by surveydown:
 
 Here is a showcase of the **Survey Page Gadget** in RStudio:
 
-  
+\
 
 ![](images/gadget-of-page.gif)
 
-  
+\
 
 The **Survey Question Gadget**:
 
-  
+\
 
 ![](images/gadget-of-question.gif)
 
-  
+\
 
 As you can see, these gadgets simplify the process of adding survey components. This blog walks you through how to access and use these gadgets.
 
@@ -61,11 +61,11 @@ You can access these gadgets in RStudio in two ways:
 
 Below is a screenshot of the Addins menu with surveydown gadgets:
 
-  
+\
 
 ![](images/addins_menu.png)
 
-  
+\
 
 ### 2.2 Keyboard Shortcuts (Recommended)
 
@@ -73,27 +73,27 @@ For more efficient workflow, set up keyboard shortcuts:
 
 1.  Go to Tools → Addins → Browse Addins…
 
-  
+\
 
 ![](images/shortcut-1.png)
 
-  
+\
 
 2.  In the Addins popup window, click on the “Keyboard shortcuts…” button on the bottom left corner.
 
-  
+\
 
 ![](images/shortcut-2.png)
 
-  
+\
 
 3.  Input “survey” in the search box.
 
-  
+\
 
 ![](images/shortcut-3.png)
 
-  
+\
 
 4.  Assign the following shortcuts:
     - `Ctrl+Shift+P` for the Survey Page Gadget
@@ -105,11 +105,11 @@ For more efficient workflow, set up keyboard shortcuts:
 
 ### 3.1 Survey Page Gadget
 
-  
+\
 
 ![](images/gadget_of_page.png)
 
-  
+\
 
 The page gadget is straightforward:
 
@@ -121,11 +121,11 @@ This will insert a properly formatted page block at your cursor position, includ
 
 ### 3.2 Survey Question Gadget
 
-  
+\
 
 ![](images/gadget_of_question.png)
 
-  
+\
 
 The question gadget offers more options:
 

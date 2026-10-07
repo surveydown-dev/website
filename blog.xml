@@ -16,7 +16,7 @@
 <height>80</height>
 <width>144</width>
 </image>
-<generator>quarto-1.10.18</generator>
+<generator>quarto-1.10.19</generator>
 <lastBuildDate>Fri, 21 Nov 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Announcing surveydown v1.0.0!</title>
@@ -2600,7 +2600,7 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>This post was updated on 2025-09-14 to match the latest package version</strong></p>
+<p><strong>This post was updated on 2026-10-07 to match the latest package version</strong></p>
 </div>
 </div>
 <p>Because <a href="https://surveydown.org/">surveydown</a> surveys run as a shiny app, you can include custom logic in the background by writing some <i class="fa-brands fa-r-project" aria-label="r-project"></i> code in your server. In this post, I’m going to show you one approach for using surveydown to create a particular type of complex survey: a <strong>choice-based conjoint survey</strong>.</p>
@@ -2649,16 +2649,16 @@ Note
 </div>
 </div>
 </section><section id="content-in-the-survey-body" class="level2"><h2 class="anchored" data-anchor-id="content-in-the-survey-body">Content in the survey body</h2>
-<p>After the setup code chunk where we load the surveydown package, we have a series of pages (defined with <code>:::</code> fences) that include markdown-formatted text and survey questions (defined with <code><a href="https://pkg.surveydown.org/reference/sd_question.html">sd_question()</a></code>). You can modify any of this content as you wish to suit the needs of your survey.</p>
+<p>After the setup code chunk where we load the surveydown package, we have a series of pages (defined with <code>--- page_id</code> page breaks) that include markdown-formatted text and survey questions (defined with <code><a href="https://pkg.surveydown.org/reference/sd_question.html">sd_question()</a></code>). You can modify any of this content as you wish to suit the needs of your survey.</p>
 <p>In this demo, we have a few other examples included, like a conditionally displayed question (the <code>fav_fruit</code> question will not display if you choose “No” on the first question about liking fruit) as well as a question that skips people to the end (if you choose “blue” and not “red” on the <code>screening</code> page). The logic controlling the conditional display and skipping is defined with the <code><a href="https://pkg.surveydown.org/reference/sd_skip_if.html">sd_skip_if()</a></code> function in the <code>app.R</code> file.</p>
 <p>None of this is absolutely necessary for a conjoint survey, but often times these are features that you may want to include, such as screening people out of the survey if they don’t qualify to take it, so we include it for demonstration purposes.</p>
 </section><section id="defining-the-choice-questions" class="level2"><h2 class="anchored" data-anchor-id="defining-the-choice-questions">Defining the choice questions</h2>
 <p>The central component of every conjoint survey is the set of randomized choice questions. To implement these in surveydown, we pre-define our choice questions in a design file that we later use in the survey to select randomized sets of choice questions to display each respondent.</p>
-<p>We use the <a href="https://jhelvy.github.io/cbcTools/">cbcTools</a> package to create the pre-defined design file. The code to create the choice questions for this demo survey is in the <a href="https://github.com/surveydown-dev/template_conjoint_buttons/blob/main/code/1_make_choice_questions.R"><code>1_make_choice_questions.R</code></a> file in the demo repo. This code generates a data frame of randomized choice questions that we then save in the project directory as <code>choice_questions.csv</code>.</p>
+<p>We use the <a href="https://jhelvy.github.io/cbcTools/">cbcTools</a> package to create the pre-defined design file. The code to create the choice questions for this demo survey is in the <a href="https://github.com/surveydown-dev/template_conjoint_buttons/blob/main/code/1_make_choice_questions.R"><code>1_make_choice_questions.R</code></a> file in the demo repo. This code generates a data frame of randomized choice questions that we then save in the <code>data</code> folder as <code>choice_questions.csv</code>.</p>
 </section><section id="implementing-the-choice-questions" class="level2"><h2 class="anchored" data-anchor-id="implementing-the-choice-questions">Implementing the choice questions</h2>
 <p>The choice questions are implemented at the top of the <code>server()</code> function in the <code>app.R</code> file in the demo repo. This code does the following steps:</p>
 <section id="read-in-the-design-file" class="level3"><h3 class="anchored" data-anchor-id="read-in-the-design-file">1. Read in the design file</h3>
-<p>Pretty straightforward - this is one line to read in the <code>choice_questions.csv</code> design file that we saved in the project folder.</p>
+<p>Pretty straightforward - this is one line to read in the <code>choice_questions.csv</code> design file that we saved in the <code>data</code> folder.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
 background-color: null;
@@ -2668,9 +2668,17 @@ font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">read_csv</span><span class="op" style="color: #5E5E5E;
 background-color: null;
+font-style: inherit;">(</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
 font-style: inherit;">(</span><span class="st" style="color: #20794D;
 background-color: null;
+font-style: inherit;">"data"</span>, <span class="st" style="color: #20794D;
+background-color: null;
 font-style: inherit;">"choice_questions.csv"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">)</span></span></code></pre></div></div>
 </div>
@@ -2717,7 +2725,7 @@ background-color: null;
 font-style: inherit;">)</span></span></code></pre></div></div>
 </div>
 </section><section id="filter-the-design-for-the-respondentid" class="level3"><h3 class="anchored" data-anchor-id="filter-the-design-for-the-respondentid">3. Filter the design for the respondentID</h3>
-<p>We create a subset dataframe called <code>df</code> that stores only the rows for the randomly chosen respondent ID. We also append the <code>"images/"</code> string onto the values in the <code>image</code> column as this will create the relative path to the images in our survey, e.g.&nbsp;<code>"images/fuji.jpg"</code> (all the images we show are in the <code>"images"</code> folder in the repo).</p>
+<p>We create a subset dataframe called <code>df</code> that stores only the rows for the randomly chosen respondent ID. The <code>image</code> column already stores the relative path to each image, e.g.&nbsp;<code>"images/fuji.jpg"</code> (all the images we show are in the <code>"images"</code> folder in the repo).</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -2730,7 +2738,7 @@ font-style: inherit;">&lt;-</span> <span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">design</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">%&gt;%</span></span>
+font-style: inherit;">|&gt;</span></span>
 <span>  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op" style="color: #5E5E5E;
@@ -2742,27 +2750,6 @@ background-color: null;
 font-style: inherit;">==</span> <span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">respondentID</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span>  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">mutate</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span>image <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"images/"</span>, <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">image</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">)</span></span></code></pre></div></div>
 </div>
@@ -3552,7 +3539,7 @@ font-style: inherit;">)</span></span></code></pre></div></div>
 </center>
 </section><section id="preview-and-check" class="level2"><h2 class="anchored" data-anchor-id="preview-and-check">Preview and check</h2>
 <p>The rest of the <code>server()</code> function in the <code>app.R</code> file has the remaining components we need, like any conditional display or skip logic. This is all standard features of any surveydown survey, so we won’t cover them in detail here and instead direct you to the <a href="https://surveydown.org/docs.html">documentation</a> for details.</p>
-<p>But before you go live, it’s a good idea to do some quick testing. You can test your survey even without having it connected to a database by setting <code>ignore = TRUE</code> in the <code><a href="https://pkg.surveydown.org/reference/sd_db_connect.html">sd_db_connect()</a></code> function. Of course, you probably should also test it after connecting it to a database to ensure that responses are being properly stored.</p>
+<p>But before you go live, it’s a good idea to do some quick testing. You can test your survey even without having it connected to a database by setting <code>mode: preview</code> under <code>survey-settings</code> in your <code>survey.qmd</code> YAML header - responses will be saved locally to <code>preview_data.csv</code> instead of a database, and <code><a href="https://pkg.surveydown.org/reference/sd_db_connect.html">sd_db_connect()</a></code> doesn’t need any arguments. Of course, you probably should also test it after connecting it to a database (switch <code>mode</code> to <code>database</code>) to ensure that responses are being properly stored.</p>
 <p>When testing, you might get an error - don’t panic! Read the terminal output carefully and debug. There’s a good chance you may have missed a bug somewhere in your server code. Look in your <code>app.R</code> file to see if you can spot the error.</p>
 </section><section id="getting-the-data" class="level2"><h2 class="anchored" data-anchor-id="getting-the-data">Getting the data</h2>
 <p>Once your survey is live and you start collecting responses, you can easily access your data with the <code><a href="https://pkg.surveydown.org/reference/sd_get_data.html">sd_get_data()</a></code> function. This is typically done in a separate R file (e.g., see <a href="https://github.com/surveydown-dev/template_conjoint_buttons/blob/main/code/2_get_raw_data.R">here</a>), which might look something like this:</p>
@@ -4441,13 +4428,13 @@ font-style: inherit;">)</span></span></code></pre></div></div>
 <p>This would make a design file that looks like this:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt;   respondent_id     brand
-#&gt; 1             1     Tesla
-#&gt; 2             1 Chevrolet
-#&gt; 3             1    Nissan
-#&gt; 4             2      Ford
-#&gt; 5             2     Honda
-#&gt; 6             2 Chevrolet</code></pre>
+<pre><code>#&gt;   respondent_id  brand
+#&gt; 1             1 Toyota
+#&gt; 2             1  Honda
+#&gt; 3             1 Nissan
+#&gt; 4             2  Tesla
+#&gt; 5             2   Ford
+#&gt; 6             2  Honda</code></pre>
 </div>
 </div>
 <p>Note that this would not be done in your survey.qmd file - it’s just a one-time thing to create the design (probably stored in an R file).</p>

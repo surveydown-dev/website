@@ -36,7 +36,7 @@ shiny::shinyOptions(bootstrapTheme = bslib::bs_theme(version = 5L))
 
 ::: {.callout-important}
 
-**This post was updated on 2025-09-14 to match the latest package version**
+**This post was updated on 2026-10-07 to match the latest package version**
 
 :::
 
@@ -79,7 +79,7 @@ We recommend opening the `survey.Rproj` if you're working in RStudio to make sur
 
 ## Content in the survey body
 
-After the setup code chunk where we load the surveydown package, we have a series of pages (defined with `:::` fences) that include markdown-formatted text and survey questions (defined with `sd_question()`). You can modify any of this content as you wish to suit the needs of your survey. 
+After the setup code chunk where we load the surveydown package, we have a series of pages (defined with `--- page_id` page breaks) that include markdown-formatted text and survey questions (defined with `sd_question()`). You can modify any of this content as you wish to suit the needs of your survey.
 
 In this demo, we have a few other examples included, like a conditionally displayed question (the `fav_fruit` question will not display if you choose "No" on the first question about liking fruit) as well as a question that skips people to the end (if you choose "blue" and not "red" on the `screening` page). The logic controlling the conditional display and skipping is defined with the `sd_skip_if()` function in the `app.R` file.
 
@@ -89,7 +89,7 @@ None of this is absolutely necessary for a conjoint survey, but often times thes
 
 The central component of every conjoint survey is the set of randomized choice questions. To implement these in surveydown, we pre-define our choice questions in a design file that we later use in the survey to select randomized sets of choice questions to display each respondent.
 
-We use the [cbcTools](https://jhelvy.github.io/cbcTools/) package to create the pre-defined design file. The code to create the choice questions for this demo survey is in the [`1_make_choice_questions.R`](https://github.com/surveydown-dev/template_conjoint_buttons/blob/main/code/1_make_choice_questions.R) file in the demo repo. This code generates a data frame of randomized choice questions that we then save in the project directory as `choice_questions.csv`.
+We use the [cbcTools](https://jhelvy.github.io/cbcTools/) package to create the pre-defined design file. The code to create the choice questions for this demo survey is in the [`1_make_choice_questions.R`](https://github.com/surveydown-dev/template_conjoint_buttons/blob/main/code/1_make_choice_questions.R) file in the demo repo. This code generates a data frame of randomized choice questions that we then save in the `data` folder as `choice_questions.csv`.
 
 ## Implementing the choice questions
 
@@ -97,10 +97,10 @@ The choice questions are implemented at the top of the `server()` function in th
 
 ###  1. Read in the design file
 
-Pretty straightforward - this is one line to read in the `choice_questions.csv` design file that we saved in the project folder.
+Pretty straightforward - this is one line to read in the `choice_questions.csv` design file that we saved in the `data` folder.
 
 ```{r}
-design <- read_csv("choice_questions.csv")
+design <- read_csv(file.path("data", "choice_questions.csv"))
 ```
 
 ### 2. Sample and store a random respondent ID
@@ -119,13 +119,12 @@ sd_store_value(respondentID, "respID")
 
 ### 3. Filter the design for the respondentID
 
-We create a subset dataframe called `df` that stores only the rows for the randomly chosen respondent ID. We also append the `"images/"` string onto the values in the `image` column as this will create the relative path to the images in our survey, e.g. `"images/fuji.jpg"` (all the images we show are in the `"images"` folder in the repo).
+We create a subset dataframe called `df` that stores only the rows for the randomly chosen respondent ID. The `image` column already stores the relative path to each image, e.g. `"images/fuji.jpg"` (all the images we show are in the `"images"` folder in the repo).
 
 ```{r}
 # Filter for the rows for the chosen respondentID
-df <- design %>%
-  filter(respID == respondentID) %>%
-  mutate(image = paste0("images/", image))
+df <- design |>
+  filter(respID == respondentID)
 ```
 
 ### 4. Define a function to create question options
@@ -311,7 +310,7 @@ The final result is a set of choice questions that each look something like this
 
 The rest of the `server()` function in the `app.R` file has the remaining components we need, like any conditional display or skip logic. This is all standard features of any surveydown survey, so we won't cover them in detail here and instead direct you to the [documentation](https://surveydown.org/docs.html) for details.
 
-But before you go live, it's a good idea to do some quick testing. You can test your survey even without having it connected to a database by setting `ignore = TRUE` in the `sd_db_connect()` function. Of course, you probably should also test it after connecting it to a database to ensure that responses are being properly stored. 
+But before you go live, it's a good idea to do some quick testing. You can test your survey even without having it connected to a database by setting `mode: preview` under `survey-settings` in your `survey.qmd` YAML header - responses will be saved locally to `preview_data.csv` instead of a database, and `sd_db_connect()` doesn't need any arguments. Of course, you probably should also test it after connecting it to a database (switch `mode` to `database`) to ensure that responses are being properly stored.
 
 When testing, you might get an error - don't panic! Read the terminal output carefully and debug. There's a good chance you may have missed a bug somewhere in your server code. Look in your `app.R` file to see if you can spot the error.
 
